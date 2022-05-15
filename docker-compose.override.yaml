@@ -4,13 +4,13 @@ version: '3.8'
 # to provide dependencies and expose ports for local testing
 
 services:
-  ffc-grants-addvalue-web:
+  ffc-grants-slurry-web:
     build:
       context: .
       target: development
     depends_on:
       - redis
-    image: ffc-grants-addvalue-web-development
+    image: ffc-grants-slurry-web-development
     environment:
       NODE_ENV: development
     ports:

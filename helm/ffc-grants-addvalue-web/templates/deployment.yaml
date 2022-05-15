@@ -1,8 +1,8 @@
-{{- include "ffc-helm-library.deployment" (list . "ffc-grants-addvalue-web.deployment") -}}
-{{- define "ffc-grants-addvalue-web.deployment" -}}
+{{- include "ffc-helm-library.deployment" (list . "ffc-grants-slurry-web.deployment") -}}
+{{- define "ffc-grants-slurry-web.deployment" -}}
 spec:
   template:
     spec:
       containers:
-      - {{ include "ffc-helm-library.container" (list . "ffc-grants-addvalue-web.container") }}
+      - {{ include "ffc-helm-library.container" (list . "ffc-grants-slurry-web.container") }}
 {{- end -}}

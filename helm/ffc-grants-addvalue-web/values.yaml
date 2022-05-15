@@ -1,8 +1,8 @@
 environment: development
-name: ffc-grants-addvalue-web
+name: ffc-grants-slurry-web
 namespace: ffc-grants
 workstream: ffc-grants
-image: ffc-grants-addvalue-web
+image: ffc-grants-slurry-web
 
 labels: {}
 
@@ -14,10 +14,10 @@ azureIdentity:
   resourceID: not-a-real-resourceID
   
 containerConfigMap:
-  name: ffc-grants-addvalue-web-config-map
+  name: ffc-grants-slurry-web-config-map
 
 containerSecret:
-  name: ffc-grants-addvalue-web-container-secret
+  name: ffc-grants-slurry-web-container-secret
   type: Opaque
 
 deployment:
@@ -43,7 +43,7 @@ container:
   redisPassword: redis
   cookiePassword: thisisnotarealpasswordthisisnotarealpassword
   redisPort: 6379
-  redisPartition: ffc-grants-addvalue-web
+  redisPartition: ffc-grants-slurry-web
   sessionCacheTTL: 1200000
   messageQueueHost: dummy
   projectDetailsQueueAddress: project-details

@@ -1,11 +1,11 @@
 version: '3.8'
 
 services:
-  ffc-grants-addvalue-web:
+  ffc-grants-slurry-web:
     build:
       context: .
       target: production
-    image: ffc-grants-addvalue-web    
+    image: ffc-grants-slurry-web    
     environment:     
       NODE_ENV: production
       PORT: ${PORT:-3000}
@@ -28,7 +28,7 @@ services:
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY:-notset}
       REDIS_HOSTNAME: redis
       REDIS_PORT: 6379
-      REDIS_PARTITION: ffc-grants-addvalue-web
+      REDIS_PARTITION: ffc-grants-slurry-web
       REDIS_PASSWORD: ""
       SESSION_CACHE_TTL: 1200000
       SURVEY_LINK: https://defragroup.eu.qualtrics.com/jfe/preview/SV_9EwLLuCwWGJMz8a?Q_CHL=preview&Q_SurveyVersionID=current

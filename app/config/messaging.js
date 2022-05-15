@@ -49,7 +49,7 @@ const config = {
   eligibilityAnswersMsgType: `${msgTypePrefix}.av.eligibility.details`,
   projectDetailsMsgType: `${msgTypePrefix}.av.project.details`,
   contactDetailsMsgType: `${msgTypePrefix}.av.contact.details`,
-  msgSrc: 'ffc-grants-addvalue-web'
+  msgSrc: 'ffc-grants-slurry-web'
 }
 
 // Validate config
