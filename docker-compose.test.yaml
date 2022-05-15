@@ -4,10 +4,10 @@ version: '3.8'
 # that test output is saved to the host
 
 services:
-  ffc-grants-addvalue-web:
+  ffc-grants-slurry-web:
     build:
       target: development
-    image: ffc-grants-addvalue-web-development
+    image: ffc-grants-slurry-web-development
     environment:
       NODE_ENV: test
       GOOGLE_TAG_MANAGER_KEY: 'GTM-WJ5C78H'

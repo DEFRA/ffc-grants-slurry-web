@@ -1,5 +1,5 @@
-{{- include "ffc-helm-library.azure-ingress" (list . "ffc-grants-addvalue-web.ingress") -}}
-{{- define "ffc-grants-addvalue-web.ingress" -}}
+{{- include "ffc-helm-library.azure-ingress" (list . "ffc-grants-slurry-web.ingress") -}}
+{{- define "ffc-grants-slurry-web.ingress" -}}
 {{- if not .Values.pr -}}
 metadata:
   annotations:
