@@ -1,5 +1,5 @@
 apiVersion: v2
-description: Web frontend for FTF addvalue scheme
+description: Web frontend for FTF slurry scheme
 name: ffc-grants-slurry-web
 # this version is automatically updated in the build pipline
 version: 1.0.0

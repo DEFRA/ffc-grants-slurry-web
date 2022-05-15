@@ -1,6 +1,6 @@
-# FFC addvalue Web
+# FFC slurry Web
 
-Web frontend for FTF adding value scheme
+Web frontend for FTF slurry scheme
 
 ## Licence
 

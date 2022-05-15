@@ -24,7 +24,7 @@ services:
       BACKEND_POLLING_HOST: http://host.docker.internal:3021
       POLLING_INTERVAL: 200
       POLLING_RETRIES: 20
-      APPINSIGHTS_CLOUDROLE: ffc-grants-addvalue
+      APPINSIGHTS_CLOUDROLE: ffc-grants-slurry
       APPINSIGHTS_INSTRUMENTATIONKEY: ${APPINSIGHTS_INSTRUMENTATIONKEY:-notset}
       REDIS_HOSTNAME: redis
       REDIS_PORT: 6379
