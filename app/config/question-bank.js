@@ -64,7 +64,7 @@ const { LIST_COUNTIES } = require('../helpers/all-counties')
 const questionBank = {
   grantScheme: {
     key: 'FFC002',
-    name: 'Adding Value'
+    name: 'Slurry Infrastructure'
   },
   sections: [
     {
@@ -72,85 +72,15 @@ const questionBank = {
       title: 'Eligibility',
       questions: [
         {
-          key: 'nature-of-business',
-          order: 10,
-          title: 'What is your business?',
-          pageTitle: '',
-          backUrl: 'start',
-          nextUrl: 'legal-status',
-          url: 'nature-of-business',
-          baseUrl: 'nature-of-business',
-          type: 'single-answer',
-          fundingPriorities: '',
-          minAnswerCount: 1,
-          ga: [{ journeyStart: true }],
-          ineligibleContent: {
-            messageContent: `
-            <span>This grant is for businesses who:</span>
-            <ul class="govuk-body">
-              <li>are agricultural or horticultural growers or producers</li>
-              <li>are a business processing agricultural or horticultural products that is at least 50% owned by agricultural or horticultural producers</li>
-            </ul>`,
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select the option that applies to your business'
-            }
-          ],
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: 'This grant is for businesses who:',
-                items: [
-                  'are agricultural or horticultural growers or producers',
-                  'are a business processing agricultural or horticultural products that is at least 50% owned by agricultural or horticultural producers'
-                ]
-              }]
-            }]
-          },
-          validations: [],
-          answers: [
-            {
-              key: 'nature-of-business-A1',
-              value: 'A grower or producer of agricultural or horticultural produce',
-              hint: {
-                text: 'For example, arable or livestock farmer, fruit producer, salad grower'
-              }
-            },
-            {
-              key: 'nature-of-business-A2',
-              value: 'A business processing agricultural or horticultural products that is at least 50% owned by agricultural or horticultural producers',
-              hint: {
-                text: 'For example, cheese processing business owned by a dairy farmer'
-              }
-            },
-            {
-              value: 'divider'
-            },
-            {
-              key: 'nature-of-business-A3',
-              value: 'None of the above',
-              notEligible: true
-            }
-          ],
-          yarKey: 'applicantBusiness'
-        },
-        {
           key: 'legal-status',
           order: 20,
           title: 'What is the legal status of the business?',
           pageTitle: '',
-          backUrl: 'nature-of-business',
+          backUrl: 'start',
           nextUrl: 'country',
           url: 'legal-status',
           baseUrl: 'legal-status',
-          preValidationKeys: ['applicantBusiness'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: 'Your business does not have an eligible legal status.',
             details: {
@@ -433,8 +363,8 @@ const questionBank = {
             dependentQuestionYarKey: 'planningPermission',
             dependentAnswerKeysArray: ['planning-permission-A3'],
             urlOptions: {
-              thenUrl: '/adding-value/planning-required-condition',
-              elseUrl: '/adding-value/planning-permission'
+              thenUrl: '/slurry-infrastructure/planning-required-condition',
+              elseUrl: '/slurry-infrastructure/planning-permission'
             }
           },
           nextUrl: 'tenancy',
@@ -609,7 +539,7 @@ const questionBank = {
           url: 'project-items',
           baseUrl: 'project-items',
           backUrl: 'tenancy',
-          nextUrl: 'storage',
+          nextUrl: 'project-cost',
           fundingPriorities: '',
           preValidationKeys: ['projectStart', 'tenancy'],
           type: 'multi-answer',
@@ -646,45 +576,6 @@ const questionBank = {
           yarKey: 'projectItems'
         },
         {
-          key: 'storage',
-          order: 81,
-          title: 'Does your project also need storage facilities?',
-          pageTitle: '',
-          url: 'storage',
-          baseUrl: 'storage',
-          backUrl: 'project-items',
-          nextUrl: 'project-cost',
-          preValidationKeys: ['projectItems'],
-          hint: {
-            text: 'For example, cold stores or controlled atmosphere storage'
-          },
-          warning: {
-            text: 'Storage facilities cannot be more than 50% of the total grant funding.',
-            iconFallbackText: 'Warning'
-          },
-          fundingPriorities: '',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select yes if you will need storage facilities'
-            }
-          ],
-          answers: [
-            {
-              key: 'storage-A1',
-              value: 'Yes, we will need storage facilities',
-              sidebarFormattedValue: 'Storage facilities'
-            },
-            {
-              key: 'storage-A2',
-              value: 'No, we don’t need it'
-            }
-          ],
-          yarKey: 'storage'
-        },
-        {
           key: 'project-cost',
           order: 90,
           pageTitle: '',
@@ -692,7 +583,7 @@ const questionBank = {
           baseUrl: 'project-cost',
           backUrl: 'storage',
           nextUrl: 'potential-amount',
-          preValidationKeys: ['storage'],
+          preValidationKeys: [],
           classes: 'govuk-input--width-10',
           id: 'projectCost',
           name: 'projectCost',
@@ -737,7 +628,7 @@ const questionBank = {
                 }]
               }
             ],
-            dependentYarKeys: ['projectItems', 'storage'],
+            //dependentYarKeys: ['projectItems', 'storage'],
             dependentQuestionKeys: ['project-items', 'storage']
 
           },
@@ -785,7 +676,7 @@ const questionBank = {
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
           backUrl: 'project-cost',
-          nextUrl: 'produce-processed',
+          nextUrl: 'collaboration',
           eliminationAnswerKeys: '',
           ineligibleContent: {
             messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
@@ -850,332 +741,6 @@ const questionBank = {
 
         },
         {
-          key: 'products-processed',
-          order: 120,
-          title: 'What type of produce is being processed?',
-          pageTitle: '',
-          hint: {
-            text: 'Select one option'
-          },
-          url: 'produce-processed',
-          baseUrl: 'produce-processed',
-          backUrl: 'remaining-costs',
-          nextUrl: 'how-adding-value',
-          preValidationKeys: ['canPayRemainingCost'],
-          score: {
-            isScore: true,
-            isDisplay: true,
-            title: 'Produce processed'
-          },
-          ineligibleContent: {
-            messageContent: '',
-            insertText: { text: '' },
-            messageLink: {
-              url: '',
-              title: ''
-            }
-          },
-          sidebar: {
-            values: [{
-              heading: 'Funding priorities',
-              content: [{
-                para: 'RPA wants to fund projects that:',
-                items: [
-                  'create and expand processing capacity to provide more English-grown food for consumers to buy'
-                ]
-              }]
-            }]
-          },
-          fundingPriorities: 'Create and expand processing capacity to provide more English-grown food for consumers to buy',
-          type: 'single-answer',
-          classes: 'govuk-fieldset__legend--l',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select the type of produce being processed'
-            }
-          ],
-          answers: [
-            {
-              key: 'products-processed-A1',
-              value: 'Arable produce',
-              hint: {
-                text: 'For example, crushing of oilseeds, rolling or flaking of grains as food ingredients'
-              }
-            },
-            {
-              key: 'products-processed-A2',
-              value: 'Horticultural produce',
-              hint: {
-                text: 'For example, grading and packing of soft fruit, washing and packing vegetables, packing salad crops'
-              }
-            },
-            {
-              key: 'products-processed-A3',
-              value: 'Dairy or meat produce',
-              hint: {
-                text: 'For example, processing and bottling milk or slaughtering, cutting, processing and packing meat'
-              }
-            },
-            {
-              key: 'products-processed-A5',
-              value: 'Fodder produce',
-              hint: {
-                text: 'For example, processing and repacking hay and straw for specialist markets or retail sale'
-              }
-            },
-            {
-              key: 'products-processed-A6',
-              value: 'Non-edible produce',
-              hint: {
-                text: 'For example, processing and packing ornamental flowers and bulbs after harvesting'
-              }
-            },
-            {
-              key: 'products-processed-A7',
-              value: 'Fibre produce',
-              hint: {
-                text: 'For example, processing animal hides and leather, processing fibres such as flax and hemp'
-              }
-            }
-          ],
-          yarKey: 'productsProcessed'
-        },
-        {
-          key: 'how-adding-value',
-          order: 130,
-          title: 'How will your project add value to the produce?',
-          pageTitle: '',
-          url: 'how-adding-value',
-          baseUrl: 'how-adding-value',
-          backUrl: 'produce-processed',
-          nextUrl: 'project-impact',
-          score: {
-            isScore: true,
-            isDisplay: true,
-            title: 'Adding value'
-          },
-          hint: {
-            text: 'Select the main option that applies'
-          },
-          eliminationAnswerKeys: '',
-          preValidationKeys: ['productsProcessed'],
-          ineligibleContent: {
-            messageContent: '',
-            insertText: { text: '' },
-            messageLink: {
-              url: '',
-              title: ''
-            }
-          },
-          sidebar: {
-            values: [{
-              heading: 'Funding priorities',
-              content: [{
-                para: 'RPA wants to fund projects that:',
-                items: [
-                  'improve processing and supply chains',
-                  'grow your business']
-              }]
-            }]
-          },
-          fundingPriorities: 'Improve processing and supply chains<br/><br/>Grow your business',
-          type: 'single-answer',
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select how you will add value to the produce'
-            }
-          ],
-          answers: [
-            {
-              key: 'how-adding-value-A1',
-              value: 'Creating a new product',
-              hint: {
-                text: 'For example, slaughtering, cut and packed meat, yogurt to cheese, brewing or distilling'
-              }
-            },
-            {
-              key: 'how-adding-value-A2',
-              value: 'Grading or sorting produce',
-              hint: {
-                text: 'For example, washing and grading vegetables, egg grading, optical grading of top fruit'
-              }
-            },
-            {
-              key: 'how-adding-value-A3',
-              value: 'Packing produce',
-              hint: {
-                text: 'For example, packing top fruit, bagging vegetables, bottling wine'
-              }
-            },
-            {
-              key: 'how-adding-value-A5',
-              value: 'New retail facility to sell direct to consumers'
-            }
-          ],
-          yarKey: 'howAddingValue'
-        },
-        {
-          key: 'project-impact',
-          order: 140,
-          title: 'What impact will the project have?',
-          pageTitle: '',
-          url: 'project-impact',
-          baseUrl: 'project-impact',
-          backUrl: 'how-adding-value',
-          nextUrl: 'future-customers',
-          score: {
-            isScore: true,
-            isDisplay: true,
-            title: 'Project impact'
-          },
-          hint: {
-            text: 'Select all that apply'
-          },
-          eliminationAnswerKeys: '',
-          preValidationKeys: ['howAddingValue'],
-          ineligibleContent: {},
-          ga: [
-            { dimension: 'cm2', value: { type: 'journey-time' } }
-          ],
-          sidebar: {
-            values: [{
-              heading: 'Funding priorities',
-              content: [{
-                para: 'RPA wants to fund projects that:',
-                items: ['improve processing and supply chains',
-                  'grow your business']
-              }]
-            }]
-          },
-          fundingPriorities: 'Improve processing and supply chains<br/><br/>Grow your business',
-          type: 'multi-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select the impact your project will have'
-            },
-            {
-              type: 'COMBINATION_ANSWER',
-              error: 'You cannot select that combination of options',
-              combinationObject: {
-                questionKey: 'project-impact',
-                combinationAnswerKeys: ['project-impact-A1', 'project-impact-A4']
-              }
-            }
-          ],
-          answers: [
-            {
-              key: 'project-impact-A1',
-              value: 'Creating added-value products for the first time'
-            },
-            {
-              key: 'project-impact-A2',
-              value: 'Increasing volume of added-value products'
-            },
-            {
-              key: 'project-impact-A3',
-              value: 'Increasing range of added-value products'
-            },
-            {
-              key: 'project-impact-A4',
-              value: 'Allow selling direct to consumer'
-            }
-          ],
-          yarKey: 'projectImpact'
-        },
-        {
-          key: 'future-customers',
-          order: 160,
-          title: 'Who will your new customers be after the project?',
-          pageTitle: '',
-          url: 'future-customers',
-          baseUrl: 'future-customers',
-          backUrl: 'project-impact',
-          nextUrl: 'collaboration',
-          preValidationKeys: ['projectImpact'],
-          eliminationAnswerKeys: '',
-          score: {
-            isScore: true,
-            isDisplay: true,
-            title: 'Future customers'
-          },
-          hint: {
-            html: `For example, you will now sell directly to retailers 
-                  <br/><br/>Select all that apply`
-          },
-          ineligibleContent: {
-            messageContent: '',
-            insertText: { text: '' },
-            messageLink: {
-              url: '',
-              title: ''
-            }
-          },
-          sidebar: {
-            values: [{
-              heading: 'Funding priorities',
-              content: [{
-                para: 'RPA wants to fund projects that:',
-                items: ['improve processing and supply chains',
-                  'grow your business']
-              }]
-            }]
-          },
-          fundingPriorities: 'Improve processing and supply chains<br/><br/>Grow your business',
-          type: 'multi-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select all options that apply'
-            },
-            {
-              type: 'STANDALONE_ANSWER',
-              error: 'You cannot select ‘No change’ and another option',
-              standaloneObject: {
-                questionKey: 'future-customers',
-                answerKey: 'future-customers-A6'
-              }
-            }
-          ],
-          answers: [
-            {
-              key: 'future-customers-A1',
-              value: 'Producers or growers'
-            },
-            {
-              key: 'future-customers-A2',
-              value: 'Processors'
-            },
-            {
-              key: 'future-customers-A3',
-              value: 'Wholesalers'
-            },
-            {
-              key: 'future-customers-A4',
-              value: 'Retailers'
-            },
-            {
-              key: 'future-customers-A5',
-              value: 'Selling direct to consumers'
-            },
-            {
-              value: 'divider'
-            },
-            {
-              key: 'future-customers-A6',
-              value: 'No change'
-            }
-          ],
-          yarKey: 'futureCustomers'
-        },
-        {
           key: 'collaboration',
           order: 170,
           title: 'Will you work in partnership or collaborate with other farmers or producers?',
@@ -1194,7 +759,7 @@ const questionBank = {
             title: 'Collaboration'
           },
           eliminationAnswerKeys: '',
-          preValidationKeys: ['futureCustomers'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: '',
             insertText: { text: '' },
@@ -1241,7 +806,7 @@ const questionBank = {
           url: 'environmental-impact',
           baseUrl: 'environmental-impact',
           backUrl: 'collaboration',
-          nextUrl: 'score',
+          nextUrl: 'business-details',
           score: {
             isScore: true,
             isDisplay: true,
@@ -1252,14 +817,6 @@ const questionBank = {
           },
           eliminationAnswerKeys: '',
           preValidationKeys: ['collaboration'],
-          ineligibleContent: {
-            messageContent: '',
-            insertText: { text: '' },
-            messageLink: {
-              url: '',
-              title: ''
-            }
-          },
           sidebar: {
             values: [{
               heading: 'Funding priorities',
@@ -1350,11 +907,11 @@ const questionBank = {
           baseUrl: 'business-details',
           backUrl: 'score',
           nextUrl: 'applying',
-          preValidationKeys: ['current-score'],
-          ga: [
-            { dimension: 'cd2', value: { type: 'score' } },
-            { dimension: 'cm1', value: { type: 'journey-time' } }
-          ],
+          // preValidationKeys: ['current-score'],
+          // ga: [
+          //   { dimension: 'cd2', value: { type: 'score' } },
+          //   { dimension: 'cm1', value: { type: 'journey-time' } }
+          // ],
           eliminationAnswerKeys: '',
           ineligibleContent: {},
           fundingPriorities: '',

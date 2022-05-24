@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test'
 console.log(`Running webpack in ${isDev ? 'development' : 'production'} mode`)
 
-const urlPrefix = '/adding-value'
+const urlPrefix = '/slurry-infrastructure'
 
 module.exports = {
   entry: './app/assets/src/index.js',
