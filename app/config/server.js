@@ -1,7 +1,7 @@
 const Joi = require('joi')
-const urlPrefix = '/adding-value'
+const urlPrefix = '/slurry-infrastructure'
 const startPageUrl = '/start'
-const serviceEndDate = '2022/07/12'
+const serviceEndDate = '2024/07/12'
 const serviceEndTime = '23:59:59'
 
 // Define config schema

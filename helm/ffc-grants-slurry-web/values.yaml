@@ -85,4 +85,4 @@ ingress:
   class: nginx
   endpoint: ffc-grants-frontend
   server: example.com
-  path: /adding-value
+  path: /slurry-infrastructure

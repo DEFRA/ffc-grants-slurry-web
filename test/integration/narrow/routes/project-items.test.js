@@ -38,7 +38,7 @@ describe('Page: /project-items', () => {
     expect(postResponse.payload).toContain('Select all the items your project needs')
   })
 
-  it('user selects any number of options -> store user response and redirect to /storage', async () => {
+  it('user selects any number of options -> store user response and redirect to /project-cost', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/project-items`,
@@ -48,6 +48,6 @@ describe('Page: /project-items', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('storage')
+    expect(postResponse.headers.location).toBe('project-cost')
   })
 })

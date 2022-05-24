@@ -21,7 +21,7 @@ describe('Page Guard', () => {
     server = await createServer()
     const getOptions = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/nature-of-business`
+      url: `${global.__URLPREFIX__}/legal-status`
     }
 
     const getResponse = await server.inject(getOptions)
