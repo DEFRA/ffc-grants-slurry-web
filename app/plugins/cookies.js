@@ -3,6 +3,8 @@ const { ALL_URLS } = require('../config/question-bank')
 const { getCurrentPolicy, validSession, sessionIgnorePaths } = require('../cookies')
 const cacheConfig = require('../config/cache')
 
+require('dotenv')
+
 module.exports = {
   plugin: {
     name: 'cookies',

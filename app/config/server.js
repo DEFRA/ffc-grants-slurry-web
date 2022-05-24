@@ -4,6 +4,8 @@ const startPageUrl = '/start'
 const serviceEndDate = '2024/07/12'
 const serviceEndTime = '23:59:59'
 
+require('dotenv').config()
+
 // Define config schema
 const schema = Joi.object({
   urlPrefix: Joi.string().default(urlPrefix),
