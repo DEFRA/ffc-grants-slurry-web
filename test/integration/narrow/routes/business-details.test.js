@@ -55,6 +55,21 @@ describe('Page: /business-details', () => {
     expect(response.payload).toContain('Back to details')
   })
 
+  it('should validate business name - maximum characters is 100', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/business-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        businessName: 'abcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrs',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Name must be 100 characters or fewer')
+  })
   it('should validate number of employees - no spaces', async () => {
     const postOptions = {
       method: 'POST',
@@ -78,6 +93,22 @@ describe('Page: /business-details', () => {
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         numberEmployees: '12345678',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Number must be between 1-9999999')
+  })
+
+  it('should validate number of employees - minimum number of employees is 1', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/business-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        numberEmployees: '0',
         crumb: crumbToken
       }
     }
@@ -126,6 +157,22 @@ describe('Page: /business-details', () => {
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         businessTurnover: '1234567890',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Number must be between 1-999999999')
+  })
+
+  it('should validate business turnover - minimum value is 1', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/business-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        businessTurnover: '0',
         crumb: crumbToken
       }
     }

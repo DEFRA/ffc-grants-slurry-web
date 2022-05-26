@@ -1008,12 +1008,6 @@ const questionBank = {
                   error: 'Business turnover must be a whole number, like 100000'
                 },
                 {
-                  // if 000000000 enter error
-                  // Number must be more than 000000000
-                  // Note 7
-                },
-                // Min/max not mentioned in ticket, adding anyways as there is a max value
-                {
                   type: 'MIN_MAX',
                   min: 1,
                   max: 999999999,
@@ -1040,7 +1034,6 @@ const questionBank = {
                   error: 'SBI number must have 9 characters, like 011115678'  
                 }
               ]
-              // Add default value of 000000000 if not given (Note 8)
             }
           ],
           yarKey: 'businessDetails'
