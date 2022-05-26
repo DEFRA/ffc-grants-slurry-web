@@ -904,7 +904,7 @@ const questionBank = {
           title: 'Business details',
           pageTitle: '',
           url: 'business-details',
-          baseurl: 'business-details',
+          baseUrl: 'business-details',
           backUrl: 'score',
           nextUrl: 'applying',
           eliminationAnswerKeys: '',
@@ -990,8 +990,7 @@ const questionBank = {
               type: 'number',
               classes: 'govuk-input--width-10',
               prefix: {
-                text: '£',
-                error: 'Enter the business turnover'
+                text: '£'
               },
               label: {
                 text: 'Business turnover',
