@@ -902,16 +902,11 @@ const questionBank = {
           key: 'business-details',
           order: 180,
           title: 'Business details',
-          pageTitle: 'Crops',
+          pageTitle: '',
           url: 'business-details',
           baseUrl: 'business-details',
           backUrl: 'score',
           nextUrl: 'applying',
-          // preValidationKeys: ['current-score'],
-          // ga: [
-          //   { dimension: 'cd2', value: { type: 'score' } },
-          //   { dimension: 'cm1', value: { type: 'journey-time' } }
-          // ],
           eliminationAnswerKeys: '',
           ineligibleContent: {},
           fundingPriorities: '',
@@ -922,12 +917,13 @@ const questionBank = {
             {
               yarKey: 'projectName',
               type: 'text',
+              classes: 'govuk-input--width-20',
               label: {
                 text: 'Project name',
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'For example, Browns Hill Farm vegetable washing and sorting project'
+                text: 'For example, Browns Hill Farm lagoon expansion project'
               },
               validate: [
                 {
@@ -939,12 +935,13 @@ const questionBank = {
             {
               yarKey: 'businessName',
               type: 'text',
+              classes: 'govuk-input--width-20',
               label: {
                 text: 'Business name',
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'If you’re registered on the Rural Payments system, enter business name as registered'
+                text: "If you're registered with the Rural Payments system, enter business name as registered"
               },
               validate: [
                 {
@@ -962,7 +959,7 @@ const questionBank = {
             {
               yarKey: 'numberEmployees',
               type: 'number',
-              classes: 'govuk-input--width-10',
+              classes: 'govuk-input--width-3',
               label: {
                 text: 'Number of employees',
                 classes: 'govuk-label'
@@ -996,7 +993,7 @@ const questionBank = {
                 text: '£'
               },
               label: {
-                text: 'Business turnover (£)',
+                text: 'Business turnover',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1020,27 +1017,26 @@ const questionBank = {
             {
               yarKey: 'sbi',
               type: 'text',
-              title: 'Single Business Identifier (SBI) (Optional)',
+              title: 'Single Business Identifier (SBI)',
               classes: 'govuk-input govuk-input--width-10',
               label: {
-                text: 'Single Business Identifier (SBI) (Optional)',
+                text: 'Single Business Identifier (SBI)',
                 classes: 'govuk-label'
               },
               hint: {
-                html: 'If you do not have an SBI, you will need to get one for full application'
+                html: 'If you do not have an SBI, you will need to get one for full applictaion'
               },
               validate: [
-                {
+                 {
                   type: 'REGEX',
                   regex: SBI_REGEX,
-                  error: 'SBI number must have 9 characters, like 011115678'
+                  error: 'SBI number must have 9 characters, like 011115678'  
                 }
-
-              ],
-              answers: []
+              ]
             }
           ],
           yarKey: 'businessDetails'
+
         },
         {
           key: 'applying',
