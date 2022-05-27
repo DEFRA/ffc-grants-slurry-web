@@ -23,10 +23,9 @@ describe('Page: /agents-details', () => {
     expect(response.payload).toContain('Name')
     expect(response.payload).toContain('First name')
     expect(response.payload).toContain('Last name')
-    expect(response.payload).toContain('Business name')
     expect(response.payload).toContain('Contact details')
     expect(response.payload).toContain('Email address')
-    expect(response.payload).toContain('Mobile number')
+    expect(response.payload).toContain('Mobile phone number')
     expect(response.payload).toContain('Landline number')
     expect(response.payload).toContain('Business address')
     expect(response.payload).toContain('Building and street')
@@ -48,8 +47,8 @@ describe('Page: /agents-details', () => {
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Enter your first name')
     expect(postResponse.payload).toContain('Enter your last name')
-    expect(postResponse.payload).toContain('Enter your business name')
     expect(postResponse.payload).toContain('Enter your email address')
+    expect(postResponse.payload).toContain('Enter a mobile number (if you do not have a mobile, enter your landline number)')
     expect(postResponse.payload).toContain('Enter a landline number (if you do not have a landline, enter your mobile number)')
     expect(postResponse.payload).toContain('Enter your building and street details')
     expect(postResponse.payload).toContain('Enter your town')
@@ -189,7 +188,6 @@ describe('Page: /agents-details', () => {
       payload: {
         firstName: 'First Name',
         lastName: 'Last Name',
-        businessName: 'Business Name',
         emailAddress: 'my@name.com',
         address1: 'Address 1',
         address2: 'Address 2',
@@ -221,7 +219,7 @@ describe('Page: /agents-details', () => {
     expect(postResponse.payload).toContain('Enter a postcode, like AA1 1AA')
   })
 
-  it('store user response and redirect to /applicant-details', async () => {
+  it('store user response and redirect to /check-details', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/agents-details`,
@@ -229,7 +227,6 @@ describe('Page: /agents-details', () => {
       payload: {
         firstName: 'First Name',
         lastName: 'Last Name',
-        businessName: 'Business Name',
         emailAddress: 'my@name.com',
         mobileNumber: '07700 900 982',
         address1: 'Address 1',
@@ -243,6 +240,6 @@ describe('Page: /agents-details', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('applicant-details')
+    expect(postResponse.headers.location).toBe('check-details')
   })
 })

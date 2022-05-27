@@ -1344,7 +1344,7 @@ const questionBank = {
           url: 'agents-details',
           baseUrl: 'agents-details',
           backUrl: 'applying',
-          nextUrl: 'applicant-details',
+          nextUrl: 'check-details',
           summaryPageUrl: 'check-details',
           preValidationKeys: ['applying'],
           eliminationAnswerKeys: '',
@@ -1399,27 +1399,6 @@ const questionBank = {
               ]
             },
             {
-              yarKey: 'businessName',
-              type: 'text',
-              endFieldset: 'true',
-              classes: 'govuk-input--width-20',
-              label: {
-                text: 'Business name',
-                classes: 'govuk-label'
-              },
-              validate: [
-                {
-                  type: 'NOT_EMPTY',
-                  error: 'Enter your business name'
-                },
-                {
-                  type: 'REGEX',
-                  regex: CHARS_MAX_100,
-                  error: 'Name must be 100 characters or fewer'
-                }
-              ]
-            },
-            {
               type: 'sub-heading',
               text: 'Contact details'
             },
@@ -1432,7 +1411,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'We will only use this to send you a confirmation'
+                text: 'We will only use this to send you confirmation'
               },
               validate: [
                 {
@@ -1449,9 +1428,9 @@ const questionBank = {
             {
               yarKey: 'mobileNumber',
               type: 'tel',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
-                text: 'Mobile number',
+                text: 'Mobile phone number',
                 classes: 'govuk-label'
               },
               hint: {
@@ -1479,7 +1458,7 @@ const questionBank = {
               yarKey: 'landlineNumber',
               type: 'tel',
               endFieldset: 'true',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Landline number',
                 classes: 'govuk-label'
@@ -1538,7 +1517,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Town',
+                text: 'Town or city',
                 classes: 'govuk-label'
               },
               validate: [
