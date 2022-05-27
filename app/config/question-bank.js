@@ -1344,7 +1344,7 @@ const questionBank = {
           url: 'agents-details',
           baseUrl: 'agents-details',
           backUrl: 'applying',
-          nextUrl: 'check-details',
+          nextUrl: 'applicant-details',
           summaryPageUrl: 'check-details',
           preValidationKeys: ['applying'],
           eliminationAnswerKeys: '',

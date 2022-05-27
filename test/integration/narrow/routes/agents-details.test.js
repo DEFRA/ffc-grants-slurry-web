@@ -219,7 +219,7 @@ describe('Page: /agents-details', () => {
     expect(postResponse.payload).toContain('Enter a postcode, like AA1 1AA')
   })
 
-  it('store user response and redirect to /check-details', async () => {
+  it('store user response and redirect to /applicant-details', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/agents-details`,
@@ -240,6 +240,6 @@ describe('Page: /agents-details', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('check-details')
+    expect(postResponse.headers.location).toBe('applicant-details')
   })
 })
