@@ -5,6 +5,7 @@ const {
   CHARS_MAX_100,
   POSTCODE_REGEX,
   WHOLE_NUMBER_REGEX,
+  EMPLOYEES_REGEX,
   SBI_REGEX,
   NAME_ONLY_REGEX,
   PHONE_REGEX,
@@ -984,9 +985,8 @@ const questionBank = {
                   error: 'Number of employees must be a whole number, like 305'
                 },
                 {
-                  type: 'MIN_MAX',
-                  min: 1,
-                  max: 9999999,
+                  type: 'REGEX',
+                  regex: EMPLOYEES_REGEX,
                   error: 'Number must be between 1-9999999'
                 }
               ]
@@ -1023,10 +1023,10 @@ const questionBank = {
             {
               yarKey: 'sbi',
               type: 'text',
-              title: 'Single Business Identifier (SBI)',
+              title: 'Single Business Identifier (SBI) (Optional)',
               classes: 'govuk-input govuk-input--width-10',
               label: {
-                text: 'Single Business Identifier (SBI)',
+                text: 'Single Business Identifier (SBI) (Optional)',
                 classes: 'govuk-label'
               },
               hint: {
