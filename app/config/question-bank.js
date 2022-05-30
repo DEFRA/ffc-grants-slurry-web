@@ -965,7 +965,7 @@ const questionBank = {
             {
               yarKey: 'numberEmployees',
               type: 'number',
-              classes: 'govuk-input--width-3',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Number of employees',
                 classes: 'govuk-label'
