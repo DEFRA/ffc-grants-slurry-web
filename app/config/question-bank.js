@@ -929,6 +929,12 @@ const questionBank = {
                 {
                   type: 'NOT_EMPTY',
                   error: 'Enter a project name'
+                },
+                {
+                  type: 'MIN_MAX_CHARS',
+                  min: 0,
+                  max: 100,
+                  error: 'Name must be 100 characters or fewer'
                 }
               ]
             },
@@ -941,7 +947,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: "If you're registered with the Rural Payments system, enter business name as registered"
+                text: "If you're registered on the Rural Payments system, enter business name as registered"
               },
               validate: [
                 {
