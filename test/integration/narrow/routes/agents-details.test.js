@@ -47,6 +47,7 @@ describe('Page: /agents-details', () => {
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Enter your first name')
     expect(postResponse.payload).toContain('Enter your last name')
+    expect(postResponse.payload).toContain('Enter your business name')
     expect(postResponse.payload).toContain('Enter your email address')
     expect(postResponse.payload).toContain('Enter a mobile number (if you do not have a mobile, enter your landline number)')
     expect(postResponse.payload).toContain('Enter a landline number (if you do not have a landline, enter your mobile number)')
@@ -98,6 +99,22 @@ describe('Page: /agents-details', () => {
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Name must only include letters, hyphens and apostrophes')
+  })
+
+  it('validate business name - Maximum 100 characters', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/agents-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        businessName: 'abcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrs',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Name must be 100 characters or fewer')
   })
 
   it('validate email', async () => {
@@ -227,6 +244,7 @@ describe('Page: /agents-details', () => {
       payload: {
         firstName: 'First Name',
         lastName: 'Last Name',
+        businessName: 'Business Name',
         emailAddress: 'my@name.com',
         mobileNumber: '07700 900 982',
         address1: 'Address 1',

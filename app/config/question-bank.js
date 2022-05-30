@@ -1399,6 +1399,27 @@ const questionBank = {
               ]
             },
             {
+              yarKey: 'businessName',
+              type: 'text',
+              classes: 'govuk-input--width-20',
+              label: {
+                text: 'Business name',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter your business name'
+                },
+                {
+                  type: 'MIN_MAX_CHARS',
+                  min: 0,
+                  max: 100,
+                  error: 'Name must be 100 characters or fewer'
+                }
+              ]
+            },
+            {
               type: 'sub-heading',
               text: 'Contact details'
             },
