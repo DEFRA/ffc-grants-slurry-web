@@ -24,7 +24,7 @@ describe('Page: /business-details', () => {
     expect(response.payload).toContain('Business name')
     expect(response.payload).toContain('Number of employees')
     expect(response.payload).toContain('Business turnover')
-    expect(response.payload).toContain('Single Business Identifier (SBI) (Optional)')
+    expect(response.payload).toContain('Single Business Identifier')
   })
 
   it('no option selected -> show error message', async () => {
@@ -132,22 +132,6 @@ describe('Page: /business-details', () => {
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Number must be between 1-9999999')
-  })
-
-  it('should validate number of employees - leading 0s are not included in character count', async () => {
-    const postOptions = {
-      method: 'POST',
-      url: `${global.__URLPREFIX__}/business-details`,
-      headers: { cookie: 'crumb=' + crumbToken },
-      payload: {
-        numberEmployees: '0000000000000000001234567',
-        crumb: crumbToken
-      }
-    }
-
-    const postResponse = await global.__SERVER__.inject(postOptions)
-    expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).not.toContain('Number must be between 1-9999999')
   })
 
   it('should validate business turnover - only digits', async () => {
