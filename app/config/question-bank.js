@@ -1407,6 +1407,7 @@ const questionBank = {
             {
               yarKey: 'businessName',
               type: 'text',
+              endFieldset: 'true',
               classes: 'govuk-input--width-20',
               label: {
                 text: 'Business name',
