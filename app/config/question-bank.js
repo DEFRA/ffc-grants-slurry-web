@@ -1154,7 +1154,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'We will only use this to send you a confirmation'
+                text: 'We will only use this to send you confirmation'
               },
               validate: [
                 {
@@ -1260,7 +1260,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Town',
+                text: 'Town (optional)',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1432,7 +1432,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'We will only use this to send you a confirmation'
+                text: 'We will only use this to send you confirmation'
               },
               validate: [
                 {
