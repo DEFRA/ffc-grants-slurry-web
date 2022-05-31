@@ -25,7 +25,7 @@ describe('Page: /applicant-details', () => {
     expect(response.payload).toContain('Last name')
     expect(response.payload).toContain('Contact details')
     expect(response.payload).toContain('Email address')
-    expect(response.payload).toContain('Mobile number')
+    expect(response.payload).toContain('Mobile phone number')
     expect(response.payload).toContain('Landline number')
     expect(response.payload).toContain('Business address')
     expect(response.payload).toContain('Building and street')
