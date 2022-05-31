@@ -1177,7 +1177,7 @@ const questionBank = {
             {
               yarKey: 'mobileNumber',
               type: 'tel',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Mobile number',
                 classes: 'govuk-label'
@@ -1207,7 +1207,7 @@ const questionBank = {
               yarKey: 'landlineNumber',
               endFieldset: 'true',
               type: 'tel',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Landline number',
                 classes: 'govuk-label'
@@ -1266,7 +1266,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Town (optional)',
+                text: 'Town',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1458,7 +1458,7 @@ const questionBank = {
               type: 'tel',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Mobile phone number',
+                text: 'Mobile number',
                 classes: 'govuk-label'
               },
               hint: {
@@ -1545,7 +1545,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Town or city',
+                text: 'Town',
                 classes: 'govuk-label'
               },
               validate: [
