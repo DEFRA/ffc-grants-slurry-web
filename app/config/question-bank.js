@@ -1073,7 +1073,7 @@ const questionBank = {
             {
               key: 'applying-A2',
               value: 'Agent',
-              redirectUrl: 'agents-details'
+              redirectUrl: 'agent-details'
             }
           ],
           yarKey: 'applying'
@@ -1092,7 +1092,7 @@ const questionBank = {
             dependentQuestionYarKey: 'applying',
             dependentAnswerKeysArray: ['applying-A2'],
             urlOptions: {
-              thenUrl: 'agents-details',
+              thenUrl: 'agent-details',
               elseUrl: 'applying'
             }
           },
@@ -1343,12 +1343,12 @@ const questionBank = {
 
         },
         {
-          key: 'agents-details',
+          key: 'agent-details',
           order: 202,
           title: 'Agent’s details',
           pageTitle: '',
-          url: 'agents-details',
-          baseUrl: 'agents-details',
+          url: 'agent-details',
+          baseUrl: 'agent-details',
           backUrl: 'applying',
           nextUrl: 'applicant-details',
           summaryPageUrl: 'check-details',
@@ -1611,7 +1611,7 @@ const questionBank = {
           ineligibleContent: {},
           pageData: {
             businessDetailsLink: 'business-details',
-            agentDetailsLink: 'agents-details',
+            agentDetailsLink: 'agent-details',
             farmerDetailsLink: 'applicant-details'
           },
           fundingPriorities: '',
