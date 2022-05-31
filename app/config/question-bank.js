@@ -1179,7 +1179,7 @@ const questionBank = {
               type: 'tel',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Mobile phone number',
+                text: 'Mobile number',
                 classes: 'govuk-label'
               },
               hint: {
@@ -1266,7 +1266,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Town or city',
+                text: 'Town',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1324,7 +1324,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'The project postcode where the work will happen'
+                text: 'The site postcode where the work will happen'
               },
               validate: [
                 {
@@ -1458,7 +1458,7 @@ const questionBank = {
               type: 'tel',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Mobile phone number',
+                text: 'Mobile number',
                 classes: 'govuk-label'
               },
               hint: {
@@ -1545,7 +1545,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
-                text: 'Town or city',
+                text: 'Town',
                 classes: 'govuk-label'
               },
               validate: [
