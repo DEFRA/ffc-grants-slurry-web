@@ -201,7 +201,7 @@ const getPage = async (question, request, h) => {
   switch (url) {
     case 'score':
     case 'business-details':
-    case 'agents-details':
+    case 'agent-details':
     case 'applicant-details': {
       let MODEL = getModel(data, question, request, conditionalHtml)
       const reachedCheckDetails = getYarValue(request, 'reachedCheckDetails')

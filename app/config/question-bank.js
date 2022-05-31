@@ -929,6 +929,12 @@ const questionBank = {
                 {
                   type: 'NOT_EMPTY',
                   error: 'Enter a project name'
+                },
+                {
+                  type: 'MIN_MAX_CHARS',
+                  min: 0,
+                  max: 100,
+                  error: 'Name must be 100 characters or fewer'
                 }
               ]
             },
@@ -941,7 +947,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: "If you're registered with the Rural Payments system, enter business name as registered"
+                text: "If you're registered on the Rural Payments system, enter business name as registered"
               },
               validate: [
                 {
@@ -959,7 +965,7 @@ const questionBank = {
             {
               yarKey: 'numberEmployees',
               type: 'number',
-              classes: 'govuk-input--width-3',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Number of employees',
                 classes: 'govuk-label'
@@ -1020,7 +1026,7 @@ const questionBank = {
               title: 'Single Business Identifier (SBI)',
               classes: 'govuk-input govuk-input--width-10',
               label: {
-                text: 'Single Business Identifier (SBI)',
+                text: 'Single Business Identifier (SBI) (Optional)',
                 classes: 'govuk-label'
               },
               hint: {
@@ -1067,7 +1073,7 @@ const questionBank = {
             {
               key: 'applying-A2',
               value: 'Agent',
-              redirectUrl: 'agents-details'
+              redirectUrl: 'agent-details'
             }
           ],
           yarKey: 'applying'
@@ -1086,7 +1092,7 @@ const questionBank = {
             dependentQuestionYarKey: 'applying',
             dependentAnswerKeysArray: ['applying-A2'],
             urlOptions: {
-              thenUrl: 'agents-details',
+              thenUrl: 'agent-details',
               elseUrl: 'applying'
             }
           },
@@ -1337,12 +1343,12 @@ const questionBank = {
 
         },
         {
-          key: 'agents-details',
+          key: 'agent-details',
           order: 202,
           title: 'Agent’s details',
           pageTitle: '',
-          url: 'agents-details',
-          baseUrl: 'agents-details',
+          url: 'agent-details',
+          baseUrl: 'agent-details',
           backUrl: 'applying',
           nextUrl: 'applicant-details',
           summaryPageUrl: 'check-details',
@@ -1413,8 +1419,9 @@ const questionBank = {
                   error: 'Enter your business name'
                 },
                 {
-                  type: 'REGEX',
-                  regex: CHARS_MAX_100,
+                  type: 'MIN_MAX_CHARS',
+                  min: 0,
+                  max: 100,
                   error: 'Name must be 100 characters or fewer'
                 }
               ]
@@ -1449,9 +1456,9 @@ const questionBank = {
             {
               yarKey: 'mobileNumber',
               type: 'tel',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
-                text: 'Mobile number',
+                text: 'Mobile phone number',
                 classes: 'govuk-label'
               },
               hint: {
@@ -1479,7 +1486,7 @@ const questionBank = {
               yarKey: 'landlineNumber',
               type: 'tel',
               endFieldset: 'true',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Landline number',
                 classes: 'govuk-label'
@@ -1604,7 +1611,7 @@ const questionBank = {
           ineligibleContent: {},
           pageData: {
             businessDetailsLink: 'business-details',
-            agentDetailsLink: 'agents-details',
+            agentDetailsLink: 'agent-details',
             farmerDetailsLink: 'applicant-details'
           },
           fundingPriorities: '',

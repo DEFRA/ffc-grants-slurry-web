@@ -55,6 +55,22 @@ describe('Page: /business-details', () => {
     expect(response.payload).toContain('Back to details')
   })
 
+  it('should validate project name - maximum characters is 100', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/business-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        projectName: 'abcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrs',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Name must be 100 characters or fewer')
+  })
+
   it('should validate business name - maximum characters is 100', async () => {
     const postOptions = {
       method: 'POST',
