@@ -50,7 +50,7 @@ describe('Page: /applying', () => {
     expect(postResponse.headers.location).toBe('applicant-details')
   })
 
-  it('user selects \'Agent\' -> store user response and redirect to /agents-details', async () => {
+  it('user selects \'Agent\' -> store user response and redirect to /agent-details', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/applying`,
@@ -60,6 +60,6 @@ describe('Page: /applying', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('agents-details')
+    expect(postResponse.headers.location).toBe('agent-details')
   })
 })

@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /agents-details', () => {
+describe('Page: /agent-details', () => {
   const varList = { applying: 'Agent' }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -14,7 +14,7 @@ describe('Page: /agents-details', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/agents-details`
+      url: `${global.__URLPREFIX__}/agent-details`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -23,10 +23,9 @@ describe('Page: /agents-details', () => {
     expect(response.payload).toContain('Name')
     expect(response.payload).toContain('First name')
     expect(response.payload).toContain('Last name')
-    expect(response.payload).toContain('Business name')
     expect(response.payload).toContain('Contact details')
     expect(response.payload).toContain('Email address')
-    expect(response.payload).toContain('Mobile number')
+    expect(response.payload).toContain('Mobile phone number')
     expect(response.payload).toContain('Landline number')
     expect(response.payload).toContain('Business address')
     expect(response.payload).toContain('Building and street')
@@ -39,7 +38,7 @@ describe('Page: /agents-details', () => {
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { agentsDetails: '', crumb: crumbToken }
     }
@@ -50,6 +49,7 @@ describe('Page: /agents-details', () => {
     expect(postResponse.payload).toContain('Enter your last name')
     expect(postResponse.payload).toContain('Enter your business name')
     expect(postResponse.payload).toContain('Enter your email address')
+    expect(postResponse.payload).toContain('Enter a mobile number (if you do not have a mobile, enter your landline number)')
     expect(postResponse.payload).toContain('Enter a landline number (if you do not have a landline, enter your mobile number)')
     expect(postResponse.payload).toContain('Enter your building and street details')
     expect(postResponse.payload).toContain('Enter your town')
@@ -62,7 +62,7 @@ describe('Page: /agents-details', () => {
 
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/agents-details`
+      url: `${global.__URLPREFIX__}/agent-details`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -72,7 +72,7 @@ describe('Page: /agents-details', () => {
   it('validate first name - no digits', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         firstName: '123',
@@ -88,7 +88,7 @@ describe('Page: /agents-details', () => {
   it('validate last name - no digits', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         lastName: '123',
@@ -101,10 +101,26 @@ describe('Page: /agents-details', () => {
     expect(postResponse.payload).toContain('Name must only include letters, hyphens and apostrophes')
   })
 
+  it('validate business name - Maximum 100 characters', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/agent-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        businessName: 'abcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrstuvwxyzabcdefghijklmonopqrs',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Name must be 100 characters or fewer')
+  })
+
   it('validate email', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         emailAddress: 'my@@name.com',
@@ -120,7 +136,7 @@ describe('Page: /agents-details', () => {
   it('validate mobile (optional) - at least 10 characters', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         mobileNumber: '12345679',
@@ -136,7 +152,7 @@ describe('Page: /agents-details', () => {
   it('validate mobile (optional) - correct format', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         mobileNumber: '12345679a0${',
@@ -152,7 +168,7 @@ describe('Page: /agents-details', () => {
   it('validate landline (optional) - at least 10 characters', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         landlineNumber: '12345679',
@@ -168,7 +184,7 @@ describe('Page: /agents-details', () => {
   it('validate landline (optional) - correct format', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         landlineNumber: '12345679a0${',
@@ -184,12 +200,11 @@ describe('Page: /agents-details', () => {
   it('if both mobile and landline are missing -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         firstName: 'First Name',
         lastName: 'Last Name',
-        businessName: 'Business Name',
         emailAddress: 'my@name.com',
         address1: 'Address 1',
         address2: 'Address 2',
@@ -208,7 +223,7 @@ describe('Page: /agents-details', () => {
   it('validate postcode - valid format', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         postcode: 'aa1aa',
@@ -224,7 +239,7 @@ describe('Page: /agents-details', () => {
   it('store user response and redirect to /applicant-details', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/agents-details`,
+      url: `${global.__URLPREFIX__}/agent-details`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
         firstName: 'First Name',
