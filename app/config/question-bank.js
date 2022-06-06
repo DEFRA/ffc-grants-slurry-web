@@ -1346,7 +1346,7 @@ const questionBank = {
                 {
                 type: 'REGEX',
                 regex: ONLY_TEXT_REGEX,
-                error: 'Text only (no numeric value or other characters)'
+                error: 'Town must only include letters'
                 }
               ]
             },
