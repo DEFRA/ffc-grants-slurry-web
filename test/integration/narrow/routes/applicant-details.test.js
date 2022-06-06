@@ -165,6 +165,22 @@ describe('Page: /applicant-details', () => {
     expect(postResponse.payload).toContain('Your landline number must have at least 10 characters')
   })
 
+  it('Town: Valid = text only (no numeric value or other characters)', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/applicant-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        town: 'Highbury23',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Text only (no numeric value or other characters)')
+  })
+
   it('validate landline (optional) - correct format', async () => {
     const postOptions = {
       method: 'POST',
