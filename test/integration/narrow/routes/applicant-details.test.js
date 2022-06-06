@@ -165,7 +165,7 @@ describe('Page: /applicant-details', () => {
     expect(postResponse.payload).toContain('Your landline number must have at least 10 characters')
   })
 
-  it('Town: Valid = text only (no numeric value or other characters)', async () => {
+  it('validate town: fail when user adds non text characters (digits or other characters)', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/applicant-details`,
@@ -181,7 +181,7 @@ describe('Page: /applicant-details', () => {
     expect(postResponse.payload).toContain('Town must only include letters')
   })
 
-  it('Town: Valid = text only (no numeric value or other characters)', async () => {
+  it('validate town: ok when user adds only text characters', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/applicant-details`,
