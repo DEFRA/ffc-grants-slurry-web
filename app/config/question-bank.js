@@ -73,11 +73,79 @@ const questionBank = {
       title: 'Eligibility',
       questions: [
         {
+          key: 'applicant-type',
+          order: 10,
+          title: 'What type of farmer are you?',
+          pageTitle: '',
+          url: 'applicant-type',
+          baseUrl: 'applicant-type',
+          backUrl: 'start',
+          nextUrl: 'legal-status',
+          ineligibleContent: {
+            messageContent: `This grant is for pig, beef or dairy farmers. <br/> <br/> 
+            Poultry, arable-only, contractors and horticultural growers are not currently eligible.`,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `This grant is for pig, beef or dairy farmers.
+                
+                Poultry, arable-only, contractors and horticultural growers are not currently eligible.`
+              }]
+            }]
+          },
+          fundingPriorities: 'Improve the environment',
+          type: 'multi-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select the option that applies to you'
+            },
+            {
+              type: 'STANDALONE_ANSWER',
+              error: 'You cannot select that combination of options',
+              standaloneObject: {
+                questionKey: 'applicant-type',
+                answerKey: 'applicant-type-A4'
+              }
+            }
+          ],
+          answers: [
+            {
+              key: 'applicant-type-A1',
+              value: 'Pig'
+            },
+            {
+              key: 'applicant-type-A2',
+              value: 'Beef'
+            },
+            {
+              key: 'applicant-type-A3',
+              value: 'Dairy'
+            },
+            {
+              value: 'divider'
+            },
+            {
+              key: 'applicant-type-A4',
+              value: 'None of the above',
+              notEligible: true
+            }
+          ],
+          yarKey: 'applicantType'
+        },
+        {
           key: 'legal-status',
           order: 20,
           title: 'What is the legal status of the business?',
           pageTitle: '',
-          backUrl: 'start',
+          backUrl: 'applicant-type',
           nextUrl: 'country',
           url: 'legal-status',
           baseUrl: 'legal-status',
@@ -253,9 +321,9 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: `You must have secured planning permission before you submit a full application.
+                para: `You must have secured planning permission before you submit a full application.
                 
-                Any planning permission must be in place by 31 January 2024.`
+                Any planning permission must be in place by 31 January 2024.`
               }]
             }]
           },
@@ -629,7 +697,7 @@ const questionBank = {
                 }]
               }
             ],
-            //dependentYarKeys: ['projectItems', 'storage'],
+            // dependentYarKeys: ['projectItems', 'storage'],
             dependentQuestionKeys: ['project-items', 'storage']
 
           },
@@ -1034,10 +1102,10 @@ const questionBank = {
                 html: 'If you do not have an SBI, you will need to get one for full applictaion'
               },
               validate: [
-                 {
+                {
                   type: 'REGEX',
                   regex: SBI_REGEX,
-                  error: 'SBI number must have 9 characters, like 011115678'  
+                  error: 'SBI number must have 9 characters, like 011115678'
                 }
               ]
             }
