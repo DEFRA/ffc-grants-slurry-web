@@ -246,12 +246,12 @@ const questionBank = {
           order: 30,
           title: 'Is the planned project in England?',
           hint: {
-            text: 'The site where the work will happen'
+            text: 'The location of the slurry store'
           },
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           pageTitle: '',
           backUrl: 'legal-status',
-          nextUrl: 'planning-permission',
+          nextUrl: 'system-type',
           url: 'country',
           baseUrl: 'country',
           preValidationKeys: ['legalStatus'],
@@ -297,8 +297,18 @@ const questionBank = {
           yarKey: 'inEngland'
         },
         {
-          key: 'planning-permission',
+          key: 'system-type',
           order: 40,
+          title: 'What is your current manure management system?',
+          baseUrl: 'system-type',
+          backUrl: 'country',
+          nextUrl: 'existing-storage',
+          preValidationKeys: ['inEngland'],
+          yarKey: 'systemType'
+        },
+        {
+          key: 'planning-permission',
+          order: 50,
           title: 'Does the project have planning permission?',
           pageTitle: '',
           url: 'planning-permission',
