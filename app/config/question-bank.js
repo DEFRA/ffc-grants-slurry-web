@@ -492,13 +492,13 @@ const questionBank = {
           order: 60,
           title: 'Is the planned project on land the business owns?',
           hint: {
-            text: 'The site where the work will happen'
+            text: 'The location of the slurry store'
           },
           pageTitle: '',
           url: 'tenancy',
           baseUrl: 'tenancy',
           backUrl: 'project-started',
-          nextUrl: 'project-items',
+          nextUrl: 'standard-costs',
           preValidationKeys: ['projectStart'],
           fundingPriorities: '',
           type: 'single-answer',
@@ -508,7 +508,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'You must own the land or have a tenancy in place until 2028 before starting the project.'
+                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.'
               }]
             }]
           },
@@ -534,15 +534,13 @@ const questionBank = {
         {
           key: 'tenancy-length',
           order: 70,
-          title: 'Do you have a tenancy agreement until 2028 or after?',
+          title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
           pageTitle: '',
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
           backUrl: 'tenancy',
           preValidationKeys: ['tenancy'],
-          nextUrl: 'project-items',
-          eliminationAnswerKeys: '',
-          fundingPriorities: '',
+          nextUrl: 'standard-costs',
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -550,7 +548,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'You must own the land or have a tenancy in place until 2028 before starting the project.',
+                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.',
                 items: []
               }]
             }]
@@ -558,7 +556,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select yes if the land has a tenancy agreement in place until 2028 or after'
+              error: 'Select yes if the land has a tenancy agreement in place for 5 years after the final grant payment.'
             }
           ],
           answers: [
@@ -581,7 +579,7 @@ const questionBank = {
           url: 'tenancy-length-condition',
           backUrl: 'tenancy',
           preValidationKeys: ['tenancy'],
-          nextUrl: 'project-items',
+          nextUrl: 'standard-costs',
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
@@ -589,7 +587,7 @@ const questionBank = {
           }
         },
         {
-          key: 'project-items',
+          key: 'standard-costs',
           order: 80,
           title: 'What eligible items does your project need?',
           pageTitle: '',
@@ -599,8 +597,8 @@ const questionBank = {
             Select all the items your project needs
           `
           },
-          url: 'project-items',
-          baseUrl: 'project-items',
+          url: 'standard-costs',
+          baseUrl: 'standard-costs',
           backUrl: 'tenancy',
           nextUrl: 'project-cost',
           fundingPriorities: '',
@@ -1338,9 +1336,9 @@ const questionBank = {
                   error: 'Enter your town'
                 },
                 {
-                type: 'REGEX',
-                regex: ONLY_TEXT_REGEX,
-                error: 'Town must only include letters'
+                  type: 'REGEX',
+                  regex: ONLY_TEXT_REGEX,
+                  error: 'Town must only include letters'
                 }
               ]
             },

@@ -19,7 +19,7 @@ describe('Page: /tenancy-length', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Do you have a tenancy agreement until 2028 or after?')
+    expect(response.payload).toContain('Do you have a tenancy agreement for 5 years after the final grant payment?')
     expect(response.payload).toContain('Yes')
     expect(response.payload).toContain('No')
   })
@@ -34,7 +34,7 @@ describe('Page: /tenancy-length', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select yes if the land has a tenancy agreement in place until 2028 or after')
+    expect(postResponse.payload).toContain('Select yes if the land has a tenancy agreement in place for 5 years after the final grant payment.')
   })
 
   it('user selects conditional option: \'No\' -> display conditional page', async () => {
@@ -60,6 +60,6 @@ describe('Page: /tenancy-length', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('project-items')
+    expect(postResponse.headers.location).toBe('standard-costs')
   })
 })

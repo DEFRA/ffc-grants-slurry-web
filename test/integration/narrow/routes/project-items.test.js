@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /project-items', () => {
+describe('Page: /standard-costs', () => {
   const varList = { projectStart: 'randomData1', tenancy: 'randomData2' }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -14,7 +14,7 @@ describe('Page: /project-items', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/project-items`
+      url: `${global.__URLPREFIX__}/standard-costs`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -28,7 +28,7 @@ describe('Page: /project-items', () => {
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/project-items`,
+      url: `${global.__URLPREFIX__}/standard-costs`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { projectItems: '', crumb: crumbToken }
     }
@@ -41,7 +41,7 @@ describe('Page: /project-items', () => {
   it('user selects any number of options -> store user response and redirect to /project-cost', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/project-items`,
+      url: `${global.__URLPREFIX__}/standard-costs`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { projectItems: ['Constructing or improving buildings', 'Retail facilities'], crumb: crumbToken }
     }
