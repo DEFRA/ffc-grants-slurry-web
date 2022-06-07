@@ -181,22 +181,6 @@ describe('Page: /applicant-details', () => {
     expect(postResponse.payload).toContain('Town must only include letters')
   })
 
-  it('validate town: ok when user adds only text characters', async () => {
-    const postOptions = {
-      method: 'POST',
-      url: `${global.__URLPREFIX__}/applicant-details`,
-      headers: { cookie: 'crumb=' + crumbToken },
-      payload: {
-        town: 'Highbury',
-        crumb: crumbToken
-      }
-    }
-
-    const postResponse = await global.__SERVER__.inject(postOptions)
-    expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('')
-  })
-
   it('validate landline (optional) - correct format', async () => {
     const postOptions = {
       method: 'POST',
