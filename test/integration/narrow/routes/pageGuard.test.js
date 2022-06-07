@@ -33,7 +33,7 @@ describe('Page Guard', () => {
     server = await createServer()
     const getOptions = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/project-items`
+      url: `${global.__URLPREFIX__}/standard-costs`
     }
 
     const response = await server.inject(getOptions)
