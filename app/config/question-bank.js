@@ -8,7 +8,8 @@ const {
   SBI_REGEX,
   NAME_ONLY_REGEX,
   PHONE_REGEX,
-  EMAIL_REGEX
+  EMAIL_REGEX,
+  ONLY_TEXT_REGEX
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -1341,6 +1342,11 @@ const questionBank = {
                 {
                   type: 'NOT_EMPTY',
                   error: 'Enter your town'
+                },
+                {
+                type: 'REGEX',
+                regex: ONLY_TEXT_REGEX,
+                error: 'Town must only include letters'
                 }
               ]
             },
