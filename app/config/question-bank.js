@@ -303,7 +303,25 @@ const questionBank = {
           baseUrl: 'system-type',
           backUrl: 'country',
           nextUrl: 'existing-storage',
+          url: 'system-type',
           preValidationKeys: ['inEngland'],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'system-type-A1',
+              value: 'Slurry-based system'
+            },
+            {
+              key: ''
+            }
+          ],
           yarKey: 'systemType'
         },
         {
@@ -379,7 +397,7 @@ const questionBank = {
         },
         {
           key: 'project-location-owned-rented',
-          order: 40,
+          order: 41,
           title: 'Is the project location site owned or rented by applicant?',
           pageTitle: '',
           url: 'project-location-owned-rented',
@@ -432,7 +450,7 @@ const questionBank = {
         },
         {
           key: 'project-start',
-          order: 50,
+          order: 51,
           title: 'Have you already started work on the project?',
           pageTitle: '',
           url: 'project-start',
