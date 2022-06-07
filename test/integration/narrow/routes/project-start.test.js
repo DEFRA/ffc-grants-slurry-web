@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /project-start', () => {
+describe('Page: /project-started', () => {
   const varList = { planningPermission: 'randomData' }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -14,7 +14,7 @@ describe('Page: /project-start', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/project-start`
+      url: `${global.__URLPREFIX__}/project-started`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -28,7 +28,7 @@ describe('Page: /project-start', () => {
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/project-start`,
+      url: `${global.__URLPREFIX__}/project-started`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { projectStart: '', crumb: crumbToken }
     }
@@ -41,7 +41,7 @@ describe('Page: /project-start', () => {
   it('user selects ineligible option: \'Yes, we have begun project work\' -> display ineligible page', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/project-start`,
+      url: `${global.__URLPREFIX__}/project-started`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { projectStart: 'Yes, we have begun project work', crumb: crumbToken }
     }
@@ -53,7 +53,7 @@ describe('Page: /project-start', () => {
   it('user selects eligible option -> store user response and redirect to /tenancy', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/project-start`,
+      url: `${global.__URLPREFIX__}/project-started`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { projectStart: 'Yes, preparatory work', crumb: crumbToken }
     }

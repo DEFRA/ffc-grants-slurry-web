@@ -305,7 +305,7 @@ const questionBank = {
           url: 'planning-permission',
           baseUrl: 'planning-permission',
           backUrl: 'country',
-          nextUrl: 'project-start',
+          nextUrl: 'project-started',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
             messageContent: 'Any planning permission must be in place by 31 January 2024.',
@@ -360,7 +360,7 @@ const questionBank = {
           order: 91,
           url: 'planning-required-condition',
           backUrl: 'planning-permission',
-          nextUrl: 'project-start',
+          nextUrl: 'project-started',
           maybeEligible: true,
           preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
@@ -376,7 +376,7 @@ const questionBank = {
           url: 'project-location-owned-rented',
           baseUrl: 'project-location-owned-rented',
           backUrl: 'planning-permission',
-          nextUrl: 'project-start',
+          nextUrl: 'project-started',
           preValidationKeys: ['planningPermission'],
           ineligibleContent: {
             messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
@@ -422,22 +422,15 @@ const questionBank = {
           yarKey: 'projectLocationOwnedRented'
         },
         {
-          key: 'project-start',
+          key: 'project-started',
           order: 50,
           title: 'Have you already started work on the project?',
           pageTitle: '',
-          url: 'project-start',
-          baseUrl: 'project-start',
-          backUrlObject: {
-            dependentQuestionYarKey: 'planningPermission',
-            dependentAnswerKeysArray: ['planning-permission-A3'],
-            urlOptions: {
-              thenUrl: '/slurry-infrastructure/planning-required-condition',
-              elseUrl: '/slurry-infrastructure/planning-permission'
-            }
-          },
+          url: 'project-started',
+          baseUrl: 'project-started',
+          backUrl: 'cover',
           nextUrl: 'tenancy',
-          preValidationKeys: ['planningPermission'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: 'You cannot apply for a grant if you have already started work on the project.',
             insertText: { text: 'Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement invalidates your application.' },
@@ -459,7 +452,8 @@ const questionBank = {
                 Before you start the project, you can:`,
                 items: [
                   'get quotes from suppliers',
-                  'apply for planning permission (this can take a long time)'
+                  'apply for planning permission (this can take a long time)',
+                  'apply for licences'
                 ]
               }]
             }]
@@ -472,14 +466,14 @@ const questionBank = {
           ],
           answers: [
             {
-              key: 'project-start-A1',
+              key: 'project-started-A1',
               value: 'Yes, preparatory work',
               hint: {
                 text: 'For example, quotes from suppliers, applying for planning permission'
               }
             },
             {
-              key: 'project-start-A2',
+              key: 'project-started-A2',
               value: 'Yes, we have begun project work',
               hint: {
                 text: 'For example, started construction work, signing contracts, placing orders'
@@ -487,7 +481,7 @@ const questionBank = {
               notEligible: true
             },
             {
-              key: 'project-start-A3',
+              key: 'project-started-A3',
               value: 'No, we have not done any work on this project yet'
             }
           ],
@@ -503,7 +497,7 @@ const questionBank = {
           pageTitle: '',
           url: 'tenancy',
           baseUrl: 'tenancy',
-          backUrl: 'project-start',
+          backUrl: 'project-started',
           nextUrl: 'project-items',
           preValidationKeys: ['projectStart'],
           fundingPriorities: '',

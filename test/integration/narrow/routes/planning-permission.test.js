@@ -74,6 +74,6 @@ describe('Page: /planning-permission', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('project-start')
+    expect(postResponse.headers.location).toBe('project-started')
   })
 })
