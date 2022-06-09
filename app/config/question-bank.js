@@ -303,7 +303,7 @@ const questionBank = {
           title: 'What is your current manure management system?',
           baseUrl: 'system-type',
           backUrl: 'country',
-          nextUrl: 'planning-permission',
+          nextUrl: 'existing-storage',
           url: 'system-type',
           preValidationKeys: ['inEngland'],
           type: 'single-answer',
@@ -326,35 +326,16 @@ const questionBank = {
           yarKey: 'systemType'
         },
         {
-          key: 'planning-permission',
+          key: 'existing-storage',
           order: 50,
-          title: 'Does the project have planning permission?',
-          pageTitle: '',
-          url: 'planning-permission',
-          baseUrl: 'planning-permission',
-          backUrl: 'country',
-          nextUrl: 'project-started',
-          preValidationKeys: ['inEngland'],
-          ineligibleContent: {
-            messageContent: 'Any planning permission must be in place by 31 January 2024.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          fundingPriorities: 'Improving Adding Value',
+          title: 'How many month\'s slurry storage capacity do you have?',
+          baseUrl: 'existing-storage',
+          backUrl: 'system-type',
+          nextUrl: 'planned-storage',
+          url: 'existing-storage',
+          preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `You must have secured planning permission before you submit a full application.
-                
-                Any planning permission must be in place by 31 January 2024.`
-              }]
-            }]
-          },
           validate: [
             {
               type: 'NOT_EMPTY',
@@ -363,69 +344,26 @@ const questionBank = {
           ],
           answers: [
             {
-              key: 'planning-permission-A1',
-              value: 'Not needed'
+              key: 'existing-storage-A1',
+              value: 'Less than 6 months'
             },
             {
-              key: 'planning-permission-A2',
-              value: 'Secured'
-            },
-            {
-              key: 'planning-permission-A3',
-              value: 'Should be in place by 31 January 2024',
-              redirectUrl: 'planning-required-condition'
-            },
-            {
-              key: 'planning-permission-A4',
-              value: 'Will not be in place by 31 January 2024',
-              notEligible: true
+              key: 'existingStorage'
             }
           ],
-          yarKey: 'planningPermission'
+          yarKey: 'systemType'
         },
         {
-          key: 'planning-required-condition',
-          order: 91,
-          url: 'planning-required-condition',
-          backUrl: 'planning-permission',
-          nextUrl: 'project-started',
-          maybeEligible: true,
-          preValidationKeys: ['planningPermission'],
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for this grant',
-            messageContent: 'Any planning permission must be in place by 31 January 2024.'
-          }
-        },
-        {
-          key: 'project-location-owned-rented',
-          order: 41,
-          title: 'Is the project location site owned or rented by applicant?',
-          pageTitle: '',
-          url: 'project-location-owned-rented',
-          baseUrl: 'project-location-owned-rented',
-          backUrl: 'planning-permission',
-          nextUrl: 'project-started',
-          preValidationKeys: ['planningPermission'],
-          ineligibleContent: {
-            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          fundingPriorities: 'Improving Adding Value',
+          key: 'planned-storage',
+          order: 60,
+          title: 'How many months\' slurry storage capacity will you have?',
+          baseUrl: 'planned-storage',
+          backUrl: 'existing-storage',
+          nextUrl: 'project-type',
+          url: 'planned-storage',
+          preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
-          sidebar: {
-            values: [
-              {
-                heading: 'Eligibility',
-                content: [{
-                  para: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-                  items: []
-                }]
-              }]
-          },
           validate: [
             {
               type: 'NOT_EMPTY',
@@ -434,24 +372,74 @@ const questionBank = {
           ],
           answers: [
             {
-              key: 'project-location-owned-rented-A1',
-              value: 'Owned'
+              key: 'planned-storage-A1',
+              value: 'Less than 6 months'
             },
             {
-              key: 'project-location-owned-rented-A2',
-              value: 'A Long term lease (to at least 2026) is, or will be, in place before the project starts'
-            },
-            {
-              key: 'project-location-owned-rented-A4',
-              value: 'A long-term lease will not be in place before project start',
-              notEligible: true
+              key: 'planned-storage-A2'
             }
           ],
-          yarKey: 'projectLocationOwnedRented'
+          yarKey: 'plannedStorage'
+        },
+        {
+          key: 'project-type',
+          order: 70,
+          title: 'How will you increase your storage capacity?',
+          baseUrl: 'project-type',
+          backUrl: 'planned-storage',
+          nextUrl: 'cover',
+          url: 'project-type',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'project-type-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'projectType'
+            }
+          ],
+          yarKey: 'projectType'
+        },
+        {
+          key: 'cover',
+          order: 80,
+          title: 'Will the store have an impermeable cover?',
+          baseUrl: 'cover',
+          backUrl: 'project-type',
+          nextUrl: 'project-started',
+          url: 'cover',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'cover-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'cover-A2'
+            }
+          ],
+          yarKey: 'cover'
         },
         {
           key: 'project-started',
-          order: 50,
+          order: 90,
           title: 'Have you already started work on the project?',
           pageTitle: '',
           url: 'project-started',
@@ -517,7 +505,7 @@ const questionBank = {
         },
         {
           key: 'tenancy',
-          order: 60,
+          order: 100,
           title: 'Is the planned project on land the business owns?',
           hint: {
             text: 'The location of the slurry store'
@@ -561,7 +549,7 @@ const questionBank = {
         },
         {
           key: 'tenancy-length',
-          order: 70,
+          order: 110,
           title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
           pageTitle: '',
           url: 'tenancy-length',
@@ -603,7 +591,7 @@ const questionBank = {
         {
           key: 'tenancy-length-condition',
           title: 'You may be able to apply for a grant from this scheme',
-          order: 75,
+          order: 120,
           url: 'tenancy-length-condition',
           backUrl: 'tenancy',
           preValidationKeys: ['tenancy'],
@@ -616,7 +604,7 @@ const questionBank = {
         },
         {
           key: 'standard-costs',
-          order: 80,
+          order: 130,
           title: 'What eligible items does your project need?',
           pageTitle: '',
           hint: {
@@ -665,8 +653,132 @@ const questionBank = {
           yarKey: 'projectItems'
         },
         {
+          key: 'planning-permission',
+          order: 140,
+          title: 'Does the project have planning permission?',
+          pageTitle: '',
+          url: 'planning-permission',
+          baseUrl: 'planning-permission',
+          backUrl: 'country',
+          nextUrl: 'project-started',
+          preValidationKeys: ['inEngland'],
+          ineligibleContent: {
+            messageContent: 'Any planning permission must be in place by 31 January 2024.',
+            messageLink: {
+              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          fundingPriorities: 'Improving Adding Value',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `You must have secured planning permission before you submit a full application.
+                
+                Any planning permission must be in place by 31 January 2024.`
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'planning-permission-A1',
+              value: 'Not needed'
+            },
+            {
+              key: 'planning-permission-A2',
+              value: 'Secured'
+            },
+            {
+              key: 'planning-permission-A3',
+              value: 'Should be in place by 31 January 2024',
+              redirectUrl: 'planning-required-condition'
+            },
+            {
+              key: 'planning-permission-A4',
+              value: 'Will not be in place by 31 January 2024',
+              notEligible: true
+            }
+          ],
+          yarKey: 'planningPermission'
+        },
+        {
+          key: 'planning-required-condition',
+          order: 150,
+          url: 'planning-required-condition',
+          backUrl: 'planning-permission',
+          nextUrl: 'project-started',
+          maybeEligible: true,
+          preValidationKeys: ['planningPermission'],
+          maybeEligibleContent: {
+            messageHeader: 'You may be able to apply for this grant',
+            messageContent: 'Any planning permission must be in place by 31 January 2024.'
+          }
+        },
+        {
+          key: 'project-location-owned-rented',
+          order: 160,
+          title: 'Is the project location site owned or rented by applicant?',
+          pageTitle: '',
+          url: 'project-location-owned-rented',
+          baseUrl: 'project-location-owned-rented',
+          backUrl: 'planning-permission',
+          nextUrl: 'project-started',
+          preValidationKeys: ['planningPermission'],
+          ineligibleContent: {
+            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
+            messageLink: {
+              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          fundingPriorities: 'Improving Adding Value',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [
+              {
+                heading: 'Eligibility',
+                content: [{
+                  para: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
+                  items: []
+                }]
+              }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'project-location-owned-rented-A1',
+              value: 'Owned'
+            },
+            {
+              key: 'project-location-owned-rented-A2',
+              value: 'A Long term lease (to at least 2026) is, or will be, in place before the project starts'
+            },
+            {
+              key: 'project-location-owned-rented-A4',
+              value: 'A long-term lease will not be in place before project start',
+              notEligible: true
+            }
+          ],
+          yarKey: 'projectLocationOwnedRented'
+        },
+        {
           key: 'project-cost',
-          order: 90,
+          order: 170,
           pageTitle: '',
           url: 'project-cost',
           baseUrl: 'project-cost',
@@ -742,7 +854,7 @@ const questionBank = {
         },
         {
           key: 'potential-amount',
-          order: 91,
+          order: 180,
           url: 'potential-amount',
           backUrl: 'project-cost',
           nextUrl: 'remaining-costs',
@@ -759,7 +871,7 @@ const questionBank = {
         },
         {
           key: 'remaining-costs',
-          order: 110,
+          order: 190,
           title: 'Can you pay the remaining costs of £{{_remainingCost_}}?',
           pageTitle: '',
           url: 'remaining-costs',
@@ -831,7 +943,7 @@ const questionBank = {
         },
         {
           key: 'collaboration',
-          order: 170,
+          order: 200,
           title: 'Will you work in partnership or collaborate with other farmers or producers?',
           hint: {
             text: 'For example, in a formal partnership or contract supply arrangement for raw materials'
@@ -889,7 +1001,7 @@ const questionBank = {
         },
         {
           key: 'environmental-impact',
-          order: 200,
+          order: 210,
           title: 'How will the project improve the environment?',
           pageTitle: '',
           url: 'environmental-impact',
@@ -989,7 +1101,7 @@ const questionBank = {
         /// ////// ***************** After Score  ************************************/////////////////////
         {
           key: 'business-details',
-          order: 180,
+          order: 220,
           title: 'Business details',
           pageTitle: '',
           url: 'business-details',
@@ -1135,7 +1247,7 @@ const questionBank = {
         },
         {
           key: 'applying',
-          order: 190,
+          order: 230,
           title: 'Who is applying for this grant?',
           pageTitle: '',
           url: 'applying',
@@ -1169,7 +1281,7 @@ const questionBank = {
         },
         {
           key: 'farmer-details',
-          order: 200,
+          order: 240,
           title: 'Applicant’s details',
           pageTitle: '',
           url: 'applicant-details',
@@ -1438,7 +1550,7 @@ const questionBank = {
         },
         {
           key: 'agent-details',
-          order: 202,
+          order: 250,
           title: 'Agent’s details',
           pageTitle: '',
           url: 'agent-details',
@@ -1694,7 +1806,7 @@ const questionBank = {
         },
         {
           key: 'check-details',
-          order: 210,
+          order: 260,
           title: 'Check your details',
           pageTitle: 'Check details',
           url: 'check-details',
@@ -1716,7 +1828,7 @@ const questionBank = {
         {
           key: 'confirm',
           title: 'Confirm and send',
-          order: 220,
+          order: 270,
           url: 'confirm',
           backUrl: 'check-details',
           nextUrl: 'confirmation',
@@ -1741,7 +1853,7 @@ const questionBank = {
         },
         {
           key: 'reference-number',
-          order: 230,
+          order: 280,
           title: 'Details submitted',
           pageTitle: '',
           url: 'confirmation',
