@@ -77,7 +77,7 @@ const selectField = (data, question) => {
   }
 }
 
-const textField = (data, question, request = null) => {
+const textField = (data, question, _request = null) => {
   const { yarKey, prefix, suffix, label, classes } = question
   return {
     id: yarKey,

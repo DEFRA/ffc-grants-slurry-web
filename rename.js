@@ -31,7 +31,7 @@ async function confirmRename (projectName, description) {
     input: process.stdin,
     output: process.stdout
   })
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve, _reject) => {
     rl.question(`Do you want to rename the project to '${projectName}', with a description of '${description}'?\nType '${affirmativeAnswer}' to confirm\n`, (answer) => {
       rl.close()
       resolve(answer === affirmativeAnswer)
@@ -119,8 +119,8 @@ async function updateProjectDescription (description) {
 
 async function rename () {
   const { description, projectName } = processInput(process.argv)
-  const rename = await confirmRename(projectName, description)
-  if (rename) {
+  const renameProject = await confirmRename(projectName, description)
+  if (renameProject) {
     await renameDirs(projectName)
     await updateProjectName(projectName)
     await updateProjectDescription(description)
