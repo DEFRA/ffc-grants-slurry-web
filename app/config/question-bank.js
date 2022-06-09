@@ -468,8 +468,7 @@ const questionBank = {
                 Before you start the project, you can:`,
                 items: [
                   'get quotes from suppliers',
-                  'apply for planning permission (this can take a long time)',
-                  'apply for licences'
+                  'apply for planning permission (this can take a long time)'
                 ]
               }]
             }]
