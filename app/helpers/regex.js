@@ -12,7 +12,7 @@ const POSTCODE_REGEX = /^[\s]*[a-z]{1,2}\d[a-z\d]?[\s]*\d[a-z]{2}[\s]*$/i
 const NAME_ONLY_REGEX = /^[a-zA-Z,' -]*$/
 const PHONE_REGEX = /^\+?[0-9\[\s\(\)\]\-]{10,}$/
 const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/
-const ONLY_TEXT_REGEX = /^[a-zA-Z]+$/
+const ONLY_TEXT_REGEX = /^[a-zA-Z\s]+$/
 module.exports = {
   CURRENCY_FORMAT,
   CHARS_MAX_10,
