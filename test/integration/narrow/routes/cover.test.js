@@ -31,7 +31,7 @@ describe('Page: /system-type', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { systemType: '', crumb: crumbToken }
+      payload: { cover: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -44,19 +44,19 @@ describe('Page: /system-type', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { systemType: 'No', crumb: crumbToken }
+      payload: { cover: 'No', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
   })
 
-  it('user selects eligible option -> store user response and redirect to /existing-storage', async () => {
+  it('user selects eligible option -> store user response and redirect to /project-started', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { systemType: 'Yes', crumb: crumbToken }
+      payload: { cover: 'Yes', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
