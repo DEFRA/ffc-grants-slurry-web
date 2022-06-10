@@ -13,7 +13,7 @@ export function nodeListForEach (nodes, callback) {
     callback.call(window, nodes[i], i, nodes)
   }
 }
-window.addEventListener('load', (event) => {
+window.addEventListener('load', (_event) => {
   accessibility()
   validation()
 })
