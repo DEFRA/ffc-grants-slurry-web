@@ -301,28 +301,68 @@ const questionBank = {
           key: 'system-type',
           order: 40,
           title: 'What is your current manure management system?',
+          pageTitle: '',
+          url: 'system-type',
           baseUrl: 'system-type',
           backUrl: 'country',
           nextUrl: 'existing-storage',
-          url: 'system-type',
           preValidationKeys: ['inEngland'],
+          ineligibleContent: {
+            messageContent: 'This grant is for farmers currently using a system that produces slurry.',
+            insertText: { text: '' },
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
+          fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is for farmers currently using a system that produces slurry.
+                
+                Slurry is a liquid or semi-liquid matter composed of excrete produced by livestock whilst in a yard or building.`,
+                items: []
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select the type of system'
             }
           ],
+         
           answers: [
             {
               key: 'system-type-A1',
               value: 'Slurry-based system'
             },
             {
-              key: ''
+              key: 'system-type-A1',
+              value: 'Farm-yard manure and slurry system'
+            },
+            {
+              key: 'system-type-A1',
+              value: 'Farm-yard manure system that does not produce slurry',
+              notEligible: true
+            },
+            {
+              value: 'divider'
+            },
+            {
+              key: 'system-type-A1',
+              value: 'I do not have a slurry system',
+              notEligible: true
             }
           ],
+          errorMessage: {
+            text: ''
+          },
           yarKey: 'systemType'
         },
         {
