@@ -324,7 +324,7 @@ const questionBank = {
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
                 
-                Slurry is a liquid or semi-liquid matter composed of excrete produced by livestock whilst in a yard or building.`,
+                Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.`,
                 items: []
               }]
             }]
