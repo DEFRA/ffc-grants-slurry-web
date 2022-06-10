@@ -457,6 +457,13 @@ const questionBank = {
           nextUrl: 'project-started',
           url: 'cover',
           preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: 'Stores must have an impermeable cover unless the slurry is treated with acidification. ',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
           type: 'single-answer',
           minAnswerCount: 1,
           sidebar: {
