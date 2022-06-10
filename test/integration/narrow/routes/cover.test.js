@@ -1,0 +1,66 @@
+const { crumbToken } = require('./test-helper')
+
+describe('Page: /system-type', () => {
+  const varList = { legalStatus: 'randomData' }
+
+  jest.mock('../../../../app/helpers/session', () => ({
+    setYarValue: (request, key, value) => null,
+    getYarValue: (request, key) => {
+      if (varList[key]) return varList[key]
+      else return 'Error'
+    }
+  }))
+
+  it('page loads successfully, with all the options', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/cover`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('Will the store have an impermeable cover?')
+    expect(response.payload).toContain('Yes')
+    expect(response.payload).toContain('Not needed, the slurry is treated with acidification')
+    expect(response.payload).toContain('No')
+
+  })
+
+  it('no option selected -> show error message', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/cover`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { systemType: '', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Select impermeable cover option')
+  })
+
+  it('user selects ineligible option: \'No\' -> display ineligible page', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/cover`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { systemType: 'No', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
+  })
+
+  it('user selects eligible option -> store user response and redirect to /existing-storage', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/cover`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { systemType: 'Yes', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(302)
+    expect(postResponse.headers.location).toBe('project-started')
+  })
+})
