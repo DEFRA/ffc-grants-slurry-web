@@ -3,7 +3,7 @@ const Joi = require('joi')
 const schema = Joi.object({
   interval: Joi.number().default(60),
   retries: Joi.number().default(10),
-  host: Joi.string().default('http://host.docker.internal:3011')
+  host: Joi.string().default('https://host.docker.internal:3011')
 
 })
 
