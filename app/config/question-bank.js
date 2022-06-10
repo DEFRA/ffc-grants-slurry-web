@@ -326,8 +326,334 @@ const questionBank = {
           yarKey: 'systemType'
         },
         {
-          key: 'planning-permission',
+          key: 'existing-storage',
           order: 50,
+          title: 'How many month\'s slurry storage capacity do you have?',
+          baseUrl: 'existing-storage',
+          backUrl: 'system-type',
+          nextUrl: 'planned-storage',
+          url: 'existing-storage',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'existing-storage-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'existingStorage'
+            }
+          ],
+          yarKey: 'systemType'
+        },
+        {
+          key: 'planned-storage',
+          order: 60,
+          title: 'How many months\' slurry storage capacity will you have?',
+          baseUrl: 'planned-storage',
+          backUrl: 'existing-storage',
+          nextUrl: 'project-type',
+          url: 'planned-storage',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'planned-storage-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'planned-storage-A2'
+            }
+          ],
+          yarKey: 'plannedStorage'
+        },
+        {
+          key: 'project-type',
+          order: 70,
+          title: 'How will you increase your storage capacity?',
+          baseUrl: 'project-type',
+          backUrl: 'planned-storage',
+          nextUrl: 'cover',
+          url: 'project-type',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'project-type-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'projectType'
+            }
+          ],
+          yarKey: 'projectType'
+        },
+        {
+          key: 'cover',
+          order: 80,
+          title: 'Will the store have an impermeable cover?',
+          baseUrl: 'cover',
+          backUrl: 'project-type',
+          nextUrl: 'project-started',
+          url: 'cover',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select when the project will have planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'cover-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'cover-A2'
+            }
+          ],
+          yarKey: 'cover'
+        },
+        {
+          key: 'project-started',
+          order: 90,
+          title: 'Have you already started work on the project?',
+          pageTitle: '',
+          url: 'project-started',
+          baseUrl: 'project-started',
+          backUrl: 'cover',
+          nextUrl: 'tenancy',
+          preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: 'You cannot apply for a grant if you have already started work on the project.',
+            insertText: { text: 'Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement invalidates your application.' },
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.
+                
+                Before you start the project, you can:`,
+                items: [
+                  'get quotes from suppliers',
+                  'apply for planning permission (this can take a long time)'
+                ]
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select the option that applies to your project'
+            }
+          ],
+          answers: [
+            {
+              key: 'project-started-A1',
+              value: 'Yes, preparatory work',
+              hint: {
+                text: 'For example, quotes from suppliers, applying for planning permission'
+              }
+            },
+            {
+              key: 'project-started-A2',
+              value: 'Yes, we have begun project work',
+              hint: {
+                text: 'For example, started construction work, signing contracts, placing orders'
+              },
+              notEligible: true
+            },
+            {
+              key: 'project-started-A3',
+              value: 'No, we have not done any work on this project yet'
+            }
+          ],
+          yarKey: 'projectStart'
+        },
+        {
+          key: 'tenancy',
+          order: 100,
+          title: 'Is the planned project on land the business owns?',
+          hint: {
+            text: 'The location of the slurry store'
+          },
+          pageTitle: '',
+          url: 'tenancy',
+          baseUrl: 'tenancy',
+          backUrl: 'project-started',
+          nextUrl: 'standard-costs',
+          preValidationKeys: ['projectStart'],
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.'
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select yes if the planned project is on land the business owns'
+            }
+          ],
+          answers: [
+            {
+              key: 'tenancy-A1',
+              value: 'Yes'
+            },
+            {
+              key: 'tenancy-A2',
+              value: 'No',
+              redirectUrl: 'tenancy-length'
+            }
+          ],
+          yarKey: 'tenancy'
+        },
+        {
+          key: 'tenancy-length',
+          order: 110,
+          title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
+          pageTitle: '',
+          url: 'tenancy-length',
+          baseUrl: 'tenancy-length',
+          backUrl: 'tenancy',
+          preValidationKeys: ['tenancy'],
+          nextUrl: 'standard-costs',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.',
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select yes if the land has a tenancy agreement in place for 5 years after the final grant payment.'
+            }
+          ],
+          answers: [
+            {
+              key: 'tenancy-length-A1',
+              value: 'Yes'
+            },
+            {
+              key: 'tenancy-length-A2',
+              value: 'No',
+              redirectUrl: 'tenancy-length-condition'
+            }
+          ],
+          yarKey: 'tenancyLength'
+        },
+        {
+          key: 'tenancy-length-condition',
+          title: 'You may be able to apply for a grant from this scheme',
+          order: 120,
+          url: 'tenancy-length-condition',
+          backUrl: 'tenancy',
+          preValidationKeys: ['tenancy'],
+          nextUrl: 'standard-costs',
+          maybeEligible: true,
+          maybeEligibleContent: {
+            messageHeader: 'You may be able to apply for a grant from this scheme',
+            messageContent: 'You will need to extend your tenancy agreement before you can complete a full application.'
+          }
+        },
+        {
+          key: 'standard-costs',
+          order: 130,
+          title: 'What eligible items does your project need?',
+          pageTitle: '',
+          hint: {
+            html: `
+            Storage facilities will only be funded as part of a bigger project and cannot be more than 50% of total grant funding.<br/><br/>
+            Select all the items your project needs
+          `
+          },
+          url: 'standard-costs',
+          baseUrl: 'standard-costs',
+          backUrl: 'tenancy',
+          nextUrl: 'project-cost',
+          fundingPriorities: '',
+          preValidationKeys: ['projectStart', 'tenancy'],
+          type: 'multi-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select all the items your project needs'
+            }
+          ],
+          answers: [
+            {
+              key: 'project-items-A1',
+              value: 'Constructing or improving buildings for processing',
+              hint: {
+                text: 'For example, a new building for cheese making, extending an existing building to install a new meat-cutting and packing line'
+              }
+            },
+            {
+              key: 'project-items-A2',
+              value: 'Processing equipment or machinery',
+              hint: {
+                text: 'For example, equipment and machinery for pasteurising and bottling milk, a meat cutting and packing line or vegetable washing and packing'
+              }
+            },
+            {
+              key: 'project-items-A3',
+              value: 'Retail facilities',
+              hint: {
+                text: 'For example, shops or display cabinets'
+              }
+            }
+          ],
+          yarKey: 'projectItems'
+        },
+        {
+          key: 'planning-permission',
+          order: 140,
           title: 'Does the project have planning permission?',
           pageTitle: '',
           url: 'planning-permission',
@@ -385,7 +711,7 @@ const questionBank = {
         },
         {
           key: 'planning-required-condition',
-          order: 91,
+          order: 150,
           url: 'planning-required-condition',
           backUrl: 'planning-permission',
           nextUrl: 'project-started',
@@ -398,7 +724,7 @@ const questionBank = {
         },
         {
           key: 'project-location-owned-rented',
-          order: 41,
+          order: 160,
           title: 'Is the project location site owned or rented by applicant?',
           pageTitle: '',
           url: 'project-location-owned-rented',
@@ -450,223 +776,8 @@ const questionBank = {
           yarKey: 'projectLocationOwnedRented'
         },
         {
-          key: 'project-started',
-          order: 50,
-          title: 'Have you already started work on the project?',
-          pageTitle: '',
-          url: 'project-started',
-          baseUrl: 'project-started',
-          backUrl: 'cover',
-          nextUrl: 'tenancy',
-          preValidationKeys: [],
-          ineligibleContent: {
-            messageContent: 'You cannot apply for a grant if you have already started work on the project.',
-            insertText: { text: 'Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement invalidates your application.' },
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          fundingPriorities: '',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `
-                You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.
-                
-                Before you start the project, you can:`,
-                items: [
-                  'get quotes from suppliers',
-                  'apply for planning permission (this can take a long time)',
-                  'apply for licences'
-                ]
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select the option that applies to your project'
-            }
-          ],
-          answers: [
-            {
-              key: 'project-started-A1',
-              value: 'Yes, preparatory work',
-              hint: {
-                text: 'For example, quotes from suppliers, applying for planning permission'
-              }
-            },
-            {
-              key: 'project-started-A2',
-              value: 'Yes, we have begun project work',
-              hint: {
-                text: 'For example, started construction work, signing contracts, placing orders'
-              },
-              notEligible: true
-            },
-            {
-              key: 'project-started-A3',
-              value: 'No, we have not done any work on this project yet'
-            }
-          ],
-          yarKey: 'projectStart'
-        },
-        {
-          key: 'tenancy',
-          order: 60,
-          title: 'Is the planned project on land the business owns?',
-          hint: {
-            text: 'The location of the slurry store'
-          },
-          pageTitle: '',
-          url: 'tenancy',
-          baseUrl: 'tenancy',
-          backUrl: 'project-started',
-          nextUrl: 'standard-costs',
-          preValidationKeys: ['projectStart'],
-          fundingPriorities: '',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.'
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select yes if the planned project is on land the business owns'
-            }
-          ],
-          answers: [
-            {
-              key: 'tenancy-A1',
-              value: 'Yes'
-            },
-            {
-              key: 'tenancy-A2',
-              value: 'No',
-              redirectUrl: 'tenancy-length'
-            }
-          ],
-          yarKey: 'tenancy'
-        },
-        {
-          key: 'tenancy-length',
-          order: 70,
-          title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
-          pageTitle: '',
-          url: 'tenancy-length',
-          baseUrl: 'tenancy-length',
-          backUrl: 'tenancy',
-          preValidationKeys: ['tenancy'],
-          nextUrl: 'standard-costs',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.',
-                items: []
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select yes if the land has a tenancy agreement in place for 5 years after the final grant payment.'
-            }
-          ],
-          answers: [
-            {
-              key: 'tenancy-length-A1',
-              value: 'Yes'
-            },
-            {
-              key: 'tenancy-length-A2',
-              value: 'No',
-              redirectUrl: 'tenancy-length-condition'
-            }
-          ],
-          yarKey: 'tenancyLength'
-        },
-        {
-          key: 'tenancy-length-condition',
-          title: 'You may be able to apply for a grant from this scheme',
-          order: 75,
-          url: 'tenancy-length-condition',
-          backUrl: 'tenancy',
-          preValidationKeys: ['tenancy'],
-          nextUrl: 'standard-costs',
-          maybeEligible: true,
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for a grant from this scheme',
-            messageContent: 'You will need to extend your tenancy agreement before you can complete a full application.'
-          }
-        },
-        {
-          key: 'standard-costs',
-          order: 80,
-          title: 'What eligible items does your project need?',
-          pageTitle: '',
-          hint: {
-            html: `
-            Storage facilities will only be funded as part of a bigger project and cannot be more than 50% of total grant funding.<br/><br/>
-            Select all the items your project needs
-          `
-          },
-          url: 'standard-costs',
-          baseUrl: 'standard-costs',
-          backUrl: 'tenancy',
-          nextUrl: 'project-cost',
-          fundingPriorities: '',
-          preValidationKeys: ['projectStart', 'tenancy'],
-          type: 'multi-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select all the items your project needs'
-            }
-          ],
-          answers: [
-            {
-              key: 'project-items-A1',
-              value: 'Constructing or improving buildings for processing',
-              hint: {
-                text: 'For example, a new building for cheese making, extending an existing building to install a new meat-cutting and packing line'
-              }
-            },
-            {
-              key: 'project-items-A2',
-              value: 'Processing equipment or machinery',
-              hint: {
-                text: 'For example, equipment and machinery for pasteurising and bottling milk, a meat cutting and packing line or vegetable washing and packing'
-              }
-            },
-            {
-              key: 'project-items-A3',
-              value: 'Retail facilities',
-              hint: {
-                text: 'For example, shops or display cabinets'
-              }
-            }
-          ],
-          yarKey: 'projectItems'
-        },
-        {
           key: 'project-cost',
-          order: 90,
+          order: 170,
           pageTitle: '',
           url: 'project-cost',
           baseUrl: 'project-cost',
@@ -742,7 +853,7 @@ const questionBank = {
         },
         {
           key: 'potential-amount',
-          order: 91,
+          order: 180,
           url: 'potential-amount',
           backUrl: 'project-cost',
           nextUrl: 'remaining-costs',
@@ -759,7 +870,7 @@ const questionBank = {
         },
         {
           key: 'remaining-costs',
-          order: 110,
+          order: 190,
           title: 'Can you pay the remaining costs of £{{_remainingCost_}}?',
           pageTitle: '',
           url: 'remaining-costs',
@@ -831,7 +942,7 @@ const questionBank = {
         },
         {
           key: 'collaboration',
-          order: 170,
+          order: 200,
           title: 'Will you work in partnership or collaborate with other farmers or producers?',
           hint: {
             text: 'For example, in a formal partnership or contract supply arrangement for raw materials'
@@ -889,7 +1000,7 @@ const questionBank = {
         },
         {
           key: 'environmental-impact',
-          order: 200,
+          order: 210,
           title: 'How will the project improve the environment?',
           pageTitle: '',
           url: 'environmental-impact',
@@ -989,7 +1100,7 @@ const questionBank = {
         /// ////// ***************** After Score  ************************************/////////////////////
         {
           key: 'business-details',
-          order: 180,
+          order: 220,
           title: 'Business details',
           pageTitle: '',
           url: 'business-details',
@@ -1135,7 +1246,7 @@ const questionBank = {
         },
         {
           key: 'applying',
-          order: 190,
+          order: 230,
           title: 'Who is applying for this grant?',
           pageTitle: '',
           url: 'applying',
@@ -1169,7 +1280,7 @@ const questionBank = {
         },
         {
           key: 'farmer-details',
-          order: 200,
+          order: 240,
           title: 'Applicant’s details',
           pageTitle: '',
           url: 'applicant-details',
@@ -1438,7 +1549,7 @@ const questionBank = {
         },
         {
           key: 'agent-details',
-          order: 202,
+          order: 250,
           title: 'Agent’s details',
           pageTitle: '',
           url: 'agent-details',
@@ -1694,7 +1805,7 @@ const questionBank = {
         },
         {
           key: 'check-details',
-          order: 210,
+          order: 260,
           title: 'Check your details',
           pageTitle: 'Check details',
           url: 'check-details',
@@ -1716,7 +1827,7 @@ const questionBank = {
         {
           key: 'confirm',
           title: 'Confirm and send',
-          order: 220,
+          order: 270,
           url: 'confirm',
           backUrl: 'check-details',
           nextUrl: 'confirmation',
@@ -1741,7 +1852,7 @@ const questionBank = {
         },
         {
           key: 'reference-number',
-          order: 230,
+          order: 280,
           title: 'Details submitted',
           pageTitle: '',
           url: 'confirmation',
