@@ -309,7 +309,6 @@ const questionBank = {
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
-            insertText: { text: '' },
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you might be eligible for.'
