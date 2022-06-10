@@ -77,7 +77,6 @@ const getPage = async (question, request, h) => {
       // } catch (err) {
       //   console.log('ERROR: ', err)
       // }
-      
       maybeEligibleContent = {
         ...maybeEligibleContent,
         reference: {

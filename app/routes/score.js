@@ -126,7 +126,6 @@ module.exports = [{
     // } catch (error) {
     //   request.log(error)
     // }
-
     request.log(err)
     return h.view('500')
   }
