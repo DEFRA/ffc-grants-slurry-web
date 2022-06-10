@@ -245,7 +245,7 @@ describe('Page: /agent-details', () => {
         firstName: 'First Name',
         lastName: 'Last Name',
         businessName: 'Business Name',
-        emailAddress: 'my@name.com',
+        emailAddress: 'my1.email1@my2-domain2.com',
         mobileNumber: '07700 900 982',
         address1: 'Address 1',
         address2: 'Address 2',

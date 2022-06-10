@@ -1,4 +1,4 @@
-const CURRENCY_FORMAT = /^(\d+|\d{1,3}(,\d{3})*)(\d+)?$/
+const CURRENCY_FORMAT = /^(\d+|\d{1,3}(,\d{3})+)$/
 const CHARS_MAX_10 = /^.{1,10}$/
 const CHARS_MIN_10 = /^.{10,}$/
 const CHARS_MAX_100 = /^.{0,100}$/
@@ -11,7 +11,7 @@ const DELETE_POSTCODE_CHARS_REGEX = /[)(.\s-]*/g
 const POSTCODE_REGEX = /^[\s]*[a-z]{1,2}\d[a-z\d]?[\s]*\d[a-z]{2}[\s]*$/i
 const NAME_ONLY_REGEX = /^[a-zA-Z,' -]*$/
 const PHONE_REGEX = /^\+?[0-9\[\s\(\)\]\-]{10,}$/
-const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,5})+$/
+const EMAIL_REGEX = /^\w+([.-](\w+))*@[a-zA-Z0-9]+([_-][a-zA-Z0-9]+)*(\.[a-zA-Z]{2,5})+$/
 const ONLY_TEXT_REGEX = /^[a-zA-Z\s]+$/
 module.exports = {
   CURRENCY_FORMAT,
