@@ -464,7 +464,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select increase storage capacity option'
             }
           ],
           answers: [
