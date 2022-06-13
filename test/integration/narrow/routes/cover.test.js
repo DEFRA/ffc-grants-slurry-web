@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /system-type', () => {
+describe('Page: /cover', () => {
   const varList = { legalStatus: 'randomData' }
 
   jest.mock('../../../../app/helpers/session', () => ({
