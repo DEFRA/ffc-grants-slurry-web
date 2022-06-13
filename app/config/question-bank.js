@@ -387,7 +387,7 @@ const questionBank = {
               value: 'Less than 6 months'
             },
             {
-              key: 'existingStorage'
+              key: 'existing-storage-A2'
             }
           ],
           yarKey: 'systemType'
@@ -658,7 +658,7 @@ const questionBank = {
           title: 'You may be able to apply for a grant from this scheme',
           order: 120,
           url: 'tenancy-length-condition',
-          backUrl: 'tenancy',
+          backUrl: 'tenancy-length',
           preValidationKeys: ['tenancy'],
           nextUrl: 'standard-costs',
           maybeEligible: true,
