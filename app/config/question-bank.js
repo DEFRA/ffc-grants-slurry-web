@@ -429,6 +429,22 @@ const questionBank = {
           nextUrl: 'cover',
           url: 'project-type',
           preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: `
+            This grant is only for: <br> 
+            <ul class="govuk-list govuk-list--bullet">
+            <li>replacing an existing store that is no longer fit for purpose</li>
+            <li>adding a new store to increase existing capacity</li>
+            <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
+            </ul>
+            </br>
+            <p class="govuk-body">A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be suspectable to leaks or failure).</p>
+            `,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
           type: 'single-answer',
           minAnswerCount: 1,
           sidebar: {
