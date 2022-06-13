@@ -457,21 +457,48 @@ const questionBank = {
           nextUrl: 'project-started',
           url: 'cover',
           preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: 'Stores must have an impermeable cover unless the slurry is treated with acidification. ',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
           type: 'single-answer',
           minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                Stores must have an impermeable cover unless the slurry is treated with acidification.
+
+                Acidification is the use of acid treatment to lower the PH value of slurry to stabilise ammonia emissions.
+                
+                Slurry acidification systems are not eligible for funding through this grant. `,
+                items: []
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select impermeable cover option'
             }
           ],
           answers: [
             {
               key: 'cover-A1',
-              value: 'Less than 6 months'
+              value: 'Yes'
             },
             {
-              key: 'cover-A2'
+              key: 'cover-A2',
+              value: 'Not needed, the slurry is treated with acidification'
+            },
+            {
+              key: 'cover-A3',
+              value: 'No',
+              notEligible: true
             }
           ],
           yarKey: 'cover'
