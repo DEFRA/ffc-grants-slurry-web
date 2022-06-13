@@ -362,7 +362,7 @@ const questionBank = {
           errorMessage: {
             text: ''
           },
-          yarKey: 'systemType'
+          yarKey: 'system-Type'
         },
         {
           key: 'existing-storage',
@@ -431,6 +431,20 @@ const questionBank = {
           preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para:`This grant is only for:`,
+                items: [
+                        'replacing an existing store that is no longer fit for purpose',
+                        'adding a new store to increase existing capacity',
+                      'expanding an existing store (for example, by adding an extra ring to a steel tank)'
+                      ],
+                additionalPara:`A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).`,
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
@@ -440,11 +454,24 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Less than 6 months'
+              value: 'Replace an existing store that is no longer serviceable'
             },
             {
-              key: 'projectType'
-            }
+              key: 'project-type-A1',
+              value: 'Add a new store to increase existing capacity'
+            },
+            {
+              key: 'project-type-A1',
+              value: 'Expand an existing store'
+            },
+            {
+              value: 'divider'
+            },
+            {
+              key: 'project-type-A1',
+              value: 'None of the above',
+              notEligible: true
+            },
           ],
           yarKey: 'projectType'
         },
