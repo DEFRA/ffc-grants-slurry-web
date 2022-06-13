@@ -8,7 +8,7 @@ require('dotenv')
 module.exports = {
   plugin: {
     name: 'cookies',
-    register: (server, options) => {
+    register: (server, _options) => {
       server.state('cookies_policy', cookieOptions)
 
       server.ext('onPreResponse', (request, h) => {

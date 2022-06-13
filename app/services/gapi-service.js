@@ -112,7 +112,7 @@ const getTimeofJourneySinceStart = (request) => {
   return 0
 }
 
-const processGA = async (request, ga, score, confirmationId) => {
+const processGA = async (request, ga, _score, _confirmationId) => {
   if (ga && Array.isArray(ga)) {
     const cmcds = []
     ga.forEach(async gaConfig => {

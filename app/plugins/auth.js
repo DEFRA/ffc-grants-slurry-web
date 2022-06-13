@@ -5,13 +5,13 @@ const urlPrefix = require('../config/server').urlPrefix
 module.exports = {
   plugin: {
     name: 'auth',
-    register: async (server, options) => {
+    register: async (server, _options) => {
       await server.register(cookie)
 
       server.auth.strategy('session-auth', 'cookie', {
         cookie: authConfig.cookie,
         redirectTo: `${urlPrefix}/login`,
-        validateFunc: (request, session) => session.authenticated
+        validateFunc: (_request, session) => session.authenticated
           ? { valid: true, credentials: authConfig.credentials }
           : { valid: false }
       })
