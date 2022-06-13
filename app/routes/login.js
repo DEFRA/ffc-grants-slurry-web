@@ -53,7 +53,7 @@ module.exports = [
       validate: {
         payload: Joi.object({
           username: Joi.string().valid(authConfig.credentials.username),
-          password: Joi.string().custom((value, helpers) => {
+          password: Joi.string().custom((value, _helpers) => {
             if (bcrypt.compareSync(value, authConfig.credentials.passwordHash)) {
               return value
             }
@@ -61,7 +61,7 @@ module.exports = [
             throw new Error('Incorrect password')
           })
         }),
-        failAction: (request, h, err) => {
+        failAction: (_request, h, _err) => {
           console.log('Authentication failed')
           return h.view(viewTemplate, createModel(errorText)).takeover()
         }

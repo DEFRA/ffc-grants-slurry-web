@@ -12,7 +12,7 @@ const viewTemplate = 'score'
 const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/business-details`
 
-function createModel (data, request) {
+function createModel (data, _request) {
   const previousPath = `${urlPrefix}/environmental-impact`
 
   return {
