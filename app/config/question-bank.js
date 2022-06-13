@@ -471,10 +471,8 @@ const questionBank = {
               heading: 'Eligibility',
               content: [{
                 para: `
-                Stores must have an impermeable cover unless the slurry is treated with acidification. 
-
-                Acidification is the use of acid treatment to lower the PH value of slurry to stabilise ammonia emissions. 
-
+                Stores must have an impermeable cover unless the slurry is treated with acidification.<br/><br/>
+                Acidification is the use of acid treatment to lower the PH value of slurry to stabilise ammonia emissions.<br/><br/>
                 Slurry acidification systems are not eligible for funding through this grant. `,
                 items: []
               }]
