@@ -342,11 +342,11 @@ const questionBank = {
               value: 'Slurry-based system'
             },
             {
-              key: 'system-type-A1',
+              key: 'system-type-A2',
               value: 'Farm-yard manure and slurry system'
             },
             {
-              key: 'system-type-A1',
+              key: 'system-type-A3',
               value: 'Farm-yard manure system that does not produce slurry',
               notEligible: true
             },
@@ -354,7 +354,7 @@ const questionBank = {
               value: 'divider'
             },
             {
-              key: 'system-type-A1',
+              key: 'system-type-A4',
               value: 'I do not have a slurry system',
               notEligible: true
             }
@@ -429,22 +429,65 @@ const questionBank = {
           nextUrl: 'cover',
           url: 'project-type',
           preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: `
+            This grant is only for: <br> 
+            <ul class="govuk-list govuk-list--bullet">
+            <li>replacing an existing store that is no longer fit for purpose</li>
+            <li>adding a new store to increase existing capacity</li>
+            <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
+            </ul>
+            </br>
+            <p class="govuk-body">A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be suspectable to leaks or failure).</p>
+            `,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
           type: 'single-answer',
           minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para:`This grant is only for:`,
+                items: [
+                        'replacing an existing store that is no longer fit for purpose',
+                        'adding a new store to increase existing capacity',
+                      'expanding an existing store (for example, by adding an extra ring to a steel tank)'
+                      ],
+                additionalPara:`A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).`,
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select increase storage capacity option'
             }
           ],
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Less than 6 months'
+              value: 'Replace an existing store that is no longer serviceable'
             },
             {
-              key: 'projectType'
-            }
+              key: 'project-type-A2',
+              value: 'Add a new store to increase existing capacity'
+            },
+            {
+              key: 'project-type-A3',
+              value: 'Expand an existing store'
+            },
+            {
+              value: 'divider'
+            },
+            {
+              key: 'project-type-A4',
+              value: 'None of the above',
+              notEligible: true
+            },
           ],
           yarKey: 'projectType'
         },
