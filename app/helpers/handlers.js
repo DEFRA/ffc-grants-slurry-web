@@ -41,8 +41,8 @@ const saveValuesToArray = (yarKey, fields) => {
   return result
 }
 
-const resolveMaybeEligible = (h, request, question) => {
-  const {url, nextUrl, backUrl} = question
+const resolveMaybeEligible = (h, request, question, nextUrl) => {
+  const {url, backUrl} = question
   let { maybeEligibleContent } = question
 
   maybeEligibleContent.title = question.title
@@ -118,16 +118,67 @@ const resolveMaybeEligible = (h, request, question) => {
   return h.view('maybe-eligible', MAYBE_ELIGIBLE)
 }
 
+const resolveCheckDetailsUrl = (h, request, question, nextUrl) => {
+  const {backUrl} = question
+
+  setYarValue(request, 'reachedCheckDetails', true)
+
+  const applying = getYarValue(request, 'applying')
+  const businessDetails = getYarValue(request, 'businessDetails')
+  const agentDetails = getYarValue(request, 'agentsDetails')
+  const farmerDetails = getYarValue(request, 'farmerDetails')
+
+  const agentContact = saveValuesToArray(agentDetails, ['emailAddress', 'mobileNumber', 'landlineNumber'])
+  const agentAddress = saveValuesToArray(agentDetails, ['address1', 'address2', 'town', 'county', 'postcode'])
+
+  const farmerContact = saveValuesToArray(farmerDetails, ['emailAddress', 'mobileNumber', 'landlineNumber'])
+  const farmerAddress = saveValuesToArray(farmerDetails, ['address1', 'address2', 'town', 'county', 'postcode'])
+
+  const MODEL = {
+    ...question.pageData,
+    backUrl,
+    nextUrl,
+    applying,
+    businessDetails,
+    farmerDetails: {
+      ...farmerDetails,
+      ...(farmerDetails
+        ? {
+            name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
+            contact: farmerContact.join('<br/>'),
+            address: farmerAddress.join('<br/>')
+          }
+        : {}
+      )
+    },
+    agentDetails: {
+      ...agentDetails,
+      ...(agentDetails
+        ? {
+            name: `${agentDetails.firstName} ${agentDetails.lastName}`,
+            contact: agentContact.join('<br/>'),
+            address: agentAddress.join('<br/>')
+          }
+        : {}
+      )
+    }
+
+  }
+
+  return h.view('check-details', MODEL)
+}
+
 const getPage = async (question, request, h) => {
   const { url, backUrl, dependantNextUrl, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(dependantNextUrl, question.nextUrl, request)
+
   const isRedirect = guardPage(request, preValidationKeys, preValidationKeysRule)
   if (isRedirect) {
     return h.redirect(startPageUrl)
   }
   
   if (question.maybeEligible) {
-    resolveMaybeEligible(h, request, question)
+    resolveMaybeEligible(h, request, question, nextUrl)
   }
 
   if (title) {
@@ -143,7 +194,7 @@ const getPage = async (question, request, h) => {
   if (type === 'multi-answer' && !!data) {
     data = [data].flat()
   }
-  
+
   let conditionalHtml
   if (question?.conditionalKey && question?.conditionalLabelData) {
     const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
@@ -159,55 +210,11 @@ const getPage = async (question, request, h) => {
     await gapiService.processGA(request, question.ga, '')
   }
 
-  if (url === 'check-details') {
-    setYarValue(request, 'reachedCheckDetails', true)
-
-    const applying = getYarValue(request, 'applying')
-    const businessDetails = getYarValue(request, 'businessDetails')
-    const agentDetails = getYarValue(request, 'agentsDetails')
-    const farmerDetails = getYarValue(request, 'farmerDetails')
-
-    const agentContact = saveValuesToArray(agentDetails, ['emailAddress', 'mobileNumber', 'landlineNumber'])
-    const agentAddress = saveValuesToArray(agentDetails, ['address1', 'address2', 'town', 'county', 'postcode'])
-
-    const farmerContact = saveValuesToArray(farmerDetails, ['emailAddress', 'mobileNumber', 'landlineNumber'])
-    const farmerAddress = saveValuesToArray(farmerDetails, ['address1', 'address2', 'town', 'county', 'postcode'])
-
-    const MODEL = {
-      ...question.pageData,
-      backUrl,
-      nextUrl,
-      applying,
-      businessDetails,
-      farmerDetails: {
-        ...farmerDetails,
-        ...(farmerDetails
-          ? {
-              name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
-              contact: farmerContact.join('<br/>'),
-              address: farmerAddress.join('<br/>')
-            }
-          : {}
-        )
-      },
-      agentDetails: {
-        ...agentDetails,
-        ...(agentDetails
-          ? {
-              name: `${agentDetails.firstName} ${agentDetails.lastName}`,
-              contact: agentContact.join('<br/>'),
-              address: agentAddress.join('<br/>')
-            }
-          : {}
-        )
-      }
-
-    }
-
-    return h.view('check-details', MODEL)
-  }
-
   switch (url) {
+    case 'check-details': {
+      resolveCheckDetailsUrl(h, request, question, nextUrl)
+      break
+    }
     case 'score':
     case 'business-details':
     case 'agent-details':
