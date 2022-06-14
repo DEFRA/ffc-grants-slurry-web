@@ -473,18 +473,18 @@ const questionBank = {
               value: 'Replace an existing store that is no longer serviceable'
             },
             {
-              key: 'project-type-A1',
+              key: 'project-type-A2',
               value: 'Add a new store to increase existing capacity'
             },
             {
-              key: 'project-type-A1',
+              key: 'project-type-A3',
               value: 'Expand an existing store'
             },
             {
               value: 'divider'
             },
             {
-              key: 'project-type-A1',
+              key: 'project-type-A4',
               value: 'None of the above',
               notEligible: true
             },
