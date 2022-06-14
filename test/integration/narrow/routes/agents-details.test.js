@@ -220,6 +220,23 @@ describe('Page: /agent-details', () => {
     expect(postResponse.payload).toContain('Enter a landline number (if you do not have a landline, enter your mobile number)')
   })
 
+  it('validate town: fail when user adds non text characters (digits or other characters)', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/agent-details`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        town: 'Highbury23',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Town must only include letters')
+  })
+  
+  
   it('validate postcode - valid format', async () => {
     const postOptions = {
       method: 'POST',

@@ -1866,6 +1866,11 @@ const questionBank = {
                 {
                   type: 'NOT_EMPTY',
                   error: 'Enter your town'
+                },
+                {
+                  type: 'REGEX',
+                  regex: ONLY_TEXT_REGEX,
+                  error: 'Town must only include letters'
                 }
               ]
             },
