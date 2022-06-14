@@ -342,11 +342,11 @@ const questionBank = {
               value: 'Slurry-based system'
             },
             {
-              key: 'system-type-A1',
+              key: 'system-type-A2',
               value: 'Farm-yard manure and slurry system'
             },
             {
-              key: 'system-type-A1',
+              key: 'system-type-A3',
               value: 'Farm-yard manure system that does not produce slurry',
               notEligible: true
             },
@@ -354,7 +354,7 @@ const questionBank = {
               value: 'divider'
             },
             {
-              key: 'system-type-A1',
+              key: 'system-type-A4',
               value: 'I do not have a slurry system',
               notEligible: true
             }
@@ -362,7 +362,7 @@ const questionBank = {
           errorMessage: {
             text: ''
           },
-          yarKey: 'system-Type'
+          yarKey: 'systemType'
         },
         {
           key: 'existing-storage',
