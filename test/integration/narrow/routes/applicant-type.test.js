@@ -66,4 +66,14 @@ describe('Page: /applicant-type', () => {
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('legal-status')
   })
+
+  it('page loads with correct back link', async () => {
+    const options = {
+    method: 'GET',
+    url: `${global.__URLPREFIX__}/applicant-type`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain(`<a href=\"start\" class=\"govuk-back-link\">Back</a>`)
+    })
 })

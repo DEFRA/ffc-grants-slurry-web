@@ -390,7 +390,7 @@ const questionBank = {
               key: 'existing-storage-A2'
             }
           ],
-          yarKey: 'systemType'
+          yarKey: 'existingStorage'
         },
         {
           key: 'planned-storage',
