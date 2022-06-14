@@ -65,7 +65,7 @@ function getRootFiles () {
   return ['docker-compose.yaml', 'docker-compose.override.yaml', 'docker-compose.test.yaml', 'docker-compose.test.watch.yaml', 'package.json', 'package-lock.json']
 }
 
-function getScriptFiles () {
+async function getScriptFiles () {
   const scriptDir = getScriptDir()
   const files = ['test']
   return files.map((file) => {
