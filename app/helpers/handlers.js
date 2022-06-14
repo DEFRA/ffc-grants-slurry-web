@@ -168,6 +168,20 @@ const resolveCheckDetailsUrl = (h, request, question, nextUrl) => {
   return h.view('check-details', MODEL)
 }
 
+const resolveSpecialUrls = (h, request, question, conditionalHtml, data) => {
+  let MODEL = getModel(data, question, request, conditionalHtml)
+  const reachedCheckDetails = getYarValue(request, 'reachedCheckDetails')
+
+  if (reachedCheckDetails) {
+    MODEL = {
+      ...MODEL,
+      reachedCheckDetails
+    }
+  }
+
+  return h.view('page', MODEL)
+}
+
 const getPage = async (question, request, h) => {
   const { url, backUrl, dependantNextUrl, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(dependantNextUrl, question.nextUrl, request)
@@ -190,9 +204,8 @@ const getPage = async (question, request, h) => {
     }
   }
 
-  let data = getYarValue(request, yarKey) || null
-  if (type === 'multi-answer' && !!data) {
-    data = [data].flat()
+  if (question.ga) {
+    await gapiService.processGA(request, question.ga, '')
   }
 
   let conditionalHtml
@@ -206,8 +219,9 @@ const getPage = async (question, request, h) => {
     )
   }
   
-  if (question.ga) {
-    await gapiService.processGA(request, question.ga, '')
+  let data = getYarValue(request, yarKey) || null
+  if (type === 'multi-answer' && !!data) {
+    data = [data].flat()
   }
 
   switch (url) {
@@ -219,17 +233,8 @@ const getPage = async (question, request, h) => {
     case 'business-details':
     case 'agent-details':
     case 'applicant-details': {
-      let MODEL = getModel(data, question, request, conditionalHtml)
-      const reachedCheckDetails = getYarValue(request, 'reachedCheckDetails')
-
-      if (reachedCheckDetails) {
-        MODEL = {
-          ...MODEL,
-          reachedCheckDetails
-        }
-      }
-
-      return h.view('page', MODEL)
+      resolveSpecialUrls(h, request, question, conditionalHtml, data)
+      break
     }
     default:
       break
