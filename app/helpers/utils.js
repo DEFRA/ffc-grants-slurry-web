@@ -38,8 +38,8 @@ const someAnswersSelected = (request, questionKey, answerKeyList) => {
   const yarValue = getYarValue(request, yarKey)
   return (
     answerKeyList.some(answerKey => (
-      answers.some(({ key, value }) => (
-        yarValue.includes(value) && key === answerKey
+      answers.some(({ value, key }) => (
+        key === answerKey && yarValue.includes(value) 
       ))
     ))
   )
