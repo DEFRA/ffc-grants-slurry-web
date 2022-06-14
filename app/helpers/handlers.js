@@ -87,6 +87,14 @@ const resolveCheckDetailsUrl = (h, request, question, backUrl, nextUrl) => {
   return h.view('check-details', MODEL)
 }
 
+const getDataFromYarValue = (request, yarKey, type) => {
+  let data = getYarValue(request, yarKey) || null
+  if (type === 'multi-answer' && !!data) {
+    data = [data].flat()
+  }
+
+  return data
+}
 
 const getPage = async (question, request, h) => {
   const { url, backUrl, dependantNextUrl, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
@@ -180,10 +188,8 @@ const getPage = async (question, request, h) => {
     }
   }
 
-  let data = getYarValue(request, yarKey) || null
-  if (type === 'multi-answer' && !!data) {
-    data = [data].flat()
-  }
+  let data = getDataFromYarValue(request, yarKey, type)
+
   let conditionalHtml
   if (question?.conditionalKey && question?.conditionalLabelData) {
     const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
