@@ -41,6 +41,83 @@ const saveValuesToArray = (yarKey, fields) => {
   return result
 }
 
+const resolveMaybeEligible = (h, request, question) => {
+  const {url, nextUrl, backUrl} = question
+  let { maybeEligibleContent } = question
+
+  maybeEligibleContent.title = question.title
+  let consentOptionalData
+
+  if (maybeEligibleContent.reference) {
+    if (!getYarValue(request, 'consentMain')) {
+      return h.redirect(startPageUrl)
+    }
+    const confirmationId = getConfirmationId(request.yar.id)
+    // try {
+    //   await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
+    //   await gapiService.sendDimensionOrMetrics(request, [{
+    //     dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
+    //     value: confirmationId
+    //   }, {
+    //     dimensionOrMetric: gapiService.dimensions.FINALSCORE,
+    //     value: getYarValue(request, 'current-score')
+    //   },
+    //   {
+    //     dimensionOrMetric: gapiService.metrics.CONFIRMATION,
+    //     value: 'TIME'
+    //   }
+    //   ])
+    //   console.log('Confirmation event sent')
+    // } catch (err) {
+    //   console.log('ERROR: ', err)
+    // }
+    maybeEligibleContent = {
+      ...maybeEligibleContent,
+      reference: {
+        ...maybeEligibleContent.reference,
+        html: maybeEligibleContent.reference.html.replace(
+          SELECT_VARIABLE_TO_REPLACE, (_ignore, _confirmatnId) => (
+            confirmationId
+          )
+        )
+      }
+    }
+    request.yar.reset()
+  }
+
+  maybeEligibleContent = {
+    ...maybeEligibleContent,
+    messageContent: maybeEligibleContent.messageContent.replace(
+      SELECT_VARIABLE_TO_REPLACE, (_ignore, additionalYarKeyName) => (
+        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+      )
+    )
+  }
+
+  if (url === 'confirm') {
+    const consentOptional = getYarValue(request, 'consentOptional')
+    consentOptionalData = {
+      hiddenInput: {
+        id: 'consentMain',
+        name: 'consentMain',
+        value: 'true',
+        type: 'hidden'
+      },
+      idPrefix: 'consentOptional',
+      name: 'consentOptional',
+      items: setOptionsLabel(consentOptional,
+        [{
+          value: 'CONSENT_OPTIONAL',
+          text: '(Optional) I confirm'
+        }]
+      )
+    }
+  }
+
+  const MAYBE_ELIGIBLE = { ...maybeEligibleContent, consentOptionalData, url, nextUrl, backUrl }
+  return h.view('maybe-eligible', MAYBE_ELIGIBLE)
+}
+
 const getPage = async (question, request, h) => {
   const { url, backUrl, dependantNextUrl, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(dependantNextUrl, question.nextUrl, request)
@@ -48,80 +125,9 @@ const getPage = async (question, request, h) => {
   if (isRedirect) {
     return h.redirect(startPageUrl)
   }
-  let confirmationId = ''
+  
   if (question.maybeEligible) {
-    let { maybeEligibleContent } = question
-    maybeEligibleContent.title = question.title
-    let consentOptionalData
-
-    if (maybeEligibleContent.reference) {
-      if (!getYarValue(request, 'consentMain')) {
-        return h.redirect(startPageUrl)
-      }
-      confirmationId = getConfirmationId(request.yar.id)
-      // try {
-      //   await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
-      //   await gapiService.sendDimensionOrMetrics(request, [{
-      //     dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
-      //     value: confirmationId
-      //   }, {
-      //     dimensionOrMetric: gapiService.dimensions.FINALSCORE,
-      //     value: getYarValue(request, 'current-score')
-      //   },
-      //   {
-      //     dimensionOrMetric: gapiService.metrics.CONFIRMATION,
-      //     value: 'TIME'
-      //   }
-      //   ])
-      //   console.log('Confirmation event sent')
-      // } catch (err) {
-      //   console.log('ERROR: ', err)
-      // }
-      maybeEligibleContent = {
-        ...maybeEligibleContent,
-        reference: {
-          ...maybeEligibleContent.reference,
-          html: maybeEligibleContent.reference.html.replace(
-            SELECT_VARIABLE_TO_REPLACE, (_ignore, _confirmatnId) => (
-              confirmationId
-            )
-          )
-        }
-      }
-      request.yar.reset()
-    }
-
-    maybeEligibleContent = {
-      ...maybeEligibleContent,
-      messageContent: maybeEligibleContent.messageContent.replace(
-        SELECT_VARIABLE_TO_REPLACE, (_ignore, additionalYarKeyName) => (
-          formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-        )
-      )
-    }
-
-    if (url === 'confirm') {
-      const consentOptional = getYarValue(request, 'consentOptional')
-      consentOptionalData = {
-        hiddenInput: {
-          id: 'consentMain',
-          name: 'consentMain',
-          value: 'true',
-          type: 'hidden'
-        },
-        idPrefix: 'consentOptional',
-        name: 'consentOptional',
-        items: setOptionsLabel(consentOptional,
-          [{
-            value: 'CONSENT_OPTIONAL',
-            text: '(Optional) I confirm'
-          }]
-        )
-      }
-    }
-
-    const MAYBE_ELIGIBLE = { ...maybeEligibleContent, consentOptionalData, url, nextUrl, backUrl }
-    return h.view('maybe-eligible', MAYBE_ELIGIBLE)
+    resolveMaybeEligible(h, request, question)
   }
 
   if (title) {
@@ -147,6 +153,7 @@ const getPage = async (question, request, h) => {
       request
     )
   }
+  let confirmationId = ''
   if (question.ga) {
     await gapiService.processGA(request, question.ga, confirmationId)
   }
