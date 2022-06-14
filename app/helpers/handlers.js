@@ -143,6 +143,7 @@ const getPage = async (question, request, h) => {
   if (type === 'multi-answer' && !!data) {
     data = [data].flat()
   }
+  
   let conditionalHtml
   if (question?.conditionalKey && question?.conditionalLabelData) {
     const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
@@ -153,10 +154,11 @@ const getPage = async (question, request, h) => {
       request
     )
   }
-  let confirmationId = ''
+  
   if (question.ga) {
-    await gapiService.processGA(request, question.ga, confirmationId)
+    await gapiService.processGA(request, question.ga, '')
   }
+
   if (url === 'check-details') {
     setYarValue(request, 'reachedCheckDetails', true)
 
