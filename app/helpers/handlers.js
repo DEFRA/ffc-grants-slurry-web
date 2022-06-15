@@ -230,8 +230,7 @@ const getPage = async (question, request, h) => {
       break
   }
 
-  const PAGE_MODEL = getModel(data, question, request, conditionalHtml)
-  return h.view('page', PAGE_MODEL)
+  return h.view('page', getModel(data, question, request, conditionalHtml))
 }
 
 const showPostPage = (currentQuestion, request, h) => {
