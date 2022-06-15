@@ -110,12 +110,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
   } else if (warning) {
     warningDetails = warning
   }
-  // if (reachedCheckDetails) {
-  //   MODEL = {
-  //     ...MODEL,
-  //     reachedCheckDetails
-  //   }
-  // }
+
   return {
     type,
     key,
