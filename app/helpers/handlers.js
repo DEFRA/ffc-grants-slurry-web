@@ -42,7 +42,7 @@ const saveValuesToArray = (yarKey, fields) => {
 }
 
 const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
-  
+  setYarValue(request, 'reachedCheckDetails', true)  
 
   const applying = getYarValue(request, 'applying')
   const businessDetails = getYarValue(request, 'businessDetails')
@@ -206,9 +206,7 @@ const getPage = async (question, request, h) => {
 
   switch (url) {
     case 'check-details': {
-      setYarValue(request, 'reachedCheckDetails', true)
-      const MODEL = getCheckDetailsModel(request, question, backUrl, nextUrl)
-      return h.view('check-details', MODEL)
+      return h.view('check-details', getCheckDetailsModel(request, question, backUrl, nextUrl))
     }
     case 'score':
     case 'business-details':
