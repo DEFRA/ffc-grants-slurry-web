@@ -55,7 +55,7 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
   const farmerContact = saveValuesToArray(farmerDetails, ['emailAddress', 'mobileNumber', 'landlineNumber'])
   const farmerAddress = saveValuesToArray(farmerDetails, ['address1', 'address2', 'town', 'county', 'postcode'])
 
-  const MODEL = {
+  return ({
     ...question.pageData,
     backUrl,
     nextUrl,
@@ -84,9 +84,7 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       )
     }
 
-  }
-
-  return MODEL
+  })
 }
 
 const getDataFromYarValue = (request, yarKey, type) => {
@@ -211,7 +209,6 @@ const getPage = async (question, request, h) => {
       setYarValue(request, 'reachedCheckDetails', true)
       const MODEL = getCheckDetailsModel(request, question, backUrl, nextUrl)
       return h.view('check-details', MODEL)
-      break
     }
     case 'score':
     case 'business-details':
