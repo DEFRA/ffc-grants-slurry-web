@@ -41,13 +41,13 @@ const validateAnswerField = (value, validationType, details, payload) => {
       const {
         combinationObject: {
           questionKey: combinationQuestionKey,
-          combinationAnswerKeys: combinationAnswerKeys
+          combinationAnswerKeys
         }
       } = details
-      const combinationanswers = combinationAnswerKeys.map(answerKey =>  getQuestionAnswer(combinationQuestionKey, answerKey))
+      const combinationanswers = combinationAnswerKeys.map(answerKey => getQuestionAnswer(combinationQuestionKey, answerKey))
 
       if (selectedAnswer.includes(combinationanswers[0]) && selectedAnswer.length > 1) {
-        return selectedAnswer.every ((answer, index) => answer === combinationanswers[index])
+        return selectedAnswer.every((answer, index) => answer === combinationanswers[index])
       }
 
       return true
