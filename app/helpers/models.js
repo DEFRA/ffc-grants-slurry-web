@@ -83,6 +83,20 @@ const getBackUrl = (hasScore, backUrlObject, backUrl, request) => {
   return hasScore && (url === 'remaining-costs') ? null : url
 }
 
+const showBackToDetailsButton = (key, request) => {
+  switch (key) {
+    case 'farmer-details':
+    case 'business-details':
+    case 'applicant-details':
+    case 'agent-details':
+    case 'score': {
+      return !!getYarValue(request, 'reachedCheckDetails')
+    }
+    default:
+      return false
+  }
+}
+
 const getModel = (data, question, request, conditionalHtml = '') => {
   let { type, backUrl, key, backUrlObject, sidebar, title, score, label, warning, warningCondition } = question
   const hasScore = !!getYarValue(request, 'current-score')
@@ -110,6 +124,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     items: getOptions(data, question, conditionalHtml, request),
     sideBarText,
     ...(warningDetails ? ({ warning: warningDetails }) : {}),
+    reachedCheckDetails: showBackToDetailsButton(key, request),
     diaplaySecondryBtn: hasScore && score?.isDisplay
   }
 }

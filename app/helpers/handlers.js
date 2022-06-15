@@ -214,17 +214,7 @@ const getPage = async (question, request, h) => {
     case 'business-details':
     case 'agent-details':
     case 'applicant-details': {
-      let MODEL = getModel(data, question, request, conditionalHtml)
-      const reachedCheckDetails = getYarValue(request, 'reachedCheckDetails')
-
-      if (reachedCheckDetails) {
-        MODEL = {
-          ...MODEL,
-          reachedCheckDetails
-        }
-      }
-
-      return h.view('page', MODEL)
+      return h.view('page', getModel(data, question, request, conditionalHtml))
     }
     default:
       break
