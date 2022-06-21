@@ -50,7 +50,7 @@ describe('Page: /tenancy-length', () => {
     expect(postResponse.headers.location).toBe('tenancy-length-condition')
   })
 
-  it('user selects eligible option: \'Yes\' -> store user response and redirect to /project-items', async () => {
+  it('user selects eligible option: \'Yes\' -> store user response and redirect to /system-type', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/tenancy-length`,
@@ -60,6 +60,6 @@ describe('Page: /tenancy-length', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('standard-costs')
+    expect(postResponse.headers.location).toBe('system-type')
   })
 })

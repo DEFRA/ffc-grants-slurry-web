@@ -36,7 +36,7 @@ describe('Page: /system-type', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select the type of system')
+    expect(postResponse.payload).toContain('Select your current manure management system')
   })
 
   it('user selects ineligible option: \'I do not have a slurry system\' -> display ineligible page', async () => {
@@ -51,7 +51,7 @@ describe('Page: /system-type', () => {
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
   })
 
-  it('user selects eligible option -> store user response and redirect to /existing-storage', async () => {
+  it('user selects eligible option -> store user response and redirect to /existing-storage-capacity', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/system-type`,
@@ -61,7 +61,7 @@ describe('Page: /system-type', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('existing-storage')
+    expect(postResponse.headers.location).toBe('existing-storage-capacity')
   })
 
   it('page loads with correct back link', async () => {
@@ -71,6 +71,6 @@ describe('Page: /system-type', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"country\" class=\"govuk-back-link\">Back</a>`)
+    expect(response.payload).toContain(`<a href=\"tenancy\" class=\"govuk-back-link\">Back</a>`)
     })
 })
