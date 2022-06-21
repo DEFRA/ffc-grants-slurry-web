@@ -252,7 +252,7 @@ const questionBank = {
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           pageTitle: '',
           backUrl: 'legal-status',
-          nextUrl: 'system-type',
+          nextUrl: 'project-started',
           url: 'country',
           baseUrl: 'country',
           preValidationKeys: ['legalStatus'],
@@ -304,14 +304,21 @@ const questionBank = {
           pageTitle: '',
           url: 'system-type',
           baseUrl: 'system-type',
-          backUrl: 'country',
-          nextUrl: 'existing-storage',
+          backUrlObject: {
+            dependentQuestionYarKey: 'tenancy',
+            dependentAnswerKeysArray: ['tenancy-A2'],
+            urlOptions: {
+              thenUrl: 'tenancy-length',
+              elseUrl: 'tenancy'
+            }
+          },
+          nextUrl: 'existing-storage-capacity',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              title: 'See other grants you may be eligible for.'
             }
           },
           fundingPriorities: '',
@@ -331,7 +338,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select the type of system'
+              error: 'Select your current manure management system'
             }
           ],
          
@@ -361,39 +368,71 @@ const questionBank = {
           yarKey: 'systemType'
         },
         {
-          key: 'existing-storage',
+          key: 'existing-storage-capacity',
           order: 50,
-          title: 'How many month\'s slurry storage capacity do you have?',
-          baseUrl: 'existing-storage',
+          title: 'How many months\' slurry storage capacity do you have?',
+          baseUrl: 'existing-storage-capacity',
           backUrl: 'system-type',
-          nextUrl: 'planned-storage',
-          url: 'existing-storage',
-          preValidationKeys: [],
+          nextUrl: 'planned-storage-capacity',
+          url: 'existing-storage-capacity',
+          preValidationKeys: ['systemType'],
+          ineligibleContent: {
+            messageContent: `
+            This grant is to: <br> 
+            <ul class="govuk-list govuk-list--bullet">
+            <li>expand current storage levels to 6 months</li>
+            <li>make your storage fit for purpose if capacity is already 6 months or more</li>
+            </ul>
+            `,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
           type: 'single-answer',
           minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para:`This grant is only for:`,
+                items: [
+                        'expand current storage levels to 6 months',
+                        'make your storage fit for purpose if capacity is already 6 months or more'
+                      ],
+                additionalPara:`A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).`,
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select existing storage capacity'
             }
           ],
           answers: [
             {
-              key: 'existing-storage-A1',
+              key: 'existing-storage-capacity-A1',
               value: 'Less than 6 months'
             },
             {
-              key: 'existing-storage-A2'
+              key: 'existing-storage-capacity-A2',
+              value: 'Up to 6 months but it is no longer fit for purpose'
+            },
+            {
+              key: 'existing-storage-capacity-A3',
+              value: '6 months or more',
+              notEligible: true
             }
           ],
-          yarKey: 'existingStorage'
+          yarKey: 'existingStorageCapacity'
         },
         {
           key: 'planned-storage-capacity',
           order: 60,
           title: 'How many months\' slurry storage capacity will you have?',
           baseUrl: 'planned-storage-capacity',
-          backUrl: 'existing-storage',
+          backUrl: 'existing-storage-capacity',
           nextUrl: 'project-type',
           url: 'planned-storage-capacity',
           preValidationKeys: [],
@@ -451,7 +490,7 @@ const questionBank = {
           order: 70,
           title: 'How will you increase your storage capacity?',
           baseUrl: 'project-type',
-          backUrl: 'planned-storage',
+          backUrl: 'planned-storage-capacity',
           nextUrl: 'cover',
           url: 'project-type',
           preValidationKeys: [],
@@ -579,7 +618,7 @@ const questionBank = {
           pageTitle: '',
           url: 'project-started',
           baseUrl: 'project-started',
-          backUrl: 'cover',
+          backUrl: 'country',
           nextUrl: 'tenancy',
           preValidationKeys: [],
           ineligibleContent: {
@@ -648,7 +687,7 @@ const questionBank = {
           url: 'tenancy',
           baseUrl: 'tenancy',
           backUrl: 'project-started',
-          nextUrl: 'standard-costs',
+          nextUrl: 'system-type',
           preValidationKeys: ['projectStart'],
           fundingPriorities: '',
           type: 'single-answer',
@@ -690,7 +729,7 @@ const questionBank = {
           baseUrl: 'tenancy-length',
           backUrl: 'tenancy',
           preValidationKeys: ['tenancy'],
-          nextUrl: 'standard-costs',
+          nextUrl: 'system-type',
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -729,7 +768,7 @@ const questionBank = {
           url: 'tenancy-length-condition',
           backUrl: 'tenancy-length',
           preValidationKeys: ['tenancy'],
-          nextUrl: 'standard-costs',
+          nextUrl: 'system-type',
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
