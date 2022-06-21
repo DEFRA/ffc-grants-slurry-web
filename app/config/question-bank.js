@@ -389,29 +389,52 @@ const questionBank = {
           yarKey: 'existingStorage'
         },
         {
-          key: 'planned-storage',
+          key: 'planned-storage-capacity',
           order: 60,
           title: 'How many months\' slurry storage capacity will you have?',
-          baseUrl: 'planned-storage',
+          baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage',
           nextUrl: 'project-type',
-          url: 'planned-storage',
+          url: 'planned-storage-capacity',
           preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is to get your serviceable storage levels to 6 months.
+
+                For example, if you have 4 months' serviceable storage, we will fund another 2 months.
+
+                Any capacity above 6 months is not covered by the grant.
+
+                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                `,
+                items: []
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select planned storage capacity'
             }
           ],
           answers: [
             {
-              key: 'planned-storage-A1',
-              value: 'Less than 6 months'
+              key: 'planned-storage-capacity-A1',
+              value: '6 months'
             },
             {
-              key: 'planned-storage-A2'
+              key: 'planned-storage-capacity-A2',
+              value: 'More than 6 months '
+            },
+            {
+              key: 'planned-storage-capacity-A3',
+              value: 'Less than 6 months',
+              notEligible: true
             }
           ],
           yarKey: 'plannedStorage'
