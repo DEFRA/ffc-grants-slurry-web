@@ -252,7 +252,7 @@ const questionBank = {
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           pageTitle: '',
           backUrl: 'legal-status',
-          nextUrl: 'system-type',
+          nextUrl: 'project-started',
           url: 'country',
           baseUrl: 'country',
           preValidationKeys: ['legalStatus'],
@@ -331,7 +331,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select the type of system'
+              error: 'Select your current manure management system'
             }
           ],
          
@@ -588,7 +588,7 @@ const questionBank = {
           pageTitle: '',
           url: 'project-started',
           baseUrl: 'project-started',
-          backUrl: 'cover',
+          backUrl: 'country',
           nextUrl: 'tenancy',
           preValidationKeys: [],
           ineligibleContent: {
@@ -657,7 +657,7 @@ const questionBank = {
           url: 'tenancy',
           baseUrl: 'tenancy',
           backUrl: 'project-started',
-          nextUrl: 'standard-costs',
+          nextUrl: 'system-type',
           preValidationKeys: ['projectStart'],
           fundingPriorities: '',
           type: 'single-answer',
