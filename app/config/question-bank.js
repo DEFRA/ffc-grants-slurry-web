@@ -436,6 +436,13 @@ const questionBank = {
           preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
+          ineligibleContent: {
+            messageContent: 'This grant is to get your serviceable storage levels to 6 months.',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
