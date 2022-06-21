@@ -444,7 +444,7 @@ const questionBank = {
               notEligible: true
             }
           ],
-          yarKey: 'plannedStorage'
+          yarKey: 'plannedStorageCapacity'
         },
         {
           key: 'project-type',
