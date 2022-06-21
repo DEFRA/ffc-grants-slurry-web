@@ -323,8 +323,7 @@ const questionBank = {
               content: [{
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
-                
-                Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.`,
+                `,
                 items: []
               }]
             }]
@@ -349,9 +348,6 @@ const questionBank = {
               key: 'system-type-A3',
               value: 'Farm-yard manure system that does not produce slurry',
               notEligible: true
-            },
-            {
-              value: 'divider'
             },
             {
               key: 'system-type-A4',
