@@ -1,10 +1,10 @@
 const Hapi = require('@hapi/hapi')
+const vision = require('@hapi/vision')
 
 describe('Error Page', () => {
   let mockServer
   const boom = require('@hapi/boom')
   const nunjucks = require('nunjucks')
-  const path = require('path')
 
   beforeEach(async () => {
     mockServer = Hapi.server({
@@ -16,30 +16,32 @@ describe('Error Page', () => {
       path: '/',
       handler: (request, h) => {
         throw boom.forbidden()
-        //return h.response('ok').code(403)
       }
     }])
+
+    await mockServer.register(vision)
+
     mockServer.views({
       engines: {
         njk: {
           compile: (src, options) => {
             const template = nunjucks.compile(src, options.environment)
-            return context => template.render(context)
+            return context => template.render(context) // .layout.njk not found, unknown path
           }
         }
      },
       relativeTo: __dirname,
       compileOptions: {
         environment: nunjucks.configure([
-          path.join(__dirname, 'templates'),
-          path.join(__dirname, 'assets', 'dist'),
+          'app/templates',
+          'app/assets/dist',
           'node_modules/govuk-frontend/'
         ])
       },
-      path: '../../../../aap/templates',
+      path: '../../../../app/templates',
       context: {
-        assetpath: '../../../../aap/assets',
-        govukAssetpath: '../../../../aap/assets',
+        assetpath: '../../../../app/assets',
+        govukAssetpath: '../../../../app/assets',
         serviceName: 'FFC Grants Service',
         pageTitle: 'FFC Grants Service'
       }
@@ -48,18 +50,20 @@ describe('Error Page', () => {
     await mockServer.start()
   })
 
+  afterEach(async () => {
+    await mockServer.stop()
+  })
 
+  test('should return 404', async () => {
+    const options = {
+      method: 'GET',
+      url: '/slurry-infrastructure/somethingnotavailable'
+    }
 
-  // test('should return 404', async () => {
-  //   const options = {
-  //     method: 'GET',
-  //     url: '/slurry-infrastructure/somethingnotavailable'
-  //   }
-
-  //   const response = await global.__SERVER__.inject(options)
-  //   expect(response.statusCode).toBe(404)
-  //   expect(response.payload).toContain('Page not found')
-  // })
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(404)
+    expect(response.payload).toContain('Page not found')
+  })
 
   test('should return 403', async () => {
     const options = {
@@ -72,20 +76,4 @@ describe('Error Page', () => {
     expect(response.payload).toContain('Sorry, the requested URL was rejected')
   })
 
-  //   const apiResponseBody = `{
-  //     "status": "Dummy Request sent to API"
-  //   }`
-
-//   const https = require('https')
-//   jest.mock('https', () => ({
-//     ...jest.requireActual('https'), // import and retain the original functionalities
-//     request: (postOption, cb) => cb({
-//       on: (data, cb) => cb(Buffer.from(apiResponseBody, 'utf8')),
-//       statusCode: 200,
-//       statusMessage: 'API Success'
-//     }),
-//     on: jest.fn(),
-//     write: jest.fn(),
-//     end: jest.fn()
-//   }))
 })

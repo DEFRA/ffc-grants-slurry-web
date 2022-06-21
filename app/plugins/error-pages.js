@@ -13,11 +13,9 @@ module.exports = {
         if (response.isBoom) {
           // An error was raised during
           // processing the request
-          console.log('SSSSSSS',response,'OOOOOOPPPPPPPPPPPPPP')
-          console.log('PPPPP',h.view.toString(),'HHHHHHHHHH')
           const statusCode = response.output.statusCode
           if (statusCode === 404) {
-            return h.view('403', response).code(statusCode).takeover()
+            return h.view('404', response).code(statusCode).takeover()
           }
           const err = {
             statusCode: statusCode,
