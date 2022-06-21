@@ -370,7 +370,7 @@ const questionBank = {
           title: 'How many months\' slurry storage capacity do you have?',
           baseUrl: 'existing-storage-capacity',
           backUrl: 'system-type',
-          nextUrl: 'planned-storage',
+          nextUrl: 'planned-storage-capacity',
           url: 'existing-storage-capacity',
           preValidationKeys: ['systemType'],
           ineligibleContent: {
@@ -419,13 +419,13 @@ const questionBank = {
           yarKey: 'existingStorageCapacity'
         },
         {
-          key: 'planned-storage',
+          key: 'planned-storage-capacity',
           order: 60,
           title: 'How many months\' slurry storage capacity will you have?',
-          baseUrl: 'planned-storage',
+          baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage-capacity',
           nextUrl: 'project-type',
-          url: 'planned-storage',
+          url: 'planned-storage-capacity',
           preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
@@ -437,11 +437,11 @@ const questionBank = {
           ],
           answers: [
             {
-              key: 'planned-storage-A1',
+              key: 'planned-storage-capacity-A1',
               value: 'Less than 6 months'
             },
             {
-              key: 'planned-storage-A2'
+              key: 'planned-storage-capacity-A2'
             }
           ],
           yarKey: 'plannedStorage'
@@ -451,7 +451,7 @@ const questionBank = {
           order: 70,
           title: 'How will you increase your storage capacity?',
           baseUrl: 'project-type',
-          backUrl: 'planned-storage',
+          backUrl: 'planned-storage-capacity',
           nextUrl: 'cover',
           url: 'project-type',
           preValidationKeys: [],
