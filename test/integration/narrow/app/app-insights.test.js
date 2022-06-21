@@ -52,6 +52,8 @@ describe('App Insights', () => {
 		let appInsights = mockAppInsights()
 		expect(appInsights.defaultClient).toBeDefined()
 		expect(appInsights.defaultClient.trackException).toBeUndefined()
+
+		mockAppInsights.mockRestore()
 	})
 })
   
