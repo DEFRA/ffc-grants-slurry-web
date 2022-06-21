@@ -304,7 +304,14 @@ const questionBank = {
           pageTitle: '',
           url: 'system-type',
           baseUrl: 'system-type',
-          backUrl: 'tenancy',
+          backUrlObject: {
+            dependentQuestionYarKey: 'tenancy',
+            dependentAnswerKeysArray: ['tenancy-A2'],
+            urlOptions: {
+              thenUrl: 'tenancy-length',
+              elseUrl: 'tenancy'
+            }
+          },
           nextUrl: 'existing-storage-capacity',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
@@ -699,7 +706,7 @@ const questionBank = {
           baseUrl: 'tenancy-length',
           backUrl: 'tenancy',
           preValidationKeys: ['tenancy'],
-          nextUrl: 'standard-costs',
+          nextUrl: 'system-type',
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -738,7 +745,7 @@ const questionBank = {
           url: 'tenancy-length-condition',
           backUrl: 'tenancy-length',
           preValidationKeys: ['tenancy'],
-          nextUrl: 'standard-costs',
+          nextUrl: 'system-type',
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
