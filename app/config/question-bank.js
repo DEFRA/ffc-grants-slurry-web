@@ -304,7 +304,7 @@ const questionBank = {
           pageTitle: '',
           url: 'system-type',
           baseUrl: 'system-type',
-          backUrl: 'country',
+          backUrl: 'tenancy',
           nextUrl: 'existing-storage-capacity',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
