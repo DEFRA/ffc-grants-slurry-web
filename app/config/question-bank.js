@@ -308,10 +308,11 @@ const questionBank = {
           nextUrl: 'existing-storage-capacity',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
-            messageContent: 'This grant is for farmers currently using a system that produces slurry.',
+            messageContent: 'This grant is only for projects in England.',
+            insertText: { text: 'Scotland, Wales and Northern Ireland have other grants available.' },
             messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              url: '',
+              title: ''
             }
           },
           fundingPriorities: '',
@@ -374,10 +375,16 @@ const questionBank = {
           url: 'existing-storage-capacity',
           preValidationKeys: ['systemType'],
           ineligibleContent: {
-            messageContent: 'This grant is to get your serviceable storage levels to 6 months.',
+            messageContent: `
+            This grant is to: <br> 
+            <ul class="govuk-list govuk-list--bullet">
+            <li>expand current storage levels to 6 months</li>
+            <li>make your storage fit for purpose if capacity is already 6 months or more</li>
+            </ul>
+            `,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              title: 'See other grants you may be eligible for.'
             }
           },
           type: 'single-answer',
