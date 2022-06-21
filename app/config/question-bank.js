@@ -308,11 +308,10 @@ const questionBank = {
           nextUrl: 'existing-storage-capacity',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
-            messageContent: 'This grant is only for projects in England.',
-            insertText: { text: 'Scotland, Wales and Northern Ireland have other grants available.' },
+            messageContent: 'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
-              url: '',
-              title: ''
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
             }
           },
           fundingPriorities: '',
