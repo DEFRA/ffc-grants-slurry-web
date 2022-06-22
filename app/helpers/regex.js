@@ -3,8 +3,7 @@ const CHARS_MAX_10 = /^.{1,10}$/
 const CHARS_MIN_10 = /^.{10,}$/
 const CHARS_MAX_100 = /^.{0,100}$/
 const WORDS_MAX_60 = /^(?:\b\w+\b[\s.',-]*){1,60}$/
-const WHOLE_NUMBER_REGEX = /^[0-9]\d*$/
-const NUMBER_REGEX = /^\d+$/
+const WHOLE_NUMBER_REGEX = /^\d+$/
 const SBI_REGEX = /^(\d{0}|\d{9})$/
 const SELECT_VARIABLE_TO_REPLACE = /{{_(.+?)_}}/ig
 const DELETE_POSTCODE_CHARS_REGEX = /[)(.\s-]*/g
@@ -24,7 +23,6 @@ module.exports = {
   POSTCODE_REGEX,
   WHOLE_NUMBER_REGEX,
   SBI_REGEX,
-  NUMBER_REGEX,
   NAME_ONLY_REGEX,
   PHONE_REGEX,
   EMAIL_REGEX,
