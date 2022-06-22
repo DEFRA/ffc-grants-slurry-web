@@ -237,9 +237,6 @@ const questionBank = {
               notEligible: true
             }
           ],
-          errorMessage: {
-            text: ''
-          },
           yarKey: 'legalStatus'
         },
         {
