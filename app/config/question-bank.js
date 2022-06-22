@@ -562,7 +562,7 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'cover',
           backUrl: 'project-type',
-          nextUrl: 'project-started',
+          nextUrl: 'standard-costs',
           url: 'cover',
           preValidationKeys: [],
           ineligibleContent: {
