@@ -26,14 +26,14 @@ module.exports = {
           appInsights.defaultClient?.trackException(new Error(JSON.stringify(err)))
 
           if (statusCode === 400) {
-            return h.view('400').code(statusCode).takeover()
+            return h.view('400', response).code(statusCode).takeover()
           }
 
           if (statusCode === 403) {
             return h.view('403', response).code(statusCode).takeover()
           }
           // The return the `500` view
-          return h.view('500').code(statusCode).takeover()
+          return h.view('500', response).code(statusCode).takeover()
         }
         return h.continue
       })
