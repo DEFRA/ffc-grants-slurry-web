@@ -529,7 +529,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select increase storage capacity option'
+              error: 'Select how you will increase your storage capacity'
             }
           ],
           answers: [
