@@ -19,7 +19,7 @@ describe('Page: /project-type', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Replace an existing store that is no longer serviceable')
+    expect(response.payload).toContain('Replace an existing store that is no longer fit for purpose.')
     expect(response.payload).toContain('Add a new store to increase existing capacity')
     expect(response.payload).toContain('Expand an existing store')
     expect(response.payload).toContain('None of the above')

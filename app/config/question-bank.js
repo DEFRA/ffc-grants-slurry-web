@@ -367,7 +367,7 @@ const questionBank = {
         {
           key: 'existing-storage-capacity',
           order: 50,
-          title: 'How many months\' slurry storage capacity do you have?',
+          title: 'How many months\’ slurry storage capacity do you have?',
           baseUrl: 'existing-storage-capacity',
           backUrl: 'system-type',
           nextUrl: 'planned-storage-capacity',
@@ -427,7 +427,7 @@ const questionBank = {
         {
           key: 'planned-storage-capacity',
           order: 60,
-          title: 'How many months\' slurry storage capacity will you have?',
+          title: 'How many months\’  slurry storage capacity will you have?',
           baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage-capacity',
           nextUrl: 'project-type',
@@ -532,7 +532,7 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Replace an existing store that is no longer serviceable'
+              value: 'Replace an existing store that is no longer fit for purpose.'
             },
             {
               key: 'project-type-A2',
