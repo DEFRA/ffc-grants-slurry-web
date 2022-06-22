@@ -114,8 +114,8 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
         fieldItems = textField(data[field.yarKey], field, request)
         break
       case 'number':
-          fieldItems = textField(data[field.yarKey], field, request)
-          break
+        fieldItems = textField(data[field.yarKey], field, request)
+        break
       case 'email':
         fieldItems = textField(data[field.yarKey], field, request)
         break

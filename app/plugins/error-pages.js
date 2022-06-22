@@ -14,11 +14,8 @@ module.exports = {
           // An error was raised during
           // processing the request
           const statusCode = response.output.statusCode
-
-          // In the event of 404
-          // return the `404` view
           if (statusCode === 404) {
-            return h.view('404').code(statusCode).takeover()
+            return h.view('404', response).code(statusCode).takeover()
           }
           const err = {
             statusCode: statusCode,
@@ -29,10 +26,14 @@ module.exports = {
           appInsights.defaultClient?.trackException(new Error(JSON.stringify(err)))
 
           if (statusCode === 400) {
-            return h.view('400').code(statusCode).takeover()
+            return h.view('400', response).code(statusCode).takeover()
+          }
+
+          if (statusCode === 403) {
+            return h.view('403', response).code(statusCode).takeover()
           }
           // The return the `500` view
-          return h.view('500').code(statusCode).takeover()
+          return h.view('500', response).code(statusCode).takeover()
         }
         return h.continue
       })
