@@ -532,7 +532,7 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Replace an existing store that is no longer serviceable'
+              value: 'Replace an existing store that is no longer fit for purpose.'
             },
             {
               key: 'project-type-A2',
