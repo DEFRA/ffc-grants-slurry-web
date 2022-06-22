@@ -22,7 +22,7 @@ module.exports = {
             data: response.data,
             message: response.message
           }
-          //console.error('error', err)
+          console.error('error', err)
           appInsights.defaultClient?.trackException(new Error(JSON.stringify(err)))
 
           if (statusCode === 400) {
