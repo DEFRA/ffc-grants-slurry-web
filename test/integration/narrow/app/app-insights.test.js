@@ -22,7 +22,6 @@ describe('App Insights', () => {
 			let appInsights = mockAppInsights()
 			let config = mockConfig()
 
-      expect(require('../../../../app/services/app-insights').setup).toBeDefined()
 			require('../../../../app/services/app-insights').setup()
 
 			expect(appInsights).toBeDefined()
