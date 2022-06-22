@@ -19,7 +19,7 @@ describe('Page: /cover', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Will the store have an impermeable cover?')
+    expect(response.payload).toContain('Will the grant-funded store have an impermeable cover?')
     expect(response.payload).toContain('Yes')
     expect(response.payload).toContain('Not needed, the slurry is treated with acidification')
     expect(response.payload).toContain('No')
