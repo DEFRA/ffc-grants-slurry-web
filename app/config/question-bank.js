@@ -559,11 +559,11 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'cover',
           backUrl: 'project-type',
-          nextUrl: 'project-started',
+          nextUrl: 'standard-costs',
           url: 'cover',
           preValidationKeys: [],
           ineligibleContent: {
-            messageContent: 'Stores must have an impermeable cover unless the slurry is treated with acidification. ',
+            messageContent: 'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you might be eligible for.'
@@ -785,7 +785,7 @@ const questionBank = {
           },
           url: 'standard-costs',
           baseUrl: 'standard-costs',
-          backUrl: 'tenancy',
+          backUrl: 'cover',
           nextUrl: 'project-cost',
           fundingPriorities: '',
           preValidationKeys: ['projectStart', 'tenancy'],
