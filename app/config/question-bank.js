@@ -392,7 +392,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para:`This grant is only for:`,
+                para:`This grant is to:`,
                 items: [
                         'expand current storage levels to 6 months',
                         'make your storage fit for purpose if capacity is already 6 months or more'
@@ -442,22 +442,45 @@ const questionBank = {
               title: 'See other grants you might be eligible for.'
             }
           },
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is to get your serviceable storage levels to 6 months.
+
+                For example, if you have 4 months' serviceable storage, we will fund another 2 months.
+
+                Any capacity above 6 months is not covered by the grant.
+
+                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                `,
+                items: []
+              }]
+            }]
+          },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select planned storage capacity'
             }
           ],
           answers: [
             {
               key: 'planned-storage-capacity-A1',
-              value: 'Less than 6 months'
+              value: '6 months'
             },
             {
-              key: 'planned-storage-capacity-A2'
+              key: 'planned-storage-capacity-A2',
+              value: 'More than 6 months '
+            },
+            {
+              key: 'planned-storage-capacity-A3',
+              value: 'Less than 6 months',
+              notEligible: true
             }
           ],
-          yarKey: 'plannedStorage'
+          yarKey: 'plannedStorageCapacity'
         },
         {
           key: 'project-type',
@@ -503,7 +526,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select increase storage capacity option'
+              error: 'Select how you will increase your storage capacity'
             }
           ],
           answers: [
@@ -533,7 +556,7 @@ const questionBank = {
         {
           key: 'cover',
           order: 80,
-          title: 'Will the store have an impermeable cover?',
+          title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'cover',
           backUrl: 'project-type',
           nextUrl: 'project-started',
@@ -555,7 +578,7 @@ const questionBank = {
                 para: `
                 Stores must have an impermeable cover unless the slurry is treated with acidification.
 
-                Acidification is the use of acid treatment to lower the PH value of slurry to stabilise ammonia emissions.
+                Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.
                 
                 Slurry acidification systems are not eligible for funding through this grant. `,
                 items: []

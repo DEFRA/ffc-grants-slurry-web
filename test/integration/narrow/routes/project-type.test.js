@@ -35,7 +35,7 @@ describe('Page: /project-type', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select increase storage capacity option')
+    expect(postResponse.payload).toContain('Select how you will increase your storage capacity')
   })
 
 
