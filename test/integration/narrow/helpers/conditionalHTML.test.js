@@ -1,6 +1,10 @@
 describe('Conditional html', () => {
   const { getHtml } = require('../../../../app/helpers/conditionalHTML')
 
+  test('getHTML() function exists', () => {
+    expect(require('../../../../app/helpers/conditionalHTML').getHtml).toBeDefined()
+  })
+
   test('check function getHtml - robotic equipment, no errors', () => {
     const label = 'roboticEquipment'
     const labelData = 'MOCK_LABEL_DATA'
