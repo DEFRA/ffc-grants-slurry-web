@@ -395,7 +395,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para:`This grant is only for:`,
+                para:`This grant is to:`,
                 items: [
                         'expand current storage levels to 6 months',
                         'make your storage fit for purpose if capacity is already 6 months or more'
