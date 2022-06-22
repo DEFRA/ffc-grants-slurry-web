@@ -427,7 +427,7 @@ const questionBank = {
         {
           key: 'planned-storage-capacity',
           order: 60,
-          title: 'How many months\' slurry storage capacity will you have?',
+          title: 'How many months\’  slurry storage capacity will you have?',
           baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage-capacity',
           nextUrl: 'project-type',
