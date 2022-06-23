@@ -24,8 +24,6 @@ const getUrl = (urlObject, url, request, secBtn) => {
       dependentAnswer.includes(answer.value)
     ))
   ))
-
-  console.log(dependentQuestionYarKey,'YYYYYYYYYYYY', dependentAnswer,'LLLLLLL',nonDependentUrl)
   const selectedElseUrl = dependentAnswer ? elseUrl : nonDependentUrl
 
   return selectThenUrl ? thenUrl : selectedElseUrl
