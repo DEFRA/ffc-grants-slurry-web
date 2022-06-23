@@ -76,6 +76,9 @@ const questionBank = {
           key: 'applicant-type',
           order: 10,
           title: 'What type of farmer are you?',
+          hint: {
+            text: 'Select all that apply'
+          },
           pageTitle: '',
           url: 'applicant-type',
           baseUrl: 'applicant-type',
