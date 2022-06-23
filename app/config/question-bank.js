@@ -375,12 +375,7 @@ const questionBank = {
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
-            This grant is to: <br> 
-            <ul class="govuk-list govuk-list--bullet">
-            <li>expand current storage levels to 6 months</li>
-            <li>make your storage fit for purpose if capacity is already 6 months or more</li>
-            </ul>
-            `,
+            This grant is to get your serviceable storage levels to 6 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -392,12 +387,16 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para:`This grant is to:`,
-                items: [
-                        'expand current storage levels to 6 months',
-                        'make your storage fit for purpose if capacity is already 6 months or more'
-                      ],
-                additionalPara:`A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).`,
+                para: `
+                This grant is to get your serviceable storage levels to 6 months.
+
+                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
+
+                Any capacity above 6 months is not covered by the grant.
+
+                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                `,
+                items: []
               }]
             }]
           },
@@ -449,7 +448,7 @@ const questionBank = {
                 para: `
                 This grant is to get your serviceable storage levels to 6 months.
 
-                For example, if you have 4 months' serviceable storage, we will fund another 2 months.
+                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
 
                 Any capacity above 6 months is not covered by the grant.
 
@@ -576,7 +575,7 @@ const questionBank = {
               heading: 'Eligibility',
               content: [{
                 para: `
-                Stores must have an impermeable cover unless the slurry is treated with acidification.
+                Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
 
                 Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.
                 
