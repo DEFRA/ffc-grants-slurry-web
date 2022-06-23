@@ -1,15 +1,15 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /planned-storage-capacity', () => {
-    const varList = { plannedStorageCapacity: 'randomData' }
+  const varList = { plannedStorageCapacity: 'randomData' }
 
-    jest.mock('../../../../app/helpers/session', () => ({
-      setYarValue: (request, key, value) => null,
-      getYarValue: (request, key) => {
-        if (varList[key]) return varList[key]
-        else return 'Error'
-      }
-    }))
+  jest.mock('../../../../app/helpers/session', () => ({
+    setYarValue: (request, key, value) => null,
+    getYarValue: (request, key) => {
+      if (varList[key]) return varList[key]
+      else return 'Error'
+    }
+  }))
 
   it('page loads successfully, with all the options', async () => {
     const options = {
