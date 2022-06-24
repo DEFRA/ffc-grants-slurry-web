@@ -3,8 +3,17 @@ const urlPrefix = '/slurry-infrastructure'
 const startPageUrl = '/start'
 const serviceEndDate = '2024/07/12'
 const serviceEndTime = '23:59:59'
+const msgTypePrefix = 'uk.gov.ffc.ahwr'
 
 require('dotenv').config()
+
+const sharedConfigSchema = {
+  appInsights: Joi.object(),
+  host: Joi.string().default('localhost'),
+  password: Joi.string(),
+  username: Joi.string(),
+  useCredentialChain: Joi.bool().default(false)
+}
 
 // Define config schema
 const schema = Joi.object({
@@ -27,8 +36,27 @@ const schema = Joi.object({
   appInsights: {
     key: Joi.string(),
     role: Joi.string().default('ffc-grants-slurry')
-  }
+  },
+  applicationRequestQueue: {
+    address: Joi.string().default('applicationRequestQueue'),
+    type: Joi.string(),
+    ...sharedConfigSchema
+  },
+  applicationResponseQueue: {
+    address: Joi.string().default('applicationResponseQueue'),
+    type: Joi.string(),
+    ...sharedConfigSchema
+  },
+  fetchApplicationRequestMsgType: Joi.string(),
 })
+
+const sharedConfig = {
+  appInsights: require('applicationinsights'),
+  host: process.env.SERVICE_BUS_HOST,
+  password: process.env.SERVICE_BUS_PASSWORD,
+  username: process.env.SERVICE_BUS_USER,
+  useCredentialChain: process.env.NODE_ENV === 'production'
+}
 
 // Build config
 const config = {
@@ -51,7 +79,18 @@ const config = {
   appInsights: {
     key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
     role: process.env.APPINSIGHTS_CLOUDROLE
-  }
+  },
+  applicationRequestQueue: {
+    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS,
+    type: 'queue',
+    ...sharedConfig
+  },
+  applicationResponseQueue: {
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS,
+    type: 'queue',
+    ...sharedConfig
+  },
+  fetchApplicationRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
 }
 
 // Validate config
