@@ -534,6 +534,9 @@ const questionBank = {
           key: 'existing-storage-capacity',
           order: 90,
           title: 'How many months’ slurry storage capacity do you have?',
+          hint: {
+            text: 'Based on your current animal numbers'
+          },
           baseUrl: 'existing-storage-capacity',
           backUrl: 'system-type',
           nextUrl: 'planned-storage-capacity',
@@ -593,6 +596,9 @@ const questionBank = {
           key: 'planned-storage-capacity',
           order: 100,
           title: 'How many months’  slurry storage capacity will you have?',
+          hint: {
+            text: 'Based on your current animal numbers'
+          },
           baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage-capacity',
           nextUrl: 'project-type',
