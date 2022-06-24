@@ -732,7 +732,7 @@ const questionBank = {
           backUrl: 'project-type',
           nextUrl: 'standard-costs',
           url: 'cover',
-          preValidationKeys: [],
+          preValidationKeys: ['projectType'],
           ineligibleContent: {
             messageContent: 'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
             messageLink: {
