@@ -18,7 +18,6 @@ describe('Error Page', () => {
   })
 
   test('should return 400', async () => {
-
     mockServer = Hapi.server({
       port: 4000
     })

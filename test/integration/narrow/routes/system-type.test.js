@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /system-type', () => {
-  const varList = { inEngland: 'randomData' }
+  const varList = {}
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -23,7 +23,6 @@ describe('Page: /system-type', () => {
     expect(response.payload).toContain('Slurry-based system')
     expect(response.payload).toContain('Farm-yard manure system that does not produce slurry')
     expect(response.payload).toContain('I do not have a slurry system')
-
   })
 
   it('no option selected -> show error message', async () => {
@@ -64,13 +63,24 @@ describe('Page: /system-type', () => {
     expect(postResponse.headers.location).toBe('existing-storage-capacity')
   })
 
-  it('page loads with correct back link', async () => {
+  it('page loads with correct back link when user select YES on tenancy length page', async () => {
+    varList.tenancyLength = 'Yes'
     const options = {
-    method: 'GET',
-    url: `${global.__URLPREFIX__}/system-type`
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/system-type`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"tenancy\" class=\"govuk-back-link\">Back</a>`)
-    })
+    expect(response.payload).toContain(`<a href=\"tenancy-length\" class=\"govuk-back-link\">Back</a>`)
+  })
+  it('page loads with correct back link when the user select NO on tenancy length page', async () => {
+    varList.tenancyLength = 'No'
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/system-type`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain(`<a href=\"tenancy-length-condition" class=\"govuk-back-link\">Back</a>`)
+  })
 })
