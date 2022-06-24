@@ -29,7 +29,7 @@ describe('Page: /tenancy-length', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/tenancy-length`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { tenancyLength: '', crumb: crumbToken }
+      payload: { crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)

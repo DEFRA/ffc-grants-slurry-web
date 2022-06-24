@@ -11,7 +11,7 @@ const getUrl = (urlObject, url, request, secBtn) => {
     return secBtn ? secBtnPath : url
   }
   const { dependentQuestionYarKey, dependentAnswerKeysArray, urlOptions } = urlObject
-  const { thenUrl, elseUrl } = urlOptions
+  const { thenUrl, elseUrl, nonDependentUrl } = urlOptions
 
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
 
@@ -24,8 +24,9 @@ const getUrl = (urlObject, url, request, secBtn) => {
       dependentAnswer.includes(answer.value)
     ))
   ))
+  const selectedElseUrl = dependentAnswer ? elseUrl : nonDependentUrl
 
-  return selectThenUrl ? thenUrl : elseUrl
+  return selectThenUrl ? thenUrl : selectedElseUrl
 }
 
 module.exports = {

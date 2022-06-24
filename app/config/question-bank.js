@@ -286,7 +286,6 @@ const questionBank = {
           answers: [
             {
               key: 'country-A1',
-              conditional: true,
               value: 'Yes'
             },
             {
@@ -298,321 +297,8 @@ const questionBank = {
           yarKey: 'inEngland'
         },
         {
-          key: 'system-type',
-          order: 40,
-          title: 'What is your current manure management system?',
-          pageTitle: '',
-          url: 'system-type',
-          baseUrl: 'system-type',
-          backUrlObject: {
-            dependentQuestionYarKey: 'tenancy',
-            dependentAnswerKeysArray: ['tenancy-A2'],
-            urlOptions: {
-              thenUrl: 'tenancy-length',
-              elseUrl: 'tenancy'
-            }
-          },
-          nextUrl: 'existing-storage-capacity',
-          preValidationKeys: ['inEngland'],
-          ineligibleContent: {
-            messageContent: 'This grant is for farmers currently using a system that produces slurry.',
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          fundingPriorities: '',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `
-                This grant is for farmers currently using a system that produces slurry.
-                `,
-                items: []
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select your current manure management system'
-            }
-          ],
-         
-          answers: [
-            {
-              key: 'system-type-A1',
-              value: 'Slurry-based system'
-            },
-            {
-              key: 'system-type-A2',
-              value: 'Farm-yard manure and slurry system'
-            },
-            {
-              key: 'system-type-A3',
-              value: 'Farm-yard manure system that does not produce slurry',
-              notEligible: true
-            },
-            {
-              key: 'system-type-A4',
-              value: 'I do not have a slurry system',
-              notEligible: true
-            }
-          ],
-          errorMessage: {
-            text: ''
-          },
-          yarKey: 'systemType'
-        },
-        {
-          key: 'existing-storage-capacity',
-          order: 50,
-          title: 'How many months\’ slurry storage capacity do you have?',
-          baseUrl: 'existing-storage-capacity',
-          backUrl: 'system-type',
-          nextUrl: 'planned-storage-capacity',
-          url: 'existing-storage-capacity',
-          preValidationKeys: ['systemType'],
-          ineligibleContent: {
-            messageContent: `
-            This grant is to get your serviceable storage levels to 6 months.`,
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `
-                This grant is to get your serviceable storage levels to 6 months.
-
-                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
-
-                Any capacity above 6 months is not covered by the grant.
-
-                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
-                `,
-                items: []
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select existing storage capacity'
-            }
-          ],
-          answers: [
-            {
-              key: 'existing-storage-capacity-A1',
-              value: 'Less than 6 months'
-            },
-            {
-              key: 'existing-storage-capacity-A2',
-              value: 'Up to 6 months but it is no longer fit for purpose'
-            },
-            {
-              key: 'existing-storage-capacity-A3',
-              value: '6 months or more',
-              notEligible: true
-            }
-          ],
-          yarKey: 'existingStorageCapacity'
-        },
-        {
-          key: 'planned-storage-capacity',
-          order: 60,
-          title: 'How many months\’  slurry storage capacity will you have?',
-          baseUrl: 'planned-storage-capacity',
-          backUrl: 'existing-storage-capacity',
-          nextUrl: 'project-type',
-          url: 'planned-storage-capacity',
-          preValidationKeys: [],
-          type: 'single-answer',
-          minAnswerCount: 1,
-          ineligibleContent: {
-            messageContent: 'This grant is to get your serviceable storage levels to 6 months.',
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
-            }
-          },
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `
-                This grant is to get your serviceable storage levels to 6 months.
-
-                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
-
-                Any capacity above 6 months is not covered by the grant.
-
-                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
-                `,
-                items: []
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select planned storage capacity'
-            }
-          ],
-          answers: [
-            {
-              key: 'planned-storage-capacity-A1',
-              value: '6 months'
-            },
-            {
-              key: 'planned-storage-capacity-A2',
-              value: 'More than 6 months '
-            },
-            {
-              key: 'planned-storage-capacity-A3',
-              value: 'Less than 6 months',
-              notEligible: true
-            }
-          ],
-          yarKey: 'plannedStorageCapacity'
-        },
-        {
-          key: 'project-type',
-          order: 70,
-          title: 'How will you increase your storage capacity?',
-          baseUrl: 'project-type',
-          backUrl: 'planned-storage-capacity',
-          nextUrl: 'cover',
-          url: 'project-type',
-          preValidationKeys: [],
-          ineligibleContent: {
-            messageContent: `
-            This grant is only for: <br> 
-            <ul class="govuk-list govuk-list--bullet">
-            <li>replacing an existing store that is no longer fit for purpose</li>
-            <li>adding a new store to increase existing capacity</li>
-            <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
-            </ul>
-            </br>
-            <p class="govuk-body">A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be suspectable to leaks or failure).</p>
-            `,
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para:`This grant is only for:`,
-                items: [
-                        'replacing an existing store that is no longer fit for purpose',
-                        'adding a new store to increase existing capacity',
-                      'expanding an existing store (for example, by adding an extra ring to a steel tank)'
-                      ],
-                additionalPara:`A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).`,
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select how you will increase your storage capacity'
-            }
-          ],
-          answers: [
-            {
-              key: 'project-type-A1',
-              value: 'Replace an existing store that is no longer fit for purpose.'
-            },
-            {
-              key: 'project-type-A2',
-              value: 'Add a new store to increase existing capacity'
-            },
-            {
-              key: 'project-type-A3',
-              value: 'Expand an existing store'
-            },
-            {
-              value: 'divider'
-            },
-            {
-              key: 'project-type-A4',
-              value: 'None of the above',
-              notEligible: true
-            },
-          ],
-          yarKey: 'projectType'
-        },
-        {
-          key: 'cover',
-          order: 80,
-          title: 'Will the grant-funded store have an impermeable cover?',
-          baseUrl: 'cover',
-          backUrl: 'project-type',
-          nextUrl: 'standard-costs',
-          url: 'cover',
-          preValidationKeys: [],
-          ineligibleContent: {
-            messageContent: 'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
-            }
-          },
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `
-                Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
-
-                Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.
-                
-                Slurry acidification systems are not eligible for funding through this grant. `,
-                items: []
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select impermeable cover option'
-            }
-          ],
-          answers: [
-            {
-              key: 'cover-A1',
-              value: 'Yes'
-            },
-            {
-              key: 'cover-A2',
-              value: 'Not needed, the slurry is treated with acidification'
-            },
-            {
-              key: 'cover-A3',
-              value: 'No',
-              notEligible: true
-            }
-          ],
-          yarKey: 'cover'
-        },
-        {
           key: 'project-started',
-          order: 90,
+          order: 40,
           title: 'Have you already started work on the project?',
           pageTitle: '',
           url: 'project-started',
@@ -677,7 +363,7 @@ const questionBank = {
         },
         {
           key: 'tenancy',
-          order: 100,
+          order: 50,
           title: 'Is the planned project on land the business owns?',
           hint: {
             text: 'The location of the slurry store'
@@ -721,7 +407,7 @@ const questionBank = {
         },
         {
           key: 'tenancy-length',
-          order: 110,
+          order: 60,
           title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
           pageTitle: '',
           url: 'tenancy-length',
@@ -763,7 +449,7 @@ const questionBank = {
         {
           key: 'tenancy-length-condition',
           title: 'You may be able to apply for a grant from this scheme',
-          order: 120,
+          order: 70,
           url: 'tenancy-length-condition',
           backUrl: 'tenancy-length',
           preValidationKeys: ['tenancy'],
@@ -773,6 +459,319 @@ const questionBank = {
             messageHeader: 'You may be able to apply for a grant from this scheme',
             messageContent: 'You will need to extend your tenancy agreement before you can complete a full application.'
           }
+        },
+        {
+          key: 'system-type',
+          order: 80,
+          title: 'What is your current manure management system?',
+          pageTitle: '',
+          url: 'system-type',
+          baseUrl: 'system-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'tenancyLength',
+            dependentAnswerKeysArray: ['tenancy-length-A1'],
+            urlOptions: {
+              thenUrl: 'tenancy-length',
+              elseUrl: 'tenancy-length-condition',
+              nonDependentUrl: 'tenancy'
+            }
+          },
+          nextUrl: 'existing-storage-capacity',
+          preValidationKeys: ['inEngland'],
+          ineligibleContent: {
+            messageContent: 'This grant is for farmers currently using a system that produces slurry.',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is for farmers currently using a system that produces slurry.
+                `,
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select your current manure management system'
+            }
+          ],
+          answers: [
+            {
+              key: 'system-type-A1',
+              value: 'Slurry-based system'
+            },
+            {
+              key: 'system-type-A2',
+              value: 'Farm-yard manure and slurry system'
+            },
+            {
+              key: 'system-type-A3',
+              value: 'Farm-yard manure system that does not produce slurry',
+              notEligible: true
+            },
+            {
+              key: 'system-type-A4',
+              value: 'I do not have a slurry system',
+              notEligible: true
+            }
+          ],
+          errorMessage: {
+            text: ''
+          },
+          yarKey: 'systemType'
+        },
+        {
+          key: 'existing-storage-capacity',
+          order: 90,
+          title: 'How many months’ slurry storage capacity do you have?',
+          baseUrl: 'existing-storage-capacity',
+          backUrl: 'system-type',
+          nextUrl: 'planned-storage-capacity',
+          url: 'existing-storage-capacity',
+          preValidationKeys: ['systemType'],
+          ineligibleContent: {
+            messageContent: `
+            This grant is to get your serviceable storage levels to 6 months.`,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is to get your serviceable storage levels to 6 months.
+
+                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
+
+                Any capacity above 6 months is not covered by the grant.
+
+                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                `,
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select existing storage capacity'
+            }
+          ],
+          answers: [
+            {
+              key: 'existing-storage-capacity-A1',
+              value: 'Less than 6 months'
+            },
+            {
+              key: 'existing-storage-capacity-A2',
+              value: 'Up to 6 months but it is no longer fit for purpose'
+            },
+            {
+              key: 'existing-storage-capacity-A3',
+              value: '6 months or more',
+              notEligible: true
+            }
+          ],
+          yarKey: 'existingStorageCapacity'
+        },
+        {
+          key: 'planned-storage-capacity',
+          order: 100,
+          title: 'How many months’  slurry storage capacity will you have?',
+          baseUrl: 'planned-storage-capacity',
+          backUrl: 'existing-storage-capacity',
+          nextUrl: 'project-type',
+          url: 'planned-storage-capacity',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          ineligibleContent: {
+            messageContent: 'This grant is to get your serviceable storage levels to 6 months.',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is to get your serviceable storage levels to 6 months.
+
+                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
+
+                Any capacity above 6 months is not covered by the grant.
+
+                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                `,
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select planned storage capacity'
+            }
+          ],
+          answers: [
+            {
+              key: 'planned-storage-capacity-A1',
+              value: '6 months'
+            },
+            {
+              key: 'planned-storage-capacity-A2',
+              value: 'More than 6 months '
+            },
+            {
+              key: 'planned-storage-capacity-A3',
+              value: 'Less than 6 months',
+              notEligible: true
+            }
+          ],
+          yarKey: 'plannedStorageCapacity'
+        },
+        {
+          key: 'project-type',
+          order: 110,
+          title: 'How will you increase your storage capacity?',
+          baseUrl: 'project-type',
+          backUrl: 'planned-storage-capacity',
+          nextUrl: 'cover',
+          url: 'project-type',
+          preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: `
+            This grant is only for: <br> 
+            <ul class="govuk-list govuk-list--bullet">
+            <li>replacing an existing store that is no longer fit for purpose</li>
+            <li>adding a new store to increase existing capacity</li>
+            <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
+            </ul>
+            </br>
+            <p class="govuk-body">A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be suspectable to leaks or failure).</p>
+            `,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: 'This grant is only for:',
+                items: [
+                  'replacing an existing store that is no longer fit for purpose',
+                  'adding a new store to increase existing capacity',
+                  'expanding an existing store (for example, by adding an extra ring to a steel tank)'
+                ],
+                additionalPara: 'A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).'
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select how you will increase your storage capacity'
+            }
+          ],
+          answers: [
+            {
+              key: 'project-type-A1',
+              value: 'Replace an existing store that is no longer fit for purpose.'
+            },
+            {
+              key: 'project-type-A2',
+              value: 'Add a new store to increase existing capacity'
+            },
+            {
+              key: 'project-type-A3',
+              value: 'Expand an existing store'
+            },
+            {
+              value: 'divider'
+            },
+            {
+              key: 'project-type-A4',
+              value: 'None of the above',
+              notEligible: true
+            }
+          ],
+          yarKey: 'projectType'
+        },
+        {
+          key: 'cover',
+          order: 120,
+          title: 'Will the grant-funded store have an impermeable cover?',
+          baseUrl: 'cover',
+          backUrl: 'project-type',
+          nextUrl: 'standard-costs',
+          url: 'cover',
+          preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: 'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
+
+                Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.
+                
+                Slurry acidification systems are not eligible for funding through this grant. `,
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select impermeable cover option'
+            }
+          ],
+          answers: [
+            {
+              key: 'cover-A1',
+              value: 'Yes'
+            },
+            {
+              key: 'cover-A2',
+              value: 'Not needed, the slurry is treated with acidification'
+            },
+            {
+              key: 'cover-A3',
+              value: 'No',
+              notEligible: true
+            }
+          ],
+          yarKey: 'cover'
         },
         {
           key: 'standard-costs',
