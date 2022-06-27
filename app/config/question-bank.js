@@ -595,7 +595,7 @@ const questionBank = {
         {
           key: 'planned-storage-capacity',
           order: 100,
-          title: 'How many months’  slurry storage capacity will you have?',
+          title: 'How many months’ slurry storage capacity will you have after the project?',
           hint: {
             text: 'Based on your current animal numbers'
           },
@@ -959,7 +959,7 @@ const questionBank = {
           pageTitle: '',
           url: 'project-cost',
           baseUrl: 'project-cost',
-          backUrl: 'storage',
+          backUrl: 'standard-costs',
           nextUrl: 'potential-amount',
           preValidationKeys: [],
           classes: 'govuk-input--width-10',
@@ -1283,7 +1283,7 @@ const questionBank = {
           pageTitle: '',
           url: 'business-details',
           baseUrl: 'business-details',
-          backUrl: 'score',
+          backUrl: 'environmental-impact',
           nextUrl: 'applying',
           eliminationAnswerKeys: '',
           ineligibleContent: {},

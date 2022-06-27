@@ -1,4 +1,5 @@
 const { ALL_QUESTIONS } = require('../config/question-bank')
+const { getYarValue } = require('../helpers/session')
 
 const notUniqueSelection = (answers, option) => (
   answers?.includes(option) &&
@@ -20,7 +21,7 @@ const getQuestionAnswer = (questionKey, answerKey) => {
   return (question.answers.find(({ key }) => (key === answerKey)).value)
 }
 
-const allAnswersSelected = (request, questionKey, answerKeyList, getYarValue) => {
+const allAnswersSelected = (request, questionKey, answerKeyList) => {
   const { yarKey, answers } = getQuestionByKey(questionKey)
   const yarValue = getYarValue(request, yarKey)
   return (
@@ -32,7 +33,7 @@ const allAnswersSelected = (request, questionKey, answerKeyList, getYarValue) =>
   )
 }
 
-const someAnswersSelected = (request, questionKey, answerKeyList, getYarValue) => {
+const someAnswersSelected = (request, questionKey, answerKeyList) => {
   const { yarKey, answers } = getQuestionByKey(questionKey)
   const yarValue = getYarValue(request, yarKey)
   return (
