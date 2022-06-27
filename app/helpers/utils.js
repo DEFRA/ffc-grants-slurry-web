@@ -36,7 +36,6 @@ const allAnswersSelected = (request, questionKey, answerKeyList) => {
 const someAnswersSelected = (request, questionKey, answerKeyList) => {
   const { yarKey, answers } = getQuestionByKey(questionKey)
   const yarValue = getYarValue(request, yarKey)
-  console.log(yarValue)
   return (
     answerKeyList.some(answerKey => (
       answers.some(({ value, key }) => (
