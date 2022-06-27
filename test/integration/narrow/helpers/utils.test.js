@@ -76,8 +76,8 @@ describe('Utils', () => {
     getYarValue.mockReturnValueOnce(['Pig', 'Beef'])
     getYarValue.mockReturnValueOnce(['Pig', 'Beef', 'Dairy'])
   
-    expect(allAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(false)
-    expect(allAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(true)
+    expect(allAnswersSelected([], 'applicant-type', mockAnswerList)).toBe(false)
+    expect(allAnswersSelected([], 'applicant-type', mockAnswerList)).toBe(true)
   
   })
   
@@ -90,8 +90,8 @@ describe('Utils', () => {
     getYarValue.mockReturnValueOnce([])
     getYarValue.mockReturnValueOnce(['Pig', 'Beef', 'Dairy'])
   
-    expect(someAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(false)
-    expect(someAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(true)
+    expect(someAnswersSelected([], 'applicant-type', mockAnswerList)).toBe(false)
+    expect(someAnswersSelected([], 'applicant-type', mockAnswerList)).toBe(true)
   
   })
 
