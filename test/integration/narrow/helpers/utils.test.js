@@ -1,3 +1,6 @@
+jest.mock('../../../../app/helpers/session')
+const { getYarValue } = require('../../../../app/helpers/session')
+
 describe('Utils', () => {
   
   test('notUniqueSelection', () => {
@@ -69,10 +72,9 @@ describe('Utils', () => {
     const { allAnswersSelected } = require('../../../../app/helpers/utils')
   
     const mockAnswerList = ['applicant-type-A1', 'applicant-type-A2', 'applicant-type-A3']
-  
-    const getYarValue = jest.fn()
-      .mockReturnValueOnce(['Pig','Beef'])
-      .mockReturnValueOnce(['Pig','Beef', 'Dairy'])
+
+    getYarValue.mockReturnValueOnce(['Pig', 'Beef'])
+    getYarValue.mockReturnValueOnce(['Pig', 'Beef', 'Dairy'])
   
     expect(allAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(false)
     expect(allAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(true)
@@ -85,9 +87,8 @@ describe('Utils', () => {
   
     const mockAnswerList = ['applicant-type-A1', 'applicant-type-A2', 'applicant-type-A3']
   
-    const getYarValue = jest.fn()
-      .mockReturnValueOnce([])
-      .mockReturnValueOnce(['Pig','Beef', 'Dairy'])
+    getYarValue.mockReturnValueOnce([])
+    getYarValue.mockReturnValueOnce(['Pig', 'Beef', 'Dairy'])
   
     expect(someAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(false)
     expect(someAnswersSelected([], 'applicant-type', mockAnswerList, getYarValue)).toBe(true)
