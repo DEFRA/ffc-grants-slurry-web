@@ -595,7 +595,7 @@ const questionBank = {
         {
           key: 'planned-storage-capacity',
           order: 100,
-          title: 'How many months’  slurry storage capacity will you have after the project?',
+          title: 'How many months’ slurry storage capacity will you have after the project?',
           hint: {
             text: 'Based on your current animal numbers'
           },
