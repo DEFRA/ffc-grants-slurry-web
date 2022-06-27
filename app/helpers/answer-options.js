@@ -1,5 +1,5 @@
 function isChecked (data, option) {
-  return typeof data ==='string'? !!data && data === option : !!data && data.includes(option)
+  return !!data && data.includes(option)
 }
 
 function setOptionsLabel (data, answers, conditionalHtml) {
