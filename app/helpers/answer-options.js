@@ -1,4 +1,7 @@
 function isChecked (data, option) {
+  console.log(data,"data")
+  console.log(option,"option")
+  console.log( typeof data ==='string'? !!data && data === option : !!data && data.includes(option),"return")
   return typeof data ==='string'? !!data && data === option : !!data && data.includes(option)
 }
 
@@ -157,5 +160,6 @@ const getOptions = (data, question, conditionalHtml, request) => {
 
 module.exports = {
   getOptions,
-  setOptionsLabel
+  setOptionsLabel,
+  isChecked
 }
