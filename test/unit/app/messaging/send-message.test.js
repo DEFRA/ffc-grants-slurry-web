@@ -11,7 +11,7 @@ jest.mock('ffc-messaging', () => {
 const sendSessionMessage = require('../../../../app/messaging/send-message')
 
 describe('application messaging tests', () => {  
-    beforeEach(() => {
+    afterEach(() => {
       jest.clearAllMocks()
     })
 
