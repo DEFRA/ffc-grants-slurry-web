@@ -1,12 +1,18 @@
-const { sendMessage } = require('../../../../app/messaging')
+const mockSendMessage = jest.fn()
+const mockCloseConnection = jest.fn()
+jest.mock('ffc-messaging', () => {
+    return {
+        MessageSender: jest.fn().mockImplementation(() => {
+            return { sendMessage: mockSendMessage, closeConnection: mockCloseConnection }
+        })
+    }
+})
 
-jest.mock('ffc-messaging')
-const { MessageSender } = require('ffc-messaging')
+const sendSessionMessage = require('../../../../app/messaging/send-message')
 
 describe('application messaging tests', () => {  
     beforeEach(() => {
-      jest.resetAllMocks()
-      MessageSender.mockClear()
+      jest.clearAllMocks()
     })
 
     test('sendMessage sends a message', async () => {
@@ -16,26 +22,11 @@ describe('application messaging tests', () => {
         const config = { queue: 'yes'}
         const sessionId = {id: 1}
 
-        await sendMessage({body, type, config, sessionId})
+        await sendSessionMessage(body, type, config, sessionId)
 
-        const MessageSenderInstance = MessageSender.mock.instances[0]
+        expect(mockSendMessage).toHaveBeenCalledTimes(1)
+        expect(mockCloseConnection).toHaveBeenCalledTimes(1)
 
-        const sendMessageCheck = MessageSenderInstance.sendMessage
-
-        expect(MessageSender).toHaveBeenCalled()
-        expect(sendMessageCheck).toHaveBeenCalledTimes(1)
-        expect(sendMessageCheck).toHaveBeenCalledWith({
-            body: {
-                body, 
-                type, 
-                config: {
-                    queue: 'yes'
-                }, 
-                sessionId
-            },
-            type: undefined,
-            source: 'ffc-grants-slurry-web'
-        })
         
     })
 })
