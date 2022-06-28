@@ -62,8 +62,8 @@ container:
   serviceEndDate: dummy
   serviceEndTime: dummy
   surveyLink: dummy
-  # applicationRequestQueueAddress: ffc-grants-slurry-cost-details-req
-  # applicationResponseQueueAddress: ffc-grants-slurry-cost-details-res
+  applicationRequestQueueAddress: ffc-grants-slurry-cost-details-req
+  applicationResponseQueueAddress: ffc-grants-slurry-cost-details-res
 
 livenessProbe:
   path: /healthz
