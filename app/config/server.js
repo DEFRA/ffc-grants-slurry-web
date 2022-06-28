@@ -4,6 +4,7 @@ const startPageUrl = '/start'
 const serviceEndDate = '2024/07/12'
 const serviceEndTime = '23:59:59'
 const msgTypePrefix = 'uk.gov.ffc.ahwr'
+const environmentCode = 'snd'
 
 require('dotenv').config()
 
@@ -38,12 +39,12 @@ const schema = Joi.object({
     role: Joi.string().default('ffc-grants-slurry')
   },
   applicationRequestQueue: {
-    address: Joi.string().default('applicationRequestQueue'),
+    address: Joi.string().default('applicationRequestQueue' + '-' + environmentCode),
     type: Joi.string(),
     ...sharedConfigSchema
   },
   applicationResponseQueue: {
-    address: Joi.string().default('applicationResponseQueue'),
+    address: Joi.string().default('applicationResponseQueue' + '-' + environmentCode),
     type: Joi.string(),
     ...sharedConfigSchema
   },
@@ -58,7 +59,7 @@ const sharedConfig = {
   useCredentialChain: process.env.NODE_ENV === 'production'
 }
 
-console.log('Environment: ', process.env.NODE_ENV)
+console.log('Environment: ', process.env.ENVIRONMENT_NAME)
 
 // Build config
 const config = {
@@ -83,12 +84,12 @@ const config = {
     role: process.env.APPINSIGHTS_CLOUDROLE
   },
   applicationRequestQueue: {
-    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' +  process.env.NODE_ENV, //-dev/-test
+    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' +  process.env.ENVIRONMENT_NAME, //-dev/-test
     type: 'queue',
     ...sharedConfig
   },
   applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS  + '-' +  process.env.NODE_ENV,
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS  + '-' +  process.env.ENVIRONMENT_NAME,
     type: 'queue',
     ...sharedConfig
   },

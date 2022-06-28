@@ -21,4 +21,5 @@ data:
   SERVICE_END_DATE : {{ .Values.container.serviceEndDate | quote }}
   SERVICE_END_TIME : {{ .Values.container.serviceEndTime | quote }}
   SURVEY_LINK: {{ .Values.container.surveyLink | quote }}
+  ENVIRONMENT_NAME: {{.Values.environmentCode | quote}}
 {{- end -}}

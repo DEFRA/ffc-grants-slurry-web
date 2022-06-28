@@ -61,6 +61,7 @@ container:
   serviceEndDate: dummy
   serviceEndTime: dummy
   surveyLink: dummy
+  environmentCode: dummy
 
 livenessProbe:
   path: /healthz
