@@ -158,5 +158,4 @@ const getOptions = (data, question, conditionalHtml, request) => {
 module.exports = {
   getOptions,
   setOptionsLabel,
-  isChecked
 }
