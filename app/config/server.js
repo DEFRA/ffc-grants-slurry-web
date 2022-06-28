@@ -58,6 +58,8 @@ const sharedConfig = {
   useCredentialChain: process.env.NODE_ENV === 'production'
 }
 
+console.log('Environment: ', process.env.NODE_ENV)
+
 // Build config
 const config = {
   urlPrefix: process.env.URL_PREFIX,
@@ -81,12 +83,12 @@ const config = {
     role: process.env.APPINSIGHTS_CLOUDROLE
   },
   applicationRequestQueue: {
-    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS,
+    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' +  process.env.NODE_ENV, //-dev/-test
     type: 'queue',
     ...sharedConfig
   },
   applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS,
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS  + '-' +  process.env.NODE_ENV,
     type: 'queue',
     ...sharedConfig
   },
@@ -97,6 +99,8 @@ const config = {
 const result = schema.validate(config, {
   abortEarly: false
 })
+
+console.log('heres the server config: ', config)
 
 // Throw if config is invalid
 if (result.error) {
