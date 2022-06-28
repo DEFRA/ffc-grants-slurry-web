@@ -21,6 +21,6 @@ data:
   SERVICE_END_DATE : {{ .Values.container.serviceEndDate | quote }}
   SERVICE_END_TIME : {{ .Values.container.serviceEndTime | quote }}
   SURVEY_LINK: {{ .Values.container.surveyLink | quote }}
-   APPLICATIONREQUEST_QUEUE_ADDRESS: {{ .Values.container.applicationRequestQueueAddress | quote }}
+  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ .Values.container.applicationRequestQueueAddress | quote }}
   APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ .Values.container.applicationResponseQueueAddress | quote }}
 {{- end -}}
