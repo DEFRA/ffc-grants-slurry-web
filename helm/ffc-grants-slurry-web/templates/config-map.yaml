@@ -22,10 +22,10 @@ data:
   SERVICE_END_TIME : {{ .Values.container.serviceEndTime | quote }}
   SURVEY_LINK: {{ .Values.container.surveyLink | quote }}
   {{- if and (.Values.environmentCode) (not .Values.pr) }}
-  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ .Value.container.applicationRequestQueueAddress  }}-{{ .Values.environmentCode }}
-  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ .Value.container.applicationResponseQueueAddress }}-{{ .Values.environmentCode }}
+  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ .Values.container.applicationRequestQueueAddress  }}-{{ .Values.environmentCode }}
+  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ .Values.container.applicationResponseQueueAddress }}-{{ .Values.environmentCode }}
   {{ else }}
-  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ quote .Value.container.applicationRequestQueueAddress }}
-  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ quote .Value.container.applicationResponseQueueAddress  }}
+  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ quote .Values.container.applicationRequestQueueAddress }}
+  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ quote .Values.container.applicationResponseQueueAddress  }}
   {{- end }}
 {{- end -}}
