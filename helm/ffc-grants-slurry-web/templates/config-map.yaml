@@ -21,11 +21,6 @@ data:
   SERVICE_END_DATE : {{ .Values.container.serviceEndDate | quote }}
   SERVICE_END_TIME : {{ .Values.container.serviceEndTime | quote }}
   SURVEY_LINK: {{ .Values.container.surveyLink | quote }}
-  {{- if and (.Values.environmentCode) (not .Values.pr) }}
-  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ .Values.container.applicationRequestQueueAddress  }}-{{ .Values.environmentCode }}
-  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ .Values.container.applicationResponseQueueAddress }}-{{ .Values.environmentCode }}
-  {{ else }}
-  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ quote .Values.container.applicationRequestQueueAddress }}
-  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ quote .Values.container.applicationResponseQueueAddress  }}
-  {{- end }}
+  APPLICATIONREQUEST_QUEUE_ADDRESS: {{ .Values.container.applicationRequestQueueAddress | quote }}-{{ .Values.environmentCode | quote}}
+  APPLICATIONRESPONSE_QUEUE_ADDRESS: {{ .Values.container.applicationResponseQueueAddress | quote }}-{{ .Values.environmentCode | quote }}
 {{- end -}}
