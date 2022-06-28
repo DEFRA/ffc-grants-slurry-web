@@ -81,12 +81,12 @@ const config = {
     role: process.env.APPINSIGHTS_CLOUDROLE
   },
   applicationRequestQueue: {
-    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS,
+    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
     type: 'queue',
     ...sharedConfig
   },
   applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS,
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS  + '-' + process.env.ENVIRONMENT_CODE,
     type: 'queue',
     ...sharedConfig
   },
@@ -99,7 +99,7 @@ const result = schema.validate(config, {
 })
 
 console.log('heres the server config: ', config)
-
+console.log('process env environmentCode: ', process.env.ENVIRONMENT_CODE)
 // Throw if config is invalid
 if (result.error) {
   throw new Error(`The server config is invalid. ${result.error.message}`)
