@@ -559,11 +559,11 @@ const questionBank = {
                 para: `
                 This grant is to get your serviceable storage levels to 6 months.
 
-                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
+                For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
                 Any capacity above 6 months is not covered by the grant.
 
-                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                You must maintain at least 6 months’ capacity for the duration of the grant funding agreement.
                 `,
                 items: []
               }]
@@ -620,11 +620,11 @@ const questionBank = {
                 para: `
                 This grant is to get your serviceable storage levels to 6 months.
 
-                For example, if you have 4 months' serviceable storage, we will fund another 2 months. If you have 2 months' serviceable storage and increase to 12 months, we will fund 4 months.
+                For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
                 Any capacity above 6 months is not covered by the grant.
 
-                You must maintain at least 6 months' capacity for the duration of the grant funding agreement.
+                You must maintain at least 6 months’ capacity for the duration of the grant funding agreement.
                 `,
                 items: []
               }]
