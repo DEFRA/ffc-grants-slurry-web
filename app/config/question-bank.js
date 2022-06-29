@@ -870,7 +870,6 @@ const questionBank = {
             values: [
               {
                 heading: 'Your project items',
-                subheading:'Store',
                 content: [{
                   para: 'Store',
                   items: ['Above-ground steel tank'],
