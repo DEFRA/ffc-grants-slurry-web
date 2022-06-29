@@ -3,7 +3,7 @@ describe('Grants Info', () => {
 
   test('is eligible if calculated grant = min grant - whether grant is capped or not', () => {
     const projectCostValue = '50'
-    let grantsInfo = {
+    const grantsInfo = {
       minGrant: 10,
       maxGrant: 1000,
       grantPercentage: 20,
@@ -22,7 +22,7 @@ describe('Grants Info', () => {
 
   test('is not eligible if calculated grant < min grant - whether grant is capped or not', () => {
     const projectCostValue = '49'
-    let grantsInfo = {
+    const grantsInfo = {
       minGrant: 10,
       maxGrant: 1000,
       grantPercentage: 20,
@@ -41,7 +41,7 @@ describe('Grants Info', () => {
 
   test('if (calculatedGrant < maxGrant ) => [calculatedGrant + remainingCost = projectCostValue] - whether grant is capped or not', () => {
     const projectCostValue = '50'
-    let grantsInfo = {
+    const grantsInfo = {
       minGrant: 10,
       maxGrant: 1000,
       grantPercentage: 20,
@@ -62,7 +62,7 @@ describe('Grants Info', () => {
 
   test('if (calculatedGrant > maxGrant ) => [calculatedGrant + remainingCost = projectCostValue] - whether grant is capped or not', () => {
     const projectCostValue = '50000'
-    let grantsInfo = {
+    const grantsInfo = {
       minGrant: 10,
       maxGrant: 1000,
       grantPercentage: 20,
@@ -80,6 +80,4 @@ describe('Grants Info', () => {
     expect(cappedGrantResult.calculatedGrant > grantsInfo.maxGrant)
     expect(Number(cappedGrantResult.calculatedGrant) + Number(cappedGrantResult.remainingCost)).toEqual(Number(projectCostValue))
   })
-
 })
-  
