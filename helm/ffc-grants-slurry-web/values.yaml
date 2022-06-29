@@ -3,6 +3,7 @@ name: ffc-grants-slurry-web
 namespace: ffc-grants
 workstream: ffc-grants
 image: ffc-grants-slurry-web
+environmentCode: dummy
 
 labels: {}
 
@@ -61,6 +62,8 @@ container:
   serviceEndDate: dummy
   serviceEndTime: dummy
   surveyLink: dummy
+  applicationRequestQueueAddress: ffc-grants-slurry-cost-details-req
+  applicationResponseQueueAddress: ffc-grants-slurry-cost-details-res
 
 livenessProbe:
   path: /healthz
