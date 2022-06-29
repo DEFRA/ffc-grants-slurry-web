@@ -39,7 +39,7 @@ describe('Page: /storage-capacity-increase', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/storage-capacity-increase`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { storageCapacityIncrease: 123, crumb: crumbToken }
+      payload: { storageCapacityIncrease: "123", crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
