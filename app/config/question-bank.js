@@ -886,16 +886,65 @@ const questionBank = {
         },
         {
           key: 'planning-permission-evidence',
-          order: 150,
+          order: 145,
+          title: 'Your planning permission',
+          hint: {
+            html: 'Enter the name of your planning authority and your planning reference number'
+          },
           url: 'planning-permission-evidence',
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
-          maybeEligible: true,
           preValidationKeys: ['planningPermission'],
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for this grant',
-            messageContent: 'Any planning permission must be in place by 31 January 2024.'
-          }
+          ineligibleContent: {
+            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
+            messageLink: {
+              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
+              title: 'See other grants you may be eligible for.'
+            }},
+          type: 'multi-input',
+          allFields: [
+            {
+              yarKey: 'planningAuthority',
+              type: 'text',
+              classes: 'govuk-input--width-20',
+              label: {
+                text: 'Planning authority',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning authority'
+                },
+                {
+                  type: 'REGEX',
+                  regex: NAME_ONLY_REGEX,
+                  error: 'Name must only include letters, hyphens and apostrophes'
+                }
+              ]
+            },
+            {
+              yarKey: 'planningAuthority',
+              type: 'text',
+              classes: 'govuk-input--width-20',
+              label: {
+                text: 'Planning reference number',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning reference number'
+                },
+                {
+                  type: 'REGEX',
+                  regex: NAME_ONLY_REGEX,
+                  error: 'Name must only include letters, hyphens and apostrophes'
+                }
+              ]
+            }
+          ],
+          yarKey: 'PlanningPermissionEvidence'
         },
         {
           key: 'planning-permission-condition',
@@ -908,7 +957,8 @@ const questionBank = {
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for this grant',
             messageContent: 'Any planning permission must be in place by 31 January 2024.'
-          }
+          },
+          yarKey: 'PlanningPermissionCondition'
         },
         {
           key: 'project-location-owned-rented',
