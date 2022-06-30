@@ -1049,7 +1049,10 @@ const questionBank = {
         {
           key: 'remaining-costs',
           order: 190,
-          title: 'Can you pay the remaining costs of £{{_remainingCost_}}?',
+          title: 'Can you pay the remaining costs?',
+          hint: {
+            html: '</br>The grant will only pay up to 50% of standardised item costs – items may cost more than the standardised cost.'
+          },
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
@@ -1057,8 +1060,7 @@ const questionBank = {
           nextUrl: 'collaboration',
           eliminationAnswerKeys: '',
           ineligibleContent: {
-            messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-            <br/><br/>You also cannot use money from a producer organisation under the Fresh Fruit and Vegetable Aid Scheme.`,
+            messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.`,
             insertText: {
               html: `You can use:
               <ul>
@@ -1083,8 +1085,6 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [{
                   para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-                  
-                  You also cannot use money from a producer organisation under the Fresh Fruit and Vegetable Aid Scheme.
                   
                   You can use:`,
                   items: [
