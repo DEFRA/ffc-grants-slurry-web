@@ -36,7 +36,50 @@ describe('Models', () => {
 
   const { getModel } = require('../../../../app/helpers/models')
 
-  test('getModel', () => {
+  test('inspect getModel() - full value', () => {
+    expect(getModel([], question, {})).toEqual({
+      type: 'mock_type',
+      key: 'mock_key',
+      title: undefined,
+      backUrl: 'tenancy',
+      items: {
+        classes: 'govuk-fieldset__legend--l',
+        id: undefined,
+        name: undefined,
+        fieldset: {
+          legend: {
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true,
+            text: undefined
+          }
+        },
+        hint: undefined,
+        items: [
+          {
+            checked: false,
+            conditional: undefined,
+            hint: 'hint',
+            selected: false,
+            text: 'answer_text',
+            value: 'mock_answer_value'
+          }
+        ]
+      },
+      sideBarText: {
+        values: [
+          expect.objectContaining({ heading: 'Eligibility' })
+        ]
+      },
+      warning: {
+        text: 'Other types of business may be supported in future schemes',
+        iconFallbackText: 'Warning'
+      },
+      reachedCheckDetails: false,
+      diaplaySecondryBtn: false
+    })
+  })
+
+  test('inspect getModel().title', () => {
     expect(getModel([], question, {})).toEqual(
       expect.objectContaining({
         type: 'mock_type',
@@ -64,46 +107,13 @@ describe('Models', () => {
     )
   })
 
-  test('getModel() full value', () => {
-    expect(getModel([], question, {})).toEqual({
-      type: 'mock_type',
-      key: 'mock_key',
-      title: 'mock_title',
-      backUrl: 'tenancy',
-      items: {
-        classes: 'govuk-fieldset__legend--l',
-        fieldset: {
-          legend: {
-            classes: 'govuk-fieldset__legend--l',
-            isPageHeading: true,
-            text: 'mock_title'
-          }
-        },
-        hint: undefined,
-        id: undefined,
-        items: [
-          {
-            checked: false,
-            conditional: undefined,
-            hint: 'hint',
-            selected: false,
-            text: 'answer_text',
-            value: 'mock_answer_value'
-          }
-        ],
-        name: undefined
-      },
-      sideBarText: {
-        values: [
-          expect.objectContaining({ heading: 'Eligibility' })
-        ]
-      },
-      warning: {
-        text: 'Other types of business may be supported in future schemes',
-        iconFallbackText: 'Warning'
-      },
-      reachedCheckDetails: false,
-      diaplaySecondryBtn: false
-    })
+  test('inspect getModel().backUrl', () => {
+    question.backUrlObject.urlOptions.nonDependentUrl = 'remaining-costs'
+
+    expect(getModel([], question, {})).toEqual(
+      expect.objectContaining({
+        backUrl: 'remaining-costs'
+      })
+    )
   })
 })
