@@ -1,6 +1,12 @@
 jest.mock('../../../../app/helpers/utils')
 const { allAnswersSelected } = require('../../../../app/helpers/utils')
 
+jest.mock('../../../../app/helpers/urls')
+const { getUrl } = require('../../../../app/helpers/urls')
+
+jest.mock('../../../../app/helpers/session')
+const { getYarValue } = require('../../../../app/helpers/session')
+
 describe('Models', () => {
   const question = {
     type: 'mock_type',
@@ -44,7 +50,7 @@ describe('Models', () => {
       type: 'mock_type',
       key: 'mock_key',
       title: undefined,
-      backUrl: 'tenancy',
+      backUrl: undefined,
       items: {
         classes: 'govuk-fieldset__legend--l',
         id: undefined,
@@ -111,13 +117,17 @@ describe('Models', () => {
   })
 
   test('inspect getModel().backUrl', () => {
-    question.backUrlObject.urlOptions.nonDependentUrl = 'remaining-costs'
+    getYarValue.mockReturnValueOnce('mock-value')
+    getYarValue.mockReturnValueOnce('mock-value')
+    getYarValue.mockReturnValueOnce(undefined)
 
-    expect(getModel([], question, {})).toEqual(
-      expect.objectContaining({
-        backUrl: 'remaining-costs'
-      })
-    )
+    getUrl.mockReturnValueOnce('remaining-costs')
+    getUrl.mockReturnValueOnce('tenancy')
+    getUrl.mockReturnValueOnce('tenancy')
+
+    expect(getModel([], question, {}).backUrl).toBeNull()
+    expect(getModel([], question, {}).backUrl).toEqual('tenancy')
+    expect(getModel([], question, {}).backUrl).toEqual('tenancy')
   })
 
   test('inspect getModel().warningDetails', () => {
