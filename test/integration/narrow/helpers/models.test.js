@@ -34,9 +34,9 @@ describe('Models', () => {
     }
   }
 
-  test('getModel', () => {
-    const { getModel } = require('../../../../app/helpers/models')
+  const { getModel } = require('../../../../app/helpers/models')
 
+  test('getModel', () => {
     expect(getModel([], question, {})).toEqual(
       expect.objectContaining({
         type: 'mock_type',
@@ -65,8 +65,6 @@ describe('Models', () => {
   })
 
   test('getModel() full value', () => {
-    const { getModel } = require('../../../../app/helpers/models')
-
     expect(getModel([], question, {})).toEqual({
       type: 'mock_type',
       key: 'mock_key',
