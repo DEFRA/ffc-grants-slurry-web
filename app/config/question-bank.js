@@ -838,8 +838,8 @@ const questionBank = {
           pageTitle: '',
           url: 'planning-permission',
           baseUrl: 'planning-permission',
-          backUrl: 'country',
-          nextUrl: 'project-started',
+          backUrl: 'remaining-costs',
+          nextUrl: 'planning-permission-evidence',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
             messageContent: 'Any planning permission must be in place by 31 January 2024.',
@@ -855,44 +855,52 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: `You must have secured planning permission before you submit a full application.
-                
-                Any planning permission must be in place by 31 January 2024.`
+                para: `Any planning permission must be in place by 31 December 2023. 
+
+                      You must have applied for planning permission before you submit a full application.`
               }]
             }]
           },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select your project planning permission'
             }
           ],
           answers: [
             {
               key: 'planning-permission-A1',
-              value: 'Not needed'
+              value: 'Approved'
             },
             {
               key: 'planning-permission-A2',
-              value: 'Secured'
+              value: 'Applied for but not yet approved'
             },
             {
               key: 'planning-permission-A3',
-              value: 'Should be in place by 31 January 2024',
-              redirectUrl: 'planning-required-condition'
-            },
-            {
-              key: 'planning-permission-A4',
-              value: 'Will not be in place by 31 January 2024',
-              notEligible: true
+              value: 'Not yet applied for but expected to be in place by 31 December 2023',
+              redirectUrl: 'planning-permission-condition'
             }
           ],
           yarKey: 'planningPermission'
         },
         {
-          key: 'planning-required-condition',
+          key: 'planning-permission-evidence',
           order: 150,
-          url: 'planning-required-condition',
+          url: 'planning-permission-evidence',
+          backUrl: 'planning-permission',
+          nextUrl: 'grid-reference',
+          maybeEligible: true,
+          preValidationKeys: ['planningPermission'],
+          maybeEligibleContent: {
+            messageHeader: 'You may be able to apply for this grant',
+            messageContent: 'Any planning permission must be in place by 31 January 2024.'
+          }
+        },
+        {
+          key: 'planning-permission-condition',
+          order: 150,
+          url: 'planning-permission-condition',
           backUrl: 'planning-permission',
           nextUrl: 'project-started',
           maybeEligible: true,
