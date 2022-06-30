@@ -1,3 +1,6 @@
+jest.mock('../../../../app/helpers/utils')
+const { allAnswersSelected } = require('../../../../app/helpers/utils')
+
 describe('Models', () => {
   const question = {
     type: 'mock_type',
@@ -115,5 +118,23 @@ describe('Models', () => {
         backUrl: 'remaining-costs'
       })
     )
+  })
+
+  test('inspect getModel().warningDetails', () => {
+    question.warningCondition = {
+      dependentWarningQuestionKey: 'mock_key',
+      dependentWarningAnswerKeysArray: {},
+      warning: {
+        text: 'mock_warning_text',
+        iconFallbackText: 'mock_warning'
+      }
+    }
+
+    allAnswersSelected.mockReturnValueOnce(true)
+
+    expect(getModel([], question, {}).warning).toEqual({
+      text: 'mock_warning_text',
+      iconFallbackText: 'mock_warning'
+    })
   })
 })
