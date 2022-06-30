@@ -494,6 +494,8 @@ const questionBank = {
               content: [{
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
+
+                Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.
                 `,
                 items: []
               }]
@@ -563,7 +565,7 @@ const questionBank = {
 
                 Any capacity above 6 months is not covered by the grant.
 
-                You must maintain at least 6 months’ capacity for the duration of the grant funding agreement.
+                A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).
                 `,
                 items: []
               }]
@@ -624,7 +626,7 @@ const questionBank = {
 
                 Any capacity above 6 months is not covered by the grant.
 
-                You must maintain at least 6 months’ capacity for the duration of the grant funding agreement.
+                You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                 items: []
               }]
@@ -686,7 +688,7 @@ const questionBank = {
               content: [{
                 para: 'This grant is only for:',
                 items: [
-                  'replacing an existing store that is no longer fit for purpose',
+                  'Replace an existing store that is no longer fit for purpose with a new store',
                   'adding a new store to increase existing capacity',
                   'expanding an existing store (for example, by adding an extra ring to a steel tank)'
                 ],
@@ -703,7 +705,7 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Replace an existing store that is no longer fit for purpose.'
+              value: 'Replace an existing store that is no longer fit for purpose with a new store'
             },
             {
               key: 'project-type-A2',
