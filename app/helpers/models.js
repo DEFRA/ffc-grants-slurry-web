@@ -98,7 +98,7 @@ const showBackToDetailsButton = (key, request) => {
 }
 
 const getModel = (data, question, request, conditionalHtml = '') => {
-  let { type, backUrl, key, backUrlObject, sidebar, title, score, label, warning, warningCondition } = question
+  let { type, backUrl, key, backUrlObject, sidebar, title, hint, score, label, warning, warningCondition } = question
   const hasScore = !!getYarValue(request, 'current-score')
 
   title = title ?? label?.text
@@ -120,6 +120,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     type,
     key,
     title,
+    hint,
     backUrl: getBackUrl(hasScore, backUrlObject, backUrl, request),
     items: getOptions(data, question, conditionalHtml, request),
     sideBarText,
