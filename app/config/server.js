@@ -3,7 +3,7 @@ const urlPrefix = '/slurry-infrastructure'
 const startPageUrl = '/start'
 const serviceEndDate = '2024/07/12'
 const serviceEndTime = '23:59:59'
-const msgTypePrefix = 'uk.gov.ffc.ahwr'
+const msgTypePrefix = 'uk.gov.ffc.grants'
 
 require('dotenv').config()
 
