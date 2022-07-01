@@ -889,7 +889,7 @@ const questionBank = {
           order: 145,
           title: 'Your planning permission',
           hint: {
-            html: 'Enter the name of your planning authority and your planning reference number'
+            text: 'Enter the name of your planning authority and your planning reference number'
           },
           url: 'planning-permission-evidence',
           backUrl: 'planning-permission',
