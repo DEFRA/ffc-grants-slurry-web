@@ -1,4 +1,10 @@
-jest.mock('../../../../app/helpers/utils')
+jest.mock('../../../../app/helpers/utils', () => {
+  const original = jest.requireActual('../../../../app/helpers/utils')
+  return {
+    ...original,
+    allAnswersSelected: jest.fn()
+  }
+})
 const { allAnswersSelected } = require('../../../../app/helpers/utils')
 
 jest.mock('../../../../app/helpers/urls')
@@ -146,5 +152,77 @@ describe('Models', () => {
       text: 'mock_warning_text',
       iconFallbackText: 'mock_warning'
     })
+  })
+
+  test('inspect getModel().sidebarText', () => {
+    let dict = {}
+    getYarValue.mockImplementation((req, key) => (dict[key]))
+
+    expect(getModel([], question, {}).sideBarText.values[0].content[0].items).toBeUndefined()
+
+    dict = {
+      ...dict,
+      projectItems: [
+        'Constructing or improving buildings for processing',
+        'Processing equipment or machinery',
+        'Retail facilities'
+      ],
+      environmentalImpact: [
+        'Renewable energy',
+        'Energy efficiency',
+        'Water efficiency',
+        'Waste efficiency',
+        'Sustainable packaging measures',
+        'Reduce harmful emissions or pollutants'
+      ]
+    }
+
+    question.sidebar = {
+      values: [
+        {
+          heading: 'Selected items',
+          content: [{
+            para: '',
+            items: [],
+            dependentAnswerExceptThese: ['project-items-A1', 'environmental-impact-A1', 'environmental-impact-A2']
+          }]
+        }
+      ],
+      dependentYarKeys: ['projectItems', 'environmentalImpact'],
+      dependentQuestionKeys: ['standard-costs', 'environmental-impact']
+    }
+
+    expect(getModel([], question, {}).sideBarText.values[0].content[0].items).toEqual([
+      'Processing equipment or machinery',
+      'Retail facilities',
+      'Water efficiency',
+      'Waste efficiency',
+      'Sustainable packaging measures',
+      'Reduce harmful emissions or pollutants'
+    ])
+
+    question.sidebar = {
+      values: [
+        {
+          heading: 'Selected items',
+          content: [{
+            para: '',
+            items: [],
+            dependentAnswerOnlyThese: ['project-items-A1', 'environmental-impact-A1', 'environmental-impact-A2']
+          }]
+        }
+      ],
+      dependentYarKeys: ['projectItems', 'environmentalImpact'],
+      dependentQuestionKeys: ['standard-costs', 'environmental-impact']
+    }
+
+    expect(getModel([], question, {}).sideBarText.values[0].content[0].items).toEqual([
+      'Constructing or improving buildings for processing'
+    ])
+
+    expect(getModel([], question, {}).sideBarText.values[1].content[0].items).toEqual([
+      'Renewable energy',
+      'Energy efficiency'
+    ])
   })
 })
