@@ -40,7 +40,7 @@ describe('Error Page', () => {
             return context => template.render(context) // .layout.njk not found, unknown path
           }
         }
-     },
+      },
       relativeTo: __dirname,
       compileOptions: {
         environment: nunjucks.configure([
@@ -73,7 +73,6 @@ describe('Error Page', () => {
   })
 
   test('should return 403', async () => {
-
     mockServer = Hapi.server({
       port: 4000
     })
@@ -96,7 +95,7 @@ describe('Error Page', () => {
             return context => template.render(context) // .layout.njk not found, unknown path
           }
         }
-     },
+      },
       relativeTo: __dirname,
       compileOptions: {
         environment: nunjucks.configure([
@@ -129,7 +128,6 @@ describe('Error Page', () => {
   })
 
   test('should return 500', async () => {
-
     mockServer = Hapi.server({
       port: 4000
     })
@@ -152,7 +150,7 @@ describe('Error Page', () => {
             return context => template.render(context) // .layout.njk not found, unknown path
           }
         }
-     },
+      },
       relativeTo: __dirname,
       compileOptions: {
         environment: nunjucks.configure([
@@ -183,5 +181,4 @@ describe('Error Page', () => {
 
     await mockServer.stop()
   })
-
 })

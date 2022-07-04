@@ -1,15 +1,15 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /existing-storage-capacity', () => {
-    const varList = { existingStorageCapacity: 'randomData' }
+  const varList = { existingStorageCapacity: 'randomData' }
 
-    jest.mock('../../../../app/helpers/session', () => ({
-      setYarValue: (request, key, value) => null,
-      getYarValue: (request, key) => {
-        if (varList[key]) return varList[key]
-        else return 'Error'
-      }
-    }))
+  jest.mock('../../../../app/helpers/session', () => ({
+    setYarValue: (request, key, value) => null,
+    getYarValue: (request, key) => {
+      if (varList[key]) return varList[key]
+      else return 'Error'
+    }
+  }))
 
   it('page loads successfully, with all the options', async () => {
     const options = {
@@ -36,7 +36,6 @@ describe('Page: /existing-storage-capacity', () => {
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Select existing storage capacity')
   })
-
 
   it('user selects ineligible option: \'6 months or more\' -> display ineligible page', async () => {
     const postOptions = {
@@ -65,11 +64,11 @@ describe('Page: /existing-storage-capacity', () => {
 
   it('page loads with correct back link', async () => {
     const options = {
-    method: 'GET',
-    url: `${global.__URLPREFIX__}/existing-storage-capacity`
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/existing-storage-capacity`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"system-type\" class=\"govuk-back-link\">Back</a>`)
-    })
+    expect(response.payload).toContain('<a href=\"system-type\" class=\"govuk-back-link\">Back</a>')
+  })
 })

@@ -491,8 +491,8 @@ const questionBank = {
           sidebar: {
             values: [{
               heading: 'Eligibility',
-              summaryHeading:"What is slurry?",
-              summaryPara:"Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.",
+              summaryHeading: 'What is slurry?',
+              summaryPara: 'Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.',
               content: [{
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
@@ -557,8 +557,8 @@ const questionBank = {
           sidebar: {
             values: [{
               heading: 'Eligibility',
-              summaryHeading:'When is a store no longer fit for purpose?',
-              summaryPara:" A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).",
+              summaryHeading: 'When is a store no longer fit for purpose?',
+              summaryPara: ' A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).',
               content: [{
                 para: `
                 This grant is to get your serviceable storage levels to 6 months.
@@ -685,8 +685,8 @@ const questionBank = {
           sidebar: {
             values: [{
               heading: 'Eligibility',
-              summaryHeading:"When is a store no longer fit for purpose?",
-              summaryPara:"A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).",
+              summaryHeading: 'When is a store no longer fit for purpose?',
+              summaryPara: 'A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).',
               content: [{
                 para: 'This grant is for:',
                 items: [
@@ -902,7 +902,8 @@ const questionBank = {
             messageLink: {
               url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
               title: 'See other grants you may be eligible for.'
-            }},
+            }
+          },
           type: 'multi-input',
           allFields: [
             {

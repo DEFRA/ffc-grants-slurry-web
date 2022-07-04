@@ -37,7 +37,6 @@ describe('Page: /planned-storage-capacity', () => {
     expect(postResponse.payload).toContain('Select planned storage capacity')
   })
 
-
   it('user selects ineligible option: \'Less than 6 months\' -> display ineligible page', async () => {
     const postOptions = {
       method: 'POST',
