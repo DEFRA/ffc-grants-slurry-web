@@ -9,7 +9,8 @@ const {
   NAME_ONLY_REGEX,
   PHONE_REGEX,
   EMAIL_REGEX,
-  ONLY_TEXT_REGEX
+  ONLY_TEXT_REGEX,
+  PLANNING_REFERENCE_NUMBER_REGEX
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -919,12 +920,12 @@ const questionBank = {
                 {
                   type: 'REGEX',
                   regex: NAME_ONLY_REGEX,
-                  error: 'Name must only include letters, hyphens and apostrophes'
+                  error: 'Planning authority must only contain letters, hyphens and spaces'
                 }
               ]
             },
             {
-              yarKey: 'planningAuthority',
+              yarKey: 'planningReferenceNumber',
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
@@ -938,8 +939,8 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex: NAME_ONLY_REGEX,
-                  error: 'Name must only include letters, hyphens and apostrophes'
+                  regex: PLANNING_REFERENCE_NUMBER_REGEX,
+                  error: 'Planning reference number must only include letters, numbers and /'
                 }
               ]
             }
