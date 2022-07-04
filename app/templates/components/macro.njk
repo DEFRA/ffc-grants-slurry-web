@@ -37,18 +37,6 @@
           <p>{{ content.additionalPara  | striptags(true) | escape | nl2br }}</p>
         {% endif %}
       {% endfor %}
-      {% if sidebar.summaryHeading %}
-        <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              {{ sidebar.summaryHeading }}
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            {{ sidebar.summaryPara }}
-          </div>
-        </details>
-      {% endif %}
     {% endfor %}
     {% if sideBars.details %}
       {{ govukDetails(sideBars.details) }}
