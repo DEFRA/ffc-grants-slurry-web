@@ -13,6 +13,8 @@ const PHONE_REGEX = /^\+?[0-9\[\s\(\)\]\-]{10,}$/
 const EMAIL_REGEX = /^\w+([.-](\w+))*@[a-zA-Z0-9]+([_-][a-zA-Z0-9]+)*(\.[a-zA-Z]{2,5})+$/
 const ONLY_TEXT_REGEX = /^[a-zA-Z\s]+$/
 const PLANNING_REFERENCE_NUMBER_REGEX = /^[a-zA-Z0-9\/]{1,50}$/
+const LETTERS_AND_NUMBERS_REGEX = /^[a-zA-Z0-9]{1,10}$/
+const TWO_NUMBERS_EIGHT_CHARS = /^[A-Z]{2,2}[0-9]{8,8}$/
 module.exports = {
   CURRENCY_FORMAT,
   CHARS_MAX_10,
@@ -28,5 +30,7 @@ module.exports = {
   PHONE_REGEX,
   EMAIL_REGEX,
   ONLY_TEXT_REGEX,
-  PLANNING_REFERENCE_NUMBER_REGEX
+  PLANNING_REFERENCE_NUMBER_REGEX,
+  LETTERS_AND_NUMBERS_REGEX,
+  TWO_NUMBERS_EIGHT_CHARS
 }

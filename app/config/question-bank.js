@@ -10,7 +10,9 @@ const {
   PHONE_REGEX,
   EMAIL_REGEX,
   ONLY_TEXT_REGEX,
-  PLANNING_REFERENCE_NUMBER_REGEX
+  PLANNING_REFERENCE_NUMBER_REGEX,
+  LETTERS_AND_NUMBERS_REGEX,
+  TWO_NUMBERS_EIGHT_CHARS,
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -960,6 +962,46 @@ const questionBank = {
             messageContent: 'Any planning permission must be in place by 31 January 2024.'
           },
           yarKey: 'PlanningPermissionCondition'
+        },
+        {
+          key: 'grid-reference',
+          order: 152,
+          url: 'grid-reference',
+          backUrl: 'planning-permission-evidence',
+          nextUrl: 'planning-permission-summary',
+          title:"What is the OS grid reference for your slurry store?",
+          hint: {
+            text: 'Enter OS grid reference number, for example AB12478975'
+          },
+          preValidationKeys: [''],
+          type: 'multi-input',
+          allFields: [
+            {
+              yarKey: 'gridReference',
+              type: 'text',
+              classes: 'govuk-input--width-10',
+              label: {
+                text: 'OS grid reference number',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning authority'
+                },
+                {
+                  type: 'REGEX',
+                  regex: LETTERS_AND_NUMBERS_REGEX,
+                  error: 'First two characters should be letterFollowing eight characters must be numbers'
+                },
+                {
+                  type: 'REGEX',
+                  regex:  TWO_NUMBERS_EIGHT_CHARS,
+                  error: 'OS Grid Reference must be two letters followed by 8 digits'
+                }
+              ]
+            }],
+          yarKey: 'GridReference'
         },
         {
           key: 'project-location-owned-rented',
