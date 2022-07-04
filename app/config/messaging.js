@@ -44,7 +44,7 @@ const sharedConfig = {
   useCredentialChain: process.env.NODE_ENV === 'production'
 }
 
-const msgTypePrefix = 'uk.gov.ffc.grants'
+const msgTypePrefix = 'uk.gov.ffc.grants' // ' '
 
 const config = {
   projectDetailsQueue: {
@@ -68,9 +68,9 @@ const config = {
     ...sharedConfig
   },
   fetchApplicationRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
-  eligibilityAnswersMsgType: `${msgTypePrefix}.av.eligibility.details`,
-  projectDetailsMsgType: `${msgTypePrefix}.av.project.details`,
-  contactDetailsMsgType: `${msgTypePrefix}.av.contact.details`,
+  eligibilityAnswersMsgType: `${msgTypePrefix}.slurry.eligibility.details`,
+  projectDetailsMsgType: `${msgTypePrefix}.slurry.project.details`,
+  contactDetailsMsgType: `${msgTypePrefix}.slurry.contact.details`,
   msgSrc: 'ffc-grants-slurry-web'
 }
 
