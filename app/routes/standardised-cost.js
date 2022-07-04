@@ -40,11 +40,13 @@ module.exports = [{
     //   console.log('Getting Desirability Answers .....')
     console.log('Sending session message .....')
 
-      getStandardisedCosts(sessionId)
+    const standardisedCosts = getStandardisedCosts(sessionId)
       
     // Following section is covered in messaging/send-message.js
       // await senders.sendProjectDetails(msgDataToSend, request.yar.id) 
       console.log('[STANDARDISED COST REQUEST SENT]')
+
+      console.log('Response from queues', standardisedCosts)
 
     } catch (error) {
       request.log(error)
