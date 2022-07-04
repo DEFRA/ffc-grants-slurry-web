@@ -14,7 +14,7 @@ const EMAIL_REGEX = /^\w+([.-](\w+))*@[a-zA-Z0-9]+([_-][a-zA-Z0-9]+)*(\.[a-zA-Z]
 const ONLY_TEXT_REGEX = /^[a-zA-Z\s]+$/
 const PLANNING_REFERENCE_NUMBER_REGEX = /^[a-zA-Z0-9\/]{1,50}$/
 const LETTERS_AND_NUMBERS_REGEX = /^[a-zA-Z0-9]{1,10}$/
-const TWO_NUMBERS_EIGHT_CHARS = /^[A-Z]{2,2}[0-9]{8,8}$/
+const TWO_NUMBERS_EIGHT_CHARS = /^[A-Z]{2}\d{8}$/
 module.exports = {
   CURRENCY_FORMAT,
   CHARS_MAX_10,
