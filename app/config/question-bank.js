@@ -906,7 +906,7 @@ const questionBank = {
             {
               yarKey: 'planningAuthority',
               type: 'text',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Planning authority',
                 classes: 'govuk-label'
@@ -926,7 +926,7 @@ const questionBank = {
             {
               yarKey: 'planningAuthority',
               type: 'text',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Planning reference number',
                 classes: 'govuk-label'
