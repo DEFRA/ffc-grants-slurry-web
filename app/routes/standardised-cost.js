@@ -5,12 +5,12 @@ const { getStandardisedCosts } = require('../messaging/application')
 
 const urlPrefix = require('../config/server').urlPrefix
 
-const viewTemplate = 'score'
+const viewTemplate = 'standardised-costs'
 const currentPath = `${urlPrefix}/${viewTemplate}`
-const nextPath = `${urlPrefix}/business-details`
+const nextPath = `${urlPrefix}/standard-costs`
 
 function createModel (data, _request) {
-  const previousPath = `${urlPrefix}/environmental-impact`
+  const previousPath = `${urlPrefix}/cover`
 
   return {
     backLink: previousPath,
@@ -40,13 +40,15 @@ module.exports = [{
     //   console.log('Getting Desirability Answers .....')
     console.log('Sending session message .....')
 
-    const standardisedCosts = getStandardisedCosts(sessionId)
+    const standardisedCosts = await getStandardisedCosts(sessionId)
       
     // Following section is covered in messaging/send-message.js
       // await senders.sendProjectDetails(msgDataToSend, request.yar.id) 
       console.log('[STANDARDISED COST REQUEST SENT]')
 
       console.log('Response from queues', standardisedCosts)
+
+      return h.view(viewTemplate, createModel({value: '12345'}, request))
 
     } catch (error) {
       request.log(error)

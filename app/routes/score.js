@@ -113,7 +113,7 @@ module.exports = [{
     //     {
     //       dimensionOrMetric: gapiService.metrics.SCORE,
     //       value: 'TIME'
-    //     }])
+    // //     }])
     //     return h.view(viewTemplate, createModel({
     //       titleText: msgData.desirability.overallRating.band,
     //       scoreData: msgData,
