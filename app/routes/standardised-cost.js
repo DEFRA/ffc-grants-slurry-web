@@ -43,7 +43,7 @@ module.exports = [{
       console.log('Sending session message .....')
 
       //const standardisedCosts = await getStandardisedCosts(request.yar.id)
-      await sendMessage('', costRequestMsgType, costRequestQueue, { sessionId: request.yar.id })
+      await sendMessage({}, costRequestMsgType, costRequestQueue, { sessionId: request.yar.id })
 
       // Following section is covered in messaging/send-message.js
       // await senders.sendProjectDetails(msgDataToSend, request.yar.id) 

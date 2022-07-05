@@ -21,7 +21,7 @@ describe('application messaging tests', () => {
     expect(receiveMessage).toHaveBeenCalledTimes(1)
     expect(receiveMessage).toHaveBeenCalledWith(sessionId, applicationResponseQueue)
     expect(sendMessage).toHaveBeenCalledTimes(1)
-    expect(sendMessage).toHaveBeenCalledWith(fetchCostRequestMsgType, costRequestQueue, { sessionId })
+    expect(sendMessage).toHaveBeenCalledWith(' ', fetchCostRequestMsgType, costRequestQueue, { sessionId })
   })
 
 })

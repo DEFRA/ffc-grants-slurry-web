@@ -6,7 +6,14 @@ const sendMessage = async (body, type, config, options) => {
   console.log('[I AM INSIDE SEND MESSAGE .....]')
   const message = createMessage(body, type, options)
   const sender = new MessageSender(config)
-  await sender.sendMessage(message)
+  console.log('[MESSAGE MADE]', message)
+  try{
+    await sender.sendMessage(message)
+  } catch (err){
+    console.log('[ERROR THAT IS BEING THROWN]', err)
+    throw err
+  }
+  console.log('[MESSAGE HAS BEEN SENT, CLOSING CONNECTION]')
   await sender.closeConnection()
 }
 
