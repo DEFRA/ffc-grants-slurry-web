@@ -19,8 +19,8 @@ const messageConfigSchema = Joi.object({
     type: Joi.string(),
     ...sharedConfigSchema
   },
-  applicationRequestQueue: {
-    address: Joi.string().default('applicationRequestQueue'),
+  costRequestQueue: {
+    address: Joi.string().default('costRequestQueue'),
     type: Joi.string(),
     ...sharedConfigSchema
   },
@@ -29,7 +29,8 @@ const messageConfigSchema = Joi.object({
     type: Joi.string(),
     ...sharedConfigSchema
   },
-  fetchApplicationRequestMsgType: Joi.string(),
+  fetchCostRequestMsgType: Joi.string(),
+  costRequestMsgType: Joi.string(),
   eligibilityAnswersMsgType: Joi.string(),
   projectDetailsMsgType: Joi.string(),
   contactDetailsMsgType: Joi.string(),
@@ -57,17 +58,18 @@ const config = {
     type: 'queue',
     ...sharedConfig
   },
-  applicationRequestQueue: {
-    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
+  costRequestQueue: {
+    address: process.env.COST_REQUEST_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
     type: 'queue',
     ...sharedConfig
   },
   applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS  + '-' + process.env.ENVIRONMENT_CODE,
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
     type: 'queue',
     ...sharedConfig
   },
-  fetchApplicationRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
+  fetchCostRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
+  costRequestMsgType: `${msgTypePrefix}.app.request`,
   eligibilityAnswersMsgType: `${msgTypePrefix}.slurry.eligibility.details`,
   projectDetailsMsgType: `${msgTypePrefix}.slurry.project.details`,
   contactDetailsMsgType: `${msgTypePrefix}.slurry.contact.details`,

@@ -1,5 +1,5 @@
 const { getStandardisedCosts } = require('../../../../../app/messaging/application')
-const { applicationRequestQueue, applicationResponseQueue, fetchApplicationRequestMsgType } = require('../../../../../app/config/server.js')
+const { costRequestQueue, applicationResponseQueue, fetchCostRequestMsgType } = require('../../../../../app/config/messaging.js')
 
 jest.mock('../../../../../app/messaging')
 const { receiveMessage, sendMessage } = require('../../../../../app/messaging')
@@ -21,7 +21,7 @@ describe('application messaging tests', () => {
     expect(receiveMessage).toHaveBeenCalledTimes(1)
     expect(receiveMessage).toHaveBeenCalledWith(sessionId, applicationResponseQueue)
     expect(sendMessage).toHaveBeenCalledTimes(1)
-    expect(sendMessage).toHaveBeenCalledWith( fetchApplicationRequestMsgType, applicationRequestQueue, { sessionId })
+    expect(sendMessage).toHaveBeenCalledWith(fetchCostRequestMsgType, costRequestQueue, { sessionId })
   })
 
 })
