@@ -61,14 +61,4 @@ describe('Page: /planned-storage-capacity', () => {
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('project-type')
   })
-
-//   it('page loads with correct back link', async () => {
-//     const options = {
-//     method: 'GET',
-//     url: `${global.__URLPREFIX__}/planned-storage-capacity`
-//     }
-//     const response = await global.__SERVER__.inject(options)
-//     expect(response.statusCode).toBe(200)
-//     expect(response.payload).toContain(`<a href=\"existing-storage-capacity\" class=\"govuk-back-link\">Back</a>`)
-//     })
 })
