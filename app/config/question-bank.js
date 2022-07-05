@@ -970,6 +970,25 @@ const questionBank = {
           yarKey: 'PlanningPermissionCondition'
         },
         {
+          key: 'planning-permission-summary',
+          order: 153,
+          title: 'Check your answers before getting your results',
+          url: 'planning-permission-summary',
+          baseUrl: 'planning-permission-summary',
+          backUrl: 'grid-reference',
+          nextUrl: 'result-page',
+          yarKey: 'PlanningPermissionSummary'
+        },
+        {
+          key: 'result-page',
+          order: 156,
+          url: 'result-page',
+          baseUrl: 'result-page',
+          backUrl: 'planning-permission-summary',
+          nextUrl: 'business-details',
+          yarKey: 'resultPage'
+        },
+        {
           key: 'project-location-owned-rented',
           order: 160,
           title: 'Is the project location site owned or rented by applicant?',
