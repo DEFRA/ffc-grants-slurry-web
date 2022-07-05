@@ -982,6 +982,15 @@ const questionBank = {
           hint: {
             text: 'Enter OS grid reference number, for example AB12478975'
           },
+          backUrlObject: {
+            dependentQuestionYarKey: 'planningPermission',
+            dependentAnswerKeysArray: ['planning-permission-A1','planning-permission-A2'],
+            urlOptions: {
+              thenUrl: 'planning-permission',
+              elseUrl: 'planning-permission-condition',
+              nonDependentUrl: 'planningPermission'
+            }
+          },
           preValidationKeys: [''],
           type: 'multi-input',
           allFields: [
