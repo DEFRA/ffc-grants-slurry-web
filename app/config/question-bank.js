@@ -1056,8 +1056,8 @@ const questionBank = {
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'project-cost',
-          nextUrl: 'collaboration',
+          backUrl: 'potential-amount',
+          nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
             messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.`,
@@ -1100,7 +1100,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select yes if you can pay the remaining costs without using any other grant money'
+              error: 'Select if you can pay the remaining costs'
             }
           ],
           answers: [
@@ -1115,7 +1115,7 @@ const questionBank = {
               notEligible: true
             }
           ],
-          yarKey: 'canPayRemainingCost'
+          yarKey: 'remainingCosts'
 
         },
         {
