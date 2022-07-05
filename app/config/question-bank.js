@@ -903,9 +903,10 @@ const questionBank = {
             text: 'Enter the name of your planning authority and your planning reference number'
           },
           url: 'planning-permission-evidence',
+          baseUrl: 'planning-permission-evidence',
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
-          preValidationKeys: ['planningPermission'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
             messageLink: {
