@@ -2,6 +2,7 @@
 // const pollingConfig = require('../config/polling')
 
 const { sendMessage, receiveMessage } = require('../messaging')
+const { getStandardisedCosts }  = require('../messaging/application')
 const { costRequestQueue, costRequestMsgType, applicationResponseQueue } = require('../config/messaging.js')
 
 
@@ -43,8 +44,8 @@ module.exports = [{
       console.log('Sending session message .....')
 
       //const standardisedCosts = await getStandardisedCosts(request.yar.id)
-      await sendMessage({}, costRequestMsgType, costRequestQueue, { sessionId: request.yar.id })
-
+      //await sendMessage({}, costRequestMsgType, costRequestQueue, { sessionId: request.yar.id })
+      await getStandardisedCosts(request.yar.id)
       // Following section is covered in messaging/send-message.js
       // await senders.sendProjectDetails(msgDataToSend, request.yar.id) 
       console.log('[STANDARDISED COST REQUEST SENT]')
