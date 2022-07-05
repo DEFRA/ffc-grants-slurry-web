@@ -19,7 +19,7 @@ describe('Page: /remaining-costs', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Can you pay the remaining costs of')
+    expect(response.payload).toContain('Can you pay the remaining costs?')
     expect(response.payload).toContain('Yes')
     expect(response.payload).toContain('No')
   })
@@ -34,7 +34,7 @@ describe('Page: /remaining-costs', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select yes if you can pay the remaining costs without using any other grant money')
+    expect(postResponse.payload).toContain('Select if you can pay the remaining costs')
   })
 
   it('user selects ineligible option: \'No\' -> display ineligible page', async () => {
@@ -59,6 +59,6 @@ describe('Page: /remaining-costs', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('collaboration')
+    expect(postResponse.headers.location).toBe('planning-permission')
   })
 })
