@@ -46,4 +46,3 @@ describe('Conditional html', () => {
     expect(result).toContain('<input class="govuk-input govuk-!-width-one-third govuk-input--error"')
   })
 })
-  

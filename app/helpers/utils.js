@@ -39,7 +39,7 @@ const someAnswersSelected = (request, questionKey, answerKeyList) => {
   return (
     answerKeyList.some(answerKey => (
       answers.some(({ value, key }) => (
-        key === answerKey && yarValue.includes(value) 
+        key === answerKey && yarValue.includes(value)
       ))
     ))
   )

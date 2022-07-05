@@ -235,8 +235,7 @@ describe('Page: /agent-details', () => {
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Town must only include letters')
   })
-  
-  
+
   it('validate postcode - valid format', async () => {
     const postOptions = {
       method: 'POST',

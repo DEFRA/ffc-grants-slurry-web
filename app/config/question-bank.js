@@ -495,9 +495,13 @@ const questionBank = {
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
                 `,
-                items: []
+                items: [],
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'What is slurry?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
+              },
           },
           validate: [
             {
@@ -562,12 +566,14 @@ const questionBank = {
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
                 Any capacity above 6 months is not covered by the grant.
-
-                You must maintain at least 6 months’ capacity for the duration of the grant funding agreement.
                 `,
                 items: []
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              },
           },
           validate: [
             {
@@ -624,7 +630,7 @@ const questionBank = {
 
                 Any capacity above 6 months is not covered by the grant.
 
-                You must maintain at least 6 months’ capacity for the duration of the grant funding agreement.
+                You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                 items: []
               }]
@@ -684,15 +690,19 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'This grant is only for:',
+                para: 'This grant is for:',
                 items: [
-                  'replacing an existing store that is no longer fit for purpose',
+                  'replacing an existing store that is no longer fit for purpose with a new store',
                   'adding a new store to increase existing capacity',
                   'expanding an existing store (for example, by adding an extra ring to a steel tank)'
                 ],
-                additionalPara: 'A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).'
+                additionalPara: ''
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              },
           },
           validate: [
             {
@@ -703,7 +713,7 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Replace an existing store that is no longer fit for purpose.'
+              value: 'Replace an existing store that is no longer fit for purpose with a new store'
             },
             {
               key: 'project-type-A2',
@@ -836,8 +846,8 @@ const questionBank = {
           pageTitle: '',
           url: 'planning-permission',
           baseUrl: 'planning-permission',
-          backUrl: 'country',
-          nextUrl: 'project-started',
+          backUrl: 'remaining-costs',
+          nextUrl: 'planning-permission-evidence',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
             messageContent: 'Any planning permission must be in place by 31 January 2024.',
@@ -853,44 +863,102 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: `You must have secured planning permission before you submit a full application.
-                
-                Any planning permission must be in place by 31 January 2024.`
+                para: `Any planning permission must be in place by 31 December 2023. 
+
+                      You must have applied for planning permission before you submit a full application.`
               }]
             }]
           },
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
+              error: 'Select your project planning permission'
             }
           ],
           answers: [
             {
               key: 'planning-permission-A1',
-              value: 'Not needed'
+              value: 'Approved'
             },
             {
               key: 'planning-permission-A2',
-              value: 'Secured'
+              value: 'Applied for but not yet approved'
             },
             {
               key: 'planning-permission-A3',
-              value: 'Should be in place by 31 January 2024',
-              redirectUrl: 'planning-required-condition'
-            },
-            {
-              key: 'planning-permission-A4',
-              value: 'Will not be in place by 31 January 2024',
-              notEligible: true
+              value: 'Not yet applied for but expected to be in place by 31 December 2023',
+              redirectUrl: 'planning-permission-condition'
             }
           ],
           yarKey: 'planningPermission'
         },
         {
-          key: 'planning-required-condition',
+          key: 'planning-permission-evidence',
+          order: 145,
+          title: 'Your planning permission',
+          hint: {
+            text: 'Enter the name of your planning authority and your planning reference number'
+          },
+          url: 'planning-permission-evidence',
+          backUrl: 'planning-permission',
+          nextUrl: 'grid-reference',
+          preValidationKeys: ['planningPermission'],
+          ineligibleContent: {
+            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
+            messageLink: {
+              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          type: 'multi-input',
+          allFields: [
+            {
+              yarKey: 'planningAuthority',
+              type: 'text',
+              classes: 'govuk-input--width-20',
+              label: {
+                text: 'Planning authority',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning authority'
+                },
+                {
+                  type: 'REGEX',
+                  regex: NAME_ONLY_REGEX,
+                  error: 'Name must only include letters, hyphens and apostrophes'
+                }
+              ]
+            },
+            {
+              yarKey: 'planningAuthority',
+              type: 'text',
+              classes: 'govuk-input--width-20',
+              label: {
+                text: 'Planning reference number',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning reference number'
+                },
+                {
+                  type: 'REGEX',
+                  regex: NAME_ONLY_REGEX,
+                  error: 'Name must only include letters, hyphens and apostrophes'
+                }
+              ]
+            }
+          ],
+          yarKey: 'PlanningPermissionEvidence'
+        },
+        {
+          key: 'planning-permission-condition',
           order: 150,
-          url: 'planning-required-condition',
+          url: 'planning-permission-condition',
           backUrl: 'planning-permission',
           nextUrl: 'project-started',
           maybeEligible: true,
@@ -898,7 +966,8 @@ const questionBank = {
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for this grant',
             messageContent: 'Any planning permission must be in place by 31 January 2024.'
-          }
+          },
+          yarKey: 'PlanningPermissionCondition'
         },
         {
           key: 'project-location-owned-rented',

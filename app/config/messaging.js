@@ -19,6 +19,17 @@ const messageConfigSchema = Joi.object({
     type: Joi.string(),
     ...sharedConfigSchema
   },
+  applicationRequestQueue: {
+    address: Joi.string().default('applicationRequestQueue'),
+    type: Joi.string(),
+    ...sharedConfigSchema
+  },
+  applicationResponseQueue: {
+    address: Joi.string().default('applicationResponseQueue'),
+    type: Joi.string(),
+    ...sharedConfigSchema
+  },
+  fetchApplicationRequestMsgType: Joi.string(),
   eligibilityAnswersMsgType: Joi.string(),
   projectDetailsMsgType: Joi.string(),
   contactDetailsMsgType: Joi.string(),
@@ -46,6 +57,17 @@ const config = {
     type: 'queue',
     ...sharedConfig
   },
+  applicationRequestQueue: {
+    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
+    type: 'queue',
+    ...sharedConfig
+  },
+  applicationResponseQueue: {
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
+    type: 'queue',
+    ...sharedConfig
+  },
+  fetchApplicationRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
   eligibilityAnswersMsgType: `${msgTypePrefix}.av.eligibility.details`,
   projectDetailsMsgType: `${msgTypePrefix}.av.project.details`,
   contactDetailsMsgType: `${msgTypePrefix}.av.contact.details`,
