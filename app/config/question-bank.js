@@ -494,12 +494,14 @@ const questionBank = {
               content: [{
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
-
-                Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.
                 `,
-                items: []
+                items: [],
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'What is slurry?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
+              },
           },
           validate: [
             {
@@ -564,12 +566,14 @@ const questionBank = {
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
                 Any capacity above 6 months is not covered by the grant.
-
-                A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).
                 `,
                 items: []
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              },
           },
           validate: [
             {
@@ -686,15 +690,19 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'This grant is only for:',
+                para: 'This grant is for:',
                 items: [
-                  'Replace an existing store that is no longer fit for purpose with a new store',
+                  'replacing an existing store that is no longer fit for purpose with a new store',
                   'adding a new store to increase existing capacity',
                   'expanding an existing store (for example, by adding an extra ring to a steel tank)'
                 ],
-                additionalPara: 'A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).'
+                additionalPara: ''
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              },
           },
           validate: [
             {
@@ -900,7 +908,8 @@ const questionBank = {
             messageLink: {
               url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
               title: 'See other grants you may be eligible for.'
-            }},
+            }
+          },
           type: 'multi-input',
           allFields: [
             {

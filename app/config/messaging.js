@@ -63,7 +63,7 @@ const config = {
     ...sharedConfig
   },
   applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS  + '-' + process.env.ENVIRONMENT_CODE,
+    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
     type: 'queue',
     ...sharedConfig
   },

@@ -1,58 +1,54 @@
 const mockAcceptSession = jest.fn()
-let mockReceiveMessages = jest.fn()
+const mockReceiveMessages = jest.fn()
 const mockCompleteMessage = jest.fn()
 const mockCloseConnection = jest.fn()
 jest.mock('ffc-messaging/app/messaging/message-receiver', () => {
-    return jest.fn().mockImplementation(() => {
-      return {
-        acceptSession: mockAcceptSession, 
-        receiveMessages: mockReceiveMessages, 
-        completeMessage: mockCompleteMessage, 
-        closeConnection: mockCloseConnection
-        }
-    })
+  return jest.fn().mockImplementation(() => {
+    return {
+      acceptSession: mockAcceptSession,
+      receiveMessages: mockReceiveMessages,
+      completeMessage: mockCompleteMessage,
+      closeConnection: mockCloseConnection
+    }
+  })
 })
 
 const receiveSessionMessage = require('../../../../app/messaging/receive-message')
 
-describe('receive message tests', () => {  
+describe('receive message tests', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
 
-    afterEach(() => {
-        jest.clearAllMocks()
-    })
+  test('receiveMessage receives message', async () => {
+    const messageId = { id: 1 }
+    const config = { queue: 'yes' }
 
-    test('receiveMessage receives message', async () => {
+    mockReceiveMessages.mockResolvedValue([{ body: { message: 'hello' } }])
 
-        const messageId = {id: 1}
-        const config = { queue: 'yes'}
+    const result = await receiveSessionMessage(messageId, config)
 
-        mockReceiveMessages.mockResolvedValue([{body: { message: 'hello'}}])
+    expect(result).toEqual({ message: 'hello' })
 
-        const result = await receiveSessionMessage(messageId, config)
+    expect(mockAcceptSession).toHaveBeenCalledTimes(1)
+    expect(mockReceiveMessages).toHaveBeenCalledTimes(1)
+    expect(mockCompleteMessage).toHaveBeenCalledTimes(1)
+    expect(mockCloseConnection).toHaveBeenCalledTimes(1)
+  })
 
-        expect(result).toEqual({message: 'hello'})
+  test('receiveMessage does not receive message', async () => {
+    mockReceiveMessages.mockResolvedValue([])
 
-        expect(mockAcceptSession).toHaveBeenCalledTimes(1)
-        expect(mockReceiveMessages).toHaveBeenCalledTimes(1)
-        expect(mockCompleteMessage).toHaveBeenCalledTimes(1)
-        expect(mockCloseConnection).toHaveBeenCalledTimes(1)
-        
-    })
+    const messageId = { id: 1 }
+    const config = { queue: 'yes' }
 
-    test('receiveMessage does not receive message', async () => {
-        mockReceiveMessages.mockResolvedValue([])
+    const result = await receiveSessionMessage(messageId, config)
 
-        const messageId = {id: 1}
-        const config = { queue: 'yes'}
+    expect(result).toEqual(undefined)
 
-        const result = await receiveSessionMessage(messageId, config)
-
-        expect(result).toEqual(undefined)
-
-        expect(mockAcceptSession).toHaveBeenCalledTimes(1)
-        expect(mockReceiveMessages).toHaveBeenCalledTimes(1)
-        expect(mockCompleteMessage).toHaveBeenCalledTimes(0)
-        expect(mockCloseConnection).toHaveBeenCalledTimes(1)
-        
-    })
+    expect(mockAcceptSession).toHaveBeenCalledTimes(1)
+    expect(mockReceiveMessages).toHaveBeenCalledTimes(1)
+    expect(mockCompleteMessage).toHaveBeenCalledTimes(0)
+    expect(mockCloseConnection).toHaveBeenCalledTimes(1)
+  })
 })

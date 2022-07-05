@@ -27,7 +27,7 @@ const schema = Joi.object({
   appInsights: {
     key: Joi.string(),
     role: Joi.string().default('ffc-grants-slurry')
-  },
+  }
 })
 
 // Build config
@@ -51,7 +51,7 @@ const config = {
   appInsights: {
     key: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
     role: process.env.APPINSIGHTS_CLOUDROLE
-  },
+  }
 }
 
 // Validate config
