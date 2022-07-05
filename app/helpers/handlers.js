@@ -42,7 +42,7 @@ const saveValuesToArray = (yarKey, fields) => {
 }
 
 const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
-  setYarValue(request, 'reachedCheckDetails', true)  
+  setYarValue(request, 'reachedCheckDetails', true)
 
   const applying = getYarValue(request, 'applying')
   const businessDetails = getYarValue(request, 'businessDetails')
@@ -188,7 +188,7 @@ const getPage = async (question, request, h) => {
     }
   }
 
-  let data = getDataFromYarValue(request, yarKey, type)
+  const data = getDataFromYarValue(request, yarKey, type)
 
   let conditionalHtml
   if (question?.conditionalKey && question?.conditionalLabelData) {

@@ -71,7 +71,7 @@ describe('Page: /system-type', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"tenancy-length\" class=\"govuk-back-link\">Back</a>`)
+    expect(response.payload).toContain('<a href=\"tenancy-length\" class=\"govuk-back-link\">Back</a>')
   })
   it('page loads with correct back link when the user select NO on tenancy length page', async () => {
     varList.tenancyLength = 'No'
@@ -81,6 +81,6 @@ describe('Page: /system-type', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"tenancy-length-condition" class=\"govuk-back-link\">Back</a>`)
+    expect(response.payload).toContain('<a href=\"tenancy-length-condition" class=\"govuk-back-link\">Back</a>')
   })
 })

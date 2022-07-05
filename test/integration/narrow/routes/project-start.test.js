@@ -65,11 +65,11 @@ describe('Page: /project-started', () => {
 
   it('page loads with correct back link', async () => {
     const options = {
-    method: 'GET',
-    url: `${global.__URLPREFIX__}/project-started`
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/project-started`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"country\" class=\"govuk-back-link\">Back</a>`)
-    })
+    expect(response.payload).toContain('<a href=\"country\" class=\"govuk-back-link\">Back</a>')
+  })
 })
