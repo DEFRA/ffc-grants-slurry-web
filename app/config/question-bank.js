@@ -963,7 +963,7 @@ const questionBank = {
           order: 150,
           url: 'planning-permission-condition',
           backUrl: 'planning-permission',
-          nextUrl: 'project-started',
+          nextUrl: 'grid-reference',
           maybeEligible: true,
           preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
