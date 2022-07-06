@@ -963,13 +963,13 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex: PLANNING_REFERENCE_NUMBER_REGEX,
-                  error: 'Planning reference number must only include letters, numbers and /'
+                  regex: CHARS_MAX_50,
+                  error: 'Planning reference number must be 50 characters of fewer'
                 },
                 {
                   type: 'REGEX',
-                  regex:CHARS_MAX_50,
-                  error: 'Planning authority must be 50 characters or fewer'
+                  regex: PLANNING_REFERENCE_NUMBER_REGEX,
+                  error: 'Planning reference number must only include letters, numbers and /'
                 }
               ]}],
           yarKey: 'PlanningPermissionEvidence'
