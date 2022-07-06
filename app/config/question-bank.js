@@ -996,7 +996,7 @@ const questionBank = {
           type: 'multi-input',
           allFields: [
             {
-              yarKey: 'gridReference',
+              yarKey: 'gridReferenceNumber',
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
@@ -1006,12 +1006,12 @@ const questionBank = {
               validate: [
                 {
                   type: 'NOT_EMPTY',
-                  error: 'Enter planning authority'
+                  error: 'Enter OS Grid reference'
                 },
                 {
                   type: 'REGEX',
                   regex: LETTERS_AND_NUMBERS_REGEX,
-                  error: 'First two characters should be letterFollowing eight characters must be numbers'
+                  error: 'First two characters should be letter following eight characters must be numbers'
                 },
                 {
                   type: 'REGEX',
@@ -1020,7 +1020,7 @@ const questionBank = {
                 }
               ]
             }],
-          yarKey: 'GridReference'
+          yarKey: 'gridReference'
         },
         {
           key: 'planning-permission-summary',
