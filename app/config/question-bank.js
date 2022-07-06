@@ -416,7 +416,7 @@ const questionBank = {
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
           backUrl: 'tenancy',
-          preValidationKeys: ['tenancy'],
+          preValidationKeys: [],
           nextUrl: 'system-type',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -455,7 +455,7 @@ const questionBank = {
           order: 70,
           url: 'tenancy-length-condition',
           backUrl: 'tenancy-length',
-          preValidationKeys: ['tenancy'],
+          preValidationKeys: [],
           nextUrl: 'system-type',
           maybeEligible: true,
           maybeEligibleContent: {
@@ -480,7 +480,7 @@ const questionBank = {
             }
           },
           nextUrl: 'existing-storage-capacity',
-          preValidationKeys: ['inEngland'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
@@ -504,7 +504,7 @@ const questionBank = {
             details: {
               summaryText: 'What is slurry?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
-              },
+            },
           },
           validate: [
             {
@@ -548,7 +548,7 @@ const questionBank = {
           backUrl: 'system-type',
           nextUrl: 'planned-storage-capacity',
           url: 'existing-storage-capacity',
-          preValidationKeys: ['systemType'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: `
             This grant is to get your serviceable storage levels to 6 months.`,
@@ -576,7 +576,7 @@ const questionBank = {
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
-              },
+            },
           },
           validate: [
             {
@@ -705,7 +705,7 @@ const questionBank = {
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
-              },
+            },
           },
           validate: [
             {
@@ -808,7 +808,7 @@ const questionBank = {
           backUrl: 'cover',
           nextUrl: 'project-cost',
           fundingPriorities: '',
-          preValidationKeys: ['projectStart', 'tenancy'],
+          preValidationKeys: [],
           type: 'multi-answer',
           minAnswerCount: 1,
           validate: [
@@ -902,7 +902,7 @@ const questionBank = {
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
           maybeEligible: true,
-          preValidationKeys: ['planningPermission'],
+          preValidationKeys: [],
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for this grant',
             messageContent: 'Any planning permission must be in place by 31 January 2024.'
@@ -938,22 +938,7 @@ const questionBank = {
             html: `this is hint text for evidence`
           },
           eliminationAnswerKeys: '',
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Enter the estimated cost for the items'
-            },
-            {
-              type: 'REGEX',
-              regex: CURRENCY_FORMAT,
-              error: 'Enter a whole number in correct format'
-            },
-            {
-              type: 'REGEX',
-              regex: CHARS_MAX_10,
-              error: 'Enter a whole number with a maximum of 10 digits'
-            }
-          ],
+          validate: [],
           answers: [],
           yarKey: 'PlanningPermissionEvidence'
         },
@@ -976,7 +961,7 @@ const questionBank = {
               nonDependentUrl: 'planningPermission'
             }
           },
-          preValidationKeys: [''],
+          preValidationKeys: [],
           type: 'multi-input',
           allFields: [
             {
@@ -1005,59 +990,6 @@ const questionBank = {
               ]
             }],
           yarKey: 'GridReference'
-        },
-        {
-          key: 'project-location-owned-rented',
-          order: 160,
-          title: 'Is the project location site owned or rented by applicant?',
-          pageTitle: '',
-          url: 'project-location-owned-rented',
-          baseUrl: 'project-location-owned-rented',
-          backUrl: 'planning-permission',
-          nextUrl: 'project-started',
-          preValidationKeys: ['planningPermission'],
-          ineligibleContent: {
-            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          fundingPriorities: 'Improving Adding Value',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [
-              {
-                heading: 'Eligibility',
-                content: [{
-                  para: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-                  items: []
-                }]
-              }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
-            }
-          ],
-          answers: [
-            {
-              key: 'project-location-owned-rented-A1',
-              value: 'Owned'
-            },
-            {
-              key: 'project-location-owned-rented-A2',
-              value: 'A Long term lease (to at least 2026) is, or will be, in place before the project starts'
-            },
-            {
-              key: 'project-location-owned-rented-A4',
-              value: 'A long-term lease will not be in place before project start',
-              notEligible: true
-            }
-          ],
-          yarKey: 'projectLocationOwnedRented'
         },
         {
           key: 'project-cost',
@@ -1141,7 +1073,7 @@ const questionBank = {
           url: 'potential-amount',
           backUrl: 'project-cost',
           nextUrl: 'remaining-costs',
-          preValidationKeys: ['projectCost'],
+          preValidationKeys: [],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Potential grant funding',
@@ -1160,7 +1092,7 @@ const questionBank = {
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
           backUrl: 'project-cost',
-          nextUrl: 'collaboration',
+          nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
             messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
@@ -1300,7 +1232,7 @@ const questionBank = {
             text: 'Select all that apply'
           },
           eliminationAnswerKeys: '',
-          preValidationKeys: ['collaboration'],
+          preValidationKeys: [],
           sidebar: {
             values: [{
               heading: 'Funding priorities',
