@@ -896,8 +896,22 @@ const questionBank = {
           yarKey: 'planningPermission'
         },
         {
-          key: 'planning-permission-evidence',
+          key: 'planning-permission-condition',
           order: 145,
+          url: 'planning-permission-condition',
+          backUrl: 'planning-permission',
+          nextUrl: 'grid-reference',
+          maybeEligible: true,
+          preValidationKeys: ['planningPermission'],
+          maybeEligibleContent: {
+            messageHeader: 'You may be able to apply for this grant',
+            messageContent: 'Any planning permission must be in place by 31 January 2024.'
+          },
+          yarKey: 'PlanningPermissionCondition'
+        },
+        {
+          key: 'planning-permission-evidence',
+          order: 150,
           title: 'Your planning permission',
           hint: {
             text: 'Enter the name of your planning authority and your planning reference number'
@@ -914,64 +928,34 @@ const questionBank = {
               title: 'See other grants you may be eligible for.'
             }
           },
-          type: 'multi-input',
-          allFields: [
+          type: 'input',
+          label: {
+            text: 'What is the total estimated cost of the items?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `this is hint text for evidence`
+          },
+          eliminationAnswerKeys: '',
+          validate: [
             {
-              yarKey: 'planningAuthority',
-              type: 'text',
-              classes: 'govuk-input--width-10',
-              label: {
-                text: 'Planning authority',
-                classes: 'govuk-label'
-              },
-              validate: [
-                {
-                  type: 'NOT_EMPTY',
-                  error: 'Enter planning authority'
-                },
-                {
-                  type: 'REGEX',
-                  regex: NAME_ONLY_REGEX,
-                  error: 'Planning authority must only contain letters, hyphens and spaces'
-                }
-              ]
+              type: 'NOT_EMPTY',
+              error: 'Enter the estimated cost for the items'
             },
             {
-              yarKey: 'planningReferenceNumber',
-              type: 'text',
-              classes: 'govuk-input--width-10',
-              label: {
-                text: 'Planning reference number',
-                classes: 'govuk-label'
-              },
-              validate: [
-                {
-                  type: 'NOT_EMPTY',
-                  error: 'Enter planning reference number'
-                },
-                {
-                  type: 'REGEX',
-                  regex: PLANNING_REFERENCE_NUMBER_REGEX,
-                  error: 'Planning reference number must only include letters, numbers and /'
-                }
-              ]
+              type: 'REGEX',
+              regex: CURRENCY_FORMAT,
+              error: 'Enter a whole number in correct format'
+            },
+            {
+              type: 'REGEX',
+              regex: CHARS_MAX_10,
+              error: 'Enter a whole number with a maximum of 10 digits'
             }
           ],
+          answers: [],
           yarKey: 'PlanningPermissionEvidence'
-        },
-        {
-          key: 'planning-permission-condition',
-          order: 150,
-          url: 'planning-permission-condition',
-          backUrl: 'planning-permission',
-          nextUrl: 'grid-reference',
-          maybeEligible: true,
-          preValidationKeys: ['planningPermission'],
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for this grant',
-            messageContent: 'Any planning permission must be in place by 31 January 2024.'
-          },
-          yarKey: 'PlanningPermissionCondition'
         },
         {
           key: 'grid-reference',
