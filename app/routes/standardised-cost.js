@@ -3,7 +3,7 @@
 
 const { sendMessage, receiveMessage } = require('../messaging')
 const { getStandardisedCosts }  = require('../messaging/application')
-const { costRequestQueue, costRequestMsgType, applicationResponseQueue } = require('../config/messaging.js')
+const { costRequestQueue, costRequestMsgType, costResponseQueue } = require('../config/messaging.js')
 
 
 const urlPrefix = require('../config/server').urlPrefix

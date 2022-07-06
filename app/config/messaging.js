@@ -24,8 +24,8 @@ const messageConfigSchema = Joi.object({
     type: Joi.string(),
     ...sharedConfigSchema
   },
-  applicationResponseQueue: {
-    address: Joi.string().default('applicationResponseQueue'),
+  costResponseQueue: {
+    address: Joi.string().default('costResponseQueue'),
     type: Joi.string(),
     ...sharedConfigSchema
   },
@@ -63,8 +63,8 @@ const config = {
     type: 'queue',
     ...sharedConfig
   },
-  applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
+  costResponseQueue: {
+    address: process.env.COST_RESPONSE_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
     type: 'queue',
     ...sharedConfig
   },
