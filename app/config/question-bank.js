@@ -979,7 +979,7 @@ const questionBank = {
           order: 152,
           url: 'grid-reference',
           backUrl: 'planning-permission-evidence',
-          nextUrl: 'planning-permission-summary',
+          nextUrl: 'business-details',
           title: 'What is the OS grid reference for your slurry store?',
           hint: {
             text: 'Enter OS grid reference number, for example AB12478975'
