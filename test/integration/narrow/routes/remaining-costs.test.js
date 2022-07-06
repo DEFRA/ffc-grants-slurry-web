@@ -49,7 +49,7 @@ describe('Page: /remaining-costs', () => {
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
   })
 
-  it('user selects eligible option: \'Yes\' -> store user response and redirect to /collaboration', async () => {
+  it('user selects eligible option: \'Yes\' -> store user response and redirect to /planning-permission', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/remaining-costs`,
@@ -59,6 +59,6 @@ describe('Page: /remaining-costs', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('collaboration')
+    expect(postResponse.headers.location).toBe('planning-permission')
   })
 })
