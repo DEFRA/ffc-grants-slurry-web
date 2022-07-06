@@ -948,17 +948,16 @@ const questionBank = {
           url: 'grid-reference',
           backUrl: 'planning-permission-evidence',
           nextUrl: 'planning-permission-summary',
-          title:"What is the OS grid reference for your slurry store?",
+          title: 'What is the OS grid reference for your slurry store?',
           hint: {
             text: 'Enter OS grid reference number, for example AB12478975'
           },
           backUrlObject: {
             dependentQuestionYarKey: 'planningPermission',
-            dependentAnswerKeysArray: ['planning-permission-A1','planning-permission-A2'],
+            dependentAnswerKeysArray: ['planning-permission-A1', 'planning-permission-A2'],
             urlOptions: {
-              thenUrl: 'planning-permission',
-              elseUrl: 'planning-permission-condition',
-              nonDependentUrl: 'planningPermission'
+              thenUrl: 'planning-permission-evidence',
+              elseUrl: 'planning-permission-condition'
             }
           },
           preValidationKeys: [],
