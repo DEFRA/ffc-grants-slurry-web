@@ -921,25 +921,46 @@ const questionBank = {
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
           preValidationKeys: [],
-          ineligibleContent: {
-            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          type: 'input',
-          label: {
-            text: 'What is the total estimated cost of the items?',
-            classes: 'govuk-label--l',
-            isPageHeading: true
-          },
-          hint: {
-            html: `this is hint text for evidence`
-          },
-          eliminationAnswerKeys: '',
-          validate: [],
-          answers: [],
+          type: 'multi-input',
+          allFields: [
+            {
+            yarKey: 'planningAuthority',
+            type: 'text',
+            classes: 'govuk-input--width-10',
+            label: {
+              text: 'Planning authority',
+              classes: 'govuk-label'
+            },
+            validate: [
+              {
+                type: 'NOT_EMPTY',
+                error: 'Enter planning authority'
+              },
+              {
+                type: 'REGEX',
+                regex: NAME_ONLY_REGEX,
+                error: 'Planning authority must only contain letters, hyphens and spaces'
+              }
+            ]},
+            {
+              yarKey: 'planningReferenceNumber',
+              type: 'text',
+              classes: 'govuk-input--width-10',
+              label: {
+                text: 'Planning reference number',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning reference number'
+                },
+                {
+                  type: 'REGEX',
+                  regex: PLANNING_REFERENCE_NUMBER_REGEX,
+                  error: 'Planning reference number must only include letters, numbers and /'
+                }
+              ]}],
           yarKey: 'PlanningPermissionEvidence'
         },
         {
