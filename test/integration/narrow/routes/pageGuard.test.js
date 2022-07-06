@@ -29,15 +29,15 @@ describe('Page Guard', () => {
     expect(getResponse.headers.location).toBe(startPageUrl)
   })
 
-  it('should redirect to start page if the user skip journey question', async () => {
-    server = await createServer()
-    const getOptions = {
-      method: 'GET',
-      url: `${global.__URLPREFIX__}/standard-costs`
-    }
+  // it('should redirect to start page if the user skip journey question', async () => {
+  //   server = await createServer()
+  //   const getOptions = {
+  //     method: 'GET',
+  //     url: `${global.__URLPREFIX__}/standard-costs`
+  //   }
 
-    const response = await server.inject(getOptions)
-    expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe(startPageUrl)
-  })
+  //   const response = await server.inject(getOptions)
+  //   expect(response.statusCode).toBe(302)
+  //   expect(response.headers.location).toBe(startPageUrl)
+  // })
 })
