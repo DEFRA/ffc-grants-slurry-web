@@ -13,6 +13,7 @@ const {
   PLANNING_REFERENCE_NUMBER_REGEX,
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
+  CHARS_MAX_50
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -940,6 +941,11 @@ const questionBank = {
                 type: 'REGEX',
                 regex: NAME_ONLY_REGEX,
                 error: 'Planning authority must only contain letters, hyphens and spaces'
+              },
+              {
+                type: 'REGEX',
+                regex:CHARS_MAX_50,
+                error: 'Planning authority must be 50 characters or fewer'
               }
             ]},
             {
@@ -959,6 +965,11 @@ const questionBank = {
                   type: 'REGEX',
                   regex: PLANNING_REFERENCE_NUMBER_REGEX,
                   error: 'Planning reference number must only include letters, numbers and /'
+                },
+                {
+                  type: 'REGEX',
+                  regex:CHARS_MAX_50,
+                  error: 'Planning authority must be 50 characters or fewer'
                 }
               ]}],
           yarKey: 'PlanningPermissionEvidence'

@@ -1,6 +1,7 @@
 const CURRENCY_FORMAT = /^(\d+|\d{1,3}(,\d{3})+)$/
 const CHARS_MAX_10 = /^.{1,10}$/
 const CHARS_MIN_10 = /^.{10,}$/
+const CHARS_MAX_50 = /^.{1,50}$/
 const CHARS_MAX_100 = /^.{0,100}$/
 const WORDS_MAX_60 = /^(?:\b\w+\b[\s.',-]*){1,60}$/
 const WHOLE_NUMBER_REGEX = /^\d+$/
@@ -21,6 +22,7 @@ module.exports = {
   CHARS_MIN_10,
   CHARS_MAX_100,
   WORDS_MAX_60,
+  CHARS_MAX_50,
   SELECT_VARIABLE_TO_REPLACE,
   DELETE_POSTCODE_CHARS_REGEX,
   POSTCODE_REGEX,
