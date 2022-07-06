@@ -30,7 +30,6 @@ const messageConfigSchema = Joi.object({
     ...sharedConfigSchema
   },
   fetchCostRequestMsgType: Joi.string(),
-  costRequestMsgType: Joi.string(),
   eligibilityAnswersMsgType: Joi.string(),
   projectDetailsMsgType: Joi.string(),
   contactDetailsMsgType: Joi.string(),
@@ -68,8 +67,7 @@ const config = {
     type: 'queue',
     ...sharedConfig
   },
-  fetchCostRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
-  costRequestMsgType: `${msgTypePrefix}.app.request`,
+  fetchCostRequestMsgType: `${msgTypePrefix}.fetch.cost.request`,
   eligibilityAnswersMsgType: `${msgTypePrefix}.slurry.eligibility.details`,
   projectDetailsMsgType: `${msgTypePrefix}.slurry.project.details`,
   contactDetailsMsgType: `${msgTypePrefix}.slurry.contact.details`,

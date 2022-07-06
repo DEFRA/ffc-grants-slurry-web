@@ -3,7 +3,7 @@
 
 const { sendMessage, receiveMessage } = require('../messaging')
 const { getStandardisedCosts }  = require('../messaging/application')
-const { costRequestQueue, costRequestMsgType, costResponseQueue } = require('../config/messaging.js')
+const { costRequestQueue, costResponseQueue } = require('../config/messaging.js')
 
 
 const urlPrefix = require('../config/server').urlPrefix
@@ -44,11 +44,10 @@ module.exports = [{
       console.log('Sending session message .....')
 
       //const standardisedCosts = await getStandardisedCosts(request.yar.id)
-      //await sendMessage({}, costRequestMsgType, costRequestQueue, { sessionId: request.yar.id })
-      await getStandardisedCosts(request.yar.id)
+      const result = await getStandardisedCosts(request.yar.id)
       // Following section is covered in messaging/send-message.js
       // await senders.sendProjectDetails(msgDataToSend, request.yar.id) 
-      console.log('[STANDARDISED COST REQUEST SENT]')
+      console.log(result, '[STANDARDISED COST REQUEST SENT]')
 
       //console.log('Response from queues')
 
