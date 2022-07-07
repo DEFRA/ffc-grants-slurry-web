@@ -1119,9 +1119,6 @@ const questionBank = {
           key: 'remaining-costs',
           order: 190,
           title: 'Can you pay the remaining costs?',
-          hint: {
-            html: '</br>The grant will only pay up to 50% of standardised item costs – items may cost more than the standardised cost.'
-          },
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
@@ -1129,22 +1126,24 @@ const questionBank = {
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
-            messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.`,
-            insertText: {
-              html: `You can use:
-              <ul>
-              <li>loans</li>
-              <li>overdrafts</li>
-              <li>the Basic Payment Scheme</li>
-              <li> agri-environment schemes such as the Countryside Stewardship Scheme</li>
-              </ul>`
-            },
+            messageContent:`<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
+            <div class="govuk-list govuk-list--bullet">
+                  You can use:
+                  <ul>
+                    <li>loans</li>
+                    <li>overdrafts</li>
+                    <li>the Basic Payment Scheme</li>
+                  </ul>
+            </div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
             }
           },
           fundingPriorities: '',
+          warning: {
+            text: 'Items may cost more than the standardised cost.'
+          },
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           minAnswerCount: 1,
@@ -1159,8 +1158,7 @@ const questionBank = {
                   items: [
                     'loans',
                     'overdrafts',
-                    'the Basic Payment Scheme',
-                    'agri-environment schemes such as the Countryside Stewardship Scheme'
+                    'the Basic Payment Scheme'
                   ]
                 }]
               }
