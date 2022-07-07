@@ -1,7 +1,6 @@
 // mock dialog-polyfill
 jest.mock('dialog-polyfill', () => ({
-  forceRegisterDialog: jest.fn(() => 2),
-  registerDialog: jest.fn(() => 4)
+  registerDialog: jest.fn((param) => null)
 }))
 const dialogPolyfill = require('dialog-polyfill')
 
@@ -16,6 +15,7 @@ const { JSDOM } = require('jsdom')
 const dom = new JSDOM()
 global.document = dom.window.document
 global.window = dom.window
+global.HTMLDialogElement = dom.window.HTMLDialogElement
 
 // import TimeoutWarning
 const TimeoutWarning = require('../../../../app/templates/components/timeout-warning/timeout-warning')
@@ -64,8 +64,21 @@ describe('Timeout Warning', () => {
     )
   })
 
-  it('Test 2', () => {
-    expect(true).toEqual(true)
-    expect(dialogPolyfill.registerDialog()).toBe(4)
+  it('test TimeoutWarning.dialogSupported()', () => {
+    global.HTMLDialogElement = jest.fn(() => {})
+
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
+      classList: {
+        add: (addParam) => null
+      }
+    }))
+
+    expect(new TimeoutWarning(mockModule).dialogSupported()).toBe(true)
+
+    global.HTMLDialogElement = {}
+    expect(new TimeoutWarning(mockModule).dialogSupported()).toBe(true)
+
+    dialogPolyfill.registerDialog.mockImplementation((param) => { throw Error('mock-error') })
+    expect(new TimeoutWarning(mockModule).dialogSupported()).toBe(false)
   })
 })
