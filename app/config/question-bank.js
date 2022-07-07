@@ -1204,31 +1204,32 @@ const questionBank = {
         {
           key: 'remaining-costs',
           order: 190,
-          title: 'Can you pay the remaining costs of £{{_remainingCost_}}?',
+          title: 'Can you pay the remaining costs?',
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'project-cost',
+          backUrl: 'potential-amount',
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
-            messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-            <br/><br/>You also cannot use money from a producer organisation under the Fresh Fruit and Vegetable Aid Scheme.`,
-            insertText: {
-              html: `You can use:
-              <ul>
-              <li>loans</li>
-              <li>overdrafts</li>
-              <li>the Basic Payment Scheme</li>
-              <li> agri-environment schemes such as the Countryside Stewardship Scheme</li>
-              </ul>`
-            },
+            messageContent:`<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
+            <div class="govuk-list govuk-list--bullet">
+                  You can use:
+                  <ul>
+                    <li>loans</li>
+                    <li>overdrafts</li>
+                    <li>the Basic Payment Scheme</li>
+                  </ul>
+            </div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
             }
           },
           fundingPriorities: '',
+          warning: {
+            text: 'Items may cost more than the standardised cost.'
+          },
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           minAnswerCount: 1,
@@ -1239,14 +1240,11 @@ const questionBank = {
                 content: [{
                   para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
                   
-                  You also cannot use money from a producer organisation under the Fresh Fruit and Vegetable Aid Scheme.
-                  
                   You can use:`,
                   items: [
                     'loans',
                     'overdrafts',
-                    'the Basic Payment Scheme',
-                    'agri-environment schemes such as the Countryside Stewardship Scheme'
+                    'the Basic Payment Scheme'
                   ]
                 }]
               }
@@ -1255,7 +1253,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select yes if you can pay the remaining costs without using any other grant money'
+              error: 'Select if you can pay the remaining costs'
             }
           ],
           answers: [
@@ -1270,7 +1268,7 @@ const questionBank = {
               notEligible: true
             }
           ],
-          yarKey: 'canPayRemainingCost'
+          yarKey: 'remainingCosts'
 
         },
         {
