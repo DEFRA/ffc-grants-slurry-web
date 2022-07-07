@@ -81,4 +81,10 @@ describe('Timeout Warning', () => {
     dialogPolyfill.registerDialog.mockImplementation((param) => { throw Error('mock-error') })
     expect(new TimeoutWarning(mockModule).dialogSupported()).toBe(false)
   })
+
+  it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
+    const result = new TimeoutWarning(mockModule)
+    expect(result).toBeDefined()
+    expect(result.setLastActiveTimeOnServer()).toBe(0)
+  })
 })
