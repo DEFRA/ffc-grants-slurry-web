@@ -17,6 +17,7 @@ const dom = new JSDOM()
 global.document = dom.window.document
 global.window = dom.window
 global.HTMLDialogElement = dom.window.HTMLDialogElement
+global.navigator = dom.window.navigator
 
 // import TimeoutWarning
 const TimeoutWarning = require('../../../../app/templates/components/timeout-warning/timeout-warning')
@@ -102,6 +103,23 @@ describe('Timeout Warning', () => {
 
   it('test TimeoutWarning.countIdleTime()', () => {
     expect(new TimeoutWarning(mockModule).countIdleTime()).toBe(undefined)
+  })
+
+  it('test TimeoutWarning.openDialog()', () => {
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
+      setAttribute: (paramA, paramB) => {},
+      classList: {
+        add: (addParam) => null
+      }
+    }))
+
+    mockModule = {
+      ...mockModule,
+      showModal: jest.fn(() => {})
+    }
+
+    expect(new TimeoutWarning(mockModule).openDialog()).toBe(undefined)
+    mockModule = origMockModule
   })
 
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
