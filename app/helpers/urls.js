@@ -5,8 +5,9 @@ const { ALL_QUESTIONS } = require('../config/question-bank')
 const getUrl = (urlObject, url, request, secBtn) => {
   const scorePath = `${urlPrefix}/score`
   const chekDetailsPath = `${urlPrefix}/check-details`
+  const evidenceSummaryPath = `${urlPrefix}/evidence-summary`
   const secBtnPath = secBtn === 'Back to score' ? scorePath : chekDetailsPath
-
+  
   if (!urlObject) {
     return secBtn ? secBtnPath : url
   }

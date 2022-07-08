@@ -87,6 +87,46 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
   })
 }
 
+
+const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
+
+  setYarValue(request, 'reachedEvidenceSummary', true)
+
+  const planningPermission = getYarValue(request, 'planningPermission')
+  const planningPermissionEvidence = getYarValue(request, 'planningPermissionEvidence')
+  const gridReference = getYarValue(request, 'gridReference')
+
+  const planningPermissionData = saveValuesToArray(planningPermission, ['planningPermission'])
+  const planningPermissionEvidenceData = saveValuesToArray(planningPermissionEvidence, ['planningAuthority'])
+  const gridReferenceData = saveValuesToArray(gridReference, ['gridReferenceNumber'])
+
+  return ({
+    ...question.pageData,
+    backUrl,
+    nextUrl,
+    applying,
+    planningPermission,
+    planningPermissionEvidence: {
+      ...planningPermissionEvidence,
+      ...(planningPermissionEvidence
+        ? {
+          planningPermission: planningPermissionEvidenceData.join('<br/>'),
+          }
+        : {}
+      )
+    },
+    gridReference: {
+      ...gridReference,
+      ...(gridReference
+        ? {
+          gridReference: gridReferenceData.join('<br/>'),
+          }
+        : {}
+      )
+    },
+
+  })
+}
 const getDataFromYarValue = (request, yarKey, type) => {
   let data = getYarValue(request, yarKey) || null
   if (type === 'multi-answer' && !!data) {
@@ -213,6 +253,9 @@ const getPage = async (question, request, h) => {
     case 'agent-details':
     case 'applicant-details': {
       return h.view('page', getModel(data, question, request, conditionalHtml))
+    }
+    case 'planning-permission-summary': {
+      return h.view('planning-permission-summary', getEvidenceSummaryModel(request, question, backUrl, nextUrl))
     }
     default:
       break
