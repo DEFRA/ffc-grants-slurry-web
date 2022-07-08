@@ -1,6 +1,3 @@
-
-// const pollingConfig = require('../config/polling')
-
 const { getStandardisedCosts }  = require('../messaging/application')
 
 
