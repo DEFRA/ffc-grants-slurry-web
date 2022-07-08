@@ -134,6 +134,16 @@ describe('Timeout Warning', () => {
   })
   */
 
+  it('test TimeoutWarning.startUiCountdown', () => {
+    mockModule.querySelector.mockImplementation(() => ({
+      setAttribute: jest.fn((param) => {})
+    }))
+
+    expect(new TimeoutWarning(mockModule).startUiCountdown()).toBe(undefined)
+
+    mockModule = origMockModule
+  })
+
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
     const result = new TimeoutWarning(mockModule)
     expect(result).toBeDefined()
