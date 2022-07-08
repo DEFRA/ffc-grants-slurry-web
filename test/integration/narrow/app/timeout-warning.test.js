@@ -115,6 +115,7 @@ describe('Timeout Warning', () => {
 
     mockModule = {
       ...mockModule,
+      setAttribute: jest.fn(() => {}),
       showModal: jest.fn(() => {})
     }
 
