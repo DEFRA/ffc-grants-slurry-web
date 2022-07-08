@@ -105,6 +105,7 @@ describe('Timeout Warning', () => {
     expect(new TimeoutWarning(mockModule).countIdleTime()).toBe(undefined)
   })
 
+  /*
   it('test TimeoutWarning.openDialog()', () => {
     jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
       setAttribute: (paramA, paramB) => {},
@@ -131,6 +132,7 @@ describe('Timeout Warning', () => {
 
     mockModule = origMockModule
   })
+  */
 
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
     const result = new TimeoutWarning(mockModule)
