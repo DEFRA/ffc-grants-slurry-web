@@ -9,7 +9,11 @@ const {
   NAME_ONLY_REGEX,
   PHONE_REGEX,
   EMAIL_REGEX,
-  ONLY_TEXT_REGEX
+  ONLY_TEXT_REGEX,
+  PLANNING_REFERENCE_NUMBER_REGEX,
+  LETTERS_AND_NUMBERS_REGEX,
+  TWO_NUMBERS_EIGHT_CHARS,
+  CHARS_MAX_50
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -413,7 +417,7 @@ const questionBank = {
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
           backUrl: 'tenancy',
-          preValidationKeys: ['tenancy'],
+          preValidationKeys: [],
           nextUrl: 'system-type',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -452,7 +456,7 @@ const questionBank = {
           order: 70,
           url: 'tenancy-length-condition',
           backUrl: 'tenancy-length',
-          preValidationKeys: ['tenancy'],
+          preValidationKeys: [],
           nextUrl: 'system-type',
           maybeEligible: true,
           maybeEligibleContent: {
@@ -477,7 +481,7 @@ const questionBank = {
             }
           },
           nextUrl: 'existing-storage-capacity',
-          preValidationKeys: ['inEngland'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
@@ -494,12 +498,14 @@ const questionBank = {
               content: [{
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
-
-                Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.
                 `,
-                items: []
+                items: [],
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'What is slurry?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
+            },
           },
           validate: [
             {
@@ -543,7 +549,7 @@ const questionBank = {
           backUrl: 'system-type',
           nextUrl: 'planned-storage-capacity',
           url: 'existing-storage-capacity',
-          preValidationKeys: ['systemType'],
+          preValidationKeys: [],
           ineligibleContent: {
             messageContent: `
             This grant is to get your serviceable storage levels to 6 months.`,
@@ -564,12 +570,14 @@ const questionBank = {
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
                 Any capacity above 6 months is not covered by the grant.
-
-                A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).
                 `,
                 items: []
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+            },
           },
           validate: [
             {
@@ -686,15 +694,19 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'This grant is only for:',
+                para: 'This grant is for:',
                 items: [
-                  'Replace an existing store that is no longer fit for purpose with a new store',
+                  'replacing an existing store that is no longer fit for purpose with a new store',
                   'adding a new store to increase existing capacity',
                   'expanding an existing store (for example, by adding an extra ring to a steel tank)'
                 ],
-                additionalPara: 'A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).'
+                additionalPara: ''
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+            },
           },
           validate: [
             {
@@ -797,7 +809,7 @@ const questionBank = {
           backUrl: 'cover',
           nextUrl: 'project-cost',
           fundingPriorities: '',
-          preValidationKeys: ['projectStart', 'tenancy'],
+          preValidationKeys: [],
           type: 'multi-answer',
           minAnswerCount: 1,
           validate: [
@@ -885,48 +897,61 @@ const questionBank = {
           yarKey: 'planningPermission'
         },
         {
-          key: 'planning-permission-evidence',
+          key: 'planning-permission-condition',
           order: 145,
+          url: 'planning-permission-condition',
+          backUrl: 'planning-permission',
+          nextUrl: 'grid-reference',
+          maybeEligible: true,
+          preValidationKeys: [],
+          maybeEligibleContent: {
+            messageHeader: 'You may be able to apply for this grant',
+            messageContent: 'Any planning permission must be in place by 31st December 2023.'
+          },
+          yarKey: 'PlanningPermissionCondition'
+        },
+        {
+          key: 'planning-permission-evidence',
+          order: 150,
           title: 'Your planning permission',
           hint: {
             text: 'Enter the name of your planning authority and your planning reference number'
           },
           url: 'planning-permission-evidence',
+          baseUrl: 'planning-permission-evidence',
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
-          preValidationKeys: ['planningPermission'],
-          ineligibleContent: {
-            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }},
+          preValidationKeys: [],
           type: 'multi-input',
           allFields: [
             {
-              yarKey: 'planningAuthority',
-              type: 'text',
-              classes: 'govuk-input--width-20',
-              label: {
-                text: 'Planning authority',
-                classes: 'govuk-label'
-              },
-              validate: [
-                {
-                  type: 'NOT_EMPTY',
-                  error: 'Enter planning authority'
-                },
-                {
-                  type: 'REGEX',
-                  regex: NAME_ONLY_REGEX,
-                  error: 'Name must only include letters, hyphens and apostrophes'
-                }
-              ]
+            yarKey: 'planningAuthority',
+            type: 'text',
+            classes: 'govuk-input--width-10',
+            label: {
+              text: 'Planning authority',
+              classes: 'govuk-label'
             },
+            validate: [
+              {
+                type: 'NOT_EMPTY',
+                error: 'Enter planning authority'
+              },
+              {
+                type: 'REGEX',
+                regex: NAME_ONLY_REGEX,
+                error: 'Planning authority must only contain letters, hyphens and spaces'
+              },
+              {
+                type: 'REGEX',
+                regex:CHARS_MAX_50,
+                error: 'Planning authority must be 50 characters or fewer'
+              }
+            ]},
             {
-              yarKey: 'planningAuthority',
+              yarKey: 'planningReferenceNumber',
               type: 'text',
-              classes: 'govuk-input--width-20',
+              classes: 'govuk-input--width-10',
               label: {
                 text: 'Planning reference number',
                 classes: 'govuk-label'
@@ -938,80 +963,64 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex: NAME_ONLY_REGEX,
-                  error: 'Name must only include letters, hyphens and apostrophes'
+                  regex: CHARS_MAX_50,
+                  error: 'Planning reference number must be 50 characters of fewer'
+                },
+                {
+                  type: 'REGEX',
+                  regex: PLANNING_REFERENCE_NUMBER_REGEX,
+                  error: 'Planning reference number must only include letters, numbers and /'
                 }
-              ]
-            }
-          ],
+              ]}],
           yarKey: 'PlanningPermissionEvidence'
         },
         {
-          key: 'planning-permission-condition',
-          order: 150,
-          url: 'planning-permission-condition',
-          backUrl: 'planning-permission',
-          nextUrl: 'project-started',
-          maybeEligible: true,
-          preValidationKeys: ['planningPermission'],
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for this grant',
-            messageContent: 'Any planning permission must be in place by 31 January 2024.'
+          key: 'grid-reference',
+          order: 152,
+          url: 'grid-reference',
+          backUrl: 'planning-permission-evidence',
+          nextUrl: 'business-details',
+          title: 'What is the OS grid reference for your slurry store?',
+          hint: {
+            text: 'Enter OS grid reference number, for example AB12478975'
           },
-          yarKey: 'PlanningPermissionCondition'
-        },
-        {
-          key: 'project-location-owned-rented',
-          order: 160,
-          title: 'Is the project location site owned or rented by applicant?',
-          pageTitle: '',
-          url: 'project-location-owned-rented',
-          baseUrl: 'project-location-owned-rented',
-          backUrl: 'planning-permission',
-          nextUrl: 'project-started',
-          preValidationKeys: ['planningPermission'],
-          ineligibleContent: {
-            messageContent: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
+          backUrlObject: {
+            dependentQuestionYarKey: 'planningPermission',
+            dependentAnswerKeysArray: ['planning-permission-A1', 'planning-permission-A2'],
+            urlOptions: {
+              thenUrl: 'planning-permission-evidence',
+              elseUrl: 'planning-permission-condition'
             }
           },
-          fundingPriorities: 'Improving Adding Value',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [
-              {
-                heading: 'Eligibility',
-                content: [{
-                  para: 'The land must be owned by the applicant, or there must be a tenancy in place to at least 2026, before the project starts.',
-                  items: []
-                }]
-              }]
-          },
-          validate: [
+          preValidationKeys: [],
+          type: 'multi-input',
+          allFields: [
             {
-              type: 'NOT_EMPTY',
-              error: 'Select when the project will have planning permission'
-            }
-          ],
-          answers: [
-            {
-              key: 'project-location-owned-rented-A1',
-              value: 'Owned'
-            },
-            {
-              key: 'project-location-owned-rented-A2',
-              value: 'A Long term lease (to at least 2026) is, or will be, in place before the project starts'
-            },
-            {
-              key: 'project-location-owned-rented-A4',
-              value: 'A long-term lease will not be in place before project start',
-              notEligible: true
-            }
-          ],
-          yarKey: 'projectLocationOwnedRented'
+              yarKey: 'gridReference',
+              type: 'text',
+              classes: 'govuk-input--width-10',
+              label: {
+                text: 'OS grid reference number',
+                classes: 'govuk-label'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning authority'
+                },
+                {
+                  type: 'REGEX',
+                  regex: LETTERS_AND_NUMBERS_REGEX,
+                  error: 'First two characters should be letterFollowing eight characters must be numbers'
+                },
+                {
+                  type: 'REGEX',
+                  regex:  TWO_NUMBERS_EIGHT_CHARS,
+                  error: 'OS Grid Reference must be two letters followed by 8 digits'
+                }
+              ]
+            }],
+          yarKey: 'GridReference'
         },
         {
           key: 'project-cost',
@@ -1095,7 +1104,7 @@ const questionBank = {
           url: 'potential-amount',
           backUrl: 'project-cost',
           nextUrl: 'remaining-costs',
-          preValidationKeys: ['projectCost'],
+          preValidationKeys: [],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Potential grant funding',
@@ -1109,31 +1118,32 @@ const questionBank = {
         {
           key: 'remaining-costs',
           order: 190,
-          title: 'Can you pay the remaining costs of £{{_remainingCost_}}?',
+          title: 'Can you pay the remaining costs?',
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'project-cost',
-          nextUrl: 'collaboration',
+          backUrl: 'potential-amount',
+          nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
-            messageContent: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-            <br/><br/>You also cannot use money from a producer organisation under the Fresh Fruit and Vegetable Aid Scheme.`,
-            insertText: {
-              html: `You can use:
-              <ul>
-              <li>loans</li>
-              <li>overdrafts</li>
-              <li>the Basic Payment Scheme</li>
-              <li> agri-environment schemes such as the Countryside Stewardship Scheme</li>
-              </ul>`
-            },
+            messageContent:`<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
+            <div class="govuk-list govuk-list--bullet">
+                  You can use:
+                  <ul>
+                    <li>loans</li>
+                    <li>overdrafts</li>
+                    <li>the Basic Payment Scheme</li>
+                  </ul>
+            </div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
             }
           },
           fundingPriorities: '',
+          warning: {
+            text: 'Items may cost more than the standardised cost.'
+          },
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           minAnswerCount: 1,
@@ -1144,14 +1154,11 @@ const questionBank = {
                 content: [{
                   para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
                   
-                  You also cannot use money from a producer organisation under the Fresh Fruit and Vegetable Aid Scheme.
-                  
                   You can use:`,
                   items: [
                     'loans',
                     'overdrafts',
-                    'the Basic Payment Scheme',
-                    'agri-environment schemes such as the Countryside Stewardship Scheme'
+                    'the Basic Payment Scheme'
                   ]
                 }]
               }
@@ -1160,7 +1167,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select yes if you can pay the remaining costs without using any other grant money'
+              error: 'Select if you can pay the remaining costs'
             }
           ],
           answers: [
@@ -1175,7 +1182,7 @@ const questionBank = {
               notEligible: true
             }
           ],
-          yarKey: 'canPayRemainingCost'
+          yarKey: 'remainingCosts'
 
         },
         {
@@ -1254,7 +1261,7 @@ const questionBank = {
             text: 'Select all that apply'
           },
           eliminationAnswerKeys: '',
-          preValidationKeys: ['collaboration'],
+          preValidationKeys: [],
           sidebar: {
             values: [{
               heading: 'Funding priorities',

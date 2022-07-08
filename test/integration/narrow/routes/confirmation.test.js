@@ -12,7 +12,6 @@ describe('confirm page', () => {
     }
   }))
 
-
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
@@ -30,9 +29,8 @@ describe('confirm page', () => {
     expect(response.payload).toContain('What happens next')
     expect(response.payload).toContain('You must not start the project')
     expect(response.payload).toContain('Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement will invalidate your application.')
-    expect(response.payload).toContain('get quotes from suppliers')    
+    expect(response.payload).toContain('get quotes from suppliers')
     expect(response.payload).toContain('apply for planning permission')
     expect(response.payload).toContain('RPA will be in touch when the full application period opens. They will tell you if your project scored well enough to get the full application form.')
   })
-
 })

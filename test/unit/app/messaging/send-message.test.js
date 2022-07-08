@@ -2,17 +2,18 @@ const {MessageSender} = require('ffc-messaging')
 
 const sendSessionMessage = require('../../../../app/messaging/send-message')
 
-describe('application messaging tests', () => {  
-    afterEach(() => {
-      jest.clearAllMocks()
-    })
+describe('application messaging tests', () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
 
-    test('sendMessage sends a message', async () => {
+  test('sendMessage sends a message', async () => {
+    const body = { applicationReference: '12345' }
+    const type = { type: 'mock' }
+    const config = { queue: 'yes' }
+    const sessionId = { id: 1 }
 
-        const body = { applicationReference: '12345'}
-        const type = { type: 'mock'}
-        const config = { queue: 'yes'}
-        const sessionId = {id: 1}
+    await sendSessionMessage(body, type, config, sessionId)
 
         jest.spyOn(MessageSender.prototype, 'sendMessage').mockImplementationOnce(() => Promise.resolve(true));
         jest.spyOn(MessageSender.prototype, 'closeConnection').mockImplementationOnce(() => Promise.resolve(true));

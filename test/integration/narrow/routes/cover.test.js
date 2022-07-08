@@ -23,7 +23,6 @@ describe('Page: /cover', () => {
     expect(response.payload).toContain('Yes')
     expect(response.payload).toContain('Not needed, the slurry is treated with acidification')
     expect(response.payload).toContain('No')
-
   })
 
   it('no option selected -> show error message', async () => {
@@ -66,11 +65,11 @@ describe('Page: /cover', () => {
 
   it('page loads with correct back link', async () => {
     const options = {
-    method: 'GET',
-    url: `${global.__URLPREFIX__}/cover`
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/cover`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain(`<a href=\"project-type\" class=\"govuk-back-link\">Back</a>`)
-    })
+    expect(response.payload).toContain('<a href=\"project-type\" class=\"govuk-back-link\">Back</a>')
+  })
 })
