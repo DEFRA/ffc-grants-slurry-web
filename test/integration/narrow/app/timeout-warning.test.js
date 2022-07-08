@@ -5,10 +5,11 @@ jest.mock('dialog-polyfill', () => ({
 const dialogPolyfill = require('dialog-polyfill')
 
 // mock module object - parameter of constructor TimeoutWarning
-const mockModule = {
+let mockModule = {
   querySelector: jest.fn((param) => (`mqs_${param}`)),
   getAttribute: jest.fn((param) => null)
 }
+const origMockModule = mockModule
 
 // mock document & window - DOM global values
 const { JSDOM } = require('jsdom')
@@ -80,6 +81,23 @@ describe('Timeout Warning', () => {
 
     dialogPolyfill.registerDialog.mockImplementation((param) => { throw Error('mock-error') })
     expect(new TimeoutWarning(mockModule).dialogSupported()).toBe(false)
+  })
+
+  it('test TimeoutWarning.init()', () => {
+    dialogPolyfill.registerDialog.mockImplementation((param) => { throw Error('mock-error') })
+    expect(new TimeoutWarning(mockModule).init()).toBe(undefined)
+
+    global.HTMLDialogElement = jest.fn(() => {})
+    mockModule = {
+      ...mockModule,
+      querySelector: jest.fn((paramA) => ({
+        addEventListener: jest.fn((paramB) => {})
+      })),
+      addEventListener: jest.fn((paramC) => {})
+    }
+    expect(new TimeoutWarning(mockModule).init()).toBe(undefined)
+
+    mockModule = origMockModule
   })
 
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
