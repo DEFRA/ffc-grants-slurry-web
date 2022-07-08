@@ -136,7 +136,7 @@ describe('Timeout Warning', () => {
 
   it('test TimeoutWarning.startUiCountdown', () => {
     mockModule.querySelector.mockImplementation(() => ({
-      setAttribute: jest.fn((param) => {})
+      setAttribute: (param) => {}
     }))
 
     expect(new TimeoutWarning(mockModule).startUiCountdown()).toBe(undefined)
