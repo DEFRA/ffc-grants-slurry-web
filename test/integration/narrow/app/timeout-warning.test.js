@@ -134,6 +134,7 @@ describe('Timeout Warning', () => {
   })
   */
 
+  /*
   it('test TimeoutWarning.startUiCountdown', () => {
     mockModule.querySelector.mockImplementation(() => ({
       setAttribute: (param) => {}
@@ -143,6 +144,7 @@ describe('Timeout Warning', () => {
 
     mockModule = origMockModule
   })
+  */
 
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
     const result = new TimeoutWarning(mockModule)
