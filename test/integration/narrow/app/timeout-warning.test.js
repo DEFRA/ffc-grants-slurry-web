@@ -146,6 +146,19 @@ describe('Timeout Warning', () => {
   })
   */
 
+  it(' test TimeoutWarning.saveLastFocusedEl()', () => {
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => ('mock-dqs'))
+
+    let result = new TimeoutWarning(mockModule)
+    expect(result.saveLastFocusedEl()).toBe(undefined)
+    expect(result.$lastFocusedEl).toBe(null)
+
+    global.document.activeElement = 'mock-element'
+    result = new TimeoutWarning(mockModule)
+    expect(result.saveLastFocusedEl()).toBe(undefined)
+    expect(result.$lastFocusedEl).toBe(null)
+  })
+
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
     const result = new TimeoutWarning(mockModule)
     expect(result).toBeDefined()
