@@ -1475,7 +1475,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                html: 'If you do not have an SBI, you will need to get one for full applictaion'
+                html: 'If you do not have an SBI, you will need to get one for full application'
               },
               validate: [
                 {
