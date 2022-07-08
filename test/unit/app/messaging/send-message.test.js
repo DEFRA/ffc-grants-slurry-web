@@ -13,15 +13,13 @@ describe('application messaging tests', () => {
     const config = { queue: 'yes' }
     const sessionId = { id: 1 }
 
+    jest.spyOn(MessageSender.prototype, 'sendMessage').mockImplementationOnce(() => Promise.resolve(true));
+    jest.spyOn(MessageSender.prototype, 'closeConnection').mockImplementationOnce(() => Promise.resolve(true));
+
     await sendSessionMessage(body, type, config, sessionId)
 
-        jest.spyOn(MessageSender.prototype, 'sendMessage').mockImplementationOnce(() => Promise.resolve(true));
-        jest.spyOn(MessageSender.prototype, 'closeConnection').mockImplementationOnce(() => Promise.resolve(true));
-
-        await sendSessionMessage(body, type, config, sessionId)
-
-        expect(MessageSender.prototype.sendMessage).toHaveBeenCalledTimes(1)
-        expect(MessageSender.prototype.closeConnection).toHaveBeenCalledTimes(1)
+    expect(MessageSender.prototype.sendMessage).toHaveBeenCalledTimes(1)
+    expect(MessageSender.prototype.closeConnection).toHaveBeenCalledTimes(1)
 
         
     })
