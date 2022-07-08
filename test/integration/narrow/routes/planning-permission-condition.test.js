@@ -31,7 +31,7 @@ it('should load the condition page with correct heading', async () => {
     }
     const getResponse = await global.__SERVER__.inject(getOptions)
     expect(getResponse.statusCode).toBe(200)
-    expect(getResponse.payload).toContain('You may be able to apply for this grant')
+    expect(getResponse.payload).toContain('You may be able to apply for a grant from this scheme')
 })
 it('page loads with correct back link', async () => {
     const options = {
