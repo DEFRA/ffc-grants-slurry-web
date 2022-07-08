@@ -58,7 +58,7 @@ describe('Page: /planning-permission', () => {
     }
     const getResponse = await global.__SERVER__.inject(getOptions)
     expect(getResponse.statusCode).toBe(200)
-    expect(getResponse.payload).toContain('You may be able to apply for this grant')
+    expect(getResponse.payload).toContain('You may be able to apply for a grant from this scheme')
   })
 
   it('user selects eligible option [Approved | Applied for but not yet approved]-> store user response and redirect to /project-start', async () => {

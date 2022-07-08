@@ -905,7 +905,7 @@ const questionBank = {
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for this grant',
+            messageHeader: 'You may be able to apply for a grant from this scheme',
             messageContent: 'Any planning permission must be in place by 31st December 2023.'
           },
           yarKey: 'PlanningPermissionCondition'
@@ -1540,7 +1540,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                html: 'If you do not have an SBI, you will need to get one for full applictaion'
+                html: 'If you do not have an SBI, you will need to get one for full application'
               },
               validate: [
                 {
