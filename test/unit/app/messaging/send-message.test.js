@@ -34,16 +34,8 @@ describe('application messaging tests', () => {
         const sessionId = {id: 1}
 
         jest.spyOn(MessageSender.prototype, 'sendMessage').mockImplementationOnce(() => {throw new Error('new error')});
-        // jest.spyOn(MessageSender.prototype, 'closeConnection').mockImplementationOnce(() => Promise.resolve(false));
-
-        // MessageSender.prototype.sendMessage.toThrow(new Error('Error thrown'))
 
         await expect(sendSessionMessage(body, type, config, sessionId)).rejects.toThrow('new error')
 
-        // expect(mockSendMessage).toHaveBeenCalledTimes(1)
-        // expect(MessageSender.prototype.sendMessage).toEqual('massive error')
-        
-        // expect(MessageSender.prototype.sendMessage).toHaveBeenCalledTimes(1)
-        // expect(MessageSender.prototype.closeConnection).toHaveBeenCalledTimes(0)
     })
 })
