@@ -1,12 +1,4 @@
-const mockSendMessage = jest.fn()
-const mockCloseConnection = jest.fn()
-jest.mock('ffc-messaging', () => {
-    return {
-        MessageSender: jest.fn().mockImplementation(() => {
-            return { sendMessage: mockSendMessage, closeConnection: mockCloseConnection }
-        })
-    }
-})
+const {MessageSender} = require('ffc-messaging')
 
 const sendSessionMessage = require('../../../../app/messaging/send-message')
 
@@ -22,11 +14,35 @@ describe('application messaging tests', () => {
         const config = { queue: 'yes'}
         const sessionId = {id: 1}
 
+        jest.spyOn(MessageSender.prototype, 'sendMessage').mockImplementationOnce(() => Promise.resolve(true));
+        jest.spyOn(MessageSender.prototype, 'closeConnection').mockImplementationOnce(() => Promise.resolve(true));
+
         await sendSessionMessage(body, type, config, sessionId)
 
-        expect(mockSendMessage).toHaveBeenCalledTimes(1)
-        expect(mockCloseConnection).toHaveBeenCalledTimes(1)
+        expect(MessageSender.prototype.sendMessage).toHaveBeenCalledTimes(1)
+        expect(MessageSender.prototype.closeConnection).toHaveBeenCalledTimes(1)
 
         
+    })
+
+    test('sendMessage throws error if issue when sending message', async () => {
+
+        const body = { applicationReference: '12345'}
+        const type = { type: 'mock'}
+        const config = { queue: 'yes'}
+        const sessionId = {id: 1}
+
+        jest.spyOn(MessageSender.prototype, 'sendMessage').mockImplementationOnce(() => {throw new Error('new error')});
+        // jest.spyOn(MessageSender.prototype, 'closeConnection').mockImplementationOnce(() => Promise.resolve(false));
+
+        // MessageSender.prototype.sendMessage.toThrow(new Error('Error thrown'))
+
+        await expect(sendSessionMessage(body, type, config, sessionId)).rejects.toThrow('new error')
+
+        // expect(mockSendMessage).toHaveBeenCalledTimes(1)
+        // expect(MessageSender.prototype.sendMessage).toEqual('massive error')
+        
+        // expect(MessageSender.prototype.sendMessage).toHaveBeenCalledTimes(1)
+        // expect(MessageSender.prototype.closeConnection).toHaveBeenCalledTimes(0)
     })
 })

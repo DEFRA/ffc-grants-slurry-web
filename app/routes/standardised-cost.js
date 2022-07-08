@@ -1,9 +1,7 @@
 
 // const pollingConfig = require('../config/polling')
 
-const { sendMessage, receiveMessage } = require('../messaging')
 const { getStandardisedCosts }  = require('../messaging/application')
-const { costRequestQueue, costResponseQueue } = require('../config/messaging.js')
 
 
 const urlPrefix = require('../config/server').urlPrefix
@@ -22,14 +20,6 @@ function createModel(data, _request) {
   }
 }
 
-// async function getResult (correlationId) {
-//   const url = `${pollingConfig.host}/desirability-score?correlationId=${correlationId}`
-//   console.log('polling Url: ', url)
-
-//   console.log(`Tried getting score ${pollingConfig.retries} times, giving up`)
-//   return null
-// }
-
 module.exports = [{
   method: 'GET',
   path: currentPath,
@@ -40,16 +30,11 @@ module.exports = [{
   },
   handler: async (request, h, err) => {
     try {
-      //   console.log('Getting Desirability Answers .....')
       console.log('Sending session message .....')
 
-      //const standardisedCosts = await getStandardisedCosts(request.yar.id)
       const result = await getStandardisedCosts(request.yar.id)
-      // Following section is covered in messaging/send-message.js
-      // await senders.sendProjectDetails(msgDataToSend, request.yar.id) 
+      
       console.log(result, '[STANDARDISED COST REQUEST SENT]')
-
-      //console.log('Response from queues')
 
       return h.view(viewTemplate, createModel({ value: '12345' }, request))
 
