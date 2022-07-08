@@ -100,6 +100,10 @@ describe('Timeout Warning', () => {
     mockModule = origMockModule
   })
 
+  it('test TimeoutWarning.countIdleTime()', () => {
+    expect(new TimeoutWarning(mockModule).countIdleTime()).toBe(undefined)
+  })
+
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
     const result = new TimeoutWarning(mockModule)
     expect(result).toBeDefined()
