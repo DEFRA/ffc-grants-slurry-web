@@ -9,7 +9,7 @@ describe('application messaging tests', () => {
 
   test('sendMessage sends a message', async () => {
     const body = { applicationReference: '12345' }
-    const type = { type: 'mock' }
+    const type = 'test'
     const config = { queue: 'yes' }
     const sessionId = { id: 1 }
 
@@ -29,7 +29,7 @@ describe('application messaging tests', () => {
     test('sendMessage throws error if issue when sending message', async () => {
 
         const body = { applicationReference: '12345'}
-        const type = { type: 'mock'}
+        const type = 'test'
         const config = { queue: 'yes'}
         const sessionId = {id: 1}
 
