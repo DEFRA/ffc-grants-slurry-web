@@ -184,6 +184,9 @@ describe('Timeout Warning', () => {
   })
 
   it('test TimeoutWarning.closeDialog()', () => {
+    mockModule = origMockModule
+    expect(new TimeoutWarning(mockModule).closeDialog()).toBe(undefined)
+
     mockModule = {
       ...mockModule,
       open: 'mock-module-open',
@@ -201,6 +204,31 @@ describe('Timeout Warning', () => {
 
   it('test TimeoutWarning.clearTimers', () => {
     expect(new TimeoutWarning(mockModule).clearTimers()).toBe(undefined)
+  })
+
+  it('test TimeoutWarning.disableBackButtonWhenOpen()', () => {
+    mockModule = origMockModule
+    expect(new TimeoutWarning(mockModule).disableBackButtonWhenOpen()).toBe(undefined)
+
+    mockModule = {
+      ...mockModule,
+      open: 'mock-module-open'
+    }
+    expect(new TimeoutWarning(mockModule).disableBackButtonWhenOpen()).toBe(undefined)
+  })
+
+  it('test TimeoutWarning.escClose()', () => {
+    const param = {}
+    mockModule = origMockModule
+    expect(new TimeoutWarning(mockModule).escClose(param)).toBe(undefined)
+
+    mockModule = {
+      ...mockModule,
+      open: 'mock-module-open',
+      close: jest.fn(() => {})
+    }
+    param.keyCode = 27
+    expect(new TimeoutWarning(mockModule).escClose(param)).toBe(undefined)
   })
 
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
