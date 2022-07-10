@@ -183,6 +183,26 @@ describe('Timeout Warning', () => {
     expect(new TimeoutWarning(mockModule).isDialogOpen()).toBe(undefined)
   })
 
+  it('test TimeoutWarning.closeDialog()', () => {
+    mockModule = {
+      ...mockModule,
+      open: 'mock-module-open',
+      close: jest.fn(() => {})
+    }
+
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
+      setAttribute: (paramA, paramB) => {},
+      classList: {
+        remove: (addParam) => null
+      }
+    }))
+    expect(new TimeoutWarning(mockModule).closeDialog()).toBe(undefined)
+  })
+
+  it('test TimeoutWarning.clearTimers', () => {
+    expect(new TimeoutWarning(mockModule).clearTimers()).toBe(undefined)
+  })
+
   it('test TimeoutWarning.setLastActiveTimeOnServer()', () => {
     const result = new TimeoutWarning(mockModule)
     expect(result).toBeDefined()
