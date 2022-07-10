@@ -160,18 +160,22 @@ describe('Timeout Warning', () => {
   })
 
   it('test TimeoutWarning.makePageContentInert()', () => {
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => null)
+    expect(new TimeoutWarning(mockModule).makePageContentInert()).toBe(undefined)
+
     jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
       setAttribute: (paramA, paramB) => {}
     }))
-
     expect(new TimeoutWarning(mockModule).makePageContentInert()).toBe(undefined)
   })
 
   it('test TimeoutWarning.removeInertFromPageContent()', () => {
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => null)
+    expect(new TimeoutWarning(mockModule).removeInertFromPageContent()).toBe(undefined)
+
     jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
       setAttribute: (paramA, paramB) => {}
     }))
-
     expect(new TimeoutWarning(mockModule).removeInertFromPageContent()).toBe(undefined)
   })
 
