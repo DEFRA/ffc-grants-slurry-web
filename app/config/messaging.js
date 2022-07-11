@@ -19,17 +19,17 @@ const messageConfigSchema = Joi.object({
     type: Joi.string(),
     ...sharedConfigSchema
   },
-  applicationRequestQueue: {
-    address: Joi.string().default('applicationRequestQueue'),
+  costRequestQueue: {
+    address: Joi.string().default('costRequestQueue'),
     type: Joi.string(),
     ...sharedConfigSchema
   },
-  applicationResponseQueue: {
-    address: Joi.string().default('applicationResponseQueue'),
+  costResponseQueue: {
+    address: Joi.string().default('costResponseQueue'),
     type: Joi.string(),
     ...sharedConfigSchema
   },
-  fetchApplicationRequestMsgType: Joi.string(),
+  fetchCostRequestMsgType: Joi.string(),
   eligibilityAnswersMsgType: Joi.string(),
   projectDetailsMsgType: Joi.string(),
   contactDetailsMsgType: Joi.string(),
@@ -44,7 +44,7 @@ const sharedConfig = {
   useCredentialChain: process.env.NODE_ENV === 'production'
 }
 
-const msgTypePrefix = 'uk.gov.ffc.grants'
+const msgTypePrefix = 'uk.gov.ffc.grants' // ' '
 
 const config = {
   projectDetailsQueue: {
@@ -57,20 +57,20 @@ const config = {
     type: 'queue',
     ...sharedConfig
   },
-  applicationRequestQueue: {
-    address: process.env.APPLICATIONREQUEST_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
+  costRequestQueue: {
+    address: process.env.COST_REQUEST_QUEUE_ADDRESS,
     type: 'queue',
     ...sharedConfig
   },
-  applicationResponseQueue: {
-    address: process.env.APPLICATIONRESPONSE_QUEUE_ADDRESS + '-' + process.env.ENVIRONMENT_CODE,
+  costResponseQueue: {
+    address: process.env.COST_RESPONSE_QUEUE_ADDRESS,
     type: 'queue',
     ...sharedConfig
   },
-  fetchApplicationRequestMsgType: `${msgTypePrefix}.fetch.app.request`,
-  eligibilityAnswersMsgType: `${msgTypePrefix}.av.eligibility.details`,
-  projectDetailsMsgType: `${msgTypePrefix}.av.project.details`,
-  contactDetailsMsgType: `${msgTypePrefix}.av.contact.details`,
+  fetchCostRequestMsgType: `${msgTypePrefix}.fetch.cost.request`,
+  eligibilityAnswersMsgType: `${msgTypePrefix}.slurry.eligibility.details`,
+  projectDetailsMsgType: `${msgTypePrefix}.slurry.project.details`,
+  contactDetailsMsgType: `${msgTypePrefix}.slurry.contact.details`,
   msgSrc: 'ffc-grants-slurry-web'
 }
 

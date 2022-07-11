@@ -744,7 +744,7 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'cover',
           backUrl: 'project-type',
-          nextUrl: 'standard-costs',
+          nextUrl: 'standardised-cost',
           url: 'cover',
           preValidationKeys: [],
           ineligibleContent: {
@@ -925,29 +925,29 @@ const questionBank = {
           type: 'multi-input',
           allFields: [
             {
-            yarKey: 'planningAuthority',
-            type: 'text',
-            classes: 'govuk-input--width-10',
-            label: {
-              text: 'Planning authority',
-              classes: 'govuk-label'
-            },
-            validate: [
-              {
-                type: 'NOT_EMPTY',
-                error: 'Enter planning authority'
+              yarKey: 'planningAuthority',
+              type: 'text',
+              classes: 'govuk-input--width-10',
+              label: {
+                text: 'Planning authority',
+                classes: 'govuk-label'
               },
-              {
-                type: 'REGEX',
-                regex: NAME_ONLY_REGEX,
-                error: 'Planning authority must only contain letters, hyphens and spaces'
-              },
-              {
-                type: 'REGEX',
-                regex:CHARS_MAX_50,
-                error: 'Planning authority must be 50 characters or fewer'
-              }
-            ]},
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter planning authority'
+                },
+                {
+                  type: 'REGEX',
+                  regex: NAME_ONLY_REGEX,
+                  error: 'Planning authority must only contain letters, hyphens and spaces'
+                },
+                {
+                  type: 'REGEX',
+                  regex:CHARS_MAX_50,
+                  error: 'Planning authority must be 50 characters or fewer'
+                }
+              ]},
             {
               yarKey: 'planningReferenceNumber',
               type: 'text',
@@ -1191,7 +1191,7 @@ const questionBank = {
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
-            messageContent:`<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
+            messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
             <div class="govuk-list govuk-list--bullet">
                   You can use:
                   <ul>

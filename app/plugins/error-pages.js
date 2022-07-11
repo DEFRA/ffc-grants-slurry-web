@@ -29,7 +29,7 @@ module.exports = {
             return h.view('400', response).code(statusCode).takeover()
           }
 
-          if (statusCode === 403) {
+          if (statusCode === 403 || response.output.payload.message.includes('support ID')) {
             return h.view('403', response).code(statusCode).takeover()
           }
           // The return the `500` view
