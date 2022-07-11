@@ -11,11 +11,11 @@ module.exports = {
         const response = request.response
 
         if (response.isBoom) {
+          console.log(response.message,'LLLLLLLLLLLLLLLLLOPOPOPOPOP')
           // An error was raised during
           // processing the request
           const statusCode = response.output.statusCode
           if (statusCode === 404) {
-            console.log(response.message,'LLLLLLLLLLLLLLLLLOPOPOPOPOP')
             return h.view('404', response).code(statusCode).takeover()
           }
           const err = {
