@@ -15,6 +15,7 @@ module.exports = {
           // processing the request
           const statusCode = response.output.statusCode
           if (statusCode === 404) {
+            console.log(response.message,'LLLLLLLLLLLLLLLLLOPOPOPOPOP')
             return h.view('404', response).code(statusCode).takeover()
           }
           const err = {
@@ -29,7 +30,7 @@ module.exports = {
             return h.view('400', response).code(statusCode).takeover()
           }
 
-          if (statusCode === 403 || response.output.payload.message.includes('support ID')) {
+          if (statusCode === 403 || response.message.includes('support ID')) {
             return h.view('403', response).code(statusCode).takeover()
           }
           // The return the `500` view
