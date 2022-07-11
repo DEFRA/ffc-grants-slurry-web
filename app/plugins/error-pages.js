@@ -11,7 +11,8 @@ module.exports = {
         const response = request.response
 
         if (response.isBoom) {
-          console.log(response.message,'LLLLLLLLLLLLLLLLLOPOPOPOPOP')
+          console.log(response.message, 'LLLLLLLLLLLLLLLLLOPOPOPOPOP')
+          console.log(response,'RRRR')
           // An error was raised during
           // processing the request
           const statusCode = response.output.statusCode
