@@ -20,9 +20,32 @@ describe('Standardised Cost test', () => {
             url: `${global.__URLPREFIX__}/standardised-cost`
         }
 
-        // getStandardisedCosts.mockResolvedValue({})
+        const response = await global.__SERVER__.inject(options)
+        expect(response.statusCode).toBe(200)
+    })
+
+    test('GET /standardised-cost route causes error page', async () => {
+        const options = {
+            method: 'GET',
+            url: `${global.__URLPREFIX__}/standardised-cost`
+        }
+
+        getStandardisedCosts.mockRejectedValue('hello')
 
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
     })
+
+    test('POST /standardised-cost route returns next page', async () => {
+        const options = {
+            method: 'POST',
+            url: `${global.__URLPREFIX__}/standardised-cost`,
+            headers: { cookie: 'crumb=' + crumbToken },
+            payload: { applying: '', crumb: crumbToken }
+        }
+
+        const response = await global.__SERVER__.inject(options)
+        expect(response.statusCode).toBe(302)
+    })
+
 })
