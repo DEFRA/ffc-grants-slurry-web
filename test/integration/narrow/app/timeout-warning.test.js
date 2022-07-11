@@ -105,6 +105,24 @@ describe('Timeout Warning', () => {
     expect(new TimeoutWarning(mockModule).countIdleTime()).toBe(undefined)
   })
 
+  it('test TimeoutWarning.openDialog()', () => {
+    jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
+      classList: {
+        add: (addParam) => null
+      },
+      setAttribute: (paramA, paramB) => {}
+    }))
+
+    mockModule = {
+      ...mockModule,
+      showModal: jest.fn(() => {})
+    }
+
+    const result = new TimeoutWarning(mockModule)
+    expect(result.openDialog()).toBe(undefined)
+    result.clearTimers()
+  })
+
   it('test TimeoutWarning.saveLastFocusedEl()', () => {
     jest.spyOn(document, 'querySelector').mockImplementation((param) => ('mock-dqs'))
 
