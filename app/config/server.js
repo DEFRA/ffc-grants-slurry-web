@@ -59,7 +59,6 @@ const result = schema.validate(config, {
   abortEarly: false
 })
 
-console.log('heres the server config: ', config)
 // Throw if config is invalid
 if (result.error) {
   throw new Error(`The server config is invalid. ${result.error.message}`)
