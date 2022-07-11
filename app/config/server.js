@@ -60,7 +60,6 @@ const result = schema.validate(config, {
 })
 
 console.log('heres the server config: ', config)
-console.log('process env environmentCode: ', process.env.ENVIRONMENT_CODE)
 // Throw if config is invalid
 if (result.error) {
   throw new Error(`The server config is invalid. ${result.error.message}`)
