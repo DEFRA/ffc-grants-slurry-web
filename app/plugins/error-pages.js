@@ -11,6 +11,8 @@ module.exports = {
         const response = request.response
 
         if (response.isBoom) {
+          console.log(response.message, 'LLLLLLLLLLLLLLLLLOPOPOPOPOP')
+          console.log(response,'RRRR')
           // An error was raised during
           // processing the request
           const statusCode = response.output.statusCode
@@ -29,7 +31,7 @@ module.exports = {
             return h.view('400', response).code(statusCode).takeover()
           }
 
-          if (statusCode === 403 || response.output.payload.message.includes('support ID')) {
+          if (statusCode === 403 || response.message.includes('support ID')) {
             return h.view('403', response).code(statusCode).takeover()
           }
           // The return the `500` view
