@@ -106,6 +106,14 @@ describe('Timeout Warning', () => {
   })
 
   it('test TimeoutWarning.openDialog()', () => {
+    mockModule = {
+      ...mockModule,
+      open: 'mock-module-open'
+    }
+    expect(new TimeoutWarning(mockModule).openDialog()).toBe(undefined)
+
+    mockModule = origMockModule
+
     jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
       classList: {
         add: (addParam) => null
