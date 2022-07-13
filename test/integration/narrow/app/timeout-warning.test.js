@@ -106,6 +106,14 @@ describe('Timeout Warning', () => {
   })
 
   it('test TimeoutWarning.openDialog()', () => {
+    mockModule = {
+      ...mockModule,
+      open: 'mock-module-open'
+    }
+    expect(new TimeoutWarning(mockModule).openDialog()).toBe(undefined)
+
+    mockModule = origMockModule
+
     jest.spyOn(document, 'querySelector').mockImplementation((param) => ({
       classList: {
         add: (addParam) => null
@@ -121,6 +129,22 @@ describe('Timeout Warning', () => {
     const result = new TimeoutWarning(mockModule)
     expect(result.openDialog()).toBe(undefined)
     result.clearTimers()
+  })
+
+  it('test TimeoutWarning.startUiCountdown()', () => {
+    global.navigator.userAgent = ''
+
+    mockModule = {
+      ...mockModule,
+      getAttribute: jest.fn((param) => 1)
+    }
+
+    const result = new TimeoutWarning(mockModule)
+    expect(result.startUiCountdown()).toBe(undefined)
+    result.clearTimers()
+
+    global.navigator = dom.window.navigator
+    mockModule = origMockModule
   })
 
   it('test TimeoutWarning.saveLastFocusedEl()', () => {
