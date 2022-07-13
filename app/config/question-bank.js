@@ -979,7 +979,7 @@ const questionBank = {
           order: 152,
           url: 'grid-reference',
           backUrl: 'planning-permission-evidence',
-          nextUrl: 'business-details',
+          nextUrl: 'planning-permission-summary',
           title: 'What is the OS grid reference for your slurry store?',
           hint: {
             text: 'Enter OS grid reference number, for example AB12478975'
@@ -996,7 +996,7 @@ const questionBank = {
           type: 'multi-input',
           allFields: [
             {
-              yarKey: 'gridReference',
+              yarKey: 'gridReferenceNumber',
               type: 'text',
               classes: 'govuk-input--width-10',
               label: {
@@ -1006,12 +1006,12 @@ const questionBank = {
               validate: [
                 {
                   type: 'NOT_EMPTY',
-                  error: 'Enter planning authority'
+                  error: 'Enter OS Grid reference'
                 },
                 {
                   type: 'REGEX',
                   regex: LETTERS_AND_NUMBERS_REGEX,
-                  error: 'First two characters should be letterFollowing eight characters must be numbers'
+                  error: 'First two characters should be letter following eight characters must be numbers'
                 },
                 {
                   type: 'REGEX',
@@ -1020,7 +1020,71 @@ const questionBank = {
                 }
               ]
             }],
-          yarKey: 'GridReference'
+          yarKey: 'gridReference'
+        },
+        {
+          key: 'planning-permission-summary',
+          order: 153,
+          title: 'Check your answers before getting your results',
+          pageTitle: 'planning-permission-summary',
+          url: 'planning-permission-summary',
+          baseUrl: 'planning-permission-summary',
+          backUrl: 'grid-reference',
+          nextUrl: 'result-page',
+          preValidationKeys: [],
+          eliminationAnswerKeys: '',
+          ineligibleContent: {},
+          pageData: {
+            planningPermissionLink: 'planning-permission',
+            planningPermissionEvidenceLink: 'planning-permission-evidence',
+            gridReferenceLink: 'grid-reference'
+          },
+          fundingPriorities: '',
+          type: '',
+          minAnswerCount: 1,
+          answers: []
+        },
+        {
+          key: 'result-page',
+          order: 156,
+          title: 'Check your answers before getting your results',
+          url: 'result-page',
+          baseUrl: 'result-page',
+          backUrl: 'planning-permission-summary',
+          nextUrl: 'business-details',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `Any planning permission must be in place by 31 December 2023. 
+                      You must have applied for planning permission before you submit a full application.`
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select your project planning permission'
+            }
+          ],
+          answers: [
+            {
+              key: 'planning-permission-A1',
+              value: 'Approved'
+            },
+            {
+              key: 'planning-permission-A2',
+              value: 'Applied for but not yet approved'
+            },
+            {
+              key: 'planning-permission-A3',
+              value: 'Not yet applied for but expected to be in place by 31 December 2023',
+              redirectUrl: 'planning-permission-condition'
+            }
+          ],
+          yarKey: 'resultPage'
         },
         {
           key: 'project-cost',
@@ -1350,7 +1414,7 @@ const questionBank = {
           pageTitle: '',
           url: 'business-details',
           baseUrl: 'business-details',
-          backUrl: 'environmental-impact',
+          backUrl: 'result-page',
           nextUrl: 'applying',
           eliminationAnswerKeys: '',
           ineligibleContent: {},
