@@ -1,13 +1,10 @@
-const { getStandardisedCosts }  = require('../messaging/application')
-
-
+const { getStandardisedCosts } = require('../messaging/application')
 const urlPrefix = require('../config/server').urlPrefix
-
 const viewTemplate = 'standardised-cost'
 const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/standard-costs`
 
-function createModel(data, _request) {
+function createModel (data, _request) {
   const previousPath = `${urlPrefix}/cover`
 
   return {
@@ -30,11 +27,9 @@ module.exports = [{
       console.log('Sending session message .....')
 
       const result = await getStandardisedCosts(request.yar.id)
-      
-      console.log(result, '[STANDARDISED COST REQUEST SENT]')
+      console.log(result.desirability, '[STANDARDISED COST REQUEST SENT]')
 
-      return h.view(viewTemplate, createModel({ value: '12345' }, request))
-
+      return h.view(viewTemplate, createModel({ catagories: result.desirability.catagories }, request))
     } catch (error) {
       request.log(error)
     }
