@@ -33,7 +33,10 @@ module.exports = [{
       
       console.log(result, '[STANDARDISED COST REQUEST SENT]')
 
-      return h.view(viewTemplate, createModel({ value: '12345' }, request))
+      if(result.costData == 'success'){
+
+        return h.view(viewTemplate, createModel({ value: '12345' }, request))
+      }
 
     } catch (error) {
       request.log(error)
