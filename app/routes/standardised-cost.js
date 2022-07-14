@@ -35,6 +35,8 @@ module.exports = [{
 
       if(result.costData == 'success'){
 
+        console.log('[PAGE SUCCESSFUL]')
+
         return h.view(viewTemplate, createModel({ value: '12345' }, request))
       }
 
