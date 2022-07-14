@@ -6,6 +6,10 @@ const { getStandardisedCosts } = require('../../../../app/messaging/application'
 describe('Standardised Cost test', () => {
     const varList = {  }
 
+    beforeEach(() => {
+        jest.resetAllMocks()
+    })
+
     jest.mock('../../../../app/helpers/session', () => ({
         setYarValue: (request, key, value) => null,
         getYarValue: (request, key) => {
