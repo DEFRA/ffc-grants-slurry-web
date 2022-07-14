@@ -7,7 +7,7 @@ describe('Standardised Cost test', () => {
     const varList = {  }
 
     beforeEach(() => {
-        jest.resetAllMocks()
+        jest.clearAllMocks()
     })
 
     jest.mock('../../../../app/helpers/session', () => ({
