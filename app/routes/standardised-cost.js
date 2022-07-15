@@ -27,9 +27,16 @@ module.exports = [{
       console.log('Sending session message .....')
 
       const result = await getStandardisedCosts(request.yar.id)
+      
       console.log(result.desirability, '[STANDARDISED COST REQUEST SENT]')
 
-      return h.view(viewTemplate, createModel({ catagories: result.desirability.catagories }, request))
+      if(result.costData == 'success'){
+
+        console.log('[PAGE SUCCESSFUL]')
+
+        return h.view(viewTemplate, createModel({ catagories: result.desirability.catagories }, request))
+      }
+
     } catch (error) {
       request.log(error)
     }
