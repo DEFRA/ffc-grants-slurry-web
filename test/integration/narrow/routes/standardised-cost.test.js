@@ -6,6 +6,10 @@ const { getStandardisedCosts } = require('../../../../app/messaging/application'
 describe('Standardised Cost test', () => {
     const varList = {  }
 
+    beforeEach(() => {
+        jest.clearAllMocks()
+    })
+
     jest.mock('../../../../app/helpers/session', () => ({
         setYarValue: (request, key, value) => null,
         getYarValue: (request, key) => {
@@ -14,11 +18,30 @@ describe('Standardised Cost test', () => {
         }
     }))
 
-    test('GET /standardised-cost route returns 200', async () => {
+    test('GET /standardised-cost route returns 200 if costData = success', async () => {
         const options = {
             method: 'GET',
             url: `${global.__URLPREFIX__}/standardised-cost`
         }
+
+        getStandardisedCosts.mockResolvedValue({
+            costData: 'success'
+        })
+
+
+        const response = await global.__SERVER__.inject(options)
+        expect(response.statusCode).toBe(200)
+    })
+    
+    test('GET /standardised-cost route returns 500 if costData =/= success', async () => {
+        const options = {
+            method: 'GET',
+            url: `${global.__URLPREFIX__}/standardised-cost`
+        }
+
+        getStandardisedCosts.mockResolvedValue({
+            costData: 'fail'
+        })
 
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
