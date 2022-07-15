@@ -25,7 +25,6 @@
         
         <div>
         <h2 class="govuk-heading-m check-detail-heading">Your evidence details</h2>
-        <a class="check-detail-change" title="Change b" href="{{planningPermissionLink}}">Change<span class="govuk-visually-hidden">Change your planning permission</span></a>
         <hr/>
         </div>
     
@@ -37,6 +36,15 @@
                 },
                 value: {
                 text:  planningPermission
+                },
+                actions: {
+                    items: [
+                    {
+                        href: planningPermissionLink,
+                        text: "Change",
+                        visuallyHiddenText: "planning permission"
+                    }
+                    ]
                 }
             },
             {
@@ -45,6 +53,15 @@
                 },
                 value: {
                 text: gridReference
+                },
+                actions: {
+                    items: [
+                    {
+                        href: gridReferenceLink,
+                        text: "Change",
+                        visuallyHiddenText: "grid reference"
+                    }
+                    ]
                 }
             }
             ]
