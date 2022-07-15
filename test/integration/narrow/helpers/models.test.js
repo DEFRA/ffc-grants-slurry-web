@@ -57,6 +57,7 @@ describe('Models', () => {
       key: 'mock_key',
       title: undefined,
       backUrl: undefined,
+      hint: undefined,
       items: {
         classes: 'govuk-fieldset__legend--l',
         id: undefined,
@@ -90,6 +91,7 @@ describe('Models', () => {
         iconFallbackText: 'Warning'
       },
       reachedCheckDetails: false,
+      reachedEvidenceSummary: false,
       diaplaySecondryBtn: false
     })
   })
