@@ -27,44 +27,47 @@
         <h2 class="govuk-heading-m check-detail-heading">Your evidence details</h2>
         <hr/>
         </div>
+
+        {% set tableResult = [
+                {
+                    key: {
+                    text: "Planning permission"
+                    },
+                    value: {
+                    text:  planningPermission
+                    },
+                    actions: {
+                        items: [
+                        {
+                            href: planningPermissionLink,
+                            text: "Change",
+                            visuallyHiddenText: "planning permission"
+                        }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                    text: "OS grid reference"
+                    },
+                    value: {
+                    text: gridReference
+                    },
+                    actions: {
+                        items: [
+                        {
+                            href: gridReferenceLink,
+                            text: "Change",
+                            visuallyHiddenText: "grid reference"
+                        }
+                        ]
+                    }
+                }
+            ]
+        %}
     
         {{ govukSummaryList({
-            rows: [
-            {
-                key: {
-                text: "Planning permission"
-                },
-                value: {
-                text:  planningPermission
-                },
-                actions: {
-                    items: [
-                    {
-                        href: planningPermissionLink,
-                        text: "Change",
-                        visuallyHiddenText: "planning permission"
-                    }
-                    ]
-                }
-            },
-            {
-                key: {
-                text: "OS grid reference"
-                },
-                value: {
-                text: gridReference
-                },
-                actions: {
-                    items: [
-                    {
-                        href: gridReferenceLink,
-                        text: "Change",
-                        visuallyHiddenText: "grid reference"
-                    }
-                    ]
-                }
-            }
-            ]
+            rows: tableResult
         })
         }}
 
