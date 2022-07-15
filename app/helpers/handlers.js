@@ -87,6 +87,19 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
   })
 }
 
+const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
+  const planningPermission = getYarValue(request, 'planningPermission')
+  const gridReference = getYarValue(request, 'gridReference').gridReferenceNumber
+
+  return ({
+    ...question.pageData,
+    backUrl,
+    nextUrl,
+    planningPermission,
+    gridReference
+  })
+}
+
 const getDataFromYarValue = (request, yarKey, type) => {
   let data = getYarValue(request, yarKey) || null
   if (type === 'multi-answer' && !!data) {
@@ -207,6 +220,9 @@ const getPage = async (question, request, h) => {
   switch (url) {
     case 'check-details': {
       return h.view('check-details', getCheckDetailsModel(request, question, backUrl, nextUrl))
+    }
+    case 'planning-permission-summary': {
+      return h.view('evidence-summary', getEvidenceSummaryModel(request, question, backUrl, nextUrl))
     }
     case 'score':
     case 'business-details':

@@ -25,7 +25,7 @@
         
         <div>
         <h2 class="govuk-heading-m check-detail-heading">Your evidence details</h2>
-        {# <a class="check-detail-change" title="Change b" href="{{planningPermissionLink}}">Change<span class="govuk-visually-hidden">Change your planning permission</span></a> #}
+        <a class="check-detail-change" title="Change b" href="{{planningPermissionLink}}">Change<span class="govuk-visually-hidden">Change your planning permission</span></a>
         <hr/>
         </div>
     
@@ -36,7 +36,7 @@
                 text: "Planning permission"
                 },
                 value: {
-                text:  planningPermissionEvidence.planningAuthority
+                text:  planningPermission
                 }
             },
             {
@@ -44,7 +44,7 @@
                 text: "OS grid reference"
                 },
                 value: {
-                text: planningPermissionEvidence.planningReferenceNumber
+                text: gridReference
                 }
             }
             ]
