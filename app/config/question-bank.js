@@ -499,13 +499,13 @@ const questionBank = {
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
                 `,
-                items: [],
+                items: []
               }]
             }],
             details: {
               summaryText: 'What is slurry?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
-            },
+            }
           },
           validate: [
             {
@@ -577,7 +577,7 @@ const questionBank = {
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
-            },
+            }
           },
           validate: [
             {
@@ -706,7 +706,7 @@ const questionBank = {
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
-            },
+            }
           },
           validate: [
             {
@@ -944,10 +944,11 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex:CHARS_MAX_50,
+                  regex: CHARS_MAX_50,
                   error: 'Planning authority must be 50 characters or fewer'
                 }
-              ]},
+              ]
+            },
             {
               yarKey: 'planningReferenceNumber',
               type: 'text',
@@ -971,7 +972,8 @@ const questionBank = {
                   regex: PLANNING_REFERENCE_NUMBER_REGEX,
                   error: 'Planning reference number must only include letters, numbers and /'
                 }
-              ]}],
+              ]
+            }],
           yarKey: 'PlanningPermissionEvidence'
         },
         {
@@ -1015,7 +1017,7 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex:  TWO_NUMBERS_EIGHT_CHARS,
+                  regex: TWO_NUMBERS_EIGHT_CHARS,
                   error: 'OS Grid Reference must be two letters followed by 8 digits'
                 }
               ]
