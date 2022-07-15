@@ -88,6 +88,8 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
 }
 
 const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
+  setYarValue(request, 'reachedEvidenceSummary', true)
+
   const planningPermission = getYarValue(request, 'planningPermission')
   const gridReference = getYarValue(request, 'gridReference').gridReferenceNumber
 
