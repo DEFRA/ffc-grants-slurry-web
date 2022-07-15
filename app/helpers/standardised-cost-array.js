@@ -1,35 +1,40 @@
-function formatAnswerArray(object, key, objectKey) {
+function formatAnswerArray(object, key, objectKey){
 
     let returnArray = []
 
-    for (let i=0; i <= object.data.desirability.catagories.length; i++){
+    if (object && object.data){
 
-        if (object.data.desirability.catagories[i].key == objectKey) {
+        for (let i=0; i <= object.data.desirability.catagories.length; i++){
 
-            let tempObject
+            if (object.data.desirability.catagories[i].key == objectKey) {
 
-            for (let j=0; j <= object.data.desirability.catagories[i].items.length - 1; j++) {
+                let tempObject
 
-                tempObject = {
-                    key: key + '-A' + (j+1),
-                    value: object.data.desirability.catagories[i].items[j].item,
-                    hint: {
-                        text: 'Grant amount: £' + object.data.desirability.catagories[i].items[j].amount + ' ' + object.data.desirability.catagories[i].items[j].unit
+                for (let j=0; j <= object.data.desirability.catagories[i].items.length - 1; j++) {
+
+                    tempObject = {
+                        key: key + '-A' + (j+1),
+                        value: object.data.desirability.catagories[i].items[j].item,
+                        hint: {
+                            text: 'Grant amount: £' + object.data.desirability.catagories[i].items[j].amount + ' ' + object.data.desirability.catagories[i].items[j].unit
+                        }
                     }
+
+                    returnArray.push(tempObject)
+
+                    console.log(returnArray)
+
                 }
-
-                returnArray.push(tempObject)
-
-                console.log(returnArray)
-
+                
+                break
             }
-            
-            break
-        }
 
+        }
+        
     }
-    
+
     return returnArray
+
 }
 
 module.exports = {

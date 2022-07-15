@@ -18,6 +18,8 @@ const {
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
 
+const {formatAnswerArray} = require('../helpers/standardised-cost-array')
+
 /**
  * ----------------------------------------------------------------
  * list of yarKeys not bound to an answer, calculated separately
@@ -793,6 +795,7 @@ const questionBank = {
           ],
           yarKey: 'cover'
         },
+        // Calls standardised cost page
         {
           key: 'standard-costs',
           order: 130,
