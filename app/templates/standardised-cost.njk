@@ -21,60 +21,43 @@
   <div class="govuk-body">
     <div class="govuk-grid-row">
       <div class="govuk-grid-column-two-thirds">
-        <h1 class="govuk-heading-xl">Standardised Costs</h1>
-        <p class="govuk-!-font-size-24">Based on your answers, your project’s score is:</p>
-        <div class="govuk-inset-text">
-          <span class="govuk-heading-m"></span>
-          <p>This means your project may be successful.</p>
-        </div>
-
-        <div class="scoring-block">
-          <dl class="govuk-body govuk-!-margin-bottom-0">
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key govuk-!-font-size-16">
-                Strong
-              </dt>
-              <dd class="govuk-summary-list__value govuk-!-font-size-16">
-                Based on your answers, a grant application is likely to be successful. 
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key govuk-!-font-size-16">
-                Average
-              </dt>
-              <dd class="govuk-summary-list__value govuk-!-font-size-16">
-              Based on your answers, a grant application might be successful. 
-              </dd>
-            </div>
-            <div class="govuk-summary-list__row">
-              <dt class="scoring-block-key govuk-!-font-size-16">
-                Weak
-              </dt>
-              <dd class="scoring-block-value govuk-!-font-size-16">
-                Based on your answers, a grant application is unlikely to be successful.  
-              </dd>
-            </div>
-          </dl>
-        </div>
-        <br/>
+        <h1 class="govuk-heading-l">Grant amounts for eligible items</h1>
+        <p class="govuk-body">The Slurry Infrastructure grant uses standardised costs for the eligible items. The grant is 50% of the standardised cost.</p>
+        <p class="govuk-body">At full application stage, you can choose between the standard grant for an item or you can submit 3 quotes.</p>
+        <p class="govuk-body">If you submit quotes, your grant amount is based on 50% of the cheapest quote.</p>
+        
         {{ govukWarningText({
-          text: "The likelihood of a full application being successful will also depend on the number and value of applications we receive.",
+          text: "Items may cost more than the standardised cost.",
           iconFallbackText: "Warning"
         }) }}
-        <p class="govuk-body">Value for money will be assessed alongside the funding priorities at full application stage and this may impact your overall project score.</p>
-      </div>
-    </div>
-
-    <div class="govuk-grid-row">
-      <div class="govuk-grid-column-two-thirds">
-        <hr class= "govuk-!-margin-bottom-5"/>
-        <h2 class="govuk-heading-l">Your answers</h2>
-        <p class="govuk-body">You can go back to change scoring questions as many times as you like but you can only submit your details once.</p>
-
+        
+        <br/>
+        {% for catagory in catagories %}
+          <h2 class="govuk-heading-m">{{catagory.title}}</h2>
+          <table class="govuk-table govuk-body govuk-!-font-size-16">
+            <thead class="govuk-table__head">
+              <tr class="govuk-table__row">
+                <th scope="col" class="govuk-table__header ">Items</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third">Grant amount</th>
+              </tr>
+            </thead>
+            <tbody class="govuk-table__body">
+              {% for item in catagory.items %}
+                <tr class="govuk-table__row"> 
+                  <th scope="row" class="govuk-table__header">
+                    {{item.item}} 
+                  </th>
+                  <td class="govuk-table__cell">
+                    £{{item.amount}} {{item.unit}}
+                  </td>
+                </tr> 
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endfor %}
 <div class="govuk-grid-row">
     <h2 class="govuk-heading-m">Next steps</h2>
-    <p class="govuk-body">Next, add your business and contact details and submit them to the RPA (you should only do this once).</p>
-    <p>You’ll get an email with your score and answers, and a reference number.</p>
+    <p class="govuk-body">Next, select the items you want for your project.</p>
 
 <br/><br/>
     <form method="POST" action="{{ formActionPage }}" autocomplete="off" novalidate>
