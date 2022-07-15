@@ -29,6 +29,45 @@
         </div>
 
         {% set tableResult = [
+            {
+                key: {
+                text: "Planning permission"
+                },
+                value: {
+                text:  planningPermission
+                },
+                actions: {
+                    items: [
+                    {
+                        href: planningPermissionLink,
+                        text: "Change",
+                        visuallyHiddenText: "planning permission"
+                    }
+                    ]
+                }
+            },
+            {
+                key: {
+                text: "OS grid reference"
+                },
+                value: {
+                text: gridReference
+                },
+                actions: {
+                    items: [
+                    {
+                        href: gridReferenceLink,
+                        text: "Change",
+                        visuallyHiddenText: "grid reference"
+                    }
+                    ]
+                }
+            }
+        ]
+        %}
+
+        {% if evidence %}
+            {% set tableResult = [
                 {
                     key: {
                     text: "Planning permission"
@@ -42,6 +81,40 @@
                             href: planningPermissionLink,
                             text: "Change",
                             visuallyHiddenText: "planning permission"
+                        }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                    text: "Planning authority"
+                    },
+                    value: {
+                    text:  evidence.planningAuthority
+                    },
+                    actions: {
+                        items: [
+                        {
+                            href: planningPermissionLink,
+                            text: "Change",
+                            visuallyHiddenText: "planning authority"
+                        }
+                        ]
+                    }
+                },
+                {
+                    key: {
+                    text: "Planning reference number"
+                    },
+                    value: {
+                    text:  evidence.planningReferenceNumber
+                    },
+                    actions: {
+                        items: [
+                        {
+                            href: planningPermissionLink,
+                            text: "Change",
+                            visuallyHiddenText: "planning reference number"
                         }
                         ]
                     }
@@ -63,8 +136,10 @@
                         ]
                     }
                 }
+
             ]
-        %}
+            %}
+        {% endif %}
     
         {{ govukSummaryList({
             rows: tableResult
