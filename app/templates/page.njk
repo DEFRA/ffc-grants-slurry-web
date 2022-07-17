@@ -93,6 +93,9 @@
             {% if key === 'score' %}
               {% set buttonText = 'Get your score' %}
               {% set diaplaySecondryBtn = false %}
+            {% elif key === 'planning-permission-summary' %}
+              {% set buttonText = 'Get your results' %}
+              {% set diaplaySecondryBtn = false %}
             {% elif reachedCheckDetails %}
               {% set diaplaySecondryBtn = true %}
               {% set secButtonText = 'Back to details' %}
