@@ -37,6 +37,18 @@ describe('Page: /business-details', () => {
     expect(postResponse.payload).toContain('Enter planning reference number')
   })
 
+  it('user came from \'PLANNING PERMISSION SUMMARY\' page -> display <Back to evidence summary> button', async () => {
+    varList.reachedEvidenceSummary = true
+
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/planning-permission`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('Back to evidence summary')
+  })
+
   it('should validate planning authority - maximum characters is 50', async () => {
     const postOptions = {
       method: 'POST',

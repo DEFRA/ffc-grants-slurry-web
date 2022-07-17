@@ -36,6 +36,18 @@ describe('Page: /grid-reference', () => {
     expect(postResponse.payload).toContain('Enter OS Grid reference')
   })
 
+  it('user came from \'PLANNING PERMISSION SUMMARY\' page -> display <Back to evidence summary> button', async () => {
+    varList.reachedEvidenceSummary = true
+
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/planning-permission`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('Back to evidence summary')
+  })
+
   it('should validate OS grid reference number - OS Grid Reference must be two letters followed by 8 digits', async () => {
     const postOptions = {
       method: 'POST',
