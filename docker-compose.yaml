@@ -31,6 +31,6 @@ services:
       REDIS_PARTITION: ffc-grants-slurry-web
       REDIS_PASSWORD: ""
       SESSION_CACHE_TTL: 1200000
-      SURVEY_LINK: https://defragroup.eu.qualtrics.com/jfe/preview/SV_9EwLLuCwWGJMz8a?Q_CHL=preview&Q_SurveyVersionID=current
+      SURVEY_LINK: https://defragroup.eu.qualtrics.com/jfe/preview/SV_8elUWS7UgbUh3iC?Q_CHL=preview&Q_SurveyVersionID=current
       COST_REQUEST_QUEUE_ADDRESS: ${COST_REQUEST_QUEUE_ADDRESS:-ffc-grants-slurry-cost-details-req}${MESSAGE_QUEUE_SUFFIX}
       COST_RESPONSE_QUEUE_ADDRESS: ${COST_RESPONSE_QUEUE_ADDRESS:-ffc-grants-slurry-cost-details-res}${MESSAGE_QUEUE_SUFFIX}
