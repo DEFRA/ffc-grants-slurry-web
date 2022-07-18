@@ -44,9 +44,9 @@
             <tbody class="govuk-table__body">
               {% for item in catagory.items %}
                 <tr class="govuk-table__row"> 
-                  <th scope="row" class="govuk-table__header">
+                  <td class="govuk-table__cell">
                     {{item.item}} 
-                  </th>
+                  </td>
                   <td class="govuk-table__cell">
                     £{{item.amount}} {{item.unit}}
                   </td>
@@ -58,6 +58,7 @@
 <div class="govuk-grid-row">
     <h2 class="govuk-heading-m">Next steps</h2>
     <p class="govuk-body">Next, select the items you want for your project.</p>
+</div>
 
 <br/><br/>
     <form method="POST" action="{{ formActionPage }}" autocomplete="off" novalidate>

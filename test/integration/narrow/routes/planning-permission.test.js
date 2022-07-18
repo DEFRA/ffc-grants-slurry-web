@@ -38,6 +38,19 @@ describe('Page: /planning-permission', () => {
     expect(postResponse.payload).toContain('Select your project planning permission')
   })
 
+  it('user came from \'PLANNING PERMISSION SUMMARY\' page -> DO NOT display <Back to evidence summary> button', async () => {
+    varList.reachedEvidenceSummary = true
+
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/planning-permission`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('Continue')
+    expect(response.payload).not.toContain('Back to evidence summary')
+  })
+
   it('user selects conditional option: \'Not yet applied for but expected to be in place by 31 December 2023\' -> display conditional page', async () => {
     const postOptions = {
       method: 'POST',

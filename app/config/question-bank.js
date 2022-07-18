@@ -501,13 +501,13 @@ const questionBank = {
                 para: `
                 This grant is for farmers currently using a system that produces slurry.
                 `,
-                items: [],
+                items: []
               }]
             }],
             details: {
               summaryText: 'What is slurry?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
-            },
+            }
           },
           validate: [
             {
@@ -579,7 +579,7 @@ const questionBank = {
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
-            },
+            }
           },
           validate: [
             {
@@ -708,7 +708,7 @@ const questionBank = {
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
               html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
-            },
+            }
           },
           validate: [
             {
@@ -797,54 +797,21 @@ const questionBank = {
         },
         // Calls standardised cost page
         {
-          key: 'standard-costs',
-          order: 130,
-          title: 'What eligible items does your project need?',
-          pageTitle: '',
-          hint: {
-            html: `
-            Storage facilities will only be funded as part of a bigger project and cannot be more than 50% of total grant funding.<br/><br/>
-            Select all the items your project needs
-          `
-          },
-          url: 'standard-costs',
-          baseUrl: 'standard-costs',
-          backUrl: 'cover',
-          nextUrl: 'project-cost',
-          fundingPriorities: '',
+          key: 'potential-amount',
+          order: 180,
+          url: 'potential-amount',
+          backUrl: 'standardised-cost',
+          nextUrl: 'remaining-costs',
           preValidationKeys: [],
-          type: 'multi-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select all the items your project needs'
+          maybeEligible: true,
+          maybeEligibleContent: {
+            messageHeader: 'Potential grant funding',
+            messageContent: 'You may be able to apply for a grant of up to £{{_calculatedGrant_}}, based on the estimated cost of £{{_projectCost_}}.',
+            warning: {
+              text: 'There’s no guarantee the project will receive a grant.',
+              iconFallbackText: 'Warning'
             }
-          ],
-          answers: [
-            {
-              key: 'project-items-A1',
-              value: 'Constructing or improving buildings for processing',
-              hint: {
-                text: 'For example, a new building for cheese making, extending an existing building to install a new meat-cutting and packing line'
-              }
-            },
-            {
-              key: 'project-items-A2',
-              value: 'Processing equipment or machinery',
-              hint: {
-                text: 'For example, equipment and machinery for pasteurising and bottling milk, a meat cutting and packing line or vegetable washing and packing'
-              }
-            },
-            {
-              key: 'project-items-A3',
-              value: 'Retail facilities',
-              hint: {
-                text: 'For example, shops or display cabinets'
-              }
-            }
-          ],
-          yarKey: 'projectItems'
+          }
         },
         {
           key: 'planning-permission',
@@ -947,10 +914,11 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex:CHARS_MAX_50,
+                  regex: CHARS_MAX_50,
                   error: 'Planning authority must be 50 characters or fewer'
                 }
-              ]},
+              ]
+            },
             {
               yarKey: 'planningReferenceNumber',
               type: 'text',
@@ -974,7 +942,8 @@ const questionBank = {
                   regex: PLANNING_REFERENCE_NUMBER_REGEX,
                   error: 'Planning reference number must only include letters, numbers and /'
                 }
-              ]}],
+              ]
+            }],
           yarKey: 'PlanningPermissionEvidence'
         },
         {
@@ -1018,7 +987,7 @@ const questionBank = {
                 },
                 {
                   type: 'REGEX',
-                  regex:  TWO_NUMBERS_EIGHT_CHARS,
+                  regex: TWO_NUMBERS_EIGHT_CHARS,
                   error: 'OS Grid Reference must be two letters followed by 8 digits'
                 }
               ]
@@ -1055,132 +1024,26 @@ const questionBank = {
           baseUrl: 'result-page',
           backUrl: 'planning-permission-summary',
           nextUrl: 'business-details',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [{
-              heading: 'Eligibility',
-              content: [{
-                para: `Any planning permission must be in place by 31 December 2023. 
-                      You must have applied for planning permission before you submit a full application.`
-              }]
-            }]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select your project planning permission'
-            }
-          ],
-          answers: [
-            {
-              key: 'planning-permission-A1',
-              value: 'Approved'
-            },
-            {
-              key: 'planning-permission-A2',
-              value: 'Applied for but not yet approved'
-            },
-            {
-              key: 'planning-permission-A3',
-              value: 'Not yet applied for but expected to be in place by 31 December 2023',
-              redirectUrl: 'planning-permission-condition'
-            }
-          ],
-          yarKey: 'resultPage'
-        },
-        {
-          key: 'project-cost',
-          order: 170,
-          pageTitle: '',
-          url: 'project-cost',
-          baseUrl: 'project-cost',
-          backUrl: 'standard-costs',
-          nextUrl: 'potential-amount',
-          preValidationKeys: [],
-          classes: 'govuk-input--width-10',
-          id: 'projectCost',
-          name: 'projectCost',
-          prefix: { text: '£' },
-          type: 'input',
-          grantInfo: {
-            minGrant: 25000,
-            maxGrant: 300000,
-            grantPercentage: 40,
-            cappedGrant: true
-          },
-          label: {
-            text: 'What is the total estimated cost of the items?',
-            classes: 'govuk-label--l',
-            isPageHeading: true
-          },
-          hint: {
-            html: `
-              You can only apply for a grant of up to 40% of the estimated costs.
-              <br/>The minimum grant you can apply for this project is £25,000 (40% of £62,500).
-              <br/>The maximum grant is £300,000.
-              <br/><br/>Do not include VAT.
-              <br/><br/>Enter amount, for example 95,000`
-          },
-          eliminationAnswerKeys: '',
-          ineligibleContent: {
-            messageContent: 'You can only apply for a grant of up to 40% of the estimated costs.',
-            insertText: { text: 'The minimum grant you can apply for is £25,000 (40% of £62,500). The maximum grant is £300,000.' },
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          sidebar: {
-            values: [
-              {
-                heading: 'Selected items',
-                content: [{
-                  para: '',
-                  items: [],
-                  dependentAnswerExceptThese: ['storage-A2']
-                }]
-              }
-            ],
-            // dependentYarKeys: ['projectItems', 'storage'],
-            dependentQuestionKeys: ['project-items', 'storage']
-
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Enter the estimated cost for the items'
-            },
-            {
-              type: 'REGEX',
-              regex: CURRENCY_FORMAT,
-              error: 'Enter a whole number in correct format'
-            },
-            {
-              type: 'REGEX',
-              regex: CHARS_MAX_10,
-              error: 'Enter a whole number with a maximum of 10 digits'
-            }
-          ],
-          answers: [],
-          yarKey: 'projectCost'
-        },
-        {
-          key: 'potential-amount',
-          order: 180,
-          url: 'potential-amount',
-          backUrl: 'project-cost',
-          nextUrl: 'remaining-costs',
-          preValidationKeys: [],
           maybeEligible: true,
           maybeEligibleContent: {
-            messageHeader: 'Potential grant funding',
-            messageContent: 'You may be able to apply for a grant of up to £{{_calculatedGrant_}}, based on the estimated cost of £{{_projectCost_}}.',
+            messageHeader: 'Your results',
+            messageContent: `Based on your answers, your project is:
+            <div class="govuk-inset-text">
+              <span class="govuk-heading-m">Eligible to apply</span>
+              </div>
+              <p class='govuk-body'>RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</p>`,
             warning: {
-              text: 'There’s no guarantee the project will receive a grant.',
+              text: 'The likelihood of a full application being successful will also depend on the number and value of applications we receive.',
               iconFallbackText: 'Warning'
-            }
-          }
+            },
+            extraMessageContent: `
+            <h2 class="govuk-heading-m">Next steps</h2>
+            <p class="govuk-body">Next, add your business and contact details and submit them to the RPA (you should only do this once).
+            <br/><br/>
+            You’ll get an email with your answers and a reference number.</p>`
+          },
+          answers: [],
+          yarKey: 'resultPage'
         },
         {
           key: 'remaining-costs',
@@ -1251,162 +1114,6 @@ const questionBank = {
           ],
           yarKey: 'remainingCosts'
 
-        },
-        {
-          key: 'collaboration',
-          order: 200,
-          title: 'Will you work in partnership or collaborate with other farmers or producers?',
-          hint: {
-            text: 'For example, in a formal partnership or contract supply arrangement for raw materials'
-          },
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          pageTitle: '',
-          url: 'collaboration',
-          baseUrl: 'collaboration',
-          backUrl: 'future-customers',
-          nextUrl: 'environmental-impact',
-          score: {
-            isScore: true,
-            isDisplay: true,
-            title: 'Collaboration'
-          },
-          eliminationAnswerKeys: '',
-          preValidationKeys: [],
-          ineligibleContent: {
-            messageContent: '',
-            insertText: { text: '' },
-            messageLink: {
-              url: '',
-              title: ''
-            }
-          },
-          sidebar: {
-            values: [{
-              heading: 'Funding priorities',
-              content: [{
-                para: 'RPA wants to fund projects that:',
-                items: ['improve processing and supply chains', 'encourage collaboration and partnerships']
-              }]
-            }]
-          },
-          fundingPriorities: 'Improve processing and supply chains<br/><br/>Encourage collaboration and partnerships',
-          type: 'single-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select yes if you will be buying materials from other farmers'
-            }
-          ],
-          answers: [
-            {
-              key: 'collaboration-A1',
-              value: 'Yes'
-            },
-            {
-              key: 'collaboration-A2',
-              value: 'No'
-            }
-          ],
-          yarKey: 'collaboration'
-        },
-        {
-          key: 'environmental-impact',
-          order: 210,
-          title: 'How will the project improve the environment?',
-          pageTitle: '',
-          url: 'environmental-impact',
-          baseUrl: 'environmental-impact',
-          backUrl: 'collaboration',
-          nextUrl: 'business-details',
-          score: {
-            isScore: true,
-            isDisplay: true,
-            title: 'Environmental impact'
-          },
-          hint: {
-            text: 'Select all that apply'
-          },
-          eliminationAnswerKeys: '',
-          preValidationKeys: [],
-          sidebar: {
-            values: [{
-              heading: 'Funding priorities',
-              content: [{
-                para: 'RPA wants to fund projects that:',
-                items: ['improve the environment']
-              }]
-            }]
-          },
-          fundingPriorities: 'Improve the environment',
-          type: 'multi-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select all options that apply'
-            },
-            {
-              type: 'STANDALONE_ANSWER',
-              error: 'You cannot select that combination of options',
-              standaloneObject: {
-                questionKey: 'environmental-impact',
-                answerKey: 'environmental-impact-A7'
-              }
-            }
-          ],
-          answers: [
-            {
-              key: 'environmental-impact-A1',
-              value: 'Renewable energy',
-              hint: {
-                text: 'For example, majority of energy for the project is generated on site'
-              }
-            },
-            {
-              key: 'environmental-impact-A2',
-              value: 'Energy efficiency',
-              hint: {
-                text: 'For example, using variable speed motors or heat exchangers'
-              }
-            },
-            {
-              key: 'environmental-impact-A3',
-              value: 'Water efficiency',
-              hint: {
-                text: 'For example, majority of water for the project is harvested or recycled on site'
-              }
-            },
-            {
-              key: 'environmental-impact-A4',
-              value: 'Waste efficiency',
-              hint: {
-                text: 'For example, majority of project waste is recycled or reused instead of going to landfill'
-              }
-            },
-            {
-              key: 'environmental-impact-A5',
-              value: 'Sustainable packaging measures',
-              hint: {
-                text: 'For example, removing unnecessary packaging, replacing plastic packaging'
-              }
-            },
-            {
-              key: 'environmental-impact-A6',
-              value: 'Reduce harmful emissions or pollutants',
-              hint: {
-                text: 'For example, reducing pollutants in waste water'
-              }
-            },
-            {
-              value: 'divider'
-            },
-            {
-              key: 'environmental-impact-A7',
-              value: 'My project will not improve the environment'
-            }
-          ],
-          yarKey: 'environmentalImpact'
         },
 
         /// ////// ***************** After Score  ************************************/////////////////////

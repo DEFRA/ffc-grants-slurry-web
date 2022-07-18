@@ -97,6 +97,18 @@ const showBackToDetailsButton = (key, request) => {
   }
 }
 
+const showBackToEvidenceSummaryButton = (key, request) => {
+  switch (key) {
+    case 'planning-permission':
+    case 'planning-permission-evidence':
+    case 'grid-reference': {
+      return !!getYarValue(request, 'reachedEvidenceSummary')
+    }
+    default:
+      return false
+  }
+}
+
 const getModel = (data, question, request, conditionalHtml = '') => {
   let { type, backUrl, key, backUrlObject, sidebar, title, hint, score, label, warning, warningCondition } = question
   const hasScore = !!getYarValue(request, 'current-score')
@@ -126,6 +138,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     sideBarText,
     ...(warningDetails ? ({ warning: warningDetails }) : {}),
     reachedCheckDetails: showBackToDetailsButton(key, request),
+    reachedEvidenceSummary: showBackToEvidenceSummaryButton(key, request),
     diaplaySecondryBtn: hasScore && score?.isDisplay
   }
 }
