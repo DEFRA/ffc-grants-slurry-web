@@ -2,9 +2,13 @@ function formatAnswerArray(object, key, objectKey){
 
     let returnArray = []
 
+    console.log('[IN HERE]')
+
     if (object && object.data){
 
         for (let i=0; i <= object.data.desirability.catagories.length; i++){
+
+            console.log('[FOR 1]')
 
             if (object.data.desirability.catagories[i].key == objectKey) {
 
@@ -12,9 +16,11 @@ function formatAnswerArray(object, key, objectKey){
 
                 for (let j=0; j <= object.data.desirability.catagories[i].items.length - 1; j++) {
 
+                    console.log('[FOR 2]')
+
                     tempObject = {
-                        key: key + '-A' + (j+1),
-                        value: object.data.desirability.catagories[i].items[j].item,
+                        value: key + '-A' + (j+1),
+                        text: object.data.desirability.catagories[i].items[j].item,
                         hint: {
                             text: 'Grant amount: £' + object.data.desirability.catagories[i].items[j].amount + ' ' + object.data.desirability.catagories[i].items[j].unit
                         }

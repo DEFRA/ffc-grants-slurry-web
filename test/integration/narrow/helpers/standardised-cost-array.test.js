@@ -194,57 +194,57 @@ describe('Standardised Cost Answers Array Function', () => {
 
         expect(response).toEqual([
             {
-                key: 'test-answers-A1',
-                value: 'Above-ground steel tank',
+                value: 'test-answers-A1',
+                text: 'Above-ground steel tank',
                 hint: {
                     text: 'Grant amount: £22 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A2',
-                value: 'Above-ground concrete tank',
+                value: 'test-answers-A2',
+                text: 'Above-ground concrete tank',
                 hint: {
                     text: 'Grant amount: £17 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A3',
-                value: 'Below-ground in-situ cast-reinforced concrete tank',
+                value: 'test-answers-A3',
+                text: 'Below-ground in-situ cast-reinforced concrete tank',
                 hint: {
                     text: 'Grant amount: £15 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A4',
-                value: 'Earth-bank lagoon (unlined)',
+                value: 'test-answers-A4',
+                text: 'Earth-bank lagoon (unlined)',
                 hint: {
                     text: 'Grant amount: £8 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A5',
-                value: 'Earth-bank lagoon (lined)',
+                value: 'test-answers-A5',
+                text: 'Earth-bank lagoon (lined)',
                 hint: {
                     text: 'Grant amount: £12 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A6',
-                value: 'Stores using pre-cast rectangular concrete panels',
+                value: 'test-answers-A6',
+                text: 'Stores using pre-cast rectangular concrete panels',
                 hint: {
                     text: 'Grant amount: £14 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A7',
-                value: 'Large-volume supported slurry bag',
+                value: 'test-answers-A7',
+                text: 'Large-volume supported slurry bag',
                 hint: {
                     text: 'Grant amount: £20 per cubic metre'
                 }
             },
             {
-                key: 'test-answers-A8',
-                value: 'Slatted-floor stores',
+                value: 'test-answers-A8',
+                text: 'Slatted-floor stores',
                 hint: {
                     text: 'Grant amount: £14 per cubic metre'
                 }

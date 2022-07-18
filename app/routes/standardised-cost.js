@@ -29,11 +29,11 @@ module.exports = [{
 
       const result = await getStandardisedCosts(request.yar.id)
 
-      console.log(result.desirability, '[RECEIVED COST]')
+      console.log(result.data.desirability, '[RECEIVED COST]')
       
       request.yar.set('standardisedCostObject', result)
 
-      return h.view(viewTemplate, createModel({ catagories: result.desirability.catagories }, request))
+      return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {
       request.log(error)
     }

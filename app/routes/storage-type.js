@@ -1,9 +1,10 @@
-
 const urlPrefix = require('../config/server').urlPrefix
 
 const viewTemplate = 'storage-type'
 const currentPath = `${urlPrefix}/${viewTemplate}`
-const nextPath = `${urlPrefix}/standard-costs`
+const nextPath = `${urlPrefix}/planning-permission`
+
+const { formatAnswerArray } = require('./../helpers/standardised-cost-array')
 
 function createModel(data, _request) {
     const previousPath = `${urlPrefix}/standardised-cost`
@@ -31,7 +32,9 @@ module.exports = [{
 
             const answersList = formatAnswerArray(standardisedCostObject, 'store-type', 'cat-storage')
 
-            return h.view(viewTemplate, createModel(answersList, request))
+            console.log('[ARRAY LIST FORM STANDARDISED COST]', answersList)
+
+            return h.view(viewTemplate, createModel({answers: { items: answersList}}, request))
         } catch (error) {
             request.log(error)
         }
