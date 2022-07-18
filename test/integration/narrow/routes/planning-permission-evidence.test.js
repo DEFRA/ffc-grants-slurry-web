@@ -42,7 +42,7 @@ describe('Page: /business-details', () => {
 
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/planning-permission`
+      url: `${global.__URLPREFIX__}/planning-permission-evidence`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
