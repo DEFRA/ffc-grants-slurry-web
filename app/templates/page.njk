@@ -85,18 +85,11 @@
           {% if warning %}
             {{ govukWarningText(warning) }}
           {% endif %}
-
           <div class="govuk-!-padding-top-5">
             {% set buttonText = 'Continue' %}
             {% set secButtonText = 'Back to score' %}
 
-            {% if key === 'score' %}
-              {% set buttonText = 'Get your score' %}
-              {% set diaplaySecondryBtn = false %}
-            {% elif key === 'planning-permission-summary' %}
-              {% set buttonText = 'Get your results' %}
-              {% set diaplaySecondryBtn = false %}
-            {% elif reachedCheckDetails %}
+            {% if reachedCheckDetails %}
               {% set diaplaySecondryBtn = true %}
               {% set secButtonText = 'Back to details' %}
             {% elif reachedEvidenceSummary %}
