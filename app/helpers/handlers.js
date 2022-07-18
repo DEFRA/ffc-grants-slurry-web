@@ -87,6 +87,32 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
   })
 }
 
+const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
+  setYarValue(request, 'reachedEvidenceSummary', true)
+
+  const planningPermission = getYarValue(request, 'planningPermission')
+  const gridReference = getYarValue(request, 'gridReference').gridReferenceNumber
+
+  const hasEvidence = !planningPermission.startsWith('Not yet')
+
+  return ({
+    ...question.pageData,
+    backUrl,
+    nextUrl,
+    planningPermission,
+    gridReference,
+    ...(hasEvidence
+      ? {
+          evidence: {
+            planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
+            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
+          }
+        }
+      : {}
+    )
+  })
+}
+
 const getDataFromYarValue = (request, yarKey, type) => {
   let data = getYarValue(request, yarKey) || null
   if (type === 'multi-answer' && !!data) {
@@ -208,6 +234,9 @@ const getPage = async (question, request, h) => {
     case 'check-details': {
       return h.view('check-details', getCheckDetailsModel(request, question, backUrl, nextUrl))
     }
+    case 'planning-permission-summary': {
+      return h.view('evidence-summary', getEvidenceSummaryModel(request, question, backUrl, nextUrl))
+    }
     case 'score':
     case 'business-details':
     case 'agent-details':
@@ -321,7 +350,7 @@ const showPostPage = (currentQuestion, request, h) => {
     setYarValue(request, 'remainingCost', remainingCost)
   }
 
-  return h.redirect(getUrl(dependantNextUrl, nextUrl, request, payload.secBtn))
+  return h.redirect(getUrl(dependantNextUrl, nextUrl, request, payload.secBtn, currentQuestion.url))
 }
 
 const getHandler = (question) => {

@@ -2,7 +2,7 @@ const { getStandardisedCosts } = require('../messaging/application')
 const urlPrefix = require('../config/server').urlPrefix
 const viewTemplate = 'standardised-cost'
 const currentPath = `${urlPrefix}/${viewTemplate}`
-const nextPath = `${urlPrefix}/standard-costs`
+const nextPath = `${urlPrefix}/potential-amount`
 
 function createModel (data, _request) {
   const previousPath = `${urlPrefix}/cover`
