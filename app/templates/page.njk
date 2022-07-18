@@ -89,7 +89,9 @@
             {% set buttonText = 'Continue' %}
             {% set secButtonText = 'Back to score' %}
 
-            {% if reachedCheckDetails %}
+            {% if key === 'planning-permission' %}
+              {% set diaplaySecondryBtn = false %}
+            {% elif reachedCheckDetails %}
               {% set diaplaySecondryBtn = true %}
               {% set secButtonText = 'Back to details' %}
             {% elif reachedEvidenceSummary %}
