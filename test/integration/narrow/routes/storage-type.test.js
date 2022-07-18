@@ -3,6 +3,8 @@ const { crumbToken } = require('./test-helper')
 jest.mock('../../../../app/helpers/standardised-cost-array')
 const { formatAnswerArray } = require('../../../../app/helpers/standardised-cost-array')
 
+const standardisedCostArray = require('../../../../app/helpers/standardised-cost-array')
+
 describe('Storage Type test', () => {
     const varList = {}
 
@@ -85,6 +87,20 @@ describe('Storage Type test', () => {
         
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
+    })
+
+    test('GET /storage-type returns error 500 if formatanswerarray throws error', async () => {
+
+        const options = {
+            method: 'GET',
+            url: `${global.__URLPREFIX__}/storage-type`
+        }
+
+        jest.spyOn(standardisedCostArray, 'formatAnswerArray').mockImplementation(() => {throw new Error()})
+
+        const response = await global.__SERVER__.inject(options)
+        expect(response.statusCode).toBe(200)
+
     })
 
 
