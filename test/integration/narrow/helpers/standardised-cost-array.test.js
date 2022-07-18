@@ -251,4 +251,18 @@ describe('Standardised Cost Answers Array Function', () => {
             }       
         ])
     })
+
+    test('Should return blank array if no object', () => {
+
+        const response = formatAnswerArray({}, 'test-answers', 'cat-storage')
+
+        expect(response).toEqual([])
+    })
+
+    test('Should return blank array if key does not match', () => {
+
+        const response = formatAnswerArray({}, 'test-answers', '1245')
+
+        expect(response).toEqual([])
+    })
 })

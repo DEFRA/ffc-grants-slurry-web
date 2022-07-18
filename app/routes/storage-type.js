@@ -45,8 +45,7 @@ module.exports = [{
 {
     method: 'POST',
     path: currentPath,
-    handler: (request, h) => {
-        // request.yar.set('score-calculated', true)
+    handler: (_request, h) => {
         return h.redirect(nextPath)
     }
 }]
