@@ -808,23 +808,6 @@ const questionBank = {
             classes: 'govuk-label--l',
             isPageHeading: true
           },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Enter the volume you need to have 6 months’ serviceable storage'
-            },
-            {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
-              error: 'Business turnover must be a whole number, like 100000'
-            },
-            {
-              type: 'MIN_MAX',
-              min: 1,
-              max: 999999999,
-              error: 'Volume must be between 1-9999999999'
-            }
-          ],
           hint: {
             html: `
             Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
@@ -842,7 +825,18 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Enter the estimated additional volume'
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Business turnover must be a whole number, like 100000'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
             }
           ],
           sidebar: {
@@ -851,7 +845,7 @@ const questionBank = {
                 heading: 'Your project items',
                 content: [{
                   para: 'Store',
-                  items: ['Above-ground steel tank'],
+                  items: ['Stores using pre-cast rectangular concrete panels'],
                   dependentAnswerExceptThese: []
                 }]
               }
