@@ -794,6 +794,80 @@ const questionBank = {
           yarKey: 'cover'
         },
         {
+          key: 'storage-capacity-increase',
+          order: 130,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          id: 'storageCapacityIncrease',
+          name: 'storageCapacityIncrease',
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Business turnover must be a whole number, like 100000'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          url: 'storage-capacity-increase',
+          baseUrl: 'storage-capacity-increase',
+          backUrl: 'standard-costs',
+          nextUrl: 'project-cost',
+          fundingPriorities: '',
+          preValidationKeys: [],
+          type: 'input',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the estimated additional volume'
+            }
+          ],
+          sidebar: {
+            values: [
+              {
+                heading: 'Your project items',
+                content: [{
+                  para: 'Store',
+                  items: ['Above-ground steel tank'],
+                  dependentAnswerExceptThese: []
+                }]
+              }
+            ],
+            dependentQuestionKeys: []
+
+          },
+          warning: {
+            html: `This grant is to get your serviceable storage levels to 6 months.
+            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
+            </br> </br>
+            Any capacity above 6 months is not covered by the grant.`
+          },
+          yarKey: 'storageCapacityIncrease'
+        },
+        {
           key: 'potential-amount',
           order: 180,
           url: 'potential-amount',
