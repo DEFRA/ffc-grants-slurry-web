@@ -796,8 +796,6 @@ const questionBank = {
           yarKey: 'cover'
         },
         // Calls standardised cost page
-        // Call back to question bank, add storage-type here instead of seperate page function
-        // add new object detail (costDataKey or summin) set to catagory
         {
           key: 'storage-type',
           order: 130,

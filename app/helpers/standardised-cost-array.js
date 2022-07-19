@@ -1,7 +1,7 @@
 function formatAnswerArray(request, key, objectKey){
 
     let object = request.yar.get('standardisedCostObject')
-    // update tests
+
     let returnArray = []
 
     console.log('[IN HERE]')
