@@ -816,7 +816,7 @@ const questionBank = {
           },
           url: 'storage-capacity-increase',
           baseUrl: 'storage-capacity-increase',
-          backUrl: 'standard-costs',
+          backUrl: 'storage-type',
           nextUrl: 'project-cost',
           fundingPriorities: '',
           preValidationKeys: [],
