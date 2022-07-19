@@ -796,11 +796,34 @@ const questionBank = {
           yarKey: 'cover'
         },
         // Calls standardised cost page
+        // Call back to question bank, add storage-type here instead of seperate page function
+        // add new object detail (costDataKey or summin) set to catagory
+        {
+          key: 'storage-type',
+          order: 130,
+          costDataType: 'cat-storage',
+          title: 'Will the grant-funded store have an impermeable cover?',
+          baseUrl: 'storage-type',
+          backUrl: 'standardised-cost',
+          nextUrl: 'potential-amount',
+          url: 'storage-type',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            }
+          ],
+          answers: [],
+          yarKey: 'storage-type'
+        },
         {
           key: 'potential-amount',
           order: 180,
           url: 'potential-amount',
-          backUrl: 'standardised-cost',
+          backUrl: 'storage-type',
           nextUrl: 'remaining-costs',
           preValidationKeys: [],
           maybeEligible: true,

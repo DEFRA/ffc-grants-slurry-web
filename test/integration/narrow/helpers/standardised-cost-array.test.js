@@ -190,7 +190,11 @@ describe('Standardised Cost Answers Array Function', () => {
 
     test('Should return array correctly when object, question key and key to be found in object sent', () => {
 
-        const response = formatAnswerArray(objectToSend, 'test-answers', 'cat-storage')
+        const mockRequest = {
+            yar: { get: (key) => (objectToSend) }
+        }
+
+        const response = formatAnswerArray(mockRequest, 'test-answers', 'cat-storage')
 
         expect(response).toEqual([
             {
@@ -254,14 +258,22 @@ describe('Standardised Cost Answers Array Function', () => {
 
     test('Should return blank array if no object', () => {
 
-        const response = formatAnswerArray({}, 'test-answers', 'cat-storage')
+        const mockRequest = {
+            yar: { get: (key) => ({}) }
+        }
+
+        const response = formatAnswerArray(mockRequest, 'test-answers', 'cat-storage')
 
         expect(response).toEqual([])
     })
 
     test('Should return blank array if key does not match', () => {
 
-        const response = formatAnswerArray({}, 'test-answers', '1245')
+        const mockRequest = {
+            yar: { get: (key) => ({}) }
+        }
+
+        const response = formatAnswerArray(mockRequest, 'test-answers', '1245')
 
         expect(response).toEqual([])
     })

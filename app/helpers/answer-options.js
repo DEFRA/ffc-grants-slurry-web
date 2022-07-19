@@ -1,3 +1,5 @@
+const { formatAnswerArray } = require('./../helpers/standardised-cost-array')
+
 function isChecked (data, option) {
   return typeof data === 'string' ? !!data && data === option : !!data && data.includes(option)
 }
@@ -139,6 +141,22 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 }
 
 const getOptions = (data, question, conditionalHtml, request) => {
+
+  console.log('[HERE I AM AGAIN]', question)
+  if (question.costDataType && question.costDataType == 'cat-storage'){
+    console.log('[IN IF STATEMENT]', question.costDataType)
+    const answersList = formatAnswerArray(request, question.key, question.costDataType).reverse()
+
+    console.log('[GOT EVERYTHING]', answersList)
+    
+    for(let i=0; i < answersList.length; i++){
+      console.log('[IN POP]')
+      question.answers.unshift(answersList[i])
+    }
+
+    console.log('[QUESTION.ANSWERS]', question.answers)
+  }
+
   switch (question.type) {
     case 'input':
       return textField(data, question)
