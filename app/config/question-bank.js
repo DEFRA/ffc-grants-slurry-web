@@ -717,15 +717,18 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value: 'Replace an existing store that is no longer fit for purpose with a new store'
+              value: 'Replace an existing store that is no longer fit for purpose with a new store',
+              redirectUrl: 'serviceable-capacity-increase-additional'
             },
             {
               key: 'project-type-A2',
-              value: 'Add a new store to increase existing capacity'
+              value: 'Add a new store to increase existing capacity',
+              redirectUrl: 'serviceable-capacity-increase-replace'
             },
             {
               key: 'project-type-A3',
-              value: 'Expand an existing store'
+              value: 'Expand an existing store',
+              redirectUrl: 'serviceable-capacity-increase-replace'
             },
             {
               value: 'divider'
@@ -816,8 +819,8 @@ const questionBank = {
           yarKey: 'storage-type'
         },
         {
-          key: 'storage-capacity-increase',
-          order: 140,
+          key: 'serviceable-capacity-increase-replace',
+          order: 131,
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-5',
@@ -836,8 +839,8 @@ const questionBank = {
             Enter estimated volume in cubic metres
           `
           },
-          url: 'storage-capacity-increase',
-          baseUrl: 'storage-capacity-increase',
+          url: 'serviceable-capacity-increase-replace',
+          baseUrl: 'serviceable-capacity-increase-replace',
           backUrl: 'storage-type',
           nextUrl: 'project-cost',
           fundingPriorities: '',
@@ -881,11 +884,11 @@ const questionBank = {
             </br> </br>
             Any capacity above 6 months is not covered by the grant.`
           },
-          yarKey: 'storageCapacityIncrease'
+          yarKey: 'serviceableCapacityIncreaseReplace'
         },
         {
-          key: 'storage-capacity-increase-1',
-          order: 150,
+          key: 'serviceable-capacity-increase-additional',
+          order: 132,
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-5',
@@ -904,8 +907,8 @@ const questionBank = {
             Enter estimated volume in cubic metres
           `
           },
-          url: 'storage-capacity-increase-1',
-          baseUrl: 'storage-capacity-increase',
+          url: 'serviceable-capacity-increase-additional',
+          baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'project-cost',
           fundingPriorities: '',
@@ -946,7 +949,7 @@ const questionBank = {
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant`
           },
-          yarKey: 'storageCapacityIncrease'
+          yarKey: 'serviceableCapacityIncreaseAdditional'
         },
         {
           key: 'estimated-grant',
