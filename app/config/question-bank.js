@@ -816,6 +816,8 @@ const questionBank = {
           backUrl: 'standardised-cost',
           nextUrl: 'cover-type',
           url: 'storage-type',
+          name: 'storageType',
+          id: 'storageType',
           hint: {
             text: 'Select one option'
           },
@@ -840,6 +842,9 @@ const questionBank = {
           backUrl: 'storage-type',
           nextUrl: 'other-items',
           url: 'cover-type',
+          name: 'coverType',
+          id: 'coverType',
+          preValidationKeys: ['storageType'],
           hint: {
             text: 'Select one option'
           },
@@ -851,9 +856,12 @@ const questionBank = {
               heading: 'Your project items',
               content: [{
                 para: 'Store',
-                items: []
+                items: [],
+                dependentAnswerExceptThese: ['storage-type-A9']
               }]
-            }]
+            }],
+            dependentYarKeys: ['storageType'],
+            dependentQuestionKeys: ['storage-type']
           },
           validate: [
             {
@@ -893,13 +901,17 @@ const questionBank = {
               heading: 'Your project items',
               content: [{
                 para: 'Store',
-                items: []
+                items: [],
+                dependentAnswerExceptThese: ['storage-type-A9']
               },
               {
                 para: 'Cover',
-                items: []
+                items: [],
+                dependentAnswerExceptThese: ['cover-type-A4']
               }]
-            }]
+            }],
+            dependentYarKeys: ['storageType', 'coverType'],
+            dependentQuestionKeys: ['storage-type', 'cover-type']
           },
           validate: [
             {
