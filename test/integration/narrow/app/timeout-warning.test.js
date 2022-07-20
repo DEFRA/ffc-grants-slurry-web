@@ -134,12 +134,44 @@ describe('Timeout Warning', () => {
   it('test TimeoutWarning.startUiCountdown()', () => {
     global.navigator.userAgent = ''
 
+    let result
+
     mockModule = {
       ...mockModule,
       getAttribute: jest.fn((param) => 1)
     }
+    result = new TimeoutWarning(mockModule)
+    expect(result.startUiCountdown()).toBe(undefined)
+    result.clearTimers()
 
-    const result = new TimeoutWarning(mockModule)
+    mockModule = {
+      ...mockModule,
+      querySelector: jest.fn((paramA) => ({
+        setAttribute: jest.fn((paramB, paramC) => {})
+      })),
+      getAttribute: jest.fn((param) => 0)
+    }
+    result = new TimeoutWarning(mockModule)
+    expect(result.startUiCountdown()).toBe(undefined)
+    result.clearTimers()
+
+    mockModule.getAttribute.mockImplementation((param) => (1))
+    result = new TimeoutWarning(mockModule)
+    expect(result.startUiCountdown()).toBe(undefined)
+    result.clearTimers()
+
+    mockModule.getAttribute.mockImplementation((param) => (0.15))
+    result = new TimeoutWarning(mockModule)
+    expect(result.startUiCountdown()).toBe(undefined)
+    result.clearTimers()
+
+    mockModule.getAttribute.mockImplementation((param) => (2))
+    result = new TimeoutWarning(mockModule)
+    expect(result.startUiCountdown()).toBe(undefined)
+    result.clearTimers()
+
+    mockModule.getAttribute.mockImplementation((param) => (2.15))
+    result = new TimeoutWarning(mockModule)
     expect(result.startUiCountdown()).toBe(undefined)
     result.clearTimers()
 
