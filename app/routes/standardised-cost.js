@@ -28,8 +28,6 @@ module.exports = [{
       console.log('Sending session message .....')
 
       const result = await getStandardisedCosts(request.yar.id)
-
-      console.log(result.data.desirability, '[RECEIVED COST]')
       
       request.yar.set('standardisedCostObject', result)
 
