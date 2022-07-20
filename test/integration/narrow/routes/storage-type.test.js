@@ -1,9 +1,5 @@
 const { crumbToken } = require('./test-helper')
 
-// jest.mock('../../../../app/helpers/standardised-cost-array')
-// const { formatAnswerArray } = require('../../../../app/helpers/standardised-cost-array')
-
-// const standardisedCostArray = require('../../../../app/helpers/standardised-cost-array')
 
 describe('Storage Type test', () => {
   const varList = {}
@@ -26,78 +22,45 @@ describe('Storage Type test', () => {
       url: `${global.__URLPREFIX__}/storage-type`
     }
 
-    // formatAnswerArray.mockReturnValue([
-    //     {
-    //         value: 'test-answers-A1',
-    //         text: 'Above-ground steel tank',
-    //         hint: {
-    //             text: 'Grant amount: £22 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A2',
-    //         text: 'Above-ground concrete tank',
-    //         hint: {
-    //             text: 'Grant amount: £17 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A3',
-    //         text: 'Below-ground in-situ cast-reinforced concrete tank',
-    //         hint: {
-    //             text: 'Grant amount: £15 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A4',
-    //         text: 'Earth-bank lagoon (unlined)',
-    //         hint: {
-    //             text: 'Grant amount: £8 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A5',
-    //         text: 'Earth-bank lagoon (lined)',
-    //         hint: {
-    //             text: 'Grant amount: £12 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A6',
-    //         text: 'Stores using pre-cast rectangular concrete panels',
-    //         hint: {
-    //             text: 'Grant amount: £14 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A7',
-    //         text: 'Large-volume supported slurry bag',
-    //         hint: {
-    //             text: 'Grant amount: £20 per cubic metre'
-    //         }
-    //     },
-    //     {
-    //         value: 'test-answers-A8',
-    //         text: 'Slatted-floor stores',
-    //         hint: {
-    //             text: 'Grant amount: £14 per cubic metre'
-    //         }
-    //     }
-    // ])
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('What type of store do you want?')
+  })
+
+  it('no option selected -> show error message', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/storage-type`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { storageType: '', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Please select an option')
   })
 
   test('POST /storage-type route returns next page', async () => {
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/planning-permission`,
+      url: `${global.__URLPREFIX__}/storage-type`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { applying: '', crumb: crumbToken }
+      payload: { storageType: 'fake data', crumb: crumbToken }
     }
 
     const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('remaining-costs')
+  })
+
+  it('page loads with correct back link', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/storage-type`
+    }
+    const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('<a href=\"standardised-cost\" class=\"govuk-back-link\">Back</a>')
   })
 })

@@ -793,28 +793,6 @@ const questionBank = {
           ],
           yarKey: 'cover'
         },
-        // Calls standardised cost page
-        {
-          key: 'storage-type',
-          order: 130,
-          costDataType: 'cat-storage',
-          title: 'Will the grant-funded store have an impermeable cover?',
-          baseUrl: 'storage-type',
-          backUrl: 'standardised-cost',
-          nextUrl: 'potential-amount',
-          url: 'storage-type',
-          preValidationKeys: [],
-          type: 'single-answer',
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Please select an option'
-            }
-          ],
-          answers: [],
-          yarKey: 'storage-type'
-        },
         {
           key: 'estimated-grant',
           order: 180,
@@ -828,6 +806,28 @@ const questionBank = {
             messageContent: 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
           }
         },
+        // Calls standardised cost page
+        {
+          key: 'storage-type',
+          order: 130,
+          costDataType: 'cat-storage',
+          title: 'What type of store do you want?',
+          baseUrl: 'storage-type',
+          backUrl: 'standardised-cost',
+          nextUrl: 'remaining-costs',
+          url: 'storage-type',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            }
+          ],
+          answers: [],
+          yarKey: 'storageType'
+        },
         {
           key: 'remaining-costs',
           order: 190,
@@ -835,7 +835,7 @@ const questionBank = {
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'standardised-cost',
+          backUrl: 'storage-type',
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
