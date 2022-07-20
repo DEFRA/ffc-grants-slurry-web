@@ -814,7 +814,14 @@ const questionBank = {
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
-          nextUrl: 'remaining-costs',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: ['project-type-A1'],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
           url: 'storage-type',
           preValidationKeys: [],
           type: 'single-answer',
@@ -829,13 +836,149 @@ const questionBank = {
           yarKey: 'storageType'
         },
         {
+          key: 'serviceable-capacity-increase-replace',
+          order: 131,
+          title: '',
+          pageTitle: '',
+          url: 'serviceable-capacity-increase-replace',
+          baseUrl: 'serviceable-capacity-increase-replace',
+          backUrl: 'storage-type',
+          nextUrl: 'remaining-costs',
+          fundingPriorities: '',
+          preValidationKeys: [],
+          classes: 'govuk-input--width-5',
+          id: 'storageCapacityIncrease',
+          name: 'storageCapacityIncrease',
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Business turnover must be a whole number, like 100000'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            values: [
+              {
+                heading: 'Your project items',
+                content: [{
+                  para: 'Store',
+                  items: ['Stores using pre-cast rectangular concrete panels'],
+                  dependentAnswerExceptThese: []
+                }]
+              }
+            ],
+            dependentQuestionKeys: []
+
+          },
+          warning: {
+            html: `This grant is to get your serviceable storage levels to 6 months.
+            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
+            </br> </br>
+            Any capacity above 6 months is not covered by the grant.`
+          },
+          yarKey: 'serviceCapacityIncrease'
+        },
+        {
+          key: 'serviceable-capacity-increase-additional',
+          order: 132,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          id: 'storageCapacityIncrease',
+          name: 'storageCapacityIncrease',
+          url: 'serviceable-capacity-increase-additional',
+          baseUrl: 'serviceable-capacity-increase-additional',
+          backUrl: 'storage-type',
+          nextUrl: 'remaining-costs',
+          preValidationKeys: [],
+          minAnswerCount: 1,
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Business turnover must be a whole number, like 100000'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            values: [
+              {
+                heading: 'Your project items',
+                content: [{
+                  para: 'Store',
+                  items: ['Stores using pre-cast rectangular concrete panels'],
+                  dependentAnswerExceptThese: []
+                }]
+              }
+            ],
+            dependentQuestionKeys: []
+
+          },
+          warning: {
+            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
+          },
+          yarKey: 'serviceCapacityIncrease'
+        },
+        {
           key: 'remaining-costs',
           order: 190,
           title: 'Can you pay the remaining costs?',
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'storage-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: ['project-type-A1'],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
