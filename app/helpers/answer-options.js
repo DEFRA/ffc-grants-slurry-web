@@ -141,14 +141,12 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 }
 
 const getOptions = (data, question, conditionalHtml, request) => {
-
-  if (question?.costDataType){
+  if (question?.costDataType) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType).reverse()
-    
-    for(let answer in answersList){
+
+    for (const answer in answersList) {
       question.answers.unshift(answersList[answer])
     }
-
   }
 
   switch (question.type) {

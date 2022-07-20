@@ -18,7 +18,6 @@ const {
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
 
-
 /**
  * ----------------------------------------------------------------
  * list of yarKeys not bound to an answer, calculated separately

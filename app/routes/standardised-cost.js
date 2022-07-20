@@ -1,4 +1,4 @@
-const { getStandardisedCosts }  = require('../messaging/application')
+const { getStandardisedCosts } = require('../messaging/application')
 
 const urlPrefix = require('../config/server').urlPrefix
 const viewTemplate = 'standardised-cost'
@@ -28,7 +28,7 @@ module.exports = [{
       console.log('Sending session message .....')
 
       const result = await getStandardisedCosts(request.yar.id)
-      
+
       request.yar.set('standardisedCostObject', result)
 
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))

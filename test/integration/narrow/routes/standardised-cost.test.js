@@ -59,19 +59,17 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-    test('GET /stanbdardised-costs returns error 500 if getstandardisedCosts throws error', async () => {
+  test('GET /stanbdardised-costs returns error 500 if getstandardisedCosts throws error', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/standardised-cost`
+    }
 
-        const options = {
-            method: 'GET',
-            url: `${global.__URLPREFIX__}/standardised-cost`
-        }
+    jest.spyOn(messaging, 'getStandardisedCosts').mockImplementation(() => { throw new Error() })
 
-        jest.spyOn(messaging, 'getStandardisedCosts').mockImplementation(() => { throw new Error() })
-
-        const response = await global.__SERVER__.inject(options)
-        expect(response.statusCode).toBe(200)
-
-    })
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+  })
 
   test('POST /standardised-cost route returns next page', async () => {
     const options = {
