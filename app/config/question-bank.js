@@ -814,8 +814,11 @@ const questionBank = {
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
-          nextUrl: 'remaining-costs',
+          nextUrl: 'cover-type',
           url: 'storage-type',
+          hint: {
+            text: 'Select one option'
+          },
           preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
@@ -827,6 +830,102 @@ const questionBank = {
           ],
           answers: [],
           yarKey: 'storageType'
+        },
+        {
+          key: 'cover-type',
+          order: 130,
+          costDataType: 'cat-cover-type',
+          title: 'What type of cover will you have?',
+          baseUrl: 'cover-type',
+          backUrl: 'storage-type',
+          nextUrl: 'other-items',
+          url: 'cover-type',
+          hint: {
+            text: 'Select one option'
+          },
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Your project items',
+              content: [{
+                para: 'Store',
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            }
+          ],
+          answers: [
+            {
+              value: 'divider'
+            },
+            {
+              key: 'cover-type-A4',
+              value: 'I already have an impermeable cover',
+              redirectUrl: 'other-items'
+            }
+          ],
+          yarKey: 'coverType'
+        },
+        {
+          key: 'other-items',
+          order: 130,
+          costDataType: 'cat-pump-type',
+          title: 'What other items do you need?',
+          baseUrl: 'other-items',
+          backUrl: 'cover-type',
+          nextUrl: 'remaining-costs',
+          hint: {
+            text: 'Select all the items your project needs'
+          },
+          url: 'other-items',
+          preValidationKeys: [],
+          type: 'multi-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Your project items',
+              content: [{
+                para: 'Store',
+                items: []
+              },
+              {
+                para: 'Cover',
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            },
+            {
+              type: 'STANDALONE_ANSWER',
+              error: 'You cannot select that combination of options',
+              standaloneObject: {
+                questionKey: 'other-items',
+                answerKey: 'other-items-A15'
+              }
+            }
+          ],
+          answers: [
+            {
+              value: 'divider'
+            },
+            {
+              key: 'other-items-A15',
+              value: 'None of the above',
+              redirectUrl: 'remaining-costs'
+            }
+          ],
+          yarKey: 'otherItems'
         },
         {
           key: 'remaining-costs',

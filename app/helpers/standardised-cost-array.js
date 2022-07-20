@@ -6,6 +6,10 @@ function formatAnswerArray (request, questionKey, objectKey) {
   if (object?.data) {
     const keyToFind = object.data.desirability.catagories.find(({ key }) => key == objectKey)
 
+    if (keyToFind == undefined) {
+      return returnArray
+    }
+
     let tempObject
 
     for (const answer in keyToFind.items) {

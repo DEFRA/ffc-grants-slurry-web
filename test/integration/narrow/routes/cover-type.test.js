@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Storage Type test', () => {
+describe('Cover Type test', () => {
   const varList = {}
 
   beforeEach(() => {
@@ -15,21 +15,21 @@ describe('Storage Type test', () => {
     }
   }))
 
-  test('GET /storage-type route returns 200', async () => {
+  test('GET /cover-type route returns 200', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/storage-type`
+      url: `${global.__URLPREFIX__}/cover-type`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What type of store do you want?')
+    expect(response.payload).toContain('What type of cover will you have?')
   })
 
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/storage-type`,
+      url: `${global.__URLPREFIX__}/cover-type`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { storageType: '', crumb: crumbToken }
     }
@@ -39,26 +39,26 @@ describe('Storage Type test', () => {
     expect(postResponse.payload).toContain('Please select an option')
   })
 
-  test('POST /storage-type route returns next page', async () => {
+  test('POST /cover-type route returns next page', async () => {
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/storage-type`,
+      url: `${global.__URLPREFIX__}/cover-type`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { storageType: 'fake data', crumb: crumbToken }
+      payload: { coverType: 'fake data', crumb: crumbToken }
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('cover-type')
+    expect(response.headers.location).toBe('other-items')
   })
 
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/storage-type`
+      url: `${global.__URLPREFIX__}/cover-type`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"standardised-cost\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"storage-type\" class=\"govuk-back-link\">Back</a>')
   })
 })
