@@ -852,7 +852,7 @@ const questionBank = {
           suffix: { text: 'm³' },
           type: 'input',
           label: {
-            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            text: 'What estimated volume do you need to have 6 months’ serviceable storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
@@ -881,18 +881,18 @@ const questionBank = {
           ],
           sidebar: {
             values: [
-              {
-                heading: 'Your project items',
-                content: [{
-                  para: 'Store',
-                  items: ['Stores using pre-cast rectangular concrete panels'],
-                  dependentAnswerExceptThese: []
-                }]
-              }
+            {
+            heading: 'Your project items',
+            content: [{
+            para: 'Store',
+            items: [],
+            dependentAnswerExceptThese: []
+            }]
+            }
             ],
-            dependentQuestionKeys: []
-
-          },
+            dependentYarKeys: ['storageType'],
+            dependentQuestionKeys: ['storage-type']
+            },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months.
             For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
@@ -947,17 +947,16 @@ const questionBank = {
           ],
           sidebar: {
             values: [
-              {
-                heading: 'Your project items',
-                content: [{
-                  para: 'Store',
-                  items: ['Stores using pre-cast rectangular concrete panels'],
-                  dependentAnswerExceptThese: []
-                }]
-              }
-            ],
-            dependentQuestionKeys: []
-
+            {
+            heading: 'Your project items',
+            content: [{
+            para: 'Store',
+            items: [],
+            dependentAnswerExceptThese: []
+            }]
+            }],
+            dependentYarKeys: ['storageType'],
+            dependentQuestionKeys: ['storage-type']
           },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
