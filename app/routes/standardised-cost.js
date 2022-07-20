@@ -31,8 +31,8 @@ module.exports = [{
       console.log(result, '[RECEIVED COST]')
 
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
-    } catch (err) {
-      request.log(err)
+    } catch (error) {
+      request.log(error)
       return h.view('500').takeover()
     }
   }
