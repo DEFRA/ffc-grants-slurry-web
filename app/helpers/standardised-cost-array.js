@@ -4,30 +4,25 @@ function formatAnswerArray(request, key, objectKey){
 
     let returnArray = []
 
-    if (object && object.data){
+    console.log(object)
 
-        for (let i=0; i <= object.data.desirability.catagories.length; i++){
+    if (object?.data){
 
-            if (object.data.desirability.catagories[i].key == objectKey) {
+        let keyToFind = object.data.desirability.catagories.find(({key}) => key == objectKey)
 
-                let tempObject
+        let tempObject
 
-                for (let j=0; j <= object.data.desirability.catagories[i].items.length - 1; j++) {
+        for (answer in keyToFind.items) {
 
-                    tempObject = {
-                        value: key + '-A' + (j+1),
-                        text: object.data.desirability.catagories[i].items[j].item,
-                        hint: {
-                            text: 'Grant amount: £' + object.data.desirability.catagories[i].items[j].amount + ' ' + object.data.desirability.catagories[i].items[j].unit
-                        }
-                    }
-
-                    returnArray.push(tempObject)
-
+            tempObject = {
+                value: key + '-A' + (parseInt(answer)+1),
+                text: keyToFind.items[answer].item,
+                hint: {
+                    text: 'Grant amount: £' + keyToFind.items[answer].amount + ' ' + keyToFind.items[answer].unit
                 }
-                
-                break
             }
+
+            returnArray.push(tempObject)
 
         }
         

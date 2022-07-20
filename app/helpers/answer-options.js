@@ -142,11 +142,11 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 
 const getOptions = (data, question, conditionalHtml, request) => {
 
-  if (question.costDataType && question.costDataType == 'cat-storage'){
+  if (question?.costDataType){
     const answersList = formatAnswerArray(request, question.key, question.costDataType).reverse()
     
-    for(let i=0; i < answersList.length; i++){
-      question.answers.unshift(answersList[i])
+    for(answer in answersList){
+      question.answers.unshift(answersList[answer])
     }
 
   }

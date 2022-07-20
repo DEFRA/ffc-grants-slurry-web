@@ -18,7 +18,6 @@ const {
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
 
-const {formatAnswerArray} = require('../helpers/standardised-cost-array')
 
 /**
  * ----------------------------------------------------------------
