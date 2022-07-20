@@ -2,6 +2,7 @@ const { crumbToken } = require('./test-helper')
 
 jest.mock('../../../../app/messaging/application')
 const { getStandardisedCosts } = require('../../../../app/messaging/application')
+const messaging = require('../../../../app/messaging/application')
 
 describe('Standardised Cost test', () => {
   const varList = { }
@@ -53,6 +54,18 @@ describe('Standardised Cost test', () => {
     }
 
     getStandardisedCosts.mockRejectedValue('hello')
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+  })
+
+  test('GET /stanbdardised-costs returns error 500 if getstandardisedCosts throws error', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/standardised-cost`
+    }
+
+    jest.spyOn(messaging, 'getStandardisedCosts').mockImplementation(() => { throw new Error() })
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

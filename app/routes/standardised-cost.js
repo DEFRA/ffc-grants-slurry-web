@@ -1,8 +1,9 @@
 const { getStandardisedCosts } = require('../messaging/application')
+
 const urlPrefix = require('../config/server').urlPrefix
 const viewTemplate = 'standardised-cost'
 const currentPath = `${urlPrefix}/${viewTemplate}`
-const nextPath = `${urlPrefix}/remaining-costs`
+const nextPath = `${urlPrefix}/storage-type`
 
 function createModel (data, _request) {
   const previousPath = `${urlPrefix}/estimated-grant`
@@ -28,7 +29,7 @@ module.exports = [{
 
       const result = await getStandardisedCosts(request.yar.id)
 
-      console.log(result, '[RECEIVED COST]')
+      request.yar.set('standardisedCostObject', result)
 
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {

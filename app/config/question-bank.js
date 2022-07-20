@@ -793,6 +793,28 @@ const questionBank = {
           ],
           yarKey: 'cover'
         },
+        // Calls standardised cost page
+        {
+          key: 'storage-type',
+          order: 130,
+          costDataType: 'cat-storage',
+          title: 'Will the grant-funded store have an impermeable cover?',
+          baseUrl: 'storage-type',
+          backUrl: 'standardised-cost',
+          nextUrl: 'potential-amount',
+          url: 'storage-type',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            }
+          ],
+          answers: [],
+          yarKey: 'storage-type'
+        },
         {
           key: 'estimated-grant',
           order: 180,
