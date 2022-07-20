@@ -1,10 +1,8 @@
-function formatAnswerArray(request, key, objectKey){
+function formatAnswerArray(request, questionKey, objectKey){
 
     let object = request.yar.get('standardisedCostObject')
 
     let returnArray = []
-
-    console.log(object)
 
     if (object?.data){
 
@@ -12,10 +10,10 @@ function formatAnswerArray(request, key, objectKey){
 
         let tempObject
 
-        for (answer in keyToFind.items) {
+        for (let answer in keyToFind.items) {
 
             tempObject = {
-                value: key + '-A' + (parseInt(answer)+1),
+                value: questionKey + '-A' + (parseInt(answer)+1),
                 text: keyToFind.items[answer].item,
                 hint: {
                     text: 'Grant amount: £' + keyToFind.items[answer].amount + ' ' + keyToFind.items[answer].unit

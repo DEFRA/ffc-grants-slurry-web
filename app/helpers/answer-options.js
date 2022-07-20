@@ -145,7 +145,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
   if (question?.costDataType){
     const answersList = formatAnswerArray(request, question.key, question.costDataType).reverse()
     
-    for(answer in answersList){
+    for(let answer in answersList){
       question.answers.unshift(answersList[answer])
     }
 
