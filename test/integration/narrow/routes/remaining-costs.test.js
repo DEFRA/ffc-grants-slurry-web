@@ -63,12 +63,22 @@ describe('Page: /remaining-costs', () => {
   })
 
   it('page loads with correct back link', async () => {
+    const optionsone = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/project-type`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { projectType: 'Replace an existing store that is no longer fit for purpose with a new store', crumb: crumbToken }
+    }
+    
+    const responseOne = await global.__SERVER__.inject(optionsone)
+    expect(responseOne.statusCode).toBe(302)
+
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/remaining-costs`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"storage-type\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"serviceable-capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
   })
 })
