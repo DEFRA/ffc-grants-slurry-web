@@ -6,7 +6,7 @@ const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/storage-type`
 
 function createModel (data, _request) {
-  const previousPath = `${urlPrefix}/cover`
+  const previousPath = `${urlPrefix}/estimated-grant`
 
   return {
     backLink: previousPath,
@@ -34,9 +34,8 @@ module.exports = [{
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {
       request.log(error)
+      return h.view('500').takeover()
     }
-    request.log(err)
-    return h.view('500')
   }
 },
 {

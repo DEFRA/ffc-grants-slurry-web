@@ -745,7 +745,7 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'cover',
           backUrl: 'project-type',
-          nextUrl: 'standardised-cost',
+          nextUrl: 'estimated-grant',
           url: 'cover',
           preValidationKeys: [],
           ineligibleContent: {
@@ -817,21 +817,87 @@ const questionBank = {
           yarKey: 'storage-type'
         },
         {
-          key: 'potential-amount',
+          key: 'estimated-grant',
           order: 180,
-          url: 'potential-amount',
-          backUrl: 'storage-type',
-          nextUrl: 'remaining-costs',
+          url: 'estimated-grant',
+          backUrl: 'cover',
+          nextUrl: 'standardised-cost',
           preValidationKeys: [],
           maybeEligible: true,
           maybeEligibleContent: {
-            messageHeader: 'Potential grant funding',
-            messageContent: 'You may be able to apply for a grant of up to £{{_calculatedGrant_}}, based on the estimated cost of £{{_projectCost_}}.',
-            warning: {
-              text: 'There’s no guarantee the project will receive a grant.',
-              iconFallbackText: 'Warning'
-            }
+            messageHeader: 'Estimate how much grant you could get',
+            messageContent: 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
           }
+        },
+        {
+          key: 'remaining-costs',
+          order: 190,
+          title: 'Can you pay the remaining costs?',
+          pageTitle: '',
+          url: 'remaining-costs',
+          baseUrl: 'remaining-costs',
+          backUrl: 'standardised-cost',
+          nextUrl: 'planning-permission',
+          eliminationAnswerKeys: '',
+          ineligibleContent: {
+            messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
+            <div class="govuk-list govuk-list--bullet">
+                  You can use:
+                  <ul>
+                    <li>loans</li>
+                    <li>overdrafts</li>
+                    <li>the Basic Payment Scheme</li>
+                  </ul>
+            </div>`,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          fundingPriorities: '',
+          warning: {
+            text: 'Items may cost more than the standardised cost.'
+          },
+          type: 'single-answer',
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [
+              {
+                heading: 'Eligibility',
+                content: [{
+                  para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
+                  
+                  You can use:`,
+                  items: [
+                    'loans',
+                    'overdrafts',
+                    'the Basic Payment Scheme'
+                  ]
+                }]
+              }
+            ]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select if you can pay the remaining costs'
+            }
+          ],
+          answers: [
+            {
+              key: 'remaining-costs-A1',
+              value: 'Yes'
+
+            },
+            {
+              key: 'remaining-costs-A2',
+              value: 'No',
+              notEligible: true
+            }
+          ],
+          yarKey: 'remainingCosts'
+
         },
         {
           key: 'planning-permission',
@@ -1064,76 +1130,6 @@ const questionBank = {
           },
           answers: [],
           yarKey: 'resultPage'
-        },
-        {
-          key: 'remaining-costs',
-          order: 190,
-          title: 'Can you pay the remaining costs?',
-          pageTitle: '',
-          url: 'remaining-costs',
-          baseUrl: 'remaining-costs',
-          backUrl: 'potential-amount',
-          nextUrl: 'planning-permission',
-          eliminationAnswerKeys: '',
-          ineligibleContent: {
-            messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
-            <div class="govuk-list govuk-list--bullet">
-                  You can use:
-                  <ul>
-                    <li>loans</li>
-                    <li>overdrafts</li>
-                    <li>the Basic Payment Scheme</li>
-                  </ul>
-            </div>`,
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
-          fundingPriorities: '',
-          warning: {
-            text: 'Items may cost more than the standardised cost.'
-          },
-          type: 'single-answer',
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          minAnswerCount: 1,
-          sidebar: {
-            values: [
-              {
-                heading: 'Eligibility',
-                content: [{
-                  para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-                  
-                  You can use:`,
-                  items: [
-                    'loans',
-                    'overdrafts',
-                    'the Basic Payment Scheme'
-                  ]
-                }]
-              }
-            ]
-          },
-          validate: [
-            {
-              type: 'NOT_EMPTY',
-              error: 'Select if you can pay the remaining costs'
-            }
-          ],
-          answers: [
-            {
-              key: 'remaining-costs-A1',
-              value: 'Yes'
-
-            },
-            {
-              key: 'remaining-costs-A2',
-              value: 'No',
-              notEligible: true
-            }
-          ],
-          yarKey: 'remainingCosts'
-
         },
 
         /// ////// ***************** After Score  ************************************/////////////////////
