@@ -42,6 +42,16 @@ describe('Storage Type test', () => {
   })
 
   test('POST /storage-type route returns next page', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/project-type`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { projectType: 'Add a new store to increase existing capacity', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(302)
+
     const options = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/storage-type`,
@@ -51,7 +61,7 @@ describe('Storage Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('remaining-costs')
+    expect(response.headers.location).toBe('serviceable-capacity-increase-additional')
   })
 
   it('page loads with correct back link', async () => {
