@@ -844,14 +844,6 @@ const questionBank = {
           baseUrl: 'serviceable-capacity-increase-replace',
           backUrl: 'storage-type',
           nextUrl: 'remaining-costs',
-          nextUrlObject: {
-            dependentQuestionYarKey: 'cover',
-            dependentAnswerKeysArray: ['cover-A1'],
-            urlOptions: {
-              thenUrl: 'cover-type',
-              elseUrl: 'other-items'
-            }
-          },
           fundingPriorities: '',
           preValidationKeys: [],
           classes: 'govuk-input--width-5',
@@ -921,14 +913,6 @@ const questionBank = {
           baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'remaining-costs',
-          nextUrlObject: {
-            dependentQuestionYarKey: 'cover',
-            dependentAnswerKeysArray: ['cover-A1'],
-            urlOptions: {
-              thenUrl: 'cover-type',
-              elseUrl: 'other-items'
-            }
-          },
           preValidationKeys: [],
           minAnswerCount: 1,
           suffix: { text: 'm³' },
