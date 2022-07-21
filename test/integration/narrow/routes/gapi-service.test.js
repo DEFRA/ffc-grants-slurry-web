@@ -49,7 +49,7 @@ describe('get gapiService setup', () => {
     expect(result).toBe(undefined)
   })
   test('Call sendEvent throw error', async () => {
-    const result = await gapiService.sendEvent(requestError, 'CATEGORY', 'ACTION')
+    const result = await gapiService.sendEvent({}, 'CATEGORY', 'ACTION')
     expect(result).toBe(undefined)
   })
   test('Call sendDimensionOrMetric throw error', async () => {
