@@ -874,11 +874,6 @@ const questionBank = {
               error: 'Volume must be a whole number'
             },
             {
-              type: 'REGEX',
-              regex: DIGITS_MAX_10,
-              error: 'Volume must be 10 characters or fewer'
-            },
-            {
               type: 'MIN_MAX',
               min: 1,
               max: 999999999,
@@ -943,11 +938,6 @@ const questionBank = {
               type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
               error: 'Volume must be a whole number'
-            },
-            {
-              type: 'REGEX',
-              regex: DIGITS_MAX_10,
-              error: 'Volume must be 10 characters or fewer'
             },
             {
               type: 'MIN_MAX',
