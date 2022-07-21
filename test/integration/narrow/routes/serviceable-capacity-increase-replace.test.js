@@ -72,4 +72,26 @@ it('If value entered is outside character limit', async () => {
     expect(postResponse.payload).toContain('Volume must be 10 characters or fewer')
 })
 
+it('user enter valid value', async () => {
+    const postOptions = {
+    method: 'POST',
+    url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+    headers: { cookie: 'crumb=' + crumbToken },
+    payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(302)
+    expect(postResponse.headers.location).toBe('remaining-costs')
+})
+
+it('page loads with correct back link', async () => {
+    const options = {
+    method: 'GET',
+    url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('<a href=\"storage-type\" class=\"govuk-back-link\">Back</a>')
+})
 })
