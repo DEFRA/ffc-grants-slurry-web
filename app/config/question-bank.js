@@ -852,14 +852,24 @@ const questionBank = {
           type: 'single-answer',
           minAnswerCount: 1,
           sidebar: {
-            values: [{
-              heading: 'Your project items',
-              content: [{
-                para: 'Store',
-                items: [],
-                dependentAnswerExceptThese: ['storage-type-A9']
-              }]
-            }],
+            values: [
+              // Your Project Items no longer appears
+              {
+                heading: 'Your project items',
+                content: [{
+                  para: '',
+                  referenceKey: 'title'
+                }]
+              },
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  referenceKey: 'storage-type',
+                  dependentAnswerExceptThese: ['storage-type-A9']
+                }]
+              }],
             dependentYarKeys: ['storageType'],
             dependentQuestionKeys: ['storage-type']
           },
@@ -876,6 +886,7 @@ const questionBank = {
             {
               key: 'cover-type-A4',
               value: 'I already have an impermeable cover',
+              sidebarFormattedValue: 'None',
               redirectUrl: 'other-items'
             }
           ],
@@ -893,23 +904,39 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: [],
+          preValidationKeys: ['storageType', 'coverType'],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
-            values: [{
-              heading: 'Your project items',
-              content: [{
-                para: 'Store',
-                items: [],
-                dependentAnswerExceptThese: ['storage-type-A9']
+            values: [
+              // Your Projetc Items no longer appears
+              {
+                heading: 'Your project items',
+                content: [{
+                  para:'',
+                  items: [],
+                  referenceKey: 'title'
+                }]
               },
               {
-                para: 'Cover',
-                items: [],
-                dependentAnswerExceptThese: ['cover-type-A4']
-              }]
-            }],
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  referenceKey: 'storage-type',
+                  dependentAnswerExceptThese: ['storage-type-A9']
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  referenceKey: 'cover-type',
+                  dependentAnswerExceptThese: ['cover-type-A5']
+                }]
+              }
+            ],
             dependentYarKeys: ['storageType', 'coverType'],
             dependentQuestionKeys: ['storage-type', 'cover-type']
           },
