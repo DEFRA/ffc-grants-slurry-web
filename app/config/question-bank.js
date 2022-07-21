@@ -13,8 +13,7 @@ const {
   PLANNING_REFERENCE_NUMBER_REGEX,
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
-  CHARS_MAX_50,
-  DIGITS_MAX_10
+  CHARS_MAX_50
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
