@@ -4,77 +4,20 @@ const { getYarValue } = require('../helpers/session')
 const { getQuestionByKey, allAnswersSelected } = require('../helpers/utils')
 
 const getDependentSideBar = (sidebar, request) => {
-  // sidebar contains values of a previous page
-
-  const { values, dependentYarKeys, dependentQuestionKeys } = sidebar
-  // for each dependentQuestionKeys
-  const updatedValues = []
-  let addUpdatedValue
-  let updatedContent
+  const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
-    const questionAnswers = getQuestionByKey(dependentQuestionKey).answers
-    const yarValue = getYarValue(request, dependentYarKeys[index]) || []
+    const yarValue = getQuestionByKey(dependentQuestionKey).yarKey
+    const selectedAnswers = getYarValue(request, yarValue)
+    values[index].content[0].items = [selectedAnswers].flat()
 
-    values.forEach((thisValue) => {
-      addUpdatedValue = false
-      updatedContent = thisValue.content.map(thisContent => {
-        let formattedSidebarValues = []
-        let formattedValue = ''
-
-        if (thisContent?.dependentAnswerExceptThese?.length) {
-          const avoidThese = thisContent.dependentAnswerExceptThese
-
-          questionAnswers.forEach(({ key, value, sidebarFormattedValue }) => {
-            formattedValue = value
-
-            if (sidebarFormattedValue) {
-              formattedValue = sidebarFormattedValue
-            }
-
-            if (!avoidThese.includes(key) && yarValue?.includes(value)) {
-              if (updatedValues.length && updatedValues[0].heading === thisValue.heading) {
-                updatedValues[0].content[0].items.push(formattedValue)
-              } else {
-                addUpdatedValue = true
-                formattedSidebarValues.push(formattedValue)
-              }
-            }
-          })
-        } else if (thisContent?.dependentAnswerOnlyThese?.length) {
-          const addThese = thisContent.dependentAnswerOnlyThese
-
-          questionAnswers.forEach(({ key, value, sidebarFormattedValue }) => {
-            formattedValue = value
-
-            if (sidebarFormattedValue) {
-              formattedValue = sidebarFormattedValue
-            }
-
-            if (addThese.includes(key) && yarValue?.includes(value)) {
-              addUpdatedValue = true
-              formattedSidebarValues.push(formattedValue)
-            }
-          })
-        } else {
-          formattedSidebarValues = [].concat(yarValue)
-        }
-        return {
-          ...thisContent,
-          items: formattedSidebarValues
-        }
-      })
-      if (addUpdatedValue) {
-        updatedValues.push({
-          ...thisValue,
-          content: updatedContent
-        })
-      }
-    })
+    if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
+      const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+      const selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
+      values[index].content[0].items.push([selectedValueOfLinkedQuestion])
+    }
   })
-
   return {
-    ...sidebar,
-    values: updatedValues
+    ...sidebar
   }
 }
 
@@ -115,7 +58,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
 
   title = title ?? label?.text
 
-  const sideBarText = (sidebar?.dependentYarKeys)
+  const sideBarText = (sidebar?.dependentQuestionKeys)
     ? getDependentSideBar(sidebar, request)
     : sidebar
 

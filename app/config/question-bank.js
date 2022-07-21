@@ -881,18 +881,18 @@ const questionBank = {
           ],
           sidebar: {
             values: [
-            {
-            heading: 'Your project items',
-            content: [{
-            para: 'Store',
-            items: [],
-            dependentAnswerExceptThese: []
-            }]
-            }
+              {
+                heading: 'Your project items',
+                content: [{
+                  para: 'Store',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }
             ],
             dependentYarKeys: ['storageType'],
             dependentQuestionKeys: ['storage-type']
-            },
+          },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months.
             For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
@@ -907,14 +907,11 @@ const questionBank = {
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-5',
-          id: 'storageCapacityIncrease',
-          name: 'storageCapacityIncrease',
           url: 'serviceable-capacity-increase-additional',
           baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'remaining-costs',
           preValidationKeys: [],
-          minAnswerCount: 1,
           suffix: { text: 'm³' },
           type: 'input',
           label: {
@@ -946,17 +943,26 @@ const questionBank = {
             }
           ],
           sidebar: {
+            mainHeading: 'You selected items',
             values: [
-            {
-            heading: 'Your project items',
-            content: [{
-            para: 'Store',
-            items: [],
-            dependentAnswerExceptThese: []
-            }]
-            }],
-            dependentYarKeys: ['storageType'],
-            dependentQuestionKeys: ['storage-type']
+              {
+                heading: 'store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'project',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['cover'],
+            dependentQuestionKeys: ['applicant-type', 'project-started']
           },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
