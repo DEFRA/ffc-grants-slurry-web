@@ -872,11 +872,6 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: DIGITS_MAX_10,
-              error: 'Volume must be 10 characters or fewer'
-            },
-            {
-              type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
               error: 'Volume must be a whole number'
             },
@@ -943,11 +938,6 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: DIGITS_MAX_10,
-              error: 'Volume must be 10 characters or fewer'
-            },
-            {
-              type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
               error: 'Volume must be a whole number'
             },
@@ -963,14 +953,14 @@ const questionBank = {
             {
             heading: 'Your project items',
             content: [{
-            para: 'Store',
-            items: [],
-            dependentAnswerExceptThese: []
+              para: 'Store',
+              items: [],
+              dependentAnswerExceptThese: ['storage-type-A9']
             }]
             }],
             dependentYarKeys: ['storageType'],
             dependentQuestionKeys: ['storage-type']
-          },
+            },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
           },

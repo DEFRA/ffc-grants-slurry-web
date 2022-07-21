@@ -19,7 +19,7 @@ it('page loads successfully, with all the options', async () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What estimated volume do you need to have 6 months’ serviceable storage?')
+    expect(response.payload).toContain('What estimated additional volume do you need to have 6 months’ serviceable storage?')
     expect(response.payload).toContain('This grant is to get your serviceable storage levels to 6 months.')
 })
 
@@ -58,18 +58,6 @@ it('If decimals used', async () => {
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain('Volume must be a whole number')
-})
-
-it('If value entered is outside character limit', async () => {
-    const postOptions = {
-    method: 'POST',
-    url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
-    headers: { cookie: 'crumb=' + crumbToken },
-    payload: { serviceCapacityIncrease: '10000000000', crumb: crumbToken }
-    }
-    const postResponse = await global.__SERVER__.inject(postOptions)
-    expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Volume must be 10 characters or fewer')
 })
 
 it('user enter valid value', async () => {
