@@ -814,6 +814,8 @@ const questionBank = {
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
+          id: 'storageType',
+          name: 'storageType',
           nextUrlObject: {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
@@ -870,7 +872,7 @@ const questionBank = {
             {
               type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
-              error: 'Business turnover must be a whole number, like 100000'
+              error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
@@ -933,7 +935,7 @@ const questionBank = {
             {
               type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
-              error: 'Business turnover must be a whole number, like 100000'
+              error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',

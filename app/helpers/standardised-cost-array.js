@@ -12,6 +12,7 @@ function formatAnswerArray (request, questionKey, objectKey) {
       tempObject = {
         value: questionKey + '-A' + (parseInt(answer) + 1),
         text: keyToFind.items[answer].item,
+        sidebarFormattedValue: keyToFind.items[answer].item,
         hint: {
           text: 'Grant amount: £' + keyToFind.items[answer].amount + ' ' + keyToFind.items[answer].unit
         }

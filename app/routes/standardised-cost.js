@@ -28,12 +28,12 @@ module.exports = [{
       console.log('Sending session message .....')
 
       const result = await getStandardisedCosts(request.yar.id)
-
+console.log(result,'[THIS IS RESULT WE GOT BACK]')
       request.yar.set('standardisedCostObject', result)
 
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {
-      request.log(error)
+      console.log(error)
       return h.view('500').takeover()
     }
   }
