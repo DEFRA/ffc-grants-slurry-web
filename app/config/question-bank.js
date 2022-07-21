@@ -815,6 +815,8 @@ const questionBank = {
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
+          id: 'storageType',
+          name: 'storageType',
           nextUrlObject: {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
@@ -888,13 +890,13 @@ const questionBank = {
           sidebar: {
             values: [
             {
-            heading: 'Your project items',
-            content: [{
-            para: 'Store',
-            items: [],
-            dependentAnswerExceptThese: []
-            }]
-            }
+              heading: 'Your project items',
+              content: [{
+                para: 'Store',
+                items: [],
+                dependentAnswerExceptThese: ['storage-type-A9']
+                }]
+              }
             ],
             dependentYarKeys: ['storageType'],
             dependentQuestionKeys: ['storage-type']
