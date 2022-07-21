@@ -41,11 +41,21 @@ describe('get gapiService setup', () => {
     expect(result).toBe(undefined)
   })
   test('Call sendDimensionOrMetric successfully', async () => {
-    const result = await gapiService.sendDimensionOrMetric(request, { dimensionOrMetric: 'cd1', value: 'some value' })
+    let result = await gapiService.sendDimensionOrMetric(request, { dimensionOrMetric: 'cd1', value: 'some value' })
+    expect(result).toBe(undefined)
+
+    const item = [
+      { dimensionOrMetric: 'cd1', value: 'some value' },
+      { dimensionOrMetric: 'cd2', value: 'ITEM' }
+    ]
+    result = await gapiService.sendDimensionOrMetric(request, item)
     expect(result).toBe(undefined)
   })
   test('Call sendEligibilityEvent successfully', async () => {
-    const result = await gapiService.sendEligibilityEvent(request)
+    let result = await gapiService.sendEligibilityEvent(request)
+    expect(result).toBe(undefined)
+
+    result = await gapiService.sendEligibilityEvent(request, false)
     expect(result).toBe(undefined)
   })
   test('Call sendEvent throw error', async () => {
@@ -61,6 +71,10 @@ describe('get gapiService setup', () => {
   })
   test('Call sendEligibilityEvent throw error', async () => {
     const result = await gapiService.sendEligibilityEvent(requestError)
+    expect(result).toBe(undefined)
+  })
+  test('Call sendJourneyTime', async () => {
+    const result = await gapiService.sendJourneyTime(request, '')
     expect(result).toBe(undefined)
   })
 })
