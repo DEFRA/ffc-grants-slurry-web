@@ -13,7 +13,8 @@ const {
   PLANNING_REFERENCE_NUMBER_REGEX,
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
-  CHARS_MAX_50
+  CHARS_MAX_50,
+  DIGITS_MAX_10
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -869,8 +870,13 @@ const questionBank = {
             },
             {
               type: 'REGEX',
+              regex: DIGITS_MAX_10,
+              error: 'Volume must be 10 characters or fewer'
+            },
+            {
+              type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
-              error: 'Business turnover must be a whole number, like 100000'
+              error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
@@ -935,8 +941,13 @@ const questionBank = {
             },
             {
               type: 'REGEX',
+              regex: DIGITS_MAX_10,
+              error: 'Volume must be 10 characters or fewer'
+            },
+            {
+              type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
-              error: 'Business turnover must be a whole number, like 100000'
+              error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
