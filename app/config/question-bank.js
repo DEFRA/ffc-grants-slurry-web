@@ -870,13 +870,13 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: DIGITS_MAX_10,
-              error: 'Volume must be 10 characters or fewer'
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Volume must be a whole number'
             },
             {
               type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
-              error: 'Volume must be a whole number'
+              regex: DIGITS_MAX_10,
+              error: 'Volume must be 10 characters or fewer'
             },
             {
               type: 'MIN_MAX',
@@ -941,13 +941,13 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: DIGITS_MAX_10,
-              error: 'Volume must be 10 characters or fewer'
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Volume must be a whole number'
             },
             {
               type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
-              error: 'Volume must be a whole number'
+              regex: DIGITS_MAX_10,
+              error: 'Volume must be 10 characters or fewer'
             },
             {
               type: 'MIN_MAX',

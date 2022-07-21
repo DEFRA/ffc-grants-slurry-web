@@ -60,18 +60,6 @@ it('If decimals used', async () => {
     expect(postResponse.payload).toContain('Volume must be a whole number')
 })
 
-it('If value entered is outside character limit', async () => {
-    const postOptions = {
-    method: 'POST',
-    url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
-    headers: { cookie: 'crumb=' + crumbToken },
-    payload: { serviceCapacityIncrease: '10000000000', crumb: crumbToken }
-    }
-    const postResponse = await global.__SERVER__.inject(postOptions)
-    expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Volume must be 10 characters or fewer')
-})
-
 it('user enter valid value', async () => {
     const postOptions = {
     method: 'POST',
