@@ -90,7 +90,7 @@ const questionBank = {
           nextUrl: 'legal-status',
           ineligibleContent: {
             messageContent: `This grant is for pig, beef or dairy farmers. <br/> <br/> 
-            Poultry, arable-only, contractors and horticultural growers are not currently eligible.`,
+            <div class="govuk-inset-text">Poultry, arable-only, contractors and horticultural growers are not currently eligible.</div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -576,7 +576,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
             }
           },
           validate: [
@@ -705,7 +705,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
             }
           },
           validate: [
