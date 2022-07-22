@@ -972,6 +972,72 @@ const questionBank = {
           yarKey: 'serviceCapacityIncrease'
         },
         {
+          key: 'cover-size',
+          order: 137,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          url: 'cover-size',
+          baseUrl: 'cover-size',
+          backUrl: 'cover-type',
+          nextUrl: 'other-items',
+          preValidationKeys: [],
+          suffix: { text: 'm²' },
+          type: 'input',
+          label: {
+            text: 'How big will the cover be?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Enter the estimated surface area of the replacement, new or expanded store
+
+            Enter size in metres squared
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the size of cover'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Cover size must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['cover'],
+            dependentQuestionKeys: ['storage-type', 'serviceable-capacity-increase-replace','serviceable-capacity-increase-additional']
+          },
+          yarKey: 'coverSize'
+        },
+        {
           key: 'remaining-costs',
           order: 190,
           title: 'Can you pay the remaining costs?',
