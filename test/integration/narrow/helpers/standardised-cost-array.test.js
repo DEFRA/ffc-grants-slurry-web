@@ -7,69 +7,63 @@ const objectToSend = {
       name: 'Slurry Infrastructure Grant'
     },
     desirability: {
-      catagories: [
-        {
-          key: 'cat-storage',
-          title: 'Storage',
-          items: [
-            {
-              item: 'Above-ground steel tank',
-              amount: 22,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Above-ground concrete tank',
-              amount: 17,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Below-ground in-situ cast-reinforced concrete tank',
-              amount: 15,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Earth-bank lagoon (unlined)',
-              amount: 8,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Earth-bank lagoon (lined)',
-              amount: 12,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Stores using pre-cast rectangular concrete panels',
-              amount: 14,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Large-volume supported slurry bag',
-              amount: 20,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Slatted-floor stores',
-              amount: 14,
-              unit: 'per cubic metre'
-            }
-          ]
-        },
+      catagories: [{
+        key: 'cat-storage',
+        title: 'Storage',
+        items: [
+          {
+            item: 'Above-ground steel slurry store',
+            amount: 22,
+            unit: 'per cubic metre'
+          },
+          {
+            item: 'Precast circular concrete slurry store',
+            amount: 17,
+            unit: 'per cubic metre'
+          },
+          {
+            item: 'In-situ cast-reinforced concrete slurry store',
+            amount: 15,
+            unit: 'per cubic metre'
+          },
+          {
+            item: 'Earth-bank lagoon with consolidated clay lining',
+            amount: 8,
+            unit: 'per cubic metre'
+          },
+          {
+            item: 'Earth-bank lagoon with internal liner',
+            amount: 12,
+            unit: 'per cubic metre'
+          },
+          {
+            item: 'Stores using pre-cast rectangular concrete panels',
+            amount: 14,
+            unit: 'per cubic metre'
+          },
+          {
+            item: 'Large-volume supported slurry bag (over 2,500 cubic metres)',
+            amount: 20,
+            unit: 'per cubic metre'
+          }
+        ]
+      },
         {
           key: 'cat-cover-type',
           title: 'Cover type',
           items: [
             {
-              item: 'Rigid covers for above-ground steel or concrete stores',
+              item: 'Rigid cover for steel or concrete slurry stores',
               amount: 8,
               unit: 'per square metre'
             },
             {
-              item: 'Fixed flexible covers for above-ground steel and concrete stores and earth-bank lagoons',
+              item: 'Fixed flexible cover',
               amount: 4,
               unit: 'per square metre'
             },
             {
-              item: 'Floating flexible cover for earth-bank lagoons only',
+              item: 'Floating flexible cover',
               amount: 3,
               unit: 'per square metre'
             }
@@ -80,22 +74,7 @@ const objectToSend = {
           title: 'Reception pit type',
           items: [
             {
-              item: 'Glass-reinforced plastic (GRP)',
-              amount: 25,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Plastic',
-              amount: 26,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'Pre-cast concrete',
-              amount: 27,
-              unit: 'per cubic metre'
-            },
-            {
-              item: 'In-situ cast concrete',
+              item: 'Reception pit',
               amount: 30,
               unit: 'per cubic metre'
             }
@@ -111,8 +90,18 @@ const objectToSend = {
               unit: 'per pump'
             },
             {
-              item: 'Centrifugal chopper pump',
+              item: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
               amount: 2090,
+              unit: 'per pump'
+            },
+            {
+              item: 'Centrifugal chopper pump',
+              amount: 950,
+              unit: 'per pump'
+            },
+            {
+              item: 'Powered take off (PTO) or hydraulically driven chopper pump',
+              amount: 1700,
               unit: 'per pump'
             }
           ]
@@ -129,6 +118,16 @@ const objectToSend = {
             {
               item: 'Galvanised steel pipework 150mm diameter diameter',
               amount: 24,
+              unit: 'per metre'
+            },
+            {
+              item: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
+              amount: 8,
+              unit: 'per metre'
+            },
+            {
+              item: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
+              amount: 9,
               unit: 'per metre'
             }
           ]
@@ -149,12 +148,12 @@ const objectToSend = {
           title: 'Agitator',
           items: [
             {
-              item: 'Tank wall mixers with tank capacity up to 1,200 cubic metre',
+              item: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
               amount: 350,
               unit: 'per tank'
             },
             {
-              item: 'Tank wall mixers with tank capacity up to 8,000 cubic metre',
+              item: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
               amount: 1000,
               unit: 'per tank'
             }
@@ -165,18 +164,17 @@ const objectToSend = {
           title: 'Safety equipment',
           items: [
             {
-              item: 'Inspection platform with ladder for above-ground concrete and steel tanks',
+              item: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
               amount: 800,
               unit: 'per item'
             },
             {
-              item: 'Safety fencing for below-ground stores,earth-bank lagoons and slurry bags',
+              item: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
               amount: 55,
               unit: 'per metre'
             }
           ]
-        }
-      ],
+        }],
       overallRating: {
         score: null,
         band: null
@@ -196,69 +194,184 @@ describe('Standardised Cost Answers Array Function', () => {
 
     expect(response).toEqual([
       {
-        value: 'test-answers-A1',
-        text: 'Above-ground steel tank',
-        sidebarFormattedValue: 'Above-ground steel tank',
+        key: 'test-answers-A1',
+        value: 'Above-ground steel slurry store',
+        sidebarFormattedValue: 'Above-ground steel slurry store',
         hint: {
           text: 'Grant amount: £22 per cubic metre'
         }
       },
       {
-        value: 'test-answers-A2',
-        text: 'Above-ground concrete tank',
-        sidebarFormattedValue: 'Above-ground concrete tank',
+        key: 'test-answers-A2',
+        value: 'Precast circular concrete slurry store',
+        sidebarFormattedValue: 'Precast circular concrete slurry store',
         hint: {
           text: 'Grant amount: £17 per cubic metre'
         }
       },
       {
-        value: 'test-answers-A3',
-        text: 'Below-ground in-situ cast-reinforced concrete tank',
-        sidebarFormattedValue: 'Below-ground in-situ cast-reinforced concrete tank',
+        key: 'test-answers-A3',
+        value: 'In-situ cast-reinforced concrete slurry store',
+        sidebarFormattedValue: 'In-situ cast-reinforced concrete slurry store',
         hint: {
           text: 'Grant amount: £15 per cubic metre'
         }
       },
       {
-        value: 'test-answers-A4',
-        text: 'Earth-bank lagoon (unlined)',
-        sidebarFormattedValue: 'Earth-bank lagoon (unlined)',
+        key: 'test-answers-A4',
+        value: 'Earth-bank lagoon with consolidated clay lining',
+        sidebarFormattedValue: 'Earth-bank lagoon with consolidated clay lining',
         hint: {
           text: 'Grant amount: £8 per cubic metre'
         }
       },
       {
-        value: 'test-answers-A5',
-        text: 'Earth-bank lagoon (lined)',
-        sidebarFormattedValue: 'Earth-bank lagoon (lined)',
+        key: 'test-answers-A5',
+        value: 'Earth-bank lagoon with internal liner',
+        sidebarFormattedValue: 'Earth-bank lagoon with internal liner',
         hint: {
           text: 'Grant amount: £12 per cubic metre'
         }
       },
       {
-        value: 'test-answers-A6',
-        text: 'Stores using pre-cast rectangular concrete panels',
+        key: 'test-answers-A6',
+        value: 'Stores using pre-cast rectangular concrete panels',
         sidebarFormattedValue: 'Stores using pre-cast rectangular concrete panels',
         hint: {
           text: 'Grant amount: £14 per cubic metre'
         }
       },
       {
-        value: 'test-answers-A7',
-        text: 'Large-volume supported slurry bag',
-        sidebarFormattedValue: 'Large-volume supported slurry bag',
+        key: 'test-answers-A7',
+        value: 'Large-volume supported slurry bag (over 2,500 cubic metres)',
+        sidebarFormattedValue: 'Large-volume supported slurry bag (over 2,500 cubic metres)',
         hint: {
           text: 'Grant amount: £20 per cubic metre'
         }
+      }
+    ])
+  })
+
+  test(`Should return array correctly when objectKey is 'other'`, () => {
+    const mockRequest = {
+      yar: { get: (key) => (objectToSend) }
+    }
+
+    const response = formatAnswerArray(mockRequest, 'test-answers', 'other')
+
+    expect(response).toEqual([
+      {
+        key: 'test-answers-A1',
+        value: 'Reception pit',
+        sidebarFormattedValue: 'Reception pit',
+        hint: {
+          text: 'Grant amount: £30 per cubic metre'
+        }
       },
       {
-        value: 'test-answers-A8',
-        text: 'Slatted-floor stores',
-        sidebarFormattedValue: 'Slatted-floor stores',
+        key: 'test-answers-A2',
+        value: 'Electric-powered slurry transfer pump',
+        sidebarFormattedValue: 'Electric-powered slurry transfer pump',
         hint: {
-          text: 'Grant amount: £14 per cubic metre'
+          text: 'Grant amount: £1050 per pump'
         }
-      }
+      },
+      {
+        key: 'test-answers-A3',
+        value: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
+        sidebarFormattedValue: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
+        hint: {
+          text: 'Grant amount: £2090 per pump'
+        }
+      },
+      {
+        key: 'test-answers-A4',
+        value: 'Centrifugal chopper pump',
+        sidebarFormattedValue: 'Centrifugal chopper pump',
+        hint: {
+          text: 'Grant amount: £950 per pump'
+        }
+      },
+      {
+        key: 'test-answers-A5',
+        value: 'Powered take off (PTO) or hydraulically driven chopper pump',
+        sidebarFormattedValue: 'Powered take off (PTO) or hydraulically driven chopper pump',
+        hint: {
+          text: 'Grant amount: £1700 per pump'
+        }
+      },
+      {
+        key: 'test-answers-A6',
+        value: 'Galvanised steel pipework 100mm diameter',
+        sidebarFormattedValue: 'Galvanised steel pipework 100mm diameter',
+        hint: {
+          text: 'Grant amount: £14 per metre'
+        }
+      },
+      {
+        key: 'test-answers-A7',
+        value: 'Galvanised steel pipework 150mm diameter diameter',
+        sidebarFormattedValue: 'Galvanised steel pipework 150mm diameter diameter',
+        hint: {
+          text: 'Grant amount: £24 per metre'
+        }
+      },
+      {
+        key: 'test-answers-A8',
+        value: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
+        sidebarFormattedValue: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
+        hint: {
+          text: 'Grant amount: £8 per metre'
+        }
+      },
+      {
+        key: 'test-answers-A9',
+        value: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
+        sidebarFormattedValue: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
+        hint: {
+          text: 'Grant amount: £9 per metre'
+        }
+      },
+      {
+        key: 'test-answers-A10',
+        value: 'Under-floor transfer channels',
+        sidebarFormattedValue: 'Under-floor transfer channels',
+        hint: {
+          text: 'Grant amount: £25 per metre'
+        }
+      },
+      {
+        key: 'test-answers-A11',
+        value: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
+        sidebarFormattedValue: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
+        hint: {
+          text: 'Grant amount: £350 per tank'
+        }
+      },
+      {
+        key: 'test-answers-A12',
+        value: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
+        sidebarFormattedValue: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
+        hint: {
+          text: 'Grant amount: £1000 per tank'
+        }
+      },
+      {
+        key: 'test-answers-A13',
+        value: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
+        sidebarFormattedValue: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
+        hint: {
+          text: 'Grant amount: £800 per item'
+        }
+      },
+      {
+        key: 'test-answers-A14',
+        value: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
+        sidebarFormattedValue: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
+        hint: {
+          text: 'Grant amount: £55 per metre'
+        }
+      },
     ])
   })
 

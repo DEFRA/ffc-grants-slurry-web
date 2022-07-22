@@ -853,7 +853,6 @@ const questionBank = {
           minAnswerCount: 1,
           sidebar: {
             values: [
-              // Your Project Items no longer appears
               {
                 heading: 'Your project items',
                 content: [{
@@ -895,7 +894,7 @@ const questionBank = {
         {
           key: 'other-items',
           order: 130,
-          costDataType: 'cat-pump-type',
+          costDataType: 'other',
           title: 'What other items do you need?',
           baseUrl: 'other-items',
           backUrl: 'cover-type',
@@ -909,7 +908,6 @@ const questionBank = {
           minAnswerCount: 1,
           sidebar: {
             values: [
-              // Your Projetc Items no longer appears
               {
                 heading: 'Your project items',
                 content: [{
