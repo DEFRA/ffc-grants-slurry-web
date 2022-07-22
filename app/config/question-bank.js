@@ -815,7 +815,6 @@ const questionBank = {
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
           id: 'storageType',
-          name: 'storageType',
           nextUrlObject: {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
