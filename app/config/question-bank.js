@@ -90,7 +90,7 @@ const questionBank = {
           nextUrl: 'legal-status',
           ineligibleContent: {
             messageContent: `This grant is for pig, beef or dairy farmers. <br/> <br/> 
-            Poultry, arable-only, contractors and horticultural growers are not currently eligible.`,
+            <div class="govuk-inset-text">Poultry, arable-only, contractors and horticultural growers are not currently eligible.</div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -576,7 +576,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
             }
           },
           validate: [
@@ -680,8 +680,6 @@ const questionBank = {
             <li>adding a new store to increase existing capacity</li>
             <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
             </ul>
-            </br>
-            <p class="govuk-body">A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be suspectable to leaks or failure).</p>
             `,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
@@ -705,7 +703,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet"><li>A store is no longer fit for purpose if it has reached the end of its design life (for example, it may be susceptible to leaks or failure).</li></ul>'
+              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
             }
           },
           validate: [
@@ -762,13 +760,15 @@ const questionBank = {
               content: [{
                 para: `
                 Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
-
-                Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.
                 
-                Slurry acidification systems are not eligible for funding through this grant. `,
+                Slurry acidification systems are not eligible for funding through this grant.`,
                 items: []
               }]
-            }]
+            }],
+            details: {
+              summaryText: 'What is acidifcation?',
+              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'  
+            }
           },
           validate: [
             {
@@ -1455,7 +1455,12 @@ const questionBank = {
             <div class="govuk-inset-text">
               <span class="govuk-heading-m">Eligible to apply</span>
               </div>
-              <p class='govuk-body'>RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</p>`,
+              <p class='govuk-body'>
+              The RPA wants to fund projects that have a higher environmental benefit. <br/><br/>
+              We will do this by prioritising projects in areas that need urgent action 
+              to reduce nutrient pollution from agriculture and restore natural habitats.<br/><br/>
+              Depending on the number of applications received, we may invite projects 
+              outside these areas to submit a full application.</p>`,
             warning: {
               text: 'The likelihood of a full application being successful will also depend on the number and value of applications we receive.',
               iconFallbackText: 'Warning'
