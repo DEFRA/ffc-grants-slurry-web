@@ -70,7 +70,7 @@ it('user enter valid value', async () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('remaining-costs')
+    expect(postResponse.headers.location).toBe('cover-type')
 })
 
 it('page loads with correct back link', async () => {

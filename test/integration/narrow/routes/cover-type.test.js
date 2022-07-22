@@ -1,7 +1,8 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Cover Type test', () => {
-  const varList = {}
+  const varList = {
+    projectType: 'randomData', storageType: 'randomData', serviceCapacityIncrease: 'random' }
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -31,7 +32,7 @@ describe('Cover Type test', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover-type`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { storageType: '', crumb: crumbToken }
+      payload: { storageType: '', coverType: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -59,6 +60,6 @@ describe('Cover Type test', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"storage-type\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"serviceable-capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
   })
 })

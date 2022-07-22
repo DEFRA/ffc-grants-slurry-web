@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /serviceable-capacity-increase-additional', () => {
+describe('Page: /cover-size', () => {
 const varList = { inEngland: 'randomData' }
 
 jest.mock('../../../../app/helpers/session', () => ({
@@ -56,7 +56,7 @@ it('If decimals used', async () => {
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Volume must be a whole number')
+    expect(postResponse.payload).toContain('Cover size must be a whole number')
 })
 
 it('user enter valid value', async () => {

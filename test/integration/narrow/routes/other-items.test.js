@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Other Items test', () => {
-  const varList = {}
+  const varList = {storageType: 'random', coverType: 'random'}
 
   beforeEach(() => {
     jest.clearAllMocks()
