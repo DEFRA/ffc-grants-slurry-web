@@ -141,7 +141,7 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 }
 
 const getOptions = (data, question, conditionalHtml, request) => {
-  if (question?.costDataType && question.answers.length === 0) {
+  if (question?.costDataType && question.answers.length <= 2) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType).reverse()
 
     for (const answer in answersList) {

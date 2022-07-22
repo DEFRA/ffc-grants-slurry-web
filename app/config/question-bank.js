@@ -814,8 +814,19 @@ const questionBank = {
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
-          nextUrl: 'remaining-costs',
+          id: 'storageType',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: ['project-type-A1'],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
           url: 'storage-type',
+          hint: {
+            text: 'Select one option'
+          },
           preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
@@ -829,13 +840,342 @@ const questionBank = {
           yarKey: 'storageType'
         },
         {
+          key: 'serviceable-capacity-increase-replace',
+          order: 131,
+          title: '',
+          pageTitle: '',
+          url: 'serviceable-capacity-increase-replace',
+          baseUrl: 'serviceable-capacity-increase-replace',
+          backUrl: 'storage-type',
+          nextUrl: 'cover-type',
+          fundingPriorities: '',
+          preValidationKeys: [],
+          classes: 'govuk-input--width-5',
+          id: 'storageCapacityIncrease',
+          name: 'storageCapacityIncrease',
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Volume must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }
+            ],
+            dependentYarKeys: ['storageType'],
+            dependentQuestionKeys: ['storage-type']
+          },
+          warning: {
+            html: `This grant is to get your serviceable storage levels to 6 months.
+            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
+            </br> </br>
+            Any capacity above 6 months is not covered by the grant.`
+          },
+          yarKey: 'serviceCapacityIncrease'
+        },
+        {
+          key: 'serviceable-capacity-increase-additional',
+          order: 132,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          url: 'serviceable-capacity-increase-additional',
+          baseUrl: 'serviceable-capacity-increase-additional',
+          backUrl: 'storage-type',
+          nextUrl: 'cover-type',
+          preValidationKeys: [],
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Volume must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            dependentQuestionKeys: ['storage-type']
+          },
+          warning: {
+            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
+          },
+          yarKey: 'serviceCapacityIncrease'
+        },
+        {
+          key: 'cover-type',
+          order: 133,
+          costDataType: 'cat-cover-type',
+          title: 'What type of cover will you have?',
+          baseUrl: 'cover-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: ['project-type-A1'],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
+          nextUrlObject: {
+            dependentQuestionYarKey: 'coverType',
+            dependentAnswerKeysArray: ['cover-type-A4'],
+            urlOptions: {
+              thenUrl: 'other-items',
+              elseUrl: 'cover-size'
+            }
+          },
+          url: 'cover-type',
+          preValidationKeys: ['projectType', 'storageType'],
+          hint: {
+            text: 'Select one option'
+          },
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace'],
+            dependentQuestionKeys: ['storage-type']
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            }
+          ],
+          answers: [
+            {
+              value: 'divider'
+            },
+            {
+              key: 'cover-type-A4',
+              value: 'I already have an impermeable cover'
+            }
+          ],
+          yarKey: 'coverType'
+        },
+        {
+          key: 'cover-size',
+          order: 137,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          url: 'cover-size',
+          baseUrl: 'cover-size',
+          backUrl: 'cover-type',
+          nextUrl: 'other-items',
+          preValidationKeys: [],
+          suffix: { text: 'm²' },
+          type: 'input',
+          label: {
+            text: 'How big will the cover be?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Enter the estimated surface area of the replacement, new or expanded store
+
+            Enter size in metres squared
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the size of cover'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Cover size must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace'],
+            dependentQuestionKeys: ['storage-type', 'cover-type']
+          },
+          yarKey: 'coverSize'
+        },
+        {
+          key: 'other-items',
+          order: 130,
+          costDataType: 'other',
+          title: 'What other items do you need?',
+          baseUrl: 'other-items',
+          backUrlObject: {
+            dependentQuestionYarKey: 'coverType',
+            dependentAnswerKeysArray: ['cover-type-A4'],
+            urlOptions: {
+              thenUrl: 'cover-type',
+              elseUrl: 'cover-size'
+            }
+          },
+          nextUrl: 'remaining-costs',
+          hint: {
+            text: 'Select all the items your project needs'
+          },
+          url: 'other-items',
+          preValidationKeys: ['storageType', 'coverType'],
+          type: 'multi-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
+            dependentQuestionKeys: ['storage-type', 'cover-type']
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Please select an option'
+            },
+            {
+              type: 'STANDALONE_ANSWER',
+              error: 'You cannot select that combination of options',
+              standaloneObject: {
+                questionKey: 'other-items',
+                answerKey: 'other-items-A15'
+              }
+            }
+          ],
+          answers: [
+            {
+              value: 'divider'
+            },
+            {
+              key: 'other-items-A15',
+              value: 'None of the above',
+              redirectUrl: 'remaining-costs'
+            }
+          ],
+          yarKey: 'otherItems'
+        },
+        {
           key: 'remaining-costs',
           order: 190,
           title: 'Can you pay the remaining costs?',
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'storage-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'otherItems',
+            dependentAnswerKeysArray: ['other-items-A15'],
+            urlOptions: {
+              thenUrl: 'other-items',
+              elseUrl: 'other-items'
+            }
+          },
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
