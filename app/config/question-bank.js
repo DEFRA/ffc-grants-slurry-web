@@ -1174,14 +1174,15 @@ const questionBank = {
           order: 140,
           costDataKey: 'other',
           title: 'Item sizes and quantities',
-          hint: {
-            text: 'Enter the approximate size and quantities your project needs'
-          },
-          url: 'item-sizes-quantities',
           baseUrl: 'item-sizes-quantities',
           backUrl: 'other-items',
           nextUrl: 'remaining-costs',
-          preValidationKeys: [],
+          url: 'item-sizes-quantities',
+          preValidationKeys: ['storage-type', 'cover-type', 'other-items'],
+          hint: {
+            text: 'Enter the approximate size and quantities your project needs'
+          },
+          type: 'multi-input',
           sidebar: {
             mainHeading: 'Your project items',
             values: [
@@ -1212,7 +1213,6 @@ const questionBank = {
             linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
             dependentQuestionKeys: ['storage-type', 'cover-type', 'other-items']
           },
-          type: 'multi-input',
           allFields: [],
           yarKey: 'itemSizeQuantities'
         },
@@ -1295,7 +1295,7 @@ const questionBank = {
         },
         {
           key: 'planning-permission',
-          order: 140,
+          order: 142,
           title: 'Does the project have planning permission?',
           pageTitle: '',
           url: 'planning-permission',

@@ -49,7 +49,7 @@ describe('Other Items test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('remaining-costs')
+    expect(response.headers.location).toBe('item-sizes-quantities')
   })
 
   it('page loads with correct back link', async () => {
