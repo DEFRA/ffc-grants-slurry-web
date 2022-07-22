@@ -48,133 +48,133 @@ const objectToSend = {
           }
         ]
       },
-        {
-          key: 'cat-cover-type',
-          title: 'Cover type',
-          items: [
-            {
-              item: 'Rigid cover for steel or concrete slurry stores',
-              amount: 8,
-              unit: 'per square metre'
-            },
-            {
-              item: 'Fixed flexible cover',
-              amount: 4,
-              unit: 'per square metre'
-            },
-            {
-              item: 'Floating flexible cover',
-              amount: 3,
-              unit: 'per square metre'
-            }
-          ]
-        },
-        {
-          key: 'cat-reception-pit-type',
-          title: 'Reception pit type',
-          items: [
-            {
-              item: 'Reception pit',
-              amount: 30,
-              unit: 'per cubic metre'
-            }
-          ]
-        },
-        {
-          key: 'cat-pump-type',
-          title: 'Pump type',
-          items: [
-            {
-              item: 'Electric-powered slurry transfer pump',
-              amount: 1050,
-              unit: 'per pump'
-            },
-            {
-              item: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
-              amount: 2090,
-              unit: 'per pump'
-            },
-            {
-              item: 'Centrifugal chopper pump',
-              amount: 950,
-              unit: 'per pump'
-            },
-            {
-              item: 'Powered take off (PTO) or hydraulically driven chopper pump',
-              amount: 1700,
-              unit: 'per pump'
-            }
-          ]
-        },
-        {
-          key: 'cat-pipework',
-          title: 'Pipework',
-          items: [
-            {
-              item: 'Galvanised steel pipework 100mm diameter',
-              amount: 14,
-              unit: 'per metre'
-            },
-            {
-              item: 'Galvanised steel pipework 150mm diameter diameter',
-              amount: 24,
-              unit: 'per metre'
-            },
-            {
-              item: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
-              amount: 8,
-              unit: 'per metre'
-            },
-            {
-              item: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
-              amount: 9,
-              unit: 'per metre'
-            }
-          ]
-        },
-        {
-          key: 'cat-transfer-channels',
-          title: 'Transfer channels',
-          items: [
-            {
-              item: 'Under-floor transfer channels',
-              amount: 25,
-              unit: 'per metre'
-            }
-          ]
-        },
-        {
-          key: 'cat-agitator',
-          title: 'Agitator',
-          items: [
-            {
-              item: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
-              amount: 350,
-              unit: 'per tank'
-            },
-            {
-              item: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
-              amount: 1000,
-              unit: 'per tank'
-            }
-          ]
-        },
-        {
-          key: 'cat-safety-equipment',
-          title: 'Safety equipment',
-          items: [
-            {
-              item: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
-              amount: 800,
-              unit: 'per item'
-            },
-            {
-              item: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
-              amount: 55,
-              unit: 'per metre'
-            }
-          ]
-        }],
+      {
+        key: 'cat-cover-type',
+        title: 'Cover type',
+        items: [
+          {
+            item: 'Rigid cover for steel or concrete slurry stores',
+            amount: 8,
+            unit: 'per square metre'
+          },
+          {
+            item: 'Fixed flexible cover',
+            amount: 4,
+            unit: 'per square metre'
+          },
+          {
+            item: 'Floating flexible cover',
+            amount: 3,
+            unit: 'per square metre'
+          }
+        ]
+      },
+      {
+        key: 'cat-reception-pit-type',
+        title: 'Reception pit type',
+        items: [
+          {
+            item: 'Reception pit',
+            amount: 30,
+            unit: 'per cubic metre'
+          }
+        ]
+      },
+      {
+        key: 'cat-pump-type',
+        title: 'Pump type',
+        items: [
+          {
+            item: 'Electric-powered slurry transfer pump',
+            amount: 1050,
+            unit: 'per pump'
+          },
+          {
+            item: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
+            amount: 2090,
+            unit: 'per pump'
+          },
+          {
+            item: 'Centrifugal chopper pump',
+            amount: 950,
+            unit: 'per pump'
+          },
+          {
+            item: 'Powered take off (PTO) or hydraulically driven chopper pump',
+            amount: 1700,
+            unit: 'per pump'
+          }
+        ]
+      },
+      {
+        key: 'cat-pipework',
+        title: 'Pipework',
+        items: [
+          {
+            item: 'Galvanised steel pipework 100mm diameter',
+            amount: 14,
+            unit: 'per metre'
+          },
+          {
+            item: 'Galvanised steel pipework 150mm diameter diameter',
+            amount: 24,
+            unit: 'per metre'
+          },
+          {
+            item: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
+            amount: 8,
+            unit: 'per metre'
+          },
+          {
+            item: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
+            amount: 9,
+            unit: 'per metre'
+          }
+        ]
+      },
+      {
+        key: 'cat-transfer-channels',
+        title: 'Transfer channels',
+        items: [
+          {
+            item: 'Under-floor transfer channels',
+            amount: 25,
+            unit: 'per metre'
+          }
+        ]
+      },
+      {
+        key: 'cat-agitator',
+        title: 'Agitator',
+        items: [
+          {
+            item: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
+            amount: 350,
+            unit: 'per tank'
+          },
+          {
+            item: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
+            amount: 1000,
+            unit: 'per tank'
+          }
+        ]
+      },
+      {
+        key: 'cat-safety-equipment',
+        title: 'Safety equipment',
+        items: [
+          {
+            item: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
+            amount: 800,
+            unit: 'per item'
+          },
+          {
+            item: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
+            amount: 55,
+            unit: 'per metre'
+          }
+        ]
+      }],
       overallRating: {
         score: null,
         band: null
@@ -252,7 +252,7 @@ describe('Standardised Cost Answers Array Function', () => {
     ])
   })
 
-  test(`Should return array correctly when objectKey is 'other'`, () => {
+  test('Should return array correctly when objectKey is \'other\'', () => {
     const mockRequest = {
       yar: { get: (key) => (objectToSend) }
     }
@@ -371,7 +371,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           text: 'Grant amount: £55 per metre'
         }
-      },
+      }
     ])
   })
 

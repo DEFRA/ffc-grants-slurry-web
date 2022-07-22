@@ -21,9 +21,8 @@ const getDependentSideBar = (sidebar, request) => {
         let formattedSidebarValues = []
         let formattedValue = ''
 
-        if (thisContent?.referenceKey != dependentQuestionKey || thisContent?.referencKey === 'title'){
+        if (thisContent?.referenceKey != dependentQuestionKey || thisContent?.referencKey === 'title') {
           formattedSidebarValues = [].concat(yarValue)
-
         } else if (thisContent?.dependentAnswerExceptThese?.length) {
           const avoidThese = thisContent.dependentAnswerExceptThese
 

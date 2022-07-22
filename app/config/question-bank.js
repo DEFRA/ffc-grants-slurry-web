@@ -911,7 +911,7 @@ const questionBank = {
               {
                 heading: 'Your project items',
                 content: [{
-                  para:'',
+                  para: '',
                   items: [],
                   referenceKey: 'title'
                 }]
