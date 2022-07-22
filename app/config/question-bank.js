@@ -814,10 +814,16 @@ const questionBank = {
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
           backUrl: 'standardised-cost',
-          nextUrl: 'cover-type',
-          url: 'storage-type',
-          name: 'storageType',
           id: 'storageType',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: ['project-type-A1'],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
+          url: 'storage-type',
           hint: {
             text: 'Select one option'
           },
@@ -834,42 +840,171 @@ const questionBank = {
           yarKey: 'storageType'
         },
         {
-          key: 'cover-type',
-          order: 130,
-          costDataType: 'cat-cover-type',
-          title: 'What type of cover will you have?',
-          baseUrl: 'cover-type',
+          key: 'serviceable-capacity-increase-replace',
+          order: 131,
+          title: '',
+          pageTitle: '',
+          url: 'serviceable-capacity-increase-replace',
+          baseUrl: 'serviceable-capacity-increase-replace',
           backUrl: 'storage-type',
-          nextUrl: 'other-items',
-          url: 'cover-type',
-          name: 'coverType',
-          id: 'coverType',
-          preValidationKeys: ['storageType'],
-          hint: {
-            text: 'Select one option'
-          },
+          nextUrl: 'cover-type',
+          fundingPriorities: '',
           preValidationKeys: [],
-          type: 'single-answer',
-          minAnswerCount: 1,
+          classes: 'govuk-input--width-5',
+          id: 'storageCapacityIncrease',
+          name: 'storageCapacityIncrease',
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Volume must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
           sidebar: {
             values: [
               {
                 heading: 'Your project items',
                 content: [{
-                  para: '',
-                  referenceKey: 'title'
+                  para: 'Store',
+                  items: [],
+                  dependentAnswerExceptThese: []
                 }]
-              },
+              }
+            ],
+            dependentYarKeys: ['storageType'],
+            dependentQuestionKeys: ['storage-type']
+          },
+          warning: {
+            html: `This grant is to get your serviceable storage levels to 6 months.
+            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
+            </br> </br>
+            Any capacity above 6 months is not covered by the grant.`
+          },
+          yarKey: 'serviceCapacityIncrease'
+        },
+        {
+          key: 'serviceable-capacity-increase-additional',
+          order: 132,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          url: 'serviceable-capacity-increase-additional',
+          baseUrl: 'serviceable-capacity-increase-additional',
+          backUrl: 'storage-type',
+          nextUrl: 'cover-type',
+          preValidationKeys: [],
+          suffix: { text: 'm³' },
+          type: 'input',
+          label: {
+            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Volume must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your selected items',
+            values: [
               {
                 heading: 'Store',
                 content: [{
                   para: '',
                   items: [],
-                  referenceKey: 'storage-type',
-                  dependentAnswerExceptThese: ['storage-type-A9']
+                  dependentAnswerExceptThese: []
                 }]
               }],
-            dependentYarKeys: ['storageType'],
+            dependentQuestionKeys: ['storage-type']
+          },
+          warning: {
+            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
+          },
+          yarKey: 'serviceCapacityIncrease'
+        },
+        {
+          key: 'cover-type',
+          order: 133,
+          costDataType: 'cat-cover-type',
+          title: 'What type of cover will you have?',
+          baseUrl: 'cover-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: ['project-type-A1'],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
+          nextUrlObject: {
+            dependentQuestionYarKey: 'coverType',
+            dependentAnswerKeysArray: ['cover-type-A4'],
+            urlOptions: {
+              thenUrl: 'other-items',
+              elseUrl: 'cover-size'
+            }
+          },
+          url: 'cover-type',
+          preValidationKeys: ['projectType', 'storageType'],
+          hint: {
+            text: 'Select one option'
+          },
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: 'Your selected items',
+            values: [
+            {
+              heading: 'Store',
+              content: [{
+                para: '',
+                items: [],
+                dependentAnswerExceptThese: []
+              }]
+            }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace'],
             dependentQuestionKeys: ['storage-type']
           },
           validate: [
@@ -885,11 +1020,76 @@ const questionBank = {
             {
               key: 'cover-type-A4',
               value: 'I already have an impermeable cover',
-              sidebarFormattedValue: 'None',
-              redirectUrl: 'other-items'
+              sidebarFormattedValue: 'None'
             }
           ],
           yarKey: 'coverType'
+        },
+        {
+          key: 'cover-size',
+          order: 137,
+          title: '',
+          pageTitle: '',
+          classes: 'govuk-input--width-5',
+          url: 'cover-size',
+          baseUrl: 'cover-size',
+          backUrl: 'cover-type',
+          nextUrl: 'other-items',
+          preValidationKeys: [],
+          suffix: { text: 'm²' },
+          type: 'input',
+          label: {
+            text: 'How big will the cover be?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `
+            Enter the estimated surface area of the replacement, new or expanded store
+
+            Enter size in metres squared
+          `
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter the size of cover'
+            },
+            {
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Cover size must be a whole number'
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 999999999,
+              error: 'Volume must be between 1-9999999999'
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace'],
+            dependentQuestionKeys: ['storage-type', 'cover-type']
+          },
+          yarKey: 'coverSize'
         },
         {
           key: 'other-items',
@@ -907,22 +1107,14 @@ const questionBank = {
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
+            mainHeading: 'Your project items',
             values: [
-              {
-                heading: 'Your project items',
-                content: [{
-                  para: '',
-                  items: [],
-                  referenceKey: 'title'
-                }]
-              },
               {
                 heading: 'Store',
                 content: [{
                   para: '',
                   items: [],
-                  referenceKey: 'storage-type',
-                  dependentAnswerExceptThese: ['storage-type-A9']
+                  dependentAnswerExceptThese: []
                 }]
               },
               {
@@ -930,12 +1122,10 @@ const questionBank = {
                 content: [{
                   para: '',
                   items: [],
-                  referenceKey: 'cover-type',
-                  dependentAnswerExceptThese: ['cover-type-A5']
+                  dependentAnswerExceptThese: []
                 }]
-              }
-            ],
-            dependentYarKeys: ['storageType', 'coverType'],
+              }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
             dependentQuestionKeys: ['storage-type', 'cover-type']
           },
           validate: [
@@ -971,7 +1161,14 @@ const questionBank = {
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'storage-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'otherItems',
+            dependentAnswerKeysArray: ['other-items-A15'],
+            urlOptions: {
+              thenUrl: 'other-items',
+              elseUrl: 'other-items'
+            }
+          },
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {

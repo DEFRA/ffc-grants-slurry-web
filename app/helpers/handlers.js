@@ -65,10 +65,10 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       ...farmerDetails,
       ...(farmerDetails
         ? {
-            name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
-            contact: farmerContact.join('<br/>'),
-            address: farmerAddress.join('<br/>')
-          }
+          name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
+          contact: farmerContact.join('<br/>'),
+          address: farmerAddress.join('<br/>')
+        }
         : {}
       )
     },
@@ -76,10 +76,10 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       ...agentDetails,
       ...(agentDetails
         ? {
-            name: `${agentDetails.firstName} ${agentDetails.lastName}`,
-            contact: agentContact.join('<br/>'),
-            address: agentAddress.join('<br/>')
-          }
+          name: `${agentDetails.firstName} ${agentDetails.lastName}`,
+          contact: agentContact.join('<br/>'),
+          address: agentAddress.join('<br/>')
+        }
         : {}
       )
     }
@@ -103,11 +103,11 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
     gridReference,
     ...(hasEvidence
       ? {
-          evidence: {
-            planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
-            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
-          }
+        evidence: {
+          planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
+          planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
         }
+      }
       : {}
     )
   })
@@ -123,8 +123,8 @@ const getDataFromYarValue = (request, yarKey, type) => {
 }
 
 const getPage = async (question, request, h) => {
-  const { url, backUrl, dependantNextUrl, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
-  const nextUrl = getUrl(dependantNextUrl, question.nextUrl, request)
+  const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
+  const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
   const isRedirect = guardPage(request, preValidationKeys, preValidationKeysRule)
   if (isRedirect) {
     return h.redirect(startPageUrl)
@@ -251,7 +251,7 @@ const getPage = async (question, request, h) => {
 }
 
 const showPostPage = (currentQuestion, request, h) => {
-  const { yarKey, answers, baseUrl, ineligibleContent, nextUrl, dependantNextUrl, title, type, allFields } = currentQuestion
+  const { yarKey, answers, baseUrl, ineligibleContent, nextUrl, nextUrlObject, title, type, allFields } = currentQuestion
   const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
   const payload = request.payload
   let thisAnswer
@@ -300,7 +300,7 @@ const showPostPage = (currentQuestion, request, h) => {
   }
 
   if (thisAnswer?.notEligible ||
-      (yarKey === 'projectCost' ? !getGrantValues(payload[Object.keys(payload)[0]], currentQuestion.grantInfo).isEligible : null)
+    (yarKey === 'projectCost' ? !getGrantValues(payload[Object.keys(payload)[0]], currentQuestion.grantInfo).isEligible : null)
   ) {
     gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible)
     if (thisAnswer?.alsoMaybeEligible) {
@@ -350,7 +350,7 @@ const showPostPage = (currentQuestion, request, h) => {
     setYarValue(request, 'remainingCost', remainingCost)
   }
 
-  return h.redirect(getUrl(dependantNextUrl, nextUrl, request, payload.secBtn, currentQuestion.url))
+  return h.redirect(getUrl(nextUrlObject, nextUrl, request, payload.secBtn, currentQuestion.url))
 }
 
 const getHandler = (question) => {

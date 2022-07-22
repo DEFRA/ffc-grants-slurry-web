@@ -40,6 +40,7 @@ describe('Storage Type test', () => {
   })
 
   test('POST /storage-type route returns next page', async () => {
+
     const options = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/storage-type`,
@@ -49,7 +50,7 @@ describe('Storage Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('cover-type')
+    expect(response.headers.location).toBe('serviceable-capacity-increase-additional')
   })
 
   it('page loads with correct back link', async () => {

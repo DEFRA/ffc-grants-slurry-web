@@ -35,25 +35,6 @@ function formatAnswerArray (request, questionKey, objectKey) {
       }
     }
 
-    // } else {
-
-    //   const keyToFind = object.data.desirability.catagories.find(({ key }) => key == objectKey)
-
-    //   let tempObject
-
-    //   for (const answer in keyToFind.items) {
-    //     tempObject = {
-    //       key: questionKey + '-A' + (parseInt(answer) + 1),
-    //       value: keyToFind.items[answer].item,
-    //       sidebarFormattedValue: keyToFind.items[answer].item,
-    //       hint: {
-    //         text: 'Grant amount: £' + keyToFind.items[answer].amount + ' ' + keyToFind.items[answer].unit
-    //       }
-    //     }
-
-    //     returnArray.push(tempObject)
-    //   }
-    // }
   }
 
   return returnArray
