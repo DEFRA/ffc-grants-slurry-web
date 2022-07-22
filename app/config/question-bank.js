@@ -884,11 +884,12 @@ const questionBank = {
             }
           ],
           sidebar: {
+            mainHeading: 'Your project items',
             values: [
               {
-                heading: 'Your project items',
+                heading: 'Store',
                 content: [{
-                  para: 'Store',
+                  para: '',
                   items: [],
                   dependentAnswerExceptThese: []
                 }]
@@ -947,7 +948,7 @@ const questionBank = {
             }
           ],
           sidebar: {
-            mainHeading: 'Your selected items',
+            mainHeading: 'Your project items',
             values: [
               {
                 heading: 'Store',
@@ -994,7 +995,7 @@ const questionBank = {
           type: 'single-answer',
           minAnswerCount: 1,
           sidebar: {
-            mainHeading: 'Your selected items',
+            mainHeading: 'Your project items',
             values: [
               {
                 heading: 'Store',
