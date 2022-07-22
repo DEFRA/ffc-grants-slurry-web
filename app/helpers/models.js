@@ -12,10 +12,10 @@ const getDependentSideBar = (sidebar, request) => {
     values[index].content[0].items = [selectedAnswers].flat()
 
     if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
-      let yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-      let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
+      const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+      const selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
 
-      if (selectedValueOfLinkedQuestion != undefined){
+      if (selectedValueOfLinkedQuestion != undefined && selectedAnswers != 'I already have an impermeable cover') {
         values[index].content[0].items.push([selectedValueOfLinkedQuestion])
       }
     }

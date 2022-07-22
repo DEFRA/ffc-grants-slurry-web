@@ -34,7 +34,6 @@ function formatAnswerArray (request, questionKey, objectKey) {
         returnArray.push(tempObject)
       }
     }
-
   }
 
   return returnArray

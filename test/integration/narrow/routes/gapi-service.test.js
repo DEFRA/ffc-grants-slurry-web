@@ -91,15 +91,14 @@ describe('get gapiService setup', () => {
   })
 
   test('Call processGA - no ga', async () => {
-    let result = await gapiService.processGA(request)
+    const result = await gapiService.processGA(request)
     expect(result).toBe(undefined)
   })
 
   test('Call processGA - empty ga', async () => {
-    let ga = []
+    const ga = []
     result = await gapiService.processGA(request, ga)
     expect(result).toBe(undefined)
-
   })
 
   // test('Call processGA - populated ga', async () => {

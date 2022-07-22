@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Other Items test', () => {
-  const varList = {storageType: 'random', coverType: 'random'}
+  const varList = { storageType: 'random', coverType: 'random' }
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -59,6 +59,6 @@ describe('Other Items test', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"cover-type\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"cover-size\" class=\"govuk-back-link\">Back</a>')
   })
 })

@@ -40,7 +40,6 @@ describe('Storage Type test', () => {
   })
 
   test('POST /storage-type route returns next page', async () => {
-
     const options = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/storage-type`,

@@ -996,14 +996,14 @@ const questionBank = {
           sidebar: {
             mainHeading: 'Your selected items',
             values: [
-            {
-              heading: 'Store',
-              content: [{
-                para: '',
-                items: [],
-                dependentAnswerExceptThese: []
-              }]
-            }],
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace'],
             dependentQuestionKeys: ['storage-type']
           },
@@ -1019,8 +1019,7 @@ const questionBank = {
             },
             {
               key: 'cover-type-A4',
-              value: 'I already have an impermeable cover',
-              sidebarFormattedValue: 'None'
+              value: 'I already have an impermeable cover'
             }
           ],
           yarKey: 'coverType'
@@ -1097,7 +1096,14 @@ const questionBank = {
           costDataType: 'other',
           title: 'What other items do you need?',
           baseUrl: 'other-items',
-          backUrl: 'cover-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'coverType',
+            dependentAnswerKeysArray: ['cover-type-A4'],
+            urlOptions: {
+              thenUrl: 'cover-type',
+              elseUrl: 'cover-size'
+            }
+          },
           nextUrl: 'remaining-costs',
           hint: {
             text: 'Select all the items your project needs'
