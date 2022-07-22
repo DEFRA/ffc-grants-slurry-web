@@ -767,7 +767,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'What is acidifcation?',
-              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'  
+              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'
             }
           },
           validate: [
@@ -1093,7 +1093,7 @@ const questionBank = {
         },
         {
           key: 'other-items',
-          order: 130,
+          order: 139,
           costDataType: 'other',
           title: 'What other items do you need?',
           baseUrl: 'other-items',
@@ -1105,7 +1105,15 @@ const questionBank = {
               elseUrl: 'cover-size'
             }
           },
-          nextUrl: 'remaining-costs',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'otherItems',
+            dependentAnswerKeysArray: ['other-items-A15'],
+            urlOptions: {
+              thenUrl: 'remaining-cost',
+              elseUrl: 'item-sizes-quantities'
+            }
+
+          },
           hint: {
             text: 'Select all the items your project needs'
           },
@@ -1160,6 +1168,53 @@ const questionBank = {
             }
           ],
           yarKey: 'otherItems'
+        },
+        {
+          key: 'item-sizes-quantities',
+          order: 140,
+          costDataKey: 'other',
+          title: 'Item sizes and quantities',
+          hint: {
+            text: 'Enter the approximate size and quantities your project needs'
+          },
+          url: 'item-sizes-quantities',
+          baseUrl: 'item-sizes-quantities',
+          backUrl: 'other-items',
+          nextUrl: 'remaining-costs',
+          preValidationKeys: [],
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Other items',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
+            dependentQuestionKeys: ['storage-type', 'cover-type', 'other-items']
+          },
+          type: 'multi-input',
+          allFields: [],
+          yarKey: 'itemSizeQuantities'
         },
         {
           key: 'remaining-costs',

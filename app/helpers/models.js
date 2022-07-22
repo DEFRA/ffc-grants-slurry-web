@@ -9,14 +9,20 @@ const getDependentSideBar = (sidebar, request) => {
     const yarValue = getQuestionByKey(dependentQuestionKey).yarKey
     const selectedAnswers = getYarValue(request, yarValue)
 
-    values[index].content[0].items = [selectedAnswers].flat()
+    if (dependentQuestionKey == 'other-items' && selectedAnswers.length < values[index].content[0].items.length) {
+      selectedAnswers.forEach((answer) => {
+        values[index].content[0].items.push([answer])
+      })
+    } else {
+      values[index].content[0].items = [selectedAnswers].flat()
 
-    if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
-      const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-      const selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
+      if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
+        const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+        const selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
 
-      if (selectedValueOfLinkedQuestion != undefined && selectedAnswers != 'I already have an impermeable cover') {
-        values[index].content[0].items.push([selectedValueOfLinkedQuestion])
+        if (selectedValueOfLinkedQuestion != undefined && selectedAnswers != 'I already have an impermeable cover') {
+          values[index].content[0].items.push([selectedValueOfLinkedQuestion])
+        }
       }
     }
   })
