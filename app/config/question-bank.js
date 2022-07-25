@@ -1541,10 +1541,6 @@ const questionBank = {
               to reduce nutrient pollution from agriculture and restore natural habitats.<br/><br/>
               Depending on the number of applications received, we may invite projects 
               outside these areas to submit a full application.</p>`,
-            warning: {
-              text: 'The likelihood of a full application being successful will also depend on the number and value of applications we receive.',
-              iconFallbackText: 'Warning'
-            },
             extraMessageContent: `
             <h2 class="govuk-heading-m">Next steps</h2>
             <p class="govuk-body">Next, add your business and contact details and submit them to the RPA (you should only do this once).
@@ -2350,9 +2346,8 @@ const questionBank = {
             <a class="govuk-link" title="Send email to RPA" target="_blank" rel="noopener noreferrer" href="mailto:ftf@rpa.gov.uk">FTF@rpa.gov.uk</a><br/><br/>
             
             <h2 class="govuk-heading-m">What happens next</h2>
-            <p>1. RPA will be in touch when the full application period opens. They will tell you if your project scored well enough to get the full application form.</p>
-            <p>2. If you submit an application, RPA will assess it against other projects and value for money. You will not automatically get a grant.
-            The grant is expected to be highly competitive and you are competing against other projects.</p>
+            <p>1. RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</p>
+            <p>2. If you submit an application, RPA will assess it is eligible and meets the rules of the grant.</p>
             <p>3. If your application is successful, you’ll be sent a funding agreement and can begin work on the project.</p>
             `,
             warning: {
