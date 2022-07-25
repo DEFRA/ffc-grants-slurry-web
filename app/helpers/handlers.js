@@ -14,6 +14,7 @@ const createMsg = require('../messaging/create-msg')
 const gapiService = require('../services/gapi-service')
 const { startPageUrl } = require('../config/server')
 const { ALL_QUESTIONS } = require('../config/question-bank')
+const { formatOtherItems } = require('./../helpers/other-items-sizes')
 
 const getConfirmationId = (guid) => {
   const prefix = 'SI'
@@ -251,9 +252,10 @@ const getPage = async (question, request, h) => {
 }
 
 const showPostPage = (currentQuestion, request, h) => {
-  const { yarKey, answers, baseUrl, ineligibleContent, nextUrl, nextUrlObject, title, type, allFields } = currentQuestion
+  const { yarKey, answers, baseUrl, ineligibleContent, nextUrl, nextUrlObject, title, type } = currentQuestion
   const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
   const payload = request.payload
+
   let thisAnswer
   let dataObject
   if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
@@ -267,6 +269,10 @@ const showPostPage = (currentQuestion, request, h) => {
     }
   }
   if (type === 'multi-input') {
+    let allFields = currentQuestion.allFields
+    if (currentQuestion.costDataKey) {
+      allFields = formatOtherItems(request)
+    }
     allFields.forEach(field => {
       const payloadYarVal = payload[field.yarKey]
         ? payload[field.yarKey].replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase()

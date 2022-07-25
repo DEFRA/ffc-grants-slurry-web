@@ -16,21 +16,16 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
-    const yarValue = getQuestionByKey(dependentQuestionKey).yarKey
-    const selectedAnswers = getYarValue(request, yarValue)
+    const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
+    const selectedAnswers = getYarValue(request, yarKey)
 
-    if (dependentQuestionKey == 'other-items' && selectedAnswers.length < values[index].content[0].items.length) {
-      selectedAnswers.forEach((answer) => {
-        values[index].content[0].items.push([answer])
-      })
-    } else {
-      values[index].content[0].items = [selectedAnswers].flat()
+    values[index].content[0].items = [selectedAnswers].flat()
 
     if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
       const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
       let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
 
-      if (selectedValueOfLinkedQuestion && sidebar.prefixSufix[index]) {
+      if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
         selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], selectedValueOfLinkedQuestion)
       }
 

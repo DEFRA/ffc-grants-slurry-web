@@ -4,9 +4,9 @@ const {
 
 function suffixGenerator (unit) {
   // add correct suffix value to input field
-  if (unit == 'per cubic metre') {
+  if (unit === 'per cubic metre') {
     return 'm³'
-  } else if (unit == 'per metre') {
+  } else if (unit === 'per metre') {
     return 'metre(s)'
   } else {
     return 'item (s)' // per pump, per tank and per item
@@ -15,9 +15,9 @@ function suffixGenerator (unit) {
 
 function keyGenerator (title) {
   // format key name for NOT_EMPTY validation
-  if (title == 'Reception pit type') {
+  if (title === 'Reception pit type') {
     return 'plastic reception pit'
-  } else if (title == 'Pump type') {
+  } else if (title === 'Pump type') {
     return 'pump'
   } else {
     return title.toLowerCase()
@@ -35,8 +35,7 @@ function errorGenerator (catagory) {
 
 function formatOtherItems (request) {
   const object = request.yar.get('standardisedCostObject')
-  const otherItemsArray = request.yar.get('otherItems')
-
+  const otherItemsArray = [request.yar.get('otherItems')].flat()
   const listOfCatagories = ['cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']
 
   const returnArray = []
@@ -44,19 +43,13 @@ function formatOtherItems (request) {
   if (object?.data && otherItemsArray.length > 0) {
     otherItemsArray.forEach((otherItem, _index) => {
       for (const catagory in listOfCatagories) {
-        const keyToFind = object.data.desirability.catagories.find(({ key }) => key == listOfCatagories[catagory])
+        const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === listOfCatagories[catagory])
 
-        keyToFind.items.forEach((item) => {
-          if (item.item == otherItem) {
-            let suffixValue
-            let errorType
-            let keyTitle
-
-            suffixValue = suffixGenerator(item.unit)
-
-            keyTitle = keyGenerator(keyToFind.title)
-
-            errorType = errorGenerator(listOfCatagories[catagory])
+        selectedCatagory.items.forEach((item) => {
+          if (item.item === otherItem) {
+            const suffixValue = suffixGenerator(item.unit)
+            const keyTitle = keyGenerator(selectedCatagory.title)
+            const errorType = errorGenerator(listOfCatagories[catagory])
 
             // format object
             const tempObject = {

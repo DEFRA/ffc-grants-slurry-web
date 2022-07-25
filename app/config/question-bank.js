@@ -1226,6 +1226,14 @@ const questionBank = {
                   dependentAnswerExceptThese: []
                 }]
               }],
+            prefixSufix: [{
+              linkedPrefix: 'increase: ',
+              linkedSufix: 'm³'
+            },
+            {
+              linkedPrefix: 'size: ',
+              linkedSufix: 'm³'
+            }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
             dependentQuestionKeys: ['storage-type', 'cover-type', 'other-items']
           },
