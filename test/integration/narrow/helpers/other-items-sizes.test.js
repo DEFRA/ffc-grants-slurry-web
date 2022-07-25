@@ -229,7 +229,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Reception pit',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -259,7 +259,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Electric-powered slurry transfer pump',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -289,7 +289,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -319,7 +319,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Centrifugal chopper pump',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -349,7 +349,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Powered take off (PTO) or hydraulically driven chopper pump',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -379,7 +379,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Galvanised steel pipework 100mm diameter',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -409,7 +409,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Galvanised steel pipework 150mm diameter',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -439,7 +439,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -469,7 +469,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -499,7 +499,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Under-floor transfer channels',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -529,7 +529,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -559,7 +559,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -589,7 +589,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
@@ -619,7 +619,7 @@ describe('Other Items Sizes Array Function', () => {
         classes: 'govuk-input--width-10',
         label: {
           text: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
-          classes: 'govuk-label'
+          classes: 'govuk-label--m'
         },
         validate: [
           {
