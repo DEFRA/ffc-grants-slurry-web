@@ -1462,10 +1462,6 @@ const questionBank = {
               to reduce nutrient pollution from agriculture and restore natural habitats.<br/><br/>
               Depending on the number of applications received, we may invite projects 
               outside these areas to submit a full application.</p>`,
-            warning: {
-              text: 'The likelihood of a full application being successful will also depend on the number and value of applications we receive.',
-              iconFallbackText: 'Warning'
-            },
             extraMessageContent: `
             <h2 class="govuk-heading-m">Next steps</h2>
             <p class="govuk-body">Next, add your business and contact details and submit them to the RPA (you should only do this once).
