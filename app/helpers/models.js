@@ -3,6 +3,16 @@ const { getOptions } = require('../helpers/answer-options')
 const { getYarValue } = require('../helpers/session')
 const { getQuestionByKey, allAnswersSelected } = require('../helpers/utils')
 
+const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
+  if (prefixSufix.linkedPrefix || prefixSufix.linkedSufix) {
+    selectedValueOfLinkedQuestion = prefixSufix.linkedPrefix.concat(selectedValueOfLinkedQuestion)
+  }
+  if (prefixSufix.linkedSufix) {
+    selectedValueOfLinkedQuestion = selectedValueOfLinkedQuestion.concat(prefixSufix.linkedSufix)
+  }
+  return selectedValueOfLinkedQuestion
+}
+
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
@@ -16,13 +26,16 @@ const getDependentSideBar = (sidebar, request) => {
     } else {
       values[index].content[0].items = [selectedAnswers].flat()
 
-      if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
-        const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-        const selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
+    if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
+      const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+      let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
 
-        if (selectedValueOfLinkedQuestion != undefined && selectedAnswers != 'I already have an impermeable cover') {
-          values[index].content[0].items.push([selectedValueOfLinkedQuestion])
-        }
+      if (selectedValueOfLinkedQuestion && sidebar.prefixSufix[index]) {
+        selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], selectedValueOfLinkedQuestion)
+      }
+
+      if (selectedValueOfLinkedQuestion) {
+        values[index].content[0].items.push(selectedValueOfLinkedQuestion)
       }
     }
   })
