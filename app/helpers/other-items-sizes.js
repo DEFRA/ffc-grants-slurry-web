@@ -2,6 +2,37 @@ const {
   WHOLE_NUMBER_REGEX
 } = require('./regex')
 
+function suffixGenerator (unit) {
+  // add correct suffix value to input field
+  if (unit == 'per cubic metre') {
+    return 'm³'
+  } else if (unit == 'per metre') {
+    return 'metre(s)'
+  } else {
+    return 'item (s)' // per pump, per tank and per item
+  }
+}
+
+function keyGenerator (title) {
+  // format key name for NOT_EMPTY validation
+  if (title == 'Reception pit type') {
+    return 'plastic reception pit'
+  } else if (title == 'Pump type') {
+    return 'pump'
+  } else {
+    return keyToFind.toLowerCase()
+  }
+}
+
+function errorGenerator (catagory) {
+  // add volume/quantity based on catagory (for validation)
+  if (catagory in ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']) {
+    return 'Volume'
+  } else {
+    return 'Quantity'
+  }
+}
+
 function formatOtherItems (request) {
   const object = request.yar.get('standardisedCostObject')
   const otherItemsArray = request.yar.get('otherItems')
@@ -11,7 +42,7 @@ function formatOtherItems (request) {
   const returnArray = []
 
   if (object?.data && otherItemsArray.length > 0) {
-    otherItemsArray.forEach((otherItem, index) => {
+    otherItemsArray.forEach((otherItem, _index) => {
       for (const catagory in listOfCatagories) {
         const keyToFind = object.data.desirability.catagories.find(({ key }) => key == listOfCatagories[catagory])
 
@@ -21,30 +52,11 @@ function formatOtherItems (request) {
             let errorType
             let keyTitle
 
-            // add correct suffix value to input field
-            if (item.unit == 'per cubic metre') {
-              suffixValue = 'm³'
-            } else if (item.unit == 'per metre') {
-              suffixValue = 'metre(s)'
-            } else {
-              suffixValue = 'item (s)' // per pump, per tank and per item
-            }
+            suffixValue = suffixGenerator(item.unit)
 
-            // format key name for NOT_EMPTY validation
-            if (keyToFind.title == 'Reception pit type') {
-              keyTitle = 'plastic reception pit'
-            } else if (keyToFind.title == 'Pump type') {
-              keyTitle = 'pump'
-            } else {
-              keytitle = keyToFind.title.toLowerCase()
-            }
+            keyTitle = keyGenerator(keyToFind.title)
 
-            // add volume/quantity based on catagory (for validation)
-            if (listOfCatagories[catagory] in ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']) {
-              errorType = 'Volume'
-            } else {
-              errorType = 'Quantity'
-            }
+            errorType = errorGenerator(listOfCatagories[catagory])
 
             // format object
             const tempObject = {
