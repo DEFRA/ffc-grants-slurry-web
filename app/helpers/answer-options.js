@@ -1,4 +1,5 @@
 const { formatAnswerArray } = require('./../helpers/standardised-cost-array')
+const { formatOtherItems } = require('./../helpers/other-items-sizes')
 
 function isChecked (data, option) {
   return typeof data === 'string' ? !!data && data === option : !!data && data.includes(option)
@@ -94,6 +95,10 @@ const textField = (data, question, _request = null) => {
 }
 
 const getAllInputs = (data, question, conditionalHtml, request) => {
+  if (question?.costDataKey && question.allFields.length <= 0) {
+    question.allFields = formatOtherItems(request)
+  }
+
   const { allFields } = question
   let dataObject
   if (!data) {

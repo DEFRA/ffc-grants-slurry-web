@@ -1101,7 +1101,7 @@ const questionBank = {
         },
         {
           key: 'other-items',
-          order: 130,
+          order: 139,
           costDataType: 'other',
           title: 'What other items do you need?',
           baseUrl: 'other-items',
@@ -1113,7 +1113,15 @@ const questionBank = {
               elseUrl: 'cover-size'
             }
           },
-          nextUrl: 'remaining-costs',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'otherItems',
+            dependentAnswerKeysArray: ['other-items-A15'],
+            urlOptions: {
+              thenUrl: 'remaining-cost',
+              elseUrl: 'item-sizes-quantities'
+            }
+
+          },
           hint: {
             text: 'Select all the items your project needs'
           },
@@ -1178,6 +1186,61 @@ const questionBank = {
           yarKey: 'otherItems'
         },
         {
+          key: 'item-sizes-quantities',
+          order: 140,
+          costDataKey: 'other',
+          title: 'Item sizes and quantities',
+          baseUrl: 'item-sizes-quantities',
+          backUrl: 'other-items',
+          nextUrl: 'remaining-costs',
+          url: 'item-sizes-quantities',
+          preValidationKeys: [],
+          hint: {
+            text: 'Enter the approximate size and quantities your project needs'
+          },
+          type: 'multi-input',
+          sidebar: {
+            mainHeading: 'Your project items',
+            values: [
+              {
+                heading: 'Store',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Cover',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              },
+              {
+                heading: 'Other items',
+                content: [{
+                  para: '',
+                  items: [],
+                  dependentAnswerExceptThese: []
+                }]
+              }],
+            prefixSufix: [{
+              linkedPrefix: 'increase: ',
+              linkedSufix: 'm³'
+            },
+            {
+              linkedPrefix: 'size: ',
+              linkedSufix: 'm³'
+            }],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
+            dependentQuestionKeys: ['storage-type', 'cover-type', 'other-items']
+          },
+          allFields: [],
+          yarKey: 'itemSizeQuantities'
+        },
+        {
           key: 'remaining-costs',
           order: 190,
           title: 'Can you pay the remaining costs?',
@@ -1189,7 +1252,7 @@ const questionBank = {
             dependentAnswerKeysArray: ['other-items-A15'],
             urlOptions: {
               thenUrl: 'other-items',
-              elseUrl: 'other-items'
+              elseUrl: 'item-sizes-quantities'
             }
           },
           nextUrl: 'planning-permission',
@@ -1256,7 +1319,7 @@ const questionBank = {
         },
         {
           key: 'planning-permission',
-          order: 140,
+          order: 142,
           title: 'Does the project have planning permission?',
           pageTitle: '',
           url: 'planning-permission',
