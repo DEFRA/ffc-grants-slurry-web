@@ -1228,7 +1228,7 @@ const questionBank = {
             dependentAnswerKeysArray: ['other-items-A15'],
             urlOptions: {
               thenUrl: 'other-items',
-              elseUrl: 'other-items'
+              elseUrl: 'item-sizes-quantities'
             }
           },
           nextUrl: 'planning-permission',
