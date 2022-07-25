@@ -20,13 +20,13 @@ function keyGenerator (title) {
   } else if (title == 'Pump type') {
     return 'pump'
   } else {
-    return keyToFind.toLowerCase()
+    return title.toLowerCase()
   }
 }
 
 function errorGenerator (catagory) {
   // add volume/quantity based on catagory (for validation)
-  if (catagory in ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']) {
+  if (['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels'].indexOf(catagory) >= 0) {
     return 'Volume'
   } else {
     return 'Quantity'
@@ -60,11 +60,11 @@ function formatOtherItems (request) {
 
             // format object
             const tempObject = {
-              yarKey: item.item.replace(/[- )(]/g, ''), // Could add key to db list, to be used for populating yar?
+              yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
               type: 'number',
               suffix: { text: suffixValue },
               hint: {
-                text: 'Enter ' + errorType.toLowerCase() + ' (grant amount: £' + item.amount + ' ' + item.unit + ')'
+                text: 'Grant amount: £' + item.amount + ' ' + item.unit
               },
               classes: 'govuk-input--width-10',
               label: {
@@ -84,7 +84,7 @@ function formatOtherItems (request) {
                 {
                   type: 'MIN_MAX',
                   min: 1,
-                  max: 999999999,
+                  max: 9999999999,
                   error: errorType + ' must be between 1-9999999999'
                 }
               ]
