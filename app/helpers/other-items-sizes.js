@@ -90,7 +90,6 @@ function formatOtherItems (request) {
     })
   }
 
-  console.log(returnArray, 'JDBFSBFES')
   return returnArray
 }
 

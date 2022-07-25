@@ -100,8 +100,6 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
   }
 
   const { allFields } = question
-  console.log(allFields, 'FFFFFFFFF')
-  console.log(data,'DDDDDDDD')
   let dataObject
   if (!data) {
     allFields.forEach(field => {
@@ -111,7 +109,6 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
       }
     })
     data = dataObject
-    console.log(data,'OOOBOBOBOBOBOBOBOB')
   }
   return allFields.map((field) => {
     const { type, endFieldset } = field
