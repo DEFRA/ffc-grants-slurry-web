@@ -1,4 +1,11 @@
-function formatAnswerArray (request, questionKey, objectKey) {
+const getHintText = (answer, hintArray, counter) => {
+  if (hintArray && hintArray[counter - 1]) {
+    return `${hintArray[counter - 1]} <br/> Grant amount: £ ${answer.amount} ${answer.unit}`
+  }
+  return 'Grant amount: £' + answer.amount + ' ' + answer.unit
+}
+
+function formatAnswerArray (request, questionKey, catagoryKey, hintArray) {
   const object = request.yar.get('standardisedCostObject')
 
   const returnArray = []
@@ -8,24 +15,24 @@ function formatAnswerArray (request, questionKey, objectKey) {
   let counter = 1
 
   if (object?.data) {
-    if (objectKey == 'other') {
+    if (catagoryKey === 'other') {
       listOfCatagories = ['cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']
     } else {
-      listOfCatagories = [objectKey]
+      listOfCatagories = [catagoryKey]
     }
 
     for (const catagory in listOfCatagories) {
-      const keyToFind = object.data.desirability.catagories.find(({ key }) => key == listOfCatagories[catagory])
+      const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === listOfCatagories[catagory])
 
       let tempObject
 
-      for (const answer in keyToFind.items) {
+      for (const answer in selectedCatagory.items) {
         tempObject = {
           key: questionKey + '-A' + (counter),
-          value: keyToFind.items[answer].item,
-          sidebarFormattedValue: keyToFind.items[answer].item,
+          value: selectedCatagory.items[answer].item,
+          sidebarFormattedValue: selectedCatagory.items[answer].item,
           hint: {
-            text: 'Grant amount: £' + keyToFind.items[answer].amount + ' ' + keyToFind.items[answer].unit
+            html: getHintText(selectedCatagory.items[answer], hintArray, counter)
           }
         }
 

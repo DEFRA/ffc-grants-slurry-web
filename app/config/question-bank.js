@@ -767,7 +767,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'What is acidifcation?',
-              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'  
+              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'
             }
           },
           validate: [
@@ -993,7 +993,6 @@ const questionBank = {
             text: 'Select one option'
           },
           type: 'single-answer',
-          minAnswerCount: 1,
           sidebar: {
             mainHeading: 'Your project items',
             values: [
@@ -1005,6 +1004,10 @@ const questionBank = {
                   dependentAnswerExceptThese: []
                 }]
               }],
+            prefixSufix: [{
+              linkedPrefix: 'increase: ',
+              linkedSufix: 'm³'
+            }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace'],
             dependentQuestionKeys: ['storage-type']
           },
@@ -1014,6 +1017,7 @@ const questionBank = {
               error: 'Please select an option'
             }
           ],
+          hintArray: ['Solid roof or lid with a flat deck or conical shape made from inflexible material such as fibreglass panels or polyester sheets', 'Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas', 'Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement'],
           answers: [
             {
               value: 'divider'
@@ -1086,6 +1090,10 @@ const questionBank = {
                   dependentAnswerExceptThese: []
                 }]
               }],
+            prefixSufix: [{
+              linkedPrefix: 'increase: ',
+              linkedSufix: 'm³'
+            }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace'],
             dependentQuestionKeys: ['storage-type', 'cover-type']
           },
@@ -1132,6 +1140,14 @@ const questionBank = {
                   dependentAnswerExceptThese: []
                 }]
               }],
+            prefixSufix: [{
+              linkedPrefix: 'increase: ',
+              linkedSufix: 'm³'
+            },
+            {
+              linkedPrefix: 'size: ',
+              linkedSufix: 'm³'
+            }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
             dependentQuestionKeys: ['storage-type', 'cover-type']
           },
