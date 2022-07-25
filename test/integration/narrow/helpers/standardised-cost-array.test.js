@@ -252,6 +252,41 @@ describe('Standardised Cost Answers Array Function', () => {
     ])
   })
 
+  test('Should return array correctly when hint array sent as well', () => {
+    const mockRequest = {
+      yar: { get: (key) => (objectToSend) }
+    }
+
+    const response = formatAnswerArray(mockRequest, 'test-answers', 'cat-cover-type', ['text1', 'text2', 'text3'])
+
+    expect(response).toEqual([
+      {
+        key: 'test-answers-A1',
+        value: 'Rigid cover for steel or concrete slurry stores',
+        sidebarFormattedValue: 'Rigid cover for steel or concrete slurry stores',
+        hint: {
+          html: 'text1 <br/> Grant amount: £8 per square metre'
+        }
+      },
+      {
+        key: 'test-answers-A2',
+        value: 'Fixed flexible cover',
+        sidebarFormattedValue: 'Fixed flexible cover',
+        hint: {
+          html: 'text2 <br/> Grant amount: £4 per square metre'
+        }
+      },
+      {
+        key: 'test-answers-A3',
+        value: 'Floating flexible cover',
+        sidebarFormattedValue: 'Floating flexible cover',
+        hint: {
+          html: 'text3 <br/> Grant amount: £3 per square metre'
+        }
+      }
+    ])
+  })
+
   test('Should return array correctly when objectKey is \'other\'', () => {
     const mockRequest = {
       yar: { get: (key) => (objectToSend) }
