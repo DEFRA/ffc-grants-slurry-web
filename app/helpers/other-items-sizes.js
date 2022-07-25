@@ -69,7 +69,7 @@ function formatOtherItems (request) {
               classes: 'govuk-input--width-10',
               label: {
                 text: item.item, // needs to be bold
-                classes: 'govuk-label'
+                classes: 'govuk-label--m'
               },
               validate: [ // these aren't triggering, but are all properly formatted
                 {
