@@ -24,13 +24,13 @@ function keyGenerator (title) {
   }
 }
 
-function errorGenerator (catagory) {
-  // add volume/quantity based on catagory (for validation)
-  if (['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels'].indexOf(catagory) >= 0) {
-    return 'Volume'
-  } else {
-    return 'Quantity'
-  }
+function getErrorUnitAndLength (catagory) {
+  const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
+  const inputLengthFour = ['cat-reception-pit-type','cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator',]
+  const errorType = volumeArray.includes(catagory) ? 'Volume' : 'Quantity'
+  const inputLength = inputLengthFour.includes(catagory) ? 4 : 10
+  
+    return { errorType: errorType, inputLength: inputLength }
 }
 
 function formatOtherItems (request) {
@@ -49,7 +49,8 @@ function formatOtherItems (request) {
           if (item.item === otherItem) {
             const suffixValue = suffixGenerator(item.unit)
             const keyTitle = keyGenerator(selectedCatagory.title)
-            const errorType = errorGenerator(listOfCatagories[catagory])
+            const catagoryData = getErrorUnitAndLength(listOfCatagories[catagory])
+            const maxValue = catagoryData.inputLength === 4 ? 9999 : 999999999
 
             // format object
             const tempObject = {
@@ -57,28 +58,28 @@ function formatOtherItems (request) {
               type: 'number',
               suffix: { text: suffixValue },
               hint: {
-                text: 'Grant amount: £' + item.amount + ' ' + item.unit
+                text: `Grant amount: £${item.amount} ${item.unit}`
               },
-              classes: 'govuk-input--width-10',
+              classes: `govuk-input--width-${catagoryData.inputLength}`,
               label: {
-                text: item.item, // needs to be bold
+                text: item.item, 
                 classes: 'govuk-label--m'
               },
-              validate: [ // these aren't triggering, but are all properly formatted
+              validate: [
                 {
                   type: 'NOT_EMPTY',
-                  error: 'Enter ' + keyTitle + ' ' + errorType.toLowerCase()
+                  error: `Enter ${keyTitle} ${catagoryData.errorType.toLowerCase()}`
                 },
                 {
                   type: 'REGEX',
                   regex: WHOLE_NUMBER_REGEX,
-                  error: errorType + ' must be a whole number'
+                  error: `${catagoryData.errorType} must be a whole number`
                 },
                 {
                   type: 'MIN_MAX',
                   min: 1,
-                  max: 9999999999,
-                  error: errorType + ' must be between 1-9999999999'
+                  max: maxValue ,
+                  error: `${catagoryData.errorType} must be between 1-${maxValue}`
                 }
               ]
             }

@@ -2,6 +2,7 @@ const { getModel } = require('../helpers/models')
 const { getHtml } = require('../helpers/conditionalHTML')
 const { getYarValue } = require('../helpers/session')
 const { getQuestionAnswer } = require('../helpers/utils')
+const { formatOtherItems } = require('./../helpers/other-items-sizes')
 
 const validateAnswerField = (value, validationType, details, payload) => {
   switch (validationType) {
@@ -131,7 +132,10 @@ const checkErrors = (payload, currentQuestion, h, request) => {
   let isconditionalAnswer
   let placeholderInputError
   if (currentQuestion.type === 'multi-input') {
-    const { allFields } = currentQuestion
+    let { allFields } = currentQuestion.allFields
+    if (currentQuestion.costDataKey) {
+      allFields = formatOtherItems(request)
+    }
 
     allFields.forEach(
       ({ yarKey: inputYarKey, validate: inputValidate, answers: inputAnswers }) => {
