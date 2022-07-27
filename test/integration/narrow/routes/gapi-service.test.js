@@ -3,6 +3,22 @@ appInsights.logException = jest.fn((req, event) => {
   return null
 })
 
+jest.mock('../../../../app/helpers/session', () => {
+  const original = jest.requireActual('../../../../app/helpers/session')
+  return {
+    ...original,
+    setYarValue: jest.fn((a, b, c) => {})
+  }
+})
+
+jest.mock('../../../../app/services/protective-monitoring-service', () => {
+  const original = jest.requireActual('../../../../app/services/protective-monitoring-service')
+  return {
+    ...original,
+    protectiveMonitoringServiceSendEvent: jest.fn((a, b, c, d) => {})
+  }
+})
+
 const gapiService = require('../../../../app/services/gapi-service')
 
 const eventSuccess = jest.fn(async (obj) => {
@@ -76,7 +92,7 @@ describe('get gapiService setup', () => {
   test('Call sendDimensionOrMetrics', async () => {
     const items = [
       { dimensionOrMetric: 'cd1', value: 'some value' },
-      { dimensionOrMetric: 'cd2', value: 'ITEM' }
+      { dimensionOrMetric: 'cd2', value: 'TIME' }
     ]
     const result = await gapiService.sendDimensionOrMetrics(request, items)
     expect(result).toBe(undefined)
@@ -106,6 +122,7 @@ describe('get gapiService setup', () => {
   test('Call processGA - populated ga', async () => {
     const ga = [
       { journeyStart: 'mock-journey-start' },
+      { dimension: 0 },
       {
         dimension: 12,
         value: {
