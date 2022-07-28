@@ -1192,9 +1192,9 @@ const questionBank = {
           title: 'Item sizes and quantities',
           baseUrl: 'item-sizes-quantities',
           backUrl: 'other-items',
-          nextUrl: 'remaining-costs',
+          nextUrl: 'project-summary',
           url: 'item-sizes-quantities',
-          preValidationKeys: [],
+          preValidationKeys: ['other-items'],
           hint: {
             text: 'Enter the approximate size and quantities your project needs'
           },
@@ -1240,6 +1240,7 @@ const questionBank = {
           allFields: [],
           yarKey: 'itemSizeQuantities'
         },
+        // CALLS PROJECT SUMMARY
         {
           key: 'remaining-costs',
           order: 190,
