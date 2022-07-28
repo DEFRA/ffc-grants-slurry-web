@@ -11,8 +11,7 @@
 {% block beforeContent %}
   {{ govukBackLink({
     text: "Back",
-    href: backLink,
-	  attributes: {id: 'linkBack'}
+    href: backLink
   }) }}
 
 {% endblock %}
@@ -52,6 +51,18 @@
                   </td>
                 </tr> 
               {% endfor %}
+              <tr class="govuk-table__row">
+                  <td class="govuk-table__header">
+                      Total requested grant amount
+                    </td>
+                    <td class="govuk-table__cell">
+                        </td>
+                        <td class="govuk-table__cell">
+                            </td>
+                            <td class="govuk-table__cell">
+                                £{{totalValue}}
+                                </td>
+                                </tr>
             </tbody>
             </table>
 

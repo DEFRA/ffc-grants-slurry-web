@@ -29,7 +29,11 @@ module.exports = [{
 
       const result = await formatSummaryTable(request)
 
-      return h.view(viewTemplate, createModel({ catagory: result }, request))
+      const totalValue = request.yar.get('itemsTotalValue')
+
+      console.log(totalValue, 'QWWWWWWWWWWWWWW')
+
+      return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
     } catch (error) {
       console.log(error)
       return h.view('500').takeover()

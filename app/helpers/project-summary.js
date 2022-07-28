@@ -39,45 +39,46 @@ function formatSummaryTable (request) {
 
   const returnArray = []
 
+  let totalCalculator = 0
+  let total
+
   if (object?.data && otherItemsArray.length > 0 && otherItemsArray[0] != 'None of the above') {
+    // pull otherItemsSizes object. Can only be done after checking if other items has data
     const otherItemSizes = [request.yar.get('itemSizeQuantities')].flat()
 
-    console.log(otherItemSizes, 'SDHDSDLSKDOKF')
-    /* list formatted as
-        [
-            {
-                yarkey: value,
-                yarkey: value,
-                yarKey: value
-            }
-        ]
-
-        */
-
+    // create storage object
     const storageKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-storage')
 
     const storageData = storageKey.items.find(({ item }) => item === storageType)
+
+    total = (storageSize * storageData.amount)
 
     returnArray.push({
       item: storageType,
       amount: '£' + storageData.amount,
       quantity: storageSize + 'm³',
-      total: '£' + (storageSize * storageData.amount)
+      total: '£' + total
     })
 
+    totalCalculator += total
+
+    // create cover object
     const coverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
 
     const coverData = coverKey.items.find(({ item }) => item === coverType)
+
+    total = (coverSize * coverData.amount)
 
     returnArray.push({
       item: coverType,
       amount: '£' + coverData.amount,
       quantity: coverSize + 'm²',
-      total: '£' + (coverSize * coverData.amount)
+      total: '£' + total
     })
 
-    console.log('all the way to starting other items', 'QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ')
+    totalCalculator += total
 
+    // create all objects needed for other items
     otherItemsArray.forEach((otherItem, _index) => {
       const createdKey = otherItem.replace(/[- ,)(]/g, '')
 
@@ -90,19 +91,24 @@ function formatSummaryTable (request) {
           if (item.item === otherItem) {
             const unit = suffixGenerator(item.unit)
 
+            total = (correctSize * item.amount)
+
             returnArray.push({
               item: otherItem,
               amount: '£' + item.amount,
               quantity: correctSize + unit,
-              total: '£' + (correctSize * item.amount)
+              total: '£' + total
             })
+
+            totalCalculator += total
           }
         })
       }
     })
   }
 
-  console.log(returnArray, 'CMVNFHRTWDQXQZZAX')
+  request.yar.set('itemsTotalValue', totalCalculator)
+
   return returnArray
 }
 
