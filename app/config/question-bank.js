@@ -847,10 +847,17 @@ const questionBank = {
           url: 'serviceable-capacity-increase-replace',
           baseUrl: 'serviceable-capacity-increase-replace',
           backUrl: 'storage-type',
-          nextUrl: 'cover-type',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'cover',
+            dependentAnswerKeysArray: ['cover-A2'],
+            urlOptions: {
+              thenUrl: 'other-items',
+              elseUrl: 'cover-type'
+            }
+          },
           fundingPriorities: '',
           preValidationKeys: [],
-          classes: 'govuk-input--width-5',
+          classes: 'govuk-input--width-10',
           id: 'storageCapacityIncrease',
           name: 'storageCapacityIncrease',
           suffix: { text: 'm³' },
@@ -879,7 +886,7 @@ const questionBank = {
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 999999999,
+              max: 9999999999,
               error: 'Volume must be between 1-9999999999'
             }
           ],
@@ -908,11 +915,18 @@ const questionBank = {
           order: 132,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-5',
+          classes: 'govuk-input--width-10',
           url: 'serviceable-capacity-increase-additional',
           baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
-          nextUrl: 'cover-type',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'cover',
+            dependentAnswerKeysArray: ['cover-A2'],
+            urlOptions: {
+              thenUrl: 'other-items',
+              elseUrl: 'cover-type'
+            }
+          },
           preValidationKeys: [],
           suffix: { text: 'm³' },
           type: 'input',
@@ -940,7 +954,7 @@ const questionBank = {
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 999999999,
+              max: 9999999999,
               error: 'Volume must be between 1-9999999999'
             }
           ],
@@ -988,7 +1002,7 @@ const questionBank = {
             }
           },
           url: 'cover-type',
-          preValidationKeys: ['projectType', 'storageType'],
+          preValidationKeys: [],
           hint: {
             text: 'Select one option'
           },
@@ -1110,7 +1124,9 @@ const questionBank = {
             dependentAnswerKeysArray: ['cover-type-A4'],
             urlOptions: {
               thenUrl: 'cover-type',
-              elseUrl: 'cover-size'
+              elseUrl: 'cover-size',
+              nonDependentUrl: 'storage-type'
+
             }
           },
           nextUrlObject: {
@@ -1126,7 +1142,7 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: ['storageType', 'coverType'],
+          preValidationKeys: [],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {

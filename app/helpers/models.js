@@ -18,9 +18,9 @@ const getDependentSideBar = (sidebar, request) => {
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
     const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
     const selectedAnswers = getYarValue(request, yarKey)
-
-    values[index].content[0].items = [selectedAnswers].flat()
-
+    if (selectedAnswers) {
+      values[index].content[0].items = [selectedAnswers].flat()
+    }
     if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
       const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
       let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
