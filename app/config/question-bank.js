@@ -1194,7 +1194,7 @@ const questionBank = {
           backUrl: 'other-items',
           nextUrl: 'project-summary',
           url: 'item-sizes-quantities',
-          preValidationKeys: [],
+          preValidationKeys: ['other-items'],
           hint: {
             text: 'Enter the approximate size and quantities your project needs'
           },

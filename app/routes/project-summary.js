@@ -6,7 +6,7 @@ const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/remaining-cost`
 
 function createModel (data, _request) {
-  const previousPath = `${urlPrefix}/other-items`
+  const previousPath = `${urlPrefix}/other-items` // need to add second return route
 
   return {
     backLink: previousPath,
@@ -23,15 +23,13 @@ module.exports = [{
       collect: true
     }
   },
-  handler: async (request, h, err) => {
+  handler: async (request, h, _err) => {
     try {
       console.log('Sending session message .....')
 
-      const result = await formatSummaryTable(request)
+      const result = formatSummaryTable(request)
 
       const totalValue = request.yar.get('itemsTotalValue')
-
-      console.log(totalValue, 'QWWWWWWWWWWWWWW')
 
       return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
     } catch (error) {
