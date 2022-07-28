@@ -906,10 +906,7 @@ const questionBank = {
             dependentQuestionKeys: ['storage-type']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 6 months.
-            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
-            </br> </br>
-            Any capacity above 6 months is not covered by the grant.`
+            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -975,7 +972,10 @@ const questionBank = {
             dependentQuestionKeys: ['storage-type']
           },
           warning: {
-            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant'
+            html: `This grant is to get your serviceable storage levels to 6 months.
+            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
+            </br> </br>
+            Any capacity above 6 months is not covered by the grant.`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1208,9 +1208,9 @@ const questionBank = {
           title: 'Item sizes and quantities',
           baseUrl: 'item-sizes-quantities',
           backUrl: 'other-items',
-          nextUrl: 'remaining-costs',
+          nextUrl: 'project-summary',
           url: 'item-sizes-quantities',
-          preValidationKeys: [],
+          preValidationKeys: ['other-items'],
           hint: {
             text: 'Enter the approximate size and quantities your project needs'
           },
@@ -1256,6 +1256,7 @@ const questionBank = {
           allFields: [],
           yarKey: 'itemSizeQuantities'
         },
+        // CALLS PROJECT SUMMARY
         {
           key: 'remaining-costs',
           order: 190,

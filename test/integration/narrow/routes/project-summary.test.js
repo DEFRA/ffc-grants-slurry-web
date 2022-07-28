@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Items Sizes Quantities test', () => {
-  const varList = { storageType: 'random', coverType: 'random', otherItems: 'random' }
+describe('Project Summary test', () => {
+  const varList = { storageType: 'random', coverType: 'random', otherItems: ['random'], itemSizesQuantities: ['random'] }
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -15,37 +15,37 @@ describe('Items Sizes Quantities test', () => {
     }
   }))
 
-  test('GET /other-items route returns 200', async () => {
+  test('GET /project-summary route returns 200', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/item-sizes-quantities`
+      url: `${global.__URLPREFIX__}/project-summary`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Item sizes and quantities')
+    expect(response.payload).toContain('Your project items')
   })
 
-  test('POST /other-items route returns next page', async () => {
+  test('POST /project-summary route returns next page', async () => {
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/item-sizes-quantities`,
+      url: `${global.__URLPREFIX__}/project-summary`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { otherItems: 'fake data', crumb: crumbToken }
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('project-summary')
+    expect(response.headers.location).toBe('/slurry-infrastructure/remaining-cost')
   })
 
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/item-sizes-quantities`
+      url: `${global.__URLPREFIX__}/project-summary`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"other-items\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"/slurry-infrastructure/other-items\" class=\"govuk-back-link\">Back</a>')
   })
 })
