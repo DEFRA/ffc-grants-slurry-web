@@ -1,21 +1,3 @@
-// format table for proejct-summary
-
-/* [
-    {
-        item: item,
-        amount: £34,
-        quantity: 145m^3, //alternatively m^2 or no units
-        total: £4321
-    }
-] */
-
-// need to pull all details from standardised cost array (again)
-// Pull storage-type and multiply by storage-size
-// pull cover-type and multiply by cover size
-// pull all other items and multiply by each individual other item size
-// get relevant units for quantity and amounts per unit based on array (again)
-// calculate and format into list as above
-
 function suffixGenerator (unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
@@ -42,10 +24,7 @@ function formatSummaryTable (request) {
   let totalCalculator = 0
   let total
 
-  if (object?.data && otherItemsArray.length > 0 && otherItemsArray[0] != 'None of the above') {
-    // pull otherItemsSizes object. Can only be done after checking if other items has data
-    const otherItemSizes = [request.yar.get('itemSizeQuantities')].flat()
-
+  if (object?.data && otherItemsArray.length > 0) {
     // create storage object
     const storageKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-storage')
 
@@ -78,33 +57,38 @@ function formatSummaryTable (request) {
 
     totalCalculator += total
 
-    // create all objects needed for other items
-    otherItemsArray.forEach((otherItem, _index) => {
-      const createdKey = otherItem.replace(/[- ,)(]/g, '')
+    if (otherItemsArray[0] != 'None of the above') {
+      // pull otherItemsSizes object. Can only be done after checking if other items has data
+      const otherItemSizes = [request.yar.get('itemSizeQuantities')].flat()
 
-      const correctSize = otherItemSizes[0][createdKey]
+      // create all objects needed for other items
+      otherItemsArray.forEach((otherItem, _index) => {
+        const createdKey = otherItem.replace(/[- ,)(]/g, '')
 
-      for (const catagory in listOfCatagories) {
-        const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === listOfCatagories[catagory])
+        const correctSize = otherItemSizes[0][createdKey]
 
-        selectedCatagory.items.forEach((item) => {
-          if (item.item === otherItem) {
-            const unit = suffixGenerator(item.unit)
+        for (const catagory in listOfCatagories) {
+          const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === listOfCatagories[catagory])
 
-            total = (correctSize * item.amount)
+          selectedCatagory.items.forEach((item) => {
+            if (item.item === otherItem) {
+              const unit = suffixGenerator(item.unit)
 
-            returnArray.push({
-              item: otherItem,
-              amount: '£' + item.amount,
-              quantity: correctSize + unit,
-              total: '£' + total
-            })
+              total = (correctSize * item.amount)
 
-            totalCalculator += total
-          }
-        })
-      }
-    })
+              returnArray.push({
+                item: otherItem,
+                amount: '£' + item.amount,
+                quantity: correctSize + unit,
+                total: '£' + total
+              })
+
+              totalCalculator += total
+            }
+          })
+        }
+      })
+    }
   }
 
   request.yar.set('itemsTotalValue', totalCalculator)
