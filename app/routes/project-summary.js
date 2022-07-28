@@ -1,12 +1,23 @@
 const { formatSummaryTable } = require('./../helpers/project-summary')
-
+const { formatUKCurrency } = require('../helpers/data-formats')
 const urlPrefix = require('../config/server').urlPrefix
+const { getUrl } = require('../helpers/urls')
+
 const viewTemplate = 'project-summary'
 const currentPath = `${urlPrefix}/${viewTemplate}`
-const nextPath = `${urlPrefix}/remaining-cost`
+const backUrlObject = {
+  dependentQuestionYarKey: 'otherItems',
+  dependentAnswerKeysArray: ['other-items-A15'],
+  urlOptions: {
+    thenUrl: 'other-items',
+    elseUrl: 'item-sizes-quantities'
+  }
+}
+const nextPath = `${urlPrefix}/potential-amount`
 
-function createModel (data, _request) {
-  const previousPath = `${urlPrefix}/other-items` // need to add second return route
+function createModel(data, request) {
+  const backUrl = getUrl(backUrlObject, '', request)
+  const previousPath = `${urlPrefix}/${backUrl}` // need to add second return route
 
   return {
     backLink: previousPath,
@@ -29,7 +40,7 @@ module.exports = [{
 
       const result = formatSummaryTable(request)
 
-      const totalValue = request.yar.get('itemsTotalValue')
+      const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
 
       return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
     } catch (error) {

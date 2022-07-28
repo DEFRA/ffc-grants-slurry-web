@@ -1,4 +1,6 @@
-function suffixGenerator (unit) {
+const { formatUKCurrency } = require('../helpers/data-formats')
+
+function suffixGenerator(unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
     return 'm³'
@@ -36,7 +38,7 @@ function formatSummaryTable (request) {
       item: storageType,
       amount: '£' + storageData.amount,
       quantity: storageSize + 'm³',
-      total: '£' + total
+      total: '£' + formatUKCurrency(total)
     })
 
     totalCalculator += total
@@ -52,7 +54,7 @@ function formatSummaryTable (request) {
       item: coverType,
       amount: '£' + coverData.amount,
       quantity: coverSize + 'm²',
-      total: '£' + total
+      total: '£' + formatUKCurrency(total)
     })
 
     totalCalculator += total
@@ -80,7 +82,7 @@ function formatSummaryTable (request) {
                 item: otherItem,
                 amount: '£' + item.amount,
                 quantity: correctSize + unit,
-                total: '£' + total
+                total: '£' + formatUKCurrency(total)
               })
 
               totalCalculator += total
