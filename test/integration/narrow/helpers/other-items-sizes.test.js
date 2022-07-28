@@ -256,7 +256,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £1050 per pump'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Electric-powered slurry transfer pump',
           classes: 'govuk-label--m'
@@ -274,8 +274,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -286,7 +286,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £2090 per pump'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
           classes: 'govuk-label--m'
@@ -304,8 +304,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -316,7 +316,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £950 per pump'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Centrifugal chopper pump',
           classes: 'govuk-label--m'
@@ -334,8 +334,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -346,7 +346,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £1700 per pump'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Powered take off (PTO) or hydraulically driven chopper pump',
           classes: 'govuk-label--m'
@@ -364,8 +364,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -526,7 +526,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £350 per tank'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
           classes: 'govuk-label--m'
@@ -544,8 +544,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -556,7 +556,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £1000 per tank'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre',
           classes: 'govuk-label--m'
@@ -574,8 +574,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },

@@ -26,7 +26,7 @@ function keyGenerator (title) {
 
 function getErrorUnitAndLength (catagory) {
   const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
-  const inputLengthFour = ['cat-reception-pit-type','cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator',]
+  const inputLengthFour = ['cat-pump-type', 'cat-agitator',]
   const errorType = volumeArray.includes(catagory) ? 'Volume' : 'Quantity'
   const inputLength = inputLengthFour.includes(catagory) ? 4 : 10
   
@@ -50,7 +50,7 @@ function formatOtherItems (request) {
             const suffixValue = suffixGenerator(item.unit)
             const keyTitle = keyGenerator(selectedCatagory.title)
             const catagoryData = getErrorUnitAndLength(listOfCatagories[catagory])
-            const maxValue = catagoryData.inputLength === 4 ? 9999 : 999999999
+            const maxValue = catagoryData.inputLength === 4 ? 9999 : 9999999999
 
             // format object
             const tempObject = {
