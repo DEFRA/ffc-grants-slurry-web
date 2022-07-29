@@ -93,6 +93,26 @@ describe('answer-options', () => {
         type: 'switch-default'
       }
     ])
+    expect(getOptions(undefined, question, 'cond-html', {})).toEqual([
+      {
+        classes: 'govuk-fieldset__legend--l',
+        endFieldset: undefined,
+        fieldset: {
+          legend: {
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true,
+            text: undefined
+          }
+        },
+        hint: undefined,
+        id: 'mock-yarkey',
+        items: [
+          { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
+        ],
+        name: 'mock-yarkey',
+        type: 'switch-default'
+      }
+    ])
 
     question = {
       ...question,
@@ -100,6 +120,41 @@ describe('answer-options', () => {
     }
     expect(getOptions(undefined, question, 'cond-html', {})).toEqual({
       classes: 'mock-classes',
+      hint: 'mock-hint',
+      id: 'mock-yarKey',
+      name: 'mock-yarKey',
+      label: 'mock-label',
+      items: [
+        {
+          text: 'Select an option',
+          value: ''
+        },
+        {
+          selected: false,
+          text: 'answer-1',
+          value: 'answer-1'
+        },
+        {
+          selected: false,
+          text: 'answer-2',
+          value: 'answer-2'
+        },
+        {
+          selected: false,
+          text: 'answer-1',
+          value: 'answer-1'
+        },
+        {
+          selected: false,
+          text: 'answer-2',
+          value: 'answer-2'
+        }
+      ]
+    })
+
+    const { classes, ...questionWithoutClasses } = question
+    expect(getOptions(undefined, questionWithoutClasses, 'cond-html', {})).toEqual({
+      classes: 'govuk-fieldset__legend--l',
       hint: 'mock-hint',
       id: 'mock-yarKey',
       name: 'mock-yarKey',
