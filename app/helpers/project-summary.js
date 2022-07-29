@@ -71,8 +71,8 @@ function formatSummaryTable (request) {
 
         const correctSize = otherItemSizes[0][createdKey]
 
-        for (const catagory in listOfCatagories) {
-          const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === listOfCatagories[catagory])
+       listOfCatagories.forEach((catagory, _index2) => {
+          const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === catagory)
 
           selectedCatagory.items.forEach((item) => {
             if (item.item === otherItem) {
@@ -90,7 +90,7 @@ function formatSummaryTable (request) {
               totalCalculator += total
             }
           })
-        }
+        })
       })
     }
   }
