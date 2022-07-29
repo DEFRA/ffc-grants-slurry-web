@@ -132,6 +132,41 @@ describe('answer-options', () => {
       ]
     })
 
+    const { classes, ...questionWithoutClasses } = question
+    expect(getOptions(undefined, questionWithoutClasses, 'cond-html', {})).toEqual({
+      classes: 'govuk-fieldset__legend--l',
+      hint: 'mock-hint',
+      id: 'mock-yarKey',
+      name: 'mock-yarKey',
+      label: 'mock-label',
+      items: [
+        {
+          text: 'Select an option',
+          value: ''
+        },
+        {
+          selected: false,
+          text: 'answer-1',
+          value: 'answer-1'
+        },
+        {
+          selected: false,
+          text: 'answer-2',
+          value: 'answer-2'
+        },
+        {
+          selected: false,
+          text: 'answer-1',
+          value: 'answer-1'
+        },
+        {
+          selected: false,
+          text: 'answer-2',
+          value: 'answer-2'
+        }
+      ]
+    })
+
     question = {
       ...question,
       type: 'select-default'
