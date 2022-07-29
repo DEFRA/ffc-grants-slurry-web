@@ -276,13 +276,13 @@ describe('Project Summary Array Function', () => {
                 item: 'Electric-powered slurry transfer pump',
                 amount: '£1050',
                 quantity: '1',
-                total: '£1050'
+                total: '£1,050'
             },
             {
                 item: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
                 amount: '£2090',
                 quantity: '2',
-                total: '£4180'
+                total: '£4,180'
             },
             {
                 item: 'Centrifugal chopper pump',
@@ -294,7 +294,7 @@ describe('Project Summary Array Function', () => {
                 item: 'Powered take off (PTO) or hydraulically driven chopper pump',
                 amount: '£1700',
                 quantity: '1',
-                total: '£1700'
+                total: '£1,700'
             },
             {
                 item: 'Galvanised steel pipework 100mm diameter',
@@ -336,7 +336,7 @@ describe('Project Summary Array Function', () => {
                 item: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre',
                 amount: '£1000',
                 quantity: '1',
-                total: '£1000'
+                total: '£1,000'
             },
             {
                 item: 'Inspection platform with ladder for above-ground concrete and steel slurry store',

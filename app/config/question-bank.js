@@ -377,7 +377,7 @@ const questionBank = {
           baseUrl: 'tenancy',
           backUrl: 'project-started',
           nextUrl: 'system-type',
-          preValidationKeys: ['projectStart'],
+          preValidationKeys: [],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1165,11 +1165,11 @@ const questionBank = {
                 }]
               }],
             prefixSufix: [{
-              linkedPrefix: 'increase: ',
+              linkedPrefix: 'Increase: ',
               linkedSufix: 'm³'
             },
             {
-              linkedPrefix: 'size: ',
+              linkedPrefix: 'Size: ',
               linkedSufix: 'm³'
             }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
@@ -1196,7 +1196,7 @@ const questionBank = {
             {
               key: 'other-items-A15',
               value: 'None of the above',
-              redirectUrl: 'remaining-costs'
+              redirectUrl: 'project-summary'
             }
           ],
           yarKey: 'otherItems'
@@ -1210,7 +1210,7 @@ const questionBank = {
           backUrl: 'other-items',
           nextUrl: 'project-summary',
           url: 'item-sizes-quantities',
-          preValidationKeys: ['other-items'],
+          preValidationKeys: [],
           hint: {
             text: 'Enter the approximate size and quantities your project needs'
           },
@@ -1243,11 +1243,11 @@ const questionBank = {
                 }]
               }],
             prefixSufix: [{
-              linkedPrefix: 'increase: ',
+              linkedPrefix: 'Increase: ',
               linkedSufix: 'm³'
             },
             {
-              linkedPrefix: 'size: ',
+              linkedPrefix: 'Size: ',
               linkedSufix: 'm³'
             }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
@@ -1258,20 +1258,36 @@ const questionBank = {
         },
         // CALLS PROJECT SUMMARY
         {
+          key: 'potential-amount',
+          order: 150,
+          url: 'potential-amount',
+          backUrl: 'project-summary',
+          nextUrl: 'remaining-costs',
+          preValidationKeys: [],
+          ineligibleContent: {
+            messageContent: 'The minimum grant you can claim is £25,000. The maximum grant is £250,000.',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          maybeEligible: true,
+          maybeEligibleContent: {
+            messageHeader: 'Potential grant funding',
+            messageContent: 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligble for a grant of £{{_itemsTotalValue_}}',
+            warning: {
+              text: 'There’s no guarantee the project will receive a grant.'
+            }
+          }
+        },
+        {
           key: 'remaining-costs',
           order: 190,
           title: 'Can you pay the remaining costs?',
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrlObject: {
-            dependentQuestionYarKey: 'otherItems',
-            dependentAnswerKeysArray: ['other-items-A15'],
-            urlOptions: {
-              thenUrl: 'other-items',
-              elseUrl: 'item-sizes-quantities'
-            }
-          },
+          backUrl: 'potential-amount',
           nextUrl: 'planning-permission',
           eliminationAnswerKeys: '',
           ineligibleContent: {
