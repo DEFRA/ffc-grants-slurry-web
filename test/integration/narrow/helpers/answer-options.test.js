@@ -93,6 +93,26 @@ describe('answer-options', () => {
         type: 'switch-default'
       }
     ])
+    expect(getOptions(undefined, question, 'cond-html', {})).toEqual([
+      {
+        classes: 'govuk-fieldset__legend--l',
+        endFieldset: undefined,
+        fieldset: {
+          legend: {
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true,
+            text: undefined
+          }
+        },
+        hint: undefined,
+        id: 'mock-yarkey',
+        items: [
+          { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
+        ],
+        name: 'mock-yarkey',
+        type: 'switch-default'
+      }
+    ])
 
     question = {
       ...question,
