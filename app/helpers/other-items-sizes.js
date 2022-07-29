@@ -5,35 +5,36 @@ const {
 const formatTempObject = (item, keyTitle, suffixValue, catagoryData) => {
   const maxValue = catagoryData.inputLength === 4 ? 9999 : 9999999999
 
-  return { yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
-  type: 'number',
-  suffix: { text: suffixValue },
-  hint: {
-    text: `Grant amount: £${item.amount} ${item.unit}`
-  },
-  classes: `govuk-input--width-${catagoryData.inputLength}`,
-  label: {
-    text: item.item, 
-    classes: 'govuk-label--m'
-  },
-  validate: [
-    {
-      type: 'NOT_EMPTY',
-      error: `Enter ${keyTitle} ${catagoryData.errorType.toLowerCase()}`
+  return {
+    yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
+    type: 'number',
+    suffix: { text: suffixValue },
+    hint: {
+      text: `Grant amount: £${item.amount} ${item.unit}`
     },
-    {
-      type: 'REGEX',
-      regex: WHOLE_NUMBER_REGEX,
-      error: `${catagoryData.errorType} must be a whole number`
+    classes: `govuk-input--width-${catagoryData.inputLength}`,
+    label: {
+      text: item.item,
+      classes: 'govuk-label--m'
     },
-    {
-      type: 'MIN_MAX',
-      min: 1,
-      max: maxValue ,
-      error: `${catagoryData.errorType} must be between 1-${maxValue}`
-    }
-  ]
-}
+    validate: [
+      {
+        type: 'NOT_EMPTY',
+        error: `Enter ${keyTitle} ${catagoryData.errorType.toLowerCase()}`
+      },
+      {
+        type: 'REGEX',
+        regex: WHOLE_NUMBER_REGEX,
+        error: `${catagoryData.errorType} must be a whole number`
+      },
+      {
+        type: 'MIN_MAX',
+        min: 1,
+        max: maxValue,
+        error: `${catagoryData.errorType} must be between 1-${maxValue}`
+      }
+    ]
+  }
 }
 
 function suffixGenerator (unit) {
@@ -60,11 +61,11 @@ function keyGenerator (title) {
 
 function getErrorUnitAndLength (catagory) {
   const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
-  const inputLengthFour = ['cat-pump-type', 'cat-agitator',]
+  const inputLengthFour = ['cat-pump-type', 'cat-agitator']
   const errorType = volumeArray.includes(catagory) ? 'Volume' : 'Quantity'
   const inputLength = inputLengthFour.includes(catagory) ? 4 : 10
-  
-    return { errorType: errorType, inputLength: inputLength }
+
+  return { errorType: errorType, inputLength: inputLength }
 }
 
 function formatOtherItems (request) {
@@ -84,7 +85,7 @@ function formatOtherItems (request) {
             const suffixValue = suffixGenerator(item.unit)
             const keyTitle = keyGenerator(selectedCatagory.title)
             const catagoryData = getErrorUnitAndLength(listOfCatagories[catagory])
-            
+
             const tempObject = formatTempObject(item, keyTitle, suffixValue, catagoryData)
 
             returnArray.push(tempObject)

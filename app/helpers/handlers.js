@@ -123,6 +123,25 @@ const getDataFromYarValue = (request, yarKey, type) => {
   return data
 }
 
+const getConsentOptionalData = (consentOptional) => {
+  return {
+    hiddenInput: {
+      id: 'consentMain',
+      name: 'consentMain',
+      value: 'true',
+      type: 'hidden'
+    },
+    idPrefix: 'consentOptional',
+    name: 'consentOptional',
+    items: setOptionsLabel(consentOptional,
+      [{
+        value: 'CONSENT_OPTIONAL',
+        text: '(Optional) I confirm'
+      }]
+    )
+  }
+}
+
 const getPage = async (question, request, h) => {
   const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
@@ -131,6 +150,12 @@ const getPage = async (question, request, h) => {
     return h.redirect(startPageUrl)
   }
   let confirmationId = ''
+
+  if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
+    const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
+    return h.view('not-eligible', NOT_ELIGIBLE)
+  }
+
   if (question.maybeEligible) {
     let { maybeEligibleContent } = question
     maybeEligibleContent.title = question.title
@@ -184,22 +209,7 @@ const getPage = async (question, request, h) => {
 
     if (url === 'confirm') {
       const consentOptional = getYarValue(request, 'consentOptional')
-      consentOptionalData = {
-        hiddenInput: {
-          id: 'consentMain',
-          name: 'consentMain',
-          value: 'true',
-          type: 'hidden'
-        },
-        idPrefix: 'consentOptional',
-        name: 'consentOptional',
-        items: setOptionsLabel(consentOptional,
-          [{
-            value: 'CONSENT_OPTIONAL',
-            text: '(Optional) I confirm'
-          }]
-        )
-      }
+      consentOptionalData = getConsentOptionalData(consentOptional)
     }
 
     const MAYBE_ELIGIBLE = { ...maybeEligibleContent, consentOptionalData, url, nextUrl, backUrl }

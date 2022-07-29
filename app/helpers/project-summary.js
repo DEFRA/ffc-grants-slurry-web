@@ -1,3 +1,5 @@
+const { formatUKCurrency } = require('../helpers/data-formats')
+
 function suffixGenerator (unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
@@ -36,26 +38,28 @@ function formatSummaryTable (request) {
       item: storageType,
       amount: '£' + storageData.amount,
       quantity: storageSize + 'm³',
-      total: '£' + total
+      total: '£' + formatUKCurrency(total)
     })
 
     totalCalculator += total
 
     // create cover object
-    const coverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
+    if (coverSize) {
+      const coverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
 
-    const coverData = coverKey.items.find(({ item }) => item === coverType)
+      const coverData = coverKey.items.find(({ item }) => item === coverType)
 
-    total = (coverSize * coverData.amount)
+      total = (coverSize * coverData.amount)
 
-    returnArray.push({
-      item: coverType,
-      amount: '£' + coverData.amount,
-      quantity: coverSize + 'm²',
-      total: '£' + total
-    })
+      returnArray.push({
+        item: coverType,
+        amount: '£' + coverData.amount,
+        quantity: coverSize + 'm²',
+        total: '£' + formatUKCurrency(total)
+      })
 
-    totalCalculator += total
+      totalCalculator += total
+    }
 
     if (otherItemsArray[0] != 'None of the above') {
       // pull otherItemsSizes object. Can only be done after checking if other items has data
@@ -67,8 +71,8 @@ function formatSummaryTable (request) {
 
         const correctSize = otherItemSizes[0][createdKey]
 
-        for (const catagory in listOfCatagories) {
-          const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === listOfCatagories[catagory])
+       listOfCatagories.forEach((catagory, _index2) => {
+          const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === catagory)
 
           selectedCatagory.items.forEach((item) => {
             if (item.item === otherItem) {
@@ -80,13 +84,13 @@ function formatSummaryTable (request) {
                 item: otherItem,
                 amount: '£' + item.amount,
                 quantity: correctSize + unit,
-                total: '£' + total
+                total: '£' + formatUKCurrency(total)
               })
 
               totalCalculator += total
             }
           })
-        }
+        })
       })
     }
   }
