@@ -15,7 +15,7 @@ jest.mock('../../../../app/services/protective-monitoring-service', () => {
   const original = jest.requireActual('../../../../app/services/protective-monitoring-service')
   return {
     ...original,
-    protectiveMonitoringServiceSendEvent: jest.fn((a, b, c, d) => {})
+    protectiveMonitoringServiceSendEvent: jest.fn().mockResolvedValue(undefined)
   }
 })
 
