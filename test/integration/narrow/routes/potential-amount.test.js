@@ -1,8 +1,9 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /potential-amount', () => {
-  const varList = { itemsTotalValue: '500000' }
-  const pageText = 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligble for a grant of £500,000'
+  const varList = { itemsTotalValue: '50000' }
+  const eligiblePageText = 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligble for a grant of £50,000'
+  const inEligiblePageText = 'The minimum grant you can claim is £25,000. The maximum grant is £250,000.'
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -12,7 +13,7 @@ describe('Page: /potential-amount', () => {
     }
   }))
 
-  it('page loads successfully, with all the options', async () => {
+  it('page loads successfully, with all the Eligible options', async () => {
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/potential-amount`
@@ -21,7 +22,20 @@ describe('Page: /potential-amount', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('Potential grant funding')
-    expect(response.payload).toContain(pageText)
+    expect(response.payload).toContain(eligiblePageText)
+  })
+
+  it('page loads successfully, with all the inEligible options', async () => {
+    varList.itemsTotalValue = 500000
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/potential-amount`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('You cannot apply for a grant from this scheme')
+    expect(response.payload).toContain(inEligiblePageText)
   })
 
   it('should redirect to /remaining-costs when user press continue', async () => {
