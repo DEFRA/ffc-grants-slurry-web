@@ -23,7 +23,7 @@ module.exports = [{
       collect: true
     }
   },
-  handler: async (request, h, err) => {
+  handler: async (request, h, _err) => {
     try {
       console.log('Sending session message .....')
 
