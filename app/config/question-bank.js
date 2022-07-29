@@ -1261,9 +1261,16 @@ const questionBank = {
           key: 'potential-amount',
           order: 150,
           url: 'potential-amount',
+          baseUrl: 'potential-amount',
           backUrl: 'project-summary',
           nextUrl: 'remaining-costs',
           preValidationKeys: [],
+          grantInfo: {
+            minGrant: 25000,
+            maxGrant: 250000,
+            grantPercentage: '',
+            cappedGrant: false
+          },
           ineligibleContent: {
             messageContent: 'The minimum grant you can claim is £25,000. The maximum grant is £250,000.',
             messageLink: {

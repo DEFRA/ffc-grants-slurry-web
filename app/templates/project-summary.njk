@@ -4,6 +4,8 @@
 {% from "govuk/components/button/macro.njk" import govukButton %}
 {% from "./components/macro.njk" import crumbToken %}
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+{% from "./components/macro.njk" import crumbToken, multiSideBar, conditionalButtons %}
+
 
 {% block pageTitle %}
   Project items - {{siteTitle}}
@@ -76,10 +78,7 @@
 <br/><br/>
     <form method="POST" action="{{ formActionPage }}" autocomplete="off" novalidate>
       {{ crumbToken(crumb)}}
-      {{ govukButton({
-        text: "Continue",
-        attributes: {id: "btnContinue"}
-      }) }}
+      {{ conditionalButtons('true', 'Continue', 'Change your items') }}
     </form>
 </div>
 {% endblock %}
