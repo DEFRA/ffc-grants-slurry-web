@@ -1313,9 +1313,6 @@ const questionBank = {
             }
           },
           fundingPriorities: '',
-          warning: {
-            text: 'Items may cost more than the standardised cost.'
-          },
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           minAnswerCount: 1,
