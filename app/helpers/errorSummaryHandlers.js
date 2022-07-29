@@ -132,7 +132,7 @@ const checkErrors = (payload, currentQuestion, h, request) => {
   let isconditionalAnswer
   let placeholderInputError
   if (currentQuestion.type === 'multi-input') {
-    const  allFields  = (currentQuestion.costDataKey) ? formatOtherItems(request) : currentQuestion.allFields
+    const allFields = (currentQuestion.costDataKey) ? formatOtherItems(request) : currentQuestion.allFields
 
     allFields.forEach(
       ({ yarKey: inputYarKey, validate: inputValidate, answers: inputAnswers }) => {

@@ -1,6 +1,6 @@
 const { formatUKCurrency } = require('../helpers/data-formats')
 
-function suffixGenerator(unit) {
+function suffixGenerator (unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
     return 'm³'
@@ -26,7 +26,7 @@ function formatSummaryTable (request) {
   let totalCalculator = 0
   let total
 
-  if (object?.data && otherItemsArray.length > 0) {
+  if (otherItemsArray.length > 0) {
     // create storage object
     const storageKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-storage')
 
@@ -44,22 +44,22 @@ function formatSummaryTable (request) {
     totalCalculator += total
 
     // create cover object
-    if (coverSize){
-    const coverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
+    if (coverSize) {
+      const coverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
 
-    const coverData = coverKey.items.find(({ item }) => item === coverType)
+      const coverData = coverKey.items.find(({ item }) => item === coverType)
 
-    total = (coverSize * coverData.amount)
+      total = (coverSize * coverData.amount)
 
-    returnArray.push({
-      item: coverType,
-      amount: '£' + coverData?.amount,
-      quantity: coverSize + 'm²',
-      total: '£' + formatUKCurrency(total)
-    })
+      returnArray.push({
+        item: coverType,
+        amount: '£' + coverData.amount,
+        quantity: coverSize + 'm²',
+        total: '£' + formatUKCurrency(total)
+      })
 
-    totalCalculator += total
-  }
+      totalCalculator += total
+    }
 
     if (otherItemsArray[0] != 'None of the above') {
       // pull otherItemsSizes object. Can only be done after checking if other items has data

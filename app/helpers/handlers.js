@@ -66,10 +66,10 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       ...farmerDetails,
       ...(farmerDetails
         ? {
-          name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
-          contact: farmerContact.join('<br/>'),
-          address: farmerAddress.join('<br/>')
-        }
+            name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
+            contact: farmerContact.join('<br/>'),
+            address: farmerAddress.join('<br/>')
+          }
         : {}
       )
     },
@@ -77,10 +77,10 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       ...agentDetails,
       ...(agentDetails
         ? {
-          name: `${agentDetails.firstName} ${agentDetails.lastName}`,
-          contact: agentContact.join('<br/>'),
-          address: agentAddress.join('<br/>')
-        }
+            name: `${agentDetails.firstName} ${agentDetails.lastName}`,
+            contact: agentContact.join('<br/>'),
+            address: agentAddress.join('<br/>')
+          }
         : {}
       )
     }
@@ -104,11 +104,11 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
     gridReference,
     ...(hasEvidence
       ? {
-        evidence: {
-          planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
-          planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
+          evidence: {
+            planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
+            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
+          }
         }
-      }
       : {}
     )
   })
@@ -152,9 +152,9 @@ const getPage = async (question, request, h) => {
   let confirmationId = ''
 
   if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
-      const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
-      return h.view('not-eligible', NOT_ELIGIBLE)
-    }
+    const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
+    return h.view('not-eligible', NOT_ELIGIBLE)
+  }
 
   if (question.maybeEligible) {
     let { maybeEligibleContent } = question
