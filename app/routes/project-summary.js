@@ -13,7 +13,7 @@ const backUrlObject = {
     elseUrl: 'item-sizes-quantities'
   }
 }
-const nextPath = `${urlPrefix}/potential-amount`
+let nextPath = `${urlPrefix}/potential-amount`
 
 function createModel(data, request) {
   const backUrl = getUrl(backUrlObject, '', request)
@@ -53,6 +53,8 @@ module.exports = [{
   method: 'POST',
   path: currentPath,
   handler: (request, h) => {
+    const { secBtn } = request.payload
+    nextPath = secBtn ? `${urlPrefix}/storage-type` : nextPath
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)
   }

@@ -44,6 +44,7 @@ function formatSummaryTable (request) {
     totalCalculator += total
 
     // create cover object
+    if (coverSize){
     const coverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
 
     const coverData = coverKey.items.find(({ item }) => item === coverType)
@@ -52,12 +53,13 @@ function formatSummaryTable (request) {
 
     returnArray.push({
       item: coverType,
-      amount: '£' + coverData.amount,
+      amount: '£' + coverData?.amount,
       quantity: coverSize + 'm²',
       total: '£' + formatUKCurrency(total)
     })
 
     totalCalculator += total
+  }
 
     if (otherItemsArray[0] != 'None of the above') {
       // pull otherItemsSizes object. Can only be done after checking if other items has data
