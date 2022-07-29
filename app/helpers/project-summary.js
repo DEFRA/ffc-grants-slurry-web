@@ -26,7 +26,7 @@ function formatSummaryTable (request) {
   let totalCalculator = 0
   let total
 
-  if (otherItemsArray.length > 0) {
+  if (object?.data && otherItemsArray.length > 0) {
     // create storage object
     const storageKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-storage')
 
