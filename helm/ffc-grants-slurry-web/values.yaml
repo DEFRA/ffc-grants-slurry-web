@@ -46,7 +46,6 @@ container:
   redisPartition: ffc-grants-slurry-web
   sessionCacheTTL: 1200000
   messageQueueHost: dummy
-  projectDetailsQueueAddress: project-details
   contactDetailsQueueAddress: contact-details
   loginRequired: false
   authUsername: grants
