@@ -5,8 +5,6 @@ const { getUrl } = require('../helpers/urls')
 
 const viewTemplate = 'project-summary'
 const currentPath = `${urlPrefix}/${viewTemplate}`
-const changePath = '${urlPrefix}/storage-type'
-const continuePath = '${urlPrefix}/potential-amount'
 const backUrlObject = {
   dependentQuestionYarKey: 'otherItems',
   dependentAnswerKeysArray: ['other-items-A15'],
@@ -18,7 +16,7 @@ const backUrlObject = {
 
 function createModel (data, request) {
   const backUrl = getUrl(backUrlObject, '', request)
-  const previousPath = '${urlPrefix}/${backUrl}' 
+  const previousPath = `${urlPrefix}/${backUrl}` 
   return {
     backLink: previousPath,
     formActionPage: currentPath,
@@ -52,7 +50,7 @@ module.exports = [{
   path: currentPath,
   handler: (request, h) => {
     const { secBtn } = request.payload    
-    const nextPath = !!secBtn ? changePath  : continuePath
+    const nextPath = !!secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
     
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)
