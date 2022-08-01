@@ -33,16 +33,10 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
-    try {
+    const result = formatSummaryTable(request)
+    const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
 
-      const result = formatSummaryTable(request)
-      const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
-
-      return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
-    } catch (error) {
-      console.log(error)
-      return h.view('500').takeover()
-    }
+    return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
   }
 },
 {
@@ -50,7 +44,7 @@ module.exports = [{
   path: currentPath,
   handler: (request, h) => {
     const { secBtn } = request.payload    
-    const nextPath = !!secBtn ? urlPrefix + "/storage-type" : urlPrefix + "/potential-amount"
+    const nextPath = !!secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
     
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)

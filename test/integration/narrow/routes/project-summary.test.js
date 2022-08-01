@@ -26,17 +26,30 @@ describe('Project Summary test', () => {
     expect(response.payload).toContain('Your project items')
   })
 
-  test('POST /project-summary route returns next page', async () => {
+  test('POST /project-summary route returns next page on continue', async () => {
     const options = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/project-summary`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { otherItems: 'fake data', crumb: crumbToken }
+      payload: { crumb: crumbToken }
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toBe('/slurry-infrastructure/potential-amount')
+  })
+
+  test('POST /project-summary route returns next page \'on change your items\'', async () => {
+    const options = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/project-summary`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { secBtn: 'fake data', crumb: crumbToken }
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/slurry-infrastructure/storage-type')
   })
 
   it('page loads with correct back link', async () => {
