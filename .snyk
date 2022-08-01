@@ -2,6 +2,10 @@
 version: v1.22.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
+  SNYK-JS-NODEFETCH-2964180:
+    - bcrypt > @mapbox/node-pre-gyp > node-fetch:
+      reason: no update available
+      expires: '2022-12-02T10:22:20.985Z'
   SNYK-CC-K8S-6:
     - ffc-grants-slurry-web > helm/templates/deployment.yaml:
         reason: no direct upgrade or patch available

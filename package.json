@@ -51,9 +51,6 @@
     "nunjucks": "^3.2.3",
     "uuid": "^8.3.2"
   },
-  "overrides": {
-    "node-fetch": "^3.2.10"
-  },
   "devDependencies": {
     "@hapi/catbox-memory": "^5.0.1",
     "clean-webpack-plugin": "^3.0.0",
