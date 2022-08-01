@@ -5,6 +5,8 @@ const { getUrl } = require('../helpers/urls')
 
 const viewTemplate = 'project-summary'
 const currentPath = `${urlPrefix}/${viewTemplate}`
+const changePath = `${urlPrefix}/storage-type`
+const continuePath = `${urlPrefix}/potential-amount`
 const backUrlObject = {
   dependentQuestionYarKey: 'otherItems',
   dependentAnswerKeysArray: ['other-items-A15'],
@@ -50,7 +52,7 @@ module.exports = [{
   path: currentPath,
   handler: (request, h) => {
     const { secBtn } = request.payload    
-    const nextPath = !!secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
+    const nextPath = !!secBtn ? changePath  : continuePath
     
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)
