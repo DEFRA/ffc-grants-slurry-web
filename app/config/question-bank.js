@@ -766,7 +766,7 @@ const questionBank = {
               }]
             }],
             details: {
-              summaryText: 'What is acidifcation?',
+              summaryText: 'What is acidification?',
               html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'
             }
           },
@@ -1048,7 +1048,7 @@ const questionBank = {
           order: 137,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-5',
+          classes: 'govuk-input--width-10',
           url: 'cover-size',
           baseUrl: 'cover-size',
           backUrl: 'cover-type',
@@ -1081,7 +1081,7 @@ const questionBank = {
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 999999999,
+              max: 9999999999,
               error: 'Volume must be between 1-9999999999'
             }
           ],
