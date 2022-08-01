@@ -2,7 +2,6 @@ const { MessageSender } = require('ffc-messaging')
 const createMessage = require('./create-message')
 
 const sendMessage = async (body, type, config, options) => {
-  console.log('[I AM INSIDE SEND MESSAGE .....]')
   const message = createMessage(body, type, options)
   const sender = new MessageSender(config)
   console.log('[MESSAGE MADE]', message)

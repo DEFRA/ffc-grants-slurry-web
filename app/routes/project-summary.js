@@ -13,12 +13,10 @@ const backUrlObject = {
     elseUrl: 'item-sizes-quantities'
   }
 }
-let nextPath = `${urlPrefix}/potential-amount`
 
 function createModel (data, request) {
   const backUrl = getUrl(backUrlObject, '', request)
-  const previousPath = `${urlPrefix}/${backUrl}` // need to add second return route
-
+  const previousPath = `${urlPrefix}/${backUrl}` 
   return {
     backLink: previousPath,
     formActionPage: currentPath,
@@ -35,26 +33,19 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
-    try {
-      console.log('Sending session message .....')
+    const result = formatSummaryTable(request)
+    const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
 
-      const result = formatSummaryTable(request)
-
-      const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
-
-      return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
-    } catch (error) {
-      console.log(error)
-      return h.view('500').takeover()
-    }
+    return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
   }
 },
 {
   method: 'POST',
   path: currentPath,
   handler: (request, h) => {
-    const { secBtn } = request.payload
-    nextPath = secBtn ? `${urlPrefix}/storage-type` : nextPath
+    const { secBtn } = request.payload    
+    const nextPath = !!secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
+    
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)
   }
