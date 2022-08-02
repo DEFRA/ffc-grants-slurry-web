@@ -2,7 +2,7 @@ const { crumbToken } = require('./test-helper')
 
 describe('Page: /potential-amount', () => {
   const varList = { itemsTotalValue: '50000' }
-  const eligiblePageText = 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligble for a grant of £50,000'
+  const eligiblePageText = 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £50,000'
   const inEligiblePageText = 'The minimum grant you can claim is £25,000. The maximum grant is £250,000.'
 
   jest.mock('../../../../app/helpers/session', () => ({
