@@ -47,24 +47,24 @@ const getPage = async (question, request, h) => {
         return h.redirect(startPageUrl)
       }
       confirmationId = getConfirmationId(request.yar.id)
-      // try {
-      //   await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
-      //   await gapiService.sendDimensionOrMetrics(request, [{
-      //     dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
-      //     value: confirmationId
-      //   }, {
-      //     dimensionOrMetric: gapiService.dimensions.FINALSCORE,
-      //     value: getYarValue(request, 'current-score')
-      //   },
-      //   {
-      //     dimensionOrMetric: gapiService.metrics.CONFIRMATION,
-      //     value: 'TIME'
-      //   }
-      //   ])
-      //   console.log('Confirmation event sent')
-      // } catch (err) {
-      //   console.log('ERROR: ', err)
-      // }
+      try {
+        await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
+        await gapiService.sendDimensionOrMetrics(request, [{
+          dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
+          value: confirmationId
+        }, {
+          dimensionOrMetric: gapiService.dimensions.FINALSCORE,
+          value: getYarValue(request, 'current-score')
+        },
+        {
+          dimensionOrMetric: gapiService.metrics.CONFIRMATION,
+          value: 'TIME'
+        }
+        ])
+        console.log('Confirmation event sent')
+      } catch (err) {
+        console.log('ERROR: ', err)
+      }
       maybeEligibleContent = {
         ...maybeEligibleContent,
         reference: {
