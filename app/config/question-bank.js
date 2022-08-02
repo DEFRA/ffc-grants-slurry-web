@@ -1584,8 +1584,7 @@ const questionBank = {
             <br/><br/>
             You’ll get an email with your answers and a reference number.</p>`
           },
-          answers: [],
-          yarKey: 'resultPage'
+          answers: []
         },
 
         /// ////// ***************** After Score  ************************************/////////////////////
@@ -2416,7 +2415,7 @@ questionBank.sections.forEach(({ questions }) => {
 const ALL_URLS = []
 ALL_QUESTIONS.forEach(item => ALL_URLS.push(item.url))
 
-const YAR_KEYS = ['remainingCost', 'calculatedGrant']
+const YAR_KEYS = ['itemsTotalValue']
 ALL_QUESTIONS.forEach(item => YAR_KEYS.push(item.yarKey))
 module.exports = {
   questionBank,
