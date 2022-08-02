@@ -1,5 +1,8 @@
 const { crumbToken } = require('./test-helper')
 
+const senders = require('../../../../app/messaging/senders')
+
+
 describe('confirm page', () => {
   const varList = { farmerDetails: 'someValue', contractorsDetails: 'someValue' }
 
@@ -12,6 +15,7 @@ describe('confirm page', () => {
     }
   }))
 
+
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
@@ -21,6 +25,8 @@ describe('confirm page', () => {
         referer: 'localhost/check-details'
       }
     }
+
+    jest.spyOn(senders, 'sendContactDetails').mockImplementationOnce(() => Promise.resolve(true))
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
