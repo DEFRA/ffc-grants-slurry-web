@@ -9,11 +9,6 @@ const sharedConfigSchema = {
 }
 
 const messageConfigSchema = Joi.object({
-  projectDetailsQueue: {
-    address: Joi.string().default('projectDetails'),
-    type: Joi.string(),
-    ...sharedConfigSchema
-  },
   contactDetailsQueue: {
     address: Joi.string().default('contactDetails'),
     type: Joi.string(),
@@ -31,7 +26,6 @@ const messageConfigSchema = Joi.object({
   },
   fetchCostRequestMsgType: Joi.string(),
   eligibilityAnswersMsgType: Joi.string(),
-  projectDetailsMsgType: Joi.string(),
   contactDetailsMsgType: Joi.string(),
   msgSrc: Joi.string()
 })
@@ -47,11 +41,6 @@ const sharedConfig = {
 const msgTypePrefix = 'uk.gov.ffc.grants' // ' '
 
 const config = {
-  projectDetailsQueue: {
-    address: process.env.PROJECT_DETAILS_QUEUE_ADDRESS,
-    type: 'queue',
-    ...sharedConfig
-  },
   contactDetailsQueue: {
     address: process.env.CONTACT_DETAILS_QUEUE_ADDRESS,
     type: 'queue',
@@ -69,7 +58,6 @@ const config = {
   },
   fetchCostRequestMsgType: `${msgTypePrefix}.fetch.cost.request`,
   eligibilityAnswersMsgType: `${msgTypePrefix}.slurry.eligibility.details`,
-  projectDetailsMsgType: `${msgTypePrefix}.slurry.project.details`,
   contactDetailsMsgType: `${msgTypePrefix}.slurry.contact.details`,
   msgSrc: 'ffc-grants-slurry-web'
 }
