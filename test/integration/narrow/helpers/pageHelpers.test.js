@@ -4,7 +4,8 @@ describe('Page Helpers', () => {
 
   const {
     handleConditinalHtmlData,
-    getCheckDetailsModel
+    getCheckDetailsModel,
+    getEvidenceSummaryModel
   } = require('../../../../app/helpers/pageHelpers')
 
   test('check handleConditinalHtmlData()', () => {
@@ -93,6 +94,50 @@ describe('Page Helpers', () => {
         name: 'Agent ALastName',
         contact: 'agent-email<br/>agent-landline',
         address: 'agent-address1<br/>agent-address2<br/>agent-town<br/>agent-county<br/>agent-postcode'
+      }
+    })
+  })
+
+  test('check getEvidenceSummaryModel()', () => {
+    setYarValue.mockImplementation((req, key, val) => {})
+
+    getYarValue.mockImplementation((req, key) => {
+      if (key === 'planningPermission') {
+        return ('Not yet')
+      } else {
+        return ({
+          gridReferenceNumber: 'grid-ref-num',
+          planningAuthority: 'planning-auth',
+          planningReferenceNumber: 'planning-ref-num'
+        })
+      }
+    })
+    expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({
+      backUrl: 'back-url',
+      nextUrl: 'next-url',
+      planningPermission: 'Not yet',
+      gridReference: 'grid-ref-num'
+    })
+
+    getYarValue.mockImplementation((req, key) => {
+      if (key === 'planningPermission') {
+        return ('Planning-permission')
+      } else {
+        return ({
+          gridReferenceNumber: 'grid-ref-num',
+          planningAuthority: 'planning-auth',
+          planningReferenceNumber: 'planning-ref-num'
+        })
+      }
+    })
+    expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({
+      backUrl: 'back-url',
+      nextUrl: 'next-url',
+      planningPermission: 'Planning-permission',
+      gridReference: 'grid-ref-num',
+      evidence: {
+        planningAuthority: 'planning-auth',
+        planningReferenceNumber: 'planning-ref-num'
       }
     })
   })
