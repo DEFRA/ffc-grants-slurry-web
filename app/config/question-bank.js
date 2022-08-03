@@ -1019,7 +1019,7 @@ const questionBank = {
                 }]
               }],
             prefixSufix: [{
-              linkedPrefix: 'increase: ',
+              linkedPrefix: 'Increase: ',
               linkedSufix: 'm³'
             }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace'],

@@ -265,7 +265,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Rigid cover for steel or concrete slurry stores',
         sidebarFormattedValue: 'Rigid cover for steel or concrete slurry stores',
         hint: {
-          html: 'text1 <br/> Grant amount: £8 per square metre'
+          html: 'text1 <br/> (Grant amount: £8 per square metre)'
         }
       },
       {
@@ -273,7 +273,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Fixed flexible cover',
         sidebarFormattedValue: 'Fixed flexible cover',
         hint: {
-          html: 'text2 <br/> Grant amount: £4 per square metre'
+          html: 'text2 <br/> (Grant amount: £4 per square metre)'
         }
       },
       {
@@ -281,7 +281,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Floating flexible cover',
         sidebarFormattedValue: 'Floating flexible cover',
         hint: {
-          html: 'text3 <br/> Grant amount: £3 per square metre'
+          html: 'text3 <br/> (Grant amount: £3 per square metre)'
         }
       }
     ])
