@@ -71,7 +71,7 @@ function formatSummaryTable (request) {
 
         const correctSize = otherItemSizes[0][createdKey]
 
-       listOfCatagories.forEach((catagory, _index2) => {
+        listOfCatagories.forEach((catagory, _index2) => {
           const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === catagory)
 
           selectedCatagory.items.forEach((item) => {
