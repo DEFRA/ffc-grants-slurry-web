@@ -185,6 +185,8 @@ const checkErrors = (payload, currentQuestion, h, request) => {
 }
 
 module.exports = {
+  validateAnswerField,
+  checkInputError,
   customiseErrorText,
   checkErrors
 }
