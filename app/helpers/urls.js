@@ -29,7 +29,6 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const { thenUrl, elseUrl, nonDependentUrl } = urlOptions
 
   if (Array.isArray(dependentQuestionYarKey)) {
-
     const dependentAnswerOne = getYarValue(request, dependentQuestionYarKey[0])
 
     const dependentAnswerTwo = getYarValue(request, dependentQuestionYarKey[1])
@@ -41,7 +40,6 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
     }
 
     return elseUrl
-
   }
 
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)

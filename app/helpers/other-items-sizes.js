@@ -3,6 +3,10 @@ const {
 } = require('./regex')
 
 const formatTempObject = (item, keyTitle, suffixValue, catagoryData) => {
+  if (item.item === 'Inspection platform with ladder for above-ground concrete and steel slurry store') {
+    catagoryData.inputLength = 4
+  }
+
   const maxValue = catagoryData.inputLength === 4 ? 9999 : 9999999999
 
   return {

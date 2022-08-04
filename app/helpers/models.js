@@ -14,11 +14,9 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
 }
 
 const answerSelect = (selectedAnswers) => {
-
   if (selectedAnswers === 'I already have an impermeable cover') {
     return ['Not Needed']
-  }
-  else if (selectedAnswers) {
+  } else if (selectedAnswers) {
     return [selectedAnswers].flat()
   }
 }
@@ -45,7 +43,7 @@ const getDependentSideBar = (sidebar, request) => {
     if (dependentQuestionKey === 'cover-type') {
       values[index].content[0].items = coverNeededCheck(values[index].content[0].items, request)
     }
-    
+
     if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length && values[index].content[0].items[0] != 'Not Needed') {
       const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
       let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
