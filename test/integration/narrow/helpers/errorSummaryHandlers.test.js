@@ -32,5 +32,10 @@ describe('Get & Post Handlers', () => {
     getQuestionAnswer.mockReturnValueOnce('value2')
     getQuestionAnswer.mockReturnValueOnce('value3')
     expect(validateAnswerField(value, 'COMBINATION_ANSWER', details, {})).toBe(true)
+
+    details = { max: 2 }
+    expect(validateAnswerField(value, 'MAX_SELECT', details, {})).toBe(false)
+
+    expect(validateAnswerField(value, 'DEFAULT_SELECT', details, {})).toBe(false)
   })
 })
