@@ -27,10 +27,7 @@ const coverNeededCheck = (currentValue, request) => {
   const yarKey = getQuestionByKey('cover').yarKey
   const selectedAnswer = getYarValue(request, yarKey)
 
-  console.log('HEREEEE', selectedAnswer, 'AAAAAAAAAAAAA')
-
   if (selectedAnswer === 'Not needed, the slurry is treated with acidification') {
-    console.log('CHECK COMPLETE')
     return ['Not Needed']
   } else {
     return currentValue
@@ -48,8 +45,6 @@ const getDependentSideBar = (sidebar, request) => {
     if (dependentQuestionKey === 'cover-type') {
       values[index].content[0].items = coverNeededCheck(values[index].content[0].items, request)
     }
-
-    console.log('VALUES', values[index].content[0].items, 'WAAAAAAAAAAAAAAAAAA')
     
     if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length && values[index].content[0].items[0] != 'Not Needed') {
       const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
