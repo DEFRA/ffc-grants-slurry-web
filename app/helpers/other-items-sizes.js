@@ -2,21 +2,17 @@ const {
   WHOLE_NUMBER_REGEX
 } = require('./regex')
 
-const formatTempObject = (item, keyTitle, suffixValue, catagoryData) => {
-  if (item.item === 'Inspection platform with ladder for above-ground concrete and steel slurry store') {
-    catagoryData.inputLength = 4
-  }
-
-  const maxValue = catagoryData.inputLength === 4 ? 9999 : 9999999999
+const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) => {
+  const maxValue = suffixAndLengthValue.length === 4 ? 9999 : 9999999999
 
   return {
     yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
     type: 'number',
-    suffix: { text: suffixValue },
+    suffix: { text: suffixAndLengthValue.unit },
     hint: {
       text: `Grant amount: £${item.amount} ${item.unit}`
     },
-    classes: `govuk-input--width-${catagoryData.inputLength}`,
+    classes: `govuk-input--width-${suffixAndLengthValue.length}`,
     label: {
       text: item.item,
       classes: 'govuk-label--m'
@@ -41,35 +37,35 @@ const formatTempObject = (item, keyTitle, suffixValue, catagoryData) => {
   }
 }
 
-function suffixGenerator (unit) {
-  // add correct suffix value to input field
-  if (unit === 'per cubic metre') {
-    return 'm³'
-  } else if (unit === 'per metre') {
-    return 'metre(s)'
-  } else {
-    return 'item (s)' // per pump, per tank and per item
+function suffixAndLengthGenerator (unit) {
+  switch (unit) {
+    case 'per cubic metre':
+      return { unit: 'm³', length: 10 }
+    case 'per metre':
+      return { unit: 'metre(s)', length: 10 }
+    default:
+      return { unit: 'item (s)', length: 4 }
   }
 }
 
 function keyGenerator (title) {
   // format key name for NOT_EMPTY validation
-  if (title === 'Reception pit type') {
-    return 'plastic reception pit'
-  } else if (title === 'Pump type') {
-    return 'pump'
-  } else {
-    return title.toLowerCase()
+
+  switch (title) {
+    case 'Reception pit type':
+      return 'plastic reception pit'
+    case 'Pump type':
+      return 'pump'
+    default:
+      return title.toLowerCase()
   }
 }
 
-function getErrorUnitAndLength (catagory) {
+function getErrorUnit (catagory) {
   const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
-  const inputLengthFour = ['cat-pump-type', 'cat-agitator']
   const errorType = volumeArray.includes(catagory) ? 'Volume' : 'Quantity'
-  const inputLength = inputLengthFour.includes(catagory) ? 4 : 10
 
-  return { errorType: errorType, inputLength: inputLength }
+  return { errorType: errorType }
 }
 
 function formatOtherItems (request) {
@@ -86,11 +82,11 @@ function formatOtherItems (request) {
 
         selectedCatagory.items.forEach((item) => {
           if (item.item === otherItem) {
-            const suffixValue = suffixGenerator(item.unit)
+            const suffixAndLengthValue = suffixAndLengthGenerator(item.unit)
             const keyTitle = keyGenerator(selectedCatagory.title)
-            const catagoryData = getErrorUnitAndLength(listOfCatagories[catagory])
+            const catagoryData = getErrorUnit(listOfCatagories[catagory])
 
-            const tempObject = formatTempObject(item, keyTitle, suffixValue, catagoryData)
+            const tempObject = formatTempObject(item, keyTitle, suffixAndLengthValue, catagoryData)
 
             returnArray.push(tempObject)
           }
