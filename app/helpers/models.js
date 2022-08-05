@@ -1,6 +1,6 @@
 const { getUrl } = require('../helpers/urls')
 const { getOptions } = require('../helpers/answer-options')
-const { getYarValue } = require('../helpers/session')
+const { getYarValue, setYarValue } = require('../helpers/session')
 const { getQuestionByKey, allAnswersSelected } = require('../helpers/utils')
 
 const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
@@ -36,7 +36,7 @@ const getDependentSideBar = (sidebar, request) => {
       if (selectedValueOfLinkedQuestion && values[index].content[0].items[0] != 'Not Needed') {
         values[index].content[0].items.push(selectedValueOfLinkedQuestion)
       } else {
-        request.yar.set('coverSize', '')
+        setYarValue(request, 'coverSize', '')
       }
     }
   })
