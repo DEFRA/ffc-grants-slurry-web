@@ -1038,7 +1038,8 @@ const questionBank = {
             },
             {
               key: 'cover-type-A4',
-              value: 'I already have an impermeable cover'
+              text: 'I already have an impermeable cover',
+              value: 'Not Needed'
             }
           ],
           yarKey: 'coverType'
@@ -1120,8 +1121,8 @@ const questionBank = {
           title: 'What other items do you need?',
           baseUrl: 'other-items',
           backUrlObject: {
-            dependentQuestionYarKey: ['cover', 'coverType'],
-            dependentAnswerKeysArray: ['cover-A2', 'cover-type-A4'],
+            dependentQuestionYarKey: 'coverType',
+            dependentAnswerKeysArray: 'cover-type-A4',
             urlOptions: {
               thenUrl: 'cover-type',
               elseUrl: 'cover-size',

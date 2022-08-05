@@ -50,7 +50,6 @@ function suffixAndLengthGenerator (unit) {
 
 function keyGenerator (title) {
   // format key name for NOT_EMPTY validation
-
   switch (title) {
     case 'Reception pit type':
       return 'plastic reception pit'

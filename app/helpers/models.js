@@ -13,38 +13,19 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
   return selectedValueOfLinkedQuestion
 }
 
-const answerSelect = (selectedAnswers) => {
-  if (selectedAnswers === 'I already have an impermeable cover') {
-    return ['Not Needed']
-  } else if (selectedAnswers) {
-    return [selectedAnswers].flat()
-  }
-}
-
-const coverNeededCheck = (currentValue, request) => {
-  const yarKey = getQuestionByKey('cover').yarKey
-  const selectedAnswer = getYarValue(request, yarKey)
-
-  if (selectedAnswer === 'Not needed, the slurry is treated with acidification') {
-    return ['Not Needed']
-  } else {
-    return currentValue
-  }
-}
-
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
     const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
     const selectedAnswers = getYarValue(request, yarKey)
 
-    values[index].content[0].items = answerSelect(selectedAnswers)
-
-    if (dependentQuestionKey === 'cover-type') {
-      values[index].content[0].items = coverNeededCheck(values[index].content[0].items, request)
+    if (selectedAnswers) {
+      values[index].content[0].items = [selectedAnswers].flat()
+    } else {
+      values[index].content[0].items = ['Not Needed']
     }
 
-    if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length && values[index].content[0].items[0] != 'Not Needed') {
+    if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
       const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
       let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
 
@@ -52,8 +33,10 @@ const getDependentSideBar = (sidebar, request) => {
         selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], selectedValueOfLinkedQuestion)
       }
 
-      if (selectedValueOfLinkedQuestion) {
+      if (selectedValueOfLinkedQuestion && values[index].content[0].items[0] != 'Not Needed') {
         values[index].content[0].items.push(selectedValueOfLinkedQuestion)
+      } else {
+        request.yar.set('coverSize', '')
       }
     }
   })
