@@ -28,20 +28,6 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const { dependentQuestionYarKey, dependentAnswerKeysArray, urlOptions } = urlObject
   const { thenUrl, elseUrl, nonDependentUrl } = urlOptions
 
-  if (Array.isArray(dependentQuestionYarKey)) {
-    const dependentAnswerOne = getYarValue(request, dependentQuestionYarKey[0])
-
-    const dependentAnswerTwo = getYarValue(request, dependentQuestionYarKey[1])
-
-    if (dependentAnswerOne == 'Not needed, the slurry is treated with acidification') {
-      return nonDependentUrl
-    } else if (dependentAnswerTwo == 'I already have an impermeable cover') {
-      return thenUrl
-    }
-
-    return elseUrl
-  }
-
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
 
   const selectThenUrl = ALL_QUESTIONS.find(thisQuestion => (
