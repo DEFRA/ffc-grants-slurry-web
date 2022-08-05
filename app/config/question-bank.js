@@ -1122,7 +1122,7 @@ const questionBank = {
           baseUrl: 'other-items',
           backUrlObject: {
             dependentQuestionYarKey: 'coverType',
-            dependentAnswerKeysArray: 'cover-type-A4',
+            dependentAnswerKeysArray: ['cover-type-A4'],
             urlOptions: {
               thenUrl: 'cover-type',
               elseUrl: 'cover-size',
