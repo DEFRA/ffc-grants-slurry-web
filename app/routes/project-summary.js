@@ -16,7 +16,7 @@ const backUrlObject = {
 
 function createModel (data, request) {
   const backUrl = getUrl(backUrlObject, '', request)
-  const previousPath = `${urlPrefix}/${backUrl}` 
+  const previousPath = `${urlPrefix}/${backUrl}`
   return {
     backLink: previousPath,
     formActionPage: currentPath,
@@ -43,9 +43,9 @@ module.exports = [{
   method: 'POST',
   path: currentPath,
   handler: (request, h) => {
-    const { secBtn } = request.payload    
-    const nextPath = !!secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
-    
+    const { secBtn } = request.payload
+    const nextPath = secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
+
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)
   }

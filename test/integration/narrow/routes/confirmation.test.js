@@ -2,7 +2,6 @@ const { crumbToken } = require('./test-helper')
 
 const senders = require('../../../../app/messaging/senders')
 
-
 describe('confirm page', () => {
   const varList = { farmerDetails: 'someValue', contractorsDetails: 'someValue' }
 
@@ -14,7 +13,6 @@ describe('confirm page', () => {
       else return 'Error'
     }
   }))
-
 
   it('page loads successfully, with all the options', async () => {
     const options = {

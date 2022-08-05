@@ -586,7 +586,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £800 per item'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-4',
         label: {
           text: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
           classes: 'govuk-label--m'
@@ -604,8 +604,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999999999,
-            error: 'Quantity must be between 1-9999999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },

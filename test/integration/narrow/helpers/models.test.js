@@ -156,6 +156,139 @@ describe('Models', () => {
     })
   })
 
+  test('Test sidebar in getModel when no yar key value', () => {
+    const questionForSidebar = {
+      type: 'mock_type',
+      backUrl: 'mock_back_url',
+      key: 'mock_key',
+      answers: [{
+        value: 'mock_answer_value',
+        hint: 'hint',
+        text: 'answer_text'
+      }],
+      backUrlObject: {
+        dependentQuestionYarKey: 'tenancyLength',
+        dependentAnswerKeysArray: ['tenancy-length-A1'],
+        urlOptions: {
+          thenUrl: 'tenancy-length',
+          elseUrl: 'tenancy-length-condition',
+          nonDependentUrl: 'tenancy'
+        }
+      },
+      sidebar: {
+        mainHeading: 'Your project items',
+        values: [
+          {
+            heading: 'Store',
+            content: [{
+              para: '',
+              items: [],
+              dependentAnswerExceptThese: []
+            }]
+          },
+          {
+            heading: 'Cover',
+            content: [{
+              para: '',
+              items: [],
+              dependentAnswerExceptThese: []
+            }]
+          }],
+        prefixSufix: [{
+          linkedPrefix: 'Increase: ',
+          linkedSufix: 'm³'
+        }],
+        linkedQuestionkey: ['serviceable-capacity-increase-replace'],
+        dependentQuestionKeys: ['storage-type', 'cover-type']
+      },
+      score: '123',
+      warning: {
+        text: 'Other types of business may be supported in future schemes',
+        iconFallbackText: 'Warning'
+      }
+    }
+
+    getYarValue.mockReturnValueOnce('mock-value')
+    getYarValue.mockReturnValueOnce('mock-value')
+    getYarValue.mockReturnValueOnce(undefined)
+
+    expect(getModel([], questionForSidebar, {})).toEqual({
+      type: 'mock_type',
+      key: 'mock_key',
+      title: undefined,
+      backUrl: undefined,
+      hint: undefined,
+      items: {
+        classes: 'govuk-fieldset__legend--l',
+        id: undefined,
+        name: undefined,
+        fieldset: {
+          legend: {
+            classes: 'govuk-fieldset__legend--l',
+            isPageHeading: true,
+            text: undefined
+          }
+        },
+        hint: undefined,
+        items: [
+          {
+            checked: false,
+            conditional: undefined,
+            hint: 'hint',
+            selected: false,
+            text: 'answer_text',
+            value: 'mock_answer_value'
+          }
+        ]
+      },
+      sideBarText: {
+            dependentQuestionKeys: [
+              'storage-type', 'cover-type'
+            ],
+            linkedQuestionkey: ['serviceable-capacity-increase-replace', ],
+            mainHeading: 'Your project items',
+            prefixSufix: [
+              {
+                linkedPrefix: 'Increase: ',
+                linkedSufix: 'm³'
+              }
+            ],
+            values: [
+              {
+                content: [{
+                  dependentAnswerExceptThese: [],
+                  items: [
+                    'mock-value'
+                  ],
+                  para: ''
+                }],
+                heading: 'Store'
+              },
+              {
+                content: [
+                  {
+                    dependentAnswerExceptThese: [],
+                    items: [
+                        'Not Needed'
+                    ],
+                    para: ''
+                  }
+                  
+                ],
+                heading: 'Cover'
+              }
+            ]
+      },
+      warning: {
+        text: 'Other types of business may be supported in future schemes',
+        iconFallbackText: 'Warning'
+      },
+      reachedCheckDetails: false,
+      reachedEvidenceSummary: false,
+      diaplaySecondryBtn: undefined
+    })
+  })
+
   // test('inspect getModel().sidebarText', () => {
   //   let dict = {}
   //   getYarValue.mockImplementation((req, key) => (dict[key]))

@@ -1038,7 +1038,8 @@ const questionBank = {
             },
             {
               key: 'cover-type-A4',
-              value: 'I already have an impermeable cover'
+              text: 'I already have an impermeable cover',
+              value: 'Not Needed'
             }
           ],
           yarKey: 'coverType'
