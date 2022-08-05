@@ -352,39 +352,39 @@ describe('Project Summary Array Function', () => {
     ])
   })
 
-    test('Should return blank array if object empty', () => {
-        const dict = {}
+  test('Should return blank array if object empty', () => {
+    const dict = {}
 
-        const mockRequest = {
-            yar: {
-                get: (key) => {
-                    if (key == 'standardisedCostObject') {
-                        return []
-                    } else if (key == 'storageType') {
-                        return 'Above-ground steel slurry store'
-                    } else if (key == 'serviceCapacityIncrease') {
-                        return 5
-                    } else if (key == 'coverType') {
-                        return 'Rigid cover for steel or concrete slurry stores'
-                    } else if (key == 'coverSize') {
-                        return 6
-                    } else if (key == 'itemSizeQuantities') {
-                        return itemSizesArray
-                    } else {
-                        return itemsList
-                    }
-                },
-                set: jest.fn((key, value) => {
-                    dict[key] = value
-                })
-            }
-        }
+    const mockRequest = {
+      yar: {
+        get: (key) => {
+          if (key == 'standardisedCostObject') {
+            return []
+          } else if (key == 'storageType') {
+            return 'Above-ground steel slurry store'
+          } else if (key == 'serviceCapacityIncrease') {
+            return 5
+          } else if (key == 'coverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key == 'coverSize') {
+            return 6
+          } else if (key == 'itemSizeQuantities') {
+            return itemSizesArray
+          } else {
+            return itemsList
+          }
+        },
+        set: jest.fn((key, value) => {
+          dict[key] = value
+        })
+      }
+    }
 
-        const response = formatSummaryTable(mockRequest)
+    const response = formatSummaryTable(mockRequest)
 
-        expect(response).toEqual([])
-    })
-  
+    expect(response).toEqual([])
+  })
+
   test('Should return blank array if otherItemsArray empty', () => {
     const dict = {}
 
