@@ -22,6 +22,20 @@ describe('Get & Post Handlers', () => {
 
   let mockH
 
+  test('check validateAnswerField()', async () => {
+    const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
+    const validateAnswerField = myModule.__get__('validateAnswerField')
+
+    const value = 'value'
+    let details = {}
+    expect(validateAnswerField(value, 'NOT_EMPTY', details, {})).toBe(true)
+
+    details = { max: 2 }
+    expect(validateAnswerField(value, 'MAX_SELECT', details, {})).toBe(true)
+
+    expect(validateAnswerField(value, 'DEFAULT_SELECT', details, {})).toBe(false)
+  })
+
   test('check checkInputError()', () => {
     const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
     const checkInputError = myModule.__get__('checkInputError')
