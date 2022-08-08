@@ -14,58 +14,11 @@ describe('Get & Post Handlers', () => {
   jest.mock('../../../../app/helpers/models')
   const { getModel } = require('../../../../app/helpers/models')
 
-  const rewire = require('rewire')
-
   const {
     customiseErrorText
   } = require('../../../../app/helpers/errorSummaryHandlers')
 
   let mockH
-
-  test('check validateAnswerField()', async () => {
-    const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
-    const validateAnswerField = myModule.__get__('validateAnswerField')
-
-    let value = 'value'
-    let details = {}
-    expect(validateAnswerField(value, 'NOT_EMPTY', details, {})).toBe(true)
-
-    details = { max: 2 }
-    expect(validateAnswerField(value, 'MAX_SELECT', details, {})).toBe(true)
-
-    expect(validateAnswerField(value, 'DEFAULT_SELECT', details, {})).toBe(false)
-
-    value = ['yes']
-    details = {
-      combinationObject: {
-        questionKey: 'country',
-        combinationAnswerKeys: ['country-A1']
-      }
-    }
-    expect(validateAnswerField(value, 'COMBINATION_ANSWER', details, {})).toBe(true)
-
-    value = ['Pig', 'Beef', 'Dairy']
-    details = {
-      combinationObject: {
-        questionKey: 'applicant-type',
-        combinationAnswerKeys: ['applicant-type-A1', 'applicant-type-A2', 'applicant-type-A3']
-      }
-    }
-    expect(validateAnswerField(value, 'COMBINATION_ANSWER', details, {})).toBe(true)
-  })
-
-  test('check checkInputError()', () => {
-    const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
-    const checkInputError = myModule.__get__('checkInputError')
-
-    let validate = [{ type: 'NOT_EMPTY', dependentKey: 'dep-yarKey' }]
-    expect(checkInputError(validate, false, {}, '')).toBe(undefined)
-
-    validate = [{ type: 'DEFAULT_SELECT', dependentKey: 'dep-yarKey' }]
-    expect(checkInputError(validate, true, { 'dep-yarKey': 'depYarkeyValue' }, '')).toEqual(
-      { type: 'DEFAULT_SELECT', dependentKey: 'dep-yarKey' }
-    )
-  })
 
   test('check customiseErrorText()', () => {
     mockH = { view: jest.fn() }
