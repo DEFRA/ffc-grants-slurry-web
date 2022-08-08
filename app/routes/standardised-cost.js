@@ -26,7 +26,6 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
-
     const preValidationKeys = ['cover']
     const isRedirect = guardPage(request, preValidationKeys, null)
 

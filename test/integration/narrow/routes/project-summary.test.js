@@ -1,5 +1,8 @@
 const { crumbToken } = require('./test-helper')
 
+jest.mock('../../../../app/helpers/page-guard')
+const { guardPage } = require('../../../../app/helpers/page-guard')
+
 describe('Project Summary test', () => {
   const varList = { storageType: 'random', coverType: 'random', otherItems: ['random'], itemSizesQuantities: ['random'] }
 
@@ -52,7 +55,7 @@ describe('Project Summary test', () => {
     expect(response.headers.location).toBe('/slurry-infrastructure/storage-type')
   })
 
-  it('page loads with correct back link', async () => {
+  test('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/project-summary`
@@ -60,5 +63,18 @@ describe('Project Summary test', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('<a href=\"/slurry-infrastructure/item-sizes-quantities\" class=\"govuk-back-link\">Back</a>')
+  })
+
+  it('page redirects to start if no otherItems', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/project-summary`
+    }
+
+    guardPage.mockResolvedValue(true)
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/slurry-infrastructure/start')
   })
 })

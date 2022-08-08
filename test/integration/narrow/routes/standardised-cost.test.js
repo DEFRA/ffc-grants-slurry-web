@@ -4,6 +4,9 @@ jest.mock('../../../../app/messaging/application')
 const { getStandardisedCosts } = require('../../../../app/messaging/application')
 const messaging = require('../../../../app/messaging/application')
 
+jest.mock('../../../../app/helpers/page-guard')
+const { guardPage } = require('../../../../app/helpers/page-guard')
+
 describe('Standardised Cost test', () => {
   const varList = { }
 
@@ -81,5 +84,18 @@ describe('Standardised Cost test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
+  })
+
+  test('page redirects to start if no cover', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/standardised-cost`
+    }
+
+    guardPage.mockResolvedValue(true)
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/slurry-infrastructure/start')
   })
 })
