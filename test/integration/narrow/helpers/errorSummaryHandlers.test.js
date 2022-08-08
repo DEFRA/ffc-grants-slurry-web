@@ -22,33 +22,46 @@ describe('Get & Post Handlers', () => {
 
   let mockH
 
-  test('check validateAnswerField()', async () => {
+  test('check validateAnswerField() - Not_Empty', async () => {
     const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
     const validateAnswerField = myModule.__get__('validateAnswerField')
 
     let value = 'value'
     let details = {}
     expect(validateAnswerField(value, 'NOT_EMPTY', details, {})).toBe(true)
+  })
 
-    details = { max: 2 }
+  test('check validateAnswerField() - Max_Select', async () => {
+    const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
+    const validateAnswerField = myModule.__get__('validateAnswerField')
+
+    let value = 'value'
+    let details = { max: 2 }
     expect(validateAnswerField(value, 'MAX_SELECT', details, {})).toBe(true)
+
+  })
+
+  test('check validateAnswerField() - default', async () => {
+    const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
+    const validateAnswerField = myModule.__get__('validateAnswerField')
+
+    let value = 'value'
+    let details = {}
+
 
     expect(validateAnswerField(value, 'DEFAULT_SELECT', details, {})).toBe(false)
 
-    value = ['yes']
-    details = {
+  })
+
+  test('check validateAnswerField() - combination_answer', async () => {
+    const myModule = rewire('../../../../app/helpers/errorSummaryHandlers')
+    const validateAnswerField = myModule.__get__('validateAnswerField')
+
+    let value = ['yes']
+    let details = {
       combinationObject: {
         questionKey: 'country',
         combinationAnswerKeys: ['country-A1']
-      }
-    }
-    expect(validateAnswerField(value, 'COMBINATION_ANSWER', details, {})).toBe(true)
-
-    value = ['Pig', 'Beef', 'Dairy']
-    details = {
-      combinationObject: {
-        questionKey: 'applicant-type',
-        combinationAnswerKeys: ['applicant-type-A1', 'applicant-type-A2', 'applicant-type-A3']
       }
     }
     expect(validateAnswerField(value, 'COMBINATION_ANSWER', details, {})).toBe(true)
