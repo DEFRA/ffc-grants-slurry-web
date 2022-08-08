@@ -1,4 +1,6 @@
 const { getStandardisedCosts } = require('../messaging/application')
+const { startPageUrl } = require('../config/server')
+const { guardPage } = require('../helpers/page-guard')
 
 const urlPrefix = require('../config/server').urlPrefix
 const viewTemplate = 'standardised-cost'
@@ -24,6 +26,13 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
+    const preValidationKeys = ['cover']
+    const isRedirect = guardPage(request, preValidationKeys, null)
+
+    if (isRedirect) {
+      return h.redirect(startPageUrl)
+    }
+
     try {
       console.log('Sending session message .....')
 

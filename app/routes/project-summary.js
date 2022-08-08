@@ -2,6 +2,8 @@ const { formatSummaryTable } = require('./../helpers/project-summary')
 const { formatUKCurrency } = require('../helpers/data-formats')
 const urlPrefix = require('../config/server').urlPrefix
 const { getUrl } = require('../helpers/urls')
+const { startPageUrl } = require('../config/server')
+const { guardPage } = require('../helpers/page-guard')
 
 const viewTemplate = 'project-summary'
 const currentPath = `${urlPrefix}/${viewTemplate}`
@@ -33,6 +35,13 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
+    const preValidationKeys = ['otherItems']
+    const isRedirect = guardPage(request, preValidationKeys, null)
+
+    if (isRedirect) {
+      return h.redirect(startPageUrl)
+    }
+
     const result = formatSummaryTable(request)
     const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
 

@@ -156,7 +156,7 @@ const questionBank = {
           nextUrl: 'country',
           url: 'legal-status',
           baseUrl: 'legal-status',
-          preValidationKeys: [],
+          preValidationKeys: ['applicantType'],
           ineligibleContent: {
             messageContent: 'Your business does not have an eligible legal status.',
             details: {
@@ -309,7 +309,7 @@ const questionBank = {
           baseUrl: 'project-started',
           backUrl: 'country',
           nextUrl: 'tenancy',
-          preValidationKeys: [],
+          preValidationKeys: ['inEngland'],
           ineligibleContent: {
             messageContent: 'You cannot apply for a grant if you have already started work on the project.',
             insertText: { text: 'Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement invalidates your application.' },
@@ -377,7 +377,7 @@ const questionBank = {
           baseUrl: 'tenancy',
           backUrl: 'project-started',
           nextUrl: 'system-type',
-          preValidationKeys: [],
+          preValidationKeys: ['projectStart'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -417,7 +417,7 @@ const questionBank = {
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
           backUrl: 'tenancy',
-          preValidationKeys: [],
+          preValidationKeys: ['tenancy'],
           nextUrl: 'system-type',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -456,7 +456,7 @@ const questionBank = {
           order: 70,
           url: 'tenancy-length-condition',
           backUrl: 'tenancy-length',
-          preValidationKeys: [],
+          preValidationKeys: ['tenancyLength'],
           nextUrl: 'system-type',
           maybeEligible: true,
           maybeEligibleContent: {
@@ -481,7 +481,7 @@ const questionBank = {
             }
           },
           nextUrl: 'existing-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['tenancy'],
           ineligibleContent: {
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
@@ -549,7 +549,7 @@ const questionBank = {
           backUrl: 'system-type',
           nextUrl: 'planned-storage-capacity',
           url: 'existing-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
             This grant is to get your serviceable storage levels to 6 months.`,
@@ -613,7 +613,7 @@ const questionBank = {
           backUrl: 'existing-storage-capacity',
           nextUrl: 'project-type',
           url: 'planned-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['existingStorageCapacity'],
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
@@ -671,7 +671,7 @@ const questionBank = {
           backUrl: 'planned-storage-capacity',
           nextUrl: 'cover',
           url: 'project-type',
-          preValidationKeys: [],
+          preValidationKeys: ['plannedStorageCapacity'],
           ineligibleContent: {
             messageContent: `
             This grant is only for: <br> 
@@ -744,7 +744,7 @@ const questionBank = {
           backUrl: 'project-type',
           nextUrl: 'estimated-grant',
           url: 'cover',
-          preValidationKeys: [],
+          preValidationKeys: ['projectType'],
           ineligibleContent: {
             messageContent: 'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
             messageLink: {
@@ -799,7 +799,7 @@ const questionBank = {
           url: 'estimated-grant',
           backUrl: 'cover',
           nextUrl: 'standardised-cost',
-          preValidationKeys: [],
+          preValidationKeys: ['cover'],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Estimate how much grant you could get',
@@ -827,7 +827,7 @@ const questionBank = {
           hint: {
             text: 'Select one option'
           },
-          preValidationKeys: [],
+          preValidationKeys: ['cover'],
           type: 'single-answer',
           minAnswerCount: 1,
           validate: [
@@ -856,7 +856,7 @@ const questionBank = {
             }
           },
           fundingPriorities: '',
-          preValidationKeys: [],
+          preValidationKeys: ['storageType'],
           classes: 'govuk-input--width-10',
           id: 'storageCapacityIncrease',
           name: 'storageCapacityIncrease',
@@ -927,7 +927,7 @@ const questionBank = {
               elseUrl: 'cover-type'
             }
           },
-          preValidationKeys: [],
+          preValidationKeys: ['storageType'],
           suffix: { text: 'm³' },
           type: 'input',
           label: {
@@ -1002,7 +1002,7 @@ const questionBank = {
             }
           },
           url: 'cover-type',
-          preValidationKeys: [],
+          preValidationKeys: ['storageType'],
           hint: {
             text: 'Select one option'
           },
@@ -1054,7 +1054,7 @@ const questionBank = {
           baseUrl: 'cover-size',
           backUrl: 'cover-type',
           nextUrl: 'other-items',
-          preValidationKeys: [],
+          preValidationKeys: ['coverType'],
           suffix: { text: 'm²' },
           type: 'input',
           label: {
@@ -1143,7 +1143,7 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: [],
+          preValidationKeys: ['storageType'],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
@@ -1211,7 +1211,7 @@ const questionBank = {
           backUrl: 'other-items',
           nextUrl: 'project-summary',
           url: 'item-sizes-quantities',
-          preValidationKeys: [],
+          preValidationKeys: ['otherItems'],
           hint: {
             text: 'Enter the approximate size and quantities your project needs'
           },
@@ -1265,7 +1265,7 @@ const questionBank = {
           baseUrl: 'potential-amount',
           backUrl: 'project-summary',
           nextUrl: 'remaining-costs',
-          preValidationKeys: [],
+          preValidationKeys: ['standardisedCostCalculated'],
           grantInfo: {
             minGrant: 25000,
             maxGrant: 250000,
@@ -1297,6 +1297,7 @@ const questionBank = {
           baseUrl: 'remaining-costs',
           backUrl: 'potential-amount',
           nextUrl: 'planning-permission',
+          preValidationKeys: ['standardisedCostCalculated'],
           eliminationAnswerKeys: '',
           ineligibleContent: {
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
@@ -1364,7 +1365,7 @@ const questionBank = {
           baseUrl: 'planning-permission',
           backUrl: 'remaining-costs',
           nextUrl: 'planning-permission-evidence',
-          preValidationKeys: ['inEngland'],
+          preValidationKeys: ['remainingCosts'],
           ineligibleContent: {
             messageContent: 'Any planning permission must be in place by 31 January 2024.',
             messageLink: {
@@ -1415,7 +1416,7 @@ const questionBank = {
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
           maybeEligible: true,
-          preValidationKeys: [],
+          preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
             messageContent: 'Any planning permission must be in place by 31st December 2023.'
@@ -1433,7 +1434,7 @@ const questionBank = {
           baseUrl: 'planning-permission-evidence',
           backUrl: 'planning-permission',
           nextUrl: 'grid-reference',
-          preValidationKeys: [],
+          preValidationKeys: ['planningPermission'],
           type: 'multi-input',
           allFields: [
             {
@@ -1506,7 +1507,7 @@ const questionBank = {
               elseUrl: 'planning-permission-condition'
             }
           },
-          preValidationKeys: [],
+          preValidationKeys: ['planningPermission'],
           type: 'multi-input',
           allFields: [
             {
@@ -1545,7 +1546,7 @@ const questionBank = {
           baseUrl: 'planning-permission-summary',
           backUrl: 'grid-reference',
           nextUrl: 'result-page',
-          preValidationKeys: [],
+          preValidationKeys: ['gridReference'],
           eliminationAnswerKeys: '',
           ineligibleContent: {},
           pageData: {
@@ -1566,6 +1567,7 @@ const questionBank = {
           baseUrl: 'result-page',
           backUrl: 'planning-permission-summary',
           nextUrl: 'business-details',
+          preValidationKeys: ['gridReference'],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Your results',
@@ -1598,6 +1600,7 @@ const questionBank = {
           baseUrl: 'business-details',
           backUrl: 'result-page',
           nextUrl: 'applying',
+          preValidationKeys: ['gridReference'],
           eliminationAnswerKeys: '',
           ineligibleContent: {},
           fundingPriorities: '',
