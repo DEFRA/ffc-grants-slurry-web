@@ -1,6 +1,6 @@
 {
   "name": "ffc-grants-slurry-web",
-  "version": "1.28.13",
+  "version": "1.28.14",
   "description": "Web frontend for FTF Slurry Infrastructure scheme",
   "homepage": "https://github.com/DEFRA/ffc-grants-slurry-web",
   "main": "app/index.js",
@@ -49,7 +49,8 @@
     "govuk-frontend": "^3.13.0",
     "joi": "^17.4.2",
     "nunjucks": "^3.2.3",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "rewire": "^6.0.0"
   },
   "devDependencies": {
     "@hapi/catbox-memory": "^5.0.1",
