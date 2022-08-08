@@ -12,6 +12,7 @@ const backUrlObject = {
     thenUrl: 'other-items',
     elseUrl: 'item-sizes-quantities'
   }
+  // add preValidation?
 }
 
 function createModel (data, request) {
@@ -33,6 +34,14 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
+
+    const preValidationKeys = ['otherItems']
+    const isRedirect = guardPage(request, preValidationKeys, null)
+
+    if (isRedirect) {
+        return h.redirect(startPageUrl)
+    }
+
     const result = formatSummaryTable(request)
     const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
 
