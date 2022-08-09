@@ -32,7 +32,7 @@ const getPage = async (question, request, h) => {
   }
   let confirmationId = ''
 
-  if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
+  if (url === 'potential-grant-funding' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
