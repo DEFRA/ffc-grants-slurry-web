@@ -16,7 +16,7 @@ const backUrlObject = {
   }
 }
 
-function createModel (data, request) {
+function createModel(data, request) {
   const backUrl = getUrl(backUrlObject, '', request)
   const previousPath = `${urlPrefix}/${backUrl}`
   return {

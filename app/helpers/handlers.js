@@ -32,6 +32,12 @@ const getPage = async (question, request, h) => {
   }
   let confirmationId = ''
 
+  if (question.grantInfo) {
+    const { calculatedGrant, remainingCost } = getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo)
+    setYarValue(request, 'calculatedGrant', calculatedGrant)
+    setYarValue(request, 'remainingCost', remainingCost)
+  }
+
   if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
     return h.view('not-eligible', NOT_ELIGIBLE)
@@ -149,11 +155,16 @@ const showPostPage = (currentQuestion, request, h) => {
 
   let thisAnswer
   let dataObject
+ 
   if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
     setYarValue(request, yarKey, '')
   }
   for (const [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
+    if (yarKey === 'cover' && thisAnswer.key === 'cover-A2') {
+      request.yar.set('coverType', '')
+      request.yar.set('coverSize', '')
+    }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
       setYarValue(request, key, key === 'projectPostcode' ? value.replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase() : value)
@@ -196,9 +207,7 @@ const showPostPage = (currentQuestion, request, h) => {
     return errors
   }
 
-  if (thisAnswer?.notEligible ||
-    (yarKey === 'projectCost' ? !getGrantValues(payload[Object.keys(payload)[0]], currentQuestion.grantInfo).isEligible : null)
-  ) {
+  if (thisAnswer?.notEligible) {
     gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible)
     if (thisAnswer?.alsoMaybeEligible) {
       const {
@@ -238,13 +247,6 @@ const showPostPage = (currentQuestion, request, h) => {
     return h.view('not-eligible', NOT_ELIGIBLE)
   } else if (thisAnswer?.redirectUrl) {
     return h.redirect(thisAnswer?.redirectUrl)
-  }
-
-  if (yarKey === 'projectCost') {
-    const { calculatedGrant, remainingCost } = getGrantValues(payload[Object.keys(payload)[0]], currentQuestion.grantInfo)
-
-    setYarValue(request, 'calculatedGrant', calculatedGrant)
-    setYarValue(request, 'remainingCost', remainingCost)
   }
 
   return h.redirect(getUrl(nextUrlObject, nextUrl, request, payload.secBtn, currentQuestion.url))

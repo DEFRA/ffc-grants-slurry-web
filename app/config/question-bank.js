@@ -1039,7 +1039,7 @@ const questionBank = {
             {
               key: 'cover-type-A4',
               text: 'I already have an impermeable cover',
-              value: 'Not Needed'
+              value: 'Not needed'
             }
           ],
           yarKey: 'coverType'
@@ -1270,10 +1270,10 @@ const questionBank = {
             minGrant: 25000,
             maxGrant: 250000,
             grantPercentage: '',
-            cappedGrant: false
+            cappedGrant: true
           },
           ineligibleContent: {
-            messageContent: 'The minimum grant you can claim is £25,000. The maximum grant is £250,000.',
+            messageContent: 'The minimum grant you can claim is £25,000.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -1282,7 +1282,7 @@ const questionBank = {
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Potential grant funding',
-            messageContent: 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_itemsTotalValue_}}',
+            messageContent: 'Based on the standardised costs for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
             warning: {
               text: 'There’s no guarantee the project will receive a grant.'
             }
