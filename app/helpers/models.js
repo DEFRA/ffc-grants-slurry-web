@@ -22,7 +22,7 @@ const getDependentSideBar = (sidebar, request) => {
     if (selectedAnswers) {
       values[index].content[0].items = [selectedAnswers].flat()
     } else {
-      values[index].content[0].items = ['Not Needed']
+      values[index].content[0].items = ['Not needed']
     }
 
     if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
@@ -33,7 +33,7 @@ const getDependentSideBar = (sidebar, request) => {
         selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], selectedValueOfLinkedQuestion)
       }
 
-      if (selectedValueOfLinkedQuestion && values[index].content[0].items[0] != 'Not Needed') {
+      if (selectedValueOfLinkedQuestion && values[index].content[0].items[0] !== 'Not needed') {
         values[index].content[0].items.push(selectedValueOfLinkedQuestion)
       } else {
         setYarValue(request, 'coverSize', '')
