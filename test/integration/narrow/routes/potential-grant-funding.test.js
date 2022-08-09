@@ -29,7 +29,7 @@ describe('Page: /potential-amount', () => {
   })
 
   it('page loads successfully, with all the inEligible options', async () => {
-    varList.itemsTotalValue = 5000
+    varList.calculatedGrant = 5000
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/potential-grant-funding`
