@@ -19,7 +19,7 @@ describe('Page: /potential-amount', () => {
   it('page loads successfully, with all the Eligible options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/potential-grant-funding`
+      url: `${global.__URLPREFIX__}/potential-amount`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -30,9 +30,10 @@ describe('Page: /potential-amount', () => {
 
   it('page loads successfully, with all the inEligible options', async () => {
     varList.calculatedGrant = 5000
+    varList.itemsTotalValue = 5000
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/potential-grant-funding`
+      url: `${global.__URLPREFIX__}/potential-amount`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -44,7 +45,7 @@ describe('Page: /potential-amount', () => {
   it('should redirect to /remaining-costs when user press continue', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/potential-grant-funding`,
+      url: `${global.__URLPREFIX__}/potential-amount`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { remainingCosts: 'Yes', crumb: crumbToken }
     }
@@ -57,7 +58,7 @@ describe('Page: /potential-amount', () => {
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/potential-grant-funding`
+      url: `${global.__URLPREFIX__}/potential-amount`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

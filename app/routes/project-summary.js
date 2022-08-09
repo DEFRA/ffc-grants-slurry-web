@@ -53,7 +53,7 @@ module.exports = [{
   path: currentPath,
   handler: (request, h) => {
     const { secBtn } = request.payload
-    const nextPath = secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-grant-funding`
+    const nextPath = secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
 
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)
