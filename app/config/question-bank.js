@@ -1259,10 +1259,10 @@ const questionBank = {
         },
         // CALLS PROJECT SUMMARY
         {
-          key: 'potential-amount',
+          key: 'potential-grant-funding',
           order: 150,
-          url: 'potential-amount',
-          baseUrl: 'potential-amount',
+          url: 'potential-grant-funding',
+          baseUrl: 'potential-grant-funding',
           backUrl: 'project-summary',
           nextUrl: 'remaining-costs',
           preValidationKeys: ['standardisedCostCalculated'],
@@ -1295,7 +1295,7 @@ const questionBank = {
           pageTitle: '',
           url: 'remaining-costs',
           baseUrl: 'remaining-costs',
-          backUrl: 'potential-amount',
+          backUrl: 'potential-grant-funding',
           nextUrl: 'planning-permission',
           preValidationKeys: ['standardisedCostCalculated'],
           eliminationAnswerKeys: '',
