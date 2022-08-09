@@ -11,6 +11,16 @@ describe('Conditional html', () => {
     expect(result).not.toContain('<div class="govuk-form-group govuk-form-group--error">')
   })
 
+  test('check function getHtml - robotic equipment, no errors, empty fieldValueData', () => {
+    const label = 'roboticEquipment'
+    const labelData = 'MOCK_LABEL_DATA'
+    const fieldValueData = ''
+    const error = false
+
+    const result = getHtml(label, labelData, fieldValueData, error)
+    expect(result).not.toContain('<div class="govuk-form-group govuk-form-group--error">')
+  })
+
   test('check function getHtml - robotic equipment, with errors', () => {
     const label = 'roboticEquipment'
     const labelData = 'MOCK_LABEL_DATA'
