@@ -16,7 +16,7 @@ const backUrlObject = {
   }
 }
 
-function createModel (data, request) {
+function createModel(data, request) {
   const backUrl = getUrl(backUrlObject, '', request)
   const previousPath = `${urlPrefix}/${backUrl}`
   return {
@@ -53,7 +53,7 @@ module.exports = [{
   path: currentPath,
   handler: (request, h) => {
     const { secBtn } = request.payload
-    const nextPath = secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-grant-funding`
+    const nextPath = secBtn ? `${urlPrefix}/storage-type` : `${urlPrefix}/potential-amount`
 
     request.yar.set('standardisedCostCalculated', true)
     return h.redirect(nextPath)

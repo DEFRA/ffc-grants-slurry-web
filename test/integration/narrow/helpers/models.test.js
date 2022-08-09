@@ -242,42 +242,42 @@ describe('Models', () => {
         ]
       },
       sideBarText: {
-            dependentQuestionKeys: [
-              'storage-type', 'cover-type'
-            ],
-            linkedQuestionkey: ['serviceable-capacity-increase-replace', ],
-            mainHeading: 'Your project items',
-            prefixSufix: [
+        dependentQuestionKeys: [
+          'storage-type', 'cover-type'
+        ],
+        linkedQuestionkey: ['serviceable-capacity-increase-replace',],
+        mainHeading: 'Your project items',
+        prefixSufix: [
+          {
+            linkedPrefix: 'Increase: ',
+            linkedSufix: 'm³'
+          }
+        ],
+        values: [
+          {
+            content: [{
+              dependentAnswerExceptThese: [],
+              items: [
+                'mock-value'
+              ],
+              para: ''
+            }],
+            heading: 'Store'
+          },
+          {
+            content: [
               {
-                linkedPrefix: 'Increase: ',
-                linkedSufix: 'm³'
-              }
-            ],
-            values: [
-              {
-                content: [{
-                  dependentAnswerExceptThese: [],
-                  items: [
-                    'mock-value'
-                  ],
-                  para: ''
-                }],
-                heading: 'Store'
-              },
-              {
-                content: [
-                  {
-                    dependentAnswerExceptThese: [],
-                    items: [
-                        'Not Needed'
-                    ],
-                    para: ''
-                  }
-                  
+                dependentAnswerExceptThese: [],
+                items: [
+                  'Not needed'
                 ],
-                heading: 'Cover'
+                para: ''
               }
-            ]
+
+            ],
+            heading: 'Cover'
+          }
+        ]
       },
       warning: {
         text: 'Other types of business may be supported in future schemes',

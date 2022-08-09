@@ -1,7 +1,10 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /cover', () => {
-  const varList = { legalStatus: 'randomData' }
+  const varList = {
+    legalStatus: 'randomData',
+    projectType: 'fakeData'
+  }
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -30,7 +33,7 @@ describe('Page: /cover', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { cover: '', crumb: crumbToken }
+      payload: { crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)

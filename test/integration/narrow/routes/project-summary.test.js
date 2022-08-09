@@ -39,7 +39,7 @@ describe('Project Summary test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/slurry-infrastructure/potential-grant-funding')
+    expect(response.headers.location).toBe('/slurry-infrastructure/potential-amount')
   })
 
   test('POST /project-summary route returns next page \'on change your items\'', async () => {
