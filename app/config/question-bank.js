@@ -2331,7 +2331,6 @@ const questionBank = {
           backUrl: 'check-details',
           nextUrl: 'confirmation',
           preValidationKeys: ['farmerDetails'],
-          preValidationKeysRule: { condition: 'ANY' },
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Confirm and send',
@@ -2362,7 +2361,7 @@ const questionBank = {
           pageTitle: '',
           url: 'confirmation',
           baseUrl: 'confirmation',
-          preValidationKeys: ['consentOptional'],
+          preValidationKeys: ['farmerDetails'],
           ga: [
             { dimension: 'cd2', value: { type: 'score' } },
             { dimension: 'cd5', value: { type: 'confirmationId' } },
