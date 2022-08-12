@@ -2386,7 +2386,7 @@ const questionBank = {
             
             <h2 class="govuk-heading-m">What happens next</h2>
             <p>1. RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</p>
-            <p>2. If you submit an application, RPA will assess it is eligible and meets the rules of the grant.</p>
+            <p>2. If you submit an application, RPA will assess whether it is eligible and meets the rules of the grant.</p>
             <p>3. If your application is successful, you’ll be sent a funding agreement and can begin work on the project.</p>
             `,
             warning: {
