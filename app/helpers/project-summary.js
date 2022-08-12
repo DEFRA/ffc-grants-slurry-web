@@ -61,7 +61,7 @@ function formatSummaryTable (request) {
       totalCalculator += total
     }
 
-    if (otherItemsArray[0] != 'None of the above') {
+    if (otherItemsArray[0] !== 'None of the above') {
       // pull otherItemsSizes object. Can only be done after checking if other items has data
       const otherItemSizes = [request.yar.get('itemSizeQuantities')].flat()
 
