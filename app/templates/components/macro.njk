@@ -21,10 +21,10 @@
 {% endmacro %}
 {% macro multiSideBar(sideBars) %}
   <div class="govuk-grid-column-one-third  govuk-!-padding-top-4 govuk-body">
-    <hr class="sideBarColor"/>
-    <h2 class="govuk-heading-m" id="subsection-title">{{sideBars.mainHeading}}</h2>
+    <hr class="sideBarColor"/>    
+    <h2 class="govuk-heading-m" id="subsection-title-{{ sideBars.mainHeading.replace(' ', '-') | lower }}">{{ sideBars.mainHeading }}</h2>
     {% for sidebar in sideBars.values %}
-      <h2 class="govuk-heading-s" id="subsection-title">
+      <h2 class="govuk-heading-s" id="subsection-title-{{ sidebar.heading.replace(' ', '-') | lower }}">
         {{ sidebar.heading }}
       </h2>
       {% for content in sidebar.content %}
