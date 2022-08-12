@@ -1249,7 +1249,7 @@ const questionBank = {
             },
             {
               linkedPrefix: 'Size: ',
-              linkedSufix: 'm³'
+              linkedSufix: 'm²'
             }],
             linkedQuestionkey: ['serviceable-capacity-increase-replace', 'cover-size'],
             dependentQuestionKeys: ['storage-type', 'cover-type', 'other-items']
