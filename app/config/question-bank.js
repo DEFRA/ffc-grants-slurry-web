@@ -576,7 +576,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
+              html: '<p class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</p>'
             }
           },
           validate: [
@@ -767,7 +767,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'What is acidification?',
-              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'
+              html: '<p class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</p>'
             }
           },
           validate: [
