@@ -827,7 +827,7 @@ const questionBank = {
           hint: {
             text: 'Select one option'
           },
-          preValidationKeys: ['cover'],
+          preValidationKeys: ['standardisedCostObject'],
           type: 'single-answer',
           minAnswerCount: 1,
           validate: [
