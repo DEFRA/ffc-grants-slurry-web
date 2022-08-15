@@ -89,7 +89,6 @@ const questionBank = {
           backUrl: 'start',
           nextUrl: 'legal-status',
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: `This grant is for pig, beef or dairy farmers. <br/> <br/> 
             <div class="govuk-inset-text">Poultry, arable-only, contractors and horticultural growers are not currently eligible.</div>`,
             messageLink: {
@@ -159,7 +158,6 @@ const questionBank = {
           baseUrl: 'legal-status',
           preValidationKeys: ['applicantType'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'Your business does not have an eligible legal status.',
             details: {
               summaryText: 'Who is eligible',
@@ -263,7 +261,6 @@ const questionBank = {
           baseUrl: 'country',
           preValidationKeys: ['legalStatus'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'This grant is only for projects in England.',
             insertText: { text: 'Scotland, Wales and Northern Ireland have other grants available.' },
             messageLink: {
@@ -314,7 +311,6 @@ const questionBank = {
           nextUrl: 'tenancy',
           preValidationKeys: ['inEngland'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'You cannot apply for a grant if you have already started work on the project.',
             insertText: { text: 'Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement invalidates your application.' },
             messageLink: {
@@ -487,7 +483,6 @@ const questionBank = {
           nextUrl: 'existing-storage-capacity',
           preValidationKeys: ['tenancy'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
@@ -556,7 +551,6 @@ const questionBank = {
           url: 'existing-storage-capacity',
           preValidationKeys: ['systemType'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: `
             This grant is to get your serviceable storage levels to 6 months.`,
             messageLink: {
@@ -623,7 +617,6 @@ const questionBank = {
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'This grant is to get your serviceable storage levels to 6 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
@@ -680,7 +673,6 @@ const questionBank = {
           url: 'project-type',
           preValidationKeys: ['plannedStorageCapacity'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: `
             This grant is only for: <br> 
             <ul class="govuk-list govuk-list--bullet">
@@ -754,7 +746,6 @@ const questionBank = {
           url: 'cover',
           preValidationKeys: ['projectType'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
@@ -1282,7 +1273,6 @@ const questionBank = {
             cappedGrant: true
           },
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'The minimum grant you can claim is £25,000.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
@@ -1310,7 +1300,6 @@ const questionBank = {
           preValidationKeys: ['standardisedCostCalculated'],
           eliminationAnswerKeys: '',
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
             <div class="govuk-list govuk-list--bullet">
                   You can use:
@@ -1378,7 +1367,6 @@ const questionBank = {
           nextUrl: 'planning-permission-evidence',
           preValidationKeys: ['remainingCosts'],
           ineligibleContent: {
-            messageHeader: 'You cannot apply for a grant from this scheme',
             messageContent: 'Any planning permission must be in place by 31 January 2024.',
             messageLink: {
               url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
