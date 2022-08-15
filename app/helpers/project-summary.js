@@ -78,7 +78,7 @@ function formatSummaryTable (request) {
             if (item.item === otherItem) {
               const unit = suffixGenerator(item.unit)
 
-              total = (correctSize * item.amount.replace(/,/g, ''))
+              total = (correctSize * String(item.amount).replace(/,/g, ''))
 
               returnArray.push({
                 item: otherItem,
