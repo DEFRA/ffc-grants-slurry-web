@@ -1002,7 +1002,7 @@ const questionBank = {
             }
           },
           url: 'cover-type',
-          preValidationKeys: ['storageType'],
+          preValidationKeys: ['serviceCapacityIncrease'],
           hint: {
             text: 'Select one option'
           },
@@ -1143,7 +1143,7 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: ['storageType'],
+          preValidationKeys: ['serviceCapacityIncrease'],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
