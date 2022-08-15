@@ -1064,9 +1064,9 @@ const questionBank = {
           },
           hint: {
             html: `
-            Enter the estimated surface area of the replacement, new or expanded store
+            Enter the estimated surface area of the replacement, new or expanded store.
 
-            Enter size in metres squared
+            Enter size in metres squared.
           `
           },
           validate: [
