@@ -504,7 +504,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'What is slurry?',
-              html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
+              html: 'Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.'
             }
           },
           validate: [
@@ -576,7 +576,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
             }
           },
           validate: [
@@ -703,7 +703,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
             }
           },
           validate: [
@@ -767,7 +767,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'What is acidification?',
-              html: '<ul class="govuk-list govuk-list--bullet">Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.</ul>'
+              html: 'Acidification is the use of acid treatment to lower the pH value of slurry to stabilise ammonia emissions.'
             }
           },
           validate: [
@@ -827,7 +827,7 @@ const questionBank = {
           hint: {
             text: 'Select one option'
           },
-          preValidationKeys: ['cover'],
+          preValidationKeys: ['standardisedCostObject'],
           type: 'single-answer',
           minAnswerCount: 1,
           validate: [
@@ -1002,7 +1002,7 @@ const questionBank = {
             }
           },
           url: 'cover-type',
-          preValidationKeys: ['storageType'],
+          preValidationKeys: ['serviceCapacityIncrease'],
           hint: {
             text: 'Select one option'
           },
@@ -1143,7 +1143,7 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: ['storageType'],
+          preValidationKeys: ['serviceCapacityIncrease'],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
