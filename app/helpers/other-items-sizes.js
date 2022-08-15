@@ -1,9 +1,9 @@
-const {
-  WHOLE_NUMBER_REGEX
-} = require('./regex')
+const { WHOLE_NUMBER_REGEX } = require('./regex')
+const { formatUKCurrency } = require('../helpers/data-formats')
 
 const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) => {
   const maxValue = suffixAndLengthValue.length === 4 ? 9999 : 9999999999
+  item.amount = formatUKCurrency(item.amount)
 
   return {
     yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
