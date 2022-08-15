@@ -10,6 +10,9 @@
 {% from "./components/macro.njk" import crumbToken, multiSideBar, conditionalButtons %}
 
 {% block pageTitle %}
+  {% if errorList %}
+    Error:
+  {% endif %}
   {{ siteTitle }} - {{ title }}
 {% endblock %}
 
