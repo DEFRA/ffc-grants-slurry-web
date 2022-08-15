@@ -228,17 +228,17 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key === 'standardisedCostObject') {
             return objectToSend
-          } else if (key == 'storageType') {
+          } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
-          } else if (key == 'serviceCapacityIncrease') {
+          } else if (key === 'serviceCapacityIncrease') {
             return 5
-          } else if (key == 'coverType') {
+          } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
-          } else if (key == 'coverSize') {
+          } else if (key === 'coverSize') {
             return 6
-          } else if (key == 'itemSizeQuantities') {
+          } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
           } else {
             return itemsList
@@ -358,17 +358,17 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key === 'standardisedCostObject') {
             return []
-          } else if (key == 'storageType') {
+          } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
-          } else if (key == 'serviceCapacityIncrease') {
+          } else if (key === 'serviceCapacityIncrease') {
             return 5
-          } else if (key == 'coverType') {
+          } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
-          } else if (key == 'coverSize') {
+          } else if (key === 'coverSize') {
             return 6
-          } else if (key == 'itemSizeQuantities') {
+          } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
           } else {
             return itemsList
@@ -391,17 +391,17 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key === 'standardisedCostObject') {
             return objectToSend
-          } else if (key == 'storageType') {
+          } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
-          } else if (key == 'serviceCapacityIncrease') {
+          } else if (key === 'serviceCapacityIncrease') {
             return 5
-          } else if (key == 'coverType') {
+          } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
-          } else if (key == 'coverSize') {
+          } else if (key === 'coverSize') {
             return 6
-          } else if (key == 'itemSizeQuantities') {
+          } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
           } else {
             return []
@@ -424,17 +424,17 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key === 'standardisedCostObject') {
             return objectToSend
-          } else if (key == 'storageType') {
+          } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
-          } else if (key == 'serviceCapacityIncrease') {
+          } else if (key === 'serviceCapacityIncrease') {
             return 5
-          } else if (key == 'coverType') {
+          } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
-          } else if (key == 'coverSize') {
+          } else if (key === 'coverSize') {
             return 6
-          } else if (key == 'itemSizeQuantities') {
+          } else if (key === 'itemSizeQuantities') {
             return []
           } else {
             return ['None of the above']

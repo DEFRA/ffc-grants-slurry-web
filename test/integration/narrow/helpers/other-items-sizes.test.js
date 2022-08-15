@@ -254,7 +254,7 @@ describe('Other Items Sizes Array Function', () => {
         type: 'number',
         suffix: { text: 'item (s)' },
         hint: {
-          text: 'Grant amount: £1050 per pump'
+          text: 'Grant amount: £1,050 per pump'
         },
         classes: 'govuk-input--width-4',
         label: {
@@ -284,7 +284,7 @@ describe('Other Items Sizes Array Function', () => {
         type: 'number',
         suffix: { text: 'item (s)' },
         hint: {
-          text: 'Grant amount: £2090 per pump'
+          text: 'Grant amount: £2,090 per pump'
         },
         classes: 'govuk-input--width-4',
         label: {
@@ -344,7 +344,7 @@ describe('Other Items Sizes Array Function', () => {
         type: 'number',
         suffix: { text: 'item (s)' },
         hint: {
-          text: 'Grant amount: £1700 per pump'
+          text: 'Grant amount: £1,700 per pump'
         },
         classes: 'govuk-input--width-4',
         label: {
@@ -554,7 +554,7 @@ describe('Other Items Sizes Array Function', () => {
         type: 'number',
         suffix: { text: 'item (s)' },
         hint: {
-          text: 'Grant amount: £1000 per tank'
+          text: 'Grant amount: £1,000 per tank'
         },
         classes: 'govuk-input--width-4',
         label: {

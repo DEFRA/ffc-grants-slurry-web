@@ -308,7 +308,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Electric-powered slurry transfer pump',
         sidebarFormattedValue: 'Electric-powered slurry transfer pump',
         hint: {
-          html: 'Grant amount: £1050 per pump'
+          html: 'Grant amount: £1,050 per pump'
         }
       },
       {
@@ -316,7 +316,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
         sidebarFormattedValue: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
         hint: {
-          html: 'Grant amount: £2090 per pump'
+          html: 'Grant amount: £2,090 per pump'
         }
       },
       {
@@ -332,7 +332,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Powered take off (PTO) or hydraulically driven chopper pump',
         sidebarFormattedValue: 'Powered take off (PTO) or hydraulically driven chopper pump',
         hint: {
-          html: 'Grant amount: £1700 per pump'
+          html: 'Grant amount: £1,700 per pump'
         }
       },
       {
@@ -388,7 +388,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
         sidebarFormattedValue: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
         hint: {
-          html: 'Grant amount: £1000 per tank'
+          html: 'Grant amount: £1,000 per tank'
         }
       },
       {
