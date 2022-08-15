@@ -1936,7 +1936,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>',
+                html: 'Building and street 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1951,7 +1951,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>',
+                html: 'Building and street 2 (optional)',
                 classes: 'govuk-label'
               }
             },
@@ -2220,7 +2220,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Building and street <span class="govuk-visually-hidden">line 1 of 2</span>',
+                html: 'Building and street 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -2235,7 +2235,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: '<span class="govuk-visually-hidden">Building and street line 2 of 2</span>',
+                html: 'Building and street 2',
                 classes: 'govuk-label'
               }
             },
