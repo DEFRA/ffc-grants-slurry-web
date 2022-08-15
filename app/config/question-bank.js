@@ -504,7 +504,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'What is slurry?',
-              html: '<ul class="govuk-list govuk-list--bullet"><li>Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.</li></ul>'
+              html: 'Slurry is a liquid organic manure produced by livestock (other than poultry) while in a yard or building. It includes animal bedding and water that drains from areas where animals are kept.'
             }
           },
           validate: [
@@ -703,7 +703,7 @@ const questionBank = {
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: '<ul class="govuk-list govuk-list--bullet">A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.</ul>'
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
             }
           },
           validate: [
