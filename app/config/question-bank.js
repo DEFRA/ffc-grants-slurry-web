@@ -84,6 +84,7 @@ const questionBank = {
             text: 'Select all that apply'
           },
           pageTitle: '',
+          ga: [{ journeyStart: true }],
           url: 'applicant-type',
           baseUrl: 'applicant-type',
           backUrl: 'start',
@@ -800,6 +801,9 @@ const questionBank = {
           backUrl: 'cover',
           nextUrl: 'standardised-cost',
           preValidationKeys: ['cover'],
+          ga: [
+            { dimension: 'cm2', value: { type: 'journey-time' } }
+          ],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Estimate how much grant you could get',
@@ -1298,7 +1302,6 @@ const questionBank = {
           backUrl: 'potential-amount',
           nextUrl: 'planning-permission',
           preValidationKeys: ['standardisedCostCalculated'],
-          eliminationAnswerKeys: '',
           ineligibleContent: {
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
             <div class="govuk-list govuk-list--bullet">
@@ -1547,7 +1550,6 @@ const questionBank = {
           backUrl: 'grid-reference',
           nextUrl: 'result-page',
           preValidationKeys: ['gridReference'],
-          eliminationAnswerKeys: '',
           ineligibleContent: {},
           pageData: {
             planningPermissionLink: 'planning-permission',
@@ -1601,8 +1603,10 @@ const questionBank = {
           backUrl: 'result-page',
           nextUrl: 'applying',
           preValidationKeys: ['gridReference'],
-          eliminationAnswerKeys: '',
-          ineligibleContent: {},
+          ga: [
+            { dimension: 'cd2', value: { type: 'score' } },
+            { dimension: 'cm1', value: { type: 'journey-time' } }
+          ],
           fundingPriorities: '',
           type: 'multi-input',
           minAnswerCount: '',

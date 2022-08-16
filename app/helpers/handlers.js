@@ -40,6 +40,7 @@ const getPage = async (question, request, h) => {
 
   if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
+    gapiService.sendEligibilityEvent(request, 'true')
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
@@ -60,7 +61,7 @@ const getPage = async (question, request, h) => {
           value: confirmationId
         }, {
           dimensionOrMetric: gapiService.dimensions.FINALSCORE,
-          value: getYarValue(request, 'current-score')
+          value: 'Eligible'
         },
         {
           dimensionOrMetric: gapiService.metrics.CONFIRMATION,

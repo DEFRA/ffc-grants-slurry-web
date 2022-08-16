@@ -145,7 +145,7 @@ const processGA = async (request, ga, _score, _confirmationId) => {
 
         cmcds.push({
           dimensionOrMetric: gaConfig.dimension,
-          value: value.toString()
+          value: value?.toString()
         })
       }
     })
