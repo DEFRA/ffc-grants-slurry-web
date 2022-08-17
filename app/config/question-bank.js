@@ -414,6 +414,9 @@ const questionBank = {
           key: 'tenancy-length',
           order: 60,
           title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
+          hint: {
+            text: 'The location of the slurry store'
+          },
           pageTitle: '',
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
