@@ -414,6 +414,9 @@ const questionBank = {
           key: 'tenancy-length',
           order: 60,
           title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
+          hint: {
+            text: 'The location of the slurry store'
+          },
           pageTitle: '',
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
@@ -1940,7 +1943,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Building and street 1',
+                html: 'Address 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1955,7 +1958,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Building and street 2 (optional)',
+                html: 'Address 2 (optional)',
                 classes: 'govuk-label'
               }
             },
@@ -2224,7 +2227,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Building and street 1',
+                html: 'Address 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -2239,7 +2242,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Building and street 2',
+                html: 'Address 2 (optional)',
                 classes: 'govuk-label'
               }
             },
