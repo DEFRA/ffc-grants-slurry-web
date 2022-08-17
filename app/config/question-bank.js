@@ -414,9 +414,6 @@ const questionBank = {
           key: 'tenancy-length',
           order: 60,
           title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
-          hint: {
-            text: 'The location of the slurry store'
-          },
           pageTitle: '',
           url: 'tenancy-length',
           baseUrl: 'tenancy-length',
@@ -802,7 +799,7 @@ const questionBank = {
           order: 180,
           url: 'estimated-grant',
           backUrl: 'cover',
-          nextUrl: 'standardised-cost',
+          nextUrl: 'standardised-grant-amounts',
           preValidationKeys: ['cover'],
           ga: [
             { dimension: 'cm2', value: { type: 'journey-time' } }
@@ -820,7 +817,7 @@ const questionBank = {
           costDataType: 'cat-storage',
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
-          backUrl: 'standardised-cost',
+          backUrl: 'standardised-grant-amounts',
           id: 'storageType',
           nextUrlObject: {
             dependentQuestionYarKey: 'projectType',
@@ -2385,7 +2382,7 @@ const questionBank = {
             If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
             <h1 class="govuk-heading-m">RPA helpline</h1>
             <h2 class="govuk-heading-s">Telephone</h2>
-            Telephone: 03000 200 301 (follow options for the farming transformation fund scheme)<br/>
+            Telephone: 03000 200 301<br/>
             Monday to Friday, 9am to 5pm (except public holidays)<br/>
             <p><a class="govuk-link" target="_blank" href="https://www.gov.uk/call-charges" rel="noopener noreferrer">Find out about call charges</a></p>
             <h2 class="govuk-heading-s">Email</h2>

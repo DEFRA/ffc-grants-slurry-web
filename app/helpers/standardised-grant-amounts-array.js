@@ -1,4 +1,4 @@
-const { formatUKCurrency } = require('../helpers/data-formats')
+const { formatUKCurrency } = require('./data-formats')
 
 
 const getHintText = (answer, hintArray, counter) => {

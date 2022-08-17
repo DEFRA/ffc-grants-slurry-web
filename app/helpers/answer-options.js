@@ -1,4 +1,4 @@
-const { formatAnswerArray } = require('./../helpers/standardised-cost-array')
+const { formatAnswerArray } = require('./../helpers/standardised-grant-amounts-array')
 const { formatOtherItems } = require('./../helpers/other-items-sizes')
 
 function isChecked (data, option) {
