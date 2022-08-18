@@ -1,4 +1,4 @@
-const { formatAnswerArray } = require('./../../../../app/helpers/standardised-cost-array')
+const { formatAnswerArray } = require('../../../../app/helpers/standardised-grant-amounts-array')
 
 const objectToSend = {
   data: {

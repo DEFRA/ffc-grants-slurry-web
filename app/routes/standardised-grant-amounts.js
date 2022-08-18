@@ -3,7 +3,7 @@ const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
 
 const urlPrefix = require('../config/server').urlPrefix
-const viewTemplate = 'standardised-cost'
+const viewTemplate = 'standardised-grant-amounts'
 const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/storage-type`
 

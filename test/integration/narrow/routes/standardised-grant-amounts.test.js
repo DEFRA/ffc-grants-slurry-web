@@ -22,10 +22,10 @@ describe('Standardised Cost test', () => {
     }
   }))
 
-  test('GET /standardised-cost route returns 200 if costData = success', async () => {
+  test('GET /standardised-grant-amounts route returns 200 if costData = success', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-cost`
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
     }
 
     getStandardisedCosts.mockResolvedValue({
@@ -36,10 +36,10 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /standardised-cost route returns 500 if costData =/= success', async () => {
+  test('GET /standardised-grant-amounts route returns 500 if costData =/= success', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-cost`
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
     }
 
     getStandardisedCosts.mockResolvedValue({
@@ -50,10 +50,10 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /standardised-cost route causes error page', async () => {
+  test('GET /standardised-grant-amounts route causes error page', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-cost`
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
     }
 
     getStandardisedCosts.mockRejectedValue('hello')
@@ -65,7 +65,7 @@ describe('Standardised Cost test', () => {
   test('GET /stanbdardised-costs returns error 500 if getstandardisedCosts throws error', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-cost`
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
     }
 
     jest.spyOn(messaging, 'getStandardisedCosts').mockImplementation(() => { throw new Error() })
@@ -74,10 +74,10 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('POST /standardised-cost route returns next page', async () => {
+  test('POST /standardised-grant-amounts route returns next page', async () => {
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/standardised-cost`,
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { applying: '', crumb: crumbToken }
     }
@@ -89,7 +89,7 @@ describe('Standardised Cost test', () => {
   test('page redirects to start if no cover', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-cost`
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
     }
 
     guardPage.mockResolvedValue(true)
