@@ -1570,16 +1570,6 @@ const questionBank = {
           backUrl: 'planning-permission-summary',
           nextUrl: 'business-details',
           preValidationKeys: ['gridReference'],
-          ga: [{ dimension: 'cd1', value: { type: 'custom', value: 'Eligible' } }],
-
-          gapiService.sendDimensionOrMetrics(request, [{
-            dimensionOrMetric: gapiService.dimensions.SCORE,
-            value: msgData.desirability.overallRating.band
-          },
-          {
-            dimensionOrMetric: gapiService.metrics.SCORE,
-            value: 'TIME'
-          }])
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Your results',
@@ -1614,8 +1604,8 @@ const questionBank = {
           nextUrl: 'applying',
           preValidationKeys: ['gridReference'],
           ga: [
-            { dimension: 'cd2', value: { type: 'score' } },
-            { dimension: 'cm1', value: { type: 'journey-time' } }
+            { dimension: 'cd1', value: { type: 'score', value: 'Eligible' } },
+            { dimension: 'cm3', value: { type: 'journey-time' } }
           ],
           fundingPriorities: '',
           type: 'multi-input',
