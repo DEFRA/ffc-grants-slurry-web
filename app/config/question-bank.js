@@ -1607,8 +1607,8 @@ const questionBank = {
           nextUrl: 'applying',
           preValidationKeys: ['gridReference'],
           ga: [
-            { dimension: 'cd2', value: { type: 'score' } },
-            { dimension: 'cm1', value: { type: 'journey-time' } }
+            { dimension: 'cd1', value: { type: 'score', value: 'Eligible' } },
+            { dimension: 'cm3', value: { type: 'journey-time' } }
           ],
           fundingPriorities: '',
           type: 'multi-input',
@@ -1754,7 +1754,6 @@ const questionBank = {
           baseUrl: 'applying',
           backUrl: 'business-details',
           preValidationKeys: ['businessDetails'],
-          eliminationAnswerKeys: '',
           fundingPriorities: '',
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1788,7 +1787,6 @@ const questionBank = {
           baseUrl: 'applicant-details',
           nextUrl: 'check-details',
           preValidationKeys: ['applying'],
-          eliminationAnswerKeys: '',
           backUrlObject: {
             dependentQuestionYarKey: 'applying',
             dependentAnswerKeysArray: ['applying-A2'],
@@ -2059,7 +2057,6 @@ const questionBank = {
           nextUrl: 'applicant-details',
           summaryPageUrl: 'check-details',
           preValidationKeys: ['applying'],
-          eliminationAnswerKeys: '',
           ineligibleContent: {},
           fundingPriorities: '',
           type: 'multi-input',
@@ -2318,7 +2315,6 @@ const questionBank = {
           backUrl: 'applicant-details',
           nextUrl: 'confirm',
           preValidationKeys: ['applying'],
-          eliminationAnswerKeys: '',
           ineligibleContent: {},
           pageData: {
             businessDetailsLink: 'business-details',
