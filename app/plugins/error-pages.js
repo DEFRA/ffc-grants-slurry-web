@@ -2,6 +2,7 @@
 * Add an `onPreResponse` listener to return error pages
 */
 const appInsights = require('../services/app-insights')
+
 module.exports = {
   plugin: {
     name: 'error-pages',
