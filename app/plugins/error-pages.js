@@ -2,7 +2,6 @@
 * Add an `onPreResponse` listener to return error pages
 */
 const appInsights = require('../services/app-insights')
-const { startPageUrl } = require('../config/server')
 module.exports = {
   plugin: {
     name: 'error-pages',
@@ -35,8 +34,7 @@ module.exports = {
             return h.view('403', response).code(statusCode).takeover()
           }
           // The return the `500` view
-          // return h.view('500', response).code(statusCode).takeover()
-          return h.redirect(startPageUrl)
+          return h.view('500', response).code(statusCode).takeover()
         }
         return h.continue
       })
