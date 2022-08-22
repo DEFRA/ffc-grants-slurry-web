@@ -79,11 +79,13 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
 
   const planningPermission = getYarValue(request, 'planningPermission')
   const gridReference = getYarValue(request, 'gridReference').gridReferenceNumber
-
   const hasEvidence = !planningPermission.startsWith('Not yet')
-  console.log(hasEvidence, !getYarValue(request, 'PlanningPermissionEvidence'),"yunusssdasdwasfdsagagdkdhghdjdhgdjsahghdjskgdskjg")
-
+  console.log(getYarValue(request, 'PlanningPermissionEvidence').planningAuthority === "","yusdjsadsjadjsajdsadsadsadsa")
+  console.log(getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber,"madishadhashdsahdasdsad")
   if(hasEvidence && !getYarValue(request, 'PlanningPermissionEvidence')){
+    return { redirect: true }
+  }
+  if(getYarValue(request, 'PlanningPermissionEvidence').planningAuthority === "" || getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber === ""){
     return { redirect: true }
   }
   return ({
