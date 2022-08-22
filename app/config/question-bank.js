@@ -813,7 +813,7 @@ const questionBank = {
             messageContent: 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
           }
         },
-        // Calls standardised cost page
+        // Calls standardised-grant-amounts page
         {
           key: 'storage-type',
           order: 130,

@@ -7,7 +7,7 @@ const messaging = require('../../../../app/messaging/application')
 jest.mock('../../../../app/helpers/page-guard')
 const { guardPage } = require('../../../../app/helpers/page-guard')
 
-describe('Standardised Cost test', () => {
+describe('standardised-grant-amounts test', () => {
   const varList = { }
 
   beforeEach(() => {

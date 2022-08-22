@@ -1,7 +1,6 @@
 const { getHtml } = require('../helpers/conditionalHTML')
 const { setOptionsLabel } = require('../helpers/answer-options')
 const { getYarValue, setYarValue } = require('../helpers/session')
-const { startPageUrl } = require('../config/server')
 
 const getConfirmationId = (guid) => {
   const prefix = 'SI'
