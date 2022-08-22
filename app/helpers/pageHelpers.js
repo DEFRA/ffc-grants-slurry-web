@@ -1,6 +1,7 @@
 const { getHtml } = require('../helpers/conditionalHTML')
 const { setOptionsLabel } = require('../helpers/answer-options')
 const { getYarValue, setYarValue } = require('../helpers/session')
+const { startPageUrl } = require('../config/server')
 
 const getConfirmationId = (guid) => {
   const prefix = 'SI'
@@ -81,7 +82,11 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
   const gridReference = getYarValue(request, 'gridReference').gridReferenceNumber
 
   const hasEvidence = !planningPermission.startsWith('Not yet')
+  console.log(hasEvidence, !getYarValue(request, 'PlanningPermissionEvidence'),"yunusssdasdwasfdsagagdkdhghdjdhgdjsahghdjskgdskjg")
 
+  if(hasEvidence && !getYarValue(request, 'PlanningPermissionEvidence')){
+    return { redirect: true }
+  }
   return ({
     ...question.pageData,
     backUrl,
