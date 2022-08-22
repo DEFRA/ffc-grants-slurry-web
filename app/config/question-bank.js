@@ -1501,10 +1501,6 @@ const questionBank = {
           url: 'grid-reference',
           backUrl: 'planning-permission-evidence',
           nextUrl: 'planning-permission-summary',
-          title: 'What is the OS grid reference for your slurry store?',
-          hint: {
-            text: 'Enter OS grid reference number, for example AB12478975'
-          },
           backUrlObject: {
             dependentQuestionYarKey: 'planningPermission',
             dependentAnswerKeysArray: ['planning-permission-A1', 'planning-permission-A2'],
@@ -1514,33 +1510,34 @@ const questionBank = {
             }
           },
           preValidationKeys: ['planningPermission'],
-          type: 'multi-input',
-          allFields: [
-            {
-              yarKey: 'gridReferenceNumber',
-              type: 'text',
-              classes: 'govuk-input--width-10',
-              label: {
-                text: 'OS grid reference number',
-                classes: 'govuk-label'
-              },
-              validate: [
-                {
-                  type: 'NOT_EMPTY',
-                  error: 'Enter OS Grid reference'
-                },
-                {
-                  type: 'REGEX',
-                  regex: LETTERS_AND_NUMBERS_REGEX,
-                  error: 'First two characters should be letter following eight characters must be numbers'
-                },
-                {
-                  type: 'REGEX',
-                  regex: TWO_NUMBERS_EIGHT_CHARS,
-                  error: 'OS Grid Reference must be two letters followed by 8 digits'
-                }
-              ]
-            }],
+          type: 'input',
+          classes: 'govuk-input--width-10',
+          label: {
+            text: 'What is the OS grid reference for your slurry store?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `Enter OS grid reference number, for example AB12478975 <br/><br/><br/>
+            OS grid reference number
+          `
+          },
+        validate: [
+          {
+            type: 'NOT_EMPTY',
+            error: 'Enter OS Grid reference'
+          },
+          {
+            type: 'REGEX',
+            regex: LETTERS_AND_NUMBERS_REGEX,
+            error: 'First two characters should be letter following eight characters must be numbers'
+          },
+          {
+            type: 'REGEX',
+            regex: TWO_NUMBERS_EIGHT_CHARS,
+            error: 'OS Grid Reference must be two letters followed by 8 digits'
+          }
+        ],
           yarKey: 'gridReference'
         },
         {
@@ -1941,7 +1938,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 1',
+                html: 'Address line 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1956,7 +1953,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 2 (optional)',
+                html: 'Address line 2 (optional)',
                 classes: 'govuk-label'
               }
             },
@@ -2224,7 +2221,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 1',
+                html: 'Address line 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -2239,7 +2236,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 2 (optional)',
+                html: 'Address line 2 (optional)',
                 classes: 'govuk-label'
               }
             },

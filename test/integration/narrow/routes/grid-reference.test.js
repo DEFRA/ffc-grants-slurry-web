@@ -54,7 +54,7 @@ describe('Page: /grid-reference', () => {
       url: `${global.__URLPREFIX__}/grid-reference`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
-        gridReferenceNumber: 'ds123456',
+        gridReference: 'ds123456',
         crumb: crumbToken
       }
     }
@@ -70,7 +70,7 @@ describe('Page: /grid-reference', () => {
       url: `${global.__URLPREFIX__}/grid-reference`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
-        gridReferenceNumber: 'AB-12478975',
+        gridReference: 'AB-12478975',
         crumb: crumbToken
       }
     }
@@ -86,7 +86,7 @@ describe('Page: /grid-reference', () => {
       url: `${global.__URLPREFIX__}/grid-reference`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
-        gridReferenceNumber: 'AB12478975',
+        gridReference: 'AB12478975',
         crumb: crumbToken
       }
     }

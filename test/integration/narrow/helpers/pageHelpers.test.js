@@ -99,14 +99,14 @@ describe('Page Helpers', () => {
   })
 
   test('check getEvidenceSummaryModel()', () => {
-    setYarValue.mockImplementation((req, key, val) => {})
+    setYarValue.mockImplementation((req, key, val) => { })
 
     getYarValue.mockImplementation((req, key) => {
       if (key === 'planningPermission') {
         return ('Not yet')
       } else {
         return ({
-          gridReferenceNumber: 'grid-ref-num',
+          gridReference: 'grid-ref-num',
           planningAuthority: 'planning-auth',
           planningReferenceNumber: 'planning-ref-num'
         })
@@ -124,7 +124,7 @@ describe('Page Helpers', () => {
         return ('Planning-permission')
       } else {
         return ({
-          gridReferenceNumber: 'grid-ref-num',
+          gridReference: 'grid-ref-num',
           planningAuthority: 'planning-auth',
           planningReferenceNumber: 'planning-ref-num'
         })
