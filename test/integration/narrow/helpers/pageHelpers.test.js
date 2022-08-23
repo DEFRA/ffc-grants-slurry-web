@@ -60,21 +60,23 @@ describe('Page Helpers', () => {
     expect(result).toContain('<label class="govuk-label" for="sbi">')
     expect(result).toContain('<input class="govuk-input govuk-!-width-one-third" id="sbi" name="sbi" value="mock-sbi-value">')
 
-    varList.sbi = 'mock-sbi-value'
-    result = handleConditinalHtmlData('input', 'mock-label-data', 'mock-yarKey', {})
-    expect(result).toContain('<label class="govuk-label" for="mock-yarKey">')
-    expect(result).toContain('<input class="govuk-input govuk-!-width-one-third" id="mock-yarKey" name="mock-yarKey" value="mock-yarValue">')
+    varList.mockYarKey = 'mock-yarValue'
+    result = handleConditinalHtmlData('input', 'mock-label-data', 'mockYarKey', {})
+    expect(result).toContain('<label class="govuk-label" for="mockYarKey">')
+    expect(result).toContain('<input class="govuk-input govuk-!-width-one-third" id="mockYarKey" name="mockYarKey" value="mock-yarValue">')
   })
 
-  // test('check getCheckDetailsModel() returns correct applying value', () => {
-  //   expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
-  //     backUrl: 'backUrl',
-  //     nextUrl: 'nextUrl',
-  //     applying: true,
-  //     farmerDetails: {},
-  //     agentDetails: {}
-  //   })
-  // })
+  test('check getCheckDetailsModel() returns correct applying value', () => {
+    varList.farmerDetails = {}
+
+    expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
+      backUrl: 'backUrl',
+      nextUrl: 'nextUrl',
+      applying: true,
+      farmerDetails: {},
+      agentDetails: {}
+    })
+  })
 
   // test('check getCheckDetailsModel() returns correct farmer and agent details', () => {
   //   varList.farmerDetails = {

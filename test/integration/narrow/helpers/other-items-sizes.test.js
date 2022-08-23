@@ -254,6 +254,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Electricpoweredslurrytransferpump',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £1,050 per pump'
@@ -284,6 +286,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'PoweredtakeoffPTOorhydraulicallypoweredslurrytransferpump',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £2,090 per pump'
@@ -314,6 +318,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Centrifugalchopperpump',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £950 per pump'
@@ -344,6 +350,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'PoweredtakeoffPTOorhydraulicallydrivenchopperpump',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £1,700 per pump'
@@ -374,6 +382,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Galvanisedsteelpipework100mmdiameter',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
           text: 'Grant amount: £14 per metre'
@@ -404,6 +414,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Galvanisedsteelpipework150mmdiameter',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
           text: 'Grant amount: £24 per metre'
@@ -434,6 +446,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'PolyethylenePEorequivalentpipework100mmdiameter',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
           text: 'Grant amount: £8 per metre'
@@ -464,6 +478,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'PolyethylenePEorequivalentpipework150mmdiameter',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
           text: 'Grant amount: £9 per metre'
@@ -494,6 +510,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Underfloortransferchannels',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
           text: 'Grant amount: £25 per metre'
@@ -524,6 +542,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Slurrystorewallmixerswithstorecapacityupto1200cubicmetre',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £350 per tank'
@@ -554,6 +574,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Slurrystorewallmixerswithstorecapacityupto8000cubicmetre',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £1,000 per tank'
@@ -584,6 +606,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Inspectionplatformwithladderforabovegroundconcreteandsteelslurrystore',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'item (s)' },
         hint: {
           text: 'Grant amount: £800 per item'
@@ -614,6 +638,8 @@ describe('Other Items Sizes Array Function', () => {
       {
         yarKey: 'Safetyfencingforstoresconstructedbelowgorundleveearthbanklagoonsandslurrybags',
         type: 'text',
+        pattern: '[0-9]*',
+        inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
           text: 'Grant amount: £55 per metre'
