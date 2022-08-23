@@ -2,6 +2,7 @@ describe('Page Helpers', () => {
   const varList = {
     planningPermission: 'some fake value',
     gridReference: 'grid-ref-num',
+    businessDetails: 'fake business',
     applying: true
     
   }
@@ -10,7 +11,7 @@ describe('Page Helpers', () => {
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
       if (varList[key]) return varList[key]
-      else return 'Error890'
+      else return null
     }
   })) 
 
@@ -67,73 +68,74 @@ describe('Page Helpers', () => {
   })
 
   test('check getCheckDetailsModel() returns correct applying value', () => {
-    varList.farmerDetails = {}
 
     expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
       backUrl: 'backUrl',
       nextUrl: 'nextUrl',
       applying: true,
+      businessDetails: 'fake business',
       farmerDetails: {},
       agentDetails: {}
     })
   })
 
-  // test('check getCheckDetailsModel() returns correct farmer and agent details', () => {
-  //   varList.farmerDetails = {
-  //   firstName: 'Farmer',
-  //   lastName: 'FLastName',
-  //   emailAddress: 'farmer-email',
-  //   landlineNumber: 'farmer-landline',
-  //   address1: 'farmer-address1',
-  //   address2: 'farmer-address2',
-  //   town: 'farmer-town',
-  //   county: 'farmer-county',
-  //   postcode: 'farmer-postcode'
-  //   }
-  //   varList.agentsDetails = {
-  //   firstName: 'Agent',
-  //   lastName: 'ALastName',
-  //   emailAddress: 'agent-email',
-  //   landlineNumber: 'agent-landline',
-  //   address1: 'agent-address1',
-  //   address2: 'agent-address2',
-  //   town: 'agent-town',
-  //   county: 'agent-county',
-  //   postcode: 'agent-postcode'
-  //   }
-  //     expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
-  //       backUrl: 'backUrl',
-  //       nextUrl: 'nextUrl',
-  //       applying: true,
-  //       farmerDetails: {
-  //         firstName: 'Farmer',
-  //         lastName: 'FLastName',
-  //         emailAddress: 'farmer-email',
-  //         landlineNumber: 'farmer-landline',
-  //         address1: 'farmer-address1',
-  //         address2: 'farmer-address2',
-  //         town: 'farmer-town',
-  //         county: 'farmer-county',
-  //         postcode: 'farmer-postcode',
-  //         name: 'Farmer FLastName',
-  //         contact: 'farmer-email<br/>farmer-landline',
-  //         address: 'farmer-address1<br/>farmer-address2<br/>farmer-town<br/>farmer-county<br/>farmer-postcode'
-  //       },
-  //       agentDetails: {
-  //         firstName: 'Agent',
-  //         lastName: 'ALastName',
-  //         emailAddress: 'agent-email',
-  //         landlineNumber: 'agent-landline',
-  //         address1: 'agent-address1',
-  //         address2: 'agent-address2',
-  //         town: 'agent-town',
-  //         county: 'agent-county',
-  //         postcode: 'agent-postcode',
-  //         name: 'Agent ALastName',
-  //         contact: 'agent-email<br/>agent-landline',
-  //         address: 'agent-address1<br/>agent-address2<br/>agent-town<br/>agent-county<br/>agent-postcode'
-  //       }
-  //     })
-  // })
+  test('check getCheckDetailsModel() returns correct farmer and agent details', () => {
+    varList.farmerDetails = {
+    firstName: 'Farmer',
+    lastName: 'FLastName',
+    emailAddress: 'farmer-email',
+    landlineNumber: 'farmer-landline',
+    address1: 'farmer-address1',
+    address2: 'farmer-address2',
+    town: 'farmer-town',
+    county: 'farmer-county',
+    postcode: 'farmer-postcode'
+    }
+    varList.agentsDetails = {
+    firstName: 'Agent',
+    lastName: 'ALastName',
+    emailAddress: 'agent-email',
+    landlineNumber: 'agent-landline',
+    address1: 'agent-address1',
+    address2: 'agent-address2',
+    town: 'agent-town',
+    county: 'agent-county',
+    postcode: 'agent-postcode'
+    }
+      expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
+        backUrl: 'backUrl',
+        nextUrl: 'nextUrl',
+        businessDetails: 'fake business',
+        applying: true,
+        farmerDetails: {
+          firstName: 'Farmer',
+          lastName: 'FLastName',
+          emailAddress: 'farmer-email',
+          landlineNumber: 'farmer-landline',
+          address1: 'farmer-address1',
+          address2: 'farmer-address2',
+          town: 'farmer-town',
+          county: 'farmer-county',
+          postcode: 'farmer-postcode',
+          name: 'Farmer FLastName',
+          contact: 'farmer-email<br/>farmer-landline',
+          address: 'farmer-address1<br/>farmer-address2<br/>farmer-town<br/>farmer-county<br/>farmer-postcode'
+        },
+        agentDetails: {
+          firstName: 'Agent',
+          lastName: 'ALastName',
+          emailAddress: 'agent-email',
+          landlineNumber: 'agent-landline',
+          address1: 'agent-address1',
+          address2: 'agent-address2',
+          town: 'agent-town',
+          county: 'agent-county',
+          postcode: 'agent-postcode',
+          name: 'Agent ALastName',
+          contact: 'agent-email<br/>agent-landline',
+          address: 'agent-address1<br/>agent-address2<br/>agent-town<br/>agent-county<br/>agent-postcode'
+        }
+      })
+  })
 
 })
