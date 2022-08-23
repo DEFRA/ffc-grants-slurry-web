@@ -50,7 +50,7 @@ function setSelectLabels (data, selectList) {
 }
 
 const inputOptions = (data, question, conditionalHtml) => {
-  const { yarKey, title, hint, answers, classes = 'govuk-fieldset__legend--l' } = question
+  const { yarKey, title, hint, answers, classes = 'govuk-fieldset__legend--l'} = question
   return {
     classes,
     id: yarKey,
@@ -81,10 +81,12 @@ const selectField = (data, question) => {
 }
 
 const textField = (data, question, _request = null) => {
-  const { yarKey, prefix, suffix, label, classes } = question
+  const { yarKey, prefix, suffix, label, classes, inputmode, pattern  } = question
   return {
     id: yarKey,
     name: yarKey,
+    inputmode,
+    pattern,
     classes,
     prefix,
     suffix,

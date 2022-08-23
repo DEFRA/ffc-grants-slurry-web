@@ -78,10 +78,8 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
   setYarValue(request, 'reachedEvidenceSummary', true)
 
   const planningPermission = getYarValue(request, 'planningPermission')
-  const gridReference = getYarValue(request, 'gridReference').gridReferenceNumber
-
+  const gridReference = getYarValue(request, 'gridReference')
   const hasEvidence = !planningPermission.startsWith('Not yet')
-
   return ({
     ...question.pageData,
     backUrl,

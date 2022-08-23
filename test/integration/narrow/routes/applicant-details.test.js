@@ -28,8 +28,8 @@ describe('Page: /applicant-details', () => {
     expect(response.payload).toContain('Mobile number')
     expect(response.payload).toContain('Landline number')
     expect(response.payload).toContain('Business address')
-    expect(response.payload).toContain('Address 1')
-    expect(response.payload).toContain('Address 2')
+    expect(response.payload).toContain('Address line 1')
+    expect(response.payload).toContain('Address line 2')
     expect(response.payload).toContain('Town')
     expect(response.payload).toContain('County')
     expect(response.payload).toContain('Business postcode')
@@ -207,7 +207,7 @@ describe('Page: /applicant-details', () => {
         lastName: 'Last Name',
         businessName: 'Business Name',
         emailAddress: 'my@name.com',
-        address1: 'Address 1',
+        address1: 'Address line 1',
         address2: 'Address 2',
         town: 'MyTown',
         county: 'Devon',
@@ -265,7 +265,7 @@ describe('Page: /applicant-details', () => {
         businessName: 'Business Name',
         emailAddress: 'my1.email1@my2-domain2.com',
         mobileNumber: '07700 900 982',
-        address1: 'Address 1',
+        address1: 'Address line 1',
         address2: 'Address 2',
         town: 'MyTown',
         county: 'Devon',

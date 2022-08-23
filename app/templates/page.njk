@@ -13,7 +13,7 @@
   {% if errorList %}
     Error:
   {% endif %}
-  {{ siteTitle }} - {{ title }}
+  {{ title }} - {{ siteTitle }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -77,6 +77,7 @@
               {% if item.type ==='text' or item.type ==='email' or item.type ==='tel' or item.type ==='number' %}
                 {{ govukInput(item) }}
               {% endif %}
+
 
               {% if item.type ==='select' %}
                 {{ govukSelect(item) }}
