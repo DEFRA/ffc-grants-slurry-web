@@ -83,12 +83,17 @@
                 {{ govukSelect(item) }}
               {% endif %}
 
+              {% if item.endFieldset %}
+                </fieldset>
+              {% endif %}
+
             {% endfor %}
           {% endif %}
 
           {% if warning %}
             {{ govukWarningText(warning) }}
           {% endif %}
+
           <div class="govuk-!-padding-top-5">
             {% set buttonText = 'Continue' %}
             {% set secButtonText = 'Back to score' %}
