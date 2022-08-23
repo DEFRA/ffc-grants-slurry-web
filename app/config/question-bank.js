@@ -869,6 +869,8 @@ const questionBank = {
           name: 'storageCapacityIncrease',
           suffix: { text: 'm³' },
           type: 'input',
+          inputmode: 'numeric',
+          pattern: '[0-9]*',
           label: {
             text: 'What estimated volume do you need to have 6 months’ serviceable storage?',
             classes: 'govuk-label--l',
@@ -937,6 +939,8 @@ const questionBank = {
           preValidationKeys: ['storageType'],
           suffix: { text: 'm³' },
           type: 'input',
+          inputmode: 'numeric',
+          pattern: '[0-9]*',
           label: {
             text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
             classes: 'govuk-label--l',
@@ -1064,6 +1068,8 @@ const questionBank = {
           preValidationKeys: ['coverType'],
           suffix: { text: 'm²' },
           type: 'input',
+          inputmode: 'numeric',
+          pattern: '[0-9]*',
           label: {
             text: 'How big will the cover be?',
             classes: 'govuk-label--l',
@@ -1522,22 +1528,22 @@ const questionBank = {
             OS grid reference number
           `
           },
-        validate: [
-          {
-            type: 'NOT_EMPTY',
-            error: 'Enter OS Grid reference'
-          },
-          {
-            type: 'REGEX',
-            regex: LETTERS_AND_NUMBERS_REGEX,
-            error: 'First two characters should be letter following eight characters must be numbers'
-          },
-          {
-            type: 'REGEX',
-            regex: TWO_NUMBERS_EIGHT_CHARS,
-            error: 'OS Grid Reference must be two letters followed by 8 digits'
-          }
-        ],
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Enter OS Grid reference'
+            },
+            {
+              type: 'REGEX',
+              regex: LETTERS_AND_NUMBERS_REGEX,
+              error: 'First two characters should be letter following eight characters must be numbers'
+            },
+            {
+              type: 'REGEX',
+              regex: TWO_NUMBERS_EIGHT_CHARS,
+              error: 'OS Grid Reference must be two letters followed by 8 digits'
+            }
+          ],
           yarKey: 'gridReference'
         },
         {
