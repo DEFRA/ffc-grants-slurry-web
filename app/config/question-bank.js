@@ -2382,7 +2382,7 @@ const questionBank = {
             },
             messageContent: `We have sent you a confirmation email with a record of your answers.<br/><br/>
             If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
-            <h1 class="govuk-heading-m">RPA helpline</h1>
+            <h2 class="govuk-heading-m">RPA helpline</h2>
             <h2 class="govuk-heading-s">Telephone</h2>
             Telephone: 0300 0200 301<br/>
             Monday to Friday, 9am to 5pm (except public holidays)<br/>
