@@ -81,10 +81,12 @@ const selectField = (data, question) => {
 }
 
 const textField = (data, question, _request = null) => {
-  const { yarKey, prefix, suffix, label, classes } = question
+  const { yarKey, prefix, suffix, label, classes, inputmode, pattern  } = question
   return {
     id: yarKey,
     name: yarKey,
+    inputmode,
+    pattern,
     classes,
     prefix,
     suffix,

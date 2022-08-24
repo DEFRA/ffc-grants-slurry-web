@@ -13,7 +13,7 @@
   {% if errorList %}
     Error:
   {% endif %}
-  {{ siteTitle }} - {{ title }}
+  {{ title }} - {{ siteTitle }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -78,8 +78,13 @@
                 {{ govukInput(item) }}
               {% endif %}
 
+
               {% if item.type ==='select' %}
                 {{ govukSelect(item) }}
+              {% endif %}
+
+              {% if item.endFieldset %}
+                </fieldset>
               {% endif %}
 
             {% endfor %}
@@ -88,6 +93,7 @@
           {% if warning %}
             {{ govukWarningText(warning) }}
           {% endif %}
+
           <div class="govuk-!-padding-top-5">
             {% set buttonText = 'Continue' %}
             {% set secButtonText = 'Back to score' %}

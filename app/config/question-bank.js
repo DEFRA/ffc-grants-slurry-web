@@ -869,6 +869,8 @@ const questionBank = {
           name: 'storageCapacityIncrease',
           suffix: { text: 'm³' },
           type: 'input',
+          inputmode: 'numeric',
+          pattern: '[0-9]*',
           label: {
             text: 'What estimated volume do you need to have 6 months’ serviceable storage?',
             classes: 'govuk-label--l',
@@ -937,6 +939,8 @@ const questionBank = {
           preValidationKeys: ['storageType'],
           suffix: { text: 'm³' },
           type: 'input',
+          inputmode: 'numeric',
+          pattern: '[0-9]*',
           label: {
             text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
             classes: 'govuk-label--l',
@@ -1064,6 +1068,8 @@ const questionBank = {
           preValidationKeys: ['coverType'],
           suffix: { text: 'm²' },
           type: 'input',
+          inputmode: 'numeric',
+          pattern: '[0-9]*',
           label: {
             text: 'How big will the cover be?',
             classes: 'govuk-label--l',
@@ -1501,10 +1507,6 @@ const questionBank = {
           url: 'grid-reference',
           backUrl: 'planning-permission-evidence',
           nextUrl: 'planning-permission-summary',
-          title: 'What is the OS grid reference for your slurry store?',
-          hint: {
-            text: 'Enter OS grid reference number, for example AB12478975'
-          },
           backUrlObject: {
             dependentQuestionYarKey: 'planningPermission',
             dependentAnswerKeysArray: ['planning-permission-A1', 'planning-permission-A2'],
@@ -1514,33 +1516,34 @@ const questionBank = {
             }
           },
           preValidationKeys: ['planningPermission'],
-          type: 'multi-input',
-          allFields: [
+          type: 'input',
+          classes: 'govuk-input--width-10',
+          label: {
+            text: 'What is the OS grid reference for your slurry store?',
+            classes: 'govuk-label--l',
+            isPageHeading: true
+          },
+          hint: {
+            html: `Enter OS grid reference number, for example AB12478975 <br/><br/><br/>
+            OS grid reference number
+          `
+          },
+          validate: [
             {
-              yarKey: 'gridReferenceNumber',
-              type: 'text',
-              classes: 'govuk-input--width-10',
-              label: {
-                text: 'OS grid reference number',
-                classes: 'govuk-label'
-              },
-              validate: [
-                {
-                  type: 'NOT_EMPTY',
-                  error: 'Enter OS Grid reference'
-                },
-                {
-                  type: 'REGEX',
-                  regex: LETTERS_AND_NUMBERS_REGEX,
-                  error: 'First two characters should be letter following eight characters must be numbers'
-                },
-                {
-                  type: 'REGEX',
-                  regex: TWO_NUMBERS_EIGHT_CHARS,
-                  error: 'OS Grid Reference must be two letters followed by 8 digits'
-                }
-              ]
-            }],
+              type: 'NOT_EMPTY',
+              error: 'Enter OS Grid reference'
+            },
+            {
+              type: 'REGEX',
+              regex: LETTERS_AND_NUMBERS_REGEX,
+              error: 'First two characters should be letter following eight characters must be numbers'
+            },
+            {
+              type: 'REGEX',
+              regex: TWO_NUMBERS_EIGHT_CHARS,
+              error: 'OS Grid Reference must be two letters followed by 8 digits'
+            }
+          ],
           yarKey: 'gridReference'
         },
         {
@@ -1941,7 +1944,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 1',
+                html: 'Address line 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -1956,7 +1959,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 2 (optional)',
+                html: 'Address line 2 (optional)',
                 classes: 'govuk-label'
               }
             },
@@ -2224,7 +2227,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 1',
+                html: 'Address line 1',
                 classes: 'govuk-label'
               },
               validate: [
@@ -2239,7 +2242,7 @@ const questionBank = {
               type: 'text',
               classes: 'govuk-input--width-20',
               label: {
-                html: 'Address 2 (optional)',
+                html: 'Address line 2 (optional)',
                 classes: 'govuk-label'
               }
             },
@@ -2379,7 +2382,7 @@ const questionBank = {
             },
             messageContent: `We have sent you a confirmation email with a record of your answers.<br/><br/>
             If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
-            <h1 class="govuk-heading-m">RPA helpline</h1>
+            <h2 class="govuk-heading-m">RPA helpline</h2>
             <h2 class="govuk-heading-s">Telephone</h2>
             Telephone: 0300 0200 301<br/>
             Monday to Friday, 9am to 5pm (except public holidays)<br/>
