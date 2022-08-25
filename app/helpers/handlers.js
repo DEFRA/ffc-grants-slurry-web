@@ -164,13 +164,13 @@ const getPage = async (question, request, h) => {
   return h.view('page', getModel(data, question, request, conditionalHtml))
 }
 
-const setYarKey = async (yarKey, request, payload) => {
+const setYarKey = (yarKey, request, payload) => {
   if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
     setYarValue(request, yarKey, '')
   }
 }
 
-const setCoverTypeAndSize = async (answers, type, payload, request) => {
+const setCoverTypeAndSize = (answers, type, payload, request, yarKey) => {
   let thisAnswer;
   for (const [ key, value ] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
@@ -206,9 +206,9 @@ const showPostPage = (currentQuestion, request, h) => {
   const payload = request.payload
   let dataObject
 
-  await setYarKey(yarKey, request, payload)
+  setYarKey(yarKey, request, payload)
 
-  let thisAnswer = setCoverTypeAndSize(answers, type, payload, request);
+  let thisAnswer = setCoverTypeAndSize(answers, type, payload, request, yarKey);
 
   if (type === 'multi-input') {
     let allFields = currentQuestion.allFields
