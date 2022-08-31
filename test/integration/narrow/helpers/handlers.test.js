@@ -1,4 +1,6 @@
 describe('Get & Post Handlers', () => {
+  const { getEvidenceSummaryModel } = require('../../../../app/helpers/pageHelpers')
+
   const varList = {
     planningPermission: 'some fake value',
     gridReference: 'grid-ref-num',
@@ -14,6 +16,8 @@ describe('Get & Post Handlers', () => {
     getUrl: (a, b, c, d) => 'mock-url'
   }))
 
+  // getEvidenceSummaryModel.mockResolvedValue({ redirect: true })
+
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
@@ -27,12 +31,18 @@ describe('Get & Post Handlers', () => {
 
   const { getHandler } = require('../../../../app/helpers/handlers')
 
-  test('is eligible if calculated grant = min grant - whether grant is capped or not', async () => {
-    let dict
-    // getYarValue.mockImplementation((req, key) => (dict[key]))
-    // setYarValue.mockImplementation((req, key, val) => { dict[key] = val })
+  test('will redirect to start page if planning permission evidence is missing', async () => {
+    question = {
+      url: 'planning-permission-summary',
+      title: 'mock-title'
+    }
+    mockH = { redirect: jest.fn() }
 
-    dict = {}
+    await getHandler(question)({}, mockH)
+    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
+  })
+
+  test('is eligible if calculated grant = min grant - whether grant is capped or not', async () => {
     question = {
       url: 'mock-url',
       title: 'mock-title',
