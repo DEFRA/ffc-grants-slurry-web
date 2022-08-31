@@ -1,4 +1,11 @@
 describe('Get & Post Handlers', () => {
+  const varList = {
+    planningPermission: 'some fake value',
+    gridReference: 'grid-ref-num',
+    businessDetails: 'fake business',
+    applying: true
+  }
+
   jest.mock('../../../../app/helpers/page-guard', () => ({
     guardPage: (a, b, c) => false
   }))
@@ -7,8 +14,13 @@ describe('Get & Post Handlers', () => {
     getUrl: (a, b, c, d) => 'mock-url'
   }))
 
-  jest.mock('../../../../app/helpers/session')
-  const { getYarValue, setYarValue } = require('../../../../app/helpers/session')
+  jest.mock('../../../../app/helpers/session', () => ({
+    setYarValue: (request, key, value) => null,
+    getYarValue: (request, key) => {
+      if (varList[key]) return varList[key]
+      else return null
+    }
+  }))
 
   let question
   let mockH
@@ -17,8 +29,8 @@ describe('Get & Post Handlers', () => {
 
   test('is eligible if calculated grant = min grant - whether grant is capped or not', async () => {
     let dict
-    getYarValue.mockImplementation((req, key) => (dict[key]))
-    setYarValue.mockImplementation((req, key, val) => { dict[key] = val })
+    // getYarValue.mockImplementation((req, key) => (dict[key]))
+    // setYarValue.mockImplementation((req, key, val) => { dict[key] = val })
 
     dict = {}
     question = {
