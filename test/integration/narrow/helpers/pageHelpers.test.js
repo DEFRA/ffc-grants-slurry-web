@@ -20,6 +20,10 @@ describe('Page Helpers', () => {
     getEvidenceSummaryModel
   } = require('../../../../app/helpers/pageHelpers')
 
+  test('check getEvidenceSummaryModel() returns the redirect object if planning permission is missing', () => {
+    expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({ redirect: true })
+  })
+
   test('check getEvidenceSummaryModel() loads correct value WITH planning permission evidence', () => {
     varList.PlanningPermissionEvidence = {
       planningAuthority: 'planning-auth',
