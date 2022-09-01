@@ -4,7 +4,6 @@ describe('Page Helpers', () => {
     gridReference: 'grid-ref-num',
     businessDetails: 'fake business',
     applying: true
-    
   }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -13,7 +12,7 @@ describe('Page Helpers', () => {
       if (varList[key]) return varList[key]
       else return null
     }
-  })) 
+  }))
 
   const {
     handleConditinalHtmlData,
@@ -21,12 +20,16 @@ describe('Page Helpers', () => {
     getEvidenceSummaryModel
   } = require('../../../../app/helpers/pageHelpers')
 
+  test('check getEvidenceSummaryModel() returns the redirect object if planning permission is missing', () => {
+    expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({ redirect: true })
+  })
+
   test('check getEvidenceSummaryModel() loads correct value WITH planning permission evidence', () => {
     varList.PlanningPermissionEvidence = {
       planningAuthority: 'planning-auth',
       planningReferenceNumber: 'planning-ref-num'
     }
-  
+
     expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({
       backUrl: 'back-url',
       nextUrl: 'next-url',
@@ -39,8 +42,8 @@ describe('Page Helpers', () => {
     })
   })
 
-  test('check getEvidenceSummaryModel() loads correct value with no planning permission evidence', () => {
-    varList.planningPermission = 'Not yet',
+  test('check getEvidenceSummaryModel loads correct value with no planning permission evidence', () => {
+    varList.planningPermission = 'Not yet'
 
     expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({
       backUrl: 'back-url',
@@ -49,7 +52,6 @@ describe('Page Helpers', () => {
       gridReference: 'grid-ref-num'
     })
   })
-
 
   test('check handleConditinalHtmlData()', () => {
     let result
@@ -68,7 +70,6 @@ describe('Page Helpers', () => {
   })
 
   test('check getCheckDetailsModel() returns correct applying value', () => {
-
     expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
       backUrl: 'backUrl',
       nextUrl: 'nextUrl',
@@ -81,61 +82,60 @@ describe('Page Helpers', () => {
 
   test('check getCheckDetailsModel() returns correct farmer and agent details', () => {
     varList.farmerDetails = {
-    firstName: 'Farmer',
-    lastName: 'FLastName',
-    emailAddress: 'farmer-email',
-    landlineNumber: 'farmer-landline',
-    address1: 'farmer-address1',
-    address2: 'farmer-address2',
-    town: 'farmer-town',
-    county: 'farmer-county',
-    postcode: 'farmer-postcode'
+      firstName: 'Farmer',
+      lastName: 'FLastName',
+      emailAddress: 'farmer-email',
+      landlineNumber: 'farmer-landline',
+      address1: 'farmer-address1',
+      address2: 'farmer-address2',
+      town: 'farmer-town',
+      county: 'farmer-county',
+      postcode: 'farmer-postcode'
     }
     varList.agentsDetails = {
-    firstName: 'Agent',
-    lastName: 'ALastName',
-    emailAddress: 'agent-email',
-    landlineNumber: 'agent-landline',
-    address1: 'agent-address1',
-    address2: 'agent-address2',
-    town: 'agent-town',
-    county: 'agent-county',
-    postcode: 'agent-postcode'
+      firstName: 'Agent',
+      lastName: 'ALastName',
+      emailAddress: 'agent-email',
+      landlineNumber: 'agent-landline',
+      address1: 'agent-address1',
+      address2: 'agent-address2',
+      town: 'agent-town',
+      county: 'agent-county',
+      postcode: 'agent-postcode'
     }
-      expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
-        backUrl: 'backUrl',
-        nextUrl: 'nextUrl',
-        businessDetails: 'fake business',
-        applying: true,
-        farmerDetails: {
-          firstName: 'Farmer',
-          lastName: 'FLastName',
-          emailAddress: 'farmer-email',
-          landlineNumber: 'farmer-landline',
-          address1: 'farmer-address1',
-          address2: 'farmer-address2',
-          town: 'farmer-town',
-          county: 'farmer-county',
-          postcode: 'farmer-postcode',
-          name: 'Farmer FLastName',
-          contact: 'farmer-email<br/>farmer-landline',
-          address: 'farmer-address1<br/>farmer-address2<br/>farmer-town<br/>farmer-county<br/>farmer-postcode'
-        },
-        agentDetails: {
-          firstName: 'Agent',
-          lastName: 'ALastName',
-          emailAddress: 'agent-email',
-          landlineNumber: 'agent-landline',
-          address1: 'agent-address1',
-          address2: 'agent-address2',
-          town: 'agent-town',
-          county: 'agent-county',
-          postcode: 'agent-postcode',
-          name: 'Agent ALastName',
-          contact: 'agent-email<br/>agent-landline',
-          address: 'agent-address1<br/>agent-address2<br/>agent-town<br/>agent-county<br/>agent-postcode'
-        }
-      })
+    expect(getCheckDetailsModel({}, {}, 'backUrl', 'nextUrl')).toEqual({
+      backUrl: 'backUrl',
+      nextUrl: 'nextUrl',
+      businessDetails: 'fake business',
+      applying: true,
+      farmerDetails: {
+        firstName: 'Farmer',
+        lastName: 'FLastName',
+        emailAddress: 'farmer-email',
+        landlineNumber: 'farmer-landline',
+        address1: 'farmer-address1',
+        address2: 'farmer-address2',
+        town: 'farmer-town',
+        county: 'farmer-county',
+        postcode: 'farmer-postcode',
+        name: 'Farmer FLastName',
+        contact: 'farmer-email<br/>farmer-landline',
+        address: 'farmer-address1<br/>farmer-address2<br/>farmer-town<br/>farmer-county<br/>farmer-postcode'
+      },
+      agentDetails: {
+        firstName: 'Agent',
+        lastName: 'ALastName',
+        emailAddress: 'agent-email',
+        landlineNumber: 'agent-landline',
+        address1: 'agent-address1',
+        address2: 'agent-address2',
+        town: 'agent-town',
+        county: 'agent-county',
+        postcode: 'agent-postcode',
+        name: 'Agent ALastName',
+        contact: 'agent-email<br/>agent-landline',
+        address: 'agent-address1<br/>agent-address2<br/>agent-town<br/>agent-county<br/>agent-postcode'
+      }
+    })
   })
-
 })

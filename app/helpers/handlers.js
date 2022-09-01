@@ -134,7 +134,11 @@ const getPage = async (question, request, h) => {
       return h.view('check-details', getCheckDetailsModel(request, question, backUrl, nextUrl))
     }
     case 'planning-permission-summary': {
-      return h.view('evidence-summary', getEvidenceSummaryModel(request, question, backUrl, nextUrl))
+      const evidenceSummaryModel = getEvidenceSummaryModel(request, question, backUrl, nextUrl)
+      if (evidenceSummaryModel.redirect) {
+        return h.redirect(startPageUrl)
+      }
+      return h.view('evidence-summary', evidenceSummaryModel)
     }
     case 'score':
     case 'business-details':
@@ -156,7 +160,7 @@ const showPostPage = (currentQuestion, request, h) => {
 
   let thisAnswer
   let dataObject
- 
+
   if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
     setYarValue(request, yarKey, '')
   }
