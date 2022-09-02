@@ -48,9 +48,9 @@
     {% if showTimeout %}  
       {{
         govukTimeoutWarning({
-          "modalIdleTime":sessionTimeoutInMin,
-          "modalVisibleTime":5,
-          "redirectUrl":timeoutPath
+          "modalIdleTime": sessionTimeoutInMin,
+          "modalVisibleTime": 5,
+          "redirectUrl": timeoutPath
         })
       }}
     {% endif %}
