@@ -13,7 +13,8 @@ const {
   PLANNING_REFERENCE_NUMBER_REGEX,
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
-  CHARS_MAX_50
+  CHARS_MAX_50,
+  COMMA_EXCLUDE_REGEX
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -889,6 +890,11 @@ const questionBank = {
             },
             {
               type: 'REGEX',
+              regex: COMMA_EXCLUDE_REGEX,
+              error: 'Volume must only include numbers'
+            },
+            {
+              type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
               error: 'Volume must be a whole number'
             },
@@ -956,6 +962,11 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: COMMA_EXCLUDE_REGEX,
+              error: 'Volume must only include numbers'
             },
             {
               type: 'REGEX',
@@ -1086,6 +1097,11 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error: 'Enter the size of cover'
+            },
+            {
+              type: 'REGEX',
+              regex: COMMA_EXCLUDE_REGEX,
+              error: 'Cover size must only include numbers'
             },
             {
               type: 'REGEX',

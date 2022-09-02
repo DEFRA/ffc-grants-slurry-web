@@ -47,12 +47,24 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
     expect(postResponse.payload).toContain('Volume must be between 1-9999999999')
   })
 
-  it('If decimals used', async () => {
+  it('If comma used', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12,32', crumb: crumbToken }
+    }
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('Volume must only include numbers')
+  })
+
+  it('If decimals used', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { serviceCapacityIncrease: '12.32', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
