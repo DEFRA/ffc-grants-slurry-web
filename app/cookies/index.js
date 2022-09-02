@@ -38,10 +38,10 @@ module.exports = {
   validSession,
   sessionIgnorePaths: [
     `${urlPrefix}/start`,
+    `${urlPrefix}/applicant-type`,
     `${urlPrefix}/session-timeout`,
     `${urlPrefix}/cookies`,
     `${urlPrefix}/accessibility`,
-    `${urlPrefix}/nature-of-business`,
     `${urlPrefix}/assets`,
     '/healthy',
     '/healthz',
