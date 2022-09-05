@@ -1,6 +1,4 @@
 describe('Get & Post Handlers', () => {
-  const { getEvidenceSummaryModel } = require('../../../../app/helpers/pageHelpers')
-
   const varList = {
     planningPermission: 'some fake value',
     gridReference: 'grid-ref-num',
@@ -15,8 +13,6 @@ describe('Get & Post Handlers', () => {
   jest.mock('../../../../app/helpers/urls', () => ({
     getUrl: (a, b, c, d) => 'mock-url'
   }))
-
-  // getEvidenceSummaryModel.mockResolvedValue({ redirect: true })
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
