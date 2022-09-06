@@ -1,4 +1,4 @@
-const { WHOLE_NUMBER_REGEX } = require('./regex')
+const { WHOLE_NUMBER_REGEX, COMMA_EXCLUDE_REGEX, DECIMAL_EXCLUDE_REGEX } = require('./regex')
 const { formatUKCurrency } = require('../helpers/data-formats')
 
 const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) => {
@@ -23,6 +23,16 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
       {
         type: 'NOT_EMPTY',
         error: `Enter ${keyTitle} ${catagoryData.errorType.toLowerCase()}`
+      },
+      {
+        type: 'REGEX',
+        regex: COMMA_EXCLUDE_REGEX,
+        error: `${catagoryData.errorType} must only include numbers`
+      },
+      {
+        type: 'REGEX',
+        regex: DECIMAL_EXCLUDE_REGEX,
+        error: `${catagoryData.errorType} must be between 1 and 9999999999`
       },
       {
         type: 'REGEX',
@@ -64,7 +74,7 @@ function keyGenerator(title) {
 
 function getErrorUnit(catagory) {
   const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
-  const errorType = volumeArray.includes(catagory) ? 'Volume' : 'Quantity'
+  const errorType = volumeArray.includes(catagory) ? 'Size' : 'Quantity'
 
   return { errorType: errorType }
 }
