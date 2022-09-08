@@ -78,7 +78,7 @@ const addConsentOptionalData = async (url, request) => {
 const addConditionalLabelData = async (question, type, request, condHTML) => {
   if (question?.conditionalKey && question?.conditionalLabelData) {
     const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
-    condHTML =  handleConditinalHtmlData(
+    condHTML = handleConditinalHtmlData(
       type,
       question.conditionalLabelData,
       conditional,
@@ -179,17 +179,13 @@ const getPage = async (question, request, h) => {
   return h.view('page', getModel(data, question, request, conditionalHtml))
 }
 
-const showPostPage = (currentQuestion, request, h) => {
-  const { yarKey, answers, baseUrl, ineligibleContent, nextUrl, nextUrlObject, title, type } = currentQuestion
-  const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
-  const payload = request.payload
-
-  let thisAnswer
-  let dataObject
-
+const clearYarValue = (yarKey, payload, request) => {
   if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
     setYarValue(request, yarKey, '')
   }
+}
+const createAnswerObj = (payload, yarKey, type, request, answers) => {
+  let thisAnswer;
   for (const [ key, value ] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
     if (yarKey === 'cover' && thisAnswer.key === 'cover-A2') {
@@ -201,6 +197,10 @@ const showPostPage = (currentQuestion, request, h) => {
       setYarValue(request, key, key === 'projectPostcode' ? value.replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase() : value)
     }
   }
+  return thisAnswer;
+}
+
+const handleMultiInput = (type, request, dataObject, yarKey, currentQuestion, payload) => {
   if (type === 'multi-input') {
     let allFields = currentQuestion.allFields
     if (currentQuestion.costDataKey) {
@@ -222,6 +222,20 @@ const showPostPage = (currentQuestion, request, h) => {
     })
     setYarValue(request, yarKey, dataObject)
   }
+}
+
+const showPostPage = (currentQuestion, request, h) => {
+  const { yarKey, answers, baseUrl, ineligibleContent, nextUrl, nextUrlObject, title, type } = currentQuestion
+  const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
+  const payload = request.payload
+
+  let thisAnswer
+  let dataObject
+
+  clearYarValue(yarKey, payload, request);
+  thisAnswer = createAnswerObj(payload, yarKey, type, request, answers)
+  
+  handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload)
 
   if (title) {
     currentQuestion = {
