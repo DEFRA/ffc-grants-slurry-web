@@ -23,6 +23,45 @@ const {
   getConsentOptionalData
 } = require('./pageHelpers')
 
+const setGrantsData = (question, request) => {
+  if (question.grantInfo) {
+    const { calculatedGrant, remainingCost } = getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo)
+    setYarValue(request, 'calculatedGrant', calculatedGrant)
+    setYarValue(request, 'remainingCost', remainingCost)
+  }
+};
+
+const sendContactDetails = async (request) => {
+  try {
+    await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
+    await gapiService.sendDimensionOrMetrics(request, [ {
+      dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
+      value: confirmationId
+    }, {
+      dimensionOrMetric: gapiService.dimensions.FINALSCORE,
+      value: getYarValue(request, 'current-score')
+    },
+    {
+      dimensionOrMetric: gapiService.metrics.CONFIRMATION,
+      value: 'TIME'
+    }
+    ])
+    console.log('Confirmation event sent')
+  } catch (err) {
+    console.log('ERROR: ', err)
+  }
+}
+
+const setTitle = async (title, question, request) => {
+  if (title) {
+    return {
+      ...question,
+      title: title.replace(SELECT_VARIABLE_TO_REPLACE, (_ignore, additionalYarKeyName) => (
+        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+      ))
+    }
+  }
+}
 const getPage = async (question, request, h) => {
   const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
@@ -31,12 +70,7 @@ const getPage = async (question, request, h) => {
     return h.redirect(startPageUrl)
   }
   let confirmationId = ''
-
-  if (question.grantInfo) {
-    const { calculatedGrant, remainingCost } = getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo)
-    setYarValue(request, 'calculatedGrant', calculatedGrant)
-    setYarValue(request, 'remainingCost', remainingCost)
-  }
+  setGrantsData(question, request);
 
   if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
@@ -54,24 +88,10 @@ const getPage = async (question, request, h) => {
         return h.redirect(startPageUrl)
       }
       confirmationId = getConfirmationId(request.yar.id)
-      try {
-        await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
-        await gapiService.sendDimensionOrMetrics(request, [{
-          dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
-          value: confirmationId
-        }, {
-          dimensionOrMetric: gapiService.dimensions.FINALSCORE,
-          value: 'Eligible'
-        },
-        {
-          dimensionOrMetric: gapiService.metrics.CONFIRMATION,
-          value: 'TIME'
-        }
-        ])
-        console.log('Confirmation event sent')
-      } catch (err) {
-        console.log('ERROR: ', err)
-      }
+
+      // Send Contact details to GAPI
+      await sendContactDetails(request);
+
       maybeEligibleContent = {
         ...maybeEligibleContent,
         reference: {
@@ -104,14 +124,7 @@ const getPage = async (question, request, h) => {
     return h.view('maybe-eligible', MAYBE_ELIGIBLE)
   }
 
-  if (title) {
-    question = {
-      ...question,
-      title: title.replace(SELECT_VARIABLE_TO_REPLACE, (_ignore, additionalYarKeyName) => (
-        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ))
-    }
-  }
+  await setTitle(title, question, request);
 
   const data = getDataFromYarValue(request, yarKey, type)
 
@@ -160,7 +173,7 @@ const showPostPage = (currentQuestion, request, h) => {
   if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
     setYarValue(request, yarKey, '')
   }
-  for (const [key, value] of Object.entries(payload)) {
+  for (const [ key, value ] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
     if (yarKey === 'cover' && thisAnswer.key === 'cover-A2') {
       request.yar.set('coverType', '')
@@ -177,17 +190,17 @@ const showPostPage = (currentQuestion, request, h) => {
       allFields = formatOtherItems(request)
     }
     allFields.forEach(field => {
-      const payloadYarVal = payload[field.yarKey]
-        ? payload[field.yarKey].replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase()
+      const payloadYarVal = payload[ field.yarKey ]
+        ? payload[ field.yarKey ].replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase()
         : ''
       dataObject = {
         ...dataObject,
-        [field.yarKey]: (
+        [ field.yarKey ]: (
           (field.yarKey === 'postcode' || field.yarKey === 'projectPostcode')
             ? payloadYarVal
-            : payload[field.yarKey] || ''
+            : payload[ field.yarKey ] || ''
         ),
-        ...field.conditionalKey ? { [field.conditionalKey]: payload[field.conditionalKey] } : {}
+        ...field.conditionalKey ? { [ field.conditionalKey ]: payload[ field.conditionalKey ] } : {}
       }
     })
     setYarValue(request, yarKey, dataObject)
