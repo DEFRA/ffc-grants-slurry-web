@@ -68,6 +68,13 @@ const processGA = async (question, request, confirmationId) => {
   }
 }
 
+const addConsentOptionalData = async (url, request) => {
+  if (url === 'confirm') {
+    const consentOptional = getYarValue(request, 'consentOptional')
+    return getConsentOptionalData(consentOptional)
+  }
+}
+
 const getPage = async (question, request, h) => {
   const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
@@ -121,10 +128,7 @@ const getPage = async (question, request, h) => {
       )
     }
 
-    if (url === 'confirm') {
-      const consentOptional = getYarValue(request, 'consentOptional')
-      consentOptionalData = getConsentOptionalData(consentOptional)
-    }
+    consentOptionalData = await addConsentOptionalData(url, request)
 
     const MAYBE_ELIGIBLE = { ...maybeEligibleContent, consentOptionalData, url, nextUrl, backUrl }
     return h.view('maybe-eligible', MAYBE_ELIGIBLE)
