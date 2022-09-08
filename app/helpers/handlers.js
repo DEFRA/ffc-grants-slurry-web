@@ -62,6 +62,12 @@ const setTitle = async (title, question, request) => {
     }
   }
 }
+const processGA = async (question, request, confirmationId) => {
+  if (question.ga) {
+    await gapiService.processGA(request, question.ga, confirmationId)
+  }
+}
+
 const getPage = async (question, request, h) => {
   const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
@@ -138,9 +144,8 @@ const getPage = async (question, request, h) => {
       request
     )
   }
-  if (question.ga) {
-    await gapiService.processGA(request, question.ga, confirmationId)
-  }
+
+  await processGA(question, request, confirmationId)
 
   switch (url) {
     case 'check-details': {
