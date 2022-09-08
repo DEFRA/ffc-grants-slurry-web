@@ -234,7 +234,7 @@ const showPostPage = (currentQuestion, request, h) => {
 
   clearYarValue(yarKey, payload, request);
   thisAnswer = createAnswerObj(payload, yarKey, type, request, answers)
-  
+
   handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload)
 
   if (title) {
