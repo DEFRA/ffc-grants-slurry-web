@@ -4,7 +4,12 @@ jest.mock('../../../../app/helpers/page-guard')
 const { guardPage } = require('../../../../app/helpers/page-guard')
 
 describe('Project Summary test', () => {
-  const varList = { storageType: 'random', coverType: 'random', otherItems: ['random'], itemSizesQuantities: ['random'] }
+  const varList = {
+    storageType: 'random',
+    coverType: 'random',
+    otherItems: ['random'],
+    itemSizesQuantities: ['random']
+  }
 
   beforeEach(() => {
     jest.clearAllMocks()

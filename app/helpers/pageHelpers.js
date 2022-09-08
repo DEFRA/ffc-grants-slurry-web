@@ -52,10 +52,10 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       ...farmerDetails,
       ...(farmerDetails
         ? {
-          name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
-          contact: farmerContact.join('<br/>'),
-          address: farmerAddress.join('<br/>')
-        }
+            name: `${farmerDetails.firstName} ${farmerDetails.lastName}`,
+            contact: farmerContact.join('<br/>'),
+            address: farmerAddress.join('<br/>')
+          }
         : {}
       )
     },
@@ -63,10 +63,10 @@ const getCheckDetailsModel = (request, question, backUrl, nextUrl) => {
       ...agentDetails,
       ...(agentDetails
         ? {
-          name: `${agentDetails.firstName} ${agentDetails.lastName}`,
-          contact: agentContact.join('<br/>'),
-          address: agentAddress.join('<br/>')
-        }
+            name: `${agentDetails.firstName} ${agentDetails.lastName}`,
+            contact: agentContact.join('<br/>'),
+            address: agentAddress.join('<br/>')
+          }
         : {}
       )
     }
@@ -80,6 +80,10 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
   const planningPermission = getYarValue(request, 'planningPermission')
   const gridReference = getYarValue(request, 'gridReference')
   const hasEvidence = !planningPermission.startsWith('Not yet')
+  if (hasEvidence && !getYarValue(request, 'PlanningPermissionEvidence')) {
+    return { redirect: true }
+  }
+
   return ({
     ...question.pageData,
     backUrl,
@@ -88,11 +92,11 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
     gridReference,
     ...(hasEvidence
       ? {
-        evidence: {
-          planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
-          planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
+          evidence: {
+            planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
+            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber
+          }
         }
-      }
       : {}
     )
   })

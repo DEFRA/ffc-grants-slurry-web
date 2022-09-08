@@ -1,4 +1,3 @@
-const { object } = require('joi')
 const { formatSummaryTable } = require('./../../../../app/helpers/project-summary')
 
 const objectToSend = {

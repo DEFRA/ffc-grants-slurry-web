@@ -13,7 +13,8 @@ const {
   PLANNING_REFERENCE_NUMBER_REGEX,
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
-  CHARS_MAX_50
+  CHARS_MAX_50,
+  COMMA_EXCLUDE_REGEX
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -889,6 +890,11 @@ const questionBank = {
             },
             {
               type: 'REGEX',
+              regex: COMMA_EXCLUDE_REGEX,
+              error: 'Volume must only include numbers'
+            },
+            {
+              type: 'REGEX',
               regex: WHOLE_NUMBER_REGEX,
               error: 'Volume must be a whole number'
             },
@@ -956,6 +962,11 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error: 'Enter the volume you need to have 6 months’ serviceable storage'
+            },
+            {
+              type: 'REGEX',
+              regex: COMMA_EXCLUDE_REGEX,
+              error: 'Volume must only include numbers'
             },
             {
               type: 'REGEX',
@@ -1086,6 +1097,11 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error: 'Enter the size of cover'
+            },
+            {
+              type: 'REGEX',
+              regex: COMMA_EXCLUDE_REGEX,
+              error: 'Cover size must only include numbers'
             },
             {
               type: 'REGEX',
@@ -1570,7 +1586,7 @@ const questionBank = {
         {
           key: 'result-page',
           order: 156,
-          title: 'Check your answers before getting your results',
+          title: 'Your results',
           url: 'result-page',
           baseUrl: 'result-page',
           backUrl: 'planning-permission-summary',
@@ -2383,11 +2399,11 @@ const questionBank = {
             messageContent: `We have sent you a confirmation email with a record of your answers.<br/><br/>
             If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
             <h2 class="govuk-heading-m">RPA helpline</h2>
-            <h2 class="govuk-heading-s">Telephone</h2>
+            <h3 class="govuk-heading-s">Telephone</h3>
             Telephone: 0300 0200 301<br/>
             Monday to Friday, 9am to 5pm (except public holidays)<br/>
             <p><a class="govuk-link" target="_blank" href="https://www.gov.uk/call-charges" rel="noopener noreferrer">Find out about call charges</a></p>
-            <h2 class="govuk-heading-s">Email</h2>
+            <h3 class="govuk-heading-s">Email</h3>
             <a class="govuk-link" title="Send email to RPA" target="_blank" rel="noopener noreferrer" href="mailto:ftf@rpa.gov.uk">FTF@rpa.gov.uk</a><br/><br/>
             
             <h2 class="govuk-heading-m">What happens next</h2>
