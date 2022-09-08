@@ -75,6 +75,18 @@ const addConsentOptionalData = async (url, request) => {
   }
 }
 
+const addConditionalLabelData = async (question, type, request, condHTML) => {
+  if (question?.conditionalKey && question?.conditionalLabelData) {
+    const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
+    condHTML =  handleConditinalHtmlData(
+      type,
+      question.conditionalLabelData,
+      conditional,
+      request
+    )
+  }
+  return condHTML;
+}
 const getPage = async (question, request, h) => {
   const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
@@ -139,15 +151,7 @@ const getPage = async (question, request, h) => {
   const data = getDataFromYarValue(request, yarKey, type)
 
   let conditionalHtml
-  if (question?.conditionalKey && question?.conditionalLabelData) {
-    const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
-    conditionalHtml = handleConditinalHtmlData(
-      type,
-      question.conditionalLabelData,
-      conditional,
-      request
-    )
-  }
+  conditionalHtml = await addConditionalLabelData(yarKey, type, request, conditionalHtml);
 
   await processGA(question, request, confirmationId)
 
