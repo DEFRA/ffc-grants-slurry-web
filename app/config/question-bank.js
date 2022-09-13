@@ -1,8 +1,5 @@
 const {
-  CURRENCY_FORMAT,
-  CHARS_MAX_10,
   CHARS_MIN_10,
-  CHARS_MAX_100,
   POSTCODE_REGEX,
   WHOLE_NUMBER_REGEX,
   SBI_REGEX,
@@ -14,7 +11,7 @@ const {
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
   CHARS_MAX_50,
-  COMMA_EXCLUDE_REGEX
+  INTERGERS_AND_DECIMALS
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -865,7 +862,7 @@ const questionBank = {
           },
           fundingPriorities: '',
           preValidationKeys: ['storageType'],
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           id: 'storageCapacityIncrease',
           name: 'storageCapacityIncrease',
           suffix: { text: 'm³' },
@@ -890,19 +887,19 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: COMMA_EXCLUDE_REGEX,
+              regex: INTERGERS_AND_DECIMALS,
               error: 'Volume must only include numbers'
             },
             {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
+              type: 'INCLUDES',
+              checkArray: ['.'],
               error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Volume must be between 1-9999999999'
+              max: 999999,
+              error: 'Volume must be between 1-999999'
             }
           ],
           sidebar: {
@@ -930,7 +927,7 @@ const questionBank = {
           order: 132,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           url: 'serviceable-capacity-increase-additional',
           baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
@@ -965,19 +962,19 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: COMMA_EXCLUDE_REGEX,
+              regex: INTERGERS_AND_DECIMALS,
               error: 'Volume must only include numbers'
             },
             {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
+              type: 'INCLUDES',
+              checkArray: ['.'],
               error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Volume must be between 1-9999999999'
+              max: 999999,
+              error: 'Volume must be between 1-999999'
             }
           ],
           sidebar: {
@@ -1071,7 +1068,7 @@ const questionBank = {
           order: 137,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           url: 'cover-size',
           baseUrl: 'cover-size',
           backUrl: 'cover-type',
@@ -1088,9 +1085,9 @@ const questionBank = {
           },
           hint: {
             html: `
-            Enter the estimated surface area of the replacement, new or expanded store.
-
-            Enter size in metres squared.
+            Enter the estimated surface area of the replacement, new or expanded store
+            <br/><br/>
+            Enter size in metres squared
           `
           },
           validate: [
@@ -1100,19 +1097,19 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: COMMA_EXCLUDE_REGEX,
+              regex: INTERGERS_AND_DECIMALS,
               error: 'Cover size must only include numbers'
             },
             {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
+              type: 'INCLUDES',
+              checkArray: ['.'],
               error: 'Cover size must be a whole number'
             },
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Volume must be between 1-9999999999'
+              max: 999999,
+              error: 'Cover size must be between 1-999999'
             }
           ],
           sidebar: {

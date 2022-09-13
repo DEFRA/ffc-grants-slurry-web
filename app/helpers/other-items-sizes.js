@@ -1,8 +1,8 @@
-const { WHOLE_NUMBER_REGEX, COMMA_EXCLUDE_REGEX, DECIMAL_EXCLUDE_REGEX } = require('./regex')
+const { INTERGERS_AND_DECIMALS } = require('./regex')
 const { formatUKCurrency } = require('../helpers/data-formats')
 
 const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) => {
-  const maxValue = suffixAndLengthValue.length === 4 ? 9999 : 9999999999
+  const maxValue = suffixAndLengthValue.length === 3 ? 9999 : 999999
   item.amount = formatUKCurrency(item.amount)
 
   return {
@@ -26,17 +26,12 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
       },
       {
         type: 'REGEX',
-        regex: COMMA_EXCLUDE_REGEX,
+        regex: INTERGERS_AND_DECIMALS,
         error: `${catagoryData.errorType} must only include numbers`
       },
       {
-        type: 'REGEX',
-        regex: DECIMAL_EXCLUDE_REGEX,
-        error: `${catagoryData.errorType} must be between 1 and 9999999999`
-      },
-      {
-        type: 'REGEX',
-        regex: WHOLE_NUMBER_REGEX,
+        type: 'INCLUDES',
+        checkArray: ['.'],
         error: `${catagoryData.errorType} must be a whole number`
       },
       {
@@ -49,18 +44,18 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
   }
 }
 
-function suffixAndLengthGenerator(unit) {
+function suffixAndLengthGenerator (unit) {
   switch (unit) {
     case 'per cubic metre':
-      return { unit: 'm³', length: 10 }
+      return { unit: 'm³', length: 5 }
     case 'per metre':
-      return { unit: 'metre(s)', length: 10 }
+      return { unit: 'metre(s)', length: 5 }
     default:
-      return { unit: 'item (s)', length: 4 }
+      return { unit: 'item(s)', length: 3 }
   }
 }
 
-function keyGenerator(title) {
+function keyGenerator (title) {
   // format key name for NOT_EMPTY validation
   switch (title) {
     case 'Reception pit type':
@@ -72,14 +67,14 @@ function keyGenerator(title) {
   }
 }
 
-function getErrorUnit(catagory) {
+function getErrorUnit (catagory) {
   const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
   const errorType = volumeArray.includes(catagory) ? 'Size' : 'Quantity'
 
   return { errorType: errorType }
 }
 
-function formatOtherItems(request) {
+function formatOtherItems (request) {
   const object = request.yar.get('standardisedCostObject')
   const otherItemsArray = [request.yar.get('otherItems')].flat()
   const listOfCatagories = ['cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']

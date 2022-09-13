@@ -44,7 +44,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Volume must be between 1-9999999999')
+    expect(postResponse.payload).toContain('Volume must be between 1-999999')
   })
 
   it('If comma used', async () => {
