@@ -22,6 +22,14 @@ describe('Get & Post Handlers', () => {
     }
   }))
 
+  const mockgetGrantValues = jest.fn().mockReturnValue({
+    calculatedGrant: 'test',
+    remainingCost: 'test',
+  });
+  jest.mock('../../../../app/helpers/grants-info', () => ({
+    getGrantValues: mockgetGrantValues
+  }))
+
   let question
   let mockH
 
@@ -35,7 +43,8 @@ describe('Get & Post Handlers', () => {
     mockH = { redirect: jest.fn() }
 
     await getHandler(question)({}, mockH)
-    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
+    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start');
+    expect(mockgetGrantValues).not.toHaveBeenCalled();
   })
 
   test('is eligible if calculated grant = min grant - whether grant is capped or not', async () => {
@@ -51,7 +60,7 @@ describe('Get & Post Handlers', () => {
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
   })
 
-  test('*********', async () => {
+  test('getHandler called with grants info', async () => {
     question = {
       url: 'planning-permission-summary',
       title: 'mock-title',
@@ -64,6 +73,8 @@ describe('Get & Post Handlers', () => {
     mockH = { redirect: jest.fn() }
 
     await getHandler(question)({}, mockH)
+    expect(mockgetGrantValues).toHaveBeenCalledTimes(1);
+    expect(mockgetGrantValues).toHaveBeenCalledWith(null, { "grantCap": 10000, "maxGrant": 10000, "minGrant": 1000 });
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
   })
 
