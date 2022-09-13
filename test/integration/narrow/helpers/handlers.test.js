@@ -17,7 +17,7 @@ describe('Get & Post Handlers', () => {
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
-      if (varList[key]) return varList[key]
+      if (varList[ key ]) return varList[ key ]
       else return null
     }
   }))
@@ -25,7 +25,7 @@ describe('Get & Post Handlers', () => {
   let question
   let mockH
 
-  const { getHandler } = require('../../../../app/helpers/handlers')
+  const { getHandler, getPostHandler } = require('../../../../app/helpers/handlers')
 
   test('will redirect to start page if planning permission evidence is missing', async () => {
     question = {
@@ -49,5 +49,21 @@ describe('Get & Post Handlers', () => {
 
     await getHandler(question)({}, mockH)
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
+  })
+
+  test('getPostHandler', async () => {
+    question = {
+      baseUrl: 'mock-url',
+      yarKey: 'cover',
+      title: 'mock-title',
+      ineligibleContent: true,
+      answers: [ { value: 'mock-value', key: 'cover-A2' } ],
+      nextUrl: 'mock-next-url',
+      type: 'mock-type',
+    }
+    mockH = { redirect: jest.fn() }
+    let mockSet = jest.fn();
+    await getPostHandler(question)({ payload: { a: "mock-value" }, yar: { set: mockSet } }, mockH)
+    expect(mockH.redirect).toHaveBeenCalledWith('mock-url')
   })
 })
