@@ -64,11 +64,11 @@ describe('Page: /cover-size', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: '129.23', crumb: crumbToken }
+      payload: { coverSize: 'abc123', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Cover size must be a whole number')
+    expect(postResponse.payload).toContain('Size must only include numbers')
   })
 
   it('user enter valid value', async () => {
