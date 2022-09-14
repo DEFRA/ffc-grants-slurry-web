@@ -571,14 +571,14 @@ const questionBank = {
 
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
-                Any capacity above 6 months is not covered by the grant.
+                You cannot apply for the grant if you already have 6 months storage that is fit for purpose.
                 `,
                 items: []
               }]
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
+              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
             }
           },
           validate: [
@@ -594,11 +594,11 @@ const questionBank = {
             },
             {
               key: 'existing-storage-capacity-A2',
-              value: 'Up to 6 months but it is no longer fit for purpose'
+              value: '6 months or more, but it is no longer fit for purpose'
             },
             {
               key: 'existing-storage-capacity-A3',
-              value: '6 months or more',
+              value: '6 months or more, and it is fit for purpose',
               notEligible: true
             }
           ],

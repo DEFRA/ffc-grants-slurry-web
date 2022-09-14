@@ -17,7 +17,7 @@ const ONLY_TEXT_REGEX = /^[a-zA-Z\s]+$/
 const PLANNING_REFERENCE_NUMBER_REGEX = /^[a-zA-Z0-9\/]{1,50}$/
 const LETTERS_AND_NUMBERS_REGEX = /^[a-zA-Z0-9]{1,10}$/
 const TWO_NUMBERS_EIGHT_CHARS = /^[a-zA-Z]{2}\d{8}$/
-const INTERGERS_AND_DECIMALS = /^\d+(\.\d{1,2})?$/
+const INTERGERS_AND_DECIMALS = /^\d+(\.[0-9]*)?$/
 
 module.exports = {
   CURRENCY_FORMAT,

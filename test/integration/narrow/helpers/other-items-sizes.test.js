@@ -1,4 +1,4 @@
-const { WHOLE_NUMBER_REGEX, COMMA_EXCLUDE_REGEX, DECIMAL_EXCLUDE_REGEX } = require('../../../../app/helpers/regex')
+const { WHOLE_NUMBER_REGEX, INTERGERS_AND_DECIMALS } = require('../../../../app/helpers/regex')
 const { formatOtherItems } = require('./../../../../app/helpers/other-items-sizes')
 
 const objectToSend = {
@@ -228,7 +228,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £30 per cubic metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Reception pit',
           classes: 'govuk-label--m'
@@ -240,17 +240,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Size must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Size must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Size must be a whole number'
           },
           {
@@ -266,11 +261,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £1,050 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Electric-powered slurry transfer pump',
           classes: 'govuk-label--m'
@@ -282,17 +277,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -308,11 +298,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £2,090 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
           classes: 'govuk-label--m'
@@ -324,17 +314,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -350,11 +335,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £950 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Centrifugal chopper pump',
           classes: 'govuk-label--m'
@@ -366,17 +351,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -392,11 +372,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £1,700 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Powered take off (PTO) or hydraulically driven chopper pump',
           classes: 'govuk-label--m'
@@ -408,17 +388,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -438,7 +413,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £14 per metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Galvanised steel pipework 100mm diameter',
           classes: 'govuk-label--m'
@@ -450,17 +425,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Size must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Size must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Size must be a whole number'
           },
           {
@@ -480,7 +450,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £24 per metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Galvanised steel pipework 150mm diameter',
           classes: 'govuk-label--m'
@@ -492,17 +462,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Size must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Size must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Size must be a whole number'
           },
           {
@@ -522,7 +487,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £8 per metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
           classes: 'govuk-label--m'
@@ -534,17 +499,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Size must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Size must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Size must be a whole number'
           },
           {
@@ -564,7 +524,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £9 per metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
           classes: 'govuk-label--m'
@@ -576,17 +536,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Size must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Size must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Size must be a whole number'
           },
           {
@@ -606,7 +561,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £25 per metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Under-floor transfer channels',
           classes: 'govuk-label--m'
@@ -618,17 +573,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Size must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Size must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Size must be a whole number'
           },
           {
@@ -644,11 +594,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £350 per tank'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
           classes: 'govuk-label--m'
@@ -660,17 +610,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -686,11 +631,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £1,000 per tank'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre',
           classes: 'govuk-label--m'
@@ -702,17 +647,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -728,11 +668,11 @@ describe('Other Items Sizes Array Function', () => {
         type: 'text',
         pattern: '[0-9]*',
         inputmode: 'numeric',
-        suffix: { text: 'item (s)' },
+        suffix: { text: 'item(s)' },
         hint: {
           text: 'Grant amount: £800 per item'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
           classes: 'govuk-label--m'
@@ -744,17 +684,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: COMMA_EXCLUDE_REGEX,
+            regex: INTERGERS_AND_DECIMALS,
             error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
-          },
-          {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -774,7 +709,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £55 per metre'
         },
-        classes: 'govuk-input--width-10',
+        classes: 'govuk-input--width-5',
         label: {
           text: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
           classes: 'govuk-label--m'
@@ -786,12 +721,12 @@ describe('Other Items Sizes Array Function', () => {
           },
           {
             type: 'REGEX',
-            regex: DECIMAL_EXCLUDE_REGEX,
-            error: 'Quantity must be between 1 and 999999'
+            regex: INTERGERS_AND_DECIMALS,
+            error: 'Quantity must only include numbers'
           },
           {
-            type: 'REGEX',
-            regex: WHOLE_NUMBER_REGEX,
+            type: 'INCLUDES',
+            checkArray: ['.'],
             error: 'Quantity must be a whole number'
           },
           {
@@ -810,7 +745,7 @@ describe('Other Items Sizes Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key === 'standardisedCostObject') {
             return {}
           } else {
             return itemsList
