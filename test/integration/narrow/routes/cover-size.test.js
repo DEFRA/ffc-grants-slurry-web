@@ -44,7 +44,7 @@ describe('Page: /cover-size', () => {
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Volume must be between 1-9999999999')
+    expect(postResponse.payload).toContain('Cover size must be between 1-999999')
   })
 
   it('If commas used', async () => {
@@ -56,7 +56,7 @@ describe('Page: /cover-size', () => {
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Cover size must only include numbers')
+    expect(postResponse.payload).toContain('Cover size must be a whole number')
   })
 
   it('If decimal used', async () => {
@@ -64,11 +64,11 @@ describe('Page: /cover-size', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: '129.232', crumb: crumbToken }
+      payload: { coverSize: 'abc123', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Cover size must be a whole number')
+    expect(postResponse.payload).toContain('Cover size must only include numbers')
   })
 
   it('user enter valid value', async () => {
@@ -81,7 +81,7 @@ describe('Page: /cover-size', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
 
-    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.statusCode).toBe(302)
     // expect(postResponse.headers.location).toBe('other-items')
   })
 
