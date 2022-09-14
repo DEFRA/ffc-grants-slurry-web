@@ -8,10 +8,10 @@ describe('Get & Post Handlers', () => {
     let value = 'value'
     let details = {}
     expect(validateAnswerField(value, 'NOT_EMPTY', details, {})).toBe(true)
+    expect(validateAnswerField(value, 'MIN_MAX', details, { min: 1, max: 20 })).toBe(false)
 
     details = { max: 2 }
     expect(validateAnswerField(value, 'MAX_SELECT', details, {})).toBe(true)
-
     expect(validateAnswerField(value, 'DEFAULT_SELECT', details, {})).toBe(false)
 
     value = ['yes']

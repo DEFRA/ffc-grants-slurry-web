@@ -68,7 +68,7 @@ describe('Page: /cover-size', () => {
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Size must only include numbers')
+    expect(postResponse.payload).toContain('Cover size must only include numbers')
   })
 
   it('user enter valid value', async () => {
