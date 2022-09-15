@@ -571,8 +571,7 @@ const questionBank = {
 
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
-                You cannot apply for the grant if you already have 6 months storage that is fit for purpose.
-                `,
+                You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                 items: []
               }]
             }],
@@ -1537,7 +1536,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number, for example AB12478975 <br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a>  format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
             OS grid reference number
           `
           },
@@ -1555,7 +1554,12 @@ const questionBank = {
               type: 'REGEX',
               regex: TWO_NUMBERS_EIGHT_CHARS,
               error: 'OS Grid Reference must be two letters followed by 8 digits'
-            }
+            },
+            {
+              type: 'EXCLUDES',
+              checkArray: ['NT', 'NU', 'NX', 'NY', 'NZ', 'OV', 'SC', 'SD', 'SE', 'SJ', 'SK', 'SO', 'SP', 'SR', 'SS', 'ST', 'SU', 'SV', 'SW', 'SX', 'SY', 'SZ', 'TA', 'TF', 'TG', 'TL', 'TM', 'TQ', 'TR', 'TV'],
+              error: 'The OS grid reference number must be a letter combination for England'
+            },
           ],
           yarKey: 'gridReference'
         },
