@@ -70,6 +70,11 @@ const validateAnswerField = (value, validationType, details, payload) => {
       return (checkArray.every((charToCheck) => !value.includes(charToCheck)))
     }
 
+    case 'EXCLUDES': {
+      const { checkArray } = details
+      return (!!checkArray.find((charToCheck) => value.toLowerCase().includes(charToCheck.toLowerCase())))
+    }
+
     case 'MAX_SELECT': {
       const { max } = details
       return ([value].flat().length <= max)
