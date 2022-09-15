@@ -92,6 +92,22 @@ describe('Page: /grid-reference', () => {
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(200)
+    expect(postResponse.payload).toContain('The OS grid reference number must be a letter combination for England')
+  })
+
+  it('store user response and redirect to planning-permission-summary: /planning-permission-summary', async () => {
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/grid-reference`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: {
+        gridReference: 'SK12478975',
+        crumb: crumbToken
+      }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('planning-permission-summary')
   })
