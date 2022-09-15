@@ -34,7 +34,7 @@ describe('Page Helpers', () => {
       backUrl: 'back-url',
       nextUrl: 'next-url',
       planningPermission: 'some fake value',
-      gridReference: 'grid-ref-num',
+      gridReference: 'GRID-REF-NUM',
       evidence: {
         planningAuthority: 'planning-auth',
         planningReferenceNumber: 'planning-ref-num'
@@ -49,7 +49,7 @@ describe('Page Helpers', () => {
       backUrl: 'back-url',
       nextUrl: 'next-url',
       planningPermission: 'Not yet',
-      gridReference: 'grid-ref-num'
+      gridReference: 'GRID-REF-NUM'
     })
   })
 
