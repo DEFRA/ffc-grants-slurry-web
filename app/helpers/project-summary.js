@@ -37,7 +37,7 @@ function formatSummaryTable (request) {
     returnArray.push({
       item: storageType,
       amount: '£' + storageData.amount,
-      quantity: storageSize + 'm³',
+      quantity: formatUKCurrency(storageSize) + 'm³',
       total: '£' + formatUKCurrency(total)
     })
 
@@ -54,7 +54,7 @@ function formatSummaryTable (request) {
       returnArray.push({
         item: coverType,
         amount: '£' + coverData.amount,
-        quantity: coverSize + 'm²',
+        quantity: formatUKCurrency(coverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
       })
 
@@ -83,7 +83,7 @@ function formatSummaryTable (request) {
               returnArray.push({
                 item: otherItem,
                 amount: '£' + formatUKCurrency(item.amount),
-                quantity: correctSize + unit,
+                quantity: formatUKCurrency(correctSize) + unit,
                 total: '£' + formatUKCurrency(total)
               })
 

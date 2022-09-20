@@ -245,7 +245,7 @@ describe('Models', () => {
         dependentQuestionKeys: [
           'storage-type', 'cover-type'
         ],
-        linkedQuestionkey: ['serviceable-capacity-increase-replace',],
+        linkedQuestionkey: ['serviceable-capacity-increase-replace'],
         mainHeading: 'Your project items',
         prefixSufix: [
           {
