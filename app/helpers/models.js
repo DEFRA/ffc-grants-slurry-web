@@ -2,6 +2,7 @@ const { getUrl } = require('../helpers/urls')
 const { getOptions } = require('../helpers/answer-options')
 const { getYarValue, setYarValue } = require('../helpers/session')
 const { getQuestionByKey, allAnswersSelected } = require('../helpers/utils')
+const { formatUKCurrency } = require('../helpers/data-formats')
 
 const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
   if (prefixSufix.linkedPrefix || prefixSufix.linkedSufix) {
@@ -30,7 +31,7 @@ const getDependentSideBar = (sidebar, request) => {
       let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
 
       if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
-        selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], selectedValueOfLinkedQuestion)
+        selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
       }
 
       if (selectedValueOfLinkedQuestion && values[index].content[0].items[0] !== 'Not needed') {

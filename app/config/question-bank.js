@@ -1049,7 +1049,7 @@ const questionBank = {
               error: 'Please select an option'
             }
           ],
-          hintArray: ['Solid roof or lid with a flat deck or conical shape made from inflexible material such as fibreglass panels or polyester sheets', 'Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas', 'Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement'],
+          hintArray: ['Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas', 'Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement'],
           answers: [
             {
               value: 'divider'
@@ -1536,7 +1536,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a>  format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map</a> (opens in new tab) format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
             OS grid reference number
           `
           },
