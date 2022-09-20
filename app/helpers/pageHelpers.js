@@ -78,7 +78,7 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
   setYarValue(request, 'reachedEvidenceSummary', true)
 
   const planningPermission = getYarValue(request, 'planningPermission')
-  const gridReference = getYarValue(request, 'gridReference')
+  const gridReference = getYarValue(request, 'gridReference').toUpperCase()
   const hasEvidence = !planningPermission.startsWith('Not yet')
   if (hasEvidence && !getYarValue(request, 'PlanningPermissionEvidence')) {
     return { redirect: true }

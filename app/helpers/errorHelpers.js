@@ -62,7 +62,17 @@ const validateAnswerField = (value, validationType, details, payload) => {
 
     case 'MIN_MAX': {
       const { min, max } = details
-      return (value >= min && value <= max)
+      return isNaN(value) ? false : (value >= min && value <= max)
+    }
+
+    case 'INCLUDES': {
+      const { checkArray } = details
+      return (checkArray.every((charToCheck) => !value.includes(charToCheck)))
+    }
+
+    case 'EXCLUDES': {
+      const { checkArray } = details
+      return (!!checkArray.find((charToCheck) => value.toLowerCase().includes(charToCheck.toLowerCase())))
     }
 
     case 'MAX_SELECT': {

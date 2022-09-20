@@ -1,8 +1,5 @@
 const {
-  CURRENCY_FORMAT,
-  CHARS_MAX_10,
   CHARS_MIN_10,
-  CHARS_MAX_100,
   POSTCODE_REGEX,
   WHOLE_NUMBER_REGEX,
   SBI_REGEX,
@@ -14,7 +11,7 @@ const {
   LETTERS_AND_NUMBERS_REGEX,
   TWO_NUMBERS_EIGHT_CHARS,
   CHARS_MAX_50,
-  COMMA_EXCLUDE_REGEX
+  INTERGERS_AND_DECIMALS
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
@@ -574,14 +571,13 @@ const questionBank = {
 
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
-                Any capacity above 6 months is not covered by the grant.
-                `,
+                You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                 items: []
               }]
             }],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
+              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
             }
           },
           validate: [
@@ -597,11 +593,11 @@ const questionBank = {
             },
             {
               key: 'existing-storage-capacity-A2',
-              value: 'Up to 6 months but it is no longer fit for purpose'
+              value: '6 months or more, but it is no longer fit for purpose'
             },
             {
               key: 'existing-storage-capacity-A3',
-              value: '6 months or more',
+              value: '6 months or more, and it is fit for purpose',
               notEligible: true
             }
           ],
@@ -865,7 +861,7 @@ const questionBank = {
           },
           fundingPriorities: '',
           preValidationKeys: ['storageType'],
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           id: 'storageCapacityIncrease',
           name: 'storageCapacityIncrease',
           suffix: { text: 'm³' },
@@ -879,7 +875,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> (opens in new tab) to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -890,19 +886,19 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: COMMA_EXCLUDE_REGEX,
+              regex: INTERGERS_AND_DECIMALS,
               error: 'Volume must only include numbers'
             },
             {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
+              type: 'INCLUDES',
+              checkArray: ['.'],
               error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Volume must be between 1-9999999999'
+              max: 999999,
+              error: 'Volume must be between 1-999999'
             }
           ],
           sidebar: {
@@ -930,7 +926,7 @@ const questionBank = {
           order: 132,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           url: 'serviceable-capacity-increase-additional',
           baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
@@ -954,7 +950,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> (opens in new tab) to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -965,19 +961,19 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: COMMA_EXCLUDE_REGEX,
+              regex: INTERGERS_AND_DECIMALS,
               error: 'Volume must only include numbers'
             },
             {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
+              type: 'INCLUDES',
+              checkArray: ['.'],
               error: 'Volume must be a whole number'
             },
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Volume must be between 1-9999999999'
+              max: 999999,
+              error: 'Volume must be between 1-999999'
             }
           ],
           sidebar: {
@@ -1053,7 +1049,7 @@ const questionBank = {
               error: 'Please select an option'
             }
           ],
-          hintArray: ['Solid roof or lid with a flat deck or conical shape made from inflexible material such as fibreglass panels or polyester sheets', 'Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas', 'Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement'],
+          hintArray: ['Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas', 'Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement'],
           answers: [
             {
               value: 'divider'
@@ -1071,7 +1067,7 @@ const questionBank = {
           order: 137,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           url: 'cover-size',
           baseUrl: 'cover-size',
           backUrl: 'cover-type',
@@ -1088,9 +1084,9 @@ const questionBank = {
           },
           hint: {
             html: `
-            Enter the estimated surface area of the replacement, new or expanded store.
-
-            Enter size in metres squared.
+            Enter the estimated surface area of the replacement, new or expanded store
+            <br/><br/>
+            Enter size in metres squared
           `
           },
           validate: [
@@ -1100,19 +1096,19 @@ const questionBank = {
             },
             {
               type: 'REGEX',
-              regex: COMMA_EXCLUDE_REGEX,
+              regex: INTERGERS_AND_DECIMALS,
               error: 'Cover size must only include numbers'
             },
             {
-              type: 'REGEX',
-              regex: WHOLE_NUMBER_REGEX,
+              type: 'INCLUDES',
+              checkArray: ['.'],
               error: 'Cover size must be a whole number'
             },
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Volume must be between 1-9999999999'
+              max: 999999,
+              error: 'Cover size must be between 1-999999'
             }
           ],
           sidebar: {
@@ -1540,7 +1536,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number, for example AB12478975 <br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map</a> (opens in new tab) format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
             OS grid reference number
           `
           },
@@ -1558,7 +1554,12 @@ const questionBank = {
               type: 'REGEX',
               regex: TWO_NUMBERS_EIGHT_CHARS,
               error: 'OS Grid Reference must be two letters followed by 8 digits'
-            }
+            },
+            {
+              type: 'EXCLUDES',
+              checkArray: ['NT', 'NU', 'NX', 'NY', 'NZ', 'OV', 'SC', 'SD', 'SE', 'SJ', 'SK', 'SO', 'SP', 'SR', 'SS', 'ST', 'SU', 'SV', 'SW', 'SX', 'SY', 'SZ', 'TA', 'TF', 'TG', 'TL', 'TM', 'TQ', 'TR', 'TV'],
+              error: 'The OS grid reference number must be a letter combination for England'
+            },
           ],
           yarKey: 'gridReference'
         },
