@@ -14,10 +14,6 @@ describe('Get & Post Handlers', () => {
     getUrl: (a, b, c, d) => 'mock-url'
   }))
 
-  jest.mock('../../../../app/helpers/pageHelpers', () => ({
-    handleConditinalHtmlData: (a, b, c, d) => 'mock-url'
-  }))
-
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
@@ -107,7 +103,7 @@ describe('Get & Post Handlers', () => {
     mockH = { redirect: jest.fn() }
 
     await getHandler(question)({}, mockH)
-    expect(mockgetGrantValues).toHaveBeenCalledTimes(1);
+    expect(mockgetGrantValues).toHaveBeenCalledTimes(2);
     expect(mockgetGrantValues).toHaveBeenCalledWith(null, { "grantCap": 10000, "maxGrant": 10000, "minGrant": 1000 });
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
   })
