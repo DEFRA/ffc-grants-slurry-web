@@ -46,7 +46,7 @@ const sendContactDetails = async (request) => {
       value: 'TIME'
     }
     ])
-    console.log('Confirmation event sent')
+    console.log('Confirmation event sent') // no sonar
   } catch (err) {
     console.log('ERROR: ', err)
   }

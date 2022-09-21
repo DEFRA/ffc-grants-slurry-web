@@ -26,8 +26,14 @@ describe('Get & Post Handlers', () => {
     calculatedGrant: 'test',
     remainingCost: 'test',
   });
+
   jest.mock('../../../../app/helpers/grants-info', () => ({
     getGrantValues: mockgetGrantValues
+  }))
+  // ...
+  // Mock senders
+  jest.mock('../../../../app/messaging/sernder', () => ({
+    sendContactDetails: jest.fn().mockReturnValue(true);
   }))
 
   let question
