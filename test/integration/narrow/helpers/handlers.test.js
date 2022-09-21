@@ -14,6 +14,10 @@ describe('Get & Post Handlers', () => {
     getUrl: (a, b, c, d) => 'mock-url'
   }))
 
+  jest.mock('../../../../app/helpers/pageHelpers', () => ({
+    handleConditinalHtmlData: (a, b, c, d) => 'mock-url'
+  }))
+
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
@@ -29,6 +33,10 @@ describe('Get & Post Handlers', () => {
 
   jest.mock('../../../../app/helpers/grants-info', () => ({
     getGrantValues: mockgetGrantValues
+  }))
+
+  jest.mock('../../../../app/services/gapi-service', () => ({
+    sendDimensionOrMetrics: jest.fn().mockReturnValue(true)
   }))
 
   // Mock senders
@@ -83,6 +91,27 @@ describe('Get & Post Handlers', () => {
     expect(mockgetGrantValues).toHaveBeenCalledWith(null, { "grantCap": 10000, "maxGrant": 10000, "minGrant": 1000 });
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
   })
+
+  test('getHandler called with grants info, conditional key and conditional label data', async () => {
+    question = {
+      url: 'planning-permission-summary',
+      title: 'mock-title',
+      grantInfo: {
+        minGrant: 1000,
+        maxGrant: 10000,
+        grantCap: 10000
+      },
+      conditionalKey:'data',
+      conditionalLabelData:'data'
+    }
+    mockH = { redirect: jest.fn() }
+
+    await getHandler(question)({}, mockH)
+    expect(mockgetGrantValues).toHaveBeenCalledTimes(1);
+    expect(mockgetGrantValues).toHaveBeenCalledWith(null, { "grantCap": 10000, "maxGrant": 10000, "minGrant": 1000 });
+    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
+  })
+
 
   test('getPostHandler', async () => {
     question = {
