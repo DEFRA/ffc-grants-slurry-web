@@ -32,7 +32,7 @@ describe('Get & Post Handlers', () => {
   }))
   // ...
   // Mock senders
-  jest.mock('../../../../app/messaging/sernder', () => ({
+  jest.mock('../../../../app/messaging/senders', () => ({
     sendContactDetails: jest.fn().mockReturnValue(true)
   }))
 
