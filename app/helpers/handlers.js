@@ -31,7 +31,7 @@ const setGrantsData = (question, request) => {
   }
 };
 
-const sendContactDetails = async (request) => {
+const sendContactDetailsToSenders = async (request, confirmationId) => {
   try {
     await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
     await gapiService.sendDimensionOrMetrics(request, [ {
@@ -46,7 +46,7 @@ const sendContactDetails = async (request) => {
       value: 'TIME'
     }
     ])
-    console.log('Confirmation event sent') // no sonar
+    console.log('Confirmation event sent')
   } catch (err) {
     console.log('ERROR: ', err)
   }
@@ -75,7 +75,7 @@ const addConsentOptionalData = async (url, request) => {
   }
 }
 
-const addConditionalLabelData = async (question, type, request, condHTML) => {
+const addConditionalLabelData = async (question, yarKey, type, request, condHTML) => {
   if (question?.conditionalKey && question?.conditionalLabelData) {
     const conditional = yarKey === 'businessDetails' ? yarKey : question.conditionalKey
     condHTML = handleConditinalHtmlData(
@@ -115,7 +115,7 @@ const getPage = async (question, request, h) => {
       confirmationId = getConfirmationId(request.yar.id)
 
       // Send Contact details to GAPI
-      await sendContactDetails(request);
+      await sendContactDetailsToSenders(confirmationId, request);
 
       maybeEligibleContent = {
         ...maybeEligibleContent,
@@ -151,7 +151,7 @@ const getPage = async (question, request, h) => {
   const data = getDataFromYarValue(request, yarKey, type)
 
   let conditionalHtml
-  conditionalHtml = await addConditionalLabelData(yarKey, type, request, conditionalHtml);
+  conditionalHtml = await addConditionalLabelData(question, yarKey, type, request, conditionalHtml);
 
   await processGA(question, request, confirmationId)
 

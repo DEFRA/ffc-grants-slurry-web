@@ -88,27 +88,6 @@ describe('Get & Post Handlers', () => {
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
   })
 
-  test('getHandler called with grants info, conditional key and conditional label data', async () => {
-    question = {
-      url: 'planning-permission-summary',
-      title: 'mock-title',
-      grantInfo: {
-        minGrant: 1000,
-        maxGrant: 10000,
-        grantCap: 10000
-      },
-      conditionalKey:'data',
-      conditionalLabelData:'data'
-    }
-    mockH = { redirect: jest.fn() }
-
-    await getHandler(question)({}, mockH)
-    expect(mockgetGrantValues).toHaveBeenCalledTimes(2);
-    expect(mockgetGrantValues).toHaveBeenCalledWith(null, { "grantCap": 10000, "maxGrant": 10000, "minGrant": 1000 });
-    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
-  })
-
-
   test('getPostHandler', async () => {
     question = {
       baseUrl: 'mock-url',
