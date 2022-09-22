@@ -45,8 +45,8 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
       dimensionOrMetric: gapiService.metrics.CONFIRMATION,
       value: 'TIME'
     }
-    ])
-    console.log('Confirmation event sent')
+    ]) // NOSONAR
+    console.log('Confirmation event sent') // NOSONAR
   } catch (err) {
     console.log('ERROR: ', err)
   }
@@ -57,7 +57,7 @@ const setTitle = async (title, question, request) => {
     return {
       ...question,
       title: title.replace(SELECT_VARIABLE_TO_REPLACE, (_ignore, additionalYarKeyName) => (
-        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0) // NOSONAR
       ))
     }
   }
@@ -241,7 +241,7 @@ const showPostPage = (currentQuestion, request, h) => {
     currentQuestion = {
       ...currentQuestion,
       title: title.replace(SELECT_VARIABLE_TO_REPLACE, (_ignore, additionalYarKeyName) => (
-        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0) // NOSONAR
       ))
     }
   }
