@@ -97,9 +97,8 @@ const textField = (data, question, _request = null) => {
 }
 
 const getAllInputs = (data, question, conditionalHtml, request) => {
-  if (question?.costDataKey && question.allFields.length <= 0) {
+  if (question?.costDataKey) {
     question.allFields = formatOtherItems(request)
-    console.log(question.allFields[0])
   }
 
   const { allFields } = question
