@@ -55,12 +55,12 @@ function suffixAndLengthGenerator (unit) {
   }
 }
 
-function keyGenerator (title) {
+function keyGenerator (title, key) {
   // format key name for NOT_EMPTY validation
-  switch (title) {
-    case 'Reception pit type':
+  switch (key) {
+    case 'cat-reception-pit-type':
       return 'plastic reception pit'
-    case 'Pump type':
+    case 'cat-pump-type':
       return 'pump'
     default:
       return title.toLowerCase()
@@ -89,7 +89,7 @@ function formatOtherItems (request) {
         selectedCatagory.items.forEach((item) => {
           if (item.item === otherItem) {
             const suffixAndLengthValue = suffixAndLengthGenerator(item.unit)
-            const keyTitle = keyGenerator(selectedCatagory.title)
+            const keyTitle = keyGenerator(selectedCatagory.title, selectedCatagory.key)
             const catagoryData = getErrorUnit(listOfCatagories[catagory])
 
             const tempObject = formatTempObject(item, keyTitle, suffixAndLengthValue, catagoryData)
