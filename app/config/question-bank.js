@@ -875,7 +875,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> (opens in new tab) to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -950,7 +950,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> (opens in new tab) to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1464,7 +1464,7 @@ const questionBank = {
             {
               yarKey: 'planningAuthority',
               type: 'text',
-              classes: 'govuk-input--width-10',
+              classes: 'govuk-input--width-20',
               label: {
                 text: 'Planning authority',
                 classes: 'govuk-label'
@@ -1489,7 +1489,7 @@ const questionBank = {
             {
               yarKey: 'planningReferenceNumber',
               type: 'text',
-              classes: 'govuk-input--width-10',
+              classes: 'govuk-input--width-20',
               label: {
                 text: 'Planning reference number',
                 classes: 'govuk-label'
@@ -1536,7 +1536,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map</a> (opens in new tab) format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
             OS grid reference number
           `
           },
@@ -1747,7 +1747,7 @@ const questionBank = {
               title: 'Single Business Identifier (SBI)',
               classes: 'govuk-input govuk-input--width-10',
               label: {
-                text: 'Single Business Identifier (SBI) (Optional)',
+                text: 'Single Business Identifier (SBI) - Optional',
                 classes: 'govuk-label'
               },
               hint: {
