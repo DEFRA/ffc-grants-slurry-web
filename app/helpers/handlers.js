@@ -32,9 +32,10 @@ const setGrantsData = (question, request) => {
 };
 
 const sendContactDetailsToSenders = async (request, confirmationId) => {
+  console.log(request.yar.id,'LLLLLLLLLLLLLLLLLLLLLLLLLLLL')
   try {
-    await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
-    await gapiService.sendDimensionOrMetrics(request, [ {
+    await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), getYarValue(request, 'id'))
+    await gapiService.sendDimensionOrMetrics(request, [{
       dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
       value: confirmationId
     }, {
