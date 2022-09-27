@@ -32,9 +32,8 @@ const setGrantsData = (question, request) => {
 };
 
 const sendContactDetailsToSenders = async (request, confirmationId) => {
-  console.log(request.yar.id,'LLLLLLLLLLLLLLLLLLLLLLLLLLLL')
   try {
-    await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), getYarValue(request, 'id'))
+    await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
     await gapiService.sendDimensionOrMetrics(request, [{
       dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
       value: confirmationId
@@ -116,7 +115,7 @@ const getPage = async (question, request, h) => {
       confirmationId = getConfirmationId(request.yar.id)
 
       // Send Contact details to GAPI
-      await sendContactDetailsToSenders(confirmationId, request);
+      await sendContactDetailsToSenders(request, confirmationId);
 
       maybeEligibleContent = {
         ...maybeEligibleContent,
