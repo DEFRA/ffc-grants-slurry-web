@@ -12,6 +12,7 @@ services:
       NODE_ENV: test
       GOOGLE_TAG_MANAGER_KEY: 'GTM-WJ5C78H'
       SESSION_CACHE_TTL: 1200000
+    container_name: ffc-grants-slurry-web-test
     command: npm run test
     volumes:
       - ./test-output/:/home/node/test-output/
