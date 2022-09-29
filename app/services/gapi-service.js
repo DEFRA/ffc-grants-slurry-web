@@ -76,7 +76,8 @@ const sendDimensionOrMetrics = async (request, dimenisons) => {
       dmetrics[item.dimensionOrMetric] = item.value
     })
     await request.ga.pageView(dmetrics)
-    console.log('Metrics Sending analytics page-view for %s', request.route.path)
+    console.log(dmetrics)
+    console.log(`[ METRICS SENDING ANALYTICS PAGE-VIEW FOR ${request.route.path} ]`)
   } catch (err) {
     appInsights.logException(request, { error: err })
   }

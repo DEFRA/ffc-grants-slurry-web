@@ -5,6 +5,7 @@ const { getUrl } = require('../helpers/urls')
 const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
 const gapiService = require('../services/gapi-service')
+const { getYarValue, setYarValue } = require('../helpers/session')
 
 const viewTemplate = 'project-summary'
 const currentPath = `${urlPrefix}/${viewTemplate}`
@@ -45,9 +46,10 @@ module.exports = [{
 
     const result = formatSummaryTable(request)
     const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
+    setYarValue(request, 'current-score', 'Eligible')
     await gapiService.sendDimensionOrMetrics(request, [{
       dimensionOrMetric: gapiService.dimensions.SCORE,
-      value: 'Eligible'
+      value: getYarValue(request, 'current-score')
     },
     {
       dimensionOrMetric: gapiService.metrics.SCORE,

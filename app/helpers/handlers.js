@@ -6,7 +6,6 @@ const { formatUKCurrency } = require('../helpers/data-formats')
 const { SELECT_VARIABLE_TO_REPLACE, DELETE_POSTCODE_CHARS_REGEX } = require('../helpers/regex')
 const { getUrl } = require('../helpers/urls')
 const { guardPage } = require('../helpers/page-guard')
-const { notUniqueSelection, uniqueSelection } = require('../helpers/utils')
 const senders = require('../messaging/senders')
 const createMsg = require('../messaging/create-msg')
 const gapiService = require('../services/gapi-service')
@@ -46,7 +45,7 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
       value: 'TIME'
     }
     ])
-    console.log('Confirmation event sent')
+    console.log('[CONFIRMATION EVENT SENT]')
   } catch (err) {
     console.log('ERROR: ', err)
   }
