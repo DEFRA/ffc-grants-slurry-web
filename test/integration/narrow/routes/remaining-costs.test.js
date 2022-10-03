@@ -34,7 +34,7 @@ describe('Page: /remaining-costs', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select if you can pay the remaining costs')
+    expect(postResponse.payload).toContain('Select yes if you can pay the remaining costs')
   })
 
   it('user selects ineligible option: \'No\' -> display ineligible page', async () => {
