@@ -1362,7 +1362,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select if you can pay the remaining costs'
+              error: 'Select yes if you can pay the remaining costs'
             }
           ],
           answers: [
