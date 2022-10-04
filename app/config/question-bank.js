@@ -1553,7 +1553,7 @@ const questionBank = {
             {
               type: 'REGEX',
               regex: TWO_NUMBERS_EIGHT_CHARS,
-              error: 'OS Grid Reference must be two letters followed by 8 digits'
+              error: 'OS Grid Reference must be 2 letters followed by 8 digits'
             },
             {
               type: 'EXCLUDES',
