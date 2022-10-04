@@ -37,7 +37,7 @@ describe('Page Helpers', () => {
       gridReference: 'GRID-REF-NUM',
       evidence: {
         planningAuthority: 'planning-auth',
-        planningReferenceNumber: 'planning-ref-num'
+        planningReferenceNumber: 'PLANNING-REF-NUM'
       }
     })
   })
