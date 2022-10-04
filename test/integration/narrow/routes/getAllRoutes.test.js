@@ -17,6 +17,7 @@ jest.doMock('../../../../app/helpers/session', () => ({
 
 describe('All default GET routes', () => {
   ALL_QUESTIONS.forEach(question => {
+    console.log(`${global.__URLPREFIX__}/${question.url}`)
     it(`should load ${question.key} page successfully`, async () => {
       const options = {
         method: 'GET',

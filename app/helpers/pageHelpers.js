@@ -79,7 +79,7 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
 
   const planningPermission = getYarValue(request, 'planningPermission')
   const gridReference = getYarValue(request, 'gridReference').toUpperCase()
-  const hasEvidence = !planningPermission.startsWith('Not yet')
+  const hasEvidence = !planningPermission.startsWith('Not yet applied')
   if (hasEvidence && !getYarValue(request, 'PlanningPermissionEvidence')) {
     return { redirect: true }
   }
@@ -94,7 +94,7 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
       ? {
           evidence: {
             planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
-            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber.toUpperCase()
+            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence')?.planningReferenceNumber
           }
         }
       : {}

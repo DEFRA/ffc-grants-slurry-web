@@ -27,7 +27,7 @@ describe('Page Helpers', () => {
   test('check getEvidenceSummaryModel() loads correct value WITH planning permission evidence', () => {
     varList.PlanningPermissionEvidence = {
       planningAuthority: 'planning-auth',
-      planningReferenceNumber: 'planning-ref-num'
+      planningReferenceNumber: 'PLANNING-REF-NUM'
     }
 
     expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({
@@ -43,12 +43,12 @@ describe('Page Helpers', () => {
   })
 
   test('check getEvidenceSummaryModel loads correct value with no planning permission evidence', () => {
-    varList.planningPermission = 'Not yet'
+    varList.planningPermission = 'Not yet applied'
 
     expect(getEvidenceSummaryModel({}, {}, 'back-url', 'next-url')).toEqual({
       backUrl: 'back-url',
       nextUrl: 'next-url',
-      planningPermission: 'Not yet',
+      planningPermission: 'Not yet applied',
       gridReference: 'GRID-REF-NUM'
     })
   })

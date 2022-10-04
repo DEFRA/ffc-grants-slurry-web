@@ -2,8 +2,8 @@ const { crumbToken } = require('./test-helper')
 
 describe('Page: /planning-permission-summary', () => {
   const varList = {
-    planningPermission: 'Not yet',
-    PlanningPermissionEvidence: {}
+    planningPermission: 'Not yet applied'
+    // PlanningPermissionEvidence: {}
   }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -17,8 +17,7 @@ describe('Page: /planning-permission-summary', () => {
   it('should load page successfully with correct data', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/planning-permission-summary`,
-      payload: { crumb: crumbToken }
+      url: `${global.__URLPREFIX__}/planning-permission-summary`
     }
 
     const response = await global.__SERVER__.inject(options)
