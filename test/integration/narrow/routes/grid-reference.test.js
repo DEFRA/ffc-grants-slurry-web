@@ -48,7 +48,7 @@ describe('Page: /grid-reference', () => {
     expect(response.payload).toContain('Back to evidence summary')
   })
 
-  it('should validate OS grid reference number - OS Grid Reference must be two letters followed by 8 digits', async () => {
+  it('should validate OS grid reference number - OS Grid Reference must be 2 letters followed by 8 digits', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/grid-reference`,
@@ -61,7 +61,7 @@ describe('Page: /grid-reference', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('OS Grid Reference must be two letters followed by 8 digits')
+    expect(postResponse.payload).toContain('OS Grid Reference must be 2 letters followed by 8 digits')
   })
 
   it('should validate OS grid reference number - First two characters should be letter following eight characters must be numbers', async () => {

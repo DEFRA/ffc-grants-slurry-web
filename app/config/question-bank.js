@@ -1536,7 +1536,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example NT12836972<br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ3003803<br/><br/><br/>
             OS grid reference number
           `
           },
@@ -1553,7 +1553,7 @@ const questionBank = {
             {
               type: 'REGEX',
               regex: TWO_NUMBERS_EIGHT_CHARS,
-              error: 'OS Grid Reference must be two letters followed by 8 digits'
+              error: 'OS Grid Reference must be 2 letters followed by 8 digits'
             },
             {
               type: 'EXCLUDES',

@@ -16,6 +16,11 @@ jest.doMock('../../../../app/helpers/session', () => ({
 }))
 
 describe('All default GET routes', () => {
+  varList.planningPermission = 'Not yet applied'
+  varList.PlanningPermissionEvidence = {
+    planningAuthority: 'some planning',
+    planningReferenceNumber: '123456-ref'
+  }
   ALL_QUESTIONS.forEach(question => {
     it(`should load ${question.key} page successfully`, async () => {
       const options = {
