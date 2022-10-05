@@ -2,8 +2,11 @@ const { crumbToken } = require('./test-helper')
 
 describe('Page: /planning-permission-summary', () => {
   const varList = {
-    planningPermission: 'Not yet applied'
-    // PlanningPermissionEvidence: {}
+    planningPermission: 'Not yet applied',
+    PlanningPermissionEvidence: {
+      planningAuthority: 'some planning',
+      planningReferenceNumber: '123456-ref'
+    }
   }
 
   jest.mock('../../../../app/helpers/session', () => ({

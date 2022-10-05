@@ -94,7 +94,7 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
       ? {
           evidence: {
             planningAuthority: getYarValue(request, 'PlanningPermissionEvidence').planningAuthority,
-            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence')?.planningReferenceNumber
+            planningReferenceNumber: getYarValue(request, 'PlanningPermissionEvidence').planningReferenceNumber.toUpperCase()
           }
         }
       : {}
