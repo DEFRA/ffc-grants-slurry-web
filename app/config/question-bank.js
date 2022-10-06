@@ -1536,7 +1536,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ3003803<br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ30038037<br/><br/><br/>
             OS grid reference number
           `
           },
