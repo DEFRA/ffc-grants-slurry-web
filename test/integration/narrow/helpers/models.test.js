@@ -127,13 +127,13 @@ describe('Models', () => {
   test('inspect getModel().backUrl', () => {
     getYarValue.mockReturnValueOnce('mock-value')
     getYarValue.mockReturnValueOnce('mock-value')
-    getYarValue.mockReturnValueOnce(undefined)
+    getYarValue.mockReturnValueOnce('mock-value')
 
     getUrl.mockReturnValueOnce('remaining-costs')
     getUrl.mockReturnValueOnce('tenancy')
     getUrl.mockReturnValueOnce('tenancy')
 
-    expect(getModel([], question, {}).backUrl).toBeNull()
+    expect(getModel([], question, {}).backUrl).toEqual('remaining-costs')
     expect(getModel([], question, {}).backUrl).toEqual('tenancy')
     expect(getModel([], question, {}).backUrl).toEqual('tenancy')
   })
