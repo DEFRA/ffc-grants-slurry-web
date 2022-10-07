@@ -1390,13 +1390,6 @@ const questionBank = {
           backUrl: 'remaining-costs',
           nextUrl: 'planning-permission-evidence',
           preValidationKeys: ['remainingCosts'],
-          ineligibleContent: {
-            messageContent: 'Any planning permission must be in place by 31 January 2024.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
           fundingPriorities: 'Improving Adding Value',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1441,7 +1434,7 @@ const questionBank = {
           preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
-            messageContent: 'You must have have secured planning permission before you submit a full application.'
+            messageContent: 'You must have secured planning permission before you submit a full application.'
           },
           yarKey: 'PlanningPermissionCondition'
         },

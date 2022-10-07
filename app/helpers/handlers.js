@@ -184,8 +184,8 @@ const clearYarValue = (yarKey, payload, request) => {
   }
 }
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
-  let thisAnswer;
-  for (const [ key, value ] of Object.entries(payload)) {
+  let thisAnswer
+  for (const [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
     if (yarKey === 'cover' && thisAnswer.key === 'cover-A2') {
       request.yar.set('coverType', '')
@@ -206,12 +206,12 @@ const handleMultiInput = (type, request, dataObject, yarKey, currentQuestion, pa
       allFields = formatOtherItems(request)
     }
     allFields.forEach(field => {
-      const payloadYarVal = payload[ field.yarKey ]
-        ? payload[ field.yarKey ].replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase()
+      const payloadYarVal = payload[field.yarKey]
+        ? payload[field.yarKey].replace(DELETE_POSTCODE_CHARS_REGEX, '').split(/(?=.{3}$)/).join(' ').toUpperCase()
         : ''
       dataObject = {
         ...dataObject,
-        [ field.yarKey ]: (
+        [field.yarKey]: (
           (field.yarKey === 'postcode' || field.yarKey === 'projectPostcode')
             ? payloadYarVal
             : payload[ field.yarKey ] || ''
