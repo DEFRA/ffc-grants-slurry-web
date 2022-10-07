@@ -1404,9 +1404,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: `Any planning permission must be in place by 31 December 2023. 
-
-                      You must have applied for planning permission before you submit a full application.`
+                para: 'You must have secured planning permission before you submit a full application.'
               }]
             }]
           },
@@ -1427,7 +1425,7 @@ const questionBank = {
             },
             {
               key: 'planning-permission-A3',
-              value: 'Not yet applied for but expected to be in place by 31 December 2023',
+              value: 'Not yet applied for but expected to be secured by 31 December 2023',
               redirectUrl: 'planning-permission-condition'
             }
           ],
@@ -1443,7 +1441,7 @@ const questionBank = {
           preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
-            messageContent: 'Any planning permission must be in place by 31st December 2023.'
+            messageContent: 'You must have have secured planning permission before you submit a full application.'
           },
           yarKey: 'PlanningPermissionCondition'
         },
@@ -1536,7 +1534,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ3003803<br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ30038037<br/><br/><br/>
             OS grid reference number
           `
           },
@@ -1802,6 +1800,9 @@ const questionBank = {
           key: 'farmer-details',
           order: 240,
           title: 'Applicant’s details',
+          hint: {
+            text: 'Enter the farmer and farm business details'
+          },
           pageTitle: '',
           url: 'applicant-details',
           baseUrl: 'applicant-details',
@@ -2070,6 +2071,9 @@ const questionBank = {
           key: 'agent-details',
           order: 250,
           title: 'Agent’s details',
+          hint: {
+            text: 'Enter the agent and agent business details'
+          },
           pageTitle: '',
           url: 'agent-details',
           baseUrl: 'agent-details',

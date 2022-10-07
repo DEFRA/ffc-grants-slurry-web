@@ -150,7 +150,7 @@ const getPage = async (question, request, h) => {
   const data = getDataFromYarValue(request, yarKey, type)
 
   let conditionalHtml
-  conditionalHtml = await addConditionalLabelData(question, yarKey, type, request, conditionalHtml);
+  conditionalHtml = await addConditionalLabelData(question, yarKey, type, request, conditionalHtml)
 
   await processGA(question, request, confirmationId)
 
