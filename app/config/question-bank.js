@@ -1418,7 +1418,7 @@ const questionBank = {
             },
             {
               key: 'planning-permission-A3',
-              value: 'Not yet applied for but expected to be secured by 31 December 2023',
+              value: 'Not yet applied for but expected to be secured by 28 June 2024',
               redirectUrl: 'planning-permission-condition'
             }
           ],
