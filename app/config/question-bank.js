@@ -1418,7 +1418,7 @@ const questionBank = {
             },
             {
               key: 'planning-permission-A3',
-              value: 'Not yet applied for but expected to be secured by 31 December 2023',
+              value: 'Not yet applied for but expected to be secured by 28 June 2024',
               redirectUrl: 'planning-permission-condition'
             }
           ],
@@ -2343,6 +2343,8 @@ const questionBank = {
           minAnswerCount: 1,
           answers: []
         },
+                                                                          //CONFIRM  NOTE //
+        // <li>passed to the Environment Agency so that they are aware of my planned project</li> --> third bulled point was asked to remove by Ruth Wyre, RPA PO //
         {
           key: 'confirm',
           title: 'Confirm and send',
@@ -2360,7 +2362,6 @@ const questionBank = {
             <ul>
               <li>checked by the RPA</li>
               <li>passed to Natural England so they can contact me to provide advice on my project</li>
-              <li>passed to the Environment Agency so that they are aware of my planned project</li>
             </ul></br>
             I am aware that if my project is successful, details of my full application will be shared with the Environment Agency so they can provide assurance on the project location and store design.</br></br>
             I am happy to be contacted by Defra and RPA (or third-party on their behalf) about my application.</br></br>
