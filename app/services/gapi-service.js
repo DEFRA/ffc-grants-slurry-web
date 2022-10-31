@@ -2,9 +2,9 @@ const appInsights = require('./app-insights')
 const { getYarValue, setYarValue } = require('../helpers/session')
 const protectiveMonitoringServiceSendEvent = require('../services/protective-monitoring-service')
 const blockDefaultPageViews = [
-  'start', 'applying', 'confirmation', 'products-processed', 'remaining-costs',
-  'project-cost', 'project-start', 'planning-permission', 'score',
-  'country', 'legal-status', 'farming-type'
+  'start', 'applying', 'confirmation', 'remaining-costs', 'country', 'system-type', 'existing-storage-capacity',
+  'project-cost', 'project-type', 'project-started', 'planning-permission', 'score', 'cover',
+  'country', 'legal-status', 'applicant-type', 'potential-amount'
 ]
 const isBlockDefaultPageView = (url) => {
   const currentUrl = url.pathname.split('/').pop().toString().toLowerCase()
@@ -58,7 +58,6 @@ const sendDimensionOrMetric = async (request, { dimensionOrMetric, value }) => {
     const dmetrics = {}
     dmetrics[dimensionOrMetric] = value
     await request.ga.pageView(dmetrics)
-    // console.log('Metric Sending analytics page-view for %s', request.route.path)
   } catch (err) {
     appInsights.logException(request, { error: err })
   }
@@ -76,8 +75,8 @@ const sendDimensionOrMetrics = async (request, dimenisons) => {
       dmetrics[item.dimensionOrMetric] = item.value
     })
     await request.ga.pageView(dmetrics)
+
     console.log(dmetrics)
-    console.log(`[ METRICS SENDING ANALYTICS PAGE-VIEW FOR ${request.route.path} ]`)
   } catch (err) {
     appInsights.logException(request, { error: err })
   }
