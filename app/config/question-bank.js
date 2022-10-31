@@ -1635,7 +1635,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'For example, Browns Hill Farm lagoon expansion project'
+                text: 'For example, Browns Hill Farm lagoon project'
               },
               validate: [
                 {
