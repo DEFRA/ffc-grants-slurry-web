@@ -76,6 +76,7 @@ const sendDimensionOrMetrics = async (request, dimenisons) => {
     })
     await request.ga.pageView(dmetrics)
 
+
     console.log(dmetrics)
   } catch (err) {
     appInsights.logException(request, { error: err })
