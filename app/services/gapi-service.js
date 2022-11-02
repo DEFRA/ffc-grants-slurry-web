@@ -3,7 +3,7 @@ const { getYarValue, setYarValue } = require('../helpers/session')
 const protectiveMonitoringServiceSendEvent = require('../services/protective-monitoring-service')
 const blockDefaultPageViews = [
   'start', 'applying', 'confirmation', 'remaining-costs', 'country', 'system-type', 'existing-storage-capacity',
-  'project-cost', 'project-type', 'project-started', 'planning-permission', 'score', 'cover',
+  'project-cost', 'project-type', 'project-started', 'planning-permission', 'score', 'cover', 'planned-storage-capacity',
   'country', 'legal-status', 'applicant-type', 'potential-amount'
 ]
 const isBlockDefaultPageView = (url) => {
