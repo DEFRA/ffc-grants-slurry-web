@@ -6,7 +6,7 @@
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
         When I click on the element "#applicantType-2"  
-        When I click on the button "#btnContinue"
+        When I click on the button "#Continue"
         And I pause for 500ms
         Then I expect that the url contains "/legal-status"
 
@@ -16,7 +16,7 @@
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
         When I click on the element "#applicantType"  
-        When I click on the button "#btnContinue"
+        When I click on the button "#Continue"
         And I pause for 500ms
         Then I expect that the url contains "/legal-status"
 
@@ -26,7 +26,7 @@
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
         When I click on the element "#applicantType-3"  
-        When I click on the button "#btnContinue"
+        When I click on the button "#Continue"
         And I pause for 500ms
         Then I expect that the url contains "/legal-status"
         
@@ -35,8 +35,8 @@
         Given I open the url "/slurry-infrastructure/applicant-type"
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
-        When I click on the element "#applicantType-4"  
-        When I click on the button "#btnContinue"
+        When I click on the element "#applicantType-5"  
+        When I click on the button "#Continue"
         And I pause for 500ms
         Then I expect that element "h1" contains the text "You cannot apply for a grant from this scheme"
         #Then I expect that the url contains "/legal-status"
@@ -46,8 +46,8 @@
         Given I open the url "/slurry-infrastructure/applicant-type"
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
-        When I click on the element "#applicantType-4"  
-        When I click on the button "#btnContinue"
+        When I click on the element "#applicantType-5"  
+        When I click on the button "#Continue"
         And I pause for 500ms
         Then I expect that element "h1" contains the text "You cannot apply for a grant from this scheme"
         When I click on the link "See other grants you may be eligible for."
@@ -58,8 +58,8 @@
         Given I open the url "/slurry-infrastructure/applicant-type"
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
-        When I click on the element "#applicantType-4"  
-        When I click on the button "#btnContinue"
+        When I click on the element "#applicantType-5"  
+        When I click on the button "#Continue"
         And I pause for 500ms
         Then I expect that element "h1" contains the text "You cannot apply for a grant from this scheme"
         When I click on the link "Back"

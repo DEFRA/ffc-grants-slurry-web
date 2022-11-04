@@ -8,7 +8,7 @@ class ApplicantType extends Page {
     get cropApplicantType() { return $('input#applicantType.govuk-radios__input') }
     get saveAndContinueButton() { return $('.govuk-button') }
     // get saveAndContinueBut () { return $('//form/button') }
-    get saveAndContinueBut() { return $('#btnContinue') }
+    get saveAndContinueBut() { return $('#Continue') }
     get savAndContinueBut() { return $('button.govuk-button::before') }
 
     // css=form &gt; button.govuk-button    xpath=
@@ -40,7 +40,7 @@ class ApplicantType extends Page {
     }
 
     clickOnNoneOfTheAbove() {
-        const element = $('#applicantType-4.govuk-radios__input')
+        const element = $('#applicantType-5.govuk-radios__input')
         browser.execute('arguments[0].click();', element)
     }
 
