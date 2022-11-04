@@ -48,7 +48,7 @@ const getDependentSideBar = (sidebar, request) => {
 
 const getBackUrl = (hasScore, backUrlObject, backUrl, request) => {
   const url = getUrl(backUrlObject, backUrl, request)
-  return hasScore && (url === 'remaining-costs') ? null : url
+  return url
 }
 
 const showBackToDetailsButton = (key, request) => {

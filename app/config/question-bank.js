@@ -1390,13 +1390,6 @@ const questionBank = {
           backUrl: 'remaining-costs',
           nextUrl: 'planning-permission-evidence',
           preValidationKeys: ['remainingCosts'],
-          ineligibleContent: {
-            messageContent: 'Any planning permission must be in place by 31 January 2024.',
-            messageLink: {
-              url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
           fundingPriorities: 'Improving Adding Value',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1404,9 +1397,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: `Any planning permission must be in place by 31 December 2023. 
-
-                      You must have applied for planning permission before you submit a full application.`
+                para: 'You must have secured planning permission before you submit a full application.'
               }]
             }]
           },
@@ -1427,7 +1418,7 @@ const questionBank = {
             },
             {
               key: 'planning-permission-A3',
-              value: 'Not yet applied for but expected to be in place by 31 December 2023',
+              value: 'Not yet applied for but expected to be secured by 28 June 2024',
               redirectUrl: 'planning-permission-condition'
             }
           ],
@@ -1443,7 +1434,7 @@ const questionBank = {
           preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
-            messageContent: 'Any planning permission must be in place by 31st December 2023.'
+            messageContent: 'You must have secured planning permission before you submit a full application.'
           },
           yarKey: 'PlanningPermissionCondition'
         },
@@ -1536,7 +1527,7 @@ const questionBank = {
             isPageHeading: true
           },
           hint: {
-            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ3003803<br/><br/><br/>
+            html: `Enter OS grid reference number in the <a class="govuk-link" target="_blank" href="https://magic.defra.gov.uk/magicmap.aspx" rel="noopener noreferrer">Magic Map (opens in new tab)</a> format of 2 letters and 8 numbers, for example TQ30038037<br/><br/><br/>
             OS grid reference number
           `
           },
@@ -1644,7 +1635,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: 'For example, Browns Hill Farm lagoon expansion project'
+                text: 'For example, Browns Hill Farm lagoon project'
               },
               validate: [
                 {
@@ -1802,6 +1793,9 @@ const questionBank = {
           key: 'farmer-details',
           order: 240,
           title: 'Applicant’s details',
+          hint: {
+            text: 'Enter the farmer and farm business details'
+          },
           pageTitle: '',
           url: 'applicant-details',
           baseUrl: 'applicant-details',
@@ -2070,6 +2064,9 @@ const questionBank = {
           key: 'agent-details',
           order: 250,
           title: 'Agent’s details',
+          hint: {
+            text: 'Enter the agent and agent business details'
+          },
           pageTitle: '',
           url: 'agent-details',
           baseUrl: 'agent-details',
@@ -2346,6 +2343,8 @@ const questionBank = {
           minAnswerCount: 1,
           answers: []
         },
+                                                                          //CONFIRM  NOTE //
+        // <li>passed to the Environment Agency so that they are aware of my planned project</li> --> third bulled point was asked to remove by Ruth Wyre, RPA PO //
         {
           key: 'confirm',
           title: 'Confirm and send',
@@ -2363,7 +2362,6 @@ const questionBank = {
             <ul>
               <li>checked by the RPA</li>
               <li>passed to Natural England so they can contact me to provide advice on my project</li>
-              <li>passed to the Environment Agency so that they are aware of my planned project</li>
             </ul></br>
             I am aware that if my project is successful, details of my full application will be shared with the Environment Agency so they can provide assurance on the project location and store design.</br></br>
             I am happy to be contacted by Defra and RPA (or third-party on their behalf) about my application.</br></br>
