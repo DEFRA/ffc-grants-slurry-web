@@ -42,7 +42,7 @@
         #Then I expect that the url contains "/legal-status"
 
 
-        Scenario: Navigate on the link
+    Scenario: Navigate on the link
         Given I open the url "/slurry-infrastructure/applicant-type"
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
@@ -54,7 +54,7 @@
         And I pause for 500ms
         Then I expect that element "h1" contains the text "Rural payments and grants"
 
-        Scenario: Navigate through back link
+    Scenario: Navigate through back link
         Given I open the url "/slurry-infrastructure/applicant-type"
         And I pause for 500ms
         Then I expect that the url contains "/applicant-type" 
