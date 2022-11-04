@@ -17,6 +17,8 @@ import setPromptText from '../support/action/setPromptText'
 
 import ApplicantType from '../pageobjects/ffc-grant-applicanttype'
 import LegalStatus from '../pageobjects/ffc-grant-legal-status'
+import Country from '../pageobjects/ffc-grant-country'
+
 
 
 const { When } = require('cucumber')
@@ -156,4 +158,12 @@ When(/^I clicks on the "([^"]*)?" button$/, function (trades) {
 
 When(/^I click on the limited company button$/, function () {
   LegalStatus.clickOnLimitedCompany()
+})
+
+When(/^I click on CountryYes button$/, function () {
+  Country.clickOnCtyYesButton()
+})
+
+When(/^I click on CountryNo button$/, function () {
+  Country.clickOnCtyNoButton()
 })
