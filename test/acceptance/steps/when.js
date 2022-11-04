@@ -15,6 +15,9 @@ import setCookie from '../support/action/setCookie'
 import setInputField from '../support/action/setInputField'
 import setPromptText from '../support/action/setPromptText'
 
+import ApplicantType from '../pageobjects/ffc-grant-applicanttype'
+
+
 const { When } = require('cucumber')
 
 When(
@@ -96,3 +99,23 @@ When(
   /^I move to element "([^"]*)?"(?: with an offset of (\d+),(\d+))*$/,
   moveTo
 )
+
+When(/^I clicks on the button$/, function () {
+  ApplicantType.clickOnPigApplicantType()
+})
+
+When(/^I clicks on the "([^"]*)?"button$/, function (applicant) {
+  if (applicant === 'Pig') {
+    ApplicantType.clickOnPigApplicantType()
+  } else if (applicant === 'Beef') {
+    ApplicantType.clickOnBeef()
+  } else if (applicant === 'Dairy') {
+    ApplicantType.clickOnDairy()
+  } else if (applicant === 'NoneOfTheAbove') {
+    ApplicantType.clickOnNoneOfTheAbove()
+  }
+})
+
+When(/^I click on Continue button$/, async () => {
+  ApplicantType.clickOnSaveandContinueButton2()
+})
