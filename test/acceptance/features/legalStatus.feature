@@ -35,8 +35,8 @@ Feature: Legal Status
               And I pause for 500ms
               When I clicks on the "<trades>" button 
               And I click on Continue button
-              And I pause for 500ms
-              Then I expect that the url contains "/legal-status"
+              #And I pause for 500ms
+              #Then I expect that the url contains "/legal-status"
               And I pause for 500ms
               Then I expect that element "#div.govuk-grid-column-two-thirds>h1.govuk-heading-l" contains the text "You cannot apply for a grant from this scheme"                                                  
               #Then I expect that element "//main[@id='main-content']/div/div/h1" is displayed
