@@ -27,7 +27,7 @@ Feature: Tenancy
               Given I open the url "/slurry-infrastructure/applicant-type"
               And I pause for 500ms
               When I click on the element "#applicantType-2"  
-              When I click on the button "#btnContinue"
+              When I click on Continue button
               And I pause for 500ms
               When I click on the element "#legalStatus-2"
               And I click on Continue button
@@ -52,7 +52,7 @@ Feature: Tenancy
               Given I open the url "/slurry-infrastructure/applicant-type"
               And I pause for 500ms
               When I click on the element "#applicantType-2"  
-              When I click on the button "#btnContinue"
+              When I click on Continue button
               And I pause for 500ms
               When I click on the element "#legalStatus-2"
               And I click on Continue button
