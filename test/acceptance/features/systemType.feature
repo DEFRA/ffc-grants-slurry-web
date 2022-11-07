@@ -1,4 +1,4 @@
-Feature: System type
+Feature: System Type
      Scenario Outline: Choosing Slurry based system
               Given I open the url "/slurry-infrastructure/applicant-type"
               And I pause for 500ms
@@ -102,3 +102,4 @@ Feature: System type
               Then I expect that element "h1" contains the text "You cannot apply for a grant from this scheme"
               Examples:
               |trades  |preparatoryWork|
+              
