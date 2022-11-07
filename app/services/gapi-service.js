@@ -1,6 +1,6 @@
 const appInsights = require('./app-insights')
 const { getYarValue, setYarValue } = require('../helpers/session')
-const protectiveMonitoringServiceSendEvent = require('../services/protective-monitoring-service')
+const { sendMonitoringEvent } = require('../services/protective-monitoring-service')
 const blockDefaultPageViews = [
   'start', 'applying', 'confirmation', 'remaining-costs', 'country', 'system-type', 'existing-storage-capacity',
   'project-cost', 'project-type', 'project-started', 'planning-permission', 'score', 'cover', 'planned-storage-capacity',
@@ -133,7 +133,7 @@ const processGA = async (request, ga, _score, _confirmationId) => {
             value = gaConfig.value.value
             break
           case 'confirmationId':
-            await protectiveMonitoringServiceSendEvent(request, request.yar.id, 'FTF-JOURNEY-COMPLETED', '0706')
+            await sendMonitoringEvent(request, request.yar.id, 'FTF-JOURNEY-COMPLETED', '0706')
             value = gaConfig.value.value
             break
           case 'journey-time':
