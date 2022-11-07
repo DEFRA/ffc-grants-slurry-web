@@ -1,6 +1,6 @@
 import checkContainsAnyText from './checkContainsAnyText'
 
-export default async (elementType, element, falseCase) => {
+export default (elementType, element, falseCase) => {
   let newFalseCase = true
 
   if (typeof falseCase === 'function') {
@@ -9,5 +9,5 @@ export default async (elementType, element, falseCase) => {
     newFalseCase = false
   }
 
-  await checkContainsAnyText(elementType, element, newFalseCase)
+  checkContainsAnyText(elementType, element, newFalseCase)
 }

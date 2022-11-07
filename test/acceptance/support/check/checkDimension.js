@@ -6,12 +6,12 @@
  * @param  {String}   expectedSize Expected size
  * @param  {String}   dimension    Dimension to check (broad or tall)
  */
-export default async (selector, falseCase, expectedSize, dimension) => {
+export default (selector, falseCase, expectedSize, dimension) => {
   /**
      * The size of the given element
      * @type {Object}
      */
-  const elementSize = await $(selector).getSize()
+  const elementSize = $(selector).getSize()
 
   /**
      * Parsed size to check for
@@ -37,14 +37,14 @@ export default async (selector, falseCase, expectedSize, dimension) => {
   }
 
   if (falseCase) {
-    await expect(originalSize).to.not
+    expect(originalSize).to.not
       .equal(
         intExpectedSize,
         `Element "${selector}" should not have a ${label} of ` +
                 `${intExpectedSize}px`
       )
   } else {
-    await expect(originalSize).to
+    expect(originalSize).to
       .equal(
         intExpectedSize,
         `Element "${selector}" should have a ${label} of ` +

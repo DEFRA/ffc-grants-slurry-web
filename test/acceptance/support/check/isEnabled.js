@@ -4,18 +4,18 @@
  * @param  {String}   falseCase Whether to check if the given selector
  *                              is enabled or not
  */
-export default async (selector, falseCase) => {
+export default (selector, falseCase) => {
   /**
      * The enabled state of the given selector
      * @type {Boolean}
      */
-  const isEnabled = await $(selector).isEnabled()
+  const isEnabled = $(selector).isEnabled()
 
   if (falseCase) {
-    await expect(isEnabled).to.not
+    expect(isEnabled).to.not
       .equal(true, `Expected element "${selector}" not to be enabled`)
   } else {
-    await expect(isEnabled).to
+    expect(isEnabled).to
       .equal(true, `Expected element "${selector}" to be enabled`)
   }
 }

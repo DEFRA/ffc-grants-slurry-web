@@ -6,28 +6,28 @@
  * @param  {String}   expectedPosition  The position to check against
  * @param  {String}   axis              The axis to check on (x or y)
  */
-export default async (selector, falseCase, expectedPosition, axis) => {
+export default (selector, falseCase, expectedPosition, axis) => {
   /**
      * Get the location of the element on the given axis
      * @type {[type]}
      */
-  const location = await $(selector).getLocation(axis)
+  const location = $(selector).getLocation(axis)
 
   /**
      * Parsed expected position
-     * @type {number}
+     * @type {Int}
      */
   const intExpectedPosition = parseFloat(expectedPosition)
 
   if (falseCase) {
-    await expect(location).to.not
+    expect(location).to.not
       .equal(
         intExpectedPosition,
         `Element "${selector}" should not be positioned at ` +
                 `${intExpectedPosition}px on the ${axis} axis`
       )
   } else {
-    await expect(location).to
+    expect(location).to
       .equal(
         intExpectedPosition,
         `Element "${selector}" should be positioned at ` +
