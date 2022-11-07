@@ -801,9 +801,6 @@ const questionBank = {
           backUrl: 'cover',
           nextUrl: 'standardised-grant-amounts',
           preValidationKeys: ['cover'],
-          ga: [
-            { dimension: 'cm2', value: { type: 'journey-time' } }
-          ],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Estimate how much grant you could get',
@@ -1619,7 +1616,7 @@ const questionBank = {
           preValidationKeys: ['gridReference'],
           ga: [
             { dimension: 'cd1', value: { type: 'score', value: 'Eligible' } },
-            { dimension: 'cm3', value: { type: 'journey-time' } }
+            { dimension: 'cm2', value: { type: 'journey-time' } }
           ],
           fundingPriorities: '',
           type: 'multi-input',
