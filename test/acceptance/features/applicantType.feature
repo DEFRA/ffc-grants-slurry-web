@@ -1,14 +1,14 @@
  Feature: Applicant Type
 
-    Scenario: Choosing Beef applicant type
+    #Scenario: Choosing Beef applicant type
 
-        Given I open the url "/slurry-infrastructure/applicant-type"
-        And I pause for 500ms
-        Then I expect that the url contains "/applicant-type" 
-        When I click on the element "#applicantType-2"  
-        When I click on the button "#Continue"
-        And I pause for 500ms
-        Then I expect that the url contains "/legal-status"
+    #    Given I open the url "/slurry-infrastructure/applicant-type"
+    #    And I pause for 500ms
+    #    Then I expect that the url contains "/applicant-type" 
+    #    When I click on the element "#applicantType-2"  
+    #    When I click on the button "#Continue"
+    #    And I pause for 500ms
+    #    Then I expect that the url contains "/legal-status"
 
     #Scenario: Choosing Pig applicant type
 
