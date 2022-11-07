@@ -24,7 +24,7 @@ Feature: Legal Status
             #  |industrialSty |
             #  |coopSociety   |
             #  |BenCom        |
-#
+
             #  Scenario Outline: Choosing differents types of legal status
             #  Given I open the url "/slurry-infrastructure/applicant-type"
             #  And I pause for 500ms
@@ -44,4 +44,4 @@ Feature: Legal Status
             #  Examples:
             #  |None of the above|
             #    
-    #
+            

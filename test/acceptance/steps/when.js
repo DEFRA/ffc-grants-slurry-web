@@ -18,6 +18,8 @@ import setPromptText from '../support/action/setPromptText'
 import ApplicantType from '../pageobjects/ffc-grant-applicanttype'
 import LegalStatus from '../pageobjects/ffc-grant-legal-status'
 import Country from '../pageobjects/ffc-grant-country'
+import ProjectStarted from '../pageobjects/ffc-grant-project-started'
+
 
 
 
@@ -166,4 +168,17 @@ When(/^I click on CountryYes button$/, function () {
 
 When(/^I click on CountryNo button$/, function () {
   Country.clickOnCtyNoButton()
+})
+
+When(/^I click on Yes preparatory work button$/, function () {
+  ProjectStarted.clickOnYesPrepWork()
+})
+
+When(/^I click "([^"]*)?" button$/, function (preparatoryWork) {
+  if (preparatoryWork === 'yesPrepWork') {
+    ProjectStarted.clickOnYesPrepWork()
+    console.log(preparatoryWork)
+  } else if (preparatoryWork === 'noWorkDoneYet') {
+    ProjectStarted.clickOnNoProjectYet()
+  }
 })

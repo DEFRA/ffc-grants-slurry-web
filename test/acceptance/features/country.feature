@@ -1,4 +1,4 @@
-Featre: Country Page
+Feature: Country Page
      Scenario Outline: Choosing the Yes project plan
               Given I open the url "/slurry-infrastructure/applicant-type"
               And I pause for 500ms
@@ -37,5 +37,5 @@ Featre: Country Page
      #         Examples:
      #         |trades  |
      #         |sole    |
-#
-    #
+
+    
