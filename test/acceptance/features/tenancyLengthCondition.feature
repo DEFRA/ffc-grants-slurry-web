@@ -11,15 +11,12 @@ Feature: Tenancy Length Condition
               And I click on CountryYes button
               And I click on Continue button
               And I pause for 500ms
-              Then I expect that the url contains "/project-started"
-              When I click "<preparatoryWork>" button
+              When I click on the element "#projectStarted"
               And I click on Continue button
               And I pause for 500ms
-              Then I expect that the url contains "/tenancy"
               When I click on the element "#landOwnership-2"
               And I click on Continue button
               And I pause for 500ms
-              Then I expect that the url contains "/tenancy-length"
               When I click on the element "#tenancyLength-2"
               And I click on Continue button
               And I pause for 500ms
@@ -27,5 +24,3 @@ Feature: Tenancy Length Condition
               And I click on Continue button
               And I pause for 500ms
               Then I expect that the url contains "/project-items"
-
-              |trades  |preparatoryWork|
