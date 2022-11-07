@@ -19,6 +19,9 @@ import ApplicantType from '../pageobjects/ffc-grant-applicanttype'
 import LegalStatus from '../pageobjects/ffc-grant-legal-status'
 import Country from '../pageobjects/ffc-grant-country'
 import ProjectStarted from '../pageobjects/ffc-grant-project-started'
+import Tenancy from '../pageobjects/ffc-grant-tenancy'
+import TenancyLength from '../pageobjects/ffc-grant-tenancy-length'
+
 
 
 
@@ -181,4 +184,12 @@ When(/^I click "([^"]*)?" button$/, function (preparatoryWork) {
   } else if (preparatoryWork === 'noWorkDoneYet') {
     ProjectStarted.clickOnNoProjectYet()
   }
+})
+
+When(/^I click on yes land ownership button$/, function () {
+  Tenancy.clickOnYesLandOwnership()
+})
+
+When(/^I click on yes land ownership button$/, function () {
+  TenancyLength.clickOnYesTenancyLength()
 })

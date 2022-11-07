@@ -2,7 +2,7 @@ Feature: ProjectStart
      Scenario Outline: Choosing different start work on the project
               Given I open the url "/slurry-infrastructure/applicant-type"
               And I pause for 500ms
-              When I click on the element "#farmingType-2"  
+              When I click on the element "#applicantType-2"  
               When I click on the button "#btnContinue"
               And I pause for 500ms
               When I click on the element "#legalStatus-2"
@@ -16,14 +16,14 @@ Feature: ProjectStart
               And I pause for 500ms
               Then I expect that the url contains "/tenancy"
               Examples:
-              |trades  |permission          |preparatoryWork|
-#              |sole    |notNeededPermission |yesPrepWork    |
-#              |trust   |secured             |noWorkDoneYet  |
+              |trades   |preparatoryWork|
+#              |sole    |yesPrepWork    |
+#              |trust   |noWorkDoneYet  |
 
 #     Scenario: Choosing begun project work
 #              Given I open the url "/slurry-infrastructure/applicant-type"
 #              And I pause for 500ms
-#              When I click on the element "#farmingType-2"  
+#              When I click on the element "#applicantType-2"  
 #              When I click on the button "#btnContinue"
 #              And I pause for 500ms
 #              When I click on the element "#legalStatus-2"
