@@ -12,7 +12,7 @@ Feature: Tenancy Length Condition
               And I click on Continue button
               And I pause for 500ms
               Then I expect that the url contains "/project-started"
-              When I click on the element "#projectStarted"
+              When I click "<preparatoryWork>" button
               And I click on Continue button
               And I pause for 500ms
               Then I expect that the url contains "/tenancy"
@@ -27,3 +27,5 @@ Feature: Tenancy Length Condition
               And I click on Continue button
               And I pause for 500ms
               Then I expect that the url contains "/project-items"
+
+              |trades  |preparatoryWork|
