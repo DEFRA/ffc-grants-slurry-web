@@ -15,7 +15,7 @@ export default async (elementType, selector, falseCase, expectedText) => {
 
   if (
     ['button', 'container'].includes(elementType) ||
-       await $(selector).getAttribute('value') === null
+       await $(selector).attr('value') === null
   ) {
     command = 'getText'
   }
