@@ -21,6 +21,7 @@ import Country from '../pageobjects/ffc-grant-country'
 import ProjectStarted from '../pageobjects/ffc-grant-project-started'
 import Tenancy from '../pageobjects/ffc-grant-tenancy'
 import TenancyLength from '../pageobjects/ffc-grant-tenancy-length'
+import SystemType from '../pageobjects/ffc-grant-system-type'
 
 
 
@@ -192,4 +193,8 @@ When(/^I click on yes land ownership button$/, function () {
 
 When(/^I click on yes land ownership button$/, function () {
   TenancyLength.clickOnYesTenancyLength()
+})
+
+When(/^I click on slurry based system button$/, function () {
+  SystemType.clickOnSlurrySystem()
 })
