@@ -4,7 +4,7 @@
  *                                expected value or not
  * @param  {String}   expectedUrl The expected URL to check against
  */
-export default (falseCase, expectedUrl) => {
+export default async (falseCase, expectedUrl) => {
   /**
      * The current browser window's URL
      * @type {String}
@@ -12,10 +12,10 @@ export default (falseCase, expectedUrl) => {
   const currentUrl = browser.getUrl()
 
   if (falseCase) {
-    expect(currentUrl).to.not
+    await expect(currentUrl).to.not
       .equal(expectedUrl, `expected url not to be "${currentUrl}"`)
   } else {
-    expect(currentUrl).to
+    await expect(currentUrl).to
       .equal(
         expectedUrl,
         `expected url to be "${expectedUrl}" but found ` +

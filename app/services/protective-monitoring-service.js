@@ -1,7 +1,7 @@
 const { PublishEvent } = require('ffc-protective-monitoring')
 const config = require('../config/server')
 
-async function sendEvent (request, sessionId, event, pmcCode) {
+async function sendMonitoringEvent (request, sessionId, event, pmcCode) {
   const protectiveMonitoring = new PublishEvent(config.protectiveMonitoringUrl)
   await protectiveMonitoring.sendEvent({
     sessionid: sessionId,
@@ -29,4 +29,6 @@ function createEventDate () {
   return eventDate.toISOString()
 }
 
-module.exports = sendEvent
+module.exports = {
+  sendMonitoringEvent
+}
