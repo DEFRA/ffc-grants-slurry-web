@@ -2360,7 +2360,7 @@ const questionBank = {
               <li>checked by the RPA</li>
               <li>passed to Natural England so they can contact me to provide advice on my project</li>
             </ul></br>
-            I am aware that if my online application is successful, the information I submit and details of my full application will be shared with the Environment Agencyso they can provide assurance on the project location and store design.</br></br>
+            I am aware that if my online application is successful, the information I submit and details of my full application will be shared with the Environment Agency so they can provide assurance on the project location and store design.</br></br>
             I am happy to be contacted by Defra and RPA (or third-party on their behalf) about my application.</br></br>
             So that we can continue to improve our services and schemes, we may wish to contact you in the future. Please confirm if you are happy for us, or a third-party working for us, to contact you.`
           },
