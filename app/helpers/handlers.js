@@ -12,6 +12,7 @@ const gapiService = require('../services/gapi-service')
 const { startPageUrl } = require('../config/server')
 const { ALL_QUESTIONS } = require('../config/question-bank')
 const { formatOtherItems } = require('./../helpers/other-items-sizes')
+const emailFormatting = require('./../messaging/email/process-submission')
 
 const {
   getConfirmationId,
@@ -31,8 +32,11 @@ const setGrantsData = (question, request) => {
 };
 
 const sendContactDetailsToSenders = async (request, confirmationId) => {
+
   try {
-    await senders.sendContactDetails(createMsg.getAllDetails(request, confirmationId), request.yar.id)
+    const overAllScore = getYarValue(request, 'overAllScore')
+    const emailData = await emailFormatting({ body: createMsg.getAllDetails(request, confirmationId), overAllScore, correlationId: request.yar.id })
+    await senders.sendDesirabilitySubmitted(emailData, request.yar.id) // replace with sendDesirabilitySubmitted, and replace first param with call to function in process-submission
     await gapiService.sendDimensionOrMetrics(request, [{
       dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
       value: confirmationId
