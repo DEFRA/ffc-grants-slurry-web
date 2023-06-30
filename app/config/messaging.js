@@ -24,6 +24,12 @@ const messageConfigSchema = Joi.object({
     type: Joi.string(),
     ...sharedConfigSchema
   },
+  desirabilitySubmittedTopic: {
+    address: Joi.string().default('desirabilitySubmittedTopic'),
+    type: Joi.string(),
+    ...sharedConfigSchema
+  },
+  desirabilitySubmittedMsgType: Joi.string(),
   fetchCostRequestMsgType: Joi.string(),
   eligibilityAnswersMsgType: Joi.string(),
   contactDetailsMsgType: Joi.string(),
@@ -56,6 +62,12 @@ const config = {
     type: 'queue',
     ...sharedConfig
   },
+  desirabilitySubmittedTopic: {
+    address: process.env.DESIRABILITY_SUBMITTED_TOPIC_ADDRESS,
+    type: 'topic',
+    ...sharedConfig
+  },
+  desirabilitySubmittedMsgType: `${msgTypePrefix}.slurry.desirability.notification`,
   fetchCostRequestMsgType: `${msgTypePrefix}.fetch.cost.request`,
   eligibilityAnswersMsgType: `${msgTypePrefix}.slurry.eligibility.details`,
   contactDetailsMsgType: `${msgTypePrefix}.slurry.contact.details`,

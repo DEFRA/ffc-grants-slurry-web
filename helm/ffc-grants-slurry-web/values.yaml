@@ -62,6 +62,14 @@ container:
   surveyLink: dummy
   costRequestQueueAddress: ffc-grants-slurry-cost-details-req
   costResponseQueueAddress: ffc-grants-slurry-cost-details-res
+  desirabilitySubmittedTopicAddress: desirability-submitted
+  notifyEmailTemplate: dummy-template
+  worksheetProtectPassword: dummy-pwd
+  worksheetProtectEnabled: false
+  sendEmailToRpa: false
+  rpaEmail: FTF@rpa.gov.uk
+  worksheetHideEmptyRows: false
+  excelUploadEnvironment: dummy
 
 livenessProbe:
   path: /healthz

@@ -34,9 +34,8 @@ const setGrantsData = (question, request) => {
 const sendContactDetailsToSenders = async (request, confirmationId) => {
 
   try {
-    const overAllScore = getYarValue(request, 'overAllScore')
-    const emailData = await emailFormatting({ body: createMsg.getAllDetails(request, confirmationId), overAllScore, correlationId: request.yar.id })
-    await senders.sendDesirabilitySubmitted(emailData, request.yar.id) // replace with sendDesirabilitySubmitted, and replace first param with call to function in process-submission
+    const emailData = await emailFormatting({ body: createMsg.getAllDetails(request, confirmationId), correlationId: request.yar.id })
+    await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
     await gapiService.sendDimensionOrMetrics(request, [{
       dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
       value: confirmationId
