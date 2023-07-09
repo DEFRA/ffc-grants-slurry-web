@@ -284,7 +284,7 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       projectCost: getCurrencyFormat(itemsTotalValue),
       potentialFunding: getCurrencyFormat(calculatedGrant),
       remainingCost: remainingCosts,
-      gridReference: gridReference.toUpperCase(),
+      gridReference: gridReference.replace(/\s/g, '').toUpperCase(),
       projectName: businessDetails.projectName,
       projectType,
       businessName: businessDetails.businessName,

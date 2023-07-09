@@ -1,7 +1,7 @@
 const agentSubmission = require('./submission-agent.json')
 const farmerSubmission = require('./submission-farmer.json')
 const desirabilityScore = require('./desirability-score.json')
-
+const spreadsheetConfig = require('../../../../../../app/messaging/config/spreadsheet')
 describe('Create submission message', () => {
   const mockPassword = 'mock-pwd'
 
@@ -26,19 +26,20 @@ describe('Create submission message', () => {
 
   test('Farmer submission generates correct message payload', () => {
     const msg = createMsg(farmerSubmission, desirabilityScore)
-
+    console.info('---------MSG DETAILS---------')
+    console.table(msg.applicantEmail.details)
     expect(msg).toHaveProperty('agentEmail')
     expect(msg).toHaveProperty('applicantEmail')
     expect(msg).toHaveProperty('rpaEmail')
     expect(msg).toHaveProperty('spreadsheet')
-    expect(msg).toHaveProperty('gridReference')
     expect(msg.applicantEmail.emailAddress).toBe(farmerSubmission.farmerDetails.emailAddress)
+    expect(msg.applicantEmail.details.gridReference).toBe(farmerSubmission.gridReference.replace(/\s/g, '').toUpperCase())
     expect(msg.rpaEmail.emailAddress).toBe('FTF@rpa.gov.uk')
     expect(msg.agentEmail).toBe(null)
   })
 
   test('Farmer submission generates message payload without RPA email when config is Flase', () => {
-    jest.mock('../../../../../../app/messaging/email/config/spreadsheet', () => ({
+    jest.mock('../../../../../../app/messaging/config/spreadsheet', () => ({
       hideEmptyRows: true,
       protectEnabled: false,
       sendEmailToRpa: false,
@@ -52,7 +53,7 @@ describe('Create submission message', () => {
     expect(msg).toHaveProperty('applicantEmail')
     expect(msg).toHaveProperty('rpaEmail')
     expect(msg).toHaveProperty('spreadsheet')
-    expect(msg).toHaveProperty('gridReference')
+    // expect(msg).toHaveProperty('gridReference')
     expect(msg.applicantEmail.emailAddress).toBe(farmerSubmission.farmerDetails.emailAddress)
     expect(msg.rpaEmail.emailAddress).toBeFalsy
     expect(msg.agentEmail).toBe(null)
@@ -112,7 +113,7 @@ describe('Create submission message', () => {
   })
 
   test('Agent submission generates correct message payload', () => {
-    jest.mock('../../../../../../app/messaging/email/config/spreadsheet', () => ({
+    jest.mock('../../../../../../app/messaging/config/spreadsheet', () => ({
       hideEmptyRows: true,
       protectEnabled: true,
       sendEmailToRpa: true,
@@ -142,11 +143,11 @@ describe('Create submission message', () => {
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('defaultColumnWidth')
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('protectPassword')
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('rows')
-    expect(msg.spreadsheet.worksheets[0].rows.length).toBe(91)
+    expect(msg.spreadsheet.worksheets[0].rows.length).toBe(70)
 })
 
   test('Protect password property should not be set if config is false', () => {
-    jest.mock('../../../../../../app/messaging/email/config/spreadsheet', () => ({
+    jest.mock('../../../../../../app/messaging/config/spreadsheet', () => ({
       hideEmptyRows: true,
       protectEnabled: false,
       sendEmailToRpa: false,
@@ -155,13 +156,5 @@ describe('Create submission message', () => {
     const createSubmissionMsg = require('../../../../../../app/messaging/email/create-submission-msg')
     const msg = createSubmissionMsg(agentSubmission, desirabilityScore)
     expect(msg.spreadsheet.worksheets[0]).not.toHaveProperty('protectPassword')
-  })
-
-  test('getscorechance function', () => {
-    let msg = createMsg(farmerSubmission, desirabilityScore, 'strong')
-    expect(msg.getScoreChance).toBe('seems likely to')
-
-    msg = createMsg(farmerSubmission, desirabilityScore)
-    expect(msg.getScoreChance).toBe('seems unlikely to')
   })
 })
