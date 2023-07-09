@@ -57,5 +57,6 @@
     "sustainableMaterials":["Low carbon concrete", "Steel replacement products"],
     "introducingInnovation":["Technology", "Collaboration"],
     "calvingSystem":"Year round",
-    "calvesNumber": 22
+    "calvesNumber": 22,
+    "gridReference": "SE 123 456"
 }

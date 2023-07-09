@@ -72,6 +72,6 @@
     "permanentSickPen":["A permanent sick pen", "A separate air space"],
     "environmentalImpact":"Collect and store rainwater",
     "sustainableMaterials":["Low carbon concrete", "Steel replacement products"],
-    "introducingInnovation":["Technology", "Collaboration"]
-
-}  
+    "introducingInnovation":["Technology", "Collaboration"],
+    "gridReference":"SE 123 456"
+}
