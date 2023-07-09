@@ -9,6 +9,11 @@ const sharedConfigSchema = {
 }
 
 const messageConfigSchema = Joi.object({
+  projectDetailsQueue: {
+    address: Joi.string().default('projectDetailsQueue'),
+    type: Joi.string(),
+    ...sharedConfigSchema
+  },
   contactDetailsQueue: {
     address: Joi.string().default('contactDetails'),
     type: Joi.string(),
@@ -47,6 +52,11 @@ const sharedConfig = {
 const msgTypePrefix = 'uk.gov.ffc.grants' // ' '
 
 const config = {
+  projectDetailsQueue: {
+    address: process.env.PROJECT_DETAILS_QUEUE_ADDRESS,
+    type: 'queue',
+    ...sharedConfig
+  },
   contactDetailsQueue: {
     address: process.env.CONTACT_DETAILS_QUEUE_ADDRESS,
     type: 'queue',
