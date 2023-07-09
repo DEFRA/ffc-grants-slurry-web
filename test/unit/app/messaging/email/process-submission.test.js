@@ -7,7 +7,6 @@ jest.mock('../../../../../app/messaging/config/spreadsheet', () => ({
 jest.mock('../../../../../app/services/app-insights')
 const mockPassword = 'mock-pwd'
 const processSubmission = require('../../../../../app/messaging/email/process-submission')
-// const processSubmission = require('../../../../../app/messaging/process-submission')
 
 const cache = require('../../../../../app/config/cache');
 cache.getDesirabilityScore = jest.fn(async (_correlationId) => { })
