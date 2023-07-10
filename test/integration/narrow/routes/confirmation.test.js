@@ -24,7 +24,7 @@ describe('confirm page', () => {
       }
     }
 
-    jest.spyOn(senders, 'sendContactDetails').mockImplementationOnce(() => Promise.resolve(true))
+    jest.spyOn(senders, 'sendDesirabilitySubmitted').mockImplementationOnce(() => Promise.resolve(true))
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
