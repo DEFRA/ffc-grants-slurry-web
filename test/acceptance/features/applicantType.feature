@@ -64,7 +64,7 @@
     #    Then I expect that element "h1" contains the text "You cannot apply for a grant from this scheme"
     #    When I click on the link "Back"
     #    And I pause for 500ms
-    #    Then I expect that element "h1" contains the text "What type of farmer are you?"
+    #    Then I expect that element "h1" contains the text "What do you farm mainly?"
 
     #Scenario: User click on Accessibility link
     #    

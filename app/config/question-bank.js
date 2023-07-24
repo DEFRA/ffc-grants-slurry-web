@@ -77,9 +77,9 @@ const questionBank = {
         {
           key: 'applicant-type',
           order: 10,
-          title: 'What type of farmer are you?',
+          title: 'What do you farm mainly?',
           hint: {
-            text: 'Select all that apply'
+            text: 'Select one option'
           },
           pageTitle: '',
           ga: [{ journeyStart: true }],
@@ -88,8 +88,7 @@ const questionBank = {
           backUrl: 'start',
           nextUrl: 'legal-status',
           ineligibleContent: {
-            messageContent: `This grant is for pig, beef or dairy farmers. <br/> <br/> 
-            <div class="govuk-inset-text">Poultry, arable-only, contractors and horticultural growers are not currently eligible.</div>`,
+            messageContent: `This grant is for pig, beef or dairy farmers.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -100,40 +99,37 @@ const questionBank = {
               heading: 'Eligibility',
               content: [{
                 para: `This grant is for pig, beef or dairy farmers.
+
+                      If you mainly farm pigs, this grant is to get your slurry storage levels to 8 months. 
                 
-                Poultry, arable-only, contractors and horticultural growers are not currently eligible.`
+                      For mainly beef and dairy farmers, this grant is to get your storage levels to 6 months. `
               }]
             }]
           },
           fundingPriorities: 'Improve the environment',
-          type: 'multi-answer',
+          type: 'single-answer',
           minAnswerCount: 1,
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select the option that applies to you'
-            },
-            {
-              type: 'STANDALONE_ANSWER',
-              error: 'You cannot select that combination of options',
-              standaloneObject: {
-                questionKey: 'applicant-type',
-                answerKey: 'applicant-type-A4'
-              }
+              error: 'Select what you farm mainly'
             }
           ],
           answers: [
             {
               key: 'applicant-type-A1',
-              value: 'Pig'
+              value: 'Pig',
+              redirectUrl: 'intensive-farming'
             },
             {
               key: 'applicant-type-A2',
-              value: 'Beef'
+              value: 'Beef',
+              redirectUrl: 'legal-status'
             },
             {
               key: 'applicant-type-A3',
-              value: 'Dairy'
+              value: 'Dairy',
+              redirectUrl: 'legal-status'
             },
             {
               value: 'divider'
