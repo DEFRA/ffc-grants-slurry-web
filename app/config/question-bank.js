@@ -143,11 +143,94 @@ const questionBank = {
           yarKey: 'applicantType'
         },
         {
+          key: 'intensive-farming',
+          order: 15,
+          title: 'Do you have an environmental permit for intensive farming?',
+          hint: {
+            text: 'The location of the slurry store'
+          },
+          pageTitle: '',
+          backUrl: 'applicant-type',
+          nextUrl: 'legal-status',
+          url: 'intensive-farming',
+          baseUrl: 'intensive-farming',
+          preValidationKeys: ['applicantType'],
+          ineligibleContent: {
+            messageContent: 'This grant is only for projects in England.',
+            insertText: { text: 'Scotland, Wales and Northern Ireland have other grants available.' },
+            messageLink: {
+              url: '',
+              title: ''
+            }
+          },
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Environmental permit',
+              content: [{
+                para: `You must have a permit from the Environment Agency (EA) to rear pigs intensively if you have more than:`,
+                items: [
+                  '2,000 places for production pigs (over 30kg)',
+                  '750 places for sows'
+                ],
+                additionalPara: 'You may need to apply for a variation to your environment permit if you change your slurry storage.'
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select if you have an environmental permit for intensive farming'
+            }
+          ],
+          answers: [
+            {
+              key: 'intensive-farming-A1',
+              value: 'Yes',
+              redirectUrl:'intensive-farming-condition'
+            },
+            {
+              key: 'intensive-farming-A2',
+              value: 'No, my farm does not need an environmental permit for intensive farming'
+            }
+          ],
+          yarKey: 'intensiveFarming'
+        },
+        {
+          key: 'intensive-farming-condition',
+          title: 'You may need to apply for a change to your intensive farming permit',
+          order: 17,
+          url: 'intensive-farming-condition',
+          backUrl: 'intensive-farming',
+          nextUrl: 'legal-status',
+          preValidationKeys: ['intensiveFarming'],
+          maybeEligible: true,
+          maybeEligibleContent: {
+            messageHeader: 'You may need to apply for a change to your intensive farming permit',
+            messageContent: `If you have an intensive farming permit, or plan to get one, you may need to apply for a change to your permit. 
+            <ul class="govuk-list govuk-list--bullet"><li>applying to build a new store </li><li>expanding or replacing an existing store</li><li>covering an existing store</li></ul>
+            <p class='govuk-body'>You can use the Environment Agency’s (EA) pre-application advice service to find out more or discuss this with your EA site officer.</p>`,
+            warning: {
+              text: 'You must get your permit variation before you receive the final grant payment.'
+            }
+          }
+        },
+        {
           key: 'legal-status',
           order: 20,
           title: 'What is the legal status of the business?',
           pageTitle: '',
-          backUrl: 'applicant-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'intensiveFarming',
+            dependentAnswerKeysArray: ['intensive-farming-A2'],
+            urlOptions: {
+              thenUrl: 'intensive-farming',
+              elseUrl: 'intensive-farming-condition',
+              nonDependentUrl: 'applicant-type'
+            }
+          },
           nextUrl: 'country',
           url: 'legal-status',
           baseUrl: 'legal-status',
