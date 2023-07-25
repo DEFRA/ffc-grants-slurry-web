@@ -19,9 +19,9 @@ describe('Page: /existing-storage-capacity', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Less than 6 months')
-    expect(response.payload).toContain('6 months or more, but it is no longer fit for purpose')
-    expect(response.payload).toContain('6 months or more, and it is fit for purpose')
+    expect(response.payload).toContain('Less than 8 months')
+    expect(response.payload).toContain('8 months or more, but it is no longer fit for purpose')
+    expect(response.payload).toContain('8 months or more, and it is fit for purpose')
   })
 
   it('no option selected -> show error message', async () => {
@@ -34,15 +34,15 @@ describe('Page: /existing-storage-capacity', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select existing storage capacity')
+    expect(postResponse.payload).toContain(`Select how many months&#39; slurry storage capacity you have`)
   })
 
-  it('user selects ineligible option: \'6 months or more\' -> display ineligible page', async () => {
+  it('user selects ineligible option: \'8 months or more\' -> display ineligible page', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/existing-storage-capacity`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { existingStorageCapacity: '6 months or more, and it is fit for purpose', crumb: crumbToken }
+      payload: { existingStorageCapacity: '8 months or more, and it is fit for purpose', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -54,7 +54,7 @@ describe('Page: /existing-storage-capacity', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/existing-storage-capacity`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { existingStorageCapacity: 'Less than 6 months', crumb: crumbToken }
+      payload: { existingStorageCapacity: 'Less than 8 months', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
