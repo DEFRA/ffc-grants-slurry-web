@@ -567,11 +567,11 @@ const questionBank = {
               heading: 'Eligibility',
               content: [{
                 para: `
-                This grant is to get your serviceable storage levels to 6 months.
+                This grant is to get your serviceable storage levels to 8 months.
 
-                For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
+                For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
 
-                You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
+                You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                 items: []
               }]
             }],
@@ -583,21 +583,21 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select existing storage capacity'
+              error: `Select how many months' slurry storage capacity you have`
             }
           ],
           answers: [
             {
               key: 'existing-storage-capacity-A1',
-              value: 'Less than 6 months'
+              value: 'Less than 8 months'
             },
             {
               key: 'existing-storage-capacity-A2',
-              value: '6 months or more, but it is no longer fit for purpose'
+              value: '8 months or more, but it is no longer fit for purpose'
             },
             {
               key: 'existing-storage-capacity-A3',
-              value: '6 months or more, and it is fit for purpose',
+              value: '8 months or more, and it is fit for purpose',
               notEligible: true
             }
           ],
