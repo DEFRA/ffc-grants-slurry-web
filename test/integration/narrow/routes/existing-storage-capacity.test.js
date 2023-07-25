@@ -34,7 +34,7 @@ describe('Page: /existing-storage-capacity', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select existing storage capacity')
+    expect(postResponse.payload).toContain(`Select how many months' slurry storage capacity you have`)
   })
 
   it('user selects ineligible option: \'8 months or more\' -> display ineligible page', async () => {
