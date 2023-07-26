@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /tenancy', () => {
-  const varList = { tenancy: 'randomData' }
+describe('Page: /project-responsibility', () => {
+  const varList = { 'project-responsibility': 'randomData' }
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -14,35 +14,35 @@ describe('Page: /tenancy', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/tenancy`
+      url: `${global.__URLPREFIX__}/project-responsibility`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Is the planned project on land the business owns?')
-    expect(response.payload).toContain('Yes')
-    expect(response.payload).toContain('No')
+    expect(response.payload).toContain('Are you planning to ask your landlord to underwrite your Grant Funding Agreement?')
+    expect(response.payload).toContain('No, I plan to take full responsibility for the terms and conditions in the Grant Funding Agreement')
+    expect(response.payload).toContain('Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement')
   })
 
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/tenancy`,
+      url: `${global.__URLPREFIX__}/project-responsibility`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { tenancy: '', crumb: crumbToken }
+      payload: { projectResponsibility: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Select yes if the planned project is on land the business owns')
+    expect(postResponse.payload).toContain('Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement')
   })
 
   it('user selects \'Yes\' -> store user response and redirect to /system-type', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/tenancy`,
+      url: `${global.__URLPREFIX__}/project-responsibility`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { tenancy: 'Yes', crumb: crumbToken }
+      payload: { projectResponsibility: 'Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -50,25 +50,25 @@ describe('Page: /tenancy', () => {
     expect(postResponse.headers.location).toBe('system-type')
   })
 
-  it('user selects \'No\' -> store user response and redirect to /project-responsibility', async () => {
+  it('user selects \'No\' -> store user response and redirect to /system-type', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/tenancy`,
+      url: `${global.__URLPREFIX__}/project-responsibility`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { tenancy: 'No', crumb: crumbToken }
+      payload: { projectResponsibility: 'No, I plan to take full responsibility for the terms and conditions in the Grant Funding Agreement', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('project-responsibility')
+    expect(postResponse.headers.location).toBe('system-type')
   })
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/tenancy`
+      url: `${global.__URLPREFIX__}/project-responsibility`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"project-started\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"tenancy\" class=\"govuk-back-link\">Back</a>')
   })
 })

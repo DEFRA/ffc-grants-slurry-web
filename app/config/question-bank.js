@@ -385,7 +385,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.'
+                para: 'If you are a tenant farmer, either you or your landlord can take responsibility for the Grant Funding Agreement.'
               }]
             }]
           },
@@ -403,32 +403,35 @@ const questionBank = {
             {
               key: 'tenancy-A2',
               value: 'No',
-              redirectUrl: 'tenancy-length'
+              redirectUrl: 'project-responsibility'
             }
           ],
           yarKey: 'tenancy'
         },
         {
-          key: 'tenancy-length',
+          key: 'project-responsibility',
           order: 60,
-          title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
-          hint: {
-            text: 'The location of the slurry store'
-          },
+          title: 'Are you planning to ask your landlord to underwrite your Grant Funding Agreement?',
           pageTitle: '',
-          url: 'tenancy-length',
-          baseUrl: 'tenancy-length',
+          url: 'project-responsibility',
+          baseUrl: 'project-responsibility',
           backUrl: 'tenancy',
-          preValidationKeys: ['tenancy'],
           nextUrl: 'system-type',
+          preValidationKeys: ['tenancy'],
+          fundingPriorities: '',
           type: 'single-answer',
-          minAnswerCount: 1,
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          minAnswercount: 1,
           sidebar: {
             values: [{
-              heading: 'Eligibility',
+              heading: 'Grant Funding Agreement',
               content: [{
-                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.',
+                para: `
+                If you are awarded a grant, you will be issued with a Grant Funding Agreement. This lasts for 5 years after the date you receive your final grant payment.`,
+                items: []
+              },
+              {
+                para:`
+                If you think you might not be able to fulfil the full agreement, you can ask your landlord to countersign and underwrite the Grant Funding Agreement. For example, you could choose this option if you are on a short tenancy agreement.`,
                 items: []
               }]
             }]
@@ -436,35 +439,20 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select yes if the land has a tenancy agreement in place for 5 years after the final grant payment.'
+              error: 'Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement'
             }
           ],
           answers: [
             {
-              key: 'tenancy-length-A1',
-              value: 'Yes'
+              key: 'project-responsibility-A1',
+              value: 'No, I plan to take full responsibility for the terms and conditions in the Grant Funding Agreement'
             },
             {
-              key: 'tenancy-length-A2',
-              value: 'No',
-              redirectUrl: 'tenancy-length-condition'
+              key: 'project-responsibility-A2',
+              value: 'Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement'
             }
           ],
-          yarKey: 'tenancyLength'
-        },
-        {
-          key: 'tenancy-length-condition',
-          title: 'You may be able to apply for a grant from this scheme',
-          order: 70,
-          url: 'tenancy-length-condition',
-          backUrl: 'tenancy-length',
-          preValidationKeys: ['tenancyLength'],
-          nextUrl: 'system-type',
-          maybeEligible: true,
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for a grant from this scheme',
-            messageContent: 'You will need to extend your tenancy agreement for 5 years after the final payment.'
-          }
+          yarKey: 'projectResponsibility'
         },
         {
           key: 'system-type',
@@ -474,11 +462,11 @@ const questionBank = {
           url: 'system-type',
           baseUrl: 'system-type',
           backUrlObject: {
-            dependentQuestionYarKey: 'tenancyLength',
-            dependentAnswerKeysArray: ['tenancy-length-A1'],
+            dependentQuestionYarKey: 'tenancy',
+            dependentAnswerKeysArray: ['tenancy-A1'],
             urlOptions: {
-              thenUrl: 'tenancy-length',
-              elseUrl: 'tenancy-length-condition',
+              thenUrl: 'tenancy',
+              elseUrl: 'project-responsibility',
               nonDependentUrl: 'tenancy'
             }
           },

@@ -24,11 +24,11 @@ describe('Models', () => {
       text: 'answer_text'
     }],
     backUrlObject: {
-      dependentQuestionYarKey: 'tenancyLength',
-      dependentAnswerKeysArray: ['tenancy-length-A1'],
+      dependentQuestionYarKey: 'tenancy',
+      dependentAnswerKeysArray: ['tenancy-A1'],
       urlOptions: {
-        thenUrl: 'tenancy-length',
-        elseUrl: 'tenancy-length-condition',
+        thenUrl: 'tenancy',
+        elseUrl: 'tenancy',
         nonDependentUrl: 'tenancy'
       }
     },
@@ -167,11 +167,11 @@ describe('Models', () => {
         text: 'answer_text'
       }],
       backUrlObject: {
-        dependentQuestionYarKey: 'tenancyLength',
-        dependentAnswerKeysArray: ['tenancy-length-A1'],
+        dependentQuestionYarKey: 'tenancy',
+        dependentAnswerKeysArray: ['tenancy--A1'],
         urlOptions: {
-          thenUrl: 'tenancy-length',
-          elseUrl: 'tenancy-length-condition',
+          thenUrl: 'tenancy-',
+          elseUrl: 'tenancy',
           nonDependentUrl: 'tenancy'
         }
       },
