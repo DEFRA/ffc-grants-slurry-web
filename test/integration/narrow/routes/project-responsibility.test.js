@@ -20,7 +20,7 @@ describe('Page: /project-responsibility', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('Are you planning to ask your landlord to underwrite your Grant Funding Agreement?')
-    expect(response.payload).toContain('No, I plan to take full responsibility for the terms and conditions in the Grant Funding Agreement')
+    expect(response.payload).toContain('No, I plan to take full responsibility for meeting the terms and conditions in the Grant Funding Agreement')
     expect(response.payload).toContain('Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement')
   })
 
@@ -55,7 +55,7 @@ describe('Page: /project-responsibility', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/project-responsibility`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { projectResponsibility: 'No, I plan to take full responsibility for the terms and conditions in the Grant Funding Agreement', crumb: crumbToken }
+      payload: { projectResponsibility: 'No, I plan to take full responsibility for meeting the terms and conditions in the Grant Funding Agreement', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)

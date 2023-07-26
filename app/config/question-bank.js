@@ -445,7 +445,7 @@ const questionBank = {
           answers: [
             {
               key: 'project-responsibility-A1',
-              value: 'No, I plan to take full responsibility for the terms and conditions in the Grant Funding Agreement'
+              value: 'No, I plan to take full responsibility for meeting the terms and conditions in the Grant Funding Agreement'
             },
             {
               key: 'project-responsibility-A2',
