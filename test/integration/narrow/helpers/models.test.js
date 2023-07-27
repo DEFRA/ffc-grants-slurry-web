@@ -170,7 +170,7 @@ describe('Models', () => {
         dependentQuestionYarKey: 'tenancy',
         dependentAnswerKeysArray: ['tenancy--A1'],
         urlOptions: {
-          thenUrl: 'tenancy-',
+          thenUrl: 'tenancy',
           elseUrl: 'tenancy',
           nonDependentUrl: 'tenancy'
         }
