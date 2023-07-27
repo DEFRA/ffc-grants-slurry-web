@@ -1,6 +1,16 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /applicant-type', () => {
+  const varList = {}
+
+  jest.mock('../../../../app/helpers/session', () => ({
+    setYarValue: (request, key, value) => null,
+    getYarValue: (request, key) => {
+      if (varList[key]) return varList[key]
+      else return undefined
+    }
+  }))
+
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
