@@ -78,9 +78,6 @@ const questionBank = {
           key: 'applicant-type',
           order: 10,
           title: 'What do you farm mainly?',
-          hint: {
-            text: 'Select one option'
-          },
           pageTitle: '',
           ga: [{ journeyStart: true }],
           url: 'applicant-type',
