@@ -78,9 +78,6 @@ const questionBank = {
           key: 'applicant-type',
           order: 10,
           title: 'What do you farm mainly?',
-          hint: {
-            text: 'Select one option'
-          },
           pageTitle: '',
           ga: [{ journeyStart: true }],
           url: 'applicant-type',
@@ -146,9 +143,6 @@ const questionBank = {
           key: 'intensive-farming',
           order: 15,
           title: 'Do you have an environmental permit for intensive farming?',
-          hint: {
-            text: 'The location of the slurry store'
-          },
           pageTitle: '',
           backUrl: 'applicant-type',
           nextUrl: 'legal-status',
@@ -209,7 +203,8 @@ const questionBank = {
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'You may need to apply for a change to your intensive farming permit',
-            messageContent: `If you have an intensive farming permit, or plan to get one, you may need to apply for a change to your permit. 
+            messageContent: `<p>If you have an intensive farming permit, or plan to get one, you may need to apply for a change to your permit.</p>
+            <p>This may be required if you are:</p>
             <ul class="govuk-list govuk-list--bullet"><li>applying to build a new store </li><li>expanding or replacing an existing store</li><li>covering an existing store</li></ul>
             <p class='govuk-body'>You can use the Environment Agency’s (EA) pre-application advice service to find out more or discuss this with your EA site officer.</p>`,
             warning: {
