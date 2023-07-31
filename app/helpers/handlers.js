@@ -96,10 +96,7 @@ const setTitle = async (title, question, request) => {
 const parseAnswers = (question, request) => {
   // extra step to get the original question so if the user would to to change their answerinitial
   // it won't break
-  // const originalQuestion = ALL_QUESTIONS.filter(q => q.key === question.key)[0];
 
-  console.log("here: ", "-------------------------------------------------");
-  // console.log("originalAnswer: ", Answers);
   question.answers.map((answer) => {
     console.warn("--- WARN  ----", answer);
     answer.value = answer?.value.replace(
@@ -116,8 +113,6 @@ const parseAnswers = (question, request) => {
       }
     );
   });
-
-  // question.answers = formatted;
 };
 
 const processGA = async (question, request, confirmationId) => {
@@ -244,6 +239,7 @@ const getPage = async (question, request, h) => {
   let confirmationId = "";
   setGrantsData(question, request);
   setExistingStorageCapacity(request);
+
   if (question.parseAnswers) {
     parseAnswers(question, request);
   }
