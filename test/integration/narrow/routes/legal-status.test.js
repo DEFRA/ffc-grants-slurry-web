@@ -1,7 +1,9 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /legal-status', () => {
-  const varList = { businessLocation: 'randomData' }
+  const varList = { 
+    applicantType: 'Pig'
+}
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -79,6 +81,6 @@ describe('Page: /legal-status', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"applicant-type\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"intensive-farming-condition\" class=\"govuk-back-link\">Back</a>')
   })
 })

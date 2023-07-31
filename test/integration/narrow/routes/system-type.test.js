@@ -63,24 +63,24 @@ describe('Page: /system-type', () => {
     expect(postResponse.headers.location).toBe('existing-storage-capacity')
   })
 
-  it('page loads with correct back link when user select YES on tenancy length page', async () => {
-    varList.tenancyLength = 'Yes'
+  it('page loads with correct back link when user select YES on project responsibility page', async () => {
+    varList.projectResponsibility = 'Yes'
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/system-type`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"tenancy-length\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"project-responsibility\" class=\"govuk-back-link\">Back</a>')
   })
-  it('page loads with correct back link when the user select NO on tenancy length page', async () => {
-    varList.tenancyLength = 'No'
+  it('page loads with correct back link when the user select NO on project responsibility page', async () => {
+    varList.projectResponsibility = 'No'
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/system-type`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"tenancy-length-condition" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"project-responsibility" class=\"govuk-back-link\">Back</a>')
   })
 })

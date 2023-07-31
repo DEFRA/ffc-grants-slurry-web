@@ -254,6 +254,9 @@ const getPage = async (question, request, h) => {
     return h.view("not-eligible", NOT_ELIGIBLE);
   }
 
+  if(url ==='applicant-type'){
+    setYarValue(request, 'intensiveFarming', null)
+  }
   if (question.maybeEligible) {
     let { maybeEligibleContent } = question;
     maybeEligibleContent.title = question.title;

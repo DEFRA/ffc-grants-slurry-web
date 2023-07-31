@@ -76,10 +76,7 @@ const questionBank = {
         {
           key: 'applicant-type',
           order: 10,
-          title: 'What type of farmer are you?',
-          hint: {
-            text: 'Select all that apply'
-          },
+          title: 'What do you farm mainly?',
           pageTitle: '',
           ga: [{ journeyStart: true }],
           url: 'applicant-type',
@@ -87,8 +84,7 @@ const questionBank = {
           backUrl: 'start',
           nextUrl: 'legal-status',
           ineligibleContent: {
-            messageContent: `This grant is for pig, beef or dairy farmers. <br/> <br/> 
-            <div class="govuk-inset-text">Poultry, arable-only, contractors and horticultural growers are not currently eligible.</div>`,
+            messageContent: `This grant is for pig, beef or dairy farmers.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -99,40 +95,37 @@ const questionBank = {
               heading: 'Eligibility',
               content: [{
                 para: `This grant is for pig, beef or dairy farmers.
+
+                      If you mainly farm pigs, this grant is to get your slurry storage levels to 8 months. 
                 
-                Poultry, arable-only, contractors and horticultural growers are not currently eligible.`
+                      For mainly beef and dairy farmers, this grant is to get your storage levels to 6 months. `
               }]
             }]
           },
           fundingPriorities: 'Improve the environment',
-          type: 'multi-answer',
+          type: 'single-answer',
           minAnswerCount: 1,
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select the option that applies to you'
-            },
-            {
-              type: 'STANDALONE_ANSWER',
-              error: 'You cannot select that combination of options',
-              standaloneObject: {
-                questionKey: 'applicant-type',
-                answerKey: 'applicant-type-A4'
-              }
+              error: 'Select what you farm mainly'
             }
           ],
           answers: [
             {
               key: 'applicant-type-A1',
-              value: 'Pig'
+              value: 'Pig',
+              redirectUrl: 'intensive-farming'
             },
             {
               key: 'applicant-type-A2',
-              value: 'Beef'
+              value: 'Beef',
+              redirectUrl: 'legal-status'
             },
             {
               key: 'applicant-type-A3',
-              value: 'Dairy'
+              value: 'Dairy',
+              redirectUrl: 'legal-status'
             },
             {
               value: 'divider'
@@ -146,11 +139,92 @@ const questionBank = {
           yarKey: 'applicantType'
         },
         {
+          key: 'intensive-farming',
+          order: 15,
+          title: 'Do you have an environmental permit for intensive farming?',
+          pageTitle: '',
+          backUrl: 'applicant-type',
+          nextUrl: 'legal-status',
+          url: 'intensive-farming',
+          baseUrl: 'intensive-farming',
+          preValidationKeys: ['applicantType'],
+          ineligibleContent: {
+            messageContent: 'This grant is only for projects in England.',
+            insertText: { text: 'Scotland, Wales and Northern Ireland have other grants available.' },
+            messageLink: {
+              url: '',
+              title: ''
+            }
+          },
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Environmental permit',
+              content: [{
+                para: `You must have a permit from the Environment Agency (EA) to rear pigs intensively if you have more than:`,
+                items: [
+                  '2,000 places for production pigs (over 30kg)',
+                  '750 places for sows'
+                ],
+                additionalPara: 'You may need to apply for a variation to your environment permit if you change your slurry storage.'
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select if you have an environmental permit for intensive farming'
+            }
+          ],
+          answers: [
+            {
+              key: 'intensive-farming-A1',
+              value: 'Yes',
+              redirectUrl:'intensive-farming-condition'
+            },
+            {
+              key: 'intensive-farming-A2',
+              value: 'No, my farm does not need an environmental permit for intensive farming'
+            }
+          ],
+          yarKey: 'intensiveFarming'
+        },
+        {
+          key: 'intensive-farming-condition',
+          title: 'You may need to apply for a change to your intensive farming permit',
+          order: 17,
+          url: 'intensive-farming-condition',
+          backUrl: 'intensive-farming',
+          nextUrl: 'legal-status',
+          preValidationKeys: ['intensiveFarming'],
+          maybeEligible: true,
+          maybeEligibleContent: {
+            messageHeader: 'You may need to apply for a change to your intensive farming permit',
+            messageContent: `<p>If you have an intensive farming permit, or plan to get one, you may need to apply for a change to your permit.</p>
+            <p>This may be required if you are:</p>
+            <ul class="govuk-list govuk-list--bullet"><li>applying to build a new store </li><li>expanding or replacing an existing store</li><li>covering an existing store</li></ul>
+            <p class='govuk-body'>You can use the Environment Agency’s (EA) pre-application advice service to find out more or discuss this with your EA site officer.</p>`,
+            warning: {
+              text: 'You must get your permit variation before you receive the final grant payment.'
+            }
+          }
+        },
+        {
           key: 'legal-status',
           order: 20,
           title: 'What is the legal status of the business?',
           pageTitle: '',
-          backUrl: 'applicant-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'intensiveFarming',
+            dependentAnswerKeysArray: ['intensive-farming-A2'],
+            urlOptions: {
+              thenUrl: 'intensive-farming',
+              elseUrl: 'intensive-farming-condition',
+              nonDependentUrl: 'applicant-type'
+            }
+          },
           nextUrl: 'country',
           url: 'legal-status',
           baseUrl: 'legal-status',
@@ -384,7 +458,7 @@ const questionBank = {
             values: [{
               heading: 'Eligibility',
               content: [{
-                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.'
+                para: 'If you are a tenant farmer, either you or your landlord can take responsibility for the Grant Funding Agreement.'
               }]
             }]
           },
@@ -402,32 +476,35 @@ const questionBank = {
             {
               key: 'tenancy-A2',
               value: 'No',
-              redirectUrl: 'tenancy-length'
+              redirectUrl: 'project-responsibility'
             }
           ],
           yarKey: 'tenancy'
         },
         {
-          key: 'tenancy-length',
+          key: 'project-responsibility',
           order: 60,
-          title: 'Do you have a tenancy agreement for 5 years after the final grant payment?',
-          hint: {
-            text: 'The location of the slurry store'
-          },
+          title: 'Are you planning to ask your landlord to underwrite your Grant Funding Agreement?',
           pageTitle: '',
-          url: 'tenancy-length',
-          baseUrl: 'tenancy-length',
+          url: 'project-responsibility',
+          baseUrl: 'project-responsibility',
           backUrl: 'tenancy',
-          preValidationKeys: ['tenancy'],
           nextUrl: 'system-type',
+          preValidationKeys: ['tenancy'],
+          fundingPriorities: '',
           type: 'single-answer',
-          minAnswerCount: 1,
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          minAnswercount: 1,
           sidebar: {
             values: [{
-              heading: 'Eligibility',
+              heading: 'Grant Funding Agreement',
               content: [{
-                para: 'You must own the land or have a tenancy in place for 5 years after the final grant payment.',
+                para: `
+                If you are awarded a grant, you will be issued with a Grant Funding Agreement. This lasts for 5 years after the date you receive your final grant payment.`,
+                items: []
+              },
+              {
+                para:`
+                If you think you might not be able to fulfil the full agreement, you can ask your landlord to countersign and underwrite the Grant Funding Agreement. For example, you could choose this option if you are on a short tenancy agreement.`,
                 items: []
               }]
             }]
@@ -435,35 +512,20 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select yes if the land has a tenancy agreement in place for 5 years after the final grant payment.'
+              error: 'Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement'
             }
           ],
           answers: [
             {
-              key: 'tenancy-length-A1',
-              value: 'Yes'
+              key: 'project-responsibility-A1',
+              value: 'No, I plan to take full responsibility for meeting the terms and conditions in the Grant Funding Agreement'
             },
             {
-              key: 'tenancy-length-A2',
-              value: 'No',
-              redirectUrl: 'tenancy-length-condition'
+              key: 'project-responsibility-A2',
+              value: 'Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement'
             }
           ],
-          yarKey: 'tenancyLength'
-        },
-        {
-          key: 'tenancy-length-condition',
-          title: 'You may be able to apply for a grant from this scheme',
-          order: 70,
-          url: 'tenancy-length-condition',
-          backUrl: 'tenancy-length',
-          preValidationKeys: ['tenancyLength'],
-          nextUrl: 'system-type',
-          maybeEligible: true,
-          maybeEligibleContent: {
-            messageHeader: 'You may be able to apply for a grant from this scheme',
-            messageContent: 'You will need to extend your tenancy agreement for 5 years after the final payment.'
-          }
+          yarKey: 'projectResponsibility'
         },
         {
           key: 'system-type',
@@ -473,11 +535,11 @@ const questionBank = {
           url: 'system-type',
           baseUrl: 'system-type',
           backUrlObject: {
-            dependentQuestionYarKey: 'tenancyLength',
-            dependentAnswerKeysArray: ['tenancy-length-A1'],
+            dependentQuestionYarKey: 'tenancy',
+            dependentAnswerKeysArray: ['tenancy-A1'],
             urlOptions: {
-              thenUrl: 'tenancy-length',
-              elseUrl: 'tenancy-length-condition',
+              thenUrl: 'tenancy',
+              elseUrl: 'project-responsibility',
               nonDependentUrl: 'tenancy'
             }
           },
