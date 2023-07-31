@@ -93,9 +93,21 @@ const setTitle = async (title, question, request) => {
   }
 };
 
+const parseIneligibleContent = (question, request) => {
+  if (question.ineligibleContent) {
+    question.ineligibleContent = {
+      ...question.ineligibleContent,
+      messageContent: question.ineligibleContent.messageContent.replace(
+        SELECT_VARIABLE_TO_REPLACE,
+        (_ignore, additionalYarKeyName) =>
+          formatUKCurrency(getYarValue(request, additionalYarKeyName) || '')
+      ),
+    };
+  }
+};
 const parseAnswers = (question, request) => {
-  // extra step to get the original question so if the user would to to change their answerinitial
-  // it won't break
+  // TODO: extra step to get the original question so if the user would to to change their answerinitial
+  // it won't break, fml!
 
   question.answers.map((answer) => {
     console.warn("--- WARN  ----", answer);
@@ -156,7 +168,7 @@ const clearYarValue = (yarKey, payload, request) => {
 };
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer;
-  for (const [key, value] of Object.entries(payload)) {
+  for (const [ key, value ] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value);
     if (yarKey === "cover" && thisAnswer.key === "cover-A2") {
       request.yar.set("coverType", "");
@@ -169,10 +181,10 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         key,
         key === "projectPostcode"
           ? value
-              .replace(DELETE_POSTCODE_CHARS_REGEX, "")
-              .split(/(?=.{3}$)/)
-              .join(" ")
-              .toUpperCase()
+            .replace(DELETE_POSTCODE_CHARS_REGEX, "")
+            .split(/(?=.{3}$)/)
+            .join(" ")
+            .toUpperCase()
           : value
       );
     }
@@ -194,21 +206,21 @@ const handleMultiInput = (
       allFields = formatOtherItems(request);
     }
     allFields.forEach((field) => {
-      const payloadYarVal = payload[field.yarKey]
-        ? payload[field.yarKey]
-            .replace(DELETE_POSTCODE_CHARS_REGEX, "")
-            .split(/(?=.{3}$)/)
-            .join(" ")
-            .toUpperCase()
+      const payloadYarVal = payload[ field.yarKey ]
+        ? payload[ field.yarKey ]
+          .replace(DELETE_POSTCODE_CHARS_REGEX, "")
+          .split(/(?=.{3}$)/)
+          .join(" ")
+          .toUpperCase()
         : "";
       dataObject = {
         ...dataObject,
-        [field.yarKey]:
+        [ field.yarKey ]:
           field.yarKey === "postcode" || field.yarKey === "projectPostcode"
             ? payloadYarVal
-            : payload[field.yarKey] || "",
+            : payload[ field.yarKey ] || "",
         ...(field.conditionalKey
-          ? { [field.conditionalKey]: payload[field.conditionalKey] }
+          ? { [ field.conditionalKey ]: payload[ field.conditionalKey ] }
           : {}),
       };
     });
@@ -242,6 +254,7 @@ const getPage = async (question, request, h) => {
 
   if (question.parseAnswers) {
     parseAnswers(question, request);
+    parseIneligibleContent(question, request);
   }
 
   if (
@@ -254,7 +267,7 @@ const getPage = async (question, request, h) => {
     return h.view("not-eligible", NOT_ELIGIBLE);
   }
 
-  if(url ==='applicant-type'){
+  if (url === 'applicant-type') {
     setYarValue(request, 'intensiveFarming', null)
   }
   if (question.maybeEligible) {
