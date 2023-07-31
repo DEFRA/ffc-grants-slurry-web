@@ -49,7 +49,7 @@ describe('Page: /planned-storage-capacity', () => {
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
   })
 
-  it('user selects eligible option -> store user response and redirect to /project-type', async () => {
+  it('user selects eligible option -> store user response and redirect to /applying', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/planned-storage-capacity`,
@@ -59,6 +59,6 @@ describe('Page: /planned-storage-capacity', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('project-type')
+    expect(postResponse.headers.location).toBe('applying')
   })
 })
