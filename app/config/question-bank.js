@@ -15,7 +15,6 @@ const {
 } = require('../helpers/regex')
 
 const { LIST_COUNTIES } = require('../helpers/all-counties')
-
 /**
  * ----------------------------------------------------------------
  * list of yarKeys not bound to an answer, calculated separately
@@ -547,10 +546,18 @@ const questionBank = {
           hint: {
             text: 'Based on your current animal numbers'
           },
+          url: 'existing-storage-capacity',
           baseUrl: 'existing-storage-capacity',
           backUrl: 'system-type',
           nextUrl: 'planned-storage-capacity',
-          url: 'existing-storage-capacity',
+          // nextUrlObject: {
+          //   dependentQuestionYarKey: 'projectType',
+          //   dependentAnswerKeysArray: ['project-type-A1'],
+          //   urlOptions: {
+          //     thenUrl: 'serviceable-capacity-increase-replace',
+          //     elseUrl: 'serviceable-capacity-increase-additional'
+          //   }
+          // },
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
@@ -586,18 +593,19 @@ const questionBank = {
               error: `Select how many months' slurry storage capacity you have`
             }
           ],
+          parseAnswers: true,
           answers: [
             {
               key: 'existing-storage-capacity-A1',
-              value: 'Less than 8 months'
+              value: `Less than {{_existingStorageLimit_}} months`
             },
             {
               key: 'existing-storage-capacity-A2',
-              value: '8 months or more, but it is no longer fit for purpose'
+              value: '{{_existingStorageLimit_}} months or more, but it is no longer fit for purpose'
             },
             {
               key: 'existing-storage-capacity-A3',
-              value: '8 months or more, and it is fit for purpose',
+              value: '{{_existingStorageLimit_}} months or more, and it is fit for purpose',
               notEligible: true
             }
           ],
