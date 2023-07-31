@@ -13,7 +13,7 @@ const senders = require("../messaging/senders");
 const createMsg = require("../messaging/create-msg");
 const gapiService = require("../services/gapi-service");
 const { startPageUrl } = require("../config/server");
-const { ALL_QUESTIONS } = require("../config/question-bank");
+const { ALL_QUESTIONS, questionBank } = require("../config/question-bank");
 const { formatOtherItems } = require("./../helpers/other-items-sizes");
 const emailFormatting = require("./../messaging/email/process-submission");
 
@@ -100,7 +100,7 @@ const parseIneligibleContent = (question, request) => {
       messageContent: question.ineligibleContent.messageContent.replace(
         SELECT_VARIABLE_TO_REPLACE,
         (_ignore, additionalYarKeyName) =>
-          formatUKCurrency(getYarValue(request, additionalYarKeyName) || '')
+          getYarValue(request, additionalYarKeyName) || ''
       ),
     };
   }
@@ -108,9 +108,25 @@ const parseIneligibleContent = (question, request) => {
 const parseAnswers = (question, request) => {
   // TODO: extra step to get the original question so if the user would to to change their answerinitial
   // it won't break, fml!
-
+  // get a fresh copy of the answers
+  // const originalQuestion = questionBank.sections[ 0 ].questions.find(
+  //   (q) => q.url === question.url
+  // );
+  // console.log('here Original: ', originalQuestion.answers);
+  // console.log('-----------------------------------');
+  // console.log('here Question: ', question.answers);
+  // question.answers = originalQuestion.answers;
+  if (question?.answersTemplate) { // because that's the samrtest thing I could muster at this point!
+    question.answers = question.answersTemplate;
+  } else {
+    question.answersTemplate = question.answers;
+  }
+  console.log('here Temp: ', question.answersTemplate);
+  console.log('-----------------------------------');
+  console.log('here Real: ', question.answers);
+  console.log('-----------------------------------');
   question.answers.map((answer) => {
-    console.warn("--- WARN  ----", answer);
+    // console.warn("--- WARN  ----", answer);
     answer.value = answer?.value.replace(
       SELECT_VARIABLE_TO_REPLACE,
       (_ignore, additionalYarKeyName) => {
