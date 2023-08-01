@@ -733,6 +733,7 @@ const questionBank = {
           pageTitle: '',
           url: 'applying-for',
           baseUrl: 'applying-for',
+          nextUrl: 'project-type',
           backUrlObject: {
             dependentQuestionYarKey: 'plannedStorageCapacity',
             dependentAnswerKeysArray: ['planned-storage-capacity-A1','planned-storage-capacity-A2'],
@@ -783,8 +784,7 @@ const questionBank = {
             {
               key: 'applying-for-A1',
               value: 'Building a new store, replacing or expanding an existing store',
-              hint: { text: 'This includes adding a cover to the new or existing stores' },
-              redirectUrl: 'project-type'
+              hint: { text: 'This includes adding a cover to the new or existing stores' }
             },
             {
               key: 'applying-for-A2',
