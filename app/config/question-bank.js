@@ -855,11 +855,11 @@ const questionBank = {
           yarKey: 'fitForPurpose'
         },
         {
-          key: 'fit-for-purpose-condition',
+          key: 'fit-for-purpose-conditional',
           order: 145,
-          url: 'fit-for-purpose-condition',
+          url: 'fit-for-purpose-conditional',
           backUrl: 'fit-for-purpose',
-          nextUrl: 'grid-reference',
+          // nextUrl: 'grid-reference',
           maybeEligible: true,
           preValidationKeys: ['planningPermission'],
           maybeEligibleContent: {
@@ -878,7 +878,7 @@ const questionBank = {
           title: 'How will you increase your storage capacity?',
           baseUrl: 'project-type',
           backUrl: 'applying-for',
-          nextUrl: 'cover',
+          nextUrl: 'grand-funded-cover',
           url: 'project-type',
           preValidationKeys: ['applyingFor'],
           ineligibleContent: {
@@ -951,7 +951,14 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'grand-funded-cover',
           backUrl: 'project-type',
-          nextUrl: 'estimated-grant',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'applicantType',
+            dependentAnswerKeysArray: ['applicant-type-A1'],
+            urlOptions: {
+              thenUrl: 'existing-cover-pig',
+              elseUrl: 'existing-cover'
+            }
+          },
           url: 'grand-funded-cover',
           preValidationKeys: ['projectType'],
           ineligibleContent: {
@@ -999,7 +1006,7 @@ const questionBank = {
               value: 'Not needed, the slurry is treated with acidification'
             },
             {
-              diveder: 'or'
+              value: 'divider'
             },
             {
               key: 'grand-funded-cover-A4',
@@ -1010,10 +1017,110 @@ const questionBank = {
           yarKey: 'grandFundedCover'
         },
         {
+          key: 'Do you want to apply for a cover for existing stores?',
+          order: 170,
+          title: 'Do you want to apply for a cover for existing stores?',
+          baseUrl: 'existing-cover',
+          backUrl: 'grand-funded-cover',
+          nextUrl: 'fit-for-purpose',
+          url: 'existing-cover',
+          preValidationKeys: ['projectType'],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                You can use the grant to cover an existing store to help increase your total storage capacity to 6 months.
+                
+                Slurry acidification systems are not eligible for funding through this grant.`,
+                items: []
+              }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
+            }
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select if you need a cover for existing stores'
+            }
+          ],
+          answers: [
+            {
+              key: 'existing-cover-A1',
+              value: 'Yes'
+            },
+            {
+              key: 'existing-cover-A2',
+              value: 'No',
+              redirectUrl:'estimated-grant'
+            }
+          ],
+          yarKey: 'existingCover'
+        },
+        {
+          key: 'Do you want to apply for a cover for existing stores?',
+          order: 175,
+          title: 'Do you want to apply for a cover for existing stores?',
+          baseUrl: 'existing-cover-pig',
+          backUrl: 'grand-funded-cover',
+          nextUrl: 'fit-for-purpose',
+          url: 'existing-cover-pig',
+          preValidationKeys: ['projectType'],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                You can use the grant to cover an existing store to help increase your total storage capacity to 8 months.
+                
+                Slurry acidification systems are not eligible for funding through this grant.`,
+                items: []
+              }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
+            }
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select if you need a cover for existing stores'
+            }
+          ],
+          answers: [
+            {
+              key: 'existing-cover-pig-A1',
+              value: 'Yes'
+            },
+            {
+              key: 'existing-cover-pig-A2',
+              value: 'No',
+              redirectUrl:'estimated-grant'
+            }
+          ],
+          yarKey: 'existingCoverPig'
+        },
+        {
           key: 'estimated-grant',
           order: 180,
           url: 'estimated-grant',
-          backUrl: 'grand-funded-cover',
+          backUrlObject: {
+            dependentQuestionYarKey: 'existingCoverPig',
+            dependentAnswerKeysArray: ['existing-cover-pig-A2'],
+            urlOptions: {
+              thenUrl: 'existing-cover-pig',
+              elseUrl: 'fit-for-purpose-conditional',
+              nonDependentUrl: 'fit-for-purpose'
+            }
+          },
           nextUrl: 'standardised-grant-amounts',
           preValidationKeys: [],
           maybeEligible: true,
