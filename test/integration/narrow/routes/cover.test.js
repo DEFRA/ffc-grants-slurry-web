@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /cover', () => {
+describe('Page: /grand-funded-cover', () => {
   const varList = {
     legalStatus: 'randomData',
     projectType: 'fakeData'
@@ -17,21 +17,22 @@ describe('Page: /cover', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/cover`
+      url: `${global.__URLPREFIX__}/grand-funded-cover`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('Will the grant-funded store have an impermeable cover?')
-    expect(response.payload).toContain('Yes')
+    expect(response.payload).toContain('Yes, I need a cover')
+    expect(response.payload).toContain('Yes, I already have a cover')
     expect(response.payload).toContain('Not needed, the slurry is treated with acidification')
-    expect(response.payload).toContain('No')
+    expect(response.payload).toContain('None of the above')
   })
 
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover`,
+      url: `${global.__URLPREFIX__}/grand-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { crumb: crumbToken }
     }
@@ -41,12 +42,12 @@ describe('Page: /cover', () => {
     expect(postResponse.payload).toContain('Select impermeable cover option')
   })
 
-  it('user selects ineligible option: \'No\' -> display ineligible page', async () => {
+  it('user selects ineligible option: \'None of the above\' -> display ineligible page', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover`,
+      url: `${global.__URLPREFIX__}/grand-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { cover: 'No', crumb: crumbToken }
+      payload: { grandFundedCover: 'None of the above', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -56,9 +57,9 @@ describe('Page: /cover', () => {
   it('user selects eligible option -> store user response and redirect to /standard-costs', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover`,
+      url: `${global.__URLPREFIX__}/grand-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { cover: 'Yes', crumb: crumbToken }
+      payload: { grandFundedCover: 'Yes, I need a cover', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -69,7 +70,7 @@ describe('Page: /cover', () => {
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/cover`
+      url: `${global.__URLPREFIX__}/grand-funded-cover`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
