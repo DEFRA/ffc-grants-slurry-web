@@ -59,6 +59,6 @@ describe('Page: /planned-storage-capacity', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('applying')
+    expect(postResponse.headers.location).toBe('applying-for')
   })
 })
