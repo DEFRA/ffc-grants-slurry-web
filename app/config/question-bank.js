@@ -674,7 +674,7 @@ const questionBank = {
           },
           baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage-capacity',
-          nextUrl: 'applying',
+          nextUrl: 'applying-for',
           url: 'planned-storage-capacity',
           preValidationKeys: [],
           type: 'single-answer',
@@ -727,12 +727,12 @@ const questionBank = {
           yarKey: 'plannedStorageCapacity'
         },
         {
-          key: 'applying',
+          key: 'applying-for',
           order: 110,
           title: 'What are you applying for?',
           pageTitle: '',
-          url: 'applying',
-          baseUrl: 'applying',
+          url: 'applying-for',
+          baseUrl: 'applying-for',
           backUrlObject: {
             dependentQuestionYarKey: 'plannedStorageCapacity',
             dependentAnswerKeysArray: ['planned-storage-capacity-A1','planned-storage-capacity-A2'],
@@ -781,13 +781,13 @@ const questionBank = {
           ],
           answers: [
             {
-              key: 'applying-A1',
+              key: 'applying-for-A1',
               value: 'Building a new store, replacing or expanding an existing store',
               hint: { text: 'This includes adding a cover to the new or existing stores' },
               redirectUrl: 'project-type'
             },
             {
-              key: 'applying-A2',
+              key: 'applying-for-A2',
               value: 'An impermeable cover only',
               hint: { text:'To apply for a cover, you must have an existing store or stores that are fit for purpose' },
               redirectUrl: 'fit-for-purpose'
@@ -796,22 +796,22 @@ const questionBank = {
               value: 'divider'
             },
             {
-              key: 'applying-A3',
+              key: 'applying-for-A3',
               value: 'None of the above',
               notEligible: true
             },
           ],
-          yarKey: 'applying'
+          yarKey: 'applyingFor'
         },
         {
           key: 'project-type',
           order: 110,
           title: 'How will you increase your storage capacity?',
           baseUrl: 'project-type',
-          backUrl: 'applying',
+          backUrl: 'applying-for',
           nextUrl: 'cover',
           url: 'project-type',
-          preValidationKeys: ['applying'],
+          preValidationKeys: ['applyingFor'],
           ineligibleContent: {
             messageContent: `
             This grant is only for: <br> 
@@ -1891,39 +1891,39 @@ const questionBank = {
           yarKey: 'businessDetails'
 
         },
-        // {
-        //   key: 'applying',
-        //   order: 230,
-        //   title: 'Who is applying for this grant?',
-        //   pageTitle: '',
-        //   url: 'applying',
-        //   baseUrl: 'applying',
-        //   backUrl: 'business-details',
-        //   preValidationKeys: ['businessDetails'],
-        //   fundingPriorities: '',
-        //   type: 'single-answer',
-        //   classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-        //   minAnswerCount: 1,
-        //   validate: [
-        //     {
-        //       type: 'NOT_EMPTY',
-        //       error: 'Select who is applying for this grant'
-        //     }
-        //   ],
-        //   answers: [
-        //     {
-        //       key: 'applying-A1',
-        //       value: 'Applicant',
-        //       redirectUrl: 'applicant-details'
-        //     },
-        //     {
-        //       key: 'applying-A2',
-        //       value: 'Agent',
-        //       redirectUrl: 'agent-details'
-        //     }
-        //   ],
-        //   yarKey: 'applying'
-        // },
+        {
+          key: 'applying',
+          order: 230,
+          title: 'Who is applying for this grant?',
+          pageTitle: '',
+          url: 'applying',
+          baseUrl: 'applying',
+          backUrl: 'business-details',
+          preValidationKeys: ['businessDetails'],
+          fundingPriorities: '',
+          type: 'single-answer',
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select who is applying for this grant'
+            }
+          ],
+          answers: [
+            {
+              key: 'applying-A1',
+              value: 'Applicant',
+              redirectUrl: 'applicant-details'
+            },
+            {
+              key: 'applying-A2',
+              value: 'Agent',
+              redirectUrl: 'agent-details'
+            }
+          ],
+          yarKey: 'applying'
+        },
         {
           key: 'farmer-details',
           order: 240,
