@@ -815,7 +815,15 @@ const questionBank = {
           baseUrl: 'fit-for-purpose',
           backUrl: 'applying-for',
           nextUrl: 'estimated-grant',
-          preValidationKeys: ['applyingFor'],
+          nextUrlObject: {
+            dependentQuestionYarKey: 'applyingFor',
+            dependentAnswerKeysArray: ['applying-for-A1'],
+            urlOptions: {
+              thenUrl: 'estimated-grant',
+              elseUrl: 'estimated-grant'
+            }
+          },
+          preValidationKeys: [],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -848,8 +856,7 @@ const questionBank = {
             },
             {
               key: 'fit-for-purpose-A2',
-              value: 'No',
-              notEligible: true
+              value: 'No'
             }
           ],
           yarKey: 'fitForPurpose'
@@ -859,9 +866,9 @@ const questionBank = {
           order: 145,
           url: 'fit-for-purpose-conditional',
           backUrl: 'fit-for-purpose',
-          // nextUrl: 'grid-reference',
+          nextUrl: 'project-type',
           maybeEligible: true,
-          preValidationKeys: ['planningPermission'],
+          preValidationKeys: [],
           maybeEligibleContent: {
             messageHeader: 'You may be able to apply for a grant from this scheme',
             messageContent: 'You will not get grant funding for a cover if the existing store you want to cover is not fit for purpose.',
