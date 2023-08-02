@@ -638,9 +638,9 @@ const questionBank = {
                 para: `
                 This grant is to get your serviceable storage levels to 6 months.
 
-                For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
+                For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
 
-                You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
+                You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                 items: []
               }]
             }],
@@ -682,15 +682,7 @@ const questionBank = {
           baseUrl: 'pig-existing-storage-capacity',
           url: 'pig-existing-storage-capacity',
           backUrl: 'system-type',
-          // nextUrlObject: {
-          //   dependentQuestionYarKey: 'projectType',
-          //   dependentAnswerKeysArray: [ 'project-type-A1' ],
-          //   urlOptions: {
-          //     thenUrl: 'serviceable-capacity-increase-replace',
-          //     elseUrl: 'serviceable-capacity-increase-additional'
-          //   }
-          // },
-          nextUrl: 'planned-storage-capacity',
+          nextUrl: 'pig-planned-storage-capacity',
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
@@ -799,6 +791,67 @@ const questionBank = {
             {
               key: 'planned-storage-capacity-A3',
               value: 'Less than 6 months',
+              notEligible: true
+            }
+          ],
+          yarKey: 'plannedStorageCapacity'
+        },
+        {
+          key: 'pig-planned-storage-capacity',
+          order: 100,
+          title: 'How many months’ slurry storage capacity will you have after the project?',
+          hint: {
+            text: 'Based on your current animal numbers'
+          },
+          baseUrl: 'pig-planned-storage-capacity',
+          backUrl: 'pig-existing-storage-capacity',
+          nextUrl: 'applying-for',
+          url: 'pig-planned-storage-capacity',
+          preValidationKeys: [],
+          type: 'single-answer',
+          minAnswerCount: 1,
+          ineligibleContent: {
+            messageContent: 'This grant is to get your serviceable storage levels to 8 months.',
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.'
+            }
+          },
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is to get your serviceable storage levels to 8 months.
+
+                For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
+
+                Any capacity above 8 months is not covered by the grant.
+
+                You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
+                `,
+                items: []
+              }]
+            }]
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select planned storage capacity'
+            }
+          ],
+          answers: [
+            {
+              key: 'planned-storage-capacity-A1',
+              value: '8 months'
+            },
+            {
+              key: 'planned-storage-capacity-A2',
+              value: 'More than 8 months '
+            },
+            {
+              key: 'planned-storage-capacity-A3',
+              value: 'Less than 8 months',
               notEligible: true
             }
           ],
