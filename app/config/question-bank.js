@@ -623,7 +623,7 @@ const questionBank = {
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
-            This grant is to get your serviceable storage levels to 8 months.`,
+            This grant is to get your serviceable storage levels to 6 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
