@@ -1077,7 +1077,7 @@ const questionBank = {
           order: 145,
           url: 'fit-for-purpose-conditional',
           backUrl: 'fit-for-purpose',
-          nextUrl: 'project-type',
+          nextUrl: 'estimated-grant',
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
@@ -1340,11 +1340,12 @@ const questionBank = {
           key: "estimated-grant",
           order: 180,
           url: 'estimated-grant',
+          // backUrl: 'fit-for-purpose',
           backUrlObject: {
             dependentQuestionYarKey: 'existingCoverPig',
             dependentAnswerKeysArray: ['existing-cover-pig-A2'],
             urlOptions: {
-              thenUrl: 'existing-cover-pig',
+              thenUrl: 'fit-for-purpose',
               elseUrl: 'fit-for-purpose-conditional',
               nonDependentUrl: 'fit-for-purpose'
             }

@@ -100,16 +100,10 @@ const getPage = async (question, request, h) => {
   let confirmationId = ''
   setGrantsData(question, request);
 
-  const applyingFor = getYarValue(request, 'applyingFor')
-
-  // if(url==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && applyingFor === 'Building a new store, replacing or expanding an existing store'){
-  //   return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
-  // }
-  // if(url==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && applyingFor === 'An impermeable cover only'){
-  //   const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
-  //   gapiService.sendEligibilityEvent(request, 'true')
-  //   return h.view('not-eligible', NOT_ELIGIBLE)
-  // }
+  
+  if(url === 'applying-for'){
+    setYarValue(request,'fitForPurpose', null)
+  }
 
   if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
@@ -159,7 +153,7 @@ const getPage = async (question, request, h) => {
 
     consentOptionalData = await addConsentOptionalData(url, request)
 
-    const MAYBE_ELIGIBLE = { ...maybeEligibleContent, consentOptionalData, url, nextUrl, backUrl }
+    const MAYBE_ELIGIBLE = { ...maybeEligibleContent, consentOptionalData, url, nextUrl, backUrl : getUrl(backUrlObject, backUrl, request) }
     return h.view('maybe-eligible', MAYBE_ELIGIBLE)
   }
 
@@ -253,6 +247,14 @@ const showPostPage = (currentQuestion, request, h) => {
   thisAnswer = createAnswerObj(payload, yarKey, type, request, answers)
 
   handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload)
+
+  if(baseUrl==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store'){
+    return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
+  }
+
+  if(baseUrl==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
+    return h.view('not-eligible', NOT_ELIGIBLE)
+  }
 
   if (title) {
     currentQuestion = {
