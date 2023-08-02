@@ -546,7 +546,7 @@ const questionBank = {
           },
           nextUrlObject: {
             dependentQuestionYarKey: 'applicantType',
-            dependentAnswerKeysArray: [ 'applicantType-A1' ],
+            dependentAnswerKeysArray: [ 'applicant-type-A1' ],
             urlOptions: {
               thenUrl: 'pig-existing-storage-capacity',
               elseUrl: 'existing-storage-capacity'
@@ -636,7 +636,7 @@ const questionBank = {
               heading: 'Eligibility',
               content: [{
                 para: `
-                This grant is to get your serviceable storage levels to 8 months.
+                This grant is to get your serviceable storage levels to 6 months.
 
                 For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
 
@@ -658,15 +658,15 @@ const questionBank = {
           answers: [
             {
               key: 'existing-storage-capacity-A1',
-              value: 'Less than 8 months'
+              value: 'Less than 6 months'
             },
             {
               key: 'existing-storage-capacity-A2',
-              value: '8 months or more, but it is no longer fit for purpose'
+              value: '6 months or more, but it is no longer fit for purpose'
             },
             {
               key: 'existing-storage-capacity-A3',
-              value: '8 months or more, and it is fit for purpose',
+              value: '6 months or more, and it is fit for purpose',
               notEligible: true
             }
           ],
@@ -682,15 +682,15 @@ const questionBank = {
           baseUrl: 'pig-existing-storage-capacity',
           url: 'pig-existing-storage-capacity',
           backUrl: 'system-type',
-          nextUrlObject: {
-            dependentQuestionYarKey: 'projectType',
-            dependentAnswerKeysArray: [ 'project-type-A1' ],
-            urlOptions: {
-              thenUrl: 'serviceable-capacity-increase-replace',
-              elseUrl: 'serviceable-capacity-increase-additional'
-            }
-          },
-          // nextUrl: 'planned-storage-capacity',
+          // nextUrlObject: {
+          //   dependentQuestionYarKey: 'projectType',
+          //   dependentAnswerKeysArray: [ 'project-type-A1' ],
+          //   urlOptions: {
+          //     thenUrl: 'serviceable-capacity-increase-replace',
+          //     elseUrl: 'serviceable-capacity-increase-additional'
+          //   }
+          // },
+          nextUrl: 'planned-storage-capacity',
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
