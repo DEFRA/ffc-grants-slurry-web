@@ -60,7 +60,7 @@ describe('Page: /pig-existing-storage-capacity', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('planned-storage-capacity')
+    expect(postResponse.headers.location).toBe('pig-planned-storage-capacity')
   })
 
   it('page loads with correct back link', async () => {
