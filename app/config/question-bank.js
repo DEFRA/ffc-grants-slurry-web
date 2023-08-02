@@ -841,7 +841,7 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Select planned storage capacity",
+              error: "Select how many month’s slurry storage capacity you will have",
             },
           ],
           answers: [
@@ -908,7 +908,7 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Select planned storage capacity",
+              error: "Select how many month’s slurry storage capacity you will have",
             },
           ],
           answers: [
@@ -937,14 +937,11 @@ const questionBank = {
           baseUrl: "applying-for",
           nextUrl: "project-type",
           backUrlObject: {
-            dependentQuestionYarKey: "plannedStorageCapacity",
-            dependentAnswerKeysArray: [
-              "planned-storage-capacity-A1",
-              "planned-storage-capacity-A2",
-            ],
+            dependentQuestionYarKey: "applicantType",
+            dependentAnswerKeysArray: ["applicant-type-A1"],
             urlOptions: {
-              thenUrl: "planned-storage-capacity",
-              elseUrl: "pig-planned-storage-capacity",
+              thenUrl: "pig-planned-storage-capacity",
+              elseUrl: "planned-storage-capacity",
             },
           },
           preValidationKeys: [],
