@@ -674,9 +674,9 @@ const questionBank = {
           },
           baseUrl: 'planned-storage-capacity',
           backUrl: 'existing-storage-capacity',
-          nextUrl: 'project-type',
+          nextUrl: 'applying-for',
           url: 'planned-storage-capacity',
-          preValidationKeys: ['existingStorageCapacity'],
+          preValidationKeys: [],
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
@@ -727,14 +727,91 @@ const questionBank = {
           yarKey: 'plannedStorageCapacity'
         },
         {
+          key: 'applying-for',
+          order: 110,
+          title: 'What are you applying for?',
+          pageTitle: '',
+          url: 'applying-for',
+          baseUrl: 'applying-for',
+          nextUrl: 'project-type',
+          backUrlObject: {
+            dependentQuestionYarKey: 'plannedStorageCapacity',
+            dependentAnswerKeysArray: ['planned-storage-capacity-A1','planned-storage-capacity-A2'],
+            urlOptions: {
+              thenUrl: 'planned-storage-capacity',
+              elseUrl: 'pig-planned-storage-capacity'
+            }
+          },
+          preValidationKeys: [],
+          fundingPriorities: '',
+          type: 'single-answer',
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          minAnswerCount: 1,
+          ineligibleContent: {
+            messageContent: `
+            This grant is only for: <br> 
+            <ul class="govuk-list govuk-list--bullet">
+            <li>replacing an existing store that is no longer fit for purpose with a new store</li>
+            <li>adding a new store to increase existing capacity</li>
+            <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
+            <li>adding an impermeable cover to existing stores to increase storage capacity</li>
+            </ul>
+            `,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `A grant-funded store must have an impermeable cover unless the slurry is treated with acidification.`
+              }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
+            }
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select what you are applying for'
+            }
+          ],
+          answers: [
+            {
+              key: 'applying-for-A1',
+              value: 'Building a new store, replacing or expanding an existing store',
+              hint: { text: 'This includes adding a cover to the new or existing stores' }
+            },
+            {
+              key: 'applying-for-A2',
+              value: 'An impermeable cover only',
+              hint: { text:'To apply for a cover, you must have an existing store or stores that are fit for purpose' },
+              redirectUrl: 'fit-for-purpose'
+            },
+            {
+              value: 'divider'
+            },
+            {
+              key: 'applying-for-A3',
+              value: 'None of the above',
+              notEligible: true
+            },
+          ],
+          yarKey: 'applyingFor'
+        },
+        {
           key: 'project-type',
           order: 110,
           title: 'How will you increase your storage capacity?',
           baseUrl: 'project-type',
-          backUrl: 'planned-storage-capacity',
+          backUrl: 'applying-for',
           nextUrl: 'cover',
           url: 'project-type',
-          preValidationKeys: ['plannedStorageCapacity'],
+          preValidationKeys: ['applyingFor'],
           ineligibleContent: {
             messageContent: `
             This grant is only for: <br> 
@@ -1221,7 +1298,6 @@ const questionBank = {
               thenUrl: 'remaining-cost',
               elseUrl: 'item-sizes-quantities'
             }
-
           },
           hint: {
             text: 'Select all the items your project needs'
