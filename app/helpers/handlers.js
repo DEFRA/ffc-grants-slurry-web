@@ -36,18 +36,19 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
   try {
     const emailData = await emailFormatting({ body: createMsg.getAllDetails(request, confirmationId), correlationId: request.yar.id })
     await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
-    await gapiService.sendDimensionOrMetrics(request, [{
-      dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
-      value: confirmationId
-    }, {
-      dimensionOrMetric: gapiService.dimensions.FINALSCORE,
-      value: getYarValue(request, 'current-score')
-    },
-    {
-      dimensionOrMetric: gapiService.metrics.CONFIRMATION,
-      value: 'TIME'
-    }
-    ])
+    // TODO: update Gapi calls to use new format
+    // await gapiService.sendDimensionOrMetrics(request, [ {
+    //   dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
+    //   value: confirmationId
+    // }, {
+    //   dimensionOrMetric: gapiService.dimensions.FINALSCORE,
+    //   value: getYarValue(request, 'current-score')
+    // },
+    // {
+    //   dimensionOrMetric: gapiService.metrics.CONFIRMATION,
+    //   value: 'TIME'
+    // }
+    // ])
     console.log('[CONFIRMATION EVENT SENT]')
   } catch (err) {
     console.log('ERROR: ', err)
@@ -116,7 +117,7 @@ const getPage = async (question, request, h) => {
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
-  if(url ==='applicant-type'){
+  if (url === 'applicant-type') {
     setYarValue(request, 'intensiveFarming', null)
   }
   if (question.maybeEligible) {
@@ -202,7 +203,7 @@ const clearYarValue = (yarKey, payload, request) => {
 }
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
-  for (const [key, value] of Object.entries(payload)) {
+  for (const [ key, value ] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
     if (yarKey === 'cover' && thisAnswer.key === 'cover-A2') {
       request.yar.set('coverType', '')
