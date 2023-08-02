@@ -544,7 +544,14 @@ const questionBank = {
               nonDependentUrl: 'tenancy'
             }
           },
-          nextUrl: 'existing-storage-capacity',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'applicantType',
+            dependentAnswerKeysArray: [ 'applicantType-A1' ],
+            urlOptions: {
+              thenUrl: 'pig-existing-storage-capacity',
+              elseUrl: 'existing-storage-capacity'
+            }
+          },
           preValidationKeys: ['tenancy'],
           ineligibleContent: {
             messageContent: 'This grant is for farmers currently using a system that produces slurry.',
@@ -659,6 +666,77 @@ const questionBank = {
             },
             {
               key: 'existing-storage-capacity-A3',
+              value: '8 months or more, and it is fit for purpose',
+              notEligible: true
+            }
+          ],
+          yarKey: 'existingStorageCapacity'
+        },
+        {
+          key: 'pig-existing-storage-capacity',
+          order: 90,
+          title: 'How many months’ slurry storage capacity do you have?',
+          hint: {
+            text: 'Based on your current animal numbers'
+          },
+          baseUrl: 'pig-existing-storage-capacity',
+          url: 'pig-existing-storage-capacity',
+          backUrl: 'system-type',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'projectType',
+            dependentAnswerKeysArray: [ 'project-type-A1' ],
+            urlOptions: {
+              thenUrl: 'serviceable-capacity-increase-replace',
+              elseUrl: 'serviceable-capacity-increase-additional'
+            }
+          },
+          // nextUrl: 'planned-storage-capacity',
+          preValidationKeys: ['systemType'],
+          ineligibleContent: {
+            messageContent: `
+            This grant is to get your serviceable storage levels to 8 months.`,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you may be eligible for.'
+            }
+          },
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            values: [{
+              heading: 'Eligibility',
+              content: [{
+                para: `
+                This grant is to get your serviceable storage levels to 8 months.
+
+                For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
+
+                You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
+                items: []
+              }]
+            }],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
+            }
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: `Select how many months' slurry storage capacity you have`
+            }
+          ],
+          answers: [
+            {
+              key: 'pig-existing-storage-capacity-A1',
+              value: 'Less than 8 months'
+            },
+            {
+              key: 'pig-existing-storage-capacity-A2',
+              value: '8 months or more, but it is no longer fit for purpose'
+            },
+            {
+              key: 'pig-existing-storage-capacity-A3',
               value: '8 months or more, and it is fit for purpose',
               notEligible: true
             }
