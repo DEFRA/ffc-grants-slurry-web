@@ -908,7 +908,7 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Select how many month’s slurry storage capacity you will have",
+              error: "Select how many months’ slurry storage capacity you will have",
             },
           ],
           answers: [
