@@ -2,8 +2,12 @@ const { crumbToken } = require('./test-helper')
 
 describe('Page: /grand-funded-cover', () => {
   const varList = {
-    legalStatus: 'randomData',
-    projectType: 'fakeData'
+    applicantType: "Pig",
+    applyingFor: "",
+    projectType: '',
+    existingCover: '',
+    grandFundedCover: '',
+    fitForPurpose: ''
   }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -54,7 +58,10 @@ describe('Page: /grand-funded-cover', () => {
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
   })
 
-  it('user selects eligible option -> store user response and redirect to /standard-costs', async () => {
+  it('user selects eligible option -> store user response and redirect to /existing-cover-pig when the user select pig journey', async () => {
+    varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
+    varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
+    varList.grandFundedCover = 'Yes, I need a cover'
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/grand-funded-cover`,
@@ -64,7 +71,24 @@ describe('Page: /grand-funded-cover', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('estimated-grant')
+    expect(postResponse.headers.location).toBe('existing-cover-pig')
+  })
+
+  it('user selects eligible option -> store user response and redirect to /existing-cover', async () => {
+    varList.applicantType = "Beef",
+    varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
+    varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
+    varList.grandFundedCover = 'Yes, I need a cover'
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/grand-funded-cover`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { grandFundedCover: 'Yes, I need a cover', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(302)
+    expect(postResponse.headers.location).toBe('existing-cover')
   })
 
   it('page loads with correct back link', async () => {

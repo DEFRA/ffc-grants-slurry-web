@@ -202,7 +202,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
   for (const [ key, value ] of Object.entries(payload)) {
     thisAnswer = answers?.find(answer => (answer.value === value))
-    if (yarKey === 'cover' && thisAnswer.key === 'cover-A2') {
+    if (yarKey === 'grandFundedCover' && thisAnswer.key === 'grandFundedCover-A3') {
       request.yar.set('coverType', '')
       request.yar.set('coverSize', '')
     }

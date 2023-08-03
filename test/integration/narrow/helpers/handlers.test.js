@@ -91,10 +91,10 @@ describe('Get & Post Handlers', () => {
   test('getPostHandler', async () => {
     question = {
       baseUrl: 'mock-url',
-      yarKey: 'cover',
+      yarKey: 'grandFundedCover',
       title: 'mock-title',
       ineligibleContent: true,
-      answers: [ { value: 'mock-value', key: 'cover-A2' } ],
+      answers: [ { value: 'mock-value', key: 'grandFundedCover-A3' } ],
       nextUrl: 'mock-next-url',
       type: 'mock-type',
     }
