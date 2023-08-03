@@ -2,8 +2,8 @@ const { crumbToken } = require("./test-helper");
 
 describe("Page: /fit-for-purpose", () => {
     const varList = {
-    applicantType: "Pig",
-    applyingFor: "",
+    applicantType: 'Pig',
+    applyingFor: '',
     projectType: '',
     existingCover: '',
     grandFundedCover: ''
@@ -58,7 +58,6 @@ it("user selects eligible option: \'Yes\'  -> store user response and redirect t
 });
 
 it('user selects ineligible option: \'No\' when applying-for page is impermeable cover only -> display ineligible page', async () => {
-    varList.applicantType = 'Pig'
     varList.plannedStorageCapacity = '8 months'
     varList.applyingFor = "An impermeable cover only"
     const postOptions = {

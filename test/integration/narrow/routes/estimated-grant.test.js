@@ -2,8 +2,8 @@ const { crumbToken } = require('./test-helper')
 
 describe('Page: /estimated-grant', () => {
     const varList = {
-      applicantType: "Pig",
-      applyingFor: "",
+      applicantType: 'Pig',
+      applyingFor: '',
       projectType: '',
       existingCover: '',
       grandFundedCover: '',
