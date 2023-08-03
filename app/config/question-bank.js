@@ -1341,7 +1341,7 @@ const questionBank = {
               redirectUrl:'estimated-grant'
             }
           ],
-          yarKey: 'existingCoverPig'
+          yarKey: 'existingCover'
         },
         {
           key: "estimated-grant",

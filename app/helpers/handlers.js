@@ -103,6 +103,9 @@ const getPage = async (question, request, h) => {
   
   if(url === 'applying-for'){
     setYarValue(request,'fitForPurpose', null)
+    setYarValue(request, 'projectType', null)
+    setYarValue(request, 'grandFundedCover', null)
+    setYarValue(request, 'existingCover', null)
   }
 
   if (url === 'potential-amount' && (!getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo).isEligible)) {
@@ -250,9 +253,7 @@ const showPostPage = (currentQuestion, request, h) => {
 
   if(baseUrl==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store'){
     return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
-  }
-
-  if(baseUrl==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
+  }else if (baseUrl==='fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No' && getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
