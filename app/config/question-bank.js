@@ -1309,6 +1309,7 @@ const questionBank = {
           preValidationKeys: ['projectType'],
           type: 'single-answer',
           minAnswerCount: 1,
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           sidebar: {
             values: [{
               heading: 'Eligibility',
