@@ -1024,7 +1024,14 @@ const questionBank = {
           pageTitle: '',
           url: 'fit-for-purpose',
           baseUrl: 'fit-for-purpose',
-          backUrl: 'applying-for',
+          backUrlObject: {
+            dependentQuestionYarKey: 'applyingFor',
+            dependentAnswerKeysArray: ['applying-for-A2'],
+            urlOptions: {
+              thenUrl: 'applying-for',
+              elseUrl: 'existing-cover'
+            }
+          },
           nextUrl: 'estimated-grant',
           nextUrlObject: {
             dependentQuestionYarKey: 'applyingFor',
@@ -1340,7 +1347,6 @@ const questionBank = {
           key: "estimated-grant",
           order: 180,
           url: 'estimated-grant',
-          // backUrl: 'fit-for-purpose',
           backUrlObject: {
             dependentQuestionYarKey: 'fitForPurpose',
             dependentAnswerKeysArray: ['fit-for-purpose-A1'],
