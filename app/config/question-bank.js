@@ -1342,12 +1342,12 @@ const questionBank = {
           url: 'estimated-grant',
           // backUrl: 'fit-for-purpose',
           backUrlObject: {
-            dependentQuestionYarKey: 'existingCoverPig',
-            dependentAnswerKeysArray: ['existing-cover-pig-A2'],
+            dependentQuestionYarKey: 'fitForPurpose',
+            dependentAnswerKeysArray: ['fit-for-purpose-A1'],
             urlOptions: {
               thenUrl: 'fit-for-purpose',
               elseUrl: 'fit-for-purpose-conditional',
-              nonDependentUrl: 'fit-for-purpose'
+              nonDependentUrl: 'existing-cover'
             }
           },
           nextUrl: 'standardised-grant-amounts',
