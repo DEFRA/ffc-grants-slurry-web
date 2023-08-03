@@ -91,7 +91,7 @@ const addConditionalLabelData = async (question, yarKey, type, request, condHTML
   return condHTML;
 }
 const getPage = async (question, request, h) => {
-  const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule } = question
+  const { url, backUrl, nextUrlObject, type, title, yarKey, preValidationKeys, preValidationKeysRule, backUrlObject } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
   const isRedirect = guardPage(request, preValidationKeys, preValidationKeysRule)
   if (isRedirect) {
