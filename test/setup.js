@@ -13,7 +13,7 @@ beforeEach(async () => {
   jest.mock('../app/cookies/index', () => mockSession)
   jest.mock('../app/services/gapi-service.js')
   jest.mock('../app/services/app-insights.js')
-
+  jest.mock("applicationinsights");
   const server = await createServer();
   await server.start();
   global.__SERVER__ = server
