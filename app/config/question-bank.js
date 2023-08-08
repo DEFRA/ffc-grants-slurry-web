@@ -841,7 +841,8 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Select how many month’s slurry storage capacity you will have",
+              error:
+                "Select how many month’s slurry storage capacity you will have",
             },
           ],
           answers: [
@@ -908,7 +909,8 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Select how many month’s slurry storage capacity you will have",
+              error:
+                "Select how many month’s slurry storage capacity you will have",
             },
           ],
           answers: [
@@ -1933,7 +1935,7 @@ const questionBank = {
               elseUrl: "planning-permission-condition",
             },
           },
-          // preValidationKeys: ["planningPermission"],
+          preValidationKeys: ["planningPermission"],
           type: "input",
           classes: "govuk-input--width-10",
           label: {
@@ -1942,7 +1944,7 @@ const questionBank = {
             isPageHeading: true,
           },
           hint: {
-            html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br />
+            html: `You can find your slurry store's OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br />
             Enter in the format of 2 letters and 10 numbers, for example SP9620733594<br/><br/>
             OS grid reference number
           `,
