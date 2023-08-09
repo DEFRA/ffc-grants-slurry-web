@@ -72,7 +72,8 @@
     "webpack-cli": "^4.7.2"
   },
   "overrides": {
-    "semver": "7.5.3"
+    "semver": "7.5.3",
+    "import-in-the-middle": "1.4.2"
   },
   "standard": {
     "globals": [
