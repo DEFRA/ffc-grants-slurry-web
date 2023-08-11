@@ -40,7 +40,7 @@
     "@hapi/vision": "^6.1.0",
     "@hapi/wreck": "^17.1.0",
     "@hapi/yar": "^10.1.0",
-    "applicationinsights": "^2.3.5",
+    "applicationinsights": "^2.5.0",
     "bcrypt": "^5.0.1",
     "dialog-polyfill": "^0.5.6",
     "dotenv": "^16.0.1",
@@ -72,6 +72,9 @@
     "webpack-cli": "^4.7.2"
   },
   "overrides": {
+    "@azure/identity": {
+      "jsonwebtoken": "9.0.0"
+    },
     "semver": "7.5.3",
     "import-in-the-middle": "1.4.2"
   },
