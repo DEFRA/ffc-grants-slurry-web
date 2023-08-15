@@ -2,19 +2,11 @@ version: "3.7"
 services:
   wdio-cucumber:
     build: .
-    image: wdio-cucumber
+    image: ffc-grants-water-service-acceptance
     container_name: webdriver-cuke
-    depends_on:
-      - selenium
-      - hub
     environment:
       TEST_ENVIRONMENT_ROOT_URL: ${TEST_ENVIRONMENT_ROOT_URL}
       CHROME_ARGS: "--headless --ignore-certificate-errors"
-
-  selenium:
-    image: selenium/standalone-chrome-debug
-    container_name: chrome-browser
-
-  hub:
-    image: selenium/hub
-    container_name: selenium-hub
+      BROWSERSTACK_USERNAME: ${BROWSERSTACK_USERNAME}
+      BROWSERSTACK_ACCESS_KEY: ${BROWSERSTACK_ACCESS_KEY}
+      BROWSERSTACK_PARALLEL_RUNS: ${BROWSERSTACK_PARALLEL_RUNS}
