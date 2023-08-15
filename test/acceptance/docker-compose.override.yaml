@@ -12,7 +12,7 @@ services:
       - ./support/:/home/node/support/
       - ./babel.config.js:/home/node/babel.config.js
       - ./wdio.conf.js:/home/node/wdio.conf.js
-      - ./wdio.bs.conf.js:/home/node/wdio.bs.conf.js
+      - ./wdio.bs.config.js:/home/node/wdio.bs.config.js
       - ./package.json:/home/node/package.json
       - ./html-reports/:/home/node/html-reports/
     ports:
