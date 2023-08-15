@@ -1,7 +1,6 @@
 const browserstack = require('browserstack-local')
 const { ReportAggregator, HtmlReporter } = require('@rpii/wdio-html-reporter')
 const log4js = require('@log4js-node/log4js-api')
-// const allureReporter = require('@wdio/allure-reporter')
 const cucumberJson = require('wdio-cucumberjs-json-reporter')
 const logger = log4js.getLogger('default')
 const _ = require('lodash')
@@ -12,7 +11,7 @@ const maxInstances = process.env.MAX_INSTANCES ? Number(process.env.MAX_INSTANCE
 const user = process.env.BROWSERSTACK_USERNAME
 const key = process.env.BROWSERSTACK_ACCESS_KEY
 const parallel = process.env.BROWSERSTACK_PARALLEL_RUNS ? Number(process.env.BROWSERSTACK_PARALLEL_RUNS) : 1
-const automationEnabled = process.env.FFC_AHWR_AUTOMATION_ENABLED
+const automationEnabled = 'true'
 
 exports.config = {
   hostname: 'hub-cloud.browserstack.com',
@@ -25,7 +24,7 @@ exports.config = {
     {
       'bstack:options': {
         os: 'Windows',
-        'projectName': 'DEFRA/ffc-ahwr/Vet-Visit',
+        'projectName': 'DEFRA/ffc-grants/slurry-web',
         osVersion: '10',
         browserVersion: '112.0',
         browserName: 'Chrome',
@@ -42,160 +41,7 @@ exports.config = {
       'google:chromeOptions': {
         args: chromeArgs
       }
-    },
-    //
-    // {
-    //   // firefox 112
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   'buildName': 'Firefox 112 compatibility - ' + timeStamp,
-    //   'projectName': 'DEFRA/ffc-ahwr/Vet-Visit',
-    //   browserVersion: '112',
-    //   browserName: 'Firefox',
-    //   'debug': true,
-    //   'networkLogs': true,
-    //   'video': true,
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true
-    // },
-    //
-    // {
-    //   // Windows Edge 112
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   'buildName': 'Edge 112 compatibility - ' + timeStamp,
-    //   'projectName': 'DEFRA/ffc-ahwr/Vet-Visit',
-    //   browserVersion: '112',
-    //   browserName: 'Edge',
-    //   'browserstack.local': true,
-    //   'debug': true,
-    //   'networkLogs': true,
-    //   'video': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true,
-    //   'browserstack.selenium_version': '4.0.0-alpha-6'
-    // },
-    //
-    // {
-    //   // Chrome 111
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   'buildName': 'Chrome 111 compatibility - ' + timeStamp,
-    //   'projectName': 'DEFRA/ffc-ahwr/Vet-Visit',
-    //   browserVersion: '111',
-    //   browserName: 'Chrome',
-    //   'browserstack.local': true,
-    //   'debug': true,
-    //   'networkLogs': true,
-    //   'video': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true,
-    //   'browserstack.selenium_version': '4.0.0-alpha-6'
-    // },
-    //
-    // {
-    //   // firefox 111
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   'buildName': 'Firefox 111 compatibility - ' + timeStamp,
-    //   'projectName': 'DEFRA/ffc-ahwr/Vet-Visit',
-    //   browserVersion: '111',
-    //   browserName: 'Firefox',
-    //   'debug': true,
-    //   'networkLogs': true,
-    //   'video': true,
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true
-    // },
-    //
-    // {
-    //   // Windows Edge 111
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   'buildName': 'Edge 111 compatibility - ' + timeStamp,
-    //   'projectName': 'DEFRA/ffc-ahwr/Vet-Visit',
-    //   browserVersion: '111',
-    //   browserName: 'Edge',
-    //   'browserstack.local': true,
-    //   'debug': true,
-    //   'networkLogs': true,
-    //   'video': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true,
-    //   'browserstack.selenium_version': '4.0.0-alpha-6'
-    // },
-    //
-
-    // {
-    //   // firefox 111
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   browserName: 'Firefox',
-    //   browserVersion: '111',
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true
-    // }
-
-    // {
-    //   // Windows Edge 111
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   browserName: 'Edge',
-    //   browserVersion: '111',
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true,
-    //   'browserstack.selenium_version': '4.0.0-alpha-6'
-    // },
-    // {
-    //   // Windows Edge 111
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   browserName: 'chrome',
-    //   browserVersion: '111',
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true,
-    //   'browserstack.selenium_version': '4.0.0-alpha-6'
-    // }
-
-    // ,
-    // {
-    //   os: 'OS X',
-    //   osVersion: 'Big Sur',
-    //   browserName: 'Safari',
-    //   browserVersion: 'latest',
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true
-    // },
-
-    // {
-    //   // Windows IE 11
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   browserName: 'IE',
-    //   browserVersion: '11',
-    //   resolution: '1024x768',
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true
-    // },
-
-    // {
-    //   // Windows Edge 86
-    //   os: 'Windows',
-    //   osVersion: '10',
-    //   browserName: 'Edge',
-    //   browserVersion: '86',
-    //   'browserstack.local': true,
-    //   acceptInsecureCerts: true,
-    //   acceptSslCerts: true,
-    //   'browserstack.selenium_version': '4.0.0-alpha-6'
-    // }
+    }
   ],
   // ===================
   // Test Configurations
@@ -300,13 +146,6 @@ exports.config = {
   },
 
   beforeFeature: async function (uri, feature) {
-   // allureReporter.addStep('Starting Fetaure : ' + feature.name)
     await browser.maximizeWindow()
-  },
-  // beforeScenario: async function (world) {
-  //   await allureReporter.addFeature(world.name)
-  // },
-  // afterStep: async function (step, scenario, result) {
-  //   cucumberJson.attach(await browser.takeScreenshot(), 'image/png')
-  // }
+  }
 }
