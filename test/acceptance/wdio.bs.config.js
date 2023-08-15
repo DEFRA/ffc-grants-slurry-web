@@ -1,7 +1,7 @@
 const browserstack = require('browserstack-local')
 const { ReportAggregator, HtmlReporter } = require('@rpii/wdio-html-reporter')
 const log4js = require('@log4js-node/log4js-api')
-const allureReporter = require('@wdio/allure-reporter')
+// const allureReporter = require('@wdio/allure-reporter')
 const cucumberJson = require('wdio-cucumberjs-json-reporter')
 const logger = log4js.getLogger('default')
 const _ = require('lodash')
@@ -300,13 +300,13 @@ exports.config = {
   },
 
   beforeFeature: async function (uri, feature) {
-    allureReporter.addStep('Starting Fetaure : ' + feature.name)
+   // allureReporter.addStep('Starting Fetaure : ' + feature.name)
     await browser.maximizeWindow()
   },
-  beforeScenario: async function (world) {
-    await allureReporter.addFeature(world.name)
-  },
-  afterStep: async function (step, scenario, result) {
-    cucumberJson.attach(await browser.takeScreenshot(), 'image/png')
-  }
+  // beforeScenario: async function (world) {
+  //   await allureReporter.addFeature(world.name)
+  // },
+  // afterStep: async function (step, scenario, result) {
+  //   cucumberJson.attach(await browser.takeScreenshot(), 'image/png')
+  // }
 }
