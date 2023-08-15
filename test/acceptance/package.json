@@ -15,9 +15,7 @@
     "selenium"
   ],
   "scripts": {
-    "test": "wdio wdio.bs.conf.js",
     "test:local": "wdio wdio.local.conf.js",
-    "test:browserstack": "wdio wdio.bs.conf.js",
     "test:debug": "node --inspect-brk=0.0.0.0 ./node_modules/@wdio/cli/bin/wdio.js wdio.conf.js"
   },
   "dependencies": {
