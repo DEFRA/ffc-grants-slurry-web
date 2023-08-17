@@ -106,7 +106,8 @@ const addConditionalLabelData = async (
     );
   }
   return condHTML;
-};
+}
+
 const getPage = async (question, request, h) => {
   const {
     url,
