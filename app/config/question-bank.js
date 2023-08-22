@@ -1578,6 +1578,167 @@ const questionBank = {
           yarKey: "serviceCapacityIncrease",
         },
         {
+          key: "pig-serviceable-capacity-increase-replace",
+          order: 131,
+          title: "",
+          pageTitle: "",
+          url: "pig-serviceable-capacity-increase-replace",
+          baseUrl: "pig-serviceable-capacity-increase-replace",
+          backUrl: "storage-type",
+          nextUrlObject: {
+            dependentQuestionYarKey: "grant-funded-cover",
+            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
+            urlOptions: {
+              thenUrl: "other-items",
+              elseUrl: "cover-type",
+            },
+          },
+          fundingPriorities: "",
+          preValidationKeys: ["storageType"],
+          classes: "govuk-input--width-5",
+          id: "storageCapacityIncrease",
+          name: "storageCapacityIncrease",
+          suffix: { text: "m³" },
+          type: "input",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          label: {
+            text: "What estimated volume do you need to have 6 months’ serviceable storage?",
+            classes: "govuk-label--l",
+            isPageHeading: true,
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `,
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Enter the volume you need to have 6 months’ serviceable storage",
+            },
+            {
+              type: "REGEX",
+              regex: INTERGERS_AND_DECIMALS,
+              error: "Volume must only include numbers",
+            },
+            {
+              type: "INCLUDES",
+              checkArray: ["."],
+              error: "Volume must be a whole number",
+            },
+            {
+              type: "MIN_MAX",
+              min: 1,
+              max: 999999,
+              error: "Volume must be between 1-999999",
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            dependentYarKeys: ["storageType"],
+            dependentQuestionKeys: ["storage-type"],
+          },
+          warning: {
+            html: "This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant",
+          },
+          yarKey: "pigServiceCapacityIncrease",
+        },
+        {
+          key: "pig-serviceable-capacity-increase-additional",
+          order: 132,
+          title: "",
+          pageTitle: "",
+          classes: "govuk-input--width-5",
+          url: "pig-serviceable-capacity-increase-additional",
+          baseUrl: "pig-serviceable-capacity-increase-additional",
+          backUrl: "storage-type",
+          nextUrlObject: {
+            dependentQuestionYarKey: "grant-funded-cover",
+            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
+            urlOptions: {
+              thenUrl: "other-items",
+              elseUrl: "cover-type",
+            },
+          },
+          preValidationKeys: ["storageType"],
+          suffix: { text: "m³" },
+          type: "input",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          label: {
+            text: "What estimated additional volume do you need to have 6 months’ serviceable storage?",
+            classes: "govuk-label--l",
+            isPageHeading: true,
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `,
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Enter the volume you need to have 6 months’ serviceable storage",
+            },
+            {
+              type: "REGEX",
+              regex: INTERGERS_AND_DECIMALS,
+              error: "Volume must only include numbers",
+            },
+            {
+              type: "INCLUDES",
+              checkArray: ["."],
+              error: "Volume must be a whole number",
+            },
+            {
+              type: "MIN_MAX",
+              min: 1,
+              max: 999999,
+              error: "Volume must be between 1-999999",
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            dependentQuestionKeys: ["storage-type"],
+          },
+          warning: {
+            html: `This grant is to get your serviceable storage levels to 6 months.
+            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
+            </br> </br>
+            Any capacity above 6 months is not covered by the grant.`,
+          },
+          yarKey: "pigServiceCapacityIncrease",
+        },
+        {
           key: "cover-type",
           order: 133,
           costDataType: "cat-cover-type",
