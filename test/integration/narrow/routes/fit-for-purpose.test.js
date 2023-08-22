@@ -5,7 +5,7 @@ describe("Page: /fit-for-purpose", () => {
     applyingFor: "",
     projectType: "",
     existingCover: "",
-    grandFundedCover: "",
+    grantFundedCover: "",
   };
   jest.mock("../../../../app/helpers/session", () => ({
     setYarValue: (request, key, value) => null,
@@ -74,7 +74,7 @@ describe("Page: /fit-for-purpose", () => {
       "Building a new store, replacing or expanding an existing store";
     varList.projectType =
       "Replace an existing store that is no longer fit for purpose with a new store";
-    varList.grandFundedCover = "Yes, I need a cover";
+    varList.grantFundedCover = "Yes, I need a cover";
     varList.existingCover = "Yes";
     varList.fitForPurpose = "Yes";
     const postOptions = {
@@ -92,7 +92,7 @@ describe("Page: /fit-for-purpose", () => {
       "Building a new store, replacing or expanding an existing store";
     varList.projectType =
       "Replace an existing store that is no longer fit for purpose with a new store";
-    varList.grandFundedCover = "Yes, I need a cover";
+    varList.grantFundedCover = "Yes, I need a cover";
     varList.existingCover = "Yes";
     varList.fitForPurpose = "No";
     const postOptions = {
@@ -113,7 +113,7 @@ describe("Page: /fit-for-purpose", () => {
       "Building a new store, replacing or expanding an existing store";
     varList.projectType =
       "Replace an existing store that is no longer fit for purpose with a new store";
-    varList.grandFundedCover = "Yes, I need a cover";
+    varList.grantFundedCover = "Yes, I need a cover";
     varList.existingCover = "Yes";
     const options = {
       method: "GET",
@@ -131,7 +131,7 @@ describe("Page: /fit-for-purpose", () => {
       "Building a new store, replacing or expanding an existing store";
     varList.projectType =
       "Replace an existing store that is no longer fit for purpose with a new store";
-    varList.grandFundedCover = "Yes, I need a cover";
+    varList.grantFundedCover = "Yes, I need a cover";
     varList.existingCover = "Yes";
     const options = {
       method: "GET",

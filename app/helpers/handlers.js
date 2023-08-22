@@ -135,7 +135,7 @@ const getPage = async (question, request, h) => {
   if (url === "applying-for") {
     setYarValue(request, "fitForPurpose", null);
     setYarValue(request, "projectType", null);
-    setYarValue(request, "grandFundedCover", null);
+    setYarValue(request, "grantFundedCover", null);
     setYarValue(request, "existingCover", null);
   }
 
@@ -257,8 +257,8 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
   for (const [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value);
     if (
-      yarKey === "grandFundedCover" &&
-      thisAnswer.key === "grandFundedCover-A3"
+      yarKey === "grantFundedCover" &&
+      thisAnswer.key === "grantFundedCover-A3"
     ) {
       request.yar.set("coverType", "");
       request.yar.set("coverSize", "");

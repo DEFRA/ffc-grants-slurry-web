@@ -1,12 +1,12 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /grand-funded-cover', () => {
+describe('Page: /grant-funded-cover', () => {
   const varList = {
     applicantType: "Pig",
     applyingFor: "",
     projectType: '',
     existingCover: '',
-    grandFundedCover: '',
+    grantFundedCover: '',
     fitForPurpose: ''
   }
 
@@ -21,7 +21,7 @@ describe('Page: /grand-funded-cover', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/grand-funded-cover`
+      url: `${global.__URLPREFIX__}/grant-funded-cover`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -36,7 +36,7 @@ describe('Page: /grand-funded-cover', () => {
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/grand-funded-cover`,
+      url: `${global.__URLPREFIX__}/grant-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { crumb: crumbToken }
     }
@@ -49,9 +49,9 @@ describe('Page: /grand-funded-cover', () => {
   it('user selects ineligible option: \'None of the above\' -> display ineligible page', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/grand-funded-cover`,
+      url: `${global.__URLPREFIX__}/grant-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { grandFundedCover: 'None of the above', crumb: crumbToken }
+      payload: { grantFundedCover: 'None of the above', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -61,12 +61,12 @@ describe('Page: /grand-funded-cover', () => {
   it('user selects eligible option -> store user response and redirect to /existing-cover-pig when the user select pig journey', async () => {
     varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grandFundedCover = 'Yes, I need a cover'
+    varList.grantFundedCover = 'Yes, I need a cover'
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/grand-funded-cover`,
+      url: `${global.__URLPREFIX__}/grant-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { grandFundedCover: 'Yes, I need a cover', crumb: crumbToken }
+      payload: { grantFundedCover: 'Yes, I need a cover', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -78,12 +78,12 @@ describe('Page: /grand-funded-cover', () => {
     varList.applicantType = "Beef",
     varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grandFundedCover = 'Yes, I need a cover'
+    varList.grantFundedCover = 'Yes, I need a cover'
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/grand-funded-cover`,
+      url: `${global.__URLPREFIX__}/grant-funded-cover`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { grandFundedCover: 'Yes, I need a cover', crumb: crumbToken }
+      payload: { grantFundedCover: 'Yes, I need a cover', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -94,7 +94,7 @@ describe('Page: /grand-funded-cover', () => {
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/grand-funded-cover`
+      url: `${global.__URLPREFIX__}/grant-funded-cover`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

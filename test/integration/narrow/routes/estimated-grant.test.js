@@ -6,7 +6,7 @@ describe('Page: /estimated-grant', () => {
       applyingFor: '',
       projectType: '',
       existingCover: '',
-      grandFundedCover: '',
+      grantFundedCover: '',
       fitForPurpose: ''
       };
   const grantText = 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
@@ -47,7 +47,7 @@ describe('Page: /estimated-grant', () => {
   it('page loads with correct back link when user select fit for purpose option`s as  `\ Yes \` ', async () => {
     varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grandFundedCover = 'Yes, I need a cover'
+    varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'Yes'
     varList.fitForPurpose = 'Yes'
     const options = {
@@ -62,7 +62,7 @@ describe('Page: /estimated-grant', () => {
   it('page loads with correct back link when user select fit for purpose option`s as  `\ No \`', async () => {
     varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grandFundedCover = 'Yes, I need a cover'
+    varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'Yes'
     varList.fitForPurpose = 'No'
     const options = {

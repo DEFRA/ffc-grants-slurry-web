@@ -75,6 +75,6 @@ it("page loads with correct back link", async () => {
     };
     const response = await global.__SERVER__.inject(options);
     expect(response.statusCode).toBe(200);
-    expect(response.payload).toContain('<a href="grand-funded-cover" class="govuk-back-link">Back</a>');
+    expect(response.payload).toContain('<a href="grant-funded-cover" class="govuk-back-link">Back</a>');
 });
 });

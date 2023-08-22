@@ -50,7 +50,7 @@ describe('Page: /project-type', () => {
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
   })
 
-  it('user selects eligible option -> store user response and redirect to /grand-funded-cover', async () => {
+  it('user selects eligible option -> store user response and redirect to /grant-funded-cover', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/project-type`,
@@ -60,7 +60,7 @@ describe('Page: /project-type', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('grand-funded-cover')
+    expect(postResponse.headers.location).toBe('grant-funded-cover')
   })
 
   it('page loads with correct back link', async () => {

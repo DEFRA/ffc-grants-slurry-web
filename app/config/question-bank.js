@@ -1111,7 +1111,7 @@ const questionBank = {
           title: "How will you increase your storage capacity?",
           baseUrl: "project-type",
           backUrl: "applying-for",
-          nextUrl: "grand-funded-cover",
+          nextUrl: "grant-funded-cover",
           url: "project-type",
           preValidationKeys: ["applyingFor"],
           ineligibleContent: {
@@ -1184,10 +1184,10 @@ const questionBank = {
           yarKey: "projectType",
         },
         {
-          key: "grand-funded-cover",
+          key: "grant-funded-cover",
           order: 160,
           title: "Will the grant-funded store have an impermeable cover?",
-          baseUrl: "grand-funded-cover",
+          baseUrl: "grant-funded-cover",
           backUrl: "project-type",
           nextUrlObject: {
             dependentQuestionYarKey: "applicantType",
@@ -1197,7 +1197,7 @@ const questionBank = {
               elseUrl: "existing-cover",
             },
           },
-          url: "grand-funded-cover",
+          url: "grant-funded-cover",
           preValidationKeys: ["projectType"],
           ineligibleContent: {
             messageContent:
@@ -1237,34 +1237,34 @@ const questionBank = {
           ],
           answers: [
             {
-              key: "grand-funded-cover-A1",
+              key: "grant-funded-cover-A1",
               value: "Yes, I need a cover",
             },
             {
-              key: "grand-funded-cover-A2",
+              key: "grant-funded-cover-A2",
               value: "Yes, I already have a cover",
             },
             {
-              key: "grand-funded-cover-A3",
+              key: "grant-funded-cover-A3",
               value: "Not needed, the slurry is treated with acidification",
             },
             {
               value: "divider",
             },
             {
-              key: "grand-funded-cover-A4",
+              key: "grant-funded-cover-A4",
               value: "None of the above",
               notEligible: true,
             },
           ],
-          yarKey: "grandFundedCover",
+          yarKey: "grantFundedCover",
         },
         {
           key: "existing-cover",
           order: 170,
           title: "Do you want to apply for a cover for existing stores?",
           baseUrl: "existing-cover",
-          backUrl: "grand-funded-cover",
+          backUrl: "grant-funded-cover",
           nextUrl: "fit-for-purpose",
           url: "existing-cover",
           preValidationKeys: ["projectType"],
@@ -1315,7 +1315,7 @@ const questionBank = {
           order: 175,
           title: "Do you want to apply for a cover for existing stores?",
           baseUrl: "existing-cover-pig",
-          backUrl: "grand-funded-cover",
+          backUrl: "grant-funded-cover",
           nextUrl: "fit-for-purpose",
           url: "existing-cover-pig",
           preValidationKeys: ["projectType"],
@@ -1425,8 +1425,8 @@ const questionBank = {
           baseUrl: "serviceable-capacity-increase-replace",
           backUrl: "storage-type",
           nextUrlObject: {
-            dependentQuestionYarKey: "grand-funded-cover",
-            dependentAnswerKeysArray: ["grand-funded-cover-A3"],
+            dependentQuestionYarKey: "grant-funded-cover",
+            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
             urlOptions: {
               thenUrl: "other-items",
               elseUrl: "cover-type",
@@ -1507,8 +1507,8 @@ const questionBank = {
           baseUrl: "serviceable-capacity-increase-additional",
           backUrl: "storage-type",
           nextUrlObject: {
-            dependentQuestionYarKey: "grand-funded-cover",
-            dependentAnswerKeysArray: ["grand-funded-cover-A3"],
+            dependentQuestionYarKey: "grant-funded-cover",
+            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
             urlOptions: {
               thenUrl: "other-items",
               elseUrl: "cover-type",
