@@ -1646,7 +1646,7 @@ const questionBank = {
           warning: {
             html: "This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.",
           },
-          yarKey: "ServiceCapacityIncrease",
+          yarKey: "serviceCapacityIncrease",
         },
         {
           key: "pig-serviceable-capacity-increase-additional",
@@ -1724,7 +1724,7 @@ const questionBank = {
             html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have XXX </br></br>
             Any capacity above 6 months is not covered by the grant.`,
           },
-          yarKey: "ServiceCapacityIncrease",
+          yarKey: "serviceCapacityIncrease",
         },
         {
           key: "separator",

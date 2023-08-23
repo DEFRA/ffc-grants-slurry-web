@@ -360,6 +360,20 @@ const showPostPage = (currentQuestion, request, h) => {
     getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
     getYarValue(request, "existingCover") === "No"){
       return h.redirect("/slurry-infrastructure/separator");
+  }else if((
+    baseUrl === "pig-serviceable-capacity-increase-replace" ||
+    baseUrl === "pig-serviceable-capacity-increase-additional") &&
+    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
+    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
+    getYarValue(request, "existingCover") === "Yes"){
+      return h.redirect("/slurry-infrastructure/existing-cover-type");
+  }
+  else if((
+    baseUrl === "pig-serviceable-capacity-increase-replace" ||
+    baseUrl === "pig-serviceable-capacity-increase-additional") &&
+    getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
+      console.log('sdsds')
+      return h.redirect("/slurry-infrastructure/cover-type");
   }
 
   if (title) {
