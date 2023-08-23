@@ -1593,7 +1593,7 @@ const questionBank = {
           },
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           id: "storageCapacityIncrease",
           name: "storageCapacityIncrease",
           suffix: { text: "m³" },
@@ -1630,15 +1630,15 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -1733,6 +1733,76 @@ const questionBank = {
             Any capacity above 6 months is not covered by the grant.`,
           },
           yarKey: "ServiceCapacityIncrease",
+        },
+        {
+          key: "separator",
+          order: 15,
+          title: "Do you want to add a slurry storage separator to your project?",
+          pageTitle: "",
+          backUrl: "pig-existing-storage-capacity",
+          nextUrl: "separator-items",
+          url: "separator",
+          hint: {
+            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
+          },
+          baseUrl: "separator",
+          preValidationKeys: ["ServiceCapacityIncrease"],
+          fundingPriorities: "",
+          type: "single-answer",
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionkey: ["serviceable-capacity-increase-replace"],
+            dependentQuestionKeys: ["storage-type", "cover-type"],
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Select if you want to add a slurry separator to your project",
+            },
+          ],
+          answers: [
+            {
+              key: "separator-A1",
+              value: "Yes",
+              redirectUrl: "separator-items",
+            },
+            {
+              key: "separator-A2",
+              value: "No",
+              redirectUrl: "other-items",
+            },
+          ],
+          yarKey: "separator",
         },
         {
           key: "existing-cover-type",
