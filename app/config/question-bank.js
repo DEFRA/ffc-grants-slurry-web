@@ -1583,14 +1583,6 @@ const questionBank = {
           url: "pig-serviceable-capacity-increase-replace",
           baseUrl: "pig-serviceable-capacity-increase-replace",
           backUrl: "storage-type",
-          nextUrlObject: {
-            dependentQuestionYarKey: "grant-funded-cover",
-            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
-            urlOptions: {
-              thenUrl: "other-items",
-              elseUrl: "cover-type",
-            },
-          },
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
           classes: "govuk-input--width-10",

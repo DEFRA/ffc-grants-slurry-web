@@ -353,6 +353,13 @@ const showPostPage = (currentQuestion, request, h) => {
     getYarValue(request, "applyingFor") === "An impermeable cover only"
   ) {
     return h.view("not-eligible", NOT_ELIGIBLE);
+  }else if((
+    baseUrl === "pig-serviceable-capacity-increase-replace" ||
+    baseUrl === "pig-serviceable-capacity-increase-additional") &&
+    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
+    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
+    getYarValue(request, "existingCover") === "No"){
+      return h.redirect("/slurry-infrastructure/separator");
   }
 
   if (title) {
