@@ -1583,9 +1583,10 @@ const questionBank = {
           url: "pig-serviceable-capacity-increase-replace",
           baseUrl: "pig-serviceable-capacity-increase-replace",
           backUrl: "storage-type",
+          nextUrl: "separator",
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
-          classes: "govuk-input--width-10",
+          classes: "govuk-input--width-5",
           id: "storageCapacityIncrease",
           name: "storageCapacityIncrease",
           suffix: { text: "m³" },
@@ -1622,8 +1623,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 9999999999,
-              error: "Volume must be between 1-9999999999",
+              max: 999999,
+              error: "Volume must be between 1-999999",
             },
           ],
           sidebar: {
@@ -1657,14 +1658,7 @@ const questionBank = {
           url: "pig-serviceable-capacity-increase-additional",
           baseUrl: "pig-serviceable-capacity-increase-additional",
           backUrl: "storage-type",
-          nextUrlObject: {
-            dependentQuestionYarKey: "grant-funded-cover",
-            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
-            urlOptions: {
-              thenUrl: "other-items",
-              elseUrl: "cover-type",
-            },
-          },
+          nextUrl: "separator",
           preValidationKeys: ["storageType"],
           suffix: { text: "m³" },
           type: "input",
@@ -1708,7 +1702,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -1738,7 +1732,7 @@ const questionBank = {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: "separator",
-          preValidationKeys: ["ServiceCapacityIncrease"],
+          preValidationKeys: ["serviceCapacityIncrease"],
           fundingPriorities: "",
           type: "single-answer",
           minAnswerCount: 1,

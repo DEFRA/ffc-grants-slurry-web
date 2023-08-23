@@ -340,6 +340,23 @@ const showPostPage = (currentQuestion, request, h) => {
   handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload);
   console.log('here: ', baseUrl, getYarValue(request, "fitForPurpose"), getYarValue(request, "applyingFor"));
   
+  if (title) {
+    currentQuestion = {
+      ...currentQuestion,
+      title: title.replace(
+        SELECT_VARIABLE_TO_REPLACE,
+        (_ignore, additionalYarKeyName) =>
+          formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+      ),
+    };
+  }
+
+  const errors = checkErrors(payload, currentQuestion, h, request);
+  if (errors) {
+    gapiService.sendValidationDimension(request);
+    return errors;
+  }
+  
   if (
     baseUrl === "fit-for-purpose" &&
     getYarValue(request, "fitForPurpose") === "No" &&
@@ -374,23 +391,6 @@ const showPostPage = (currentQuestion, request, h) => {
     getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
       console.log('sdsds')
       return h.redirect("/slurry-infrastructure/cover-type");
-  }
-
-  if (title) {
-    currentQuestion = {
-      ...currentQuestion,
-      title: title.replace(
-        SELECT_VARIABLE_TO_REPLACE,
-        (_ignore, additionalYarKeyName) =>
-          formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ),
-    };
-  }
-
-  const errors = checkErrors(payload, currentQuestion, h, request);
-  if (errors) {
-    gapiService.sendValidationDimension(request);
-    return errors;
   }
 
   if (thisAnswer?.notEligible) {
