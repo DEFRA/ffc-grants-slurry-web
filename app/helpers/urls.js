@@ -32,11 +32,12 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
     nonDependentUrl = 'existing-cover-pig'
   }else if(getYarValue(request, 'applicantType') === 'Pig' && elseUrl === 'existing-cover'){
     elseUrl = 'existing-cover-pig'
-  }else if(getYarValue(request, 'storageType') === 'Pig' && 
+  }else if(getYarValue(request, 'applicantType') === 'Pig' && 
     thenUrl === 'serviceable-capacity-increase-replace' &&
     elseUrl === "serviceable-capacity-increase-additional"){
-    thenUrl === 'pig-serviceable-capacity-increase-replace'
-    elseUrl === "pig-serviceable-capacity-increase-additional"
+      console.log('YUNSUUSUSUUSUS')
+    thenUrl = 'pig-serviceable-capacity-increase-replace'
+    elseUrl = "pig-serviceable-capacity-increase-additional"
   }
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
 
