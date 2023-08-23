@@ -35,7 +35,6 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   }else if(getYarValue(request, 'applicantType') === 'Pig' && 
     thenUrl === 'serviceable-capacity-increase-replace' &&
     elseUrl === "serviceable-capacity-increase-additional"){
-      console.log('YUNSUUSUSUUSUS')
     thenUrl = 'pig-serviceable-capacity-increase-replace'
     elseUrl = "pig-serviceable-capacity-increase-additional"
   }
