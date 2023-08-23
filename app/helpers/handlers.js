@@ -138,6 +138,9 @@ const getPage = async (question, request, h) => {
     setYarValue(request, "grantFundedCover", null);
     setYarValue(request, "existingCover", null);
   }
+  if (url === "grant-funded-cover" ||  url === "existing-cover") {
+    setYarValue(request, "serviceCapacityIncrease", null);
+  }
 
   if (
     url === "potential-amount" &&
@@ -370,24 +373,21 @@ const showPostPage = (currentQuestion, request, h) => {
     getYarValue(request, "applyingFor") === "An impermeable cover only"
   ) {
     return h.view("not-eligible", NOT_ELIGIBLE);
-  }else if((
-    baseUrl === "pig-serviceable-capacity-increase-replace" ||
-    baseUrl === "pig-serviceable-capacity-increase-additional") &&
+  }else if(
+    getYarValue(request, "serviceCapacityIncrease") &&
     (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
     getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
     getYarValue(request, "existingCover") === "No"){
       return h.redirect("/slurry-infrastructure/separator");
-  }else if((
-    baseUrl === "pig-serviceable-capacity-increase-replace" ||
-    baseUrl === "pig-serviceable-capacity-increase-additional") &&
+  }else if(
+    getYarValue(request, "serviceCapacityIncrease") &&
     (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
     getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
     getYarValue(request, "existingCover") === "Yes"){
       return h.redirect("/slurry-infrastructure/existing-cover-type");
   }
-  else if((
-    baseUrl === "pig-serviceable-capacity-increase-replace" ||
-    baseUrl === "pig-serviceable-capacity-increase-additional") &&
+  else if(
+    getYarValue(request, "serviceCapacityIncrease") &&
     getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
       console.log('sdsds')
       return h.redirect("/slurry-infrastructure/cover-type");

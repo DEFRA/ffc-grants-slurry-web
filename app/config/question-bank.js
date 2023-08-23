@@ -1434,7 +1434,7 @@ const questionBank = {
           },
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           id: "storageCapacityIncrease",
           name: "storageCapacityIncrease",
           suffix: { text: "m³" },
@@ -1471,8 +1471,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
@@ -1502,7 +1502,7 @@ const questionBank = {
           order: 132,
           title: "",
           pageTitle: "",
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           url: "serviceable-capacity-increase-additional",
           baseUrl: "serviceable-capacity-increase-additional",
           backUrl: "storage-type",
@@ -1549,8 +1549,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
@@ -1586,7 +1586,7 @@ const questionBank = {
           nextUrl: "separator",
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           id: "storageCapacityIncrease",
           name: "storageCapacityIncrease",
           suffix: { text: "m³" },
@@ -1623,8 +1623,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
@@ -1654,7 +1654,7 @@ const questionBank = {
           order: 132,
           title: "",
           pageTitle: "",
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           url: "pig-serviceable-capacity-increase-additional",
           baseUrl: "pig-serviceable-capacity-increase-additional",
           backUrl: "storage-type",
@@ -1694,8 +1694,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
