@@ -951,7 +951,7 @@ const questionBank = {
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent: `
-            This grant is only for: <br> 
+            This grant is for: <br> 
             <ul class="govuk-list govuk-list--bullet">
             <li>replacing an existing store that is no longer fit for purpose with a new store</li>
             <li>adding a new store to increase existing capacity</li>
