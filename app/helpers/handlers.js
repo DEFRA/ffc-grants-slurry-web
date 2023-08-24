@@ -400,7 +400,6 @@ const showPostPage = (currentQuestion, request, h) => {
   else if(
     getYarValue(request, "serviceCapacityIncrease") &&
     getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
-      console.log('sdsds')
       return h.redirect("/slurry-infrastructure/cover-type");
   }
 
