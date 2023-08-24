@@ -131,16 +131,30 @@ const getPage = async (question, request, h) => {
   }
   let confirmationId = "";
   setGrantsData(question, request);
+  
+  switch (url) {
+    case "applying-for":
+      setYarValue(request, "fitForPurpose", null);
+      setYarValue(request, "projectType", null);
+      setYarValue(request, "grantFundedCover", null);
+      setYarValue(request, "existingCover", null);
+      break
+      case "grant-funded-cover" :
+        setYarValue(request, "serviceCapacityIncrease", null);
+      break
+      case "existing-cover" :
+        setYarValue(request, "serviceCapacityIncrease", null);
+      break
+      case "existing-cover-pig" :
+        setYarValue(request, "serviceCapacityIncrease", null);
+      break
+      case "applicant-type" :
+        setYarValue(request, "intensiveFarming", null);
+      break
+    default:
+      break
+  }
 
-  if (url === "applying-for") {
-    setYarValue(request, "fitForPurpose", null);
-    setYarValue(request, "projectType", null);
-    setYarValue(request, "grantFundedCover", null);
-    setYarValue(request, "existingCover", null);
-  }
-  if (url === "grant-funded-cover" ||  url === "existing-cover") {
-    setYarValue(request, "serviceCapacityIncrease", null);
-  }
 
   if (
     url === "potential-amount" &&
@@ -152,9 +166,6 @@ const getPage = async (question, request, h) => {
     return h.view("not-eligible", NOT_ELIGIBLE);
   }
 
-  if (url === "applicant-type") {
-    setYarValue(request, "intensiveFarming", null);
-  }
   if (question.maybeEligible) {
     let { maybeEligibleContent } = question;
     maybeEligibleContent.title = question.title;
