@@ -1,7 +1,10 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /serviceable-capacity-increase-replace', () => {
-  const varList = { inEngland: 'randomData' }
+  const varList = { 
+    applicantType: 'Beef',
+    projectType:'Replace an existing store that is no longer fit for purpose with a new store'
+  }
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,

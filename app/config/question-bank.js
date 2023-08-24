@@ -1448,7 +1448,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `,
           },
@@ -1526,7 +1526,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `,
           },
@@ -1570,7 +1570,7 @@ const questionBank = {
             dependentQuestionKeys: ["storage-type"],
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months' serviceable storage, we will fund another 2 months. </br></br>
+            html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
                   Any capacity above 6 months is not covered by the grant.`,
           },
           yarKey: "serviceCapacityIncrease",
@@ -1600,7 +1600,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard</a> to help you calculate the difference between your current serviceable storage and 8 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 8 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `,
           },
@@ -1679,7 +1679,7 @@ const questionBank = {
             {
               type: "NOT_EMPTY",
               error:
-                "Enter the volume you need to have 6 months’ serviceable storage",
+                "Enter the volume you need to have 8 months’ serviceable storage",
             },
             {
               type: "REGEX",
@@ -1715,8 +1715,8 @@ const questionBank = {
             dependentQuestionKeys: ["storage-type"],
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have XXX </br></br>
-            Any capacity above 6 months is not covered by the grant.`,
+            html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
+            Any capacity above 8 months is not covered by the grant.`,
           },
           yarKey: "serviceCapacityIncrease",
         },
