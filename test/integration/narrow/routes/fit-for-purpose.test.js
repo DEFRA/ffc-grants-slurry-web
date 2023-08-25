@@ -72,10 +72,7 @@ describe("Page: /fit-for-purpose", () => {
   it("user selects eligible option: 'Yes' when applying-for page is Not impermeable cover only   -> store user response and redirect to /estimated-grant", async () => {
     varList.applyingFor =
       "Building a new store, replacing or expanding an existing store";
-    varList.projectType =
-      "Replace an existing store that is no longer fit for purpose with a new store";
-    varList.grantFundedCover = "Yes, I need a cover";
-    varList.existingCover = "Yes";
+
     varList.fitForPurpose = "Yes";
     const postOptions = {
       method: "POST",

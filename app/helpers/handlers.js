@@ -131,13 +131,30 @@ const getPage = async (question, request, h) => {
   }
   let confirmationId = "";
   setGrantsData(question, request);
-
-  if (url === "applying-for") {
-    setYarValue(request, "fitForPurpose", null);
-    setYarValue(request, "projectType", null);
-    setYarValue(request, "grantFundedCover", null);
-    setYarValue(request, "existingCover", null);
+  
+  switch (url) {
+    case "applying-for":
+      setYarValue(request, "fitForPurpose", null);
+      setYarValue(request, "projectType", null);
+      setYarValue(request, "grantFundedCover", null);
+      setYarValue(request, "existingCover", null);
+      break
+      case "grant-funded-cover" :
+        setYarValue(request, "serviceCapacityIncrease", null);
+      break
+      case "existing-cover" :
+        setYarValue(request, "serviceCapacityIncrease", null);
+      break
+      case "existing-cover-pig" :
+        setYarValue(request, "serviceCapacityIncrease", null);
+      break
+      case "applicant-type" :
+        setYarValue(request, "intensiveFarming", null);
+      break
+    default:
+      break
   }
+
 
   if (
     url === "potential-amount" &&
@@ -149,9 +166,6 @@ const getPage = async (question, request, h) => {
     return h.view("not-eligible", NOT_ELIGIBLE);
   }
 
-  if (url === "applicant-type") {
-    setYarValue(request, "intensiveFarming", null);
-  }
   if (question.maybeEligible) {
     let { maybeEligibleContent } = question;
     maybeEligibleContent.title = question.title;
@@ -340,21 +354,6 @@ const showPostPage = (currentQuestion, request, h) => {
   handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload);
   console.log('here: ', baseUrl, getYarValue(request, "fitForPurpose"), getYarValue(request, "applyingFor"));
   
-  if (
-    baseUrl === "fit-for-purpose" &&
-    getYarValue(request, "fitForPurpose") === "No" &&
-    getYarValue(request, "applyingFor") ===
-      "Building a new store, replacing or expanding an existing store"
-  ) {
-    return h.redirect("/slurry-infrastructure/fit-for-purpose-conditional");
-  } else if (
-    baseUrl === "fit-for-purpose" &&
-    getYarValue(request, "fitForPurpose") === "No" &&
-    getYarValue(request, "applyingFor") === "An impermeable cover only"
-  ) {
-    return h.view("not-eligible", NOT_ELIGIBLE);
-  }
-
   if (title) {
     currentQuestion = {
       ...currentQuestion,
@@ -370,6 +369,38 @@ const showPostPage = (currentQuestion, request, h) => {
   if (errors) {
     gapiService.sendValidationDimension(request);
     return errors;
+  }
+  
+  if (
+    baseUrl === "fit-for-purpose" &&
+    getYarValue(request, "fitForPurpose") === "No" &&
+    getYarValue(request, "applyingFor") ===
+      "Building a new store, replacing or expanding an existing store"
+  ) {
+    return h.redirect("/slurry-infrastructure/fit-for-purpose-conditional");
+  } else if (
+    baseUrl === "fit-for-purpose" &&
+    getYarValue(request, "fitForPurpose") === "No" &&
+    getYarValue(request, "applyingFor") === "An impermeable cover only"
+  ) {
+    return h.view("not-eligible", NOT_ELIGIBLE);
+  }else if(
+    getYarValue(request, "serviceCapacityIncrease") &&
+    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
+    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
+    getYarValue(request, "existingCover") === "No"){
+      return h.redirect("/slurry-infrastructure/separator");
+  }else if(
+    getYarValue(request, "serviceCapacityIncrease") &&
+    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
+    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
+    getYarValue(request, "existingCover") === "Yes"){
+      return h.redirect("/slurry-infrastructure/existing-cover-type");
+  }
+  else if(
+    getYarValue(request, "serviceCapacityIncrease") &&
+    getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
+      return h.redirect("/slurry-infrastructure/cover-type");
   }
 
   if (thisAnswer?.notEligible) {
