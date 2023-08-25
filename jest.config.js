@@ -37,6 +37,7 @@ module.exports = {
   verbose: true,
   setupFilesAfterEnv: [
     '<rootDir>/test/setup.js',
-    '<rootDir>/test/teardown.js'
+    '<rootDir>/test/teardown.js',
+    './jest.setup.js'
   ]
 }

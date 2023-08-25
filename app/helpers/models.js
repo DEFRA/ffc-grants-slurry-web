@@ -26,9 +26,9 @@ const getDependentSideBar = (sidebar, request) => {
       values[index].content[0].items = ['Not needed']
     }
 
-    if (sidebar.linkedQuestionkey && index < sidebar.linkedQuestionkey.length) {
-      const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-      let selectedValueOfLinkedQuestion = getYarValue(request, yarValueOfLinkedQuestion)
+    if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
+      // const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+      let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey)
 
       if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
         selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))

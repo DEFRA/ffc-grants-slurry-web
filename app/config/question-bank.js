@@ -1032,7 +1032,6 @@ const questionBank = {
               elseUrl: "existing-cover",
             },
           },
-          nextUrl: "estimated-grant",
           nextUrlObject: {
             dependentQuestionYarKey: "applyingFor",
             dependentAnswerKeysArray: ["applying-for-A1"],
@@ -1434,7 +1433,7 @@ const questionBank = {
           },
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           id: "storageCapacityIncrease",
           name: "storageCapacityIncrease",
           suffix: { text: "m³" },
@@ -1448,7 +1447,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `,
           },
@@ -1471,8 +1470,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
@@ -1493,7 +1492,7 @@ const questionBank = {
             dependentQuestionKeys: ["storage-type"],
           },
           warning: {
-            html: "This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant",
+            html: "This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant.",
           },
           yarKey: "serviceCapacityIncrease",
         },
@@ -1502,7 +1501,7 @@ const questionBank = {
           order: 132,
           title: "",
           pageTitle: "",
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           url: "serviceable-capacity-increase-additional",
           baseUrl: "serviceable-capacity-increase-additional",
           backUrl: "storage-type",
@@ -1526,7 +1525,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `,
           },
@@ -1549,8 +1548,8 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Volume must be between 1-999999",
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
             },
           ],
           sidebar: {
@@ -1570,16 +1569,301 @@ const questionBank = {
             dependentQuestionKeys: ["storage-type"],
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 6 months.
-            For example, if you have 4 months’ serviceable storage, we will fund another 2 months.
-            </br> </br>
-            Any capacity above 6 months is not covered by the grant.`,
+            html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
+                  Any capacity above 6 months is not covered by the grant.`,
           },
           yarKey: "serviceCapacityIncrease",
         },
         {
+          key: "pig-serviceable-capacity-increase-replace",
+          order: 131,
+          title: "",
+          pageTitle: "",
+          url: "pig-serviceable-capacity-increase-replace",
+          baseUrl: "pig-serviceable-capacity-increase-replace",
+          backUrl: "storage-type",
+          nextUrl: "separator",
+          fundingPriorities: "",
+          preValidationKeys: ["storageType"],
+          classes: "govuk-input--width-10",
+          id: "storageCapacityIncrease",
+          name: "storageCapacityIncrease",
+          suffix: { text: "m³" },
+          type: "input",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          label: {
+            text: "What estimated volume do you need to have 8 months’ serviceable storage?",
+            classes: "govuk-label--l",
+            isPageHeading: true,
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 8 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `,
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Enter the volume you need to have 8 months’ serviceable storage",
+            },
+            {
+              type: "REGEX",
+              regex: INTERGERS_AND_DECIMALS,
+              error: "Volume must only include numbers",
+            },
+            {
+              type: "INCLUDES",
+              checkArray: ["."],
+              error: "Volume must be a whole number",
+            },
+            {
+              type: "MIN_MAX",
+              min: 1,
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            dependentYarKeys: ["storageType"],
+            dependentQuestionKeys: ["storage-type"],
+          },
+          warning: {
+            html: "This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.",
+          },
+          yarKey: "serviceCapacityIncrease",
+        },
+        {
+          key: "pig-serviceable-capacity-increase-additional",
+          order: 132,
+          title: "",
+          pageTitle: "",
+          classes: "govuk-input--width-10",
+          url: "pig-serviceable-capacity-increase-additional",
+          baseUrl: "pig-serviceable-capacity-increase-additional",
+          backUrl: "storage-type",
+          nextUrl: "separator",
+          preValidationKeys: ["storageType"],
+          suffix: { text: "m³" },
+          type: "input",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          label: {
+            text: "What estimated additional volume do you need to have 8 months’ serviceable storage?",
+            classes: "govuk-label--l",
+            isPageHeading: true,
+          },
+          hint: {
+            html: `
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Enter estimated volume in cubic metres
+          `,
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Enter the volume you need to have 8 months’ serviceable storage",
+            },
+            {
+              type: "REGEX",
+              regex: INTERGERS_AND_DECIMALS,
+              error: "Volume must only include numbers",
+            },
+            {
+              type: "INCLUDES",
+              checkArray: ["."],
+              error: "Volume must be a whole number",
+            },
+            {
+              type: "MIN_MAX",
+              min: 1,
+              max: 9999999999,
+              error: "Volume must be between 1-9999999999",
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            dependentQuestionKeys: ["storage-type"],
+          },
+          warning: {
+            html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
+            Any capacity above 8 months is not covered by the grant.`,
+          },
+          yarKey: "serviceCapacityIncrease",
+        },
+        {
+          key: "separator",
+          order: 15,
+          title: "Do you want to add a slurry storage separator to your project?",
+          pageTitle: "",
+          backUrl: "pig-existing-storage-capacity",
+          nextUrl: "separator-items",
+          url: "separator",
+          hint: {
+            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
+          },
+          baseUrl: "separator",
+          preValidationKeys: ["serviceCapacityIncrease"],
+          fundingPriorities: "",
+          type: "single-answer",
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storage-type", "cover-type"],
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Select if you want to add a slurry separator to your project",
+            },
+          ],
+          answers: [
+            {
+              key: "separator-A1",
+              value: "Yes",
+              redirectUrl: "separator-items",
+            },
+            {
+              key: "separator-A2",
+              value: "No",
+              redirectUrl: "other-items",
+            },
+          ],
+          yarKey: "separator",
+        },
+        {
+          key: "existing-cover-type",
+          order: 135,
+          title: "What type of cover will you have on your existing store?",
+          hint: {
+            text: "Select one option",
+          },
+          url: "existing-cover-type",
+          baseUrl: "existing-cover-type",
+          backUrl: "?",
+          nextUrl: "?",
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+            ],
+            linkedQuestionyarkey: [
+              "serviceCapacityIncrease",
+              "coverSize",
+            ],
+            dependentQuestionKeys: ["storage-type", "cover-type"],
+          },
+          // fundingPriorities: "Improve the environment",
+          type: "single-answer",
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error: "Select what type of cover your existing store will have",
+            },
+          ],
+          answers: [
+            {
+              key: "existing-cover-type-A1",
+              value: "?"
+            },
+            {
+              key: "existing-cover-type-A2",
+              value: "?"
+            },
+          ],
+          yarKey: "existingCoverType",
+        },
+        {
           key: "cover-type",
-          order: 133,
+          order: 136,
           costDataType: "cat-cover-type",
           title: "What type of cover will you have?",
           baseUrl: "cover-type",
@@ -1625,7 +1909,7 @@ const questionBank = {
                 linkedSufix: "m³",
               },
             ],
-            linkedQuestionkey: ["serviceable-capacity-increase-replace"],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
             dependentQuestionKeys: ["storage-type"],
           },
           validate: [
@@ -1729,7 +2013,7 @@ const questionBank = {
                 linkedSufix: "m³",
               },
             ],
-            linkedQuestionkey: ["serviceable-capacity-increase-replace"],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
           yarKey: "coverSize",
@@ -1798,9 +2082,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionkey: [
-              "serviceable-capacity-increase-replace",
-              "cover-size",
+            linkedQuestionyarkey: [
+              "serviceCapacityIncrease",
+              "coverSize",
             ],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
@@ -1888,9 +2172,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionkey: [
-              "serviceable-capacity-increase-replace",
-              "cover-size",
+            linkedQuestionyarkey: [
+              "serviceCapacityIncrease",
+              "coverSize",
             ],
             dependentQuestionKeys: [
               "storage-type",
