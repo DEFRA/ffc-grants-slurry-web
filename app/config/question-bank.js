@@ -1765,7 +1765,7 @@ const questionBank = {
                 linkedSufix: "m³",
               },
             ],
-            linkedQuestionkey: ["serviceable-capacity-increase-replace"],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
           validate: [
@@ -1834,9 +1834,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionkey: [
-              "serviceable-capacity-increase-replace",
-              "cover-size",
+            linkedQuestionyarkey: [
+              "serviceCapacityIncrease",
+              "coverSize",
             ],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
@@ -1909,8 +1909,8 @@ const questionBank = {
                 linkedSufix: "m³",
               },
             ],
-            linkedQuestionkey: ["serviceable-capacity-increase-replace"],
-            dependentQuestionKeys: ["storage-type"],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storageType"],
           },
           validate: [
             {
@@ -2013,8 +2013,8 @@ const questionBank = {
                 linkedSufix: "m³",
               },
             ],
-            linkedQuestionkey: ["serviceable-capacity-increase-replace"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storageType", "coverType"],
           },
           yarKey: "coverSize",
         },
@@ -2082,9 +2082,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionkey: [
-              "serviceable-capacity-increase-replace",
-              "cover-size",
+            linkedQuestionyarkey: [
+              "serviceCapacityIncrease",
+              "coverSize",
             ],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
@@ -2172,9 +2172,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionkey: [
-              "serviceable-capacity-increase-replace",
-              "cover-size",
+            linkedQuestionyarkey: [
+              "serviceCapacityIncrease",
+              "coverSize",
             ],
             dependentQuestionKeys: [
               "storage-type",
