@@ -1910,7 +1910,7 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storageType"],
+            dependentQuestionKeys: ["storage-type"],
           },
           validate: [
             {
@@ -2014,7 +2014,7 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storageType", "coverType"],
+            dependentQuestionKeys: ["storage-type", "cover-type"],
           },
           yarKey: "coverSize",
         },
