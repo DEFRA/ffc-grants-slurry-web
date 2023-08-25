@@ -26,7 +26,7 @@ module.exports = [{
     }
   },
   handler: async (request, h, _err) => {
-    const preValidationKeys = ['cover']
+    const preValidationKeys = ['grantFundedCover']
     const isRedirect = guardPage(request, preValidationKeys, null)
 
     if (isRedirect) {

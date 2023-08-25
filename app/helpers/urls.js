@@ -26,8 +26,18 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
     return secBtn ? secBtnPath : url
   }
   const { dependentQuestionYarKey, dependentAnswerKeysArray, urlOptions } = urlObject
-  const { thenUrl, elseUrl, nonDependentUrl } = urlOptions
+  let { thenUrl, elseUrl, nonDependentUrl } = urlOptions
 
+  if(getYarValue(request, 'applicantType') === 'Pig' && nonDependentUrl === 'existing-cover'){
+    nonDependentUrl = 'existing-cover-pig'
+  }else if(getYarValue(request, 'applicantType') === 'Pig' && elseUrl === 'existing-cover'){
+    elseUrl = 'existing-cover-pig'
+  }else if(getYarValue(request, 'applicantType') === 'Pig' && 
+    thenUrl === 'serviceable-capacity-increase-replace' &&
+    elseUrl === "serviceable-capacity-increase-additional"){
+    thenUrl = 'pig-serviceable-capacity-increase-replace'
+    elseUrl = "pig-serviceable-capacity-increase-additional"
+  }
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
 
   const selectThenUrl = ALL_QUESTIONS.find(thisQuestion => (
