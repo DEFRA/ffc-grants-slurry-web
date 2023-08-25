@@ -61,7 +61,7 @@ describe('Page: /grant-funded-cover', () => {
   it('user selects eligible option -> store user response and redirect to /existing-cover-pig when the user select pig journey', async () => {
     varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grantFundedCover = 'Yes, I need a cover'
+
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/grant-funded-cover`,
@@ -78,7 +78,7 @@ describe('Page: /grant-funded-cover', () => {
     varList.applicantType = "Beef",
     varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grantFundedCover = 'Yes, I need a cover'
+
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/grant-funded-cover`,

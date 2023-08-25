@@ -1032,7 +1032,6 @@ const questionBank = {
               elseUrl: "existing-cover",
             },
           },
-          nextUrl: "estimated-grant",
           nextUrlObject: {
             dependentQuestionYarKey: "applyingFor",
             dependentAnswerKeysArray: ["applying-for-A1"],
