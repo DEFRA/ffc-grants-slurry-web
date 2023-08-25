@@ -951,12 +951,12 @@ const questionBank = {
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent: `
-            This grant is only for: <br> 
+            This grant is for: <br> 
             <ul class="govuk-list govuk-list--bullet">
             <li>replacing an existing store that is no longer fit for purpose with a new store</li>
             <li>adding a new store to increase existing capacity</li>
             <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
-            <li>adding an impermeable cover to existing stores to increase storage capacity</li>
+            <li>adding an impermeable cover to an existing store to increase storage capacity</li>
             </ul>
             `,
             messageLink: {
@@ -992,7 +992,7 @@ const questionBank = {
               value:
                 "Building a new store, replacing or expanding an existing store",
               hint: {
-                text: "This includes adding a cover to the new or existing stores",
+                text: "This includes adding a cover to the new or existing store",
               },
             },
             {
