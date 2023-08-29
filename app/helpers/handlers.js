@@ -155,7 +155,6 @@ const getPage = async (question, request, h) => {
       break
   }
 
-
   if (
     url === "potential-amount" &&
     !getGrantValues(getYarValue(request, "itemsTotalValue"), question.grantInfo)
@@ -370,19 +369,25 @@ const showPostPage = (currentQuestion, request, h) => {
     gapiService.sendValidationDimension(request);
     return errors;
   }
-  
+
+  if(baseUrl == 'cover-type' && getYarValue(request, "existingCover") === "Yes" &&  getYarValue(request, "coverType")){
+    return h.redirect("/slurry-infrastructure/existing-cover-type");
+  }else if(baseUrl == 'cover-type' && getYarValue(request, "existingCover") === "No" &&  getYarValue(request, "coverType")){
+    return h.redirect("/slurry-infrastructure/cover-size");
+  }
+
   if (
     baseUrl === "fit-for-purpose" &&
     getYarValue(request, "fitForPurpose") === "No" &&
     getYarValue(request, "applyingFor") ===
       "Building a new store, replacing or expanding an existing store"
-  ) {
+  ){
     return h.redirect("/slurry-infrastructure/fit-for-purpose-conditional");
-  } else if (
+  }else if (
     baseUrl === "fit-for-purpose" &&
     getYarValue(request, "fitForPurpose") === "No" &&
     getYarValue(request, "applyingFor") === "An impermeable cover only"
-  ) {
+  ){
     return h.view("not-eligible", NOT_ELIGIBLE);
   }else if(
     getYarValue(request, "serviceCapacityIncrease") &&
@@ -396,8 +401,7 @@ const showPostPage = (currentQuestion, request, h) => {
     getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
     getYarValue(request, "existingCover") === "Yes"){
       return h.redirect("/slurry-infrastructure/existing-cover-type");
-  }
-  else if(
+  }else if(
     getYarValue(request, "serviceCapacityIncrease") &&
     getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
       return h.redirect("/slurry-infrastructure/cover-type");

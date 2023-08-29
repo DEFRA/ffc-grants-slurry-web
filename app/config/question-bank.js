@@ -1875,14 +1875,15 @@ const questionBank = {
               elseUrl: "serviceable-capacity-increase-additional",
             },
           },
-          nextUrlObject: {
-            dependentQuestionYarKey: "coverType",
-            dependentAnswerKeysArray: ["cover-type-A4"],
-            urlOptions: {
-              thenUrl: "other-items",
-              elseUrl: "cover-size",
-            },
-          },
+          nextUrl: 'cover-size',
+          // nextUrlObject: {
+          //   dependentQuestionYarKey: "coverType",
+          //   dependentAnswerKeysArray: ["cover-type-A4"],
+          //   urlOptions: {
+          //     thenUrl: "other-items",
+          //     elseUrl: "cover-size",
+          //   },
+          // },
           url: "cover-type",
           preValidationKeys: ["serviceCapacityIncrease"],
           hint: {
@@ -1893,7 +1894,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -1915,7 +1916,7 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Please select an option",
+              error: "Select what type of cover your grant-funded store will have",
             },
           ],
           hintArray: [
