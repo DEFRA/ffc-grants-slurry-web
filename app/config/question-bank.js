@@ -2441,13 +2441,13 @@ const questionBank = {
             isPageHeading: true,
           },
           hint: {
-            html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br />
+            html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br/>
             Enter in the format of 2 letters and 10 numbers, for example SP9620733594<br/><br/>
             OS grid reference number
           `,
           },
           warning: {
-            html: "You must provide the correct location for your slurry store to avoid delays at full application.",
+            html: "You must provide an accurate grid reference to avoid delays at full application.",
           },
           validate: [
             {
