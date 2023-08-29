@@ -1875,15 +1875,6 @@ const questionBank = {
               elseUrl: "serviceable-capacity-increase-additional",
             },
           },
-          nextUrl: 'cover-size',
-          // nextUrlObject: {
-          //   dependentQuestionYarKey: "coverType",
-          //   dependentAnswerKeysArray: ["cover-type-A4"],
-          //   urlOptions: {
-          //     thenUrl: "other-items",
-          //     elseUrl: "cover-size",
-          //   },
-          // },
           url: "cover-type",
           preValidationKeys: ["serviceCapacityIncrease"],
           hint: {
