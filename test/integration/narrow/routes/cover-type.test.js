@@ -1,7 +1,10 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Cover Type test', () => {
-  const varList = { projectType: 'randomData', storageType: 'randomData', serviceCapacityIncrease: 'random' }
+  const varList = { 
+    projectType: 'randomData', 
+    storageType: 'randomData', 
+    serviceCapacityIncrease: 'random' }
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -36,10 +39,11 @@ describe('Cover Type test', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Please select an option')
+    expect(postResponse.payload).toContain('Select what type of cover your grant-funded store will have')
   })
 
-  test('POST /cover-type route returns next page', async () => {
+  test('POST /cover-size route returns next page when existing cover `/Yes/`', async () => {
+    varList.existingCover = "Yes"
     const options = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/cover-type`,
@@ -49,7 +53,21 @@ describe('Cover Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('cover-size')
+    expect(response.headers.location).toBe('/slurry-infrastructure/existing-cover-type')
+  })
+
+  test('POST /cover-size route returns next page when existing cover `/No/`', async () => {
+    varList.existingCover = "No"
+    const options = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/cover-type`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { coverType: 'fake data', crumb: crumbToken }
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('/slurry-infrastructure/cover-size')
   })
 
   it('page loads with correct back link', async () => {
