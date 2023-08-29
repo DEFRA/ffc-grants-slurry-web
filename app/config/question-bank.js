@@ -1865,7 +1865,7 @@ const questionBank = {
           key: "cover-type",
           order: 136,
           costDataType: "cat-cover-type",
-          title: "What type of cover will you have?",
+          title: "What type of cover will you have on your grant-funded store?",
           baseUrl: "cover-type",
           backUrlObject: {
             dependentQuestionYarKey: "projectType",

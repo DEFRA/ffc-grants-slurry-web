@@ -26,7 +26,7 @@ describe('Cover Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What type of cover will you have?')
+    expect(response.payload).toContain('What type of cover will you have on your grant-funded store?')
   })
 
   it('no option selected -> show error message', async () => {
