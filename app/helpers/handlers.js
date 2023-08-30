@@ -370,6 +370,20 @@ const showPostPage = (currentQuestion, request, h) => {
     return errors;
   }
 
+  if(baseUrl == 'existing-cover-type' && 
+  getYarValue(request, "existingCover") === "Yes" &&  
+  getYarValue(request, "existingCoverType") && 
+  getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
+    return h.redirect("/slurry-infrastructure/existing-cover-size");
+  }else if(baseUrl == 'existing-cover-type' && 
+  getYarValue(request, "existingCover") === "Yes" &&
+  getYarValue(request, "existingCoverType") && 
+  (getYarValue(request, "applyingFor") === "Building a new store, replacing or expanding an existing store" ||
+  getYarValue(request, "applyingFor") === "An impermeable cover only")){
+    return h.redirect("/slurry-infrastructure/existing-cover-size");
+  }
+
+
   if(baseUrl == 'cover-type' && getYarValue(request, "existingCover") === "Yes" &&  getYarValue(request, "coverType")){
     return h.redirect("/slurry-infrastructure/existing-cover-type");
   }else if(baseUrl == 'cover-type' && getYarValue(request, "existingCover") === "No" &&  getYarValue(request, "coverType")){

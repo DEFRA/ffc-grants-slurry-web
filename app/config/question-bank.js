@@ -1792,14 +1792,22 @@ const questionBank = {
         {
           key: "existing-cover-type",
           order: 135,
+          costDataType: "cat-cover-type",
           title: "What type of cover will you have on your existing store?",
           hint: {
             text: "Select one option",
           },
           url: "existing-cover-type",
           baseUrl: "existing-cover-type",
-          backUrl: "?",
-          nextUrl: "?",
+          backUrlObject: {
+            dependentQuestionYarKey: "projectType",
+            dependentAnswerKeysArray: ["project-type-A1"],
+            urlOptions: {
+              thenUrl: "serviceable-capacity-increase-replace",
+              elseUrl: "serviceable-capacity-increase-additional",
+              nonDependentUrl: "cover-type",
+            },
+          },
           sidebar: {
             mainHeading: "Your project items",
             values: [
@@ -1834,13 +1842,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionyarkey: [
-              "serviceCapacityIncrease",
-              "coverSize",
-            ],
+            linkedQuestionyarkey: [ "serviceCapacityIncrease", "coverSize"],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
-          // fundingPriorities: "Improve the environment",
           type: "single-answer",
           minAnswerCount: 1,
           validate: [
@@ -1851,12 +1855,12 @@ const questionBank = {
           ],
           answers: [
             {
-              key: "existing-cover-type-A1",
-              value: "?"
+              value: "divider",
             },
             {
-              key: "existing-cover-type-A2",
-              value: "?"
+              key: "cover-type-A4",
+              text: "I already have an impermeable cover",
+              value: "Not needed",
             },
           ],
           yarKey: "existingCoverType",
