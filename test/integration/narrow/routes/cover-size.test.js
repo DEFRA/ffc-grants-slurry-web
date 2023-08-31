@@ -32,7 +32,7 @@ describe('Page: /cover-size', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Enter the size of cover')
+    expect(postResponse.payload).toContain('Enter how big the grant-funded store cover will be')
   })
 
   it('value outside min and max -> show error message', async () => {

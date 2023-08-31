@@ -1960,6 +1960,90 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
+              error: "Enter how big the grant-funded store cover will be",
+            },
+            {
+              type: "REGEX",
+              regex: INTERGERS_AND_DECIMALS,
+              error: "Cover size must only include numbers",
+            },
+            {
+              type: "INCLUDES",
+              checkArray: ["."],
+              error: "Cover size must be a whole number",
+            },
+            {
+              type: "MIN_MAX",
+              min: 1,
+              max: 999999,
+              error: "Cover size must be between 1-999999",
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storage-type", "cover-type"],
+          },
+          yarKey: "coverSize",
+        },
+        {
+          key: "existing-cover-size",
+          order: 138,
+          title: "",
+          pageTitle: "",
+          classes: "govuk-input--width-5",
+          url: "existing-cover-size",
+          baseUrl: "existing-cover-size",
+          backUrl: "cover-type",
+          nextUrl: "other-items",
+          preValidationKeys: ["coverType"],
+          suffix: { text: "m²" },
+          type: "input",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          label: {
+            text: "How big will the cover be?",
+            classes: "govuk-label--l",
+            isPageHeading: true,
+          },
+          hint: {
+            html: `
+            Enter the estimated surface area of the replacement, new or expanded store
+            <br/><br/>
+            Enter size in metres squared
+          `,
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
               error: "Enter the size of cover",
             },
             {
@@ -1983,7 +2067,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -1993,7 +2077,17 @@ const questionBank = {
                 ],
               },
               {
-                heading: "Cover",
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
                 content: [
                   {
                     para: "",
@@ -2012,7 +2106,7 @@ const questionBank = {
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
-          yarKey: "coverSize",
+          yarKey: "existingCoverSize",
         },
         {
           key: "other-items",
