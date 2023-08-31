@@ -2024,7 +2024,7 @@ const questionBank = {
           baseUrl: "existing-cover-size",
           backUrl: "existing-cover-type",
           nextUrl: "separator",
-          // preValidationKeys: ["existingCoverType"],
+          preValidationKeys: ["existingCoverType"],
           suffix: { text: "m²" },
           type: "input",
           inputmode: "numeric",

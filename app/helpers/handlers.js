@@ -141,15 +141,25 @@ const getPage = async (question, request, h) => {
       break
       case "grant-funded-cover" :
         setYarValue(request, "serviceCapacityIncrease", null);
+        setYarValue(request, "existingCoverSize", null);
+        setYarValue(request, "coverSize", null);
       break
       case "existing-cover" :
         setYarValue(request, "serviceCapacityIncrease", null);
+        setYarValue(request, "existingCoverSize", null);
+        setYarValue(request, "coverSize", null);
       break
       case "existing-cover-pig" :
         setYarValue(request, "serviceCapacityIncrease", null);
+        setYarValue(request, "existingCoverSize", null);
+        setYarValue(request, "coverSize", null);
       break
       case "applicant-type" :
         setYarValue(request, "intensiveFarming", null);
+      break
+      case "existing-cover-type" :
+        setYarValue(request, "existingCoverSize", null);
+        setYarValue(request, "coverSize", null);
       break
     default:
       break
@@ -371,7 +381,7 @@ const showPostPage = (currentQuestion, request, h) => {
   }
 
   if(baseUrl == 'existing-cover-type' && 
-  getYarValue(request, "existingCover") === "Yes" &&  
+  getYarValue(request, "existingCover") === "No" &&  
   getYarValue(request, "existingCoverType") && 
   getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
     return h.redirect("/slurry-infrastructure/existing-cover-size");
@@ -380,7 +390,8 @@ const showPostPage = (currentQuestion, request, h) => {
   getYarValue(request, "existingCoverType") && 
   (getYarValue(request, "applyingFor") === "Building a new store, replacing or expanding an existing store" ||
   getYarValue(request, "applyingFor") === "An impermeable cover only")){
-    return h.redirect("/slurry-infrastructure/existing-cover-size");
+    // I have asked Alice to put different url for different cases. 
+    // return h.redirect("/slurry-infrastructure/existing-cover-size");
   }
 
 
