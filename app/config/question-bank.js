@@ -1935,7 +1935,7 @@ const questionBank = {
           order: 137,
           title: "",
           pageTitle: "",
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           url: "cover-size",
           baseUrl: "cover-size",
           backUrl: "cover-type",
@@ -2017,14 +2017,14 @@ const questionBank = {
         {
           key: "existing-cover-size",
           order: 138,
-          title: "",
-          pageTitle: "",
-          classes: "govuk-input--width-5",
+          title: "existing-cover-size",
+          pageTitle: "existing-cover-size",
+          classes: "govuk-input--width-10",
           url: "existing-cover-size",
           baseUrl: "existing-cover-size",
-          backUrl: "cover-type",
-          nextUrl: "other-items",
-          preValidationKeys: ["coverType"],
+          backUrl: "existing-cover-type",
+          nextUrl: "separator",
+          // preValidationKeys: ["existingCoverType"],
           suffix: { text: "m²" },
           type: "input",
           inputmode: "numeric",
@@ -2039,12 +2039,14 @@ const questionBank = {
             Enter the estimated surface area of the replacement, new or expanded store
             <br/><br/>
             Enter size in metres squared
+            <br/><br/>
+            <p class='govuk-body'>Existing store</p>
           `,
           },
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Enter the size of cover",
+              error: "Enter how big the existing store cover will be",
             },
             {
               type: "REGEX",
@@ -2059,33 +2061,13 @@ const questionBank = {
             {
               type: "MIN_MAX",
               min: 1,
-              max: 999999,
-              error: "Cover size must be between 1-999999",
+              max: 9999999999,
+              error: "Cover size must be between 1-9999999999",
             },
           ],
           sidebar: {
             mainHeading: "Your project items",
             values: [
-              {
-                heading: "Grant-funded store",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-              {
-                heading: "Grant-funded store cover",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
               {
                 heading: "Existing store cover",
                 content: [
@@ -2104,7 +2086,7 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            dependentQuestionKeys: ["existing-cover-type"],
           },
           yarKey: "existingCoverSize",
         },
