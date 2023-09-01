@@ -174,6 +174,7 @@ const getPage = async (question, request, h) => {
         }else if (existingCover === "Yes" && grantFundedCover === "Yes, I need a cover") {
           question.backUrl = `${urlPrefix}/existing-cover-size`
         }else if (existingCover === "Yes" && applyingFor != "None of the above") {
+          // the url below is not confirmed. it's just temporary url
           question.backUrl = `${urlPrefix}/existinggrantfundedcoversize`
         }else if (
         (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
