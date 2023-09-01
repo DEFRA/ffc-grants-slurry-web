@@ -3,6 +3,7 @@ const { getModel } = require("../helpers/models");
 const { checkErrors } = require("../helpers/errorSummaryHandlers");
 const { getGrantValues } = require("../helpers/grants-info");
 const { formatUKCurrency } = require("../helpers/data-formats");
+const { startPageUrl, urlPrefix } = require('../config/server')
 const {
   SELECT_VARIABLE_TO_REPLACE,
   DELETE_POSTCODE_CHARS_REGEX,
@@ -160,6 +161,45 @@ const getPage = async (question, request, h) => {
       case "existing-cover-type" :
         setYarValue(request, "existingCoverSize", null);
         setYarValue(request, "coverSize", null);
+      break
+      case "separator":
+        const existingCover = getYarValue(request, 'existingCover')
+        const grantFundedCover = getYarValue(request, 'grantFundedCover')
+        const applyingFor = getYarValue(request, 'applyingFor')
+        const applicantType = getYarValue(request, 'applicantType')
+        const projectType = getYarValue(request, 'projectType')
+
+        if (existingCover === "No") {
+          question.backUrl = `${urlPrefix}/cover-size`
+        }else if (existingCover === "Yes" && grantFundedCover === "Yes, I need a cover") {
+          question.backUrl = `${urlPrefix}/existing-cover-size`
+        }else if (existingCover === "Yes" && applyingFor != "None of the above") {
+          question.backUrl = `${urlPrefix}/existinggrantfundedcoversize`
+        }else if (
+        (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
+        grantFundedCover === "No" && 
+        applicantType === "Pig" &&
+        projectType=== "Replace an existing store that is no longer fit for purpose with a new store") {
+          question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+        }else if (
+          (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
+          grantFundedCover === "No" && 
+          applicantType === "Pig" &&
+          projectType=== "Add a new store to increase existing capacity" || projectType=== "Expand an existing store") {
+            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+        }else if (
+            (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
+            grantFundedCover === "No" && 
+            applicantType !== "Pig" &&
+            projectType=== "Replace an existing store that is no longer fit for purpose with a new store") {
+              question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+        }else if (
+              (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
+              grantFundedCover === "No" && 
+              applicantType !== "Pig" &&
+              projectType=== "Add a new store to increase existing capacity" || projectType=== "Expand an existing store") {
+              question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          }
       break
     default:
       break
