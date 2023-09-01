@@ -3,7 +3,6 @@ const { getModel } = require("../helpers/models");
 const { checkErrors } = require("../helpers/errorSummaryHandlers");
 const { getGrantValues } = require("../helpers/grants-info");
 const { formatUKCurrency } = require("../helpers/data-formats");
-const { startPageUrl, urlPrefix } = require('../config/server')
 const {
   SELECT_VARIABLE_TO_REPLACE,
   DELETE_POSTCODE_CHARS_REGEX,
@@ -13,7 +12,7 @@ const { guardPage } = require("../helpers/page-guard");
 const senders = require("../messaging/senders");
 const createMsg = require("../messaging/create-msg");
 const gapiService = require("../services/gapi-service");
-const { startPageUrl } = require("../config/server");
+const { startPageUrl, urlPrefix } = require("../config/server");
 const { ALL_QUESTIONS } = require("../config/question-bank");
 const { formatOtherItems } = require("./../helpers/other-items-sizes");
 const emailFormatting = require("./../messaging/email/process-submission");
