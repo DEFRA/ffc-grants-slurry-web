@@ -1879,8 +1879,8 @@ const questionBank = {
               elseUrl: "serviceable-capacity-increase-additional",
             },
           },
-          url: "cover-type",
-          preValidationKeys: ["serviceCapacityIncrease"],
+          url: "cover-type", 
+          preValidationKeys: ["serviceCapacityIncrease"], // may need to update these
           hint: {
             text: "Select one option",
           },
