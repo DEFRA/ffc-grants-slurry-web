@@ -1460,7 +1460,7 @@ const questionBank = {
             {
               type: "REGEX",
               regex: INTERGERS_AND_DECIMALS,
-              error: "Volume must only include numbers",
+              error: "Volume must be a whole number",
             },
             {
               type: "INCLUDES",
@@ -1478,7 +1478,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
