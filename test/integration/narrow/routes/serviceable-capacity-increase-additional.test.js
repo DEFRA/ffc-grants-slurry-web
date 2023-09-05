@@ -58,7 +58,7 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Volume must only include numbers')
+    expect(postResponse.payload).toContain('Volume must be a whole number')
   })
 
   it('If decimals used', async () => {
