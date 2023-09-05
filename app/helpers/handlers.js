@@ -152,6 +152,9 @@ const getPage = async (question, request, h) => {
       case "applicant-type" :
         setYarValue(request, "intensiveFarming", null);
       break
+    case "estimated-grant" :
+      setYarValue(request, "estimatedGrant", 'reached');
+      break
     default:
       break
   }
@@ -354,7 +357,6 @@ const showPostPage = (currentQuestion, request, h) => {
   thisAnswer = createAnswerObj(payload, yarKey, type, request, answers);
 
   handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload);
-  console.log('here: ', baseUrl, getYarValue(request, "fitForPurpose"), getYarValue(request, "applyingFor"));
   
   if (title) {
     currentQuestion = {
