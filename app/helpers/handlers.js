@@ -76,9 +76,10 @@ const setTitle = async (title, question, request) => {
   }
 };
 const processGA = async (question, request, confirmationId) => {
-  if (question.ga) {
-    await gapiService.processGA(request, question.ga, confirmationId);
-  }
+  //TODO: update Gapi calls to use new format
+  // if (question.ga) {
+  //   await gapiService.processGA(request, question.ga, confirmationId);
+  // }
 };
 
 const addConsentOptionalData = async (url, request) => {
@@ -151,6 +152,9 @@ const getPage = async (question, request, h) => {
       case "applicant-type" :
         setYarValue(request, "intensiveFarming", null);
       break
+    case "estimated-grant" :
+      setYarValue(request, "estimatedGrant", 'reached');
+      break
     default:
       break
   }
@@ -162,7 +166,8 @@ const getPage = async (question, request, h) => {
       .isEligible
   ) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl };
-    gapiService.sendEligibilityEvent(request, "true");
+    //TODO update Gapi calls to use new format
+    // gapiService.sendEligibilityEvent(request, "true");
     return h.view("not-eligible", NOT_ELIGIBLE);
   }
 
@@ -352,7 +357,6 @@ const showPostPage = (currentQuestion, request, h) => {
   thisAnswer = createAnswerObj(payload, yarKey, type, request, answers);
 
   handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload);
-  console.log('here: ', baseUrl, getYarValue(request, "fitForPurpose"), getYarValue(request, "applyingFor"));
   
   if (title) {
     currentQuestion = {
@@ -367,7 +371,8 @@ const showPostPage = (currentQuestion, request, h) => {
 
   const errors = checkErrors(payload, currentQuestion, h, request);
   if (errors) {
-    gapiService.sendValidationDimension(request);
+    // TODO: update Gapi calls to use new format
+    // gapiService.sendValidationDimension(request);
     return errors;
   }
   
@@ -404,7 +409,8 @@ const showPostPage = (currentQuestion, request, h) => {
   }
 
   if (thisAnswer?.notEligible) {
-    gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible);
+    //TODO update Gapi calls to use new format
+    // gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible);
     return h.view("not-eligible", NOT_ELIGIBLE);
   } else if (thisAnswer?.redirectUrl) {
     return h.redirect(thisAnswer?.redirectUrl);
