@@ -1915,7 +1915,7 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storage-type"], // comment push
+            dependentQuestionKeys: ["storageType"],
           },
           validate: [
             {

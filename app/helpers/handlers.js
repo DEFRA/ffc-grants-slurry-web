@@ -163,7 +163,8 @@ const getPage = async (question, request, h) => {
       .isEligible
   ) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl };
-    gapiService.sendEligibilityEvent(request, "true");
+    //TODO update Gapi calls to use new format
+    // gapiService.sendEligibilityEvent(request, "true");
     return h.view("not-eligible", NOT_ELIGIBLE);
   }
 
@@ -406,7 +407,8 @@ const showPostPage = (currentQuestion, request, h) => {
   }
 
   if (thisAnswer?.notEligible) {
-    gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible);
+    //TODO update Gapi calls to use new format
+    // gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible);
     return h.view("not-eligible", NOT_ELIGIBLE);
   } else if (thisAnswer?.redirectUrl) {
     return h.redirect(thisAnswer?.redirectUrl);
