@@ -1276,10 +1276,7 @@ const questionBank = {
                 heading: "Eligibility",
                 content: [
                   {
-                    para: `
-                You can use the grant to cover an existing store to help increase your total storage capacity to 6 months.
-                
-                Slurry acidification systems are not eligible for funding through this grant.`,
+                    para: `You can use the grant to cover an existing store to help increase your total storage capacity to 6 months.`,
                     items: [],
                   },
                 ],
@@ -1381,6 +1378,7 @@ const questionBank = {
             messageContent:
               "Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.",
           },
+          yarKey: "estimatedGrant",
         },
         // Calls standardised cost page
         {

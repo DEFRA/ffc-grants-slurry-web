@@ -9,7 +9,7 @@
     "build:watch": "webpack --watch",
     "lint": "standard",
     "lint-fix": "standard --fix",
-    "test": "jest test/integration/narrow/routes/existing-cover-type.test.js --runInBand",
+    "test": "jest --runInBand --detectOpenHandles",
     "test:watch": "jest --watch",
     "start:watch": "npm-run-all --parallel build:watch start:nodemon",
     "start:nodemon": "nodemon --verbose --inspect=0.0.0.0 --ext js,njk --legacy-watch app/index.js"
