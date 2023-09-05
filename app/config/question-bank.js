@@ -1554,7 +1554,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
