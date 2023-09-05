@@ -421,7 +421,7 @@ const showPostPage = (currentQuestion, request, h) => {
   }
 
   if(baseUrl == 'existing-cover-type' && 
-  getYarValue(request, "existingCover") === "No" &&  
+  getYarValue(request, "existingCover") === "Yes" &&  
   getYarValue(request, "existingCoverType") && 
   getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
     return h.redirect("/slurry-infrastructure/existing-cover-size");
@@ -430,8 +430,7 @@ const showPostPage = (currentQuestion, request, h) => {
   getYarValue(request, "existingCoverType") && 
   (getYarValue(request, "applyingFor") === "Building a new store, replacing or expanding an existing store" ||
   getYarValue(request, "applyingFor") === "An impermeable cover only")){
-    // I have asked Alice to put different url for different cases. 
-    // return h.redirect("/slurry-infrastructure/existing-cover-size");
+    return h.redirect("/slurry-infrastructure/existing-grant-funded-cover-size");
   }
 
 
