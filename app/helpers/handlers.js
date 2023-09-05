@@ -76,9 +76,10 @@ const setTitle = async (title, question, request) => {
   }
 };
 const processGA = async (question, request, confirmationId) => {
-  if (question.ga) {
-    await gapiService.processGA(request, question.ga, confirmationId);
-  }
+  //TODO: update Gapi calls to use new format
+  // if (question.ga) {
+  //   await gapiService.processGA(request, question.ga, confirmationId);
+  // }
 };
 
 const addConsentOptionalData = async (url, request) => {
@@ -367,7 +368,8 @@ const showPostPage = (currentQuestion, request, h) => {
 
   const errors = checkErrors(payload, currentQuestion, h, request);
   if (errors) {
-    gapiService.sendValidationDimension(request);
+    // TODO: update Gapi calls to use new format
+    // gapiService.sendValidationDimension(request);
     return errors;
   }
   
