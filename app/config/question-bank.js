@@ -2089,6 +2089,140 @@ const questionBank = {
           yarKey: "existingCoverSize",
         },
         {
+          key: "existing-grant-funded-cover-size",
+          order: 138,
+          title: "How big will the covers be?",
+          pageTitle: "How big will the covers be?",
+          classes: "govuk-input--width-5",
+          url: "existing-grant-funded-cover-size",
+          baseUrl: "existing-grant-funded-cover-size",
+          backUrl: "existing-cover-type",
+          nextUrl: "separator",
+          // preValidationKeys: ["coverType"],
+          type: 'multi-input',
+          hint: {
+            html: `
+            Enter the estimated cover surface area of the grant-funded store and the existing store
+            <br/><br/>
+            Enter size in metres squared
+          `,
+          },
+          allFields: [
+            {
+              yarKey: 'grantFundedStore',
+              type: 'number',
+              classes: 'govuk-input--width-5',
+              label: {
+                html: '<p class="govuk-body">Grant-funded store</p>',
+                classes: 'govuk-label'
+              },
+              suffix: {
+                text: 'm²'
+              },
+              validate: [
+                {
+                  type: "NOT_EMPTY",
+                  error: "Enter how big the grant-funded store cover will be",
+                },
+                {
+                  type: "REGEX",
+                  regex: INTERGERS_AND_DECIMALS,
+                  error: "Cover size must only include numbers",
+                },
+                {
+                  type: "INCLUDES",
+                  checkArray: ["."],
+                  error: "Cover size must be a whole number",
+                },
+                {
+                  type: "MIN_MAX",
+                  min: 1,
+                  max: 999999,
+                  error: "Volume must be between 1-999999",
+                },
+              ]
+            },
+            {
+              yarKey: 'existingStore',
+              type: 'number',
+              classes: 'govuk-input--width-5',
+              label: {
+                html: '<p class="govuk-body">Existing store<p>',
+                classes: 'govuk-label'
+              },
+              suffix: {
+                text: 'm²'
+              },
+              validate: [
+                {
+                  type: "NOT_EMPTY",
+                  error: "Enter how big the existing store cover will be",
+                },
+                {
+                  type: "REGEX",
+                  regex: INTERGERS_AND_DECIMALS,
+                  error: "Cover size must only include numbers",
+                },
+                {
+                  type: "INCLUDES",
+                  checkArray: ["."],
+                  error: "Cover size must be a whole number",
+                },
+                {
+                  type: "MIN_MAX",
+                  min: 1,
+                  max: 999999,
+                  error: "Volume must be between 1-999999",
+                },
+              ]
+            }
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded Store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storage-type", "cover-type","existing-cover-type"],
+          },
+          yarKey: "existingGrantFundedCoverSize",
+        },
+        {
           key: "other-items",
           order: 139,
           costDataType: "other",
