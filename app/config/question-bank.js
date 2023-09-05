@@ -1487,7 +1487,7 @@ const questionBank = {
               },
             ],
             dependentYarKeys: ["storageType"],
-            dependentQuestionKeys: ["storage-type"],
+            dependentQuestionKeys: ["storageType"],
           },
           warning: {
             html: "This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant.",
@@ -1564,7 +1564,7 @@ const questionBank = {
                 ],
               },
             ],
-            dependentQuestionKeys: ["storage-type"],
+            dependentQuestionKeys: ["storageType"],
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
@@ -1639,7 +1639,7 @@ const questionBank = {
               },
             ],
             dependentYarKeys: ["storageType"],
-            dependentQuestionKeys: ["storage-type"],
+            dependentQuestionKeys: ["storageType"],
           },
           warning: {
             html: "This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.",
@@ -1709,7 +1709,7 @@ const questionBank = {
                 ],
               },
             ],
-            dependentQuestionKeys: ["storage-type"],
+            dependentQuestionKeys: ["storageType"],
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
@@ -1764,7 +1764,7 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            dependentQuestionKeys: ["storageType", "coverType"],
           },
           validate: [
             {
@@ -1843,7 +1843,7 @@ const questionBank = {
               "serviceCapacityIncrease",
               "coverSize",
             ],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            dependentQuestionKeys: ["storageType", "coverType"],
           },
           // fundingPriorities: "Improve the environment",
           type: "single-answer",
@@ -2019,7 +2019,7 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            dependentQuestionKeys: ["storageType", "coverType"],
           },
           yarKey: "coverSize",
         },
@@ -2091,7 +2091,7 @@ const questionBank = {
               "serviceCapacityIncrease",
               "coverSize",
             ],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            dependentQuestionKeys: ["storageType", "coverType"],
           },
           validate: [
             {
@@ -2182,9 +2182,9 @@ const questionBank = {
               "coverSize",
             ],
             dependentQuestionKeys: [
-              "storage-type",
-              "cover-type",
-              "other-items",
+              "storageType",
+              "coverType",
+              "otherItems",
             ],
           },
           allFields: [],
