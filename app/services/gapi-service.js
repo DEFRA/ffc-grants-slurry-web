@@ -7,7 +7,7 @@ const isBlockDefaultPageView = (url) => {
   return blockDefaultPageViews.indexOf(currentUrl) >= 0
 }
 
-const grant_type = 'Water Management'
+const grant_type = 'Slurry Infrastructure'
 
 const eventTypes = {
   PAGEVIEW: 'pageview',
