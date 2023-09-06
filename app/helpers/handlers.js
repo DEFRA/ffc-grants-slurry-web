@@ -211,10 +211,20 @@ const getPage = async (question, request, h) => {
       setYarValue(request, "coverSize", null);
       setYarValue(request, "existingCoverSize", null);
       setYarValue(request, "existingGrantFundedCoverSize", null);
+      break
     default:
       break
   }
 
+  if(yarKey === "serviceCapacityIncrease"){
+    if(getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
+      question.nextUrl = `${urlPrefix}/cover-type`
+    }else if(getYarValue(request, "existingCover") === "Yes"){
+      question.nextUrl = `${urlPrefix}/existing-cover-type`
+    }else{
+      question.nextUrl = `${urlPrefix}/separator`
+    }
+  }
   if (
     url === "potential-amount" &&
     !getGrantValues(getYarValue(request, "itemsTotalValue"), question.grantInfo)
