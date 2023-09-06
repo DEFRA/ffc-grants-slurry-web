@@ -1393,6 +1393,7 @@ const questionBank = {
             urlOptions: {
               thenUrl: "serviceable-capacity-increase-replace",
               elseUrl: "serviceable-capacity-increase-additional",
+              nonDependentUrl: "existing-cover-type"
             },
           },
           url: "storage-type",
@@ -1713,7 +1714,7 @@ const questionBank = {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: "separator",
-          preValidationKeys: ["serviceCapacityIncrease"],
+          preValidationKeys: ["storageType"],
           fundingPriorities: "",
           type: "single-answer",
           minAnswerCount: 1,
