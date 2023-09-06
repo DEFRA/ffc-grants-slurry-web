@@ -174,8 +174,7 @@ const getPage = async (question, request, h) => {
         }else if (existingCover === "Yes" && grantFundedCover === "Yes, I need a cover") {
           question.backUrl = `${urlPrefix}/existing-cover-size`
         }else if (existingCover === "Yes" && applyingFor != "None of the above") {
-          // the url below is not confirmed. it's just temporary url
-          question.backUrl = `${urlPrefix}/existinggrantfundedcoversize`
+          question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
         }else if (
         (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
         grantFundedCover === "No" && 
@@ -204,6 +203,14 @@ const getPage = async (question, request, h) => {
     case "estimated-grant" :
       setYarValue(request, "estimatedGrant", 'reached');
       break
+    case "storage-type":
+      setYarValue(request, "serviceCapacityIncrease", null);
+      setYarValue(request, "separator", null);
+      setYarValue(request, "existingCoverType", null);
+      setYarValue(request, "coverType", null);
+      setYarValue(request, "coverSize", null);
+      setYarValue(request, "existingCoverSize", null);
+      setYarValue(request, "existingGrantFundedCoverSize", null);
     default:
       break
   }

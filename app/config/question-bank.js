@@ -2098,7 +2098,7 @@ const questionBank = {
           baseUrl: "existing-grant-funded-cover-size",
           backUrl: "existing-cover-type",
           nextUrl: "separator",
-          // preValidationKeys: ["coverType"],
+          preValidationKeys: ["coverType"],
           type: 'multi-input',
           hint: {
             html: `
