@@ -159,59 +159,60 @@ const getPage = async (question, request, h) => {
         setYarValue(request, "intensiveFarming", null);
       break
       case "existing-cover-type" :
-        setYarValue(request, "existingCoverSize", null);
-        setYarValue(request, "coverSize", null);
+        if(getYarValue(request, 'applyingFor') === "An impermeable cover only"){
+          question.backUrl = `${urlPrefix}/standardised-grant-amounts`
+        }else if(getYarValue(request, 'coverType')){
+          question.backUrl = `${urlPrefix}/cover-type`
+        }else if(getYarValue(request, 'projectType') === "Replace an existing store that is no longer fit for purpose with a new store"){
+          if(getYarValue(request, "applicantType") === "Pig"){
+            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          }else{
+            question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          }
+        }else{
+          if(getYarValue(request, "applicantType") === "Pig"){
+            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          }else{
+            question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          }
+        }
       break
       case "separator":
-        const existingCover = getYarValue(request, 'existingCover')
-        const grantFundedCover = getYarValue(request, 'grantFundedCover')
-        const applyingFor = getYarValue(request, 'applyingFor')
-        const applicantType = getYarValue(request, 'applicantType')
-        const projectType = getYarValue(request, 'projectType')
-
-        if (existingCover === "No") {
-          question.backUrl = `${urlPrefix}/cover-size`
-        }else if (existingCover === "Yes" && grantFundedCover === "Yes, I need a cover") {
-          question.backUrl = `${urlPrefix}/existing-cover-size`
-        }else if (existingCover === "Yes" && applyingFor != "None of the above") {
-          question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
-        }else if (
-        (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
-        grantFundedCover === "No" && 
-        applicantType === "Pig" &&
-        projectType=== "Replace an existing store that is no longer fit for purpose with a new store") {
-          question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
-        }else if (
-          (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
-          grantFundedCover === "No" && 
-          applicantType === "Pig" &&
-          projectType=== "Add a new store to increase existing capacity" || projectType=== "Expand an existing store") {
-            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
-        }else if (
-            (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
-            grantFundedCover === "No" && 
-            applicantType !== "Pig" &&
-            projectType=== "Replace an existing store that is no longer fit for purpose with a new store") {
-              question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
-        }else if (
-              (grantFundedCover=== "Yes, I already have a cover" || grantFundedCover=== "Not needed, the slurry is treated with acidification") && 
-              grantFundedCover === "No" && 
-              applicantType !== "Pig" &&
-              projectType=== "Add a new store to increase existing capacity" || projectType=== "Expand an existing store") {
-              question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+        if(getYarValue(request, 'coverType')){
+          if(getYarValue(request, 'existingCover') === "No"){
+            question.backUrl = `${urlPrefix}/cover-size`
+          }else{
+            question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
           }
+        }else if(getYarValue(request, 'existingCover') === "Yes" || getYarValue(request, 'applyingFor') === "An impermeable cover only"){
+          question.backUrl = `${urlPrefix}/existing-cover-size`
+        }else{
+          if(getYarValue(request, 'applicantType') === "Pig"){
+            if(getYarValue(request, 'projectType') === "Replace an existing store that is no longer fit for purpose with a new store"){
+              question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+            }else{
+              question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+            }
+          }else{
+            if(getYarValue(request, 'projectType') === "Replace an existing store that is no longer fit for purpose with a new store"){
+              question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+            }else{
+              question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+            }
+          }
+        }
     case "estimated-grant" :
       setYarValue(request, "estimatedGrant", 'reached');
       break
-    case "storage-type":
-      setYarValue(request, "serviceCapacityIncrease", null);
-      setYarValue(request, "separator", null);
-      setYarValue(request, "existingCoverType", null);
-      setYarValue(request, "coverType", null);
-      setYarValue(request, "coverSize", null);
-      setYarValue(request, "existingCoverSize", null);
-      setYarValue(request, "existingGrantFundedCoverSize", null);
-      break
+    // case "storage-type":
+    //   setYarValue(request, "serviceCapacityIncrease", null);
+    //   setYarValue(request, "separator", null);
+    //   setYarValue(request, "existingCoverType", null);
+    //   setYarValue(request, "coverType", null);
+    //   setYarValue(request, "coverSize", null);
+    //   setYarValue(request, "existingCoverSize", null);
+    //   setYarValue(request, "existingGrantFundedCoverSize", null);
+    //   break
     default:
       break
   }
@@ -441,26 +442,6 @@ const showPostPage = (currentQuestion, request, h) => {
     return errors;
   }
 
-  if(baseUrl == 'existing-cover-type' && 
-  getYarValue(request, "existingCover") === "Yes" &&  
-  getYarValue(request, "existingCoverType") && 
-  getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
-    return h.redirect("/slurry-infrastructure/existing-cover-size");
-  }else if(baseUrl == 'existing-cover-type' && 
-  getYarValue(request, "existingCover") === "Yes" &&
-  getYarValue(request, "existingCoverType") && 
-  (getYarValue(request, "applyingFor") === "Building a new store, replacing or expanding an existing store" ||
-  getYarValue(request, "applyingFor") === "An impermeable cover only")){
-    return h.redirect("/slurry-infrastructure/existing-grant-funded-cover-size");
-  }
-
-
-  if(baseUrl == 'cover-type' && getYarValue(request, "existingCover") === "Yes" &&  getYarValue(request, "coverType")){
-    return h.redirect("/slurry-infrastructure/existing-cover-type");
-  }else if(baseUrl == 'cover-type' && getYarValue(request, "existingCover") === "No" &&  getYarValue(request, "coverType")){
-    return h.redirect("/slurry-infrastructure/cover-size");
-  }
-
   if (
     baseUrl === "fit-for-purpose" &&
     getYarValue(request, "fitForPurpose") === "No" &&
@@ -474,22 +455,12 @@ const showPostPage = (currentQuestion, request, h) => {
     getYarValue(request, "applyingFor") === "An impermeable cover only"
   ){
     return h.view("not-eligible", NOT_ELIGIBLE);
-  }else if(
-    getYarValue(request, "serviceCapacityIncrease") &&
-    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
-    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
-    getYarValue(request, "existingCover") === "No"){
-      return h.redirect("/slurry-infrastructure/separator");
-  }else if(
-    getYarValue(request, "serviceCapacityIncrease") &&
-    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
-    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
-    getYarValue(request, "existingCover") === "Yes"){
-      return h.redirect("/slurry-infrastructure/existing-cover-type");
-  }else if(
-    getYarValue(request, "serviceCapacityIncrease") &&
-    getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
-      return h.redirect("/slurry-infrastructure/cover-type");
+  }
+
+  for (const [key, value] of Object.entries(payload)) {
+    if (key === 'grantFundedCover' && value != 'Yes, I need a cover') {
+      setYarValue(request, 'coverType', null)
+    }
   }
 
   if (thisAnswer?.notEligible) {

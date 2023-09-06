@@ -1783,15 +1783,16 @@ const questionBank = {
           },
           url: "existing-cover-type",
           baseUrl: "existing-cover-type",
-          backUrlObject: {
-            dependentQuestionYarKey: "projectType",
-            dependentAnswerKeysArray: ["project-type-A1"],
+          nextUrlObject: {
+            dependentQuestionYarKey: "coverType",
+            dependentAnswerKeysArray: ["cover-type-A1"],
             urlOptions: {
-              thenUrl: "serviceable-capacity-increase-replace",
-              elseUrl: "serviceable-capacity-increase-additional",
-              nonDependentUrl: "cover-type",
-            },
+              thenUrl: "existing-grant-funded-cover-size",
+              elseUrl: "existing-grant-funded-cover-size",
+              nonDependentUrl: "existing-cover-size"
+            }
           },
+          backUrl: "cover-type",
           sidebar: {
             mainHeading: "Your project items",
             values: [
@@ -1855,6 +1856,14 @@ const questionBank = {
           costDataType: "cat-cover-type",
           title: "What type of cover will you have on your grant-funded store?",
           baseUrl: "cover-type",
+          nextUrlObject: {
+            dependentQuestionYarKey: "existingCover",
+            dependentAnswerKeysArray: ["existing-cover-A1"],
+            urlOptions: {
+              thenUrl: "existing-cover-type",
+              elseUrl: "cover-size",
+            },
+          },
           backUrlObject: {
             dependentQuestionYarKey: "projectType",
             dependentAnswerKeysArray: ["project-type-A1"],
@@ -1923,7 +1932,7 @@ const questionBank = {
           url: "cover-size",
           baseUrl: "cover-size",
           backUrl: "cover-type",
-          nextUrl: "other-items",
+          nextUrl: "separator",
           preValidationKeys: ["coverType"],
           suffix: { text: "m²" },
           type: "input",
