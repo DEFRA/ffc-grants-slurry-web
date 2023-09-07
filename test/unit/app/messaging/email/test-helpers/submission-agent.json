@@ -29,16 +29,7 @@
         "postcode": "YO33 4FF"
     },
     "confirmationId": "12345678",
-    "applicantType": [
-        "Dairy (including calf rearing)",
-        "Pigs", 
-        "Sheep",
-        "Laying hens",
-        "Meat chickens",
-        "Aquaculture",
-        "Arable",
-        "Horticulture" 
-    ],
+    "applicantType": "Pig",
     "legalStatus": "Sole trader",
     "inEngland": "Yes",
     "planningPermission": "Should be in place by 31 January 2024",
@@ -49,7 +40,14 @@
         "projectName": "Test Project",
         "businessName": "Test Business"
     },
-    "projectType": "",
+    "projectType": "Add a new store to increase existing capacity",
+    "grantFundedCover": "Yes, I already have a cover",
+    "existingCover": "Yes",
+    "fitForPurpose": "No",
+    "storageType": "Above-ground steel slurry store",
+    "serviceCapacityIncrease": 22,
+    "existingCoverType": "Fixed flexible cover",
+    "existingCoverSize": 22,
     "applicantBusiness": "",
     "project":"Building new calf housing",
     "minimumFloorArea":"Yes",

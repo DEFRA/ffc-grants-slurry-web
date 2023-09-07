@@ -147,10 +147,12 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
   })
 }
 
-const getOptions = (data, question, conditionalHtml, request) => {
+const getOptions = (data, question, conditionalHtml, request) => {  
   if (question?.costDataType && question.answers.length <= 2) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
-
+    if(question.yarKey === "coverType" || question.yarKey === "existingCoverType"){
+      question.answers = []
+    }
     for (const answer in answersList) {
       question.answers.unshift(answersList[answer])
     }

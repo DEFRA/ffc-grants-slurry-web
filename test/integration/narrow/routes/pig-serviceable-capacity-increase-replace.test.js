@@ -3,7 +3,10 @@ const { crumbToken } = require("./test-helper");
 describe("Page: /pig-serviceable-capacity-increase-replace", () => {
     const varList = { 
         applicantType: 'Pig',
-        projectType:'Replace an existing store that is no longer fit for purpose with a new store'
+        projectType:'Replace an existing store that is no longer fit for purpose with a new store',
+        grantFundedCover: null,
+        existingCover: null,
+        serviceCapacityIncrease: null
     }
 
     jest.mock("../../../../app/helpers/session", () => ({
@@ -81,8 +84,13 @@ it("If decimals used", async () => {
 
 it('enter valid value - redirect user cover type when existing cover `/Yes/` and grant funded `/Yes I need a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I need a cover'
-    varList.existingCover = 'Yes'
-    varList.serviceCapacityIncrease ='12345'
+
+    const options = {
+        method: "GET",
+        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,
+    };
+    const response = await global.__SERVER__.inject(options);
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,
@@ -94,33 +102,23 @@ it('enter valid value - redirect user cover type when existing cover `/Yes/` and
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('/slurry-infrastructure/cover-type')
 })
-it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes I need a cover/`', async () => {
-    varList.grantFundedCover = 'Yes, I need a cover'
-    varList.existingCover = 'No'
-    varList.serviceCapacityIncrease ='12345'
-    const postOptions = {
-        method: 'POST',
-        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,
-        headers: { cookie: 'crumb=' + crumbToken },
-        payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
-    }
-
-    const postResponse = await global.__SERVER__.inject(postOptions)
-    expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('/slurry-infrastructure/cover-type')
-})
-
 it('enter valid value - redirect user cover type when existing cover `/Yes/` and grant funded `/Yes, I already have a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I already have a cover'
-    varList.existingCover = 'Yes'
-    varList.serviceCapacityIncrease ='12345'
+    varList.existingCover = "Yes"
+
+    const options = {
+        method: "GET",
+        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,
+    };
+    const response = await global.__SERVER__.inject(options);
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,
         headers: { cookie: 'crumb=' + crumbToken },
-        payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
+        payload: { serviceCapacityIncrease: '22' , crumb: crumbToken }
     }
-
+    
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('/slurry-infrastructure/existing-cover-type')
@@ -130,6 +128,13 @@ it('enter valid value - redirect user cover type when existing cover `/No/` and 
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'No'
     varList.serviceCapacityIncrease ='12345'
+
+    const options = {
+        method: "GET",
+        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,
+    };
+    const response = await global.__SERVER__.inject(options);
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-replace`,

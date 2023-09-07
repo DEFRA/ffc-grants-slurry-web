@@ -76,7 +76,14 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
   it('enter valid value - redirect user cover type when existing cover `/Yes/` and grant funded `/Yes I need a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'Yes'
-    varList.serviceCapacityIncrease ='12345'
+    
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
@@ -91,7 +98,14 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
 it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes I need a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'No'
-    varList.serviceCapacityIncrease ='12345'
+  
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
@@ -107,7 +121,14 @@ it('enter valid value - redirect user cover type when existing cover `/No/` and 
 it('enter valid value - redirect user cover type when existing cover `/Yes/` and grant funded `/Yes, I already have a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'Yes'
-    varList.serviceCapacityIncrease ='12345'
+  
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
@@ -123,7 +144,14 @@ it('enter valid value - redirect user cover type when existing cover `/Yes/` and
 it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes, I already have a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'No'
-    varList.serviceCapacityIncrease ='12345'
+    
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,

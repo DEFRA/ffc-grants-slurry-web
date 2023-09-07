@@ -1,21 +1,21 @@
-const { getYarValue, setYarValue } = require("../helpers/session");
-const { getModel } = require("../helpers/models");
-const { checkErrors } = require("../helpers/errorSummaryHandlers");
-const { getGrantValues } = require("../helpers/grants-info");
-const { formatUKCurrency } = require("../helpers/data-formats");
+const { getYarValue, setYarValue } = require('../helpers/session')
+const { getModel } = require('../helpers/models')
+const { checkErrors } = require('../helpers/errorSummaryHandlers')
+const { getGrantValues } = require('../helpers/grants-info')
+const { formatUKCurrency } = require('../helpers/data-formats')
 const {
   SELECT_VARIABLE_TO_REPLACE,
   DELETE_POSTCODE_CHARS_REGEX,
-} = require("../helpers/regex");
-const { getUrl } = require("../helpers/urls");
-const { guardPage } = require("../helpers/page-guard");
-const senders = require("../messaging/senders");
-const createMsg = require("../messaging/create-msg");
-const gapiService = require("../services/gapi-service");
-const { startPageUrl } = require("../config/server");
-const { ALL_QUESTIONS } = require("../config/question-bank");
-const { formatOtherItems } = require("./../helpers/other-items-sizes");
-const emailFormatting = require("./../messaging/email/process-submission");
+} = require('../helpers/regex')
+const { getUrl } = require('../helpers/urls')
+const { guardPage } = require('../helpers/page-guard')
+const senders = require('../messaging/senders')
+const createMsg = require('../messaging/create-msg')
+const gapiService = require('../services/gapi-service')
+const { startPageUrl, urlPrefix } = require('../config/server')
+const { ALL_QUESTIONS } = require('../config/question-bank')
+const { formatOtherItems } = require('./../helpers/other-items-sizes')
+const emailFormatting = require('./../messaging/email/process-submission')
 
 const {
   getConfirmationId,
@@ -24,26 +24,26 @@ const {
   getEvidenceSummaryModel,
   getDataFromYarValue,
   getConsentOptionalData,
-} = require("./pageHelpers");
+} = require('./pageHelpers')
 
 const setGrantsData = (question, request) => {
   if (question.grantInfo) {
     const { calculatedGrant, remainingCost } = getGrantValues(
-      getYarValue(request, "itemsTotalValue"),
+      getYarValue(request, 'itemsTotalValue'),
       question.grantInfo
-    );
-    setYarValue(request, "calculatedGrant", calculatedGrant);
-    setYarValue(request, "remainingCost", remainingCost);
+    )
+    setYarValue(request, 'calculatedGrant', calculatedGrant)
+    setYarValue(request, 'remainingCost', remainingCost)
   }
-};
+}
 
 const sendContactDetailsToSenders = async (request, confirmationId) => {
   try {
     const emailData = await emailFormatting({
       body: createMsg.getAllDetails(request, confirmationId),
       correlationId: request.yar.id,
-    });
-    await senders.sendDesirabilitySubmitted(emailData, request.yar.id);
+    })
+    await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
     // TODO: update Gapi calls to use new format
     // await gapiService.sendDimensionOrMetrics(request, [ {
     //   dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
@@ -57,11 +57,11 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
     //   value: 'TIME'
     // }
     // ])
-    console.log("[CONFIRMATION EVENT SENT]");
+    console.log('[CONFIRMATION EVENT SENT]')
   } catch (err) {
-    console.log("ERROR: ", err);
+    console.log('ERROR: ', err)
   }
-};
+}
 
 const setTitle = async (title, question, request) => {
   if (title) {
@@ -72,22 +72,22 @@ const setTitle = async (title, question, request) => {
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
       ),
-    };
+    }
   }
-};
+}
 const processGA = async (question, request, confirmationId) => {
   //TODO: update Gapi calls to use new format
   // if (question.ga) {
-  //   await gapiService.processGA(request, question.ga, confirmationId);
+  //   await gapiService.processGA(request, question.ga, confirmationId)
   // }
-};
+}
 
 const addConsentOptionalData = async (url, request) => {
-  if (url === "confirm") {
-    const consentOptional = getYarValue(request, "consentOptional");
-    return getConsentOptionalData(consentOptional);
+  if (url === 'confirm') {
+    const consentOptional = getYarValue(request, 'consentOptional')
+    return getConsentOptionalData(consentOptional)
   }
-};
+}
 
 const addConditionalLabelData = async (
   question,
@@ -98,15 +98,15 @@ const addConditionalLabelData = async (
 ) => {
   if (question?.conditionalKey && question?.conditionalLabelData) {
     const conditional =
-      yarKey === "businessDetails" ? yarKey : question.conditionalKey;
+      yarKey === 'businessDetails' ? yarKey : question.conditionalKey
     condHTML = handleConditinalHtmlData(
       type,
       question.conditionalLabelData,
       conditional,
       request
-    );
+    )
   }
-  return condHTML;
+  return condHTML
 }
 
 const getPage = async (question, request, h) => {
@@ -119,71 +119,136 @@ const getPage = async (question, request, h) => {
     yarKey,
     preValidationKeys,
     preValidationKeysRule,
-    backUrlObject,
-  } = question;
-  const nextUrl = getUrl(nextUrlObject, question.nextUrl, request);
+    backUrlObject
+  } = question
+  const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
   const isRedirect = guardPage(
     request,
     preValidationKeys,
     preValidationKeysRule
-  );
+  )
   if (isRedirect) {
-    return h.redirect(startPageUrl);
+    return h.redirect(startPageUrl)
   }
-  let confirmationId = "";
-  setGrantsData(question, request);
-  
+  let confirmationId = ''
+  setGrantsData(question, request)
+
   switch (url) {
-    case "applying-for":
-      setYarValue(request, "fitForPurpose", null);
-      setYarValue(request, "projectType", null);
-      setYarValue(request, "grantFundedCover", null);
-      setYarValue(request, "existingCover", null);
+    case 'applying-for':
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+      setYarValue(request, 'existingCover', null)
       break
-      case "grant-funded-cover" :
-        setYarValue(request, "serviceCapacityIncrease", null);
+    case 'grant-funded-cover' :
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'existingCoverSize', null)
+      setYarValue(request, 'coverSize', null)
       break
-      case "existing-cover" :
-        setYarValue(request, "serviceCapacityIncrease", null);
+    case 'existing-cover' :
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'existingCoverSize', null)
+      setYarValue(request, 'coverSize', null)
       break
-      case "existing-cover-pig" :
-        setYarValue(request, "serviceCapacityIncrease", null);
+    case 'existing-cover-pig' :
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'existingCoverSize', null)
+      setYarValue(request, 'coverSize', null)
       break
-      case "applicant-type" :
-        setYarValue(request, "intensiveFarming", null);
+    case 'applicant-type' :
+      setYarValue(request, 'intensiveFarming', null)
       break
-    case "estimated-grant" :
-      setYarValue(request, "estimatedGrant", 'reached');
+    case 'existing-cover-type' :
+      if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
+        question.backUrl = `${urlPrefix}/standardised-grant-amounts`
+      } else if (getYarValue(request, 'coverType')) {
+        question.backUrl = `${urlPrefix}/cover-type`
+      } else if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
+        if (getYarValue(request, 'applicantType') === 'Pig') {
+          question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+        } else {
+          question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+        }
+      } else {
+        if (getYarValue(request, 'applicantType') === 'Pig') {
+          question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+        } else {
+          question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+        }
+      }
       break
+    case 'separator':
+      if (getYarValue(request, 'coverType')) {
+        if (getYarValue(request, 'existingCover') === 'No') {
+          question.backUrl = `${urlPrefix}/cover-size`
+        } else {
+          question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
+        }
+      } else if (getYarValue(request, 'existingCover') === 'Yes' || getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
+        question.backUrl = `${urlPrefix}/existing-cover-size`
+      } else {
+        if (getYarValue(request, 'applicantType') === 'Pig') {
+          if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
+            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          } else {
+            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          }
+        } else {
+          if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
+            question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          } else {
+            question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          }
+        }
+      }
+    case 'estimated-grant' :
+      setYarValue(request, 'estimatedGrant', 'reached')
+      break
+    // case "storage-type":
+    //   setYarValue(request, "serviceCapacityIncrease", null)
+    //   setYarValue(request, "separator", null)
+    //   setYarValue(request, "existingCoverType", null)
+    //   setYarValue(request, "coverType", null)
+    //   setYarValue(request, "coverSize", null)
+    //   setYarValue(request, "existingCoverSize", null)
+    //   setYarValue(request, "existingGrantFundedCoverSize", null)
+    //   break
     default:
       break
   }
 
-
+  if (yarKey === 'serviceCapacityIncrease') {
+    if (getYarValue(request, 'grantFundedCover') === 'Yes, I need a cover') {
+      question.nextUrl = `${urlPrefix}/cover-type`
+    } else if (getYarValue(request, 'existingCover') === 'Yes') {
+      question.nextUrl = `${urlPrefix}/existing-cover-type`
+    } else {
+      question.nextUrl = `${urlPrefix}/separator`
+    }
+  }
   if (
-    url === "potential-amount" &&
-    !getGrantValues(getYarValue(request, "itemsTotalValue"), question.grantInfo)
+    url === 'potential-amount' &&
+    !getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo)
       .isEligible
   ) {
-    const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl };
+    const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
     //TODO update Gapi calls to use new format
-    // gapiService.sendEligibilityEvent(request, "true");
-    return h.view("not-eligible", NOT_ELIGIBLE);
+    // gapiService.sendEligibilityEvent(request, "true")
+    return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
   if (question.maybeEligible) {
-    let { maybeEligibleContent } = question;
-    maybeEligibleContent.title = question.title;
-    let consentOptionalData;
+    let { maybeEligibleContent } = question
+    maybeEligibleContent.title = question.title
+    let consentOptionalData
 
     if (maybeEligibleContent.reference) {
-      if (!getYarValue(request, "consentMain")) {
-        return h.redirect(startPageUrl);
+      if (!getYarValue(request, 'consentMain')) {
+        return h.redirect(startPageUrl)
       }
-      confirmationId = getConfirmationId(request.yar.id);
+      confirmationId = getConfirmationId(request.yar.id)
 
       // Send Contact details to GAPI
-      await sendContactDetailsToSenders(request, confirmationId);
+      await sendContactDetailsToSenders(request, confirmationId)
 
       maybeEligibleContent = {
         ...maybeEligibleContent,
@@ -194,8 +259,8 @@ const getPage = async (question, request, h) => {
             (_ignore, _confirmatnId) => confirmationId
           ),
         },
-      };
-      request.yar.reset();
+      }
+      request.yar.reset()
     }
 
     maybeEligibleContent = {
@@ -205,9 +270,9 @@ const getPage = async (question, request, h) => {
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
       ),
-    };
+    }
 
-    consentOptionalData = await addConsentOptionalData(url, request);
+    consentOptionalData = await addConsentOptionalData(url, request)
 
     const MAYBE_ELIGIBLE = {
       ...maybeEligibleContent,
@@ -215,90 +280,90 @@ const getPage = async (question, request, h) => {
       url,
       nextUrl,
       backUrl: getUrl(backUrlObject, backUrl, request),
-    };
-    return h.view("maybe-eligible", MAYBE_ELIGIBLE);
+    }
+    return h.view('maybe-eligible', MAYBE_ELIGIBLE)
   }
 
-  await setTitle(title, question, request);
+  await setTitle(title, question, request)
 
-  const data = getDataFromYarValue(request, yarKey, type);
+  const data = getDataFromYarValue(request, yarKey, type)
 
-  let conditionalHtml;
+  let conditionalHtml
   conditionalHtml = await addConditionalLabelData(
     question,
     yarKey,
     type,
     request,
     conditionalHtml
-  );
+  )
 
-  await processGA(question, request, confirmationId);
+  await processGA(question, request, confirmationId)
 
   switch (url) {
-    case "check-details": {
+    case 'check-details': {
       return h.view(
-        "check-details",
+        'check-details',
         getCheckDetailsModel(request, question, backUrl, nextUrl)
-      );
+      )
     }
-    case "planning-permission-summary": {
+    case 'planning-permission-summary': {
       const evidenceSummaryModel = getEvidenceSummaryModel(
         request,
         question,
         backUrl,
         nextUrl
-      );
+      )
       if (evidenceSummaryModel.redirect) {
-        return h.redirect(startPageUrl);
+        return h.redirect(startPageUrl)
       }
-      return h.view("evidence-summary", evidenceSummaryModel);
+      return h.view('evidence-summary', evidenceSummaryModel)
     }
-    case "score":
-    case "business-details":
-    case "agent-details":
-    case "applicant-details": {
-      return h.view("page", getModel(data, question, request, conditionalHtml));
+    case 'score':
+    case 'business-details':
+    case 'agent-details':
+    case 'applicant-details': {
+      return h.view('page', getModel(data, question, request, conditionalHtml))
     }
     default:
-      break;
+      break
   }
 
-  return h.view("page", getModel(data, question, request, conditionalHtml));
-};
+  return h.view('page', getModel(data, question, request, conditionalHtml))
+}
 
 const clearYarValue = (yarKey, payload, request) => {
-  if (yarKey === "consentOptional" && !Object.keys(payload).includes(yarKey)) {
-    setYarValue(request, yarKey, "");
+  if (yarKey === 'consentOptional' && !Object.keys(payload).includes(yarKey)) {
+    setYarValue(request, yarKey, '')
   }
-};
+}
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
-  let thisAnswer;
+  let thisAnswer
   for (const [key, value] of Object.entries(payload)) {
-    thisAnswer = answers?.find((answer) => answer.value === value);
+    thisAnswer = answers?.find((answer) => answer.value === value)
     if (
-      yarKey === "grantFundedCover" &&
-      thisAnswer.key === "grantFundedCover-A3"
+      yarKey === 'grantFundedCover' &&
+      thisAnswer.key === 'grantFundedCover-A3'
     ) {
-      request.yar.set("coverType", "");
-      request.yar.set("coverSize", "");
+      request.yar.set('coverType', '')
+      request.yar.set('coverSize', '')
     }
 
-    if (type !== "multi-input" && key !== "secBtn") {
+    if (type !== 'multi-input' && key !== 'secBtn') {
       setYarValue(
         request,
         key,
-        key === "projectPostcode"
+        key === 'projectPostcode'
           ? value
-              .replace(DELETE_POSTCODE_CHARS_REGEX, "")
+              .replace(DELETE_POSTCODE_CHARS_REGEX, '')
               .split(/(?=.{3}$)/)
-              .join(" ")
+              .join(' ')
               .toUpperCase()
           : value
-      );
+      )
     }
   }
-  return thisAnswer;
-};
+  return thisAnswer
+}
 
 const handleMultiInput = (
   type,
@@ -308,33 +373,33 @@ const handleMultiInput = (
   currentQuestion,
   payload
 ) => {
-  if (type === "multi-input") {
-    let allFields = currentQuestion.allFields;
+  if (type === 'multi-input') {
+    let allFields = currentQuestion.allFields
     if (currentQuestion.costDataKey) {
-      allFields = formatOtherItems(request);
+      allFields = formatOtherItems(request)
     }
     allFields.forEach((field) => {
       const payloadYarVal = payload[field.yarKey]
         ? payload[field.yarKey]
-            .replace(DELETE_POSTCODE_CHARS_REGEX, "")
+            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
             .split(/(?=.{3}$)/)
-            .join(" ")
+            .join(' ')
             .toUpperCase()
-        : "";
+        : ''
       dataObject = {
         ...dataObject,
         [field.yarKey]:
-          field.yarKey === "postcode" || field.yarKey === "projectPostcode"
+          field.yarKey === 'postcode' || field.yarKey === 'projectPostcode'
             ? payloadYarVal
-            : payload[field.yarKey] || "",
+            : payload[field.yarKey] || '',
         ...(field.conditionalKey
           ? { [field.conditionalKey]: payload[field.conditionalKey] }
-          : {}),
-      };
-    });
-    setYarValue(request, yarKey, dataObject);
+          : {})
+      }
+    })
+    setYarValue(request, yarKey, dataObject)
   }
-};
+}
 
 const showPostPage = (currentQuestion, request, h) => {
   const {
@@ -346,18 +411,18 @@ const showPostPage = (currentQuestion, request, h) => {
     nextUrlObject,
     title,
     type,
-  } = currentQuestion;
-  const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl };
-  const payload = request.payload;
+  } = currentQuestion
+  const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
+  const payload = request.payload
 
-  let thisAnswer;
-  let dataObject;
+  let thisAnswer
+  let dataObject
 
-  clearYarValue(yarKey, payload, request);
-  thisAnswer = createAnswerObj(payload, yarKey, type, request, answers);
+  clearYarValue(yarKey, payload, request)
+  thisAnswer = createAnswerObj(payload, yarKey, type, request, answers)
 
-  handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload);
-  
+  handleMultiInput(type, request, dataObject, yarKey, currentQuestion, payload)
+
   if (title) {
     currentQuestion = {
       ...currentQuestion,
@@ -365,75 +430,65 @@ const showPostPage = (currentQuestion, request, h) => {
         SELECT_VARIABLE_TO_REPLACE,
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ),
-    };
+      )
+    }
   }
 
-  const errors = checkErrors(payload, currentQuestion, h, request);
+  const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {
     // TODO: update Gapi calls to use new format
-    // gapiService.sendValidationDimension(request);
-    return errors;
+    // gapiService.sendValidationDimension(request)
+    return errors
   }
-  
+
   if (
-    baseUrl === "fit-for-purpose" &&
-    getYarValue(request, "fitForPurpose") === "No" &&
-    getYarValue(request, "applyingFor") ===
-      "Building a new store, replacing or expanding an existing store"
-  ) {
-    return h.redirect("/slurry-infrastructure/fit-for-purpose-conditional");
+    baseUrl === 'fit-for-purpose' &&
+    getYarValue(request, 'fitForPurpose') === 'No' &&
+    getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store') {
+    return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
   } else if (
-    baseUrl === "fit-for-purpose" &&
-    getYarValue(request, "fitForPurpose") === "No" &&
-    getYarValue(request, "applyingFor") === "An impermeable cover only"
+    baseUrl === 'fit-for-purpose' &&
+    getYarValue(request, 'fitForPurpose') === 'No' &&
+    getYarValue(request, 'applyingFor') === 'An impermeable cover only'
   ) {
-    return h.view("not-eligible", NOT_ELIGIBLE);
-  }else if(
-    getYarValue(request, "serviceCapacityIncrease") &&
-    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
-    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
-    getYarValue(request, "existingCover") === "No"){
-      return h.redirect("/slurry-infrastructure/separator");
-  }else if(
-    getYarValue(request, "serviceCapacityIncrease") &&
-    (getYarValue(request, "grantFundedCover") === "Yes, I already have a cover" ||
-    getYarValue(request, "grantFundedCover") === "Not needed, the slurry is treated with acidification") &&
-    getYarValue(request, "existingCover") === "Yes"){
-      return h.redirect("/slurry-infrastructure/existing-cover-type");
+    return h.view('not-eligible', NOT_ELIGIBLE)
   }
-  else if(
-    getYarValue(request, "serviceCapacityIncrease") &&
-    getYarValue(request, "grantFundedCover") === "Yes, I need a cover"){
-      return h.redirect("/slurry-infrastructure/cover-type");
+
+  for (const [key, value] of Object.entries(payload)) {
+    if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
+      setYarValue(request, 'coverType', null)
+    }
+    if (key === 'applyingFor' && value !== 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+    }
   }
 
   if (thisAnswer?.notEligible) {
     //TODO update Gapi calls to use new format
-    // gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible);
-    return h.view("not-eligible", NOT_ELIGIBLE);
+    // gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible)
+    return h.view('not-eligible', NOT_ELIGIBLE)
   } else if (thisAnswer?.redirectUrl) {
-    return h.redirect(thisAnswer?.redirectUrl);
+    return h.redirect(thisAnswer?.redirectUrl)
   }
 
   return h.redirect(
     getUrl(nextUrlObject, nextUrl, request, payload.secBtn, currentQuestion.url)
-  );
-};
+  )
+}
 
 const getHandler = (question) => {
   return (request, h) => {
-    return getPage(question, request, h);
-  };
-};
+    return getPage(question, request, h)
+  }
+}
 
 const getPostHandler = (currentQuestion) => {
   return (request, h) => {
-    return showPostPage(currentQuestion, request, h);
-  };
-};
+    return showPostPage(currentQuestion, request, h)
+  }
+}
 
 module.exports = {
   getHandler,
-  getPostHandler,
-};
+  getPostHandler
+}
