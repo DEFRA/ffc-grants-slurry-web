@@ -2630,17 +2630,17 @@ const questionBank = {
             isPageHeading: true,
           },
           hint: {
-            html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br/>
-            1. On the OS grid reference finder page, enter the postcode of your location into the postcode box.
-            2. Select 'Go'.
-            3. Find the location of your slurry store on the map. You can select and drag the map to move the location.
-            4. Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.
-            5. Scroll down to view your grid reference in the table below the map.
-            6. Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.
-            7. Return to the Slurry Infrastructure Grant checker screen.
-            8. Right-click on the OS grid reference number box. Select 'Paste'. <br/>
+            html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br/><br/>
+            1. On the OS grid reference finder page, enter the postcode of your location into the postcode box.<br/>
+            2. Select 'Go'.<br/>
+            3. Find the location of your slurry store on the map. You can select and drag the map to move the location.<br/>
+            4. Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.<br/>
+            5. Scroll down to view your grid reference in the table below the map.<br/>
+            6. Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.<br/>
+            7. Return to the Slurry Infrastructure Grant checker screen.<br/>
+            8. Right-click on the OS grid reference number box. Select 'Paste'.<br/>
             Enter in the format of 2 letters and 10 numbers, for example SP9620733594<br/><br/>
-            OS grid reference number
+            <p class='govuk-body'>OS grid reference number</p>
           `,
           },
           warning: {
