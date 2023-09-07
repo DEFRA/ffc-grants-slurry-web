@@ -56,6 +56,10 @@
         <p class="govuk-body">{{ extraMessageContent | safe}}</p>
       {% endif %}
 
+      {% if messageLink %}
+        <p class="govuk-body"><a href="{{messageLink.url}}" class="govuk-link">{{messageLink.title}}</a></p>
+      {% endif %}
+      
       {% if not consentOptionalData and not reference %}
             {{ govukButton({
                 text: 'Continue' ,

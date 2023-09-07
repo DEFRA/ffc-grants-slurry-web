@@ -1101,6 +1101,10 @@ const questionBank = {
               text: "To apply for a cover, your existing store must be signed off as fit for purpose by a structural engineer at full application.",
             },
             extraMessageContent: `<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>`,
+            messageLink: {
+              url: "https://www.gov.uk/government/collections/rural-payments-and-grants",
+              title: "See other grants you might be eligible for.",
+            },
           },
           yarKey: "FitForPurposeCondition",
         },
