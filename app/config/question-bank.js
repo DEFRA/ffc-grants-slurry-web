@@ -2631,12 +2631,20 @@ const questionBank = {
           },
           hint: {
             html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br/>
+            1. On the OS grid reference finder page, enter the postcode of your location into the postcode box.
+            2. Select 'Go'.
+            3. Find the location of your slurry store on the map. You can select and drag the map to move the location.
+            4. Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.
+            5. Scroll down to view your grid reference in the table below the map.
+            6. Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.
+            7. Return to the Slurry Infrastructure Grant checker screen.
+            8. Right-click on the OS grid reference number box. Select 'Paste'. <br/>
             Enter in the format of 2 letters and 10 numbers, for example SP9620733594<br/><br/>
             OS grid reference number
           `,
           },
           warning: {
-            html: "You must provide an accurate grid reference to avoid delays at full application.",
+            html: "You must provide the correct location of your slurry store to avoid delays at full application.",
           },
           validate: [
             {
