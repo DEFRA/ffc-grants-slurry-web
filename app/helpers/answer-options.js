@@ -147,12 +147,9 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
   })
 }
 
-const getOptions = (data, question, conditionalHtml, request) => {
-    console.log("QUESTION", question.answers)
-    
+const getOptions = (data, question, conditionalHtml, request) => {  
   if (question?.costDataType && question.answers.length <= 2) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
-    console.log("answersList", answersList)
     if(question.yarKey === "coverType" || question.yarKey === "existingCoverType"){
       question.answers = []
     }
