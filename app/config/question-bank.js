@@ -525,6 +525,11 @@ const questionBank = {
           order: 60,
           title:
             "Are you planning to ask your landlord to underwrite your Grant Funding Agreement?",
+          hint: {
+            text: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.
+
+            This approach is optional and we will only ask for details of your agreement at full application. `
+          },
           pageTitle: "",
           url: "project-responsibility",
           baseUrl: "project-responsibility",
@@ -564,12 +569,12 @@ const questionBank = {
             {
               key: "project-responsibility-A1",
               value:
-                "No, I plan to take full responsibility for meeting the terms and conditions in the Grant Funding Agreement",
+                "Yes, I plan to take full responsibility for my project",
             },
             {
               key: "project-responsibility-A2",
               value:
-                "Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement",
+                "No, I plan to ask my landlord to underwrite the agreement",
             },
           ],
           yarKey: "projectResponsibility",
