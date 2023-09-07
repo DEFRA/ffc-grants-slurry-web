@@ -49,7 +49,6 @@ test('POST /cover-size route returns next page when existing cover `/Yes/`', asy
         headers: { cookie: 'crumb=' + crumbToken },
         payload: { existingCoverType: 'fake data', crumb: crumbToken }
     }
-    console.log("sds", varList.coverType )
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('existing-cover-size')
