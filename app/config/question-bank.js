@@ -429,14 +429,7 @@ const questionBank = {
                 heading: "Eligibility",
                 content: [
                   {
-                    para: `
-                You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.
-                
-                Before you start the project, you can:`,
-                    items: [
-                      "get quotes from suppliers",
-                      "apply for planning permission (this can take a long time)",
-                    ],
+                    para: `You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).`,
                   },
                 ],
               },
@@ -453,14 +446,14 @@ const questionBank = {
               key: "project-started-A1",
               value: "Yes, preparatory work",
               hint: {
-                text: "For example, quotes from suppliers, applying for planning permission",
+                text: "For example, applying for planning permission",
               },
             },
             {
               key: "project-started-A2",
               value: "Yes, we have begun project work",
               hint: {
-                text: "For example, started construction work, signing contracts, placing orders",
+                text: "For example, started construction work, signing contracts",
               },
               notEligible: true,
             },
@@ -469,6 +462,9 @@ const questionBank = {
               value: "No, we have not done any work on this project yet",
             },
           ],
+          warning: {
+            html: "You must not start the project work or commit to project costs before receiving your funding agreement.",
+          },
           yarKey: "projectStart",
         },
         {
