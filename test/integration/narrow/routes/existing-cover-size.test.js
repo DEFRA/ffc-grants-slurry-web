@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /cover-size', () => {
+describe('Page: /existing-cover-size', () => {
   const varList = { inEngland: 'randomData', serviceCapacityIncrease: 'data', storageType: 'data', coverType: 'data' }
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -14,7 +14,7 @@ describe('Page: /cover-size', () => {
   it('page loads successfully, with heading ', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/cover-size`
+      url: `${global.__URLPREFIX__}/existing-cover-size`
     }
 
     const response = await global.__SERVER__.inject(options)
@@ -25,34 +25,34 @@ describe('Page: /cover-size', () => {
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover-size`,
+      url: `${global.__URLPREFIX__}/existing-cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: '', crumb: crumbToken }
+      payload: { existingCoverSize: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Enter how big the grant-funded store cover will be')
+    expect(postResponse.payload).toContain('Enter how big the existing store cover will be')
   })
 
   it('value outside min and max -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover-size`,
+      url: `${global.__URLPREFIX__}/existing-cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: '10123456789', crumb: crumbToken }
+      payload: { existingCoverSize: '10123456789', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Cover size must be between 1-999999')
+    expect(postResponse.payload).toContain('Cover size must be between 1-9999999999')
   })
 
   it('If commas used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover-size`,
+      url: `${global.__URLPREFIX__}/existing-cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: '129.232', crumb: crumbToken }
+      payload: { existingCoverSize: '129.232', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
@@ -62,9 +62,9 @@ describe('Page: /cover-size', () => {
   it('If decimal used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover-size`,
+      url: `${global.__URLPREFIX__}/existing-cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: 'abc123', crumb: crumbToken }
+      payload: { existingCoverSize: 'abc123', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
@@ -74,24 +74,24 @@ describe('Page: /cover-size', () => {
   it('user enter valid value', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/cover-size`,
+      url: `${global.__URLPREFIX__}/existing-cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { coverSize: '12345', crumb: crumbToken }
+      payload: { existingCoverSize: '12345', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
 
     expect(postResponse.statusCode).toBe(302)
-    // expect(postResponse.headers.location).toBe('other-items')
+    expect(postResponse.headers.location).toBe('separator')
   })
 
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/cover-size`
+      url: `${global.__URLPREFIX__}/existing-cover-size`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"cover-type\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"existing-cover-type\" class=\"govuk-back-link\">Back</a>')
   })
 })

@@ -1160,8 +1160,7 @@ const questionBank = {
           answers: [
             {
               key: "project-type-A1",
-              value:
-                "Replace an existing store that is no longer fit for purpose with a new store",
+              value:"Replace an existing store that is no longer fit for purpose with a new store",
             },
             {
               key: "project-type-A2",
@@ -1325,9 +1324,7 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                You can use the grant to cover an existing store to help increase your total storage capacity to 8 months.
-                
-                Slurry acidification systems are not eligible for funding through this grant.`,
+                You can use the grant to cover an existing store to help increase your total storage capacity to 8 months.`,
                     items: [],
                   },
                 ],
@@ -1395,6 +1392,7 @@ const questionBank = {
             urlOptions: {
               thenUrl: "serviceable-capacity-increase-replace",
               elseUrl: "serviceable-capacity-increase-additional",
+              nonDependentUrl: "existing-cover-type"
             },
           },
           url: "storage-type",
@@ -1421,14 +1419,7 @@ const questionBank = {
           url: "serviceable-capacity-increase-replace",
           baseUrl: "serviceable-capacity-increase-replace",
           backUrl: "storage-type",
-          nextUrlObject: {
-            dependentQuestionYarKey: "grant-funded-cover",
-            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
-            urlOptions: {
-              thenUrl: "other-items",
-              elseUrl: "cover-type",
-            },
-          },
+          nextUrl: "cover-type",
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
           classes: "govuk-input--width-10",
@@ -1503,14 +1494,7 @@ const questionBank = {
           url: "serviceable-capacity-increase-additional",
           baseUrl: "serviceable-capacity-increase-additional",
           backUrl: "storage-type",
-          nextUrlObject: {
-            dependentQuestionYarKey: "grant-funded-cover",
-            dependentAnswerKeysArray: ["grant-funded-cover-A3"],
-            urlOptions: {
-              thenUrl: "other-items",
-              elseUrl: "cover-type",
-            },
-          },
+          nextUrl: "cover-type",
           preValidationKeys: ["storageType"],
           suffix: { text: "m³" },
           type: "input",
@@ -1580,7 +1564,7 @@ const questionBank = {
           url: "pig-serviceable-capacity-increase-replace",
           baseUrl: "pig-serviceable-capacity-increase-replace",
           backUrl: "storage-type",
-          nextUrl: "separator",
+          nextUrl: "cover-type",
           fundingPriorities: "",
           preValidationKeys: ["storageType"],
           classes: "govuk-input--width-10",
@@ -1655,7 +1639,7 @@ const questionBank = {
           url: "pig-serviceable-capacity-increase-additional",
           baseUrl: "pig-serviceable-capacity-increase-additional",
           backUrl: "storage-type",
-          nextUrl: "separator",
+          nextUrl: "cover-type",
           preValidationKeys: ["storageType"],
           suffix: { text: "m³" },
           type: "input",
@@ -1725,13 +1709,15 @@ const questionBank = {
           backUrl: "pig-existing-storage-capacity",
           nextUrl: "separator-items",
           url: "separator",
+          classes: "govuk-radios--inline govuk-fieldset__legend--l",
           hint: {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: "separator",
-          preValidationKeys: ["serviceCapacityIncrease"],
+          preValidationKeys: ["storageType"],
           fundingPriorities: "",
           type: "single-answer",
+          classes: "govuk-radios--inline govuk-fieldset__legend--l",
           minAnswerCount: 1,
           sidebar: {
             mainHeading: "Your project items",
@@ -1790,21 +1776,23 @@ const questionBank = {
         {
           key: "existing-cover-type",
           order: 135,
+          costDataType: "cat-cover-type",
           title: "What type of cover will you have on your existing store?",
           hint: {
             text: "Select one option",
           },
           url: "existing-cover-type",
           baseUrl: "existing-cover-type",
-          nextUrl: "other-items",
-          backUrlObject: { // placeholder, to not break the journey
-            dependentQuestionYarKey: "projectType",
-            dependentAnswerKeysArray: [ "project-type-A1" ],
+          nextUrlObject: {
+            dependentQuestionYarKey: "coverType",
+            dependentAnswerKeysArray: ["cover-type-A1"],
             urlOptions: {
-              thenUrl: "serviceable-capacity-increase-replace",
-              elseUrl: "serviceable-capacity-increase-additional",
-            },
+              thenUrl: "existing-grant-funded-cover-size",
+              elseUrl: "existing-grant-funded-cover-size",
+              nonDependentUrl: "existing-cover-size"
+            }
           },
+          backUrl: "cover-type",
           sidebar: {
             mainHeading: "Your project items",
             values: [
@@ -1839,13 +1827,9 @@ const questionBank = {
                 linkedSufix: "m²",
               },
             ],
-            linkedQuestionyarkey: [
-              "serviceCapacityIncrease",
-              "coverSize",
-            ],
+            linkedQuestionyarkey: [ "serviceCapacityIncrease", "coverSize"],
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
-          // fundingPriorities: "Improve the environment",
           type: "single-answer",
           minAnswerCount: 1,
           validate: [
@@ -1854,24 +1838,27 @@ const questionBank = {
               error: "Select what type of cover your existing store will have",
             },
           ],
-          answers: [
-            {
-              key: "existing-cover-type-A1",
-              value: "?"
-            },
-            {
-              key: "existing-cover-type-A2",
-              value: "?"
-            },
+          hintArray: [
+            "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
+            "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
           ],
+          answers: [ ],
           yarKey: "existingCoverType",
         },
         {
           key: "cover-type",
           order: 136,
           costDataType: "cat-cover-type",
-          title: "What type of cover will you have?",
+          title: "What type of cover will you have on your grant-funded store?",
           baseUrl: "cover-type",
+          nextUrlObject: {
+            dependentQuestionYarKey: "existingCover",
+            dependentAnswerKeysArray: ["existing-cover-A1"],
+            urlOptions: {
+              thenUrl: "existing-cover-type",
+              elseUrl: "cover-size",
+            },
+          },
           backUrlObject: {
             dependentQuestionYarKey: "projectType",
             dependentAnswerKeysArray: ["project-type-A1"],
@@ -1880,16 +1867,8 @@ const questionBank = {
               elseUrl: "serviceable-capacity-increase-additional",
             },
           },
-          nextUrlObject: {
-            dependentQuestionYarKey: "coverType",
-            dependentAnswerKeysArray: ["cover-type-A4"],
-            urlOptions: {
-              thenUrl: "other-items",
-              elseUrl: "cover-size",
-            },
-          },
-          url: "cover-type",
-          preValidationKeys: ["serviceCapacityIncrease"],
+          url: "cover-type", 
+          preValidationKeys: ["serviceCapacityIncrease"], // may need to update these
           hint: {
             text: "Select one option",
           },
@@ -1898,7 +1877,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -1920,23 +1899,14 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Please select an option",
+              error: "Select what type of cover your grant-funded store will have",
             },
           ],
           hintArray: [
             "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
             "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
           ],
-          answers: [
-            {
-              value: "divider",
-            },
-            {
-              key: "cover-type-A4",
-              text: "I already have an impermeable cover",
-              value: "Not needed",
-            },
-          ],
+          answers: [ ],
           yarKey: "coverType",
         },
         {
@@ -1944,11 +1914,11 @@ const questionBank = {
           order: 137,
           title: "",
           pageTitle: "",
-          classes: "govuk-input--width-5",
+          classes: "govuk-input--width-10",
           url: "cover-size",
           baseUrl: "cover-size",
           backUrl: "cover-type",
-          nextUrl: "other-items",
+          nextUrl: "separator",
           preValidationKeys: ["coverType"],
           suffix: { text: "m²" },
           type: "input",
@@ -1969,7 +1939,7 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error: "Enter the size of cover",
+              error: "Enter how big the grant-funded store cover will be",
             },
             {
               type: "REGEX",
@@ -1992,7 +1962,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -2002,7 +1972,7 @@ const questionBank = {
                 ],
               },
               {
-                heading: "Cover",
+                heading: "Grant-funded store cover",
                 content: [
                   {
                     para: "",
@@ -2022,6 +1992,216 @@ const questionBank = {
             dependentQuestionKeys: ["storage-type", "cover-type"],
           },
           yarKey: "coverSize",
+        },
+        {
+          key: "existing-cover-size",
+          order: 138,
+          title: "existing-cover-size",
+          pageTitle: "existing-cover-size",
+          classes: "govuk-input--width-10",
+          url: "existing-cover-size",
+          baseUrl: "existing-cover-size",
+          backUrl: "existing-cover-type",
+          nextUrl: "separator",
+          preValidationKeys: ["existingCoverType"],
+          suffix: { text: "m²" },
+          type: "input",
+          inputmode: "numeric",
+          pattern: "[0-9]*",
+          label: {
+            text: "How big will the cover be?",
+            classes: "govuk-label--l",
+            isPageHeading: true,
+          },
+          hint: {
+            html: `
+            Enter the estimated surface area of the replacement, new or expanded store
+            <br/><br/>
+            Enter size in metres squared
+            <br/><br/>
+            <p class='govuk-body'>Existing store</p>
+          `,
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error: "Enter how big the existing store cover will be",
+            },
+            {
+              type: "REGEX",
+              regex: INTERGERS_AND_DECIMALS,
+              error: "Cover size must only include numbers",
+            },
+            {
+              type: "INCLUDES",
+              checkArray: ["."],
+              error: "Cover size must be a whole number",
+            },
+            {
+              type: "MIN_MAX",
+              min: 1,
+              max: 9999999999,
+              error: "Cover size must be between 1-9999999999",
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["existing-cover-type"],
+          },
+          yarKey: "existingCoverSize",
+        },
+        {
+          key: "existing-grant-funded-cover-size",
+          order: 138,
+          title: "How big will the covers be?",
+          pageTitle: "How big will the covers be?",
+          classes: "govuk-input--width-5",
+          url: "existing-grant-funded-cover-size",
+          baseUrl: "existing-grant-funded-cover-size",
+          backUrl: "existing-cover-type",
+          nextUrl: "separator",
+          preValidationKeys: ["coverType"],
+          type: 'multi-input',
+          hint: {
+            html: `
+            Enter the estimated cover surface area of the grant-funded store and the existing store
+            <br/><br/>
+            Enter size in metres squared
+          `,
+          },
+          allFields: [
+            {
+              yarKey: 'grantFundedStore',
+              type: 'number',
+              classes: 'govuk-input--width-5',
+              label: {
+                html: '<p class="govuk-body">Grant-funded store</p>',
+                classes: 'govuk-label'
+              },
+              suffix: {
+                text: 'm²'
+              },
+              validate: [
+                {
+                  type: "NOT_EMPTY",
+                  error: "Enter how big the grant-funded store cover will be",
+                },
+                {
+                  type: "REGEX",
+                  regex: INTERGERS_AND_DECIMALS,
+                  error: "Cover size must only include numbers",
+                },
+                {
+                  type: "INCLUDES",
+                  checkArray: ["."],
+                  error: "Cover size must be a whole number",
+                },
+                {
+                  type: "MIN_MAX",
+                  min: 1,
+                  max: 999999,
+                  error: "Volume must be between 1-999999",
+                },
+              ]
+            },
+            {
+              yarKey: 'existingStore',
+              type: 'number',
+              classes: 'govuk-input--width-5',
+              label: {
+                html: '<p class="govuk-body">Existing store<p>',
+                classes: 'govuk-label'
+              },
+              suffix: {
+                text: 'm²'
+              },
+              validate: [
+                {
+                  type: "NOT_EMPTY",
+                  error: "Enter how big the existing store cover will be",
+                },
+                {
+                  type: "REGEX",
+                  regex: INTERGERS_AND_DECIMALS,
+                  error: "Cover size must only include numbers",
+                },
+                {
+                  type: "INCLUDES",
+                  checkArray: ["."],
+                  error: "Cover size must be a whole number",
+                },
+                {
+                  type: "MIN_MAX",
+                  min: 1,
+                  max: 999999,
+                  error: "Volume must be between 1-999999",
+                },
+              ]
+            }
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded Store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storage-type", "cover-type","existing-cover-type"],
+          },
+          yarKey: "existingGrantFundedCoverSize",
         },
         {
           key: "other-items",
@@ -2050,7 +2230,7 @@ const questionBank = {
             text: "Select all the items your project needs",
           },
           url: "other-items",
-          preValidationKeys: ["serviceCapacityIncrease"],
+          preValidationKeys: [],
           type: "multi-answer",
           minAnswerCount: 1,
           sidebar: {
