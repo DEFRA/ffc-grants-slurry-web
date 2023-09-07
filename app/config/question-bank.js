@@ -1838,6 +1838,10 @@ const questionBank = {
               error: "Select what type of cover your existing store will have",
             },
           ],
+          hintArray: [
+            "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
+            "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
+          ],
           answers: [ ],
           yarKey: "existingCoverType",
         },
