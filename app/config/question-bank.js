@@ -494,7 +494,7 @@ const questionBank = {
                 heading: "Eligibility",
                 content: [
                   {
-                    para: "If you are a tenant farmer, either you or your landlord can take responsibility for the Grant Funding Agreement.",
+                    para: "If you are a tenant farmer, you have the option to ask your landlord to underwrite your agreement.",
                   },
                 ],
               },
@@ -3532,7 +3532,7 @@ const questionBank = {
           pageTitle: "",
           url: "confirmation",
           baseUrl: "confirmation",
-          preValidationKeys: ["farmerDetails"],
+          // preValidationKeys: ["farmerDetails"],
           ga: [
             { dimension: "cd2", value: { type: "score" } },
             { dimension: "cd5", value: { type: "confirmationId" } },
