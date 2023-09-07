@@ -74,7 +74,20 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('POST /standardised-grant-amounts route returns next page', async () => {
+  test('POST /standardised-grant-amounts route returns next page - building journey', async () => {
+    const options = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/standardised-grant-amounts`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { applying: '', crumb: crumbToken }
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+  })
+
+  test('POST /standardised-grant-amounts route returns next page - impermeable journey', async () => {
+    varList.applyingFor = "An impermeable cover only"
     const options = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/standardised-grant-amounts`,
