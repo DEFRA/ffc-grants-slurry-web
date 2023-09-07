@@ -1709,6 +1709,7 @@ const questionBank = {
           backUrl: "pig-existing-storage-capacity",
           nextUrl: "separator-items",
           url: "separator",
+          classes: "govuk-radios--inline govuk-fieldset__legend--l",
           hint: {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
