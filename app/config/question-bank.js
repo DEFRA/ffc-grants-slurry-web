@@ -1837,16 +1837,7 @@ const questionBank = {
               error: "Select what type of cover your existing store will have",
             },
           ],
-          answers: [
-            {
-              value: "divider",
-            },
-            {
-              key: "cover-type-A4",
-              text: "I already have an impermeable cover",
-              value: "Not needed",
-            },
-          ],
+          answers: [ ],
           yarKey: "existingCoverType",
         },
         {
@@ -1910,16 +1901,7 @@ const questionBank = {
             "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
             "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
           ],
-          answers: [
-            {
-              value: "divider",
-            },
-            {
-              key: "cover-type-A4",
-              text: "I already have an impermeable cover",
-              value: "Not needed",
-            },
-          ],
+          answers: [ ],
           yarKey: "coverType",
         },
         {
