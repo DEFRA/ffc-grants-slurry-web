@@ -3549,7 +3549,7 @@ const questionBank = {
             If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
             <h2 class="govuk-heading-m">RPA helpline</h2>
             <h3 class="govuk-heading-s">Telephone</h3>
-            Telephone: 0300 0200 301<br/>
+            Telephone: 03000 200 301<br/>
             Monday to Friday, 9am to 5pm (except public holidays)<br/>
             <p><a class="govuk-link" target="_blank" href="https://www.gov.uk/call-charges" rel="noopener noreferrer">Find out about call charges (opens in a new tab)</a></p>
             <h3 class="govuk-heading-s">Email</h3>
@@ -3569,6 +3569,14 @@ const questionBank = {
               <li>get quotes from suppliers</li>
               <li>apply for planning permission</li>
             </ul>
+            <p class="govuk-body">
+              If you farm pigs intensively and need to apply for a variation to your environmental permit, you can use the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
+            </p>
+            <div class="govuk-inset-text">
+              <p class="govuk-body">
+                If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
+              </p>
+            </div>
             <p class="govuk-body"><a class="govuk-link" href="${process.env.SURVEY_LINK}" target="_blank" rel="noopener noreferrer">What do you think of this service? (opens in a new tab)</a></p>
             `,
           },
