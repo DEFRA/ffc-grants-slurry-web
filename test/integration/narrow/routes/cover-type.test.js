@@ -53,7 +53,7 @@ describe('Cover Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/slurry-infrastructure/existing-cover-type')
+    expect(response.headers.location).toBe('existing-cover-type')
   })
 
   test('POST /cover-size route returns next page when existing cover `/No/`', async () => {
@@ -67,7 +67,7 @@ describe('Cover Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/slurry-infrastructure/cover-size')
+    expect(response.headers.location).toBe('cover-size')
   })
 
   it('page loads with correct back link', async () => {
