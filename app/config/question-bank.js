@@ -1716,6 +1716,7 @@ const questionBank = {
           preValidationKeys: ["storageType"],
           fundingPriorities: "",
           type: "single-answer",
+          classes: "govuk-radios--inline govuk-fieldset__legend--l",
           minAnswerCount: 1,
           sidebar: {
             mainHeading: "Your project items",
@@ -2224,7 +2225,7 @@ const questionBank = {
             text: "Select all the items your project needs",
           },
           url: "other-items",
-          preValidationKeys: ["serviceCapacityIncrease"],
+          preValidationKeys: [],
           type: "multi-answer",
           minAnswerCount: 1,
           sidebar: {

@@ -132,7 +132,7 @@ const getPage = async (question, request, h) => {
   }
   let confirmationId = ''
   setGrantsData(question, request)
-  
+
   switch (url) {
     case 'applying-for':
       setYarValue(request, 'projectType', null)
@@ -458,7 +458,7 @@ const showPostPage = (currentQuestion, request, h) => {
     if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
     }
-    if (key === 'applyingFor' && value !== 'Yes, I need a cover') {
+    if (key === 'applyingFor' && value !== 'An impermeable cover only') {
       setYarValue(request, 'fitForPurpose', null)
     }
   }
