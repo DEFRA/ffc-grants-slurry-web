@@ -1722,7 +1722,6 @@ const questionBank = {
           preValidationKeys: ["storageType"],
           fundingPriorities: "",
           type: "single-answer",
-          classes: "govuk-radios--inline govuk-fieldset__legend--l",
           minAnswerCount: 1,
           sidebar: {
             mainHeading: "Your project items",
