@@ -1045,14 +1045,6 @@ const questionBank = {
           type: "single-answer",
           minAnswerCount: 1,
           classes: "govuk-radios--inline govuk-fieldset__legend--l",
-          ineligibleContent: {
-            messageContent:
-              "Your existing store must be signed off as fit for purpose by a structural engineer at full application.",
-            messageLink: {
-              url: "https://www.gov.uk/government/collections/rural-payments-and-grants",
-              title: "See other grants you may be eligible for.",
-            },
-          },
           sidebar: {
             values: [
               {
@@ -1080,6 +1072,7 @@ const questionBank = {
             {
               key: "fit-for-purpose-A2",
               value: "No",
+              redirectUrl: "fit-for-purpose-conditional"
             },
           ],
           yarKey: "fitForPurpose",
