@@ -60,8 +60,17 @@
         <p class="govuk-body"><a href="{{messageLink.url}}" class="govuk-link">{{messageLink.title}}</a></p>
       {% endif %}
       
-      {% if not consentOptionalData and not reference %}
+      {% if isimpermeablecoveronly %}
             {{ govukButton({
+                text: 'Continue to apply for a store' ,
+                classes: "govuk-!-margin-top-5",
+                attributes: {id: "btnContinue"},
+                href: nextUrl
+              })}}
+        {% endif %}
+
+      {% if not consentOptionalData and not reference and not isimpermeablecoveronly %}
+        {{ govukButton({
                 text: 'Continue' ,
                 classes: "govuk-!-margin-top-5",
                 attributes: {id: "btnContinue"},

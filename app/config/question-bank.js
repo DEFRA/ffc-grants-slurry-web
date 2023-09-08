@@ -1086,6 +1086,7 @@ const questionBank = {
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
+            isimpermeablecoveronly: false,
             messageHeader:
               "You may be able to apply for a grant from this scheme",
             messageContent:
@@ -1106,7 +1107,14 @@ const questionBank = {
           order: 140,
           title: "How will you increase your storage capacity?",
           baseUrl: "project-type",
-          backUrl: "applying-for",
+          backUrlObject: {
+            dependentQuestionYarKey: "applyingFor",
+            dependentAnswerKeysArray: ["applying-for-A1"],
+            urlOptions: {
+              thenUrl: "applying-for",
+              elseUrl: "fit-for-purpose-conditional"
+            },
+          },
           nextUrl: "grant-funded-cover",
           url: "project-type",
           preValidationKeys: ["applyingFor"],
