@@ -522,16 +522,15 @@ const questionBank = {
           title:
             "Are you planning to ask your landlord to underwrite your Grant Funding Agreement?",
           hint: {
-            text: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.
-
-            This approach is optional and we will only ask for details of your agreement at full application. `
+            html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.<br/><br/>
+                  This approach is optional and we will only ask for details of your agreement at full application.`
           },
           pageTitle: "",
           url: "project-responsibility",
           baseUrl: "project-responsibility",
           backUrl: "tenancy",
           nextUrl: "system-type",
-          preValidationKeys: ["tenancy"],
+          // preValidationKeys: ["tenancy"],
           fundingPriorities: "",
           type: "single-answer",
           minAnswercount: 1,
@@ -557,20 +556,17 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error:
-                "Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement",
+              error: "Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement",
             },
           ],
           answers: [
             {
               key: "project-responsibility-A1",
-              value:
-                "Yes, I plan to take full responsibility for my project",
+              value: "Yes, I plan to take full responsibility for my project",
             },
             {
               key: "project-responsibility-A2",
-              value:
-                "No, I plan to ask my landlord to underwrite the agreement",
+              value: "No, I plan to ask my landlord to underwrite the agreement",
             },
           ],
           yarKey: "projectResponsibility",
@@ -3568,11 +3564,11 @@ const questionBank = {
               <li>apply for planning permission</li>
             </ul>
             <p class="govuk-body">
-              If you farm pigs intensively and need to apply for a variation to your environmental permit, you can use the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
+            If you farm pigs intensively and need to apply for a variation to your environmental permit, you can use the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
             </p>
             <div class="govuk-inset-text">
               <p class="govuk-body">
-                If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
+              If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
               </p>
             </div>
             <p class="govuk-body"><a class="govuk-link" href="${process.env.SURVEY_LINK}" target="_blank" rel="noopener noreferrer">What do you think of this service? (opens in a new tab)</a></p>
