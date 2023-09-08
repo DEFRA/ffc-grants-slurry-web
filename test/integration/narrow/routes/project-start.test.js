@@ -20,9 +20,14 @@ describe('Page: /project-started', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('Have you already started work on the project?')
-    expect(response.payload).toContain('Yes, preparatory work')
-    expect(response.payload).toContain('Yes, we have begun project work')
-    expect(response.payload).toContain('No, we have not done any work on this project yet')
+    expect(response.payload).toContain('Yes, preparatory work') // option 1
+    expect(response.payload).toContain('For example, applying for planning permission') // hint
+    expect(response.payload).toContain('Yes, we have begun project work') // option 2
+    expect(response.payload).toContain('For example, started construction work, signing contracts') // hint
+    expect(response.payload).toContain('No, we have not done any work on this project yet') // option 3
+    expect(response.payload).toContain('<span class="govuk-warning-text__assistive"></span>') // warning symbol
+    expect(response.payload).toContain('You must not start the project work or commit to project costs before receiving your funding agreement.') // warning text
+    expect(response.payload).toContain('You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).') //side bar text
   })
 
   it('no option selected -> show error message', async () => {
