@@ -19,7 +19,6 @@ const emailFormatting = require('./../messaging/email/process-submission')
 
 const {
   getConfirmationId,
-  handleConditinalHtmlData,
   getCheckDetailsModel,
   getEvidenceSummaryModel,
   getDataFromYarValue,

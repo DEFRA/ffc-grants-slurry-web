@@ -429,14 +429,7 @@ const questionBank = {
                 heading: "Eligibility",
                 content: [
                   {
-                    para: `
-                You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.
-                
-                Before you start the project, you can:`,
-                    items: [
-                      "get quotes from suppliers",
-                      "apply for planning permission (this can take a long time)",
-                    ],
+                    para: `You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).`,
                   },
                 ],
               },
@@ -453,14 +446,14 @@ const questionBank = {
               key: "project-started-A1",
               value: "Yes, preparatory work",
               hint: {
-                text: "For example, quotes from suppliers, applying for planning permission",
+                text: "For example, applying for planning permission",
               },
             },
             {
               key: "project-started-A2",
               value: "Yes, we have begun project work",
               hint: {
-                text: "For example, started construction work, signing contracts, placing orders",
+                text: "For example, started construction work, signing contracts",
               },
               notEligible: true,
             },
@@ -469,6 +462,9 @@ const questionBank = {
               value: "No, we have not done any work on this project yet",
             },
           ],
+          warning: {
+            html: "You must not start the project work or commit to project costs before receiving your funding agreement.",
+          },
           yarKey: "projectStart",
         },
         {
@@ -494,7 +490,7 @@ const questionBank = {
                 heading: "Eligibility",
                 content: [
                   {
-                    para: "If you are a tenant farmer, either you or your landlord can take responsibility for the Grant Funding Agreement.",
+                    para: "If you are a tenant farmer, you have the option to ask your landlord to underwrite your agreement.",
                   },
                 ],
               },
@@ -525,6 +521,11 @@ const questionBank = {
           order: 60,
           title:
             "Are you planning to ask your landlord to underwrite your Grant Funding Agreement?",
+          hint: {
+            text: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.
+
+            This approach is optional and we will only ask for details of your agreement at full application. `
+          },
           pageTitle: "",
           url: "project-responsibility",
           baseUrl: "project-responsibility",
@@ -564,12 +565,12 @@ const questionBank = {
             {
               key: "project-responsibility-A1",
               value:
-                "No, I plan to take full responsibility for meeting the terms and conditions in the Grant Funding Agreement",
+                "Yes, I plan to take full responsibility for my project",
             },
             {
               key: "project-responsibility-A2",
               value:
-                "Yes, I plan to ask my landlord to underwrite my Grant Funding Agreement",
+                "No, I plan to ask my landlord to underwrite the agreement",
             },
           ],
           yarKey: "projectResponsibility",
@@ -1122,9 +1123,10 @@ const questionBank = {
             messageContent: `
             This grant is only for: <br> 
             <ul class="govuk-list govuk-list--bullet">
-            <li>replacing an existing store that is no longer fit for purpose</li>
-            <li>adding a new store to increase existing capacity</li>
-            <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
+              <li>replacing an existing store that is no longer fit for purpose</li>
+              <li>adding a new store to increase existing capacity</li>
+              <li>expanding an existing store (for example, by adding an extra ring to a steel tank)</li>
+              <li>adding an impermeable cover to an existing store to increase storage capacity</li>
             </ul>
             `,
             messageLink: {
@@ -1145,6 +1147,7 @@ const questionBank = {
                       "replacing an existing store that is no longer fit for purpose with a new store",
                       "adding a new store to increase existing capacity",
                       "expanding an existing store (for example, by adding an extra ring to a steel tank)",
+                      "adding an impermeable cover to an existing store to increase storage capacity"
                     ],
                     additionalPara: "",
                   },
@@ -1722,7 +1725,6 @@ const questionBank = {
           preValidationKeys: ["storageType"],
           fundingPriorities: "",
           type: "single-answer",
-          classes: "govuk-radios--inline govuk-fieldset__legend--l",
           minAnswerCount: 1,
           sidebar: {
             mainHeading: "Your project items",
@@ -3558,7 +3560,7 @@ const questionBank = {
             If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
             <h2 class="govuk-heading-m">RPA helpline</h2>
             <h3 class="govuk-heading-s">Telephone</h3>
-            Telephone: 0300 0200 301<br/>
+            Telephone: 03000 200 301<br/>
             Monday to Friday, 9am to 5pm (except public holidays)<br/>
             <p><a class="govuk-link" target="_blank" href="https://www.gov.uk/call-charges" rel="noopener noreferrer">Find out about call charges (opens in a new tab)</a></p>
             <h3 class="govuk-heading-s">Email</h3>
@@ -3578,6 +3580,14 @@ const questionBank = {
               <li>get quotes from suppliers</li>
               <li>apply for planning permission</li>
             </ul>
+            <p class="govuk-body">
+              If you farm pigs intensively and need to apply for a variation to your environmental permit, you can use the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
+            </p>
+            <div class="govuk-inset-text">
+              <p class="govuk-body">
+                If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
+              </p>
+            </div>
             <p class="govuk-body"><a class="govuk-link" href="${process.env.SURVEY_LINK}" target="_blank" rel="noopener noreferrer">What do you think of this service? (opens in a new tab)</a></p>
             `,
           },
