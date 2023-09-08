@@ -530,7 +530,7 @@ const questionBank = {
           baseUrl: "project-responsibility",
           backUrl: "tenancy",
           nextUrl: "system-type",
-          // preValidationKeys: ["tenancy"],
+          preValidationKeys: ["tenancy"],
           fundingPriorities: "",
           type: "single-answer",
           minAnswercount: 1,
