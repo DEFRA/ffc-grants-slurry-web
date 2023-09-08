@@ -3564,7 +3564,7 @@ const questionBank = {
               <li>apply for planning permission</li>
             </ul>
             <p class="govuk-body">
-            If you farm pigs intensively and need to apply for a variation to your environmental permit, you can use the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
+              If you farm pigs intensively and need to apply for a variation to your environmental permit, you can get advice from the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
             </p>
             <div class="govuk-inset-text">
               <p class="govuk-body">
