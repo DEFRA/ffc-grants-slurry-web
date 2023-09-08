@@ -1096,7 +1096,7 @@ const questionBank = {
             messageHeader:
               "You may be able to apply for a grant from this scheme",
             messageContent:
-              "You will not get grant funding for a cover if the existing store you want to cover is not fit for purpose.",
+              "",
             warning: {
               text: "To apply for a cover, your existing store must be signed off as fit for purpose by a structural engineer at full application.",
             },
