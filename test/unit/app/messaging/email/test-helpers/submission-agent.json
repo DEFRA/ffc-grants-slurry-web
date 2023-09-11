@@ -44,7 +44,7 @@
     "projectType": "Add a new store to increase existing capacity",
     "grantFundedCover": "Yes, I already have a cover",
     "existingCover": "Yes",
-    "fitForPurpose": "Yes",
+    "fitForPurpose": "No",
     "storageType": "Above-ground steel slurry store",
     "serviceCapacityIncrease": 22,
     "existingCoverType": "Fixed flexible cover",
