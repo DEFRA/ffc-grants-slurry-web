@@ -1703,134 +1703,6 @@ const questionBank = {
           yarKey: "serviceCapacityIncrease",
         },
         {
-          key: "separator",
-          order: 15,
-          title: "Do you want to add a slurry storage separator to your project?",
-          pageTitle: "",
-          backUrl: "pig-existing-storage-capacity",
-          nextUrl: "separator-items",
-          url: "separator",
-          classes: "govuk-radios--inline govuk-fieldset__legend--l",
-          hint: {
-            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
-          },
-          baseUrl: "separator",
-          preValidationKeys: ["storageType"],
-          fundingPriorities: "",
-          type: "single-answer",
-          minAnswerCount: 1,
-          sidebar: {
-            mainHeading: "Your project items",
-            values: [
-              {
-                heading: "Store",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-              {
-                heading: "Cover",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-            ],
-            prefixSufix: [
-              {
-                linkedPrefix: "Increase: ",
-                linkedSufix: "m³",
-              },
-            ],
-            linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
-          },
-          validate: [
-            {
-              type: "NOT_EMPTY",
-              error:
-                "Select if you want to add a slurry separator to your project",
-            },
-          ],
-          answers: [
-            {
-              key: "separator-A1",
-              value: "Yes",
-              redirectUrl: "separator-items",
-            },
-            {
-              key: "separator-A2",
-              value: "No",
-              redirectUrl: "other-items",
-            },
-          ],
-          yarKey: "separator",
-        },
-        {
-          key: "separator-type",
-          order: 16,
-          pageTitle: "",
-          title: "What type of slurry separator will you have?",
-          hint: {
-            text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
-          },
-          url: "separator-type",
-          baseUrl: "separator-type",
-          backUrl: "separator",
-          nextUrl: "other-items",
-          preValidationKeys: ["separator"],
-          type: "single-answer",
-          minAnswerCount: 1,
-          fundingPriorities: "",
-          validate: [
-            {
-              type: "NOT_EMPTY",
-              error: "Select what type of slurry storage you will have",
-            },
-          ],
-          answers: [
-            {
-              key: "separator-type-A1",
-              value: "Screen press",
-              hint: {
-                text: "(Grant amount: £21,234 per unit)",
-              }
-            },
-            {
-              key: "separator-type-A2",
-              value: "Screw press",
-              hint: {
-                text: "(Grant amount: £22,350 per unit)",
-              }
-            },
-          ],
-          sidebar: {
-            mainHeading: "Your project items",
-            values: [
-              {
-                heading: "{{_storeType_}}",
-                content: [
-                  {
-                    para: "",
-                    items: [
-                      "{{_sideBarFirstItem_}}",
-                      "{{_sideBarSecondItem_}}",
-                    ],
-                  }
-                ],
-              },
-            ],
-          },
-          yarKey: "separatorType",
-        },
-        {
           key: "existing-cover-type",
           order: 135,
           costDataType: "cat-cover-type",
@@ -2426,6 +2298,63 @@ const questionBank = {
             },
           ],
           yarKey: "separator",
+        },
+        {
+          key: "separator-type",
+          order: 141,
+          pageTitle: "",
+          title: "What type of slurry separator will you have?",
+          hint: {
+            text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
+          },
+          url: "separator-type",
+          baseUrl: "separator-type",
+          backUrl: "separator",
+          nextUrl: "other-items",
+          preValidationKeys: ["separator"],
+          type: "single-answer",
+          minAnswerCount: 1,
+          fundingPriorities: "",
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error: "Select what type of slurry storage you will have",
+            },
+          ],
+          answers: [
+            {
+              key: "separator-type-A1",
+              value: "Screen press",
+              hint: {
+                text: "(Grant amount: £21,234 per unit)",
+              }
+            },
+            {
+              key: "separator-type-A2",
+              value: "Screw press",
+              hint: {
+                text: "(Grant amount: £22,350 per unit)",
+              }
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "{{_storeType_}}",
+                content: [
+                  {
+                    para: "",
+                    items: [
+                      "{{_sideBarFirstItem_}}",
+                      "{{_sideBarSecondItem_}}",
+                    ],
+                  }
+                ],
+              },
+            ],
+          },
+          yarKey: "separatorType",
         },
         {
           key: "other-items",
