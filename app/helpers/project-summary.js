@@ -17,6 +17,9 @@ function formatSummaryTable (request) {
   const storageSize = request.yar.get('serviceCapacityIncrease')
   const coverType = request.yar.get('coverType')
   const coverSize = request.yar.get('coverSize')
+  const existingCoverType = request.yar.get('existingCoverType')
+  const existingCoverSize = request.yar.get('existingCoverSize')
+  // separator
   const otherItemsArray = [request.yar.get('otherItems')].flat()
 
   const listOfCatagories = ['cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']
@@ -27,21 +30,24 @@ function formatSummaryTable (request) {
   let total
 
   if (object?.data && otherItemsArray.length > 0) {
-    // create storage object
-    const storageKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-storage')
 
-    const storageData = storageKey.items.find(({ item }) => item === storageType)
+    if (storageSize) {
+      // create storage object
+      const storageKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-storage')
 
-    total = (storageSize * storageData.amount)
+      const storageData = storageKey.items.find(({ item }) => item === storageType)
 
-    returnArray.push({
-      item: storageType,
-      amount: '£' + storageData.amount,
-      quantity: formatUKCurrency(storageSize) + 'm³',
-      total: '£' + formatUKCurrency(total)
-    })
+      total = (storageSize * storageData.amount)
 
-    totalCalculator += total
+      returnArray.push({
+        item: storageType,
+        amount: '£' + storageData.amount,
+        quantity: formatUKCurrency(storageSize) + 'm³',
+        total: '£' + formatUKCurrency(total)
+      })
+
+      totalCalculator += total
+    }
 
     // create cover object
     if (coverSize) {
@@ -55,6 +61,23 @@ function formatSummaryTable (request) {
         item: coverType,
         amount: '£' + coverData.amount,
         quantity: formatUKCurrency(coverSize) + 'm²',
+        total: '£' + formatUKCurrency(total)
+      })
+
+      totalCalculator += total
+    }
+
+    if (existingCoverSize) {
+      const existingCoverKey = object.data.desirability.catagories.find(({ key }) => key === 'cat-cover-type')
+
+      const existingCoverData = existingCoverKey.items.find(({ item }) => item === existingCoverType)
+
+      total = (existingCoverSize * existingCoverData.amount)
+
+      returnArray.push({
+        item: existingCoverType,
+        amount: '£' + existingCoverData.amount,
+        quantity: formatUKCurrency(existingCoverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
       })
 

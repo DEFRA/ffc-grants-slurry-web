@@ -7,6 +7,7 @@ describe('Project Summary test', () => {
   const varList = {
     storageType: 'random',
     coverType: 'random',
+    existingCoverType: 'random',
     otherItems: ['random'],
     itemSizesQuantities: ['random']
   }

@@ -235,7 +235,11 @@ describe('Project Summary Array Function', () => {
             return 5
           } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key === 'existingCoverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
           } else if (key === 'coverSize') {
+            return 6
+          } else if (key === 'existingCoverSize') {
             return 6
           } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
@@ -257,6 +261,12 @@ describe('Project Summary Array Function', () => {
         amount: '£22',
         quantity: '5m³',
         total: '£110'
+      },
+      {
+        item: 'Rigid cover for steel or concrete slurry stores',
+        amount: '£8',
+        quantity: '6m²',
+        total: '£48'
       },
       {
         item: 'Rigid cover for steel or concrete slurry stores',
@@ -365,7 +375,11 @@ describe('Project Summary Array Function', () => {
             return 5
           } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key === 'exitsingCoverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
           } else if (key === 'coverSize') {
+            return 6
+          } else if (key === 'existingCoverSize') {
             return 6
           } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
@@ -398,7 +412,11 @@ describe('Project Summary Array Function', () => {
             return 5
           } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key === 'existingCoverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
           } else if (key === 'coverSize') {
+            return 6
+          } else if (key === 'existingCoverSize') {
             return 6
           } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
@@ -431,7 +449,11 @@ describe('Project Summary Array Function', () => {
             return 5
           } else if (key === 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key === 'existingCoverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
           } else if (key === 'coverSize') {
+            return 6
+          } else if (key === 'existingCoverSize') {
             return 6
           } else if (key === 'itemSizeQuantities') {
             return []
@@ -459,6 +481,12 @@ describe('Project Summary Array Function', () => {
         amount: '£8',
         quantity: '6m²',
         total: '£48'
+      },
+      {
+        item: 'Rigid cover for steel or concrete slurry stores',
+        amount: '£8',
+        quantity: '6m²',
+        total: '£48'
       }
     ])
   })
@@ -477,7 +505,11 @@ describe('Project Summary Array Function', () => {
             return 5
           } else if (key == 'coverType') {
             return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key == 'existingCoverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
           } else if (key == 'coverSize') {
+            return null
+          } else if (key == 'existingCoverSize') {
             return null
           } else if (key == 'itemSizeQuantities') {
             return []
@@ -499,6 +531,56 @@ describe('Project Summary Array Function', () => {
         amount: '£22',
         quantity: '5m³',
         total: '£110'
+      }
+    ])
+  })
+
+  test('Should return only cover if storage and other items array have none of the above', () => {
+    const dict = {}
+
+    const mockRequest = {
+      yar: {
+        get: (key) => {
+          if (key == 'standardisedCostObject') {
+            return objectToSend
+          } else if (key == 'storageType') {
+            return 'Above-ground steel slurry store'
+          } else if (key == 'serviceCapacityIncrease') {
+            return null
+          } else if (key == 'coverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key == 'existingCoverType') {
+            return 'Rigid cover for steel or concrete slurry stores'
+          } else if (key == 'coverSize') {
+            return 6
+          } else if (key == 'existingCoverSize') {
+            return 6
+          } else if (key == 'itemSizeQuantities') {
+            return []
+          } else {
+            return ['None of the above']
+          }
+        },
+        set: jest.fn((key, value) => {
+          dict[key] = value
+        })
+      }
+    }
+
+    const response = formatSummaryTable(mockRequest)
+
+    expect(response).toEqual([
+      {
+        item: 'Rigid cover for steel or concrete slurry stores',
+        amount: '£8',
+        quantity: '6m²',
+        total: '£48'
+      },
+      {
+        item: 'Rigid cover for steel or concrete slurry stores',
+        amount: '£8',
+        quantity: '6m²',
+        total: '£48'
       }
     ])
   })
