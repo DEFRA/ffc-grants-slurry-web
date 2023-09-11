@@ -50,7 +50,7 @@ it('user select continue on conditional page redirect to /project-type', async (
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('project-type')
+    expect(postResponse.headers.location).toBe('/slurry-infrastructure/project-type')
 })
 
 it('user select continue on conditional page redirect to /project-type', async () => {
@@ -64,7 +64,7 @@ it('user select continue on conditional page redirect to /project-type', async (
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('project-type')
+    expect(postResponse.headers.location).toBe('/slurry-infrastructure/project-type')
 })
 it('page loads with correct back link', async () => {
     varList.applyingFor = "Building a new store, replacing or expanding an existing store";
