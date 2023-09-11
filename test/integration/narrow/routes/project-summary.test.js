@@ -6,11 +6,8 @@ const { guardPage } = require('../../../../app/helpers/page-guard')
 describe('Project Summary test', () => {
   const varList = {
     storageType: 'random',
-    serviceCapacityIncrease: null,
     coverType: 'random',
-    coverSize: null,
-    existingCoverType: null,
-    existingCoverSize: null,
+    existingCoverType: 'random',
     otherItems: ['random'],
     itemSizesQuantities: ['random']
   }
