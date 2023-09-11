@@ -28,28 +28,7 @@
         <hr/>
         </div>
 
-        {% set tableResult = [
-            {
-                key: {
-                text: "Planning permission"
-                },
-                value: {
-                text:  planningPermission
-                },
-                actions: {
-                    items: [
-                    {
-                        href: planningPermissionLink,
-                        text: "Change",
-                        attributes: {
-                            title: "Change planning permission"
-                        },
-                        visuallyHiddenText: " planning permission"
-                    }
-                    ]
-                }
-            },
-            {
+        {% set osGridReference = {
                 key: {
                 text: "OS grid reference"
                 },
@@ -69,10 +48,82 @@
                     ]
                 }
             }
-        ]
         %}
 
-        {% if evidence %}
+        {% set planningPermissionObject = {
+            key: {
+                text: "Planning permission"
+                },
+                value: {
+                    text:  planningPermission
+                },
+                actions: {
+                    items: [
+                    {
+                        href: planningPermissionLink,
+                        text: "Change",
+                        attributes: {
+                            title: "Change planning permission"
+                        },
+                        visuallyHiddenText: " planning permission"
+                    }
+                    ]
+            }
+        } %}
+
+        {% set planningAuthority = {
+            key: {
+            text: "Planning authority"
+            },
+            value: {
+            text:  evidence.planningAuthority
+            },
+            actions: {
+                items: [
+                {
+                    href: planningPermissionEvidenceLink,
+                    text: "Change",
+                    attributes: {
+                        title: "Change planning authority"
+                    },
+                    visuallyHiddenText: " planning authority"
+                }
+                ]
+            }
+        }
+        %}
+
+        {%  set planningReferenceNumber = {
+            key: {
+            text: "Planning reference number"
+            },
+            value: {
+            text:  evidence.planningReferenceNumber
+            },
+            actions: {
+                items: [
+                {
+                    href: planningPermissionEvidenceLink,
+                    text: "Change",
+                    attributes: {
+                    title: "Change planning reference number"
+                    },
+                    visuallyHiddenText: " planning reference number"
+                }
+                ]
+            }
+        }%}
+
+        {% set tableResult = [osGridReference] %}
+
+        {% if evidence%}
+            {% set tableResult = [planningPermissionObject, planningAuthority, planningReferenceNumber, osGridReference] %}
+        {% elif planningPermission %}
+            {% set tableResult = [planningPermissionObject, osGridReference] %}
+        {% endif %}
+
+
+        {# {% if evidence %}
             {% set tableResult = [
                 {
                     key: {
@@ -158,7 +209,7 @@
             ]
             %}
         {% endif %}
-    
+     #}
         {{ govukSummaryList({
             rows: tableResult
         })
