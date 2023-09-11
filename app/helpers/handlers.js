@@ -158,6 +158,7 @@ const getPage = async (question, request, h) => {
       break
     case 'existing-cover-type' :
       if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
+        setYarValue(request, 'planningPermission', null)
         question.backUrl = `${urlPrefix}/standardised-grant-amounts`
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
