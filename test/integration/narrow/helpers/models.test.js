@@ -258,7 +258,7 @@ describe('Models', () => {
             content: [{
               dependentAnswerExceptThese: [],
               items: [
-                'mock-value'
+                'mock-value', undefined
               ],
               para: ''
             }],
@@ -269,13 +269,13 @@ describe('Models', () => {
               {
                 dependentAnswerExceptThese: [],
                 items: [
-                  'Not needed'
+                  undefined
                 ],
                 para: ''
               }
 
             ],
-            heading: 'Cover'
+            heading: "Cover"
           }
         ]
       },

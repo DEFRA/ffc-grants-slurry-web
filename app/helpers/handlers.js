@@ -378,6 +378,11 @@ const handleMultiInput = (
       allFields = formatOtherItems(request)
     }
     allFields.forEach((field) => {
+      if (field.yarKey === 'existingCoverSize') {
+        setYarValue(request, 'existingCoverSize', payload[field.yarKey])
+      } else if (field.yarKey === 'coverSize') {
+        setYarValue(request, 'coverSize', payload[field.yarKey])
+      }
       const payloadYarVal = payload[field.yarKey]
         ? payload[field.yarKey]
             .replace(DELETE_POSTCODE_CHARS_REGEX, '')
@@ -459,6 +464,8 @@ const showPostPage = (currentQuestion, request, h) => {
     }
     if (key === 'applyingFor' && value !== 'An impermeable cover only') {
       setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'storage-type', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
     }
   }
 
