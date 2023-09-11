@@ -1776,6 +1776,63 @@ const questionBank = {
           yarKey: "separator",
         },
         {
+          key: "separator-type",
+          order: 16,
+          pageTitle: "",
+          title: "What type of slurry separator will you have?",
+          hint: {
+            text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
+          },
+          url: "separator-type",
+          baseUrl: "separator-type",
+          backUrl: "separator",
+          nextUrl: "other-items",
+          preValidationKeys: ["separator"],
+          type: "single-answer",
+          minAnswerCount: 1,
+          fundingPriorities: "",
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error: "Select what type of slurry storage you will have",
+            },
+          ],
+          answers: [
+            {
+              key: "separator-type-A1",
+              value: "Screen press",
+              hint: {
+                text: "(Grant amount: £21,234 per unit)",
+              }
+            },
+            {
+              key: "separator-type-A2",
+              value: "Screw press",
+              hint: {
+                text: "(Grant amount: £22,350 per unit)",
+              }
+            },
+          ],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "{{_storeType_}}",
+                content: [
+                  {
+                    para: "",
+                    items: [
+                      "{{_sideBarFirstItem_}}",
+                      "{{_sideBarSecondItem_}}",
+                    ],
+                  }
+                ],
+              },
+            ],
+          },
+          yarKey: "separatorType",
+        },
+        {
           key: "existing-cover-type",
           order: 135,
           costDataType: "cat-cover-type",
