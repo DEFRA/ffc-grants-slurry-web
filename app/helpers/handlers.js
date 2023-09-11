@@ -445,11 +445,6 @@ const showPostPage = (currentQuestion, request, h) => {
     return errors
   }
 
-  // if (baseUrl === 'existing-grant-funded-cover-size') {
-  //   setYarValue(request, 'cover-size', payload[field.yarKey])
-  //   setYarValue(request, 'existing-cover-size', )
-  // }
-
   if (
     baseUrl === 'fit-for-purpose' &&
     getYarValue(request, 'fitForPurpose') === 'No' &&
@@ -469,6 +464,8 @@ const showPostPage = (currentQuestion, request, h) => {
     }
     if (key === 'applyingFor' && value !== 'An impermeable cover only') {
       setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'storage-type', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
     }
   }
 
