@@ -44,7 +44,7 @@ it("user enter valid values store user response and redirect to /separator", asy
         method: "POST",
         url: `${global.__URLPREFIX__}/existing-grant-funded-cover-size`,
         headers: { cookie: "crumb=" + crumbToken },
-        payload: { existingStore: "22", grantFundedStore: "22", crumb: crumbToken }
+        payload: { coverSize: "22", existingCoverSize: "22", crumb: crumbToken }
     };
 
     const postResponse = await global.__SERVER__.inject(postOptions);
@@ -57,7 +57,7 @@ it('should return an error message if the number of digits typed exceed 7', asyn
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/existing-grant-funded-cover-size`,
-        payload: { existingStore: '9999999', grantFundedStore: '9999999', crumb: crumbToken },
+        payload: { coverSize: '9999999', existingCoverSize: '9999999', crumb: crumbToken },
         headers: { cookie: 'crumb=' + crumbToken }
     }
 
