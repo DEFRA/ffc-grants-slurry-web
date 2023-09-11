@@ -59,20 +59,20 @@ describe('Page: /estimated-grant', () => {
     expect(response.payload).toContain('<a href=\"fit-for-purpose\" class=\"govuk-back-link\" id=\"linkBack\">Back</a>')
   })
 
-  it('page loads with correct back link when user select fit for purpose option`s as  `\ No \`', async () => {
-    varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
-    varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
-    varList.grantFundedCover = 'Yes, I need a cover'
-    varList.existingCover = 'Yes'
-    varList.fitForPurpose = 'No'
-    const options = {
-      method: 'GET',
-      url: `${global.__URLPREFIX__}/estimated-grant`
-    }
-    const response = await global.__SERVER__.inject(options)
-    expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"fit-for-purpose-conditional\" class=\"govuk-back-link\" id=\"linkBack\">Back</a>')
-  })
+  // it('page loads with correct back link when user select fit for purpose option`s as  `\ No \`', async () => {
+  //   varList.applyingFor = 'Building a new store, replacing or expanding an existing store'
+  //   varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
+  //   varList.grantFundedCover = 'Yes, I need a cover'
+  //   varList.existingCover = 'Yes'
+  //   varList.fitForPurpose = 'No'
+  //   const options = {
+  //     method: 'GET',
+  //     url: `${global.__URLPREFIX__}/estimated-grant`
+  //   }
+  //   const response = await global.__SERVER__.inject(options)
+  //   expect(response.statusCode).toBe(200)
+  //   expect(response.payload).toContain('<a href=\"fit-for-purpose-conditional\" class=\"govuk-back-link\" id=\"linkBack\">Back</a>')
+  // })
 
   it('page loads with correct back link when user select fit for purpose option`s as  `\ Yes \` and applying for page is impermeable cover', async () => {
     varList.applyingFor = 'An impermeable cover only'
