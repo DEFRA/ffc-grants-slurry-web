@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /project-type', () => {
-  const varList = { projectType: 'randomData' }
+  const varList = { applyingFor: "Fake data" }
 
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -64,6 +64,7 @@ describe('Page: /project-type', () => {
   })
 
   it('page loads with correct back link', async () => {
+    varList.applyingFor = "Building a new store, replacing or expanding an existing store";
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/project-type`
