@@ -522,9 +522,8 @@ const questionBank = {
           title:
             "Are you planning to ask your landlord to underwrite your Grant Funding Agreement?",
           hint: {
-            text: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.
-
-            This approach is optional and we will only ask for details of your agreement at full application. `
+            html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.<br/><br/>
+                  This approach is optional and we will only ask for details of your agreement at full application.`
           },
           pageTitle: "",
           url: "project-responsibility",
@@ -557,20 +556,17 @@ const questionBank = {
           validate: [
             {
               type: "NOT_EMPTY",
-              error:
-                "Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement",
+              error: "Select if you are planning to ask your landlord to underwrite your Grant Funding Agreement",
             },
           ],
           answers: [
             {
               key: "project-responsibility-A1",
-              value:
-                "Yes, I plan to take full responsibility for my project",
+              value: "Yes, I plan to take full responsibility for my project",
             },
             {
               key: "project-responsibility-A2",
-              value:
-                "No, I plan to ask my landlord to underwrite the agreement",
+              value: "No, I plan to ask my landlord to underwrite the agreement",
             },
           ],
           yarKey: "projectResponsibility",
@@ -2672,7 +2668,7 @@ const questionBank = {
               elseUrl: "planning-permission-condition",
             },
           },
-          // preValidationKeys: ["planningPermission"],
+          preValidationKeys: ["planningPermission"],
           type: "input",
           classes: "govuk-input--width-10",
           label: {
@@ -2681,13 +2677,21 @@ const questionBank = {
             isPageHeading: true,
           },
           hint: {
-            html: `You can find your slurry stores OS grid reference number using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a><br/>
-            Enter in the format of 2 letters and 10 numbers, for example SP9620733594<br/><br/>
-            OS grid reference number
+            html: `
+            1. On the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a> page, enter the postcode of your location into the postcode box.<br/>
+            2. Select 'Go'.<br/>
+            3. Find the location of your slurry store on the map. You can select and drag the map to move the location.<br/>
+            4. Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.<br/>
+            5. Scroll down to view your grid reference in the table below the map.<br/>
+            6. Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.<br/>
+            7. Return to the Slurry Infrastructure Grant checker screen.<br/>
+            8. Right-click on the OS grid reference number box. Select 'Paste'.<br/><br/>
+            Enter in the format of 2 letters and 10 numbers, for example SP 9620733594<br/><br/>
+            <p class='govuk-body'>OS grid reference number</p>
           `,
           },
           warning: {
-            html: "You must provide an accurate grid reference to avoid delays at full application.",
+            html: "You must provide the correct location of your slurry store to avoid delays at full application.",
           },
           validate: [
             {
@@ -3621,11 +3625,11 @@ const questionBank = {
               <li>apply for planning permission</li>
             </ul>
             <p class="govuk-body">
-              If you farm pigs intensively and need to apply for a variation to your environmental permit, you can use the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
+              If you farm pigs intensively and need to apply for a variation to your environmental permit, you can get advice from the <a class="govuk-link" href="https://www.gov.uk/guidance/get-advice-before-you-apply-for-an-environmental-permit" target="_blank" rel="noopener noreferrer">Environment Agency’s (EA) pre-application advice service</a> or discuss it with your EA site officer.
             </p>
             <div class="govuk-inset-text">
               <p class="govuk-body">
-                If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
+              If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
               </p>
             </div>
             <p class="govuk-body"><a class="govuk-link" href="${process.env.SURVEY_LINK}" target="_blank" rel="noopener noreferrer">What do you think of this service? (opens in a new tab)</a></p>
