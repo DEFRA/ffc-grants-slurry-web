@@ -1046,7 +1046,7 @@ const questionBank = {
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
-          classes: "govuk-radios--inline govuk-fieldset__legend--l",
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           sidebar: {
             values: [
               {
@@ -1097,8 +1097,8 @@ const questionBank = {
             },
             extraMessageContent: `<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>`,
             messageLink: {
-              url: "https://www.gov.uk/government/collections/rural-payments-and-grants",
-              title: "See other grants you might be eligible for.",
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.',
             },
           },
           yarKey: 'FitForPurposeCondition'
