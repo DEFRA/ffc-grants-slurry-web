@@ -72,4 +72,15 @@ describe('Page: /project-type', () => {
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('<a href=\"applying-for\" class=\"govuk-back-link\">Back</a>')
   })
+
+  it('page loads with correct back link', async () => {
+    varList.applyingFor = "An impermeable cover only";
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/project-type`
+    }
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('<a href=\"fit-for-purpose-conditional\" class=\"govuk-back-link\">Back</a>')
+  })
 })
