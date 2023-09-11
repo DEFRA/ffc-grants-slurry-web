@@ -1703,78 +1703,6 @@ const questionBank = {
           yarKey: "serviceCapacityIncrease",
         },
         {
-          key: "existing-cover-type",
-          order: 135,
-          costDataType: "cat-cover-type",
-          title: "What type of cover will you have on your existing store?",
-          hint: {
-            text: "Select one option",
-          },
-          url: "existing-cover-type",
-          baseUrl: "existing-cover-type",
-          nextUrlObject: {
-            dependentQuestionYarKey: "coverType",
-            dependentAnswerKeysArray: ["cover-type-A1"],
-            urlOptions: {
-              thenUrl: "existing-grant-funded-cover-size",
-              elseUrl: "existing-grant-funded-cover-size",
-              nonDependentUrl: "existing-cover-size"
-            }
-          },
-          backUrl: "cover-type",
-          sidebar: {
-            mainHeading: "Your project items",
-            values: [
-              {
-                heading: "Grant-funded store",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-              {
-                heading: "Grant-funded store cover",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-            ],
-            prefixSufix: [
-              {
-                linkedPrefix: "Increase: ",
-                linkedSufix: "m³",
-              },
-              {
-                linkedPrefix: "Size: ",
-                linkedSufix: "m²",
-              },
-            ],
-            linkedQuestionyarkey: [ "serviceCapacityIncrease", "coverSize"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
-          },
-          type: "single-answer",
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: "NOT_EMPTY",
-              error: "Select what type of cover your existing store will have",
-            },
-          ],
-          hintArray: [
-            "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
-            "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
-          ],
-          answers: [ ],
-          yarKey: "existingCoverType",
-        },
-        {
           key: "cover-type",
           order: 135,
           costDataType: "cat-cover-type",
@@ -2301,6 +2229,7 @@ const questionBank = {
         },
         {
           key: "separator-type",
+          costDataType: 'cat-separator',
           order: 141,
           pageTitle: "",
           title: "What type of slurry separator will you have?",
@@ -2321,38 +2250,57 @@ const questionBank = {
               error: "Select what type of slurry storage you will have",
             },
           ],
-          answers: [
-            {
-              key: "separator-type-A1",
-              value: "Screen press",
-              hint: {
-                text: "(Grant amount: £21,234 per unit)",
-              }
-            },
-            {
-              key: "separator-type-A2",
-              value: "Screw press",
-              hint: {
-                text: "(Grant amount: £22,350 per unit)",
-              }
-            },
-          ],
+          answers: [],
           sidebar: {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "{{_storeType_}}",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
-                    items: [
-                      "{{_sideBarFirstItem_}}",
-                      "{{_sideBarSecondItem_}}",
-                    ],
-                  }
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
                 ],
               },
             ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease", "coverSize", "existingCoverSize"],
+            dependentQuestionKeys: ["storage-type", "cover-type", "existing-cover-type"],
           },
           yarKey: "separatorType",
         },
