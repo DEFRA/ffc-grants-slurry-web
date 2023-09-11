@@ -39,7 +39,7 @@
     "projectType": "Replace an existing store that is no longer fit for purpose with a new store",
     "grantFundedCover": "Yes, I need a cover",
     "existingCover": "Yes",
-    "fitForPurpose": "Yes",
+    "fitForPurpose": "No",
     "storageType": "Above-ground steel slurry store",
     "serviceCapacityIncrease": 22,
     "coverType": "Fixed flexible cover",
