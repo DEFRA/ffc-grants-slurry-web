@@ -1476,7 +1476,6 @@ const questionBank = {
                 ],
               },
             ],
-            dependentYarKeys: ["storageType"],
             dependentQuestionKeys: ["storage-type"],
           },
           warning: {
@@ -1557,7 +1556,7 @@ const questionBank = {
         },
         {
           key: "pig-serviceable-capacity-increase-replace",
-          order: 131,
+          order: 133,
           title: "",
           pageTitle: "",
           url: "pig-serviceable-capacity-increase-replace",
@@ -1621,7 +1620,6 @@ const questionBank = {
                 ],
               },
             ],
-            dependentYarKeys: ["storageType"],
             dependentQuestionKeys: ["storage-type"],
           },
           warning: {
@@ -1631,7 +1629,7 @@ const questionBank = {
         },
         {
           key: "pig-serviceable-capacity-increase-additional",
-          order: 132,
+          order: 134,
           title: "",
           pageTitle: "",
           classes: "govuk-input--width-10",
@@ -1701,151 +1699,8 @@ const questionBank = {
           yarKey: "serviceCapacityIncrease",
         },
         {
-          key: "separator",
-          order: 15,
-          title: "Do you want to add a slurry storage separator to your project?",
-          pageTitle: "",
-          backUrl: "pig-existing-storage-capacity",
-          nextUrl: "separator-items",
-          url: "separator",
-          classes: "govuk-radios--inline govuk-fieldset__legend--l",
-          hint: {
-            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
-          },
-          baseUrl: "separator",
-          preValidationKeys: ["storageType"],
-          fundingPriorities: "",
-          type: "single-answer",
-          minAnswerCount: 1,
-          sidebar: {
-            mainHeading: "Your project items",
-            values: [
-              {
-                heading: "Store",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-              {
-                heading: "Cover",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-            ],
-            prefixSufix: [
-              {
-                linkedPrefix: "Increase: ",
-                linkedSufix: "m³",
-              },
-            ],
-            linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
-          },
-          validate: [
-            {
-              type: "NOT_EMPTY",
-              error:
-                "Select if you want to add a slurry separator to your project",
-            },
-          ],
-          answers: [
-            {
-              key: "separator-A1",
-              value: "Yes",
-              redirectUrl: "separator-items",
-            },
-            {
-              key: "separator-A2",
-              value: "No",
-              redirectUrl: "other-items",
-            },
-          ],
-          yarKey: "separator",
-        },
-        {
-          key: "existing-cover-type",
-          order: 135,
-          costDataType: "cat-cover-type",
-          title: "What type of cover will you have on your existing store?",
-          hint: {
-            text: "Select one option",
-          },
-          url: "existing-cover-type",
-          baseUrl: "existing-cover-type",
-          nextUrlObject: {
-            dependentQuestionYarKey: "coverType",
-            dependentAnswerKeysArray: ["cover-type-A1"],
-            urlOptions: {
-              thenUrl: "existing-grant-funded-cover-size",
-              elseUrl: "existing-grant-funded-cover-size",
-              nonDependentUrl: "existing-cover-size"
-            }
-          },
-          backUrl: "cover-type",
-          sidebar: {
-            mainHeading: "Your project items",
-            values: [
-              {
-                heading: "Grant-funded store",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-              {
-                heading: "Grant-funded store cover",
-                content: [
-                  {
-                    para: "",
-                    items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
-            ],
-            prefixSufix: [
-              {
-                linkedPrefix: "Increase: ",
-                linkedSufix: "m³",
-              },
-              {
-                linkedPrefix: "Size: ",
-                linkedSufix: "m²",
-              },
-            ],
-            linkedQuestionyarkey: [ "serviceCapacityIncrease", "coverSize"],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
-          },
-          type: "single-answer",
-          minAnswerCount: 1,
-          validate: [
-            {
-              type: "NOT_EMPTY",
-              error: "Select what type of cover your existing store will have",
-            },
-          ],
-          hintArray: [
-            "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
-            "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
-          ],
-          answers: [ ],
-          yarKey: "existingCoverType",
-        },
-        {
           key: "cover-type",
-          order: 136,
+          order: 135,
           costDataType: "cat-cover-type",
           title: "What type of cover will you have on your grant-funded store?",
           baseUrl: "cover-type",
@@ -1906,6 +1761,74 @@ const questionBank = {
           ],
           answers: [ ],
           yarKey: "coverType",
+        },
+        {
+          key: "existing-cover-type",
+          order: 136,
+          costDataType: "cat-cover-type",
+          title: "What type of cover will you have on your existing store?",
+          hint: {
+            text: "Select one option",
+          },
+          url: "existing-cover-type",
+          baseUrl: "existing-cover-type",
+          nextUrlObject: {
+            dependentQuestionYarKey: "coverType",
+            dependentAnswerKeysArray: ["cover-type-A1"],
+            urlOptions: {
+              thenUrl: "existing-grant-funded-cover-size",
+              elseUrl: "existing-grant-funded-cover-size",
+              nonDependentUrl: "existing-cover-size"
+            }
+          },
+          backUrl: "cover-type",
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+            ],
+            linkedQuestionyarkey: [ "serviceCapacityIncrease"],
+            dependentQuestionKeys: ["storage-type", "cover-type"],
+          },
+          type: "single-answer",
+          minAnswerCount: 1,
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error: "Select what type of cover your existing store will have",
+            },
+          ],
+          hintArray: [
+            "Taut skin made from flexible or pliant sheet material such as reinforced plastic sheeting or strong canvas",
+            "Flexible plastic sheet covers with some form of flotation or fixing to store sides to prevent movement",
+          ],
+          answers: [ ],
+          yarKey: "existingCoverType",
         },
         {
           key: "cover-size",
@@ -2046,6 +1969,16 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
                 heading: "Existing store cover",
                 content: [
                   {
@@ -2063,13 +1996,13 @@ const questionBank = {
               },
             ],
             linkedQuestionyarkey: ["serviceCapacityIncrease"],
-            dependentQuestionKeys: ["existing-cover-type"],
+            dependentQuestionKeys: ["storage-type", "existing-cover-type"],
           },
           yarKey: "existingCoverSize",
         },
         {
           key: "existing-grant-funded-cover-size",
-          order: 138,
+          order: 139,
           title: "How big will the covers be?",
           pageTitle: "How big will the covers be?",
           classes: "govuk-input--width-5",
@@ -2088,7 +2021,7 @@ const questionBank = {
           },
           allFields: [
             {
-              yarKey: 'grantFundedStore',
+              yarKey: 'coverSize',
               type: 'number',
               classes: 'govuk-input--width-5',
               label: {
@@ -2122,7 +2055,7 @@ const questionBank = {
               ]
             },
             {
-              yarKey: 'existingStore',
+              yarKey: 'existingCoverSize',
               type: 'number',
               classes: 'govuk-input--width-5',
               label: {
@@ -2202,8 +2135,97 @@ const questionBank = {
           yarKey: "existingGrantFundedCoverSize",
         },
         {
+          key: "separator",
+          order: 140,
+          title: "Do you want to add a slurry storage separator to your project?",
+          pageTitle: "",
+          backUrl: "pig-existing-storage-capacity",
+          nextUrl: "separator-items",
+          url: "separator",
+          classes: "govuk-radios--inline govuk-fieldset__legend--l",
+          hint: {
+            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
+          },
+          baseUrl: "separator",
+          // preValidationKeys: ["standardisedGrantAmounts"],
+          fundingPriorities: "",
+          type: "single-answer",
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease", "coverSize", "existingCoverSize"],
+            dependentQuestionKeys: ["storage-type", "cover-type", "existing-cover-type"],
+          },
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error:
+                "Select if you want to add a slurry separator to your project",
+            },
+          ],
+          answers: [
+            {
+              key: "separator-A1",
+              value: "Yes",
+              redirectUrl: "separator-items",
+            },
+            {
+              key: "separator-A2",
+              value: "No",
+              redirectUrl: "other-items",
+            },
+          ],
+          yarKey: "separator",
+        },
+        {
           key: "other-items",
-          order: 139,
+          order: 146,
           costDataType: "other",
           title: "What other items do you need?",
           baseUrl: "other-items",
@@ -2235,7 +2257,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -2245,7 +2267,17 @@ const questionBank = {
                 ],
               },
               {
-                heading: "Cover",
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
                 content: [
                   {
                     para: "",
@@ -2264,12 +2296,17 @@ const questionBank = {
                 linkedPrefix: "Size: ",
                 linkedSufix: "m²",
               },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
             ],
             linkedQuestionyarkey: [
               "serviceCapacityIncrease",
               "coverSize",
+              "existingCoverSize" // add separator
             ],
-            dependentQuestionKeys: ["storage-type", "cover-type"],
+            dependentQuestionKeys: ["storage-type", "cover-type", "existing-cover-type"], // add separator
           },
           validate: [
             {
@@ -2299,7 +2336,7 @@ const questionBank = {
         },
         {
           key: "item-sizes-quantities",
-          order: 140,
+          order: 147,
           costDataKey: "other",
           title: "Item sizes and quantities",
           baseUrl: "item-sizes-quantities",
@@ -2315,7 +2352,7 @@ const questionBank = {
             mainHeading: "Your project items",
             values: [
               {
-                heading: "Store",
+                heading: "Grant-funded store",
                 content: [
                   {
                     para: "",
@@ -2325,7 +2362,17 @@ const questionBank = {
                 ],
               },
               {
-                heading: "Cover",
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
                 content: [
                   {
                     para: "",
@@ -2354,14 +2401,20 @@ const questionBank = {
                 linkedPrefix: "Size: ",
                 linkedSufix: "m²",
               },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
             ],
             linkedQuestionyarkey: [
               "serviceCapacityIncrease",
               "coverSize",
+              "existingCoverSize"
             ],
             dependentQuestionKeys: [
               "storage-type",
               "cover-type",
+              "existing-cover-type",
               "other-items",
             ],
           },
