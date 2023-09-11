@@ -103,7 +103,7 @@ const questionBank = {
                     para: `This grant is for pig, beef or dairy farmers.
 
                     If your main farm enterprise is pig, the grant is to get your slurry storage levels to 8 months.
-                    
+
                     If beef or dairy is your main farm enterprise, the grant is to get your storage levels to 6 months.`
                   }
                 ]
@@ -2575,7 +2575,7 @@ const questionBank = {
             {
               key: 'planning-permission-A3',
               value:
-                'Not yet applied for but expected to be secured by 28 June 2024',
+                 'Not yet applied for but expected to be in place by 27 June 2025',
               redirectUrl: 'planning-permission-condition'
             }
           ],
