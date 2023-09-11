@@ -20,26 +20,31 @@ const getDependentSideBar = (sidebar, request) => {
     const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
     const selectedAnswers = getYarValue(request, yarKey)
 
-    if (selectedAnswers) {
-      values[index].content[0].items = [selectedAnswers].flat()
+    if (selectedAnswers === null) {
+      
+      // dependentQuestionKeys.slice(dependentQuestionKeys[dependentQuestionKey])
+      values[index].heading = null
+      values[index].content.slice()
+
     } else {
-      values[index].content[0].items = ['Not needed']
+    
+        values[index].content[0].items = [selectedAnswers].flat()
+  
+        if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
+          // const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+          let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey[index])
+    
+          if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
+            selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
+
+          }
+
+          values[index].content[0].items.push(selectedValueOfLinkedQuestion)
+        
+        }
     }
 
-    if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
-      // const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-      let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey)
 
-      if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
-        selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
-      }
-
-      if (selectedValueOfLinkedQuestion && values[index].content[0].items[0] !== 'Not needed') {
-        values[index].content[0].items.push(selectedValueOfLinkedQuestion)
-      } else {
-        setYarValue(request, 'coverSize', '')
-      }
-    }
   })
   return {
     ...sidebar
