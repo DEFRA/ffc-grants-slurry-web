@@ -142,6 +142,23 @@ const getPage = async (question, request, h) => {
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
       setYarValue(request, 'coverSize', null)
+      if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No'){
+        question.nextUrl = `${urlPrefix}/estimated-grant`
+      }else{
+        if (getYarValue(request, 'applicantType') === 'Pig') {
+          if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
+            question.nextUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          } else {
+            question.nextUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          }
+        } else {
+          if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
+            question.nextUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          } else {
+            question.nextUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          }
+        }
+      }
       break
     case 'existing-cover' :
       setYarValue(request, 'serviceCapacityIncrease', null)

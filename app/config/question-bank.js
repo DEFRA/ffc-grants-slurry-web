@@ -1214,14 +1214,15 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'grant-funded-cover',
           backUrl: 'project-type',
-          nextUrlObject: {
-            dependentQuestionYarKey: 'applicantType',
-            dependentAnswerKeysArray: ['applicant-type-A1'],
-            urlOptions: {
-              thenUrl: 'existing-cover-pig',
-              elseUrl: 'existing-cover'
-            }
-          },
+          nextUrl: 'estimated-grant',
+          // nextUrlObject: {
+          //   dependentQuestionYarKey: 'applicantType',
+          //   dependentAnswerKeysArray: ['applicant-type-A1'],
+          //   urlOptions: {
+          //     thenUrl: 'existing-cover-pig',
+          //     elseUrl: 'existing-cover'
+          //   }
+          // },
           url: 'grant-funded-cover',
           preValidationKeys: ['projectType'],
           ineligibleContent: {
@@ -1448,7 +1449,7 @@ const questionBank = {
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           fundingPriorities: '',
-          preValidationKeys: ['storageType'],
+          // preValidationKeys: ['storageType'],
           classes: 'govuk-input--width-10',
           id: 'storageCapacityIncrease',
           name: 'storageCapacityIncrease',
@@ -1521,7 +1522,7 @@ const questionBank = {
           baseUrl: 'serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
-          preValidationKeys: ['storageType'],
+          // preValidationKeys: ['storageType'],
           suffix: { text: 'm³' },
           type: 'input',
           inputmode: 'numeric',
@@ -1592,7 +1593,7 @@ const questionBank = {
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           fundingPriorities: '',
-          preValidationKeys: ['storageType'],
+          // preValidationKeys: ['storageType'],
           classes: 'govuk-input--width-10',
           id: 'storageCapacityIncrease',
           name: 'storageCapacityIncrease',
@@ -1665,7 +1666,7 @@ const questionBank = {
           baseUrl: 'pig-serviceable-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
-          preValidationKeys: ['storageType'],
+          // preValidationKeys: ['storageType'],
           suffix: { text: 'm³' },
           type: 'input',
           inputmode: 'numeric',
