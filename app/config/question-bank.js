@@ -2306,6 +2306,95 @@ const questionBank = {
           yarKey: "separatorType",
         },
         {
+          key: 'gantry',
+          order: 142,
+          title: 'Do you want to add a gantry?',
+          hint: {
+            text: 'Grant amount: £5,154 per unit'
+          },
+          pageTitle: '',
+          baseUrl: 'gantry',
+          url: 'gantry',
+          backUrl: 'separator-type',
+          nextUrl: 'solid-fraction-storage',
+          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
+          preValidationKeys: ["separatorType"],
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+            ],
+            linkedQuestionyarkey: [ "serviceCapacityIncrease", "coverSize", "existingCoverSize" ],
+            dependentQuestionKeys: [ "storage-type", "cover-type", "existing-cover-type" ],
+          },
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error:
+                'Select if you want to add a gantry'
+            }
+          ],
+          answers: [
+            {
+              key: 'gantry-A1',
+              value: 'Yes',
+              redirectUrl: 'gantry-items'
+            },
+            {
+              key: 'gantry-A2',
+              value: 'No',
+              redirectUrl: 'separator-items'
+            }
+          ],
+          yarKey: 'gantry'
+        },
+        {
           key: 'other-items',
           order: 146,
           costDataType: 'other',
