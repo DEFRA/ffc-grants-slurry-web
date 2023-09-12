@@ -522,8 +522,7 @@ const questionBank = {
         {
           key: 'project-responsibility',
           order: 60,
-          title:
-            'Are you planning to ask your landlord to underwrite your Grant Funding Agreement?',
+          title: 'Will you take full responsibility for your project?',
           hint: {
             html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.<br/><br/>
                   This approach is optional and we will only ask for details of your agreement at full application.`
@@ -2169,7 +2168,7 @@ const questionBank = {
           title: 'Do you want to add a slurry storage separator to your project?',
           pageTitle: '',
           backUrl: 'pig-existing-storage-capacity',
-          nextUrl: 'separator-items',
+          nextUrl: 'separator-type',
           url: 'separator',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           hint: {
@@ -2242,7 +2241,6 @@ const questionBank = {
             {
               key: 'separator-A1',
               value: 'Yes',
-              redirectUrl: 'separator-items'
             },
             {
               key: 'separator-A2',
@@ -2336,22 +2334,14 @@ const questionBank = {
           title: 'What other items do you need?',
           baseUrl: 'other-items',
           backUrlObject: {
-            dependentQuestionYarKey: 'coverType',
-            dependentAnswerKeysArray: ['cover-type-A4'],
+            dependentQuestionYarKey: 'separator',
+            dependentAnswerKeysArray: ['separator-A1'],
             urlOptions: {
-              thenUrl: 'cover-type',
-              elseUrl: 'cover-size',
-              nonDependentUrl: 'storage-type'
+              thenUrl: 'solid-fraction-storage',
+              elseUrl: 'separator',
             }
           },
-          nextUrlObject: {
-            dependentQuestionYarKey: 'otherItems',
-            dependentAnswerKeysArray: ['other-items-A15'],
-            urlOptions: {
-              thenUrl: 'remaining-cost',
-              elseUrl: 'item-sizes-quantities'
-            }
-          },
+          nextUrl: 'item-sizes-quantities', 
           hint: {
             text: 'Select all the items your project needs'
           },

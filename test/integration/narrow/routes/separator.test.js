@@ -59,7 +59,7 @@ describe("Separator test", () => {
     };
     const postResponse = await global.__SERVER__.inject(postOptions);
     expect(postResponse.statusCode).toBe(302);
-    expect(postResponse.headers.location).toBe("separator-items");
+    expect(postResponse.headers.location).toBe("separator-type");
   });
 
   test("POST /separator route returns next page -> /other-items/ when separator `/No/`", async () => {
