@@ -58,7 +58,7 @@ const getPlanningPermissionDoraValue = (planningPermission) => {
   switch (planningPermission) {
     case 'Applied for but not yet approved':
       return 'Applied for'
-    case 'Not yet applied for but expected to be in place by 31 December 2023':
+    case 'Not yet applied for but expected to be in place by 27 June 2025':
       return 'Not yet applied for'
     default:
       return 'Approved'
