@@ -40,6 +40,7 @@
         "projectName": "Test Project",
         "businessName": "Test Business"
     },
+    "applyingFor": "An impermeable cover only",
     "projectType": "Add a new store to increase existing capacity",
     "grantFundedCover": "Yes, I already have a cover",
     "existingCover": "Yes",

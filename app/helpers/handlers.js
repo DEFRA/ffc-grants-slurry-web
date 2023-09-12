@@ -203,6 +203,14 @@ const getPage = async (question, request, h) => {
     case 'estimated-grant' :
       setYarValue(request, 'estimatedGrant', 'reached')
       break
+    case 'fit-for-purpose-conditional': 
+      if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
+        question.maybeEligibleContent.isimpermeablecoveronly = true
+        question.nextUrl = `${urlPrefix}/project-type`
+      }else{
+          question.maybeEligibleContent.isimpermeablecoveronly = false
+      }
+    break
     // case "storage-type":
     //   setYarValue(request, "serviceCapacityIncrease", null)
     //   setYarValue(request, "separator", null)
@@ -444,19 +452,6 @@ const showPostPage = (currentQuestion, request, h) => {
     // TODO: update Gapi calls to use new format
     // gapiService.sendValidationDimension(request)
     return errors
-  }
-
-  if (
-    baseUrl === 'fit-for-purpose' &&
-    getYarValue(request, 'fitForPurpose') === 'No' &&
-    getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store') {
-    return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
-  } else if (
-    baseUrl === 'fit-for-purpose' &&
-    getYarValue(request, 'fitForPurpose') === 'No' &&
-    getYarValue(request, 'applyingFor') === 'An impermeable cover only'
-  ) {
-    return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
   for (const [key, value] of Object.entries(payload)) {
