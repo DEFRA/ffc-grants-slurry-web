@@ -454,14 +454,6 @@ const showPostPage = (currentQuestion, request, h) => {
     return errors
   }
 
-  if (baseUrl === 'fit-for-purpose' && getYarValue(request, 'fitForPurpose') === 'No'){
-      if(getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store'){
-        return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
-      }else if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
-        return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
-      }
-    }
-
   for (const [key, value] of Object.entries(payload)) {
     if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
