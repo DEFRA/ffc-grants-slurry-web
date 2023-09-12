@@ -158,6 +158,11 @@ const getOptions = (data, question, conditionalHtml, request) => {
       question.answers = []
       answersList.slice(0, -3)
     }
+
+    if(question.yarKey === "gantry"){
+      question.answers = []
+      answersList.slice(2, -2)
+    }
     for (const answer in answersList) {
       question.answers.unshift(answersList[answer])
     }

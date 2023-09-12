@@ -2326,6 +2326,7 @@ const questionBank = {
         },
         {
           key: 'gantry',
+          costDataType: 'cat-separator',
           order: 142,
           title: 'Do you want to add a gantry?',
           hint: {
@@ -2400,14 +2401,6 @@ const questionBank = {
             }
           ],
           answers: [
-            {
-              key: 'gantry-A1',
-              value: 'Yes',
-            },
-            {
-              key: 'gantry-A2',
-              value: 'No',
-            }
           ],
           yarKey: 'gantry'
         },
