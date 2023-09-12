@@ -522,8 +522,7 @@ const questionBank = {
         {
           key: 'project-responsibility',
           order: 60,
-          title:
-            'Are you planning to ask your landlord to underwrite your Grant Funding Agreement?',
+          title: 'Will you take full responsibility for your project?',
           hint: {
             html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.<br/><br/>
                   This approach is optional and we will only ask for details of your agreement at full application.`
@@ -1047,14 +1046,6 @@ const questionBank = {
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          ineligibleContent: {
-            messageContent:
-              'Your existing store must be signed off as fit for purpose by a structural engineer at full application.',
-            messageLink: {
-              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
-            }
-          },
           sidebar: {
             values: [
               {
@@ -1100,8 +1091,9 @@ const questionBank = {
             },
             {
               key: 'fit-for-purpose-A2',
-              value: 'No'
-            }
+              value: 'No',
+              redirectUrl: 'fit-for-purpose-conditional'
+            },
           ],
           yarKey: 'fitForPurpose'
         },
@@ -1110,18 +1102,22 @@ const questionBank = {
           order: 145,
           url: 'fit-for-purpose-conditional',
           backUrl: 'fit-for-purpose',
-          nextUrl: 'estimated-grant',
+          nextUrl: 'project-type',
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
+            isimpermeablecoveronly: false,
             messageHeader:
               'You may be able to apply for a grant from this scheme',
-            messageContent:
-              'You will not get grant funding for a cover if the existing store you want to cover is not fit for purpose.',
+            messageContent: '',
             warning: {
               text: 'To apply for a cover, your existing store must be signed off as fit for purpose by a structural engineer at full application.'
             },
-            extraMessageContent: '<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>'
+            extraMessageContent: `<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>`,
+            messageLink: {
+              url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
+              title: 'See other grants you might be eligible for.',
+            },
           },
           yarKey: 'FitForPurposeCondition'
         },
@@ -1130,7 +1126,14 @@ const questionBank = {
           order: 140,
           title: 'How will you increase your storage capacity?',
           baseUrl: 'project-type',
-          backUrl: 'applying-for',
+          backUrlObject: {
+            dependentQuestionYarKey: 'applyingFor',
+            dependentAnswerKeysArray: ['applying-for-A1'],
+            urlOptions: {
+              thenUrl: 'applying-for',
+              elseUrl: 'fit-for-purpose-conditional'
+            },
+          },
           nextUrl: 'grant-funded-cover',
           url: 'project-type',
           preValidationKeys: ['applyingFor'],
@@ -2236,8 +2239,7 @@ const questionBank = {
           answers: [
             {
               key: 'separator-A1',
-              value: 'Yes',
-              redirectUrl: 'separator-type'
+              value: 'Yes'
             },
             {
               key: 'separator-A2',
@@ -2331,22 +2333,14 @@ const questionBank = {
           title: 'What other items do you need?',
           baseUrl: 'other-items',
           backUrlObject: {
-            dependentQuestionYarKey: 'coverType',
-            dependentAnswerKeysArray: ['cover-type-A4'],
+            dependentQuestionYarKey: 'separator',
+            dependentAnswerKeysArray: ['separator-A1'],
             urlOptions: {
-              thenUrl: 'cover-type',
-              elseUrl: 'cover-size',
-              nonDependentUrl: 'storage-type'
+              thenUrl: 'solid-fraction-storage',
+              elseUrl: 'separator'
             }
           },
-          nextUrlObject: {
-            dependentQuestionYarKey: 'otherItems',
-            dependentAnswerKeysArray: ['other-items-A15'],
-            urlOptions: {
-              thenUrl: 'remaining-cost',
-              elseUrl: 'item-sizes-quantities'
-            }
-          },
+          nextUrl: 'item-sizes-quantities',
           hint: {
             text: 'Select all the items your project needs'
           },
@@ -2570,10 +2564,6 @@ const questionBank = {
               elseUrl: 'planning-permission'
             }
           },
-
-
-
-
           preValidationKeys: ['standardisedCostCalculated'],
           ineligibleContent: {
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>

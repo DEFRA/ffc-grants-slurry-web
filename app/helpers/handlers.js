@@ -203,6 +203,14 @@ const getPage = async (question, request, h) => {
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
       break
+    case 'fit-for-purpose-conditional': 
+      if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
+        question.maybeEligibleContent.isimpermeablecoveronly = true
+        question.nextUrl = `${urlPrefix}/project-type`
+      }else{
+          question.maybeEligibleContent.isimpermeablecoveronly = false
+      }
+    break
     // case "storage-type":
     //   setYarValue(request, "serviceCapacityIncrease", null)
     //   setYarValue(request, "separator", null)
