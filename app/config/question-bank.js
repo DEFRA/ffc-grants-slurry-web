@@ -2164,7 +2164,7 @@ const questionBank = {
           title: 'Do you want to add a slurry storage separator to your project?',
           pageTitle: '',
           backUrl: 'pig-existing-storage-capacity',
-          nextUrl: 'separator-items',
+          nextUrl: 'separator-type',
           url: 'separator',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           hint: {
@@ -2237,7 +2237,6 @@ const questionBank = {
             {
               key: 'separator-A1',
               value: 'Yes',
-              redirectUrl: 'separator-items'
             },
             {
               key: 'separator-A2',
@@ -2331,22 +2330,14 @@ const questionBank = {
           title: 'What other items do you need?',
           baseUrl: 'other-items',
           backUrlObject: {
-            dependentQuestionYarKey: 'coverType',
-            dependentAnswerKeysArray: ['cover-type-A4'],
+            dependentQuestionYarKey: 'separator',
+            dependentAnswerKeysArray: ['separator-A1'],
             urlOptions: {
-              thenUrl: 'cover-type',
-              elseUrl: 'cover-size',
-              nonDependentUrl: 'storage-type'
+              thenUrl: 'solid-fraction-storage',
+              elseUrl: 'separator',
             }
           },
-          nextUrlObject: {
-            dependentQuestionYarKey: 'otherItems',
-            dependentAnswerKeysArray: ['other-items-A15'],
-            urlOptions: {
-              thenUrl: 'remaining-cost',
-              elseUrl: 'item-sizes-quantities'
-            }
-          },
+          nextUrl: 'item-sizes-quantities', 
           hint: {
             text: 'Select all the items your project needs'
           },
