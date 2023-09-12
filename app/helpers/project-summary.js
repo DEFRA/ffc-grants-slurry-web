@@ -58,7 +58,7 @@ function formatSummaryTable (request) {
       total = (coverSize * coverData.amount)
 
       returnArray.push({
-        item: coverType + ' - Grant funded Store Cover',
+        item: coverType,
         amount: '£' + coverData.amount,
         quantity: formatUKCurrency(coverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
@@ -75,7 +75,7 @@ function formatSummaryTable (request) {
       total = (existingCoverSize * existingCoverData.amount)
 
       returnArray.push({
-        item: existingCoverType + ' - Existing Store Cover',
+        item: existingCoverType,
         amount: '£' + existingCoverData.amount,
         quantity: formatUKCurrency(existingCoverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
