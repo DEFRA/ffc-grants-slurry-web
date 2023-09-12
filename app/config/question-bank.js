@@ -2229,6 +2229,83 @@ const questionBank = {
           yarKey: 'separator'
         },
         {
+          key: "separator-type",
+          costDataType: 'cat-separator',
+          order: 141,
+          pageTitle: "",
+          title: "What type of slurry separator will you have?",
+          hint: {
+            text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
+          },
+          url: "separator-type",
+          baseUrl: "separator-type",
+          backUrl: "separator",
+          nextUrl: "other-items",
+          preValidationKeys: ["separator"],
+          type: "single-answer",
+          minAnswerCount: 1,
+          fundingPriorities: "",
+          validate: [
+            {
+              type: "NOT_EMPTY",
+              error: "Select what type of slurry storage you will have",
+            },
+          ],
+          answers: [],
+          sidebar: {
+            mainHeading: "Your project items",
+            values: [
+              {
+                heading: "Grant-funded store",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Grant-funded store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+              {
+                heading: "Existing store cover",
+                content: [
+                  {
+                    para: "",
+                    items: [],
+                    dependentAnswerExceptThese: [],
+                  },
+                ],
+              },
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: "Increase: ",
+                linkedSufix: "m³",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+              {
+                linkedPrefix: "Size: ",
+                linkedSufix: "m²",
+              },
+            ],
+            linkedQuestionyarkey: ["serviceCapacityIncrease", "coverSize", "existingCoverSize"],
+            dependentQuestionKeys: ["storage-type", "cover-type", "existing-cover-type"],
+          },
+          yarKey: "separatorType",
+        },
+        {
           key: 'other-items',
           order: 146,
           costDataType: 'other',
