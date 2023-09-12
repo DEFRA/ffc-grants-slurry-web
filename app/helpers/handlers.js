@@ -5,7 +5,7 @@ const { getGrantValues } = require('../helpers/grants-info')
 const { formatUKCurrency } = require('../helpers/data-formats')
 const {
   SELECT_VARIABLE_TO_REPLACE,
-  DELETE_POSTCODE_CHARS_REGEX,
+  DELETE_POSTCODE_CHARS_REGEX
 } = require('../helpers/regex')
 const { getUrl } = require('../helpers/urls')
 const { guardPage } = require('../helpers/page-guard')
@@ -200,7 +200,7 @@ const getPage = async (question, request, h) => {
           }
         }
       }
-    case 'estimated-grant' :
+    case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
       break
     // case "storage-type":
@@ -338,12 +338,12 @@ const clearYarValue = (yarKey, payload, request) => {
 }
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
-  for (const [key, value] of Object.entries(payload)) {
+  for (let [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value)
-    if (
-      yarKey === 'grantFundedCover' &&
-      thisAnswer.key === 'grantFundedCover-A3'
-    ) {
+
+    if (key === 'gridReference') value = value.replace(/\s/g, '')
+
+    if (yarKey === 'grantFundedCover' && thisAnswer.key === 'grantFundedCover-A3') {
       request.yar.set('coverType', '')
       request.yar.set('coverSize', '')
     }
@@ -459,7 +459,9 @@ const showPostPage = (currentQuestion, request, h) => {
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
-  for (const [key, value] of Object.entries(payload)) {
+  for (let [key, value] of Object.entries(payload)) {
+    if (key === 'gridReference') value = value.replace(/\s/g, '')
+
     if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
     }
