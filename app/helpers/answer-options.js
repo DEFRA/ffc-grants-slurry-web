@@ -156,7 +156,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
 
     if(question.yarKey === "separatorType"){
       question.answers = []
-      answersList.slice(0, -3)
+      answersList.splice(0, 3)
     }
     for (const answer in answersList) {
       question.answers.unshift(answersList[answer])

@@ -44,12 +44,15 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
   }
 }
 
-function suffixAndLengthGenerator (unit) {
+function suffixAndLengthGenerator (item, unit) {
   switch (unit) {
     case 'per cubic metre':
-      return { unit: 'm³', length: 5 }
+      return { unit: 'm³', length: 3 }
     case 'per metre':
-      return { unit: 'metre(s)', length: 5 }
+      if (item.startsWith('Safety fencing')) {
+        return { unit: 'metre(s)', length: 5 }
+      }
+      return { unit: 'metre(s)', length: 3 }
     default:
       return { unit: 'item(s)', length: 3 }
   }
@@ -59,7 +62,7 @@ function keyGenerator (title, key) {
   // format key name for NOT_EMPTY validation
   switch (key) {
     case 'cat-reception-pit-type':
-      return 'plastic reception pit'
+      return 'reception pit'
     case 'cat-pump-type':
       return 'pump'
     default:
@@ -69,7 +72,7 @@ function keyGenerator (title, key) {
 
 function getErrorUnit (catagory) {
   const volumeArray = ['cat-reception-pit-type', 'cat-pipework', 'cat-transfer-channels']
-  const errorType = volumeArray.includes(catagory) ? 'Size' : 'Quantity'
+  const errorType = volumeArray.includes(catagory) ? 'Volume' : 'Quantity'
 
   return { errorType: errorType }
 }
@@ -88,7 +91,7 @@ function formatOtherItems (request) {
 
         selectedCatagory.items.forEach((item) => {
           if (item.item === otherItem) {
-            const suffixAndLengthValue = suffixAndLengthGenerator(item.unit)
+            const suffixAndLengthValue = suffixAndLengthGenerator(item.item, item.unit)
             const keyTitle = keyGenerator(selectedCatagory.title, selectedCatagory.key)
             const catagoryData = getErrorUnit(listOfCatagories[catagory])
 
