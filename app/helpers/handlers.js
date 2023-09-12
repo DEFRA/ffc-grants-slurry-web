@@ -146,17 +146,9 @@ const getPage = async (question, request, h) => {
         question.nextUrl = `${urlPrefix}/estimated-grant`
       }else{
         if (getYarValue(request, 'applicantType') === 'Pig') {
-          if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
-            question.nextUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
-          } else {
-            question.nextUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
-          }
+            question.nextUrl = `${urlPrefix}/existing-cover-pig`
         } else {
-          if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
-            question.nextUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
-          } else {
-            question.nextUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
-          }
+            question.nextUrl = `${urlPrefix}/existing-cover`
         }
       }
       break
