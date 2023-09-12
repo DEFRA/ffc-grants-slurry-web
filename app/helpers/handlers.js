@@ -454,19 +454,6 @@ const showPostPage = (currentQuestion, request, h) => {
     return errors
   }
 
-  if (
-    baseUrl === 'fit-for-purpose' &&
-    getYarValue(request, 'fitForPurpose') === 'No' &&
-    getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store') {
-    return h.redirect('/slurry-infrastructure/fit-for-purpose-conditional')
-  } else if (
-    baseUrl === 'fit-for-purpose' &&
-    getYarValue(request, 'fitForPurpose') === 'No' &&
-    getYarValue(request, 'applyingFor') === 'An impermeable cover only'
-  ) {
-    return h.view('not-eligible', NOT_ELIGIBLE)
-  }
-
   for (let [key, value] of Object.entries(payload)) {
     if (key === 'gridReference') value = value.replace(/\s/g, '')
 
