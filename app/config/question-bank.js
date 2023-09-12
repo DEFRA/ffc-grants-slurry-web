@@ -1061,6 +1061,25 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
+                    para: 'To cover an existing store, you must confirm at full application that the store is structurally suitable to cover and meet regulations and build standards.',
+                    items: [
+                    ],
+                    additionalPara: ''
+                  }
+                ]
+              }
+            ],
+            details: {
+              summaryText: 'When is a store no longer fit for purpose?',
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
+            }
+          },
+          sidebar: {
+            values: [
+              {
+                heading: 'Eligibility',
+                content: [
+                  {
                     para: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure. To cover an existing store, you must confirm at full application that the store is structurally suitable to cover and meet regulations and build standards.'
                   }
                 ]
