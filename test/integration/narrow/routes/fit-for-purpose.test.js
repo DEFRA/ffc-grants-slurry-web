@@ -64,10 +64,8 @@ describe("Page: /fit-for-purpose", () => {
       payload: { fitForPurpose: "No", crumb: crumbToken },
     };
     const postResponse = await global.__SERVER__.inject(postOptions);
-    expect(postResponse.statusCode).toBe(200);
-    expect(postResponse.payload).toContain(
-      "You cannot apply for a grant from this scheme"
-    );
+    expect(postResponse.statusCode).toBe(302);
+    expect(postResponse.headers.location).toBe("fit-for-purpose-conditional");
   });
   it("user selects eligible option: 'Yes' when applying-for page is Not impermeable cover only   -> store user response and redirect to /estimated-grant", async () => {
     varList.applyingFor =
@@ -100,9 +98,7 @@ describe("Page: /fit-for-purpose", () => {
     };
     const postResponse = await global.__SERVER__.inject(postOptions);
     expect(postResponse.statusCode).toBe(302);
-    expect(postResponse.headers.location).toBe(
-      "/slurry-infrastructure/fit-for-purpose-conditional"
-    );
+    expect(postResponse.headers.location).toBe("fit-for-purpose-conditional");
   });
   it("page loads with correct back link", async () => {
     varList.applicantType = "Pig";

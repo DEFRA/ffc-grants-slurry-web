@@ -19,7 +19,7 @@ describe('Page: /project-responsibility', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('Are you planning to ask your landlord to underwrite your Grant Funding Agreement?')
+    expect(response.payload).toContain('Will you take full responsibility for your project?')
     expect(response.payload).toContain('Yes, I plan to take full responsibility for my project')
     expect(response.payload).toContain('No, I plan to ask my landlord to underwrite the agreement')
   })
