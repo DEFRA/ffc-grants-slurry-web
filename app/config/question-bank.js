@@ -1214,14 +1214,6 @@ const questionBank = {
           baseUrl: 'grant-funded-cover',
           backUrl: 'project-type',
           nextUrl: 'estimated-grant',
-          // nextUrlObject: {
-          //   dependentQuestionYarKey: 'applicantType',
-          //   dependentAnswerKeysArray: ['applicant-type-A1'],
-          //   urlOptions: {
-          //     thenUrl: 'existing-cover-pig',
-          //     elseUrl: 'existing-cover'
-          //   }
-          // },
           url: 'grant-funded-cover',
           preValidationKeys: ['projectType'],
           ineligibleContent: {
