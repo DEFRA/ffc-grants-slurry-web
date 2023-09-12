@@ -228,7 +228,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £30 per cubic metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Reception pit',
           classes: 'govuk-label--m'
@@ -236,23 +236,23 @@ describe('Other Items Sizes Array Function', () => {
         validate: [
           {
             type: 'NOT_EMPTY',
-            error: 'Enter plastic reception pit size'
+            error: 'Enter reception pit volume'
           },
           {
             type: 'REGEX',
             regex: INTERGERS_AND_DECIMALS,
-            error: 'Size must only include numbers'
+            error: 'Volume must only include numbers'
           },
           {
             type: 'INCLUDES',
             checkArray: ['.'],
-            error: 'Size must be a whole number'
+            error: 'Volume must be a whole number'
           },
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Size must be between 1-999999'
+            max: 9999,
+            error: 'Volume must be between 1-9999'
           }
         ]
       },
@@ -413,7 +413,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £14 per metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Galvanised steel pipework 100mm diameter',
           classes: 'govuk-label--m'
@@ -421,23 +421,23 @@ describe('Other Items Sizes Array Function', () => {
         validate: [
           {
             type: 'NOT_EMPTY',
-            error: 'Enter pipework size'
+            error: 'Enter pipework volume'
           },
           {
             type: 'REGEX',
             regex: INTERGERS_AND_DECIMALS,
-            error: 'Size must only include numbers'
+            error: 'Volume must only include numbers'
           },
           {
             type: 'INCLUDES',
             checkArray: ['.'],
-            error: 'Size must be a whole number'
+            error: 'Volume must be a whole number'
           },
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Size must be between 1-999999'
+            max: 9999,
+            error: 'Volume must be between 1-9999'
           }
         ]
       },
@@ -450,7 +450,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £24 per metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Galvanised steel pipework 150mm diameter',
           classes: 'govuk-label--m'
@@ -458,23 +458,23 @@ describe('Other Items Sizes Array Function', () => {
         validate: [
           {
             type: 'NOT_EMPTY',
-            error: 'Enter pipework size'
+            error: 'Enter pipework volume'
           },
           {
             type: 'REGEX',
             regex: INTERGERS_AND_DECIMALS,
-            error: 'Size must only include numbers'
+            error: 'Volume must only include numbers'
           },
           {
             type: 'INCLUDES',
             checkArray: ['.'],
-            error: 'Size must be a whole number'
+            error: 'Volume must be a whole number'
           },
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Size must be between 1-999999'
+            max: 9999,
+            error: 'Volume must be between 1-9999'
           }
         ]
       },
@@ -487,7 +487,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £8 per metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
           classes: 'govuk-label--m'
@@ -495,23 +495,23 @@ describe('Other Items Sizes Array Function', () => {
         validate: [
           {
             type: 'NOT_EMPTY',
-            error: 'Enter pipework size'
+            error: 'Enter pipework volume'
           },
           {
             type: 'REGEX',
             regex: INTERGERS_AND_DECIMALS,
-            error: 'Size must only include numbers'
+            error: 'Volume must only include numbers'
           },
           {
             type: 'INCLUDES',
             checkArray: ['.'],
-            error: 'Size must be a whole number'
+            error: 'Volume must be a whole number'
           },
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Size must be between 1-999999'
+            max: 9999,
+            error: 'Volume must be between 1-9999'
           }
         ]
       },
@@ -524,7 +524,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £9 per metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
           classes: 'govuk-label--m'
@@ -532,23 +532,23 @@ describe('Other Items Sizes Array Function', () => {
         validate: [
           {
             type: 'NOT_EMPTY',
-            error: 'Enter pipework size'
+            error: 'Enter pipework volume'
           },
           {
             type: 'REGEX',
             regex: INTERGERS_AND_DECIMALS,
-            error: 'Size must only include numbers'
+            error: 'Volume must only include numbers'
           },
           {
             type: 'INCLUDES',
             checkArray: ['.'],
-            error: 'Size must be a whole number'
+            error: 'Volume must be a whole number'
           },
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Size must be between 1-999999'
+            max: 9999,
+            error: 'Volume must be between 1-9999'
           }
         ]
       },
@@ -561,7 +561,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £25 per metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Under-floor transfer channels',
           classes: 'govuk-label--m'
@@ -569,23 +569,23 @@ describe('Other Items Sizes Array Function', () => {
         validate: [
           {
             type: 'NOT_EMPTY',
-            error: 'Enter transfer channels size'
+            error: 'Enter transfer channels volume'
           },
           {
             type: 'REGEX',
             regex: INTERGERS_AND_DECIMALS,
-            error: 'Size must only include numbers'
+            error: 'Volume must only include numbers'
           },
           {
             type: 'INCLUDES',
             checkArray: ['.'],
-            error: 'Size must be a whole number'
+            error: 'Volume must be a whole number'
           },
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Size must be between 1-999999'
+            max: 9999,
+            error: 'Volume must be between 1-9999'
           }
         ]
       },
