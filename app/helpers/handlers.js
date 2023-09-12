@@ -208,9 +208,7 @@ const getPage = async (question, request, h) => {
         question.maybeEligibleContent.isimpermeablecoveronly = true
         question.nextUrl = `${urlPrefix}/project-type`
       }else{
-        if(getYarValue(request, 'applyingFor') === 'Building a new store, replacing or expanding an existing store' && getYarValue(request, 'fitForPurpose') === 'No'){
           question.maybeEligibleContent.isimpermeablecoveronly = false
-        }
       }
     break
     // case "storage-type":
