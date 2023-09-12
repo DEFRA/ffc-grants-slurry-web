@@ -2384,12 +2384,10 @@ const questionBank = {
             {
               key: 'gantry-A1',
               value: 'Yes',
-              redirectUrl: 'gantry-items'
             },
             {
               key: 'gantry-A2',
               value: 'No',
-              redirectUrl: 'separator-items'
             }
           ],
           yarKey: 'gantry'
