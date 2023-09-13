@@ -1,7 +1,6 @@
 const { getStandardisedCosts } = require('../messaging/application')
 const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
-const { getYarValue } = require('../helpers/session')
 
 const urlPrefix = require('../config/server').urlPrefix
 const viewTemplate = 'standardised-grant-amounts'
