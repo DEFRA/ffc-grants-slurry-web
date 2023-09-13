@@ -1102,7 +1102,14 @@ const questionBank = {
           order: 145,
           url: 'fit-for-purpose-conditional',
           backUrl: 'fit-for-purpose',
-          nextUrl: 'project-type',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'applyingFor',
+            dependentAnswerKeysArray: ['applying-for-A1'],
+            urlOptions: {
+              thenUrl: 'estimated-grant',
+              elseUrl: 'project-type'
+            },
+          },
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
@@ -1160,7 +1167,7 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: 'This grant is for:',
+                    para: 'This grant is only for:',
                     items: [
                       'replacing an existing store that is no longer fit for purpose with a new store',
                       'adding a new store to increase existing capacity',
@@ -1174,7 +1181,7 @@ const questionBank = {
             ],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
+              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
             }
           },
           validate: [
@@ -1503,7 +1510,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant.'
@@ -1573,7 +1580,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
@@ -1647,7 +1654,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.'
@@ -1717,7 +1724,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
@@ -1774,7 +1781,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           validate: [
             {
@@ -1810,6 +1817,7 @@ const questionBank = {
           },
           backUrl: 'cover-type',
           sidebar: {
+            showSidebar: true,
             mainHeading: 'Your project items',
             values: [
               {
@@ -1840,7 +1848,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType']
           },
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1937,7 +1945,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType']
           },
           yarKey: 'coverSize'
         },
@@ -2023,7 +2031,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'existingCoverType']
           },
           yarKey: 'existingCoverSize'
         },
@@ -2157,7 +2165,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'cover-type','existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType','existingCoverType']
           },
           yarKey: 'existingGrantFundedCoverSize'
         },
@@ -2227,7 +2235,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
-            dependentQuestionKeys: ['storage-type', 'cover-type', 'existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType']
           },
           validate: [
             {
@@ -2239,7 +2247,7 @@ const questionBank = {
           answers: [
             {
               key: 'separator-A1',
-              value: 'Yes',
+              value: 'Yes'
             },
             {
               key: 'separator-A2',
@@ -2250,11 +2258,11 @@ const questionBank = {
           yarKey: 'separator'
         },
         {
-          key: "separator-type",
+          key: 'separator-type',
           costDataType: 'cat-separator',
           order: 141,
-          pageTitle: "",
-          title: "What type of slurry separator will you have?",
+          pageTitle: '',
+          title: 'What type of slurry separator will you have?',
           hint: {
             text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
           },
@@ -2265,66 +2273,66 @@ const questionBank = {
           preValidationKeys: ["separator"],
           type: "single-answer",
           minAnswerCount: 1,
-          fundingPriorities: "",
+          fundingPriorities: '',
           validate: [
             {
-              type: "NOT_EMPTY",
-              error: "Select what type of slurry storage you will have",
-            },
+              type: 'NOT_EMPTY',
+              error: 'Select what type of slurry storage you will have'
+            }
           ],
           answers: [],
           sidebar: {
-            mainHeading: "Your project items",
+            mainHeading: 'Your project items',
             values: [
               {
-                heading: "Grant-funded store",
+                heading: 'Grant-funded store',
                 content: [
                   {
-                    para: "",
+                    para: '',
                     items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
               },
               {
-                heading: "Grant-funded store cover",
+                heading: 'Grant-funded store cover',
                 content: [
                   {
-                    para: "",
+                    para: '',
                     items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
               },
               {
-                heading: "Existing store cover",
+                heading: 'Existing store cover',
                 content: [
                   {
-                    para: "",
+                    para: '',
                     items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
-              },
+                    dependentAnswerExceptThese: []
+                  }
+                ]
+              }
             ],
             prefixSufix: [
               {
-                linkedPrefix: "Increase: ",
-                linkedSufix: "m³",
+                linkedPrefix: 'Increase: ',
+                linkedSufix: 'm³'
               },
               {
-                linkedPrefix: "Size: ",
-                linkedSufix: "m²",
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
               },
               {
-                linkedPrefix: "Size: ",
-                linkedSufix: "m²",
-              },
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
+              }
             ],
-            linkedQuestionyarkey: ["serviceCapacityIncrease", "coverSize", "existingCoverSize"],
-            dependentQuestionKeys: ["storage-type", "cover-type", "existing-cover-type"],
+            linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType']
           },
-          yarKey: "separatorType",
+          yarKey: 'separatorType'
         },
         {
           key: 'gantry',
@@ -2426,10 +2434,10 @@ const questionBank = {
             dependentAnswerKeysArray: ['separator-A1'],
             urlOptions: {
               thenUrl: 'solid-fraction-storage',
-              elseUrl: 'separator',
+              elseUrl: 'separator'
             }
           },
-          nextUrl: 'item-sizes-quantities', 
+          nextUrl: 'item-sizes-quantities',
           hint: {
             text: 'Select all the items your project needs'
           },
@@ -2490,7 +2498,7 @@ const questionBank = {
               'coverSize',
               'existingCoverSize' // add separator
             ],
-            dependentQuestionKeys: ['storage-type', 'cover-type', 'existing-cover-type'] // add separator
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType'] // add separator
           },
           validate: [
             {
@@ -2596,10 +2604,10 @@ const questionBank = {
               'existingCoverSize'
             ],
             dependentQuestionKeys: [
-              'storage-type',
-              'cover-type',
-              'existing-cover-type',
-              'other-items'
+              'storageType',
+              'coverType',
+              'existingCoverType',
+              'otherItems'
             ]
           },
           allFields: [],
@@ -2653,10 +2661,6 @@ const questionBank = {
               elseUrl: 'planning-permission'
             }
           },
-
-
-
-
           preValidationKeys: ['standardisedCostCalculated'],
           ineligibleContent: {
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>

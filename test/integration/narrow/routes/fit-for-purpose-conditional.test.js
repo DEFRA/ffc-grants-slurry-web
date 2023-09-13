@@ -39,7 +39,7 @@ it('should load the condition page with correct heading', async () => {
     expect(getResponse.statusCode).toBe(200)
     expect(getResponse.payload).toContain('Continue to apply for a store')
 })
-it('user select continue on conditional page redirect to /project-type', async () => {
+it('user select continue on conditional page redirect to /estimated-grant', async () => {
     varList.applyingFor = "Building a new store, replacing or expanding an existing store";
     const postOptions = {
         method: 'POST',
@@ -50,7 +50,7 @@ it('user select continue on conditional page redirect to /project-type', async (
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('/slurry-infrastructure/project-type')
+    expect(postResponse.headers.location).toBe('estimated-grant')
 })
 
 it('user select continue on conditional page redirect to /project-type', async () => {
@@ -64,7 +64,7 @@ it('user select continue on conditional page redirect to /project-type', async (
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('/slurry-infrastructure/project-type')
+    expect(postResponse.headers.location).toBe('project-type')
 })
 it('page loads with correct back link', async () => {
     varList.applyingFor = "Building a new store, replacing or expanding an existing store";

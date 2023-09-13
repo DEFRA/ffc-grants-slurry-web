@@ -5,7 +5,7 @@ const { getGrantValues } = require('../helpers/grants-info')
 const { formatUKCurrency } = require('../helpers/data-formats')
 const {
   SELECT_VARIABLE_TO_REPLACE,
-  DELETE_POSTCODE_CHARS_REGEX,
+  DELETE_POSTCODE_CHARS_REGEX
 } = require('../helpers/regex')
 const { getUrl } = require('../helpers/urls')
 const { guardPage } = require('../helpers/page-guard')
@@ -160,19 +160,25 @@ const getPage = async (question, request, h) => {
       if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
         setYarValue(request, 'planningPermission', null)
         question.backUrl = `${urlPrefix}/standardised-grant-amounts`
+        question.sidebar.showSidebar = false
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
+        question.sidebar.showSidebar = true
       } else if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
         if (getYarValue(request, 'applicantType') === 'Pig') {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          question.sidebar.showSidebar = true
         } else {
           question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          question.sidebar.showSidebar = true
         }
       } else {
         if (getYarValue(request, 'applicantType') === 'Pig') {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          question.sidebar.showSidebar = true
         } else {
           question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          question.sidebar.showSidebar = true
         }
       }
       break
@@ -200,7 +206,7 @@ const getPage = async (question, request, h) => {
           }
         }
       }
-    case 'estimated-grant' :
+    case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
       break
     case 'fit-for-purpose-conditional': 
@@ -346,14 +352,37 @@ const clearYarValue = (yarKey, payload, request) => {
 }
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
-  for (const [key, value] of Object.entries(payload)) {
+  for (let [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value)
-    if (
-      yarKey === 'grantFundedCover' &&
-      thisAnswer.key === 'grantFundedCover-A3'
-    ) {
-      request.yar.set('coverType', '')
-      request.yar.set('coverSize', '')
+
+    if (key === 'gridReference') value = value.replace(/\s/g, '')
+
+    if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+
+    }
+    else if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+      setYarValue(request, 'existingCover', null)
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+    }
+    else if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+    }
+    else if (yarKey === 'existingCover' && value !== 'Yes') {
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+
     }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
@@ -452,17 +481,6 @@ const showPostPage = (currentQuestion, request, h) => {
     // TODO: update Gapi calls to use new format
     // gapiService.sendValidationDimension(request)
     return errors
-  }
-
-  for (const [key, value] of Object.entries(payload)) {
-    if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
-      setYarValue(request, 'coverType', null)
-    }
-    if (key === 'applyingFor' && value !== 'An impermeable cover only') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'storage-type', null)
-      setYarValue(request, 'serviceCapacityIncrease', null)
-    }
   }
 
   if (thisAnswer?.notEligible) {
