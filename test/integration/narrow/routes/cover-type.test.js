@@ -42,7 +42,7 @@ describe('Cover Type test', () => {
     expect(postResponse.payload).toContain('Select what type of cover your grant-funded store will have')
   })
 
-  test('POST /cover-size route returns next page when existing cover `/Yes/`', async () => {
+  test('POST /cover-type route returns next page when existing cover `/Yes/`', async () => {
     varList.existingCover = "Yes"
     const options = {
       method: 'POST',
@@ -56,7 +56,7 @@ describe('Cover Type test', () => {
     expect(response.headers.location).toBe('existing-cover-type')
   })
 
-  test('POST /cover-size route returns next page when /cover-size `/No/`', async () => {
+  test('POST /cover-type route returns next page when /cover-size when existing cover is /No/', async () => {
     varList.existingCover = "No"
     const options = {
       method: 'POST',
