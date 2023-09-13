@@ -89,7 +89,7 @@ describe("Gantry test", () => {
       "Do you want to add a gantry?"
     );
     expect(response.payload).toContain(
-      "Grant amount: £5,154 per unit"
+      "(Grant amount: £5,154 per unit)"
     );
     expect(response.payload).toContain(
       "Yes"

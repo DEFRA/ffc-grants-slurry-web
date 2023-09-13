@@ -162,7 +162,9 @@ const getOptions = (data, question, conditionalHtml, request) => {
     if(question.yarKey === "gantry"){
       let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
       gantryHint = gantryHint[0]
-      question.hint = gantryHint?.hint
+      // add brakcets around hint text
+      gantryHint.hint.html = '(' + gantryHint.hint.html + ')'
+      question.hint = gantryHint.hint
     } else {
       for (const answer in answersList) {
         question.answers.unshift(answersList[answer])
