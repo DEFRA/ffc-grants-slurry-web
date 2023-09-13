@@ -112,6 +112,8 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     ? getDependentSideBar(sidebar, request)
     : sidebar
 
+  const showSidebar = sidebar?.showSidebar
+
   let warningDetails
   if (warningCondition) {
     const { dependentWarningQuestionKey, dependentWarningAnswerKeysArray } = warningCondition
@@ -129,6 +131,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     backUrl: getBackUrl(hasScore, backUrlObject, backUrl, request),
     items: getOptions(data, question, conditionalHtml, request),
     sideBarText,
+    showSidebar,
     ...(warningDetails ? ({ warning: warningDetails }) : {}),
     reachedCheckDetails: showBackToDetailsButton(key, request),
     reachedEvidenceSummary: showBackToEvidenceSummaryButton(key, request),

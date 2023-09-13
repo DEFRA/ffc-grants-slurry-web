@@ -160,19 +160,25 @@ const getPage = async (question, request, h) => {
       if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
         setYarValue(request, 'planningPermission', null)
         question.backUrl = `${urlPrefix}/standardised-grant-amounts`
+        question.sidebar.showSidebar = false
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
+        question.sidebar.showSidebar = true
       } else if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
         if (getYarValue(request, 'applicantType') === 'Pig') {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          question.sidebar.showSidebar = true
         } else {
           question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          question.sidebar.showSidebar = true
         }
       } else {
         if (getYarValue(request, 'applicantType') === 'Pig') {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          question.sidebar.showSidebar = true
         } else {
           question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          question.sidebar.showSidebar = true
         }
       }
       break

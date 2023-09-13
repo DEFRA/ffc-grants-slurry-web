@@ -1817,6 +1817,7 @@ const questionBank = {
           },
           backUrl: 'cover-type',
           sidebar: {
+            showSidebar: true,
             mainHeading: 'Your project items',
             values: [
               {
