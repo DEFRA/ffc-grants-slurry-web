@@ -356,7 +356,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'coverSize', null)
 
     }
-    if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
+    else if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
       setYarValue(request, 'fitForPurpose', null)
       setYarValue(request, 'projectType', null)
       setYarValue(request, 'grantFundedCover', null)
@@ -366,8 +366,14 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'coverType', null)
       setYarValue(request, 'coverSize', null)
     }
-    if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
+    else if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
       setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+    }
+    else if (yarKey === 'existingCover' && value !== 'Yes') {
       setYarValue(request, 'existingCoverType', null)
       setYarValue(request, 'existingCoverSize', null)
 

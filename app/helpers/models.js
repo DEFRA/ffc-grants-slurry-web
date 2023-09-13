@@ -17,10 +17,10 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
+    values[index].content[0].items = []
+
     // const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
     const selectedAnswers = getYarValue(request, dependentQuestionKey)
-
-    sidebar.values[index].content[0].items = []
 
     if (selectedAnswers === null) {
       
@@ -29,7 +29,25 @@ const getDependentSideBar = (sidebar, request) => {
       values[index].content.slice()
 
     } else {
-    
+
+        switch (dependentQuestionKey) {
+          case 'storageType':
+            values[index].heading = 'Grant-funded store'
+            break
+          case 'coverType':
+            values[index].heading = 'Grant-funded store cover'
+            break
+          case 'existingCoverType':
+            values[index].heading = 'Existing store cover'
+            break            
+            // add separator
+          case 'otherItems':
+            values[index].heading = 'Other items'
+            break
+          default:
+            break
+        }
+
         values[index].content[0].items = [selectedAnswers].flat()
   
         if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
