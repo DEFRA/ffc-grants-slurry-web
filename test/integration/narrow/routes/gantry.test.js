@@ -59,6 +59,7 @@ describe("Gantry test", () => {
     storageType: "hello",
     separator: "Yes",
     separatorType: "fake",
+    separatorOptions: null,
     standardisedCostObject: standardisedCostObject,
   };
   beforeEach(() => {
@@ -98,7 +99,7 @@ describe("Gantry test", () => {
       "No"
     );
   });
-  it("page loads with /pig-serviceable-capacity-increase-replace/ back link", async () => {
+  it("page loads with /separator-type/ back link", async () => {
     const optionSeparator = {
       method: "GET",
       url: `${global.__URLPREFIX__}/gantry`,
@@ -136,6 +137,7 @@ describe("Gantry test", () => {
     expect(postResponse.headers.location).toBe("solid-fraction-storage");
   });
   it("POST /gantry route returns next page -> /solid-fraction-storage/, when user selects 'No'", async () => {
+    varList.separatorOptions = ['Gantry']
     const postOptions = {
       method: "POST",
       url: `${global.__URLPREFIX__}/gantry`,
