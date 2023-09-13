@@ -119,7 +119,7 @@ const getPage = async (question, request, h) => {
     preValidationKeysRule,
     backUrlObject
   } = question
-  const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
+  let nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
   let backUrl = getUrl(backUrlObject, question.backUrl, request)
   const isRedirect = guardPage(
     request,
