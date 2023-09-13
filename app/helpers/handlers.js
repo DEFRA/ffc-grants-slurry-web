@@ -474,10 +474,21 @@ const showPostPage = (currentQuestion, request, h) => {
     if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
     }
+    if (key === 'applyingFor' && value === 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+      setYarValue(request, 'existingCover', null)
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+    }
     if (key === 'applyingFor' && value !== 'An impermeable cover only') {
       setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'storage-type', null)
-      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+
     }
 
     if (key === 'existingCover' && value === 'No') {
