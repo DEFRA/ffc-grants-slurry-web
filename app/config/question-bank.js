@@ -1729,7 +1729,8 @@ const questionBank = {
             dependentAnswerKeysArray: ['existing-cover-A1'],
             urlOptions: {
               thenUrl: 'existing-cover-type',
-              elseUrl: 'cover-size'
+              elseUrl: 'cover-size',
+              nonDependentUrl: 'cover-size'
             }
           },
           backUrlObject: {
