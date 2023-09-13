@@ -398,6 +398,31 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'existingCoverType', null)
       setYarValue(request, 'existingCoverSize', null)
 
+    } 
+    else if (yarKey === 'separator' && value === 'No') {
+      setYarValue(request, 'separatorType', null)
+      setYarValue(request, 'separatorOptions', null)
+      setYarValue(request, 'gantry', null)
+    } 
+    else if (yarKey === 'separatorType') {
+      setYarValue(request, 'separatorOptions', value)
+
+    } 
+    else if (yarKey === 'gantry' && value === 'Yes') {
+      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      if (tempSeparatorVal.includes('Gantry') === false) {
+        tempSeparatorVal.push('Gantry')
+      }
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+    } 
+    else if (yarKey === 'gantry' && value === 'No') {
+      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      if (tempSeparatorVal.includes('Gantry') === true) {
+        let index = tempSeparatorVal.indexOf('Gantry')
+        tempSeparatorVal.splice(index, 1)
+      }
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+
     }
 
     if (type !== 'multi-input' && key !== 'secBtn') {

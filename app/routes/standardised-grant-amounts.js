@@ -35,7 +35,6 @@ module.exports = [{
 
     try {
       console.log('Sending session message .....')
-      console.log(request.yar.id, "HELLLLLO")
       const result = await getStandardisedCosts(request.yar.id)
       console.log(result, '[THIS IS RESULT WE GOT BACK]')
       request.yar.set('standardisedCostObject', result)
