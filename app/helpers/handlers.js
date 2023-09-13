@@ -111,7 +111,6 @@ const addConditionalLabelData = async (
 const getPage = async (question, request, h) => {
   const {
     url,
-    backUrl,
     nextUrlObject,
     type,
     title,
@@ -121,6 +120,7 @@ const getPage = async (question, request, h) => {
     backUrlObject
   } = question
   const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
+  let backUrl = getUrl(backUrlObject, question.backUrl, request)
   const isRedirect = guardPage(
     request,
     preValidationKeys,
@@ -211,6 +211,10 @@ const getPage = async (question, request, h) => {
       }
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
+        if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No'){
+          backUrl = `${urlPrefix}/grant-funded-cover`
+        }
+    case 'fit-for-purpose':
       break
     case 'fit-for-purpose-conditional': 
       if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
@@ -296,7 +300,7 @@ const getPage = async (question, request, h) => {
       consentOptionalData,
       url,
       nextUrl,
-      backUrl: getUrl(backUrlObject, backUrl, request),
+      backUrl
     }
     return h.view('maybe-eligible', MAYBE_ELIGIBLE)
   }
@@ -456,6 +460,7 @@ const showPostPage = (currentQuestion, request, h) => {
     }
   }
 
+
   const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {
     // TODO: update Gapi calls to use new format
@@ -473,6 +478,10 @@ const showPostPage = (currentQuestion, request, h) => {
       setYarValue(request, 'fitForPurpose', null)
       setYarValue(request, 'storage-type', null)
       setYarValue(request, 'serviceCapacityIncrease', null)
+    }
+
+    if (key === 'existingCover' && value === 'No') {
+      setYarValue(request, 'fitForPurpose', null)
     }
   }
 
