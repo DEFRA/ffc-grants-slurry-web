@@ -17,8 +17,10 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
-    const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
-    const selectedAnswers = getYarValue(request, yarKey)
+    values[index].content[0].items = []
+
+    // const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
+    const selectedAnswers = getYarValue(request, dependentQuestionKey)
 
     if (selectedAnswers === null) {
       
@@ -27,7 +29,25 @@ const getDependentSideBar = (sidebar, request) => {
       values[index].content.slice()
 
     } else {
-    
+
+        switch (dependentQuestionKey) {
+          case 'storageType':
+            values[index].heading = 'Grant-funded store'
+            break
+          case 'coverType':
+            values[index].heading = 'Grant-funded store cover'
+            break
+          case 'existingCoverType':
+            values[index].heading = 'Existing store cover'
+            break            
+            // add separator
+          case 'otherItems':
+            values[index].heading = 'Other items'
+            break
+          default:
+            break
+        }
+
         values[index].content[0].items = [selectedAnswers].flat()
   
         if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
@@ -92,6 +112,8 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     ? getDependentSideBar(sidebar, request)
     : sidebar
 
+  const showSidebar = sidebar?.showSidebar
+
   let warningDetails
   if (warningCondition) {
     const { dependentWarningQuestionKey, dependentWarningAnswerKeysArray } = warningCondition
@@ -109,6 +131,7 @@ const getModel = (data, question, request, conditionalHtml = '') => {
     backUrl: getBackUrl(hasScore, backUrlObject, backUrl, request),
     items: getOptions(data, question, conditionalHtml, request),
     sideBarText,
+    showSidebar,
     ...(warningDetails ? ({ warning: warningDetails }) : {}),
     reachedCheckDetails: showBackToDetailsButton(key, request),
     reachedEvidenceSummary: showBackToEvidenceSummaryButton(key, request),

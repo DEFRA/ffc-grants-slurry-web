@@ -1510,7 +1510,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant.'
@@ -1580,7 +1580,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
@@ -1654,7 +1654,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: 'This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.'
@@ -1724,7 +1724,7 @@ const questionBank = {
                 ]
               }
             ],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
@@ -1781,7 +1781,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type']
+            dependentQuestionKeys: ['storageType']
           },
           validate: [
             {
@@ -1817,6 +1817,7 @@ const questionBank = {
           },
           backUrl: 'cover-type',
           sidebar: {
+            showSidebar: true,
             mainHeading: 'Your project items',
             values: [
               {
@@ -1847,7 +1848,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType']
           },
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1944,7 +1945,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType']
           },
           yarKey: 'coverSize'
         },
@@ -2030,7 +2031,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'existingCoverType']
           },
           yarKey: 'existingCoverSize'
         },
@@ -2164,7 +2165,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storage-type', 'cover-type','existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType','existingCoverType']
           },
           yarKey: 'existingGrantFundedCoverSize'
         },
@@ -2234,7 +2235,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
-            dependentQuestionKeys: ['storage-type', 'cover-type', 'existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType']
           },
           validate: [
             {
@@ -2329,7 +2330,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
-            dependentQuestionKeys: ['storage-type', 'cover-type', 'existing-cover-type']
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType']
           },
           yarKey: 'separatorType'
         },
@@ -2408,7 +2409,7 @@ const questionBank = {
               'coverSize',
               'existingCoverSize' // add separator
             ],
-            dependentQuestionKeys: ['storage-type', 'cover-type', 'existing-cover-type'] // add separator
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType'] // add separator
           },
           validate: [
             {
@@ -2514,10 +2515,10 @@ const questionBank = {
               'existingCoverSize'
             ],
             dependentQuestionKeys: [
-              'storage-type',
-              'cover-type',
-              'existing-cover-type',
-              'other-items'
+              'storageType',
+              'coverType',
+              'existingCoverType',
+              'otherItems'
             ]
           },
           allFields: [],
