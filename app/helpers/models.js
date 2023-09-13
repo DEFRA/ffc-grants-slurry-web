@@ -17,8 +17,10 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
-    const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
-    const selectedAnswers = getYarValue(request, yarKey)
+    // const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
+    const selectedAnswers = getYarValue(request, dependentQuestionKey)
+
+    sidebar.values[index].content[0].items = []
 
     if (selectedAnswers === null) {
       

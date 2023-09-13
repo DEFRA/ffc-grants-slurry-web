@@ -351,9 +351,26 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
 
     if (key === 'gridReference') value = value.replace(/\s/g, '')
 
-    if (yarKey === 'grantFundedCover' && thisAnswer.key === 'grantFundedCover-A3') {
-      request.yar.set('coverType', '')
-      request.yar.set('coverSize', '')
+    if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+
+    }
+    if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+      setYarValue(request, 'existingCover', null)
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+    }
+    if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+
     }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
@@ -452,30 +469,6 @@ const showPostPage = (currentQuestion, request, h) => {
     // TODO: update Gapi calls to use new format
     // gapiService.sendValidationDimension(request)
     return errors
-  }
-
-  for (let [key, value] of Object.entries(payload)) {
-    if (key === 'gridReference') value = value.replace(/\s/g, '')
-
-    if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
-      setYarValue(request, 'coverType', null)
-    }
-    if (key === 'applyingFor' && value === 'An impermeable cover only') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
-      setYarValue(request, 'existingCover', null)
-      setYarValue(request, 'storageType', null)
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'coverType', null)
-      setYarValue(request, 'coverSize', null)
-    }
-    if (key === 'applyingFor' && value !== 'An impermeable cover only') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'existingCoverType', null)
-      setYarValue(request, 'existingCoverSize', null)
-
-    }
   }
 
   if (thisAnswer?.notEligible) {
