@@ -70,6 +70,37 @@ const objectToSend = {
         ]
       },
       {
+        key: "cat-separator",
+        title: "Slurry separator equipment",
+        items: [
+          {
+            item: "Screen press",
+            amount: 21234,
+            unit: "per unit"
+          },
+          {
+            item: "Screw press",
+            amount: 22350,
+            unit: "per unit"
+          },
+          {
+            item: "Gantry",
+            amount: 5154,
+            unit: "per unit"
+          },
+          {
+            item: "Concrete pad",
+            amount: 6414,
+            unit: "per unit"
+          },
+          {
+            item: "Concrete bunker",
+            amount: 168.18,
+            unit: "per square metre"
+          }
+        ]
+      },
+      {
         key: 'cat-reception-pit-type',
         title: 'Reception pit type',
         items: [
