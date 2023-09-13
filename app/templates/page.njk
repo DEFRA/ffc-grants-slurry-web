@@ -116,9 +116,11 @@
           {{ conditionalButtons(diaplaySecondryBtn, buttonText, secButtonText) }}
         </form>
       </div>
-
-      {% if sideBarText %}
-        {{ multiSideBar(sideBarText) }}
+      {% if showSidebar !== false %}
+        {% if sideBarText %}
+          {{ multiSideBar(sideBarText) }}
+        {% endif %}
       {% endif %}
+
     </div>
   {% endblock %}

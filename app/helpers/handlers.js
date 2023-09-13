@@ -169,19 +169,25 @@ const getPage = async (question, request, h) => {
       if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
         setYarValue(request, 'planningPermission', null)
         question.backUrl = `${urlPrefix}/standardised-grant-amounts`
+        question.sidebar.showSidebar = false
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
+        question.sidebar.showSidebar = true
       } else if (getYarValue(request, 'projectType') === 'Replace an existing store that is no longer fit for purpose with a new store') {
         if (getYarValue(request, 'applicantType') === 'Pig') {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          question.sidebar.showSidebar = true
         } else {
           question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          question.sidebar.showSidebar = true
         }
       } else {
         if (getYarValue(request, 'applicantType') === 'Pig') {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          question.sidebar.showSidebar = true
         } else {
           question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          question.sidebar.showSidebar = true
         }
       }
       break
@@ -364,9 +370,32 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
 
     if (key === 'gridReference') value = value.replace(/\s/g, '')
 
-    if (yarKey === 'grantFundedCover' && thisAnswer.key === 'grantFundedCover-A3') {
-      request.yar.set('coverType', '')
-      request.yar.set('coverSize', '')
+    if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+
+    }
+    else if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+      setYarValue(request, 'existingCover', null)
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+    }
+    else if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
+      setYarValue(request, 'fitForPurpose', null)
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+      setYarValue(request, 'projectType', null)
+      setYarValue(request, 'grantFundedCover', null)
+    }
+    else if (yarKey === 'existingCover' && value !== 'Yes') {
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+
     }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
@@ -466,34 +495,6 @@ const showPostPage = (currentQuestion, request, h) => {
     // TODO: update Gapi calls to use new format
     // gapiService.sendValidationDimension(request)
     return errors
-  }
-
-  for (let [key, value] of Object.entries(payload)) {
-    if (key === 'gridReference') value = value.replace(/\s/g, '')
-
-    if (key === 'grantFundedCover' && value !== 'Yes, I need a cover') {
-      setYarValue(request, 'coverType', null)
-    }
-    if (key === 'applyingFor' && value === 'An impermeable cover only') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
-      setYarValue(request, 'existingCover', null)
-      setYarValue(request, 'storageType', null)
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'coverType', null)
-      setYarValue(request, 'coverSize', null)
-    }
-    if (key === 'applyingFor' && value !== 'An impermeable cover only') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'existingCoverType', null)
-      setYarValue(request, 'existingCoverSize', null)
-
-    }
-
-    if (key === 'existingCover' && value === 'No') {
-      setYarValue(request, 'fitForPurpose', null)
-    }
   }
 
   if (thisAnswer?.notEligible) {
