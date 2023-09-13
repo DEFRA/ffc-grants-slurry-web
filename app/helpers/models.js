@@ -40,7 +40,7 @@ const getDependentSideBar = (sidebar, request) => {
           case 'existingCoverType':
             values[index].heading = 'Existing store cover'
             break            
-          case 'separator':
+          case 'separatorOptions':
             values[index].heading = 'Separator'
           case 'otherItems':
             values[index].heading = 'Other items'
