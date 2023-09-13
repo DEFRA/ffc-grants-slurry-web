@@ -2266,12 +2266,12 @@ const questionBank = {
           hint: {
             text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
           },
-          url: "separator-type",
-          baseUrl: "separator-type",
-          backUrl: "separator",
-          nextUrl: "gantry",
-          preValidationKeys: ["separator"],
-          type: "single-answer",
+          url: 'separator-type',
+          baseUrl: 'separator-type',
+          backUrl: 'separator',
+          nextUrl: 'gantry',
+          preValidationKeys: ['separator'],
+          type: 'single-answer',
           minAnswerCount: 1,
           fundingPriorities: '',
           validate: [
@@ -2339,69 +2339,77 @@ const questionBank = {
           costDataType: 'cat-separator',
           order: 142,
           title: 'Do you want to add a gantry?',
-          hint: {
-            text: 'Grant amount: £5,154 per unit',
-          },
+          hint: null,
           pageTitle: '',
           baseUrl: 'gantry',
           url: 'gantry',
           backUrl: 'separator-type',
           nextUrl: 'solid-fraction-storage',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
-          preValidationKeys: ["separatorType"],
+          preValidationKeys: ['separatorType'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
           sidebar: {
-            mainHeading: "Your project items",
+            mainHeading: 'Your project items',
             values: [
               {
-                heading: "Grant-funded store",
+                heading: 'Grant-funded store',
                 content: [
                   {
-                    para: "",
+                    para: '',
                     items: [],
                     dependentAnswerExceptThese: [],
                   },
                 ],
               },
               {
-                heading: "Grant-funded store cover",
+                heading: 'Grant-funded store cover',
                 content: [
                   {
-                    para: "",
+                    para: '',
                     items: [],
                     dependentAnswerExceptThese: [],
                   },
                 ],
               },
               {
-                heading: "Existing store cover",
+                heading: 'Existing store cover',
                 content: [
                   {
-                    para: "",
+                    para: '',
                     items: [],
                     dependentAnswerExceptThese: [],
                   },
                 ],
               },
+              {
+                heading: 'Separator',
+                content: [
+                  {
+                    para: '',
+                    items: [],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
+              }
             ],
             prefixSufix: [
               {
-                linkedPrefix: "Increase: ",
-                linkedSufix: "m³",
+                linkedPrefix: 'Increase: ',
+                linkedSufix: 'm³',
               },
               {
-                linkedPrefix: "Size: ",
-                linkedSufix: "m²",
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²',
               },
               {
-                linkedPrefix: "Size: ",
-                linkedSufix: "m²",
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²',
               },
             ],
-            linkedQuestionyarkey: [ "serviceCapacityIncrease", "coverSize", "existingCoverSize" ],
-            dependentQuestionKeys: [ "storage-type", "cover-type", "existing-cover-type" ],
+            linkedQuestionyarkey: [ 'serviceCapacityIncrease', 'coverSize', 'existingCoverSize' ],
+            dependentQuestionKeys: [ 'storageType', 'coverType', 'existingCoverType', 'separatorOptions' ],
           },
           validate: [
             {
@@ -2476,6 +2484,16 @@ const questionBank = {
                     dependentAnswerExceptThese: []
                   }
                 ]
+              },
+              {
+                heading: 'Separator',
+                content: [
+                  {
+                    para: '',
+                    items: [],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
               }
             ],
             prefixSufix: [
@@ -2495,9 +2513,9 @@ const questionBank = {
             linkedQuestionyarkey: [
               'serviceCapacityIncrease',
               'coverSize',
-              'existingCoverSize' // add separator
+              'existingCoverSize'
             ],
-            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType'] // add separator
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
           },
           validate: [
             {
@@ -3851,7 +3869,7 @@ questionBank.sections.forEach(({ questions }) => {
 const ALL_URLS = []
 ALL_QUESTIONS.forEach(item => ALL_URLS.push(item.url))
 
-const YAR_KEYS = ['itemsTotalValue', 'remainingCost', 'calculatedGrant']
+const YAR_KEYS = ['itemsTotalValue', 'remainingCost', 'calculatedGrant', 'separatorOptions']
 ALL_QUESTIONS.forEach(item => YAR_KEYS.push(item.yarKey))
 module.exports = {
   questionBank,
