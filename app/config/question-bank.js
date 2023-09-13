@@ -1102,7 +1102,14 @@ const questionBank = {
           order: 145,
           url: 'fit-for-purpose-conditional',
           backUrl: 'fit-for-purpose',
-          nextUrl: 'project-type',
+          nextUrlObject: {
+            dependentQuestionYarKey: 'applyingFor',
+            dependentAnswerKeysArray: ['applying-for-A1'],
+            urlOptions: {
+              thenUrl: 'estimated-grant',
+              elseUrl: 'project-type'
+            },
+          },
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
