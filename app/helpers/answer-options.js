@@ -160,11 +160,12 @@ const getOptions = (data, question, conditionalHtml, request) => {
     }
 
     if(question.yarKey === "gantry"){
-      question.answers = []
-      answersList.slice(2, -2)
-    }
-    for (const answer in answersList) {
-      question.answers.unshift(answersList[answer])
+      const gantryHint = answersList.filter(answer => answer.value === 'Gantry')[0].hint
+      question.hint = gantryHint
+    } else {
+      for (const answer in answersList) {
+        question.answers.unshift(answersList[answer])
+      }
     }
   }
 

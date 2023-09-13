@@ -50,7 +50,7 @@ describe("Separator test", () => {
     );
   });
 
-  test("POST /separator route returns next page -> /separator-items/ when separator `/Yes/`", async () => {
+  test("POST /separator route returns next page -> /separator-type/ when separator `/Yes/`", async () => {
     const postOptions = {
       method: "POST",
       url: `${global.__URLPREFIX__}/separator`,

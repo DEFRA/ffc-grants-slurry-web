@@ -2261,7 +2261,7 @@ const questionBank = {
           url: "separator-type",
           baseUrl: "separator-type",
           backUrl: "separator",
-          nextUrl: "other-items",
+          nextUrl: "gantry",
           preValidationKeys: ["separator"],
           type: "single-answer",
           minAnswerCount: 1,
@@ -2332,7 +2332,8 @@ const questionBank = {
           order: 142,
           title: 'Do you want to add a gantry?',
           hint: {
-            text: 'Grant amount: £5,154 per unit'
+            text: 'Grant amount: £5,154 per unit',
+            dynamicHint: 'Gantry'
           },
           pageTitle: '',
           baseUrl: 'gantry',
@@ -2403,6 +2404,14 @@ const questionBank = {
             }
           ],
           answers: [
+            {
+              key: 'gantry-A1',
+              value: 'Yes',
+            },
+            {
+              key: 'gantry-A2',
+              value: 'No',
+            }
           ],
           yarKey: 'gantry'
         },
