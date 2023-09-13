@@ -28,7 +28,7 @@ describe('Page: /grid-reference', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/grid-reference`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { PlanningPermissionEvidence: '', crumb: crumbToken }
+      payload: { gridReference: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
