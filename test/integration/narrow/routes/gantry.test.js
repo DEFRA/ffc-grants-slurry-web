@@ -1,45 +1,55 @@
 const { crumbToken } = require("./test-helper");
 const standardisedCostObject = {
-  costData: 'success',
   data: {
+    grantScheme: {
+      key: 'SLURRY01',
+      name: 'Slurry Infrastructure Grant'
+    },
     desirability: {
       catagories: [
         {
           key: "cat-separator",
+          title: "Slurry separator equipment",
           items: [
             {
-              "item": "Screen press",
-              "amount": "21,234",
-              "unit": "per unit"
+              item: "Screen press",
+              amount: 21234,
+              unit: "per unit"
             },
             {
-              "item": "Screw press",
-              "amount": "22,350",
-              "unit": "per unit"
+              item: "Screw press",
+              amount: 22350,
+              unit: "per unit"
             },
             {
-              "item": "Gantry",
-              "amount": "5,154",
-              "unit": "per unit"
+              item: "Gantry",
+              amount: 5154,
+              unit: "per unit"
             },
             {
-              "item": "Concrete pad",
-              "amount": "6,414",
-              "unit": "per unit"
+              item: "Concrete pad",
+              amount: 6414,
+              unit: "per unit"
             },
             {
-              "item": "Concrete bunker",
-              "amount": "168.18",
-              "unit": "per square metre"
+              item: "Concrete bunker",
+              amount: 168.18,
+              unit: "per square metre"
             }
-          ],
+          ]
         },
       ],
-    },
-  },
-};
+      overallRating: {
+        score: null,
+        band: null
+      }
+    }
+  }
 
-describe.skip("Gantry test", () => {
+}
+
+
+describe("Gantry test", () => {
   const varList = {
     coverType: null,
     existingCover: "no",
@@ -63,15 +73,15 @@ describe.skip("Gantry test", () => {
   }));
 
   // GET
-  it.skip("GET /gantry route returns 200", async () => {
+  it("GET /gantry route returns 200", async () => {
     const options = {
       method: "GET",
       url: `${global.__URLPREFIX__}/gantry`,
-      yar: {
-        get: () => {
-          return [standardisedCostObject];
-        },
-      },
+      // yar: {
+      //   get: () => {
+      //     return standardisedCostObject;
+      //   },
+      // },
     };
     const response = await global.__SERVER__.inject(options);
     expect(response.statusCode).toBe(200);

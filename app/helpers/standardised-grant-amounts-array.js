@@ -1,5 +1,5 @@
 const { formatUKCurrency } = require('./data-formats')
-
+const { getYarValue } = require('./session')
 
 const getHintText = (answer, hintArray, counter) => {
   if (hintArray && hintArray[counter - 1]) {
@@ -9,8 +9,7 @@ const getHintText = (answer, hintArray, counter) => {
 }
 
 function formatAnswerArray (request, questionKey, catagoryKey, hintArray) {
-  const object = request.yar.get('standardisedCostObject')
-
+  const object = getYarValue(request, 'standardisedCostObject')
   const returnArray = []
 
   let listOfCatagories

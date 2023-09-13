@@ -2341,7 +2341,6 @@ const questionBank = {
           title: 'Do you want to add a gantry?',
           hint: {
             text: 'Grant amount: £5,154 per unit',
-            dynamicHint: 'Gantry'
           },
           pageTitle: '',
           baseUrl: 'gantry',
