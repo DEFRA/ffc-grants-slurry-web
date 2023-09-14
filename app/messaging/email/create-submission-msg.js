@@ -278,9 +278,7 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       existingStorageCapacity: existingStorageCapacity,
       plannedStorageCapacity: plannedStorageCapacity,
       grantFundedCover: grantFundedCover ?? ' ',
-      coverSize: coverSize ? coverSize.concat(' m²') : 'N/A',
       itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
-      coverType: coverType || 'Not needed',
       planningAuthority: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningAuthority.toUpperCase() : 'N/A',
       planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/a',
       projectPostcode,
@@ -306,7 +304,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       businessType: applicantBusiness,
 
       // Second round journey variables.
-      planningPermission: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : planningPermission,
       intensiveFarming: applicantType === 'Pig' ? intensiveFarming : '',
       projectResponsibility : tenancy === 'No' ? projectResponsibility : null,
       applyingFor: applyingFor,
@@ -323,18 +320,15 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       existingStoreCoverType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
       || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : existingCoverType,
       grantFundedCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
-      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize,
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize.concat(' m²'),
       existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' 
       || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? '' : existingCoverSize,
       slurrySeparator: separator ? separator : '',
       separatorType: separator === 'No' ? '' : separatorType,
       gantry: separator === 'No' ? '' : gantry,
       solidFractionStorage: separator === 'No' ? '' : solidFractionStorage,
-      concreteBunkerSize: solidFractionStorage === 'Concrete pad' ? ''  : concreteBunkerSize
-
-
-
-
+      concreteBunkerSize: solidFractionStorage === 'Concrete pad' ? ''  : concreteBunkerSize,
+      planningPermission: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : planningPermission,
 
     }
   }
