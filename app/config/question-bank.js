@@ -1487,7 +1487,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant.'
+            html: `This grant is to get your serviceable storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1558,7 +1558,7 @@ const questionBank = {
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
-                  Any capacity above 6 months is not covered by the grant.`
+            You cannot apply for the grant if you already have 6 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1631,7 +1631,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: 'This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.'
+            html: `This grant is to get your serviceable storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1702,7 +1702,7 @@ const questionBank = {
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
-            Any capacity above 8 months is not covered by the grant.`
+            You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
