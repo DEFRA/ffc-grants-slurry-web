@@ -9,7 +9,7 @@ const {
   ONLY_TEXT_REGEX,
   PLANNING_REFERENCE_NUMBER_REGEX,
   LETTERS_AND_NUMBERS_REGEX,
-  TWO_NUMBERS_EIGHT_CHARS,
+  TWO_LETTERS_TEN_DIGITS,
   CHARS_MAX_50,
   INTERGERS_AND_DECIMALS
 } = require('../helpers/regex')
@@ -1033,14 +1033,7 @@ const questionBank = {
               elseUrl: 'existing-cover'
             }
           },
-          nextUrlObject: {
-            dependentQuestionYarKey: 'applyingFor',
-            dependentAnswerKeysArray: ['applying-for-A1'],
-            urlOptions: {
-              thenUrl: 'estimated-grant',
-              elseUrl: 'estimated-grant'
-            }
-          },
+          nextUrl: 'estimated-grant',
           preValidationKeys: [],
           fundingPriorities: '',
           type: 'single-answer',
@@ -1064,18 +1057,6 @@ const questionBank = {
               summaryText: 'When is a store no longer fit for purpose?',
               html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
             }
-          },
-          sidebar: {
-            values: [
-              {
-                heading: 'Eligibility',
-                content: [
-                  {
-                    para: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure. To cover an existing store, you must confirm at full application that the store is structurally suitable to cover and meet regulations and build standards.'
-                  }
-                ]
-              }
-            ]
           },
           validate: [
             {
@@ -1193,7 +1174,7 @@ const questionBank = {
           answers: [
             {
               key: 'project-type-A1',
-              value:'Replace an existing store that is no longer fit for purpose with a new store'
+              value: 'Replace an existing store that is no longer fit for purpose with a new store'
             },
             {
               key: 'project-type-A2',
@@ -1220,14 +1201,7 @@ const questionBank = {
           title: 'Will the grant-funded store have an impermeable cover?',
           baseUrl: 'grant-funded-cover',
           backUrl: 'project-type',
-          nextUrlObject: {
-            dependentQuestionYarKey: 'applicantType',
-            dependentAnswerKeysArray: ['applicant-type-A1'],
-            urlOptions: {
-              thenUrl: 'existing-cover-pig',
-              elseUrl: 'existing-cover'
-            }
-          },
+          nextUrl: 'estimated-grant',
           url: 'grant-funded-cover',
           preValidationKeys: ['projectType'],
           ineligibleContent: {
@@ -1513,7 +1487,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: 'This grant is to get your serviceable storage levels to 6 months. Any capacity above 6 months is not covered by the grant.'
+            html: `This grant is to get your serviceable storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1584,7 +1558,7 @@ const questionBank = {
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
-                  Any capacity above 6 months is not covered by the grant.`
+            You cannot apply for the grant if you already have 6 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1657,7 +1631,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: 'This grant is to get your serviceable storage levels to 8 months. Any capacity above 8 months is not covered by the grant.'
+            html: `This grant is to get your serviceable storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1683,7 +1657,7 @@ const questionBank = {
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 8 months’ serviceable storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1728,7 +1702,7 @@ const questionBank = {
           },
           warning: {
             html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
-            Any capacity above 8 months is not covered by the grant.`
+            You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1743,7 +1717,8 @@ const questionBank = {
             dependentAnswerKeysArray: ['existing-cover-A1'],
             urlOptions: {
               thenUrl: 'existing-cover-type',
-              elseUrl: 'cover-size'
+              elseUrl: 'cover-size',
+              nonDependentUrl: 'cover-size'
             }
           },
           backUrlObject: {
@@ -1754,7 +1729,7 @@ const questionBank = {
               elseUrl: 'serviceable-capacity-increase-additional'
             }
           },
-          url: 'cover-type', 
+          url: 'cover-type',
           preValidationKeys: ['serviceCapacityIncrease'], // may need to update these
           hint: {
             text: 'Select one option'
@@ -2165,7 +2140,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease'],
-            dependentQuestionKeys: ['storageType', 'coverType','existingCoverType']
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType']
           },
           yarKey: 'existingGrantFundedCoverSize'
         },
@@ -2408,8 +2383,8 @@ const questionBank = {
                 linkedSufix: 'm²',
               },
             ],
-            linkedQuestionyarkey: [ 'serviceCapacityIncrease', 'coverSize', 'existingCoverSize' ],
-            dependentQuestionKeys: [ 'storageType', 'coverType', 'existingCoverType', 'separatorOptions' ],
+            linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions'],
           },
           validate: [
             {
@@ -2838,7 +2813,9 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: 'You must have secured planning permission before you submit a full application.'
+                    para: `You must have secured planning permission before you submit a full application.
+                    
+                    The application deadline is 27 June 2025.`
                   }
                 ]
               }
@@ -2862,7 +2839,7 @@ const questionBank = {
             {
               key: 'planning-permission-A3',
               value:
-                 'Not yet applied for but expected to be in place by 27 June 2025',
+                'Not yet applied for but expected to be secured before I submit my full application',
               redirectUrl: 'planning-permission-condition'
             }
           ],
@@ -2880,7 +2857,7 @@ const questionBank = {
             messageHeader:
               'You may be able to apply for a grant from this scheme',
             messageContent:
-              'You must have secured planning permission before you submit a full application.'
+              'You must have secured planning permission before you submit a full application. The application deadline is 27 June 2025.'
           },
           yarKey: 'PlanningPermissionCondition'
         },
@@ -3006,12 +2983,12 @@ const questionBank = {
               type: 'REGEX',
               regex: LETTERS_AND_NUMBERS_REGEX,
               error:
-                'First two characters should be letter following eight characters must be numbers'
+                'First 2 characters should be letter following 10 characters must be numbers'
             },
             {
               type: 'REGEX',
-              regex: TWO_NUMBERS_EIGHT_CHARS,
-              error: 'OS Grid Reference must be 2 letters followed by 8 digits'
+              regex: TWO_LETTERS_TEN_DIGITS,
+              error: 'OS Grid Reference must be 2 letters followed by 10 digits'
             },
             {
               type: 'EXCLUDES',

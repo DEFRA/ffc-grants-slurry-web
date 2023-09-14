@@ -2,8 +2,8 @@ const { crumbToken } = require('./test-helper')
 
 describe('Page: /grant-funded-cover', () => {
   const varList = {
-    applicantType: "Pig",
-    applyingFor: "",
+    applicantType: 'Pig',
+    applyingFor: '',
     projectType: '',
     existingCover: '',
     grantFundedCover: '',
@@ -71,7 +71,7 @@ describe('Page: /grant-funded-cover', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('existing-cover-pig')
+    expect(postResponse.headers.location).toBe('/slurry-infrastructure/existing-cover-pig')
   })
 
   it('user selects eligible option -> store user response and redirect to /existing-cover', async () => {
@@ -88,10 +88,13 @@ describe('Page: /grant-funded-cover', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('existing-cover')
+    expect(postResponse.headers.location).toBe('/slurry-infrastructure/existing-cover-pig')
   })
 
   it('page loads with correct back link', async () => {
+    varList.applyingFor = 'An impermeable cover only'
+    varList.fitForPurpose = 'No'
+    varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/grant-funded-cover`
@@ -99,5 +102,19 @@ describe('Page: /grant-funded-cover', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('<a href=\"project-type\" class=\"govuk-back-link\">Back</a>')
+  })
+
+  it('user selects eligible option -> store user response and redirect to /exstimated-grant if applying for is "An impermeable cover only" and fit for purpose is "No"', async () => {
+
+    const postOptions = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/grant-funded-cover`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { grantFundedCover: 'Yes, I need a cover', crumb: crumbToken }
+    }
+
+    const postResponse = await global.__SERVER__.inject(postOptions)
+    expect(postResponse.statusCode).toBe(302)
+    expect(postResponse.headers.location).toBe('/slurry-infrastructure/estimated-grant')
   })
 })

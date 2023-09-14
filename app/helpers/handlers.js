@@ -111,7 +111,6 @@ const addConditionalLabelData = async (
 const getPage = async (question, request, h) => {
   const {
     url,
-    backUrl,
     nextUrlObject,
     type,
     title,
@@ -120,7 +119,8 @@ const getPage = async (question, request, h) => {
     preValidationKeysRule,
     backUrlObject
   } = question
-  const nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
+  let nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
+  let backUrl = getUrl(backUrlObject, question.backUrl, request)
   const isRedirect = guardPage(
     request,
     preValidationKeys,
@@ -142,6 +142,15 @@ const getPage = async (question, request, h) => {
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
       setYarValue(request, 'coverSize', null)
+      if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No'){
+        question.nextUrl = `${urlPrefix}/estimated-grant`
+      }else{
+        if (getYarValue(request, 'applicantType') === 'Pig') {
+            question.nextUrl = `${urlPrefix}/existing-cover-pig`
+        } else {
+            question.nextUrl = `${urlPrefix}/existing-cover`
+        }
+      }
       break
     case 'existing-cover' :
       setYarValue(request, 'serviceCapacityIncrease', null)
@@ -183,13 +192,13 @@ const getPage = async (question, request, h) => {
       }
       break
     case 'separator':
-      if (getYarValue(request, 'coverType')) {
-        if (getYarValue(request, 'existingCover') === 'No') {
-          question.backUrl = `${urlPrefix}/cover-size`
-        } else {
+      if (getYarValue(request, 'coverType')) { 
+        if(getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') { 
           question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
+        }else{
+          question.backUrl = `${urlPrefix}/cover-size`
         }
-      } else if (getYarValue(request, 'existingCover') === 'Yes' || getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
+      } else if (getYarValue(request, 'existingCover')&& getYarValue(request, 'existingCover') === 'Yes') {
         question.backUrl = `${urlPrefix}/existing-cover-size`
       } else {
         if (getYarValue(request, 'applicantType') === 'Pig') {
@@ -208,6 +217,10 @@ const getPage = async (question, request, h) => {
       }
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
+        if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No'){
+          backUrl = `${urlPrefix}/grant-funded-cover`
+        }
+    case 'fit-for-purpose':
       break
     case 'fit-for-purpose-conditional': 
       if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
@@ -233,7 +246,7 @@ const getPage = async (question, request, h) => {
   if (yarKey === 'serviceCapacityIncrease') {
     if (getYarValue(request, 'grantFundedCover') === 'Yes, I need a cover') {
       question.nextUrl = `${urlPrefix}/cover-type`
-    } else if (getYarValue(request, 'existingCover') === 'Yes') {
+    } else if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') {
       question.nextUrl = `${urlPrefix}/existing-cover-type`
     } else {
       question.nextUrl = `${urlPrefix}/separator`
@@ -293,7 +306,7 @@ const getPage = async (question, request, h) => {
       consentOptionalData,
       url,
       nextUrl,
-      backUrl: getUrl(backUrlObject, backUrl, request),
+      backUrl
     }
     return h.view('maybe-eligible', MAYBE_ELIGIBLE)
   }
@@ -500,6 +513,7 @@ const showPostPage = (currentQuestion, request, h) => {
       )
     }
   }
+
 
   const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {

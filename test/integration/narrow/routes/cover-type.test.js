@@ -42,7 +42,7 @@ describe('Cover Type test', () => {
     expect(postResponse.payload).toContain('Select what type of cover your grant-funded store will have')
   })
 
-  test('POST /cover-size route returns next page when existing cover `/Yes/`', async () => {
+  test('POST /cover-type route returns next page when existing cover `/Yes/`', async () => {
     varList.existingCover = "Yes"
     const options = {
       method: 'POST',
@@ -56,7 +56,7 @@ describe('Cover Type test', () => {
     expect(response.headers.location).toBe('existing-cover-type')
   })
 
-  test('POST /cover-size route returns next page when existing cover `/No/`', async () => {
+  test('POST /cover-type route returns next page when /cover-size when existing cover is /No/', async () => {
     varList.existingCover = "No"
     const options = {
       method: 'POST',
@@ -70,6 +70,19 @@ describe('Cover Type test', () => {
     expect(response.headers.location).toBe('cover-size')
   })
 
+  test('POST /cover-type route returns next page when /cover-size when applying for page is An impermeable cover only', async () => {
+    varList.existingCover = null
+    const options = {
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/cover-type`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { coverType: 'fake data', crumb: crumbToken }
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(302)
+    expect(response.headers.location).toBe('cover-size')
+  })
   it('page loads with /serviceable-capacity-increase-replace/ back link when project type is replace', async () => {
     varList.projectType = "Replace an existing store that is no longer fit for purpose with a new store"
     const options = {
