@@ -283,7 +283,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       coverType: coverType || 'Not needed',
       planningAuthority: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningAuthority.toUpperCase() : 'N/A',
       planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/a',
-      planningPermission,
       projectPostcode,
       projectStart: projectStart,
       serviceCapacityIncrease: serviceCapacityIncrease,
@@ -308,15 +307,15 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       businessType: applicantBusiness,
 
       // Second round journey variables.
-
+      planningPermission: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : planningPermission,
       intensiveFarming: applicantType === 'Pig' ? intensiveFarming : '',
       projectResponsibility : tenancy === 'No' ? projectResponsibility : null,
       applyingFor: applyingFor,
-      existingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' :'',
+
       projectType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : projectType,
       impermeableCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : grantFundedCover,
+      existingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes'  ? '' : fitForPurpose,
       existingStoreCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : existingCover,
-      existingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' && fitForPurpose !== 'Yes' ? '' : fitForPurpose,
       storageType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : storageType,
       estimatedVolumeToSixMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
       estimatedVolumeToEightMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType !== 'Pig' ? '' : serviceCapacityIncrease,
