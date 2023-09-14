@@ -252,7 +252,10 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
     existingCover,
     serviceCapacityIncrease,
     existingCoverType,
-    existingCoverSize
+    existingCoverSize,
+    separator,
+    separatorType,
+
   } = submission
 
   const {
@@ -325,13 +328,11 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize,
       existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' 
       || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? '' : existingCoverSize,
-  
-      // Existing store cover size: (do not show to users who select ‘No’ on existing stores OR  OR users who select ‘An Impermeable cover only’ on Applying For and select ‘No’ on Fit for purpose cover journey)
-      // Slurry separator: 
-      // Separator type: (do not show if user selects ‘No’ on Separator) 
-      // Gantry: (do not show if user selects ‘No’ on Separator) 
-      // Solid fraction storage: (do not show if user selects ‘No’ on Separator) 
-      // Concrete bunker size: (do not show if user selects ‘Concrete pad’ on Solid fraction storage) 
+      slurrySeparator: separator ? separator : '',
+      separatorType: separator === 'No' ? '' : separatorType,
+      gantry: separator === 'No' ? '' : gantry,
+      solidFractionStorage: separator === 'No' ? '' : solidFractionStorage,
+      concreteBunkerSize: solidFractionStorage === 'Concrete pad' ? ''  : concreteBunkerSize
 
 
 
