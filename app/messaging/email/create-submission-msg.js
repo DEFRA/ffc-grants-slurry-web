@@ -245,7 +245,11 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       emailAddress: farmerEmail,
       projectPostcode
     },
-    businessDetails
+    businessDetails,
+    intensiveFarming,
+    projectResponsibility,
+    applyingFor,
+    fitForPurpose
   } = submission
 
   const {
@@ -297,7 +301,16 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       agentEmail: agentsDetails?.emailAddress ?? ' ',
       contactConsent: consentOptional ? 'Yes' : 'No',
       scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
-      businessType: applicantBusiness
+      businessType: applicantBusiness,
+
+      // Second round journey variables.
+
+      intensiveFarming: applicantType === 'Pig' ? intensiveFarming : '',
+      projectResponsibility : tenancy === 'No' ? projectResponsibility : null,
+      applyingFor: applyingFor,
+      ExistingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' :'',
+
+
     }
   }
 }
