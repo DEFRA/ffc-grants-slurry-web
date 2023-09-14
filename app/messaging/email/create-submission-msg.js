@@ -228,7 +228,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
     PlanningPermissionEvidence,
     planningPermission,
     projectStart,
-    serviceCapacityIncrease,
     tenancy,
     tenancyLength,
     itemsTotalValue,
@@ -249,7 +248,11 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
     intensiveFarming,
     projectResponsibility,
     applyingFor,
-    fitForPurpose
+    fitForPurpose,
+    existingCover,
+    serviceCapacityIncrease,
+    existingCoverType,
+    existingCoverSize
   } = submission
 
   const {
@@ -275,7 +278,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       coverSize: coverSize ? coverSize.concat(' m²') : 'N/A',
       itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
       coverType: coverType || 'Not needed',
-      storageType,
       planningAuthority: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningAuthority.toUpperCase() : 'N/A',
       planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/a',
       planningPermission,
@@ -290,7 +292,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       remainingCost: remainingCosts,
       gridReference: gridReference.replace(/\s/g, '').toUpperCase(),
       projectName: businessDetails.projectName,
-      projectType,
       businessName: businessDetails.businessName,
       farmerName,
       farmerSurname,
@@ -308,7 +309,32 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       intensiveFarming: applicantType === 'Pig' ? intensiveFarming : '',
       projectResponsibility : tenancy === 'No' ? projectResponsibility : null,
       applyingFor: applyingFor,
-      ExistingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' :'',
+      existingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' :'',
+      projectType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : projectType,
+      impermeableCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : grantFundedCover,
+      existingStoreCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : existingCover,
+      existingStoreFitForPurpose: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' && fitForPurpose !== 'Yes' ? '' : fitForPurpose,
+      storageType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : storageType,
+      estimatedVolumeToSixMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
+      estimatedVolumeToEightMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType !== 'Pig' ? '' : serviceCapacityIncrease,
+      grantFundedStoreCoverType : applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverType,
+      existingStoreCoverType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : existingCoverType,
+      grantFundedCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize,
+      existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? '' : existingCoverSize,
+  
+      // Existing store cover size: (do not show to users who select ‘No’ on existing stores OR  OR users who select ‘An Impermeable cover only’ on Applying For and select ‘No’ on Fit for purpose cover journey)
+      // Slurry separator: 
+      // Separator type: (do not show if user selects ‘No’ on Separator) 
+      // Gantry: (do not show if user selects ‘No’ on Separator) 
+      // Solid fraction storage: (do not show if user selects ‘No’ on Separator) 
+      // Concrete bunker size: (do not show if user selects ‘Concrete pad’ on Solid fraction storage) 
+
+
+
 
 
     }
