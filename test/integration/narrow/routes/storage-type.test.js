@@ -26,6 +26,17 @@ describe('Storage Type test', () => {
     expect(response.payload).toContain('What type of store do you want?')
   })
 
+  test('GET /storage-type resets answer list if it is already populated', async () => {
+    const options = {
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/storage-type`
+    }
+
+    const response = await global.__SERVER__.inject(options)
+    expect(response.statusCode).toBe(200)
+    expect(response.payload).toContain('What type of store do you want?')
+  })
+
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
