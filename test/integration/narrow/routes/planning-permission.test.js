@@ -22,7 +22,7 @@ describe('Page: /planning-permission', () => {
     expect(response.payload).toContain('Does the project have planning permission?')
     expect(response.payload).toContain('Approved')
     expect(response.payload).toContain('Applied for but not yet approved')
-    expect(response.payload).toContain('Not yet applied for but expected to be in place by 27 June 2025')
+    expect(response.payload).toContain('Not yet applied for but expected to be secured before I submit my full application')
   })
 
   it('no option selected -> show error message', async () => {
@@ -51,12 +51,12 @@ describe('Page: /planning-permission', () => {
     expect(response.payload).not.toContain('Back to evidence summary')
   })
 
-  it('user selects conditional option: \'Not yet applied for but expected to be in place by 27 June 2025\' -> display conditional page', async () => {
+  it('user selects conditional option: \'Not yet applied for but expected to be secured before I submit my full application \' -> display conditional page', async () => {
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/planning-permission`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { planningPermission: 'Not yet applied for but expected to be in place by 27 June 2025', crumb: crumbToken }
+      payload: { planningPermission: 'Not yet applied for but expected to be secured before I submit my full application', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)

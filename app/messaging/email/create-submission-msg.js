@@ -2,7 +2,7 @@ const emailConfig = require('../config/email.js')
 const spreadsheetConfig = require('../config/spreadsheet.js')
 const { microTurnover, smallTurnover, mediumTurnover, microEmployeesNum, smallEmployeesNum, mediumEmployeesNum } = require('./business-size-constants')
 
-function generateRow (rowNumber, name, value, bold = false) {
+function generateRow(rowNumber, name, value, bold = false) {
   return {
     row: rowNumber,
     values: ['', name, value],
@@ -10,7 +10,7 @@ function generateRow (rowNumber, name, value, bold = false) {
   }
 }
 
-function calculateBusinessSize (employees, turnover) {
+function calculateBusinessSize(employees, turnover) {
   const employeesNum = Number(employees)
   const turnoverNum = Number(turnover)
 
@@ -25,7 +25,7 @@ function calculateBusinessSize (employees, turnover) {
   }
 }
 
-function addAgentDetails (agentsDetails) {
+function addAgentDetails(agentsDetails) {
   return [
     generateRow(26, 'Agent Surname', agentsDetails?.lastName ?? ''),
     generateRow(27, 'Agent Forename', agentsDetails?.firstName ?? ''),
@@ -42,7 +42,7 @@ function addAgentDetails (agentsDetails) {
   ]
 }
 
-function generateExcelFilename (scheme, projectName, businessName, referenceNumber, today) {
+function generateExcelFilename(scheme, projectName, businessName, referenceNumber, today) {
   const dateTime = new Intl.DateTimeFormat('en-GB', {
     timeStyle: 'short',
     dateStyle: 'short',
@@ -50,7 +50,7 @@ function generateExcelFilename (scheme, projectName, businessName, referenceNumb
   }).format(today).replace(/\//g, '-')
   return `${scheme}_${projectName}_${businessName}_${referenceNumber}_${dateTime}.xlsx`
 }
-function getBusinessTypeC53 (businessType) {
+function getBusinessTypeC53(businessType) {
   return (typeof businessType === 'string') ? `${businessType} farmer` : 'farmer with livestock'
 }
 
@@ -58,14 +58,14 @@ const getPlanningPermissionDoraValue = (planningPermission) => {
   switch (planningPermission) {
     case 'Applied for but not yet approved':
       return 'Applied for'
-    case 'Not yet applied for but expected to be in place by 27 June 2025':
+    case 'Not yet applied for but expected to be secured before I submit my full application':
       return 'Not yet applied for'
     default:
       return 'Approved'
   }
 }
 
-function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize) {
+function getProjectItemsFormattedArray(itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize) {
   const projectItems = []
   if (otherItems[0] !== 'None of the above') {
     let unit
@@ -174,7 +174,7 @@ function getSpreadsheetDetails(submission) {
   }
 }
 
-function getCurrencyFormat (amount) {
+function getCurrencyFormat(amount) {
   return Number(amount).toLocaleString('en-US', { minimumFractionDigits: 0, style: 'currency', currency: 'GBP' })
 }
 
@@ -188,7 +188,7 @@ const getItemUnit = (otherItem) => {
   }
 }
 
-function displayObject (itemSizeQuantities, otherItems) {
+function displayObject(itemSizeQuantities, otherItems) {
   let unit
   const projectItems = Object.values(itemSizeQuantities).map((itemSizeQuantity, index) => {
     unit = getItemUnit(otherItems[index].toLowerCase())
@@ -198,7 +198,7 @@ function displayObject (itemSizeQuantities, otherItems) {
   return projectItems
 }
 
-function getPersonsDetails (isAgentEmail, submission) {
+function getPersonsDetails(isAgentEmail, submission) {
   const email = isAgentEmail ? submission.agentsDetails.emailAddress : submission.farmerDetails.emailAddress
   const firstName = isAgentEmail ? submission.agentsDetails.firstName : submission.farmerDetails.firstName
   const lastName = isAgentEmail ? submission.agentsDetails.lastName : submission.farmerDetails.lastName
@@ -210,7 +210,7 @@ function getPersonsDetails (isAgentEmail, submission) {
   }
 }
 
-function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
+function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
   const {
     confirmationId,
     applicantType,
