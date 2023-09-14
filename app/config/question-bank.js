@@ -2431,6 +2431,93 @@ const questionBank = {
           yarKey: 'gantry'
         },
         {
+          key: 'solid-fraction-storage',
+          order: 143,
+          costDataType: 'cat-separator',
+          title: 'What type of solid fraction storage will you have?',
+          hint: {
+            text: 'You must stack your solid fraction on an impermeable surface to prevent leaking into the soil.'
+          },
+          pageTitle: '',
+          baseUrl: 'solid-fraction-storage',
+          url: 'solid-fraction-storage',
+          backUrl: 'gantry',
+          nextUrl: 'other-items',
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select what type of solid fraction storage you will have'
+            }
+          ],
+          preValidationKeys: ['gantry'],
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          answers: [],
+          sidebar: {
+            mainHeading: 'Your project items',
+            // values: [
+            //   {
+            //     heading: 'Grant-funded store',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   },
+            //   {
+            //     heading: 'Grant-funded store cover',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   },
+            //   {
+            //     heading: 'Existing store cover',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   },
+            //   {
+            //     heading: 'Separator',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   }
+            // ],
+            // prefixSufix: [
+            //   {
+            //     linkedPrefix: 'Increase: ',
+            //     linkedSufix: 'm³'
+            //   },
+            //   {
+            //     linkedPrefix: 'Size: ',
+            //     linkedSufix: 'm²'
+            //   },
+            //   {
+            //     linkedPrefix: 'Size: ',
+            //     linkedSufix: 'm²'
+            //   },
+            //   {
+            //     linkedPrefix: 'Size: ',
+            //     linkedSufix: 'm²'
+            //   }
+            // ],
+            // linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize', 'separatorType'],
+            // dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
+          },
+          yarKey: 'solidFractionStorage'
+        },
+        {
           key: 'other-items',
           order: 146,
           costDataType: 'other',
