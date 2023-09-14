@@ -148,29 +148,38 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 }
 
 const getOptions = (data, question, conditionalHtml, request) => {  
-  if (question?.costDataType && question.answers.length <= 2) {
+  if (question?.costDataType) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
-    if(question.yarKey === "coverType" || question.yarKey === "existingCoverType"){
-      question.answers = []
-    }
+    if (question.answers.length <= 2) {
+      if(question.yarKey === "coverType" || question.yarKey === "existingCoverType"){
+        question.answers = []
+      }
 
-    if(question.yarKey === "separatorType"){
-      question.answers = []
-      answersList.splice(0, 3)
-    }
+      if(question.yarKey === "separatorType"){
+        question.answers = []
+        answersList.splice(0, 3)
+      }
 
-    if(question.yarKey === "gantry"){
-      let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
-      gantryHint = gantryHint[0]
-      // add brakcets around hint text
-      gantryHint.hint.html = '(' + gantryHint.hint.html + ')'
-      question.hint = gantryHint.hint
-    } else {
+      if(question.yarKey === "gantry"){
+        let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
+        gantryHint = gantryHint[0]
+        // add brakcets around hint text
+        gantryHint.hint.html = '(' + gantryHint.hint.html + ')'
+        question.hint = gantryHint.hint
+      } else {
+        for (const answer in answersList) {
+          question.answers.unshift(answersList[answer])
+        }
+      }
+    } else if (question.key === 'storage-type')  {
+      question.answers = []
+
       for (const answer in answersList) {
         question.answers.unshift(answersList[answer])
       }
     }
   }
+  
 
   switch (question.type) {
     case 'input':
