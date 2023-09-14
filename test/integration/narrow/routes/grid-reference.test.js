@@ -102,7 +102,7 @@ describe('Page: /grid-reference', () => {
       url: `${global.__URLPREFIX__}/grid-reference`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: {
-        gridReference: 'SK124467899',
+        gridReference: 'SK1234567899',
         crumb: crumbToken
       }
     }
