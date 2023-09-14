@@ -246,7 +246,7 @@ const getPage = async (question, request, h) => {
   if (yarKey === 'serviceCapacityIncrease') {
     if (getYarValue(request, 'grantFundedCover') === 'Yes, I need a cover') {
       question.nextUrl = `${urlPrefix}/cover-type`
-    } else if (getYarValue(request, 'existingCover') === 'Yes') {
+    } else if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') {
       question.nextUrl = `${urlPrefix}/existing-cover-type`
     } else {
       question.nextUrl = `${urlPrefix}/separator`
