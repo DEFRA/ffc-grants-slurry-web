@@ -147,7 +147,7 @@ describe("Separator test", () => {
     );
   });
 
-  it("page loads with /cover-size/ back link when existingCover is Yes", async () => {
+  it("page loads with /existing-grant-funded-cover-size/ back link when existingCover is Yes", async () => {
     varList.existingCover = "Yes";
     varList.coverType = "Fake data";
     const options = {
@@ -186,6 +186,24 @@ describe("Separator test", () => {
     expect(response.statusCode).toBe(200);
     expect(response.payload).toContain(
       '<a href="/slurry-infrastructure/existing-cover-size" class="govuk-back-link">Back</a>'
+    );
+  });
+  it("page loads with /cover-size/ back link when an impermeable cover only and fit for purpose is no", async () => {
+    varList.applyingFor = "An impermeable cover only";
+    varList.fitForPurpose = "No";
+    varList.projectType = "Fake data";
+    varList.grantFundedCover = "Fake data";
+    varList.coverType = "Fake data";
+    varList.existingCover = null;
+
+    const options = {
+      method: "GET",
+      url: `${global.__URLPREFIX__}/separator`,
+    };
+    const response = await global.__SERVER__.inject(options);
+    expect(response.statusCode).toBe(200);
+    expect(response.payload).toContain(
+      '<a href="/slurry-infrastructure/cover-size" class="govuk-back-link">Back</a>'
     );
   });
 });
