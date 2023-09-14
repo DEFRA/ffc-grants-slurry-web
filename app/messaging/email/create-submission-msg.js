@@ -351,6 +351,7 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       concreteBunkerSize: solidFractionStorage === 'Concrete pad' ? ''  : concreteBunkerSize,
       concreteBunkerSizeTrue: concreteBunkerSize ? 'true' : 'false',
       planningPermission: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : planningPermission,
+      planningPermissionTrue: planningPermission ? 'true' : 'false'
 
     }
   }
