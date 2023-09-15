@@ -2430,6 +2430,9 @@ const questionBank = {
           minAnswerCount: 1,
           answers: [
             {
+              value: 'divider'
+            },
+            {
               key: 'solid-fraction-storage-A3',
               value: 'I already have a solid fraction storage',
             }
