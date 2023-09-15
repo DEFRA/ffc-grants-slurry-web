@@ -1946,11 +1946,11 @@ const questionBank = {
           },
           hint: {
             html: `
-            Enter the estimated surface area of the replacement, new or expanded store
+            Enter the estimated cover surface area of the existing store
             <br/><br/>
             Enter size in metres squared
             <br/><br/>
-            <p class='govuk-body'>Existing store</p>
+            <p class='govuk-body'><b>Existing store</p>
           `
           },
           validate: [
