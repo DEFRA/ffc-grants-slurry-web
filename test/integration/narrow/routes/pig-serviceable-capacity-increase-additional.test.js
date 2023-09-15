@@ -78,13 +78,6 @@ it('enter valid value - redirect user cover type when existing cover `/Yes/` and
     varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'Yes'
     varList.serviceCapacityIncrease ='12345'
-
-    const options = {
-        method: 'GET',
-        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`
-    }
-
-    const response = await global.__SERVER__.inject(options)
     
     const postOptions = {
         method: 'POST',
@@ -101,13 +94,6 @@ it('enter valid value - redirect user cover type when existing cover `/No/` and 
     varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'No'
     varList.serviceCapacityIncrease ='12345'
-
-    const options = {
-        method: 'GET',
-        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`
-    }
-
-    const response = await global.__SERVER__.inject(options)
 
     const postOptions = {
         method: 'POST',
@@ -126,13 +112,6 @@ it('enter valid value - redirect user cover type when existing cover `/Yes/` and
     varList.existingCover = 'Yes'
     varList.serviceCapacityIncrease ='12345'
 
-    const options = {
-        method: 'GET',
-        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`
-    }
-
-    const response = await global.__SERVER__.inject(options)
-
     const postOptions = {
         method: 'POST',
         url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
@@ -149,13 +128,6 @@ it('enter valid value - redirect user cover type when existing cover `/No/` and 
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'No'
     varList.serviceCapacityIncrease ='12345'
-
-    const options = {
-        method: 'GET',
-        url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`
-    }
-
-    const response = await global.__SERVER__.inject(options)
 
     const postOptions = {
         method: 'POST',
