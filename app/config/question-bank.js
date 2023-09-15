@@ -2239,7 +2239,7 @@ const questionBank = {
           pageTitle: '',
           title: 'What type of slurry separator will you have?',
           hint: {
-            text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
+            text: 'Capable to processing at least 3m³ of slurry per hour and producing at least 25% dry matter. '
           },
           url: 'separator-type',
           baseUrl: 'separator-type',
@@ -2252,7 +2252,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select what type of slurry storage you will have'
+              error: 'Select what type of slurry separator you will have'
             }
           ],
           answers: [],
@@ -2885,7 +2885,7 @@ const questionBank = {
           `
           },
           warning: {
-            html: 'You must provide an accurate grid reference to avoid delays at full application.'
+            html: 'You must provide the correct location of your slurry store to avoid delays at full application.'
           },
           validate: [
             {
