@@ -2424,11 +2424,16 @@ const questionBank = {
               error: 'Select what type of solid fraction storage you will have'
             }
           ],
-          preValidationKeys: ['gantry'],
+          // preValidationKeys: ['gantry'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
-          answers: [],
+          answers: [
+            {
+              key: 'solid-fraction-storage-A3',
+              value: 'I already have a solid fraction storage',
+            }
+          ],
           sidebar: {
             mainHeading: 'Your project items',
             // values: [

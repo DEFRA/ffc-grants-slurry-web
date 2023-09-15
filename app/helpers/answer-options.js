@@ -160,6 +160,11 @@ const getOptions = (data, question, conditionalHtml, request) => {
         answersList.splice(0, 3)
       }
 
+      if (question.yarKey === "solidFractionStorage"){
+        answersList.splice(2, 3)
+        console.log('here - solidFractionStorage - answersList: ', answersList);
+      }
+
       if(question.yarKey === "gantry"){
         let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
         gantryHint = gantryHint[0]
