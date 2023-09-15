@@ -77,7 +77,10 @@ describe('Create submission message', () => {
       'housingScore', 'calfGroupSizeScore', 'moistureControlScore', 'permanentSickPenScore', 'structureEligibility',
       'environmentalImpactScore', 'sustainableMaterialsScore', 'introducingInnovationScore',
       'projectCost', 'roofSolarPV', 'additionalItems', 'drainageSlope', 'structure', 'enrichment',
-      'concreteFlooring', 'strawBedding', 'isolateCalves', 'housedIndividually', 'minimumFloorArea'
+      'concreteFlooring', 'strawBedding', 'isolateCalves', 'housedIndividually', 'minimumFloorArea', 'intensiveFarming',
+      'projectResponsibility', 'applyingFor', 'projectType', 'impermeableCover', 'storageType', 'estimatedVolumeToSixMonths',
+      'estimatedVolumeToEightMonths', 'grantFundedStoreCoverType', 'existingStoreCoverType', 'grantFundedCoverSize', 'existingStoreCoverSize',
+      'slurrySeparator', 'separatorType', 'gantry', 'solidFractionStorage', 'concreteBunkerSize'
     )
   })
   test('Under 10 employees results in micro business definition', () => {

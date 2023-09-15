@@ -320,7 +320,7 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       impermeableCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : grantFundedCover,
       impermeableCoverTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
       existingStoreFitForPurposeTwo: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? fitForPurpose : '',
-      existingStoreFitForPurposeTwoTrue: existingStoreFitForPurposeTwo ? 'true' : 'false',
+      existingStoreFitForPurposeTwoTrue: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? 'true' : 'false',
       existingStoreCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : existingCover,
       storageType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : storageType,
       storageTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
@@ -336,14 +336,10 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : existingCoverType,
       existingStoreCoverTypeTrue:  applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
       || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
-      grantFundedCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
-      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize.concat(' m²'),
-      grantFundedCoverSizeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
-      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
-      existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' 
-      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? '' : existingCoverSize,
-      existingStoreCoverSizeTrue : 'An impermeable cover only' && fitForPurpose === 'No' 
-      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? 'false' : 'true',
+      grantFundedCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize,
+      grantFundedCoverSizeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
+      existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No'|| grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? '' : existingCoverSize,
+      existingStoreCoverSizeTrue : 'An impermeable cover only' && fitForPurpose === 'No' || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? 'false' : 'true',
       slurrySeparator: separator ? separator : '',
       slurrySeparatorTrue: separator ? 'true' : 'false',
       separatorType: separator === 'No' ? '' : separatorType,
