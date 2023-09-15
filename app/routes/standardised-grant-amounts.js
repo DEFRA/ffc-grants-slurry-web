@@ -53,6 +53,6 @@ module.exports = [{
   path: currentPath,
   handler: (request, h) => {
     request.yar.set('score-calculated', true)
-    return (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYArValue(request, 'fitForPurpose') === 'Yes') ? h.redirect(nextPathImpermeable) : h.redirect(nextPath)
+    return (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'Yes') ? h.redirect(nextPathImpermeable) : h.redirect(nextPath)
   }
 }]
