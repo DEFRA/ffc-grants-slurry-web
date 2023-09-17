@@ -1953,7 +1953,7 @@ const questionBank = {
             <br/><br/>
             Enter size in metres squared
             <br/><br/>
-            <p class='govuk-body'><b>Existing store</p>
+            <p class='govuk-body'><b>Existing store</b></p>
           `
           },
           validate: [
