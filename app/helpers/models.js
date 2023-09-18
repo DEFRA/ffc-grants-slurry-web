@@ -20,7 +20,7 @@ const getDependentSideBar = (sidebar, request) => {
     values[index].content[0].items = []
 
     // const yarKey = getQuestionByKey(dependentQuestionKey).yarKey
-    const selectedAnswers = getYarValue(request, dependentQuestionKey)
+    let selectedAnswers = getYarValue(request, dependentQuestionKey)
 
     if (selectedAnswers === null) {
       
@@ -42,6 +42,34 @@ const getDependentSideBar = (sidebar, request) => {
             break            
           case 'separatorOptions':
             values[index].heading = 'Separator'
+
+            if (request.route.path === '/slurry-infrastructure/separator-type') {
+              setYarValue(request, 'separatorOptions', [])
+              selectedAnswers = []
+
+            } else if (request.route.path === '/slurry-infrastructure/gantry') {
+              let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+              
+              tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
+              
+              setYarValue(request, 'separatorOptions', tempSeparatorVal)
+              selectedAnswers = tempSeparatorVal
+
+            } else if (request.route.path === '/slurry-infrastructure/solid-fraction-storage') {
+              let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+
+              if (tempSeparatorVal.includes('Gantry')) {
+                tempSeparatorVal.splice(2, tempSeparatorVal.length - 2)
+              } else {
+                tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
+
+              }
+
+              setYarValue(request, 'separatorOptions', tempSeparatorVal)
+              selectedAnswers = tempSeparatorVal
+
+            }
+
             break
           case 'otherItems':
             values[index].heading = 'Other items'

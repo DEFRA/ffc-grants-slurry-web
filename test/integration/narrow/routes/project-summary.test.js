@@ -58,7 +58,7 @@ describe('Project Summary test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('/slurry-infrastructure/storage-type')
+    expect(response.headers.location).toBe('/slurry-infrastructure/estimated-grant')
   })
 
   test('page loads with correct back link', async () => {
