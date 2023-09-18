@@ -162,7 +162,18 @@ const getOptions = (data, question, conditionalHtml, request) => {
 
       if (question.yarKey === "solidFractionStorage"){
         answersList.splice(2, 3)
-        console.log('here - solidFractionStorage - answersList: ', answersList);
+        const concreteBunkerStorageOption = answersList.filter(answer => answer.value === 'Concrete bunker')[0]
+        const concreteBunkerStorageOptionIndex = answersList.indexOf(concreteBunkerStorageOption)
+        concreteBunkerStorageOption.conditional = true
+        answersList[concreteBunkerStorageOptionIndex] = concreteBunkerStorageOption
+        // add brakcets around hint text
+        answersList.forEach(answer => {
+          answer.hint.html = '(' + answer.hint.html + ')'
+          if(answer.value === 'Concrete bunker'){
+            
+            answer.hint.html = "Maximum grant contribution is up to 100m² </br>" + answer.hint.html
+          }
+        })
       }
 
       if(question.yarKey === "gantry"){

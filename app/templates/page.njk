@@ -39,6 +39,7 @@
 
         {% if type ==='single-answer' %}
           {{ govukRadios(items) }}
+          {# {{ items["items"] | dump }} #}
         {% endif %}
 
         {% if type ==='multi-answer' %}
