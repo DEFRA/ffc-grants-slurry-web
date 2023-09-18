@@ -228,7 +228,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £30 per cubic metre'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Reception pit',
           classes: 'govuk-label--m'
@@ -265,7 +265,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £1,050 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Electric-powered slurry transfer pump',
           classes: 'govuk-label--m'
@@ -288,8 +288,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -302,7 +302,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £2,090 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
           classes: 'govuk-label--m'
@@ -325,8 +325,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -339,7 +339,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £950 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Centrifugal chopper pump',
           classes: 'govuk-label--m'
@@ -362,8 +362,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -376,7 +376,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £1,700 per pump'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Powered take off (PTO) or hydraulically driven chopper pump',
           classes: 'govuk-label--m'
@@ -399,8 +399,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -413,7 +413,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £14 per metre'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Galvanised steel pipework 100mm diameter',
           classes: 'govuk-label--m'
@@ -450,7 +450,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £24 per metre'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Galvanised steel pipework 150mm diameter',
           classes: 'govuk-label--m'
@@ -487,7 +487,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £8 per metre'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
           classes: 'govuk-label--m'
@@ -524,7 +524,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £9 per metre'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
           classes: 'govuk-label--m'
@@ -561,7 +561,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £25 per metre'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Under-floor transfer channels',
           classes: 'govuk-label--m'
@@ -598,7 +598,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £350 per tank'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
           classes: 'govuk-label--m'
@@ -621,8 +621,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -635,7 +635,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £1,000 per tank'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre',
           classes: 'govuk-label--m'
@@ -658,8 +658,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -672,7 +672,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £800 per item'
         },
-        classes: 'govuk-input--width-4',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
           classes: 'govuk-label--m'
@@ -695,8 +695,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       },
@@ -732,8 +732,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       }

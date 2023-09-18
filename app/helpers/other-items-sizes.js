@@ -47,14 +47,14 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
 function suffixAndLengthGenerator (item, unit) {
   switch (unit) {
     case 'per cubic metre':
-      return { unit: 'm³', length: 4 }
+      return { unit: 'm³', length: 3 }
     case 'per metre':
       if (item.startsWith('Safety fencing')) {
         return { unit: 'metre(s)', length: 5 }
       }
-      return { unit: 'metre(s)', length: 4 }
+      return { unit: 'metre(s)', length: 3 }
     default:
-      return { unit: 'item(s)', length: 4 }
+      return { unit: 'item(s)', length: 3 }
   }
 }
 
