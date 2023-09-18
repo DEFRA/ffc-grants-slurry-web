@@ -199,7 +199,7 @@ const getPage = async (question, request, h) => {
         }else{
           question.backUrl = `${urlPrefix}/cover-size`
         }
-      } else if (getYarValue(request, 'existingCover')&& getYarValue(request, 'existingCover') === 'Yes') {
+      } else if (getYarValue(request, 'existingCoverSize')) {
         question.backUrl = `${urlPrefix}/existing-cover-size`
       } else {
         if (getYarValue(request, 'applicantType') === 'Pig') {
@@ -244,15 +244,6 @@ const getPage = async (question, request, h) => {
       break
   }
 
-  if (yarKey === 'serviceCapacityIncrease') {
-    if (getYarValue(request, 'grantFundedCover') === 'Yes, I need a cover') {
-      question.nextUrl = `${urlPrefix}/cover-type`
-    } else if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') {
-      question.nextUrl = `${urlPrefix}/existing-cover-type`
-    } else {
-      question.nextUrl = `${urlPrefix}/separator`
-    }
-  }
   if (
     url === 'potential-amount' &&
     !getGrantValues(getYarValue(request, 'itemsTotalValue'), question.grantInfo)
@@ -529,6 +520,16 @@ const showPostPage = (currentQuestion, request, h) => {
     return h.view('not-eligible', NOT_ELIGIBLE)
   } else if (thisAnswer?.redirectUrl) {
     return h.redirect(thisAnswer?.redirectUrl)
+  }
+
+  if (yarKey === 'serviceCapacityIncrease') {
+    if (getYarValue(request, 'grantFundedCover') === 'Yes, I need a cover') {
+      return h.redirect(`${urlPrefix}/cover-type`)
+    } else if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') {
+      return h.redirect(`${urlPrefix}/existing-cover-type`)
+    } else {
+      return h.redirect(`${urlPrefix}/separator`)
+    }
   }
 
   return h.redirect(

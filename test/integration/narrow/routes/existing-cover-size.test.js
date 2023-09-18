@@ -40,11 +40,11 @@ describe('Page: /existing-cover-size', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/existing-cover-size`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { existingCoverSize: '10123456789', crumb: crumbToken }
+      payload: { existingCoverSize: '1234567', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Cover size must be between 1-9999999999')
+    expect(postResponse.payload).toContain('Cover size must be between 1-999999')
   })
 
   it('If commas used', async () => {

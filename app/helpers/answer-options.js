@@ -179,16 +179,35 @@ const getOptions = (data, question, conditionalHtml, request) => {
       if(question.yarKey === "gantry"){
         let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
         gantryHint = gantryHint[0]
-        // add brakcets around hint text
+        // add brackets around hint text
         gantryHint.hint.html = '(' + gantryHint.hint.html + ')'
         question.hint = gantryHint.hint
+
+        // answer list not needed here, as gantry page uses yes/no
       } else {
         for (const answer in answersList) {
           question.answers.unshift(answersList[answer])
         }
       }
     } else if (question.key === 'storage-type')  {
+      // only needed while updating db data during testing
       question.answers = []
+
+      for (const answer in answersList) {
+        question.answers.unshift(answersList[answer])
+      }
+    } else if (question.key === 'other-items')  {
+      // only needed while updating db data during testing
+      question.answers = [
+        {
+          value: 'divider'
+        },
+        {
+          key: 'other-items-A15',
+          value: 'None of the above',
+          redirectUrl: 'project-summary'
+        }
+      ]
 
       for (const answer in answersList) {
         question.answers.unshift(answersList[answer])

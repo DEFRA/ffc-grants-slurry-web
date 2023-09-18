@@ -42,6 +42,7 @@ const getDependentSideBar = (sidebar, request) => {
             break            
           case 'separatorOptions':
             values[index].heading = 'Separator'
+            break
           case 'otherItems':
             values[index].heading = 'Other items'
             break

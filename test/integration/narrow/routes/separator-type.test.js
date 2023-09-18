@@ -47,7 +47,7 @@ describe("Separator Type test", () => {
     const postResponse = await global.__SERVER__.inject(postOptions);
     expect(postResponse.statusCode).toBe(200);
     expect(postResponse.payload).toContain(
-      "Select what type of slurry storage you will have"
+      "Select what type of slurry separator you will have"
     );
   });
 
