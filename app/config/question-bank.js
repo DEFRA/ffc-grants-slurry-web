@@ -1866,7 +1866,7 @@ const questionBank = {
             <br/><br/>
             Enter size in metres squared
             <br/><br/>
-            <p class="govuk-body"><b>Grant-funded store</p>
+            <p class="govuk-body"><b>Grant-funded store</b></p>
 
           `
           },
@@ -2038,7 +2038,7 @@ const questionBank = {
               type: 'number',
               classes: 'govuk-input--width-5',
               label: {
-                html: '<p class="govuk-body"><b>Grant-funded store</p>',
+                html: '<p class="govuk-body"><b>Grant-funded store</b></p>',
                 classes: 'govuk-label'
               },
               suffix: {
