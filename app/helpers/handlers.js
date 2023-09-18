@@ -198,7 +198,7 @@ const getPage = async (question, request, h) => {
         }else{
           question.backUrl = `${urlPrefix}/cover-size`
         }
-      } else if (getYarValue(request, 'existingCover')&& getYarValue(request, 'existingCover') === 'Yes') {
+      } else if (getYarValue(request, 'existingCoverSize')) {
         question.backUrl = `${urlPrefix}/existing-cover-size`
       } else {
         if (getYarValue(request, 'applicantType') === 'Pig') {

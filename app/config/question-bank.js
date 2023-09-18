@@ -1845,7 +1845,7 @@ const questionBank = {
           order: 137,
           title: '',
           pageTitle: '',
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           url: 'cover-size',
           baseUrl: 'cover-size',
           backUrl: 'cover-type',
@@ -1865,6 +1865,9 @@ const questionBank = {
             Enter the estimated surface area of the replacement, new or expanded store
             <br/><br/>
             Enter size in metres squared
+            <br/><br/>
+            <p class="govuk-body"><b>Grant-funded store</b></p>
+
           `
           },
           validate: [
@@ -1929,7 +1932,7 @@ const questionBank = {
           order: 138,
           title: 'existing-cover-size',
           pageTitle: 'existing-cover-size',
-          classes: 'govuk-input--width-10',
+          classes: 'govuk-input--width-5',
           url: 'existing-cover-size',
           baseUrl: 'existing-cover-size',
           backUrl: 'existing-cover-type',
@@ -1946,11 +1949,11 @@ const questionBank = {
           },
           hint: {
             html: `
-            Enter the estimated surface area of the replacement, new or expanded store
+            Enter the estimated cover surface area of the existing store
             <br/><br/>
             Enter size in metres squared
             <br/><br/>
-            <p class='govuk-body'>Existing store</p>
+            <p class='govuk-body'><b>Existing store</b></p>
           `
           },
           validate: [
@@ -1971,8 +1974,8 @@ const questionBank = {
             {
               type: 'MIN_MAX',
               min: 1,
-              max: 9999999999,
-              error: 'Cover size must be between 1-9999999999'
+              max: 999999,
+              error: 'Cover size must be between 1-999999'
             }
           ],
           sidebar: {
@@ -2035,7 +2038,7 @@ const questionBank = {
               type: 'number',
               classes: 'govuk-input--width-5',
               label: {
-                html: '<p class="govuk-body">Grant-funded store</p>',
+                html: '<p class="govuk-body"><b>Grant-funded store</b></p>',
                 classes: 'govuk-label'
               },
               suffix: {
@@ -2069,7 +2072,7 @@ const questionBank = {
               type: 'number',
               classes: 'govuk-input--width-5',
               label: {
-                html: '<p class="govuk-body">Existing store<p>',
+                html: '<p class="govuk-body"><b>Existing store</b><p>',
                 classes: 'govuk-label'
               },
               suffix: {
@@ -2239,7 +2242,7 @@ const questionBank = {
           pageTitle: '',
           title: 'What type of slurry separator will you have?',
           hint: {
-            text: 'Capable to processing at least 3m3 of slurry per hour and producing at least 25% dry matter. '
+            text: 'Capable to processing at least 3m³ of slurry per hour and producing at least 25% dry matter. '
           },
           url: 'separator-type',
           baseUrl: 'separator-type',
@@ -2252,7 +2255,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select what type of slurry storage you will have'
+              error: 'Select what type of slurry separator you will have'
             }
           ],
           answers: [],
@@ -2334,9 +2337,9 @@ const questionBank = {
                   {
                     para: '',
                     items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
               },
               {
                 heading: 'Grant-funded store cover',
@@ -2354,9 +2357,9 @@ const questionBank = {
                   {
                     para: '',
                     items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
               },
               {
                 heading: 'Separator',
@@ -2372,19 +2375,19 @@ const questionBank = {
             prefixSufix: [
               {
                 linkedPrefix: 'Increase: ',
-                linkedSufix: 'm³',
+                linkedSufix: 'm³'
               },
               {
                 linkedPrefix: 'Size: ',
-                linkedSufix: 'm²',
+                linkedSufix: 'm²'
               },
               {
                 linkedPrefix: 'Size: ',
-                linkedSufix: 'm²',
-              },
+                linkedSufix: 'm²'
+              }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
-            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions'],
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
           },
           validate: [
             {
@@ -2523,14 +2526,14 @@ const questionBank = {
           order: 147,
           costDataKey: 'other',
           title: 'Item sizes and quantities',
+          hint: {
+            text: 'Enter the approximate size and quantities your project needs'
+          },
           baseUrl: 'item-sizes-quantities',
           backUrl: 'other-items',
           nextUrl: 'project-summary',
           url: 'item-sizes-quantities',
           preValidationKeys: ['otherItems'],
-          hint: {
-            text: 'Enter the approximate size and quantities your project needs'
-          },
           type: 'multi-input',
           sidebar: {
             mainHeading: 'Your project items',
@@ -2885,7 +2888,7 @@ const questionBank = {
           `
           },
           warning: {
-            html: 'You must provide an accurate grid reference to avoid delays at full application.'
+            html: 'You must provide the correct location of your slurry store to avoid delays at full application.'
           },
           validate: [
             {
