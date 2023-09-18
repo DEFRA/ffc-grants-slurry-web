@@ -23,6 +23,7 @@ const {
   getEvidenceSummaryModel,
   getDataFromYarValue,
   getConsentOptionalData,
+  handleConditinalHtmlData,
 } = require('./pageHelpers')
 
 const setGrantsData = (question, request) => {

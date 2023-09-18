@@ -13,9 +13,7 @@ const {
   CHARS_MAX_50,
   INTERGERS_AND_DECIMALS
 } = require('../helpers/regex')
-
 const { LIST_COUNTIES } = require('../helpers/all-counties')
-
 /**
  * ----------------------------------------------------------------
  * list of yarKeys not bound to an answer, calculated separately
@@ -27,7 +25,6 @@ const { LIST_COUNTIES } = require('../helpers/all-counties')
  * eg: question.title: 'Can you pay £{{_storedYarKey_}}'
  * ----------------------------------------------------------------
  */
-
 /**
  * ----------------------------------------------------------------
  * question type = single-answer, boolean ,input, multiinput, mullti-answer
@@ -35,7 +32,6 @@ const { LIST_COUNTIES } = require('../helpers/all-counties')
  *
  * ----------------------------------------------------------------
  */
-
 /**
  * multi-input validation schema
  *
@@ -63,7 +59,6 @@ const { LIST_COUNTIES } = require('../helpers/all-counties')
       }
     ]
  */
-
 const questionBank = {
   grantScheme: {
     key: 'FFC002',
@@ -101,9 +96,7 @@ const questionBank = {
                 content: [
                   {
                     para: `This grant is for pig, beef or dairy farmers.
-
                     If your main farm enterprise is pig, the grant is to get your slurry storage levels to 8 months.
-
                     If beef or dairy is your main farm enterprise, the grant is to get your storage levels to 6 months.`
                   }
                 ]
@@ -376,7 +369,6 @@ const questionBank = {
                 content: [
                   {
                     para: `This grant is only for projects in England.
-                
                 Scotland, Wales and Northern Ireland have other grants available.`
                   }
                 ]
@@ -691,9 +683,7 @@ const questionBank = {
                   {
                     para: `
                 This grant is to get your serviceable storage levels to 6 months.
-
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
-
                 You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -758,9 +748,7 @@ const questionBank = {
                   {
                     para: `
                 This grant is to get your serviceable storage levels to 8 months.
-
                 For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
-
                 You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -826,11 +814,8 @@ const questionBank = {
                   {
                     para: `
                 This grant is to get your serviceable storage levels to 6 months.
-
                 For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
-
                 Any capacity above 6 months is not covered by the grant.
-
                 You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                     items: []
@@ -893,11 +878,8 @@ const questionBank = {
                   {
                     para: `
                 This grant is to get your serviceable storage levels to 8 months.
-
                 For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
-
                 Any capacity above 8 months is not covered by the grant.
-
                 You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                     items: []
@@ -1222,7 +1204,6 @@ const questionBank = {
                   {
                     para: `
                 Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
-                
                 Slurry acidification systems are not eligible for funding through this grant.`,
                     items: []
                   }
@@ -2409,6 +2390,122 @@ const questionBank = {
           yarKey: 'gantry'
         },
         {
+          key: 'solid-fraction-storage',
+          order: 143,
+          costDataType: 'cat-separator',
+          title: 'What type of solid fraction storage will you have?',
+          hint: {
+            text: 'You must stack your solid fraction on an impermeable surface to prevent leaking into the soil.'
+          },
+          pageTitle: '',
+          baseUrl: 'solid-fraction-storage',
+          url: 'solid-fraction-storage',
+          backUrl: 'gantry',
+          nextUrl: 'other-items',
+          validate: [
+            {
+              type: 'NOT_EMPTY',
+              error: 'Select what type of solid fraction storage you will have'
+            },
+            {
+              dependentKey: 'concreteBunkerSize',
+              type: 'NOT_EMPTY',
+              error: 'Enter concrete bunker size'
+            },
+            {
+              type: 'INCLUDES',
+              checkArray: [ '.' ],
+              error: `Size must be a whole number`,
+              dependentKey: 'concreteBunkerSize',
+            },
+            {
+              type: 'MIN_MAX',
+              min: 1,
+              max: 99999,
+              error: `Size must be between 1-99999`,
+              dependentKey: 'concreteBunkerSize',
+            }
+
+          ],
+          preValidationKeys: ['gantry'],
+          fundingPriorities: '',
+          type: 'single-answer',
+          minAnswerCount: 1,
+          answers: [
+            {
+              value: 'divider'
+            },
+            {
+              key: 'solid-fraction-storage-A3',
+              value: 'I already have a solid fraction storage',
+            }
+          ],
+          sidebar: {
+            mainHeading: 'Your project items',
+            // values: [
+            //   {
+            //     heading: 'Grant-funded store',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   },
+            //   {
+            //     heading: 'Grant-funded store cover',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   },
+            //   {
+            //     heading: 'Existing store cover',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   },
+            //   {
+            //     heading: 'Separator',
+            //     content: [
+            //       {
+            //         para: '',
+            //         items: []
+            //       }
+            //     ]
+            //   }
+            // ],
+            // prefixSufix: [
+            //   {
+            //     linkedPrefix: 'Increase: ',
+            //     linkedSufix: 'm³'
+            //   },
+            //   {
+            //     linkedPrefix: 'Size: ',
+            //     linkedSufix: 'm²'
+            //   },
+            //   {
+            //     linkedPrefix: 'Size: ',
+            //     linkedSufix: 'm²'
+            //   },
+            //   {
+            //     linkedPrefix: 'Size: ',
+            //     linkedSufix: 'm²'
+            //   }
+            // ],
+            // linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize', 'separatorType'],
+            // dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
+          },
+          yarKey: 'solidFractionStorage',
+          conditionalKey: 'concreteBunkerSize',
+          conditionalLabelData: 'Enter size'
+        },
+        {
           key: 'other-items',
           order: 146,
           costDataType: 'other',
@@ -2683,7 +2780,6 @@ const questionBank = {
                 content: [
                   {
                     para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-                  
                   You can use:`,
                     items: ['loans', 'overdrafts', 'the Basic Payment Scheme']
                   }
@@ -2730,7 +2826,6 @@ const questionBank = {
                 content: [
                   {
                     para: `You must have secured planning permission before you submit a full application.
-                    
                     The application deadline is 27 June 2025.`
                   }
                 ]
@@ -2997,7 +3092,6 @@ const questionBank = {
           },
           answers: []
         },
-
         /// ////// ***************** After Score  ************************************/////////////////////
         {
           key: 'business-details',
@@ -3806,7 +3900,6 @@ const questionBank = {
             <p><a class="govuk-link" target="_blank" href="https://www.gov.uk/call-charges" rel="noopener noreferrer">Find out about call charges (opens in a new tab)</a></p>
             <h3 class="govuk-heading-s">Email</h3>
             <a class="govuk-link" title="Send email to RPA" target="_blank" rel="noopener noreferrer" href="mailto:ftf@rpa.gov.uk">FTF@rpa.gov.uk</a><br/><br/>
-            
             <h2 class="govuk-heading-m">What happens next</h2>
             <p>1. RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</p>
             <p>2. If you submit an application, RPA will assess whether it is eligible and meets the rules of the grant.</p>
@@ -3841,14 +3934,12 @@ const questionBank = {
     }
   ]
 };
-
 const ALL_QUESTIONS = []
 questionBank.sections.forEach(({ questions }) => {
   ALL_QUESTIONS.push(...questions)
 })
 const ALL_URLS = []
 ALL_QUESTIONS.forEach(item => ALL_URLS.push(item.url))
-
 const YAR_KEYS = ['itemsTotalValue', 'remainingCost', 'calculatedGrant', 'separatorOptions']
 ALL_QUESTIONS.forEach(item => YAR_KEYS.push(item.yarKey))
 module.exports = {
