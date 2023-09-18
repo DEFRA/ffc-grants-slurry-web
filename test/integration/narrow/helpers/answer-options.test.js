@@ -595,14 +595,27 @@ describe('answer-options', () => {
         },
         {
           selected: false,
-          text: 'answer-1',
-          value: 'answer-1'
+          text: {
+            value: 'divider'
+          },
+          value: {
+            value: 'divider'
+          }
         },
         {
           selected: false,
-          text: 'answer-2',
-          value: 'answer-2'
+          text: {
+            key: 'other-items-A15',
+            value: 'None of the above',
+            redirectUrl: 'project-summary'
+          },
+          value: {
+            key: 'other-items-A15',
+            value: 'None of the above',
+            redirectUrl: 'project-summary'
+          }
         }
+        
       ]
     })
 
@@ -627,6 +640,28 @@ describe('answer-options', () => {
           selected: false,
           text: 'answer-2',
           value: 'answer-2'
+        },
+        {
+          selected: false,
+          text: {
+            value: 'divider'
+          },
+          value: {
+            value: 'divider'
+          }
+        },
+        {
+          selected: false,
+          text: {
+            key: 'other-items-A15',
+            value: 'None of the above',
+            redirectUrl: 'project-summary'
+          },
+          value: {
+            key: 'other-items-A15',
+            value: 'None of the above',
+            redirectUrl: 'project-summary'
+          }
         }
       ]
     })
@@ -661,6 +696,16 @@ describe('answer-options', () => {
             selected: true,
             text: undefined,
             value: undefined
+          },
+          {
+            divider: 'or'
+          },
+          {
+            checked: false,
+            hint: undefined,
+            selected: false,
+            text: 'None of the above',
+            value: 'None of the above'
           }
         ],
         name: 'mock-yarKey'
