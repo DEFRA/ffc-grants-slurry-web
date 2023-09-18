@@ -2387,7 +2387,7 @@ const questionBank = {
               }
             ],
             linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
-            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorType']
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
           },
           validate: [
             {
