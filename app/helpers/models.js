@@ -43,7 +43,6 @@ const getDependentSideBar = (sidebar, request) => {
           case 'separatorOptions':
             values[index].heading = 'Separator'
 
-
             if (request.route.path === '/slurry-infrastructure/separator-type') {
               setYarValue(request, 'separatorOptions', [])
               selectedAnswers = []
