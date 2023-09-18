@@ -164,6 +164,7 @@ describe("Separator test", () => {
   it("page loads with /existing-cover-size/ back link when applyingFor /An impermeable cover only/ ", async () => {
     varList.applyingFor = "An impermeable cover only";
     varList.coverType = null;
+    varList.existingCoverSize = '343'
     const options = {
       method: "GET",
       url: `${global.__URLPREFIX__}/separator`,
@@ -176,7 +177,6 @@ describe("Separator test", () => {
   });
 
   it("page loads with /existing-cover-size/ back link when existingCover is Yes", async () => {
-    varList.existingCover = "Yes";
 
     const options = {
       method: "GET",
@@ -195,6 +195,7 @@ describe("Separator test", () => {
     varList.grantFundedCover = "Fake data";
     varList.coverType = "Fake data";
     varList.existingCover = null;
+    varList.existingCoverSize = null
 
     const options = {
       method: "GET",
