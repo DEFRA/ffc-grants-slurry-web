@@ -430,8 +430,12 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'concreteBunkerSize', value)
       
       let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      tempSeparatorVal.push('Size: ' + value + 'm²')
-      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+
+      if (tempSeparatorVal[tempSeparatorVal.length - 1] === 'Concrete bunker') {
+        tempSeparatorVal.push('Size: ' + value + 'm²')
+        setYarValue(request, 'separatorOptions', tempSeparatorVal)
+      }
+      
 
     } 
 
