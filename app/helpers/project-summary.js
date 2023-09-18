@@ -4,6 +4,8 @@ function suffixGenerator (unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
     return 'm³'
+  } else if (unit === 'per square metre') {
+    return 'm²'
   } else if (unit === 'per metre') {
     return 'm'
   } else {
@@ -21,8 +23,9 @@ function formatSummaryTable (request) {
   const existingCoverSize = request.yar.get('existingCoverSize')
   // separator
   const otherItemsArray = [request.yar.get('otherItems')].flat()
+  const separatorArray = [request.yar.get('separatorOptions')].flat()
 
-  const listOfCatagories = ['cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']
+  const listOfCatagories = ['cat-separator', 'cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']
 
   const returnArray = []
 
@@ -57,7 +60,7 @@ function formatSummaryTable (request) {
       total = (coverSize * coverData.amount)
 
       returnArray.push({
-        item: coverType,
+        item: (coverType.substring(0, coverType.lastIndexOf(" ")) + ' grant-funded store cover'),
         amount: '£' + coverData.amount,
         quantity: formatUKCurrency(coverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
@@ -74,13 +77,48 @@ function formatSummaryTable (request) {
       total = (existingCoverSize * existingCoverData.amount)
 
       returnArray.push({
-        item: existingCoverType,
+        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(" ")) +  ' existing store cover',
         amount: '£' + existingCoverData.amount,
         quantity: formatUKCurrency(existingCoverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
       })
 
       totalCalculator += total
+    }
+
+    if (separatorArray.length > 0) {
+      
+      separatorArray.forEach((otherItem, _index) => {
+        let correctSize 
+        
+        // if concrete bunker, get size. Else use size from conditional
+        if (otherItem === 'Concrete bunker') {
+          correctSize = request.yar.get('concreteBunkerSize')
+        } else {
+          correctSize = 1
+        } 
+
+        listOfCatagories.forEach((catagory, _index2) => {
+          const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === catagory)
+
+          selectedCatagory.items.forEach((item) => {
+            if (item.item === otherItem) {
+              const unit = suffixGenerator(item.unit)
+
+              total = (correctSize * String(item.amount).replace(/,/g, ''))
+
+              returnArray.push({
+                item: otherItem,
+                amount: '£' + formatUKCurrency(item.amount),
+                quantity: formatUKCurrency(correctSize) + unit,
+                total: '£' + formatUKCurrency(total)
+              })
+
+              totalCalculator += total
+            }
+          })
+        })
+      })
     }
 
     if (otherItemsArray[0] !== 'None of the above') {
@@ -115,6 +153,7 @@ function formatSummaryTable (request) {
         })
       })
     }
+
   }
 
   request.yar.set('itemsTotalValue', totalCalculator)

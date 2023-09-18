@@ -70,6 +70,38 @@ const objectToSend = {
         ]
       },
       {
+        key: 'cat-separator',
+        title: 'Slurry separator equipment',
+        items: [
+          {
+            item: 'Screen press',
+            amount: 2,
+            unit: 'per unit'
+          },
+          {
+            item: 'Screw press',
+            amount: 4,
+            unit: 'per unit'
+          },
+          {
+            item: 'Gantry',
+            amount: 6,
+            unit: 'per unit'
+          },
+          {
+            item: 'Concrete pad',
+            amount: 8,
+            unit: 'per unit'
+          },
+          {
+            item: 'Concrete bunker',
+            amount: 10,
+            unit: 'per square metre'
+          }
+
+        ]
+      },
+      {
         key: 'cat-reception-pit-type',
         title: 'Reception pit type',
         items: [
@@ -220,6 +252,14 @@ const itemSizesArray = [
   }
 ]
 
+const separatorOptions = [
+  'Screen press',
+  'Screw press',
+  'Gantry',
+  'Concrete pad',
+  'Concrete bunker'
+]
+
 describe('Project Summary Array Function', () => {
   test('Should return array correctly when object sent', () => {
     const dict = {}
@@ -243,6 +283,10 @@ describe('Project Summary Array Function', () => {
             return 6
           } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
+          } else if (key === 'separatorOptions') {
+            return separatorOptions
+          } else if (key === 'concreteBunkerSize') {
+            return 6
           } else {
             return itemsList
           }
@@ -263,16 +307,46 @@ describe('Project Summary Array Function', () => {
         total: '£110'
       },
       {
-        item: 'Rigid cover for steel or concrete slurry stores',
+        item: 'Rigid cover for steel or concrete slurry grant-funded store cover',
         amount: '£8',
         quantity: '6m²',
         total: '£48'
       },
       {
-        item: 'Rigid cover for steel or concrete slurry stores',
+        item: 'Rigid cover for steel or concrete slurry existing store cover',
         amount: '£8',
         quantity: '6m²',
         total: '£48'
+      },
+      {
+        item: 'Screen press',
+        amount: '£2',
+        quantity: '1',
+        total: '£2'
+      },
+      {
+        item: 'Screw press',
+        amount: '£4',
+        quantity: '1',
+        total: '£4'
+      },
+      {
+        item: 'Gantry',
+        amount: '£6',
+        quantity: '1',
+        total: '£6'
+      },
+      {
+        item: 'Concrete pad',
+        amount: '£8',
+        quantity: '1',
+        total: '£8'
+      },
+      {
+        item: 'Concrete bunker',
+        amount: '£10',
+        quantity: '6m²',
+        total: '£60'
       },
       {
         item: 'Reception pit',
@@ -381,6 +455,10 @@ describe('Project Summary Array Function', () => {
             return 6
           } else if (key === 'existingCoverSize') {
             return 6
+          } else if (key === 'separatorOptions') {
+            return separatorOptions
+          } else if (key === 'concreteBunkerSize') {
+            return 6
           } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
           } else {
@@ -418,6 +496,10 @@ describe('Project Summary Array Function', () => {
             return 6
           } else if (key === 'existingCoverSize') {
             return 6
+          } else if (key === 'separatorOptions') {
+            return separatorOptions
+          } else if (key === 'concreteBunkerSize') {
+            return 6
           } else if (key === 'itemSizeQuantities') {
             return itemSizesArray
           } else {
@@ -435,7 +517,7 @@ describe('Project Summary Array Function', () => {
     expect(response).toEqual([])
   })
 
-  test('Should return storage and cover if other items array has none of the above', () => {
+  test('Should return storage and cover and separator if other items array has none of the above', () => {
     const dict = {}
 
     const mockRequest = {
@@ -455,6 +537,10 @@ describe('Project Summary Array Function', () => {
             return 6
           } else if (key === 'existingCoverSize') {
             return 6
+          } else if (key === 'separatorOptions') {
+            return separatorOptions
+          } else if (key === 'concreteBunkerSize') {
+            return 6
           } else if (key === 'itemSizeQuantities') {
             return []
           } else {
@@ -477,21 +563,51 @@ describe('Project Summary Array Function', () => {
         total: '£110'
       },
       {
-        item: 'Rigid cover for steel or concrete slurry stores',
+        item: 'Rigid cover for steel or concrete slurry grant-funded store cover',
         amount: '£8',
         quantity: '6m²',
         total: '£48'
       },
       {
-        item: 'Rigid cover for steel or concrete slurry stores',
+        item: 'Rigid cover for steel or concrete slurry existing store cover',
         amount: '£8',
         quantity: '6m²',
         total: '£48'
-      }
+      },
+      {
+        item: 'Screen press',
+        amount: '£2',
+        quantity: '1',
+        total: '£2'
+      },
+      {
+        item: 'Screw press',
+        amount: '£4',
+        quantity: '1',
+        total: '£4'
+      },
+      {
+        item: 'Gantry',
+        amount: '£6',
+        quantity: '1',
+        total: '£6'
+      },
+      {
+        item: 'Concrete pad',
+        amount: '£8',
+        quantity: '1',
+        total: '£8'
+      },
+      {
+        item: 'Concrete bunker',
+        amount: '£10',
+        quantity: '6m²',
+        total: '£60'
+      },
     ])
   })
 
-  test('Should return only storage if cover and other items array have none of the above', () => {
+  test('Should return only storage if cover, separator and other items array have none of the above', () => {
     const dict = {}
 
     const mockRequest = {
@@ -510,6 +626,10 @@ describe('Project Summary Array Function', () => {
           } else if (key == 'coverSize') {
             return null
           } else if (key == 'existingCoverSize') {
+            return null
+          } else if (key === 'separatorOptions') {
+            return []
+          } else if (key === 'concreteBunkerSize') {
             return null
           } else if (key == 'itemSizeQuantities') {
             return []
@@ -535,7 +655,7 @@ describe('Project Summary Array Function', () => {
     ])
   })
 
-  test('Should return only cover if storage and other items array have none of the above', () => {
+  test('Should return only cover if storage, separator and other items array have none of the above', () => {
     const dict = {}
 
     const mockRequest = {
@@ -555,6 +675,10 @@ describe('Project Summary Array Function', () => {
             return 6
           } else if (key == 'existingCoverSize') {
             return 6
+          } else if (key === 'separatorOptions') {
+            return []
+          } else if (key === 'concreteBunkerSize') {
+            return null
           } else if (key == 'itemSizeQuantities') {
             return []
           } else {
@@ -571,13 +695,13 @@ describe('Project Summary Array Function', () => {
 
     expect(response).toEqual([
       {
-        item: 'Rigid cover for steel or concrete slurry stores',
+        item: 'Rigid cover for steel or concrete slurry grant-funded store cover',
         amount: '£8',
         quantity: '6m²',
         total: '£48'
       },
       {
-        item: 'Rigid cover for steel or concrete slurry stores',
+        item: 'Rigid cover for steel or concrete slurry existing store cover',
         amount: '£8',
         quantity: '6m²',
         total: '£48'
