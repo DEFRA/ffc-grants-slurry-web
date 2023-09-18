@@ -409,20 +409,40 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
     } 
     else if (yarKey === 'gantry' && value === 'Yes') {
       let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      if (tempSeparatorVal.includes('Gantry') === false) {
-        tempSeparatorVal.push('Gantry')
-      }
+
+      tempSeparatorVal.push('Gantry')
+
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
     } 
     else if (yarKey === 'gantry' && value === 'No') {
       let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      if (tempSeparatorVal.includes('Gantry') === true) {
-        let index = tempSeparatorVal.indexOf('Gantry')
-        tempSeparatorVal.splice(index, 1)
-      }
+
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
 
-    }
+    } else if (yarKey === 'solidFractionStorage' && value === 'Concrete pad') {
+
+      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+
+      // push user entered value
+      tempSeparatorVal.push(value)
+
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+
+    } else if (yarKey === 'solidFractionStorage' && value === 'Concrete bunker') {
+      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+
+      // push user entered value
+      tempSeparatorVal.push('Concrete bunker')
+
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+    } else if (yarKey === 'solidFractionStorage' && Number(value)) {
+      setYarValue(request, 'concreteBunkerSize', value)
+      
+      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      tempSeparatorVal.push('Size: ' + value + 'm²')
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+
+    } 
 
     if (type !== 'multi-input' && key !== 'secBtn') {
       setYarValue(

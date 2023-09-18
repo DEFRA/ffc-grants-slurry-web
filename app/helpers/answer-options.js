@@ -163,14 +163,16 @@ const getOptions = (data, question, conditionalHtml, request) => {
       if (question.yarKey === "solidFractionStorage"){
         answersList.splice(2, 3)
         const concreteBunkerStorageOption = answersList.filter(answer => answer.value === 'Concrete bunker')[0]
+        // set concrete bunker to be a conditional field answer
         const concreteBunkerStorageOptionIndex = answersList.indexOf(concreteBunkerStorageOption)
         concreteBunkerStorageOption.conditional = true
         answersList[concreteBunkerStorageOptionIndex] = concreteBunkerStorageOption
+
         // add brakcets around hint text
         answersList.forEach(answer => {
           answer.hint.html = '(' + answer.hint.html + ')'
           if(answer.value === 'Concrete bunker'){
-            
+            // add concrete bunker unique hint text before grant amount hint
             answer.hint.html = "Maximum grant contribution is up to 100m² </br>" + answer.hint.html
           }
         })

@@ -2439,64 +2439,64 @@ const questionBank = {
           ],
           sidebar: {
             mainHeading: 'Your project items',
-            // values: [
-            //   {
-            //     heading: 'Grant-funded store',
-            //     content: [
-            //       {
-            //         para: '',
-            //         items: []
-            //       }
-            //     ]
-            //   },
-            //   {
-            //     heading: 'Grant-funded store cover',
-            //     content: [
-            //       {
-            //         para: '',
-            //         items: []
-            //       }
-            //     ]
-            //   },
-            //   {
-            //     heading: 'Existing store cover',
-            //     content: [
-            //       {
-            //         para: '',
-            //         items: []
-            //       }
-            //     ]
-            //   },
-            //   {
-            //     heading: 'Separator',
-            //     content: [
-            //       {
-            //         para: '',
-            //         items: []
-            //       }
-            //     ]
-            //   }
-            // ],
-            // prefixSufix: [
-            //   {
-            //     linkedPrefix: 'Increase: ',
-            //     linkedSufix: 'm³'
-            //   },
-            //   {
-            //     linkedPrefix: 'Size: ',
-            //     linkedSufix: 'm²'
-            //   },
-            //   {
-            //     linkedPrefix: 'Size: ',
-            //     linkedSufix: 'm²'
-            //   },
-            //   {
-            //     linkedPrefix: 'Size: ',
-            //     linkedSufix: 'm²'
-            //   }
-            // ],
-            // linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize', 'separatorType'],
-            // dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
+            values: [
+              {
+                heading: 'Grant-funded store',
+                content: [
+                  {
+                    para: '',
+                    items: []
+                  }
+                ]
+              },
+              {
+                heading: 'Grant-funded store cover',
+                content: [
+                  {
+                    para: '',
+                    items: []
+                  }
+                ]
+              },
+              {
+                heading: 'Existing store cover',
+                content: [
+                  {
+                    para: '',
+                    items: []
+                  }
+                ]
+              },
+              {
+                heading: 'Separator',
+                content: [
+                  {
+                    para: '',
+                    items: []
+                  }
+                ]
+              }
+            ],
+            prefixSufix: [
+              {
+                linkedPrefix: 'Increase: ',
+                linkedSufix: 'm³'
+              },
+              {
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
+              },
+              {
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
+              },
+              {
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
+              }
+            ],
+            linkedQuestionyarkey: ['serviceCapacityIncrease', 'coverSize', 'existingCoverSize'],
+            dependentQuestionKeys: ['storageType', 'coverType', 'existingCoverType', 'separatorOptions']
           },
           yarKey: 'solidFractionStorage',
           conditionalKey: 'concreteBunkerSize',
@@ -2572,6 +2572,10 @@ const questionBank = {
               {
                 linkedPrefix: 'Increase: ',
                 linkedSufix: 'm³'
+              },
+              {
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
               },
               {
                 linkedPrefix: 'Size: ',
@@ -2663,6 +2667,16 @@ const questionBank = {
                 ]
               },
               {
+                heading: 'Separator',
+                content: [
+                  {
+                    para: '',
+                    items: [],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
+              },
+              {
                 heading: 'Other items',
                 content: [
                   {
@@ -2685,6 +2699,10 @@ const questionBank = {
               {
                 linkedPrefix: 'Size: ',
                 linkedSufix: 'm²'
+              },
+              {
+                linkedPrefix: 'Size: ',
+                linkedSufix: 'm²'
               }
             ],
             linkedQuestionyarkey: [
@@ -2696,6 +2714,7 @@ const questionBank = {
               'storageType',
               'coverType',
               'existingCoverType',
+              'separatorOptions',
               'otherItems'
             ]
           },
