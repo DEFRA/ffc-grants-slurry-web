@@ -732,8 +732,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 9999,
-            error: 'Quantity must be between 1-9999'
+            max: 999999,
+            error: 'Quantity must be between 1-999999'
           }
         ]
       }
