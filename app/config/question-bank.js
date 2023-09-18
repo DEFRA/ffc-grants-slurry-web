@@ -2527,7 +2527,7 @@ const questionBank = {
           costDataKey: 'other',
           title: 'Item sizes and quantities',
           hint: {
-            text: 'Enter the approximate size and quantities your project needs'
+            html: 'Enter the approximate size and quantities your project needs'
           },
           baseUrl: 'item-sizes-quantities',
           backUrl: 'other-items',
