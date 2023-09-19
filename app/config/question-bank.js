@@ -2599,7 +2599,7 @@ const questionBank = {
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Please select an option'
+              error: 'Select what other items you need'
             },
             {
               type: 'STANDALONE_ANSWER',
