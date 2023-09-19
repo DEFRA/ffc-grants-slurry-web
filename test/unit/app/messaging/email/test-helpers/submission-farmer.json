@@ -1,7 +1,6 @@
 {
     "applying": "Farmer",
     "consentOptional": false,
-    "otherItems": "None of the above",
     "farmerDetails": {
         "title": "Mrs",
         "firstName": "Mary",
@@ -47,6 +46,11 @@
     "grantFundedStore": 22,
     "existingStore": 22,
     "separator": "Yes",
+    "separatorType": "Screen press",
+    "gantry": "No",
+    "solidFractionStorage" : "Concrete bunke",
+    "concreteBunkerSize" : 92,
+    "otherItems": "None of the above",
     "applicantBusiness": "",
     "project":"Building new calf housing",
     "minimumFloorArea":"Yes",

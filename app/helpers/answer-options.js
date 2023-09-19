@@ -173,7 +173,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
           answer.hint.html = '(' + answer.hint.html + ')'
           if(answer.value === 'Concrete bunker'){
             // add concrete bunker unique hint text before grant amount hint
-            answer.hint.html = "Maximum grant contribution is up to 100m² </br>" + answer.hint.html
+            answer.hint.html = "Maximum grant contribution: up to 100 m² </br>" + answer.hint.html
           }
         })
       }

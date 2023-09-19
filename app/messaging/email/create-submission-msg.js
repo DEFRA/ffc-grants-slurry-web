@@ -228,7 +228,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
     PlanningPermissionEvidence,
     planningPermission,
     projectStart,
-    serviceCapacityIncrease,
     tenancy,
     tenancyLength,
     itemsTotalValue,
@@ -245,9 +244,24 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       emailAddress: farmerEmail,
       projectPostcode
     },
-    businessDetails
-  } = submission
+    businessDetails,
+    intensiveFarming,
+    projectResponsibility,
+    applyingFor,
+    fitForPurpose,
+    existingCover,
+    serviceCapacityIncrease,
+    existingCoverType,
+    existingCoverSize,
+    separator,
+    separatorType,
+    gantry,
+    solidFractionStorage,
+    concreteBunkerSize
 
+
+  } = submission
+console.log(submission, 'SUBMISSION')
   const {
     email,
     firstName,
@@ -268,16 +282,11 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       existingStorageCapacity: existingStorageCapacity,
       plannedStorageCapacity: plannedStorageCapacity,
       grantFundedCover: grantFundedCover ?? ' ',
-      coverSize: coverSize ? coverSize.concat(' m²') : 'N/A',
       itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
-      coverType: coverType || 'Not needed',
-      storageType,
       planningAuthority: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningAuthority.toUpperCase() : 'N/A',
-      planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/a',
-      planningPermission,
+      planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/A',
       projectPostcode,
       projectStart: projectStart,
-      serviceCapacityIncrease: serviceCapacityIncrease,
       tenancy: tenancy,
       isTenancyLength: tenancyLength ? 'Yes' : 'No',
       tenancyLength: tenancyLength ?? ' ',
@@ -286,7 +295,6 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       remainingCost: remainingCosts,
       gridReference: gridReference.replace(/\s/g, '').toUpperCase(),
       projectName: businessDetails.projectName,
-      projectType,
       businessName: businessDetails.businessName,
       farmerName,
       farmerSurname,
@@ -297,7 +305,54 @@ function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
       agentEmail: agentsDetails?.emailAddress ?? ' ',
       contactConsent: consentOptional ? 'Yes' : 'No',
       scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
-      businessType: applicantBusiness
+      businessType: applicantBusiness,
+
+      // Second round journey variables.
+      intensiveFarming: applicantType === 'Pig' ? intensiveFarming : '',
+      intensiveFarmingTrue: applicantType === 'Pig' ? 'true' : 'false',
+      projectResponsibility: tenancy === 'No' ? projectResponsibility : '',
+      projectResponsibilityTrue: tenancy === 'No' ? 'true' : 'false',
+      applyingFor: applyingFor,
+      existingStoreFitForPurposeOne: applyingFor === 'An impermeable cover only' && fitForPurpose  ? fitForPurpose : '',
+      existingStoreFitForPurposeOneTrue: applyingFor === 'An impermeable cover only' && fitForPurpose ? 'true' : 'false',
+      projectType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : projectType,
+      projectTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes'  ? 'false' : 'true',
+      impermeableCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : grantFundedCover,
+      impermeableCoverTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
+      existingStoreFitForPurposeTwo: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? fitForPurpose : '',
+      existingStoreFitForPurposeTwoTrue: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? 'true' : 'false',
+      existingStoreCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : existingCover,
+      existingStoreCoverTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
+      storageType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : storageType,
+      storageTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
+      estimatedVolumeToSixMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
+      estimatedVolumeToSixMonthsTrue: 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? 'false' : 'true',
+      estimatedVolumeToEightMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType !== 'Pig' ? '' : serviceCapacityIncrease,
+      estimatedVolumeToEightMonthsTrue: 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType !== 'Pig' ? 'false' : 'true',
+      grantFundedStoreCoverType : applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverType,
+      grantFundedStoreCoverTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
+      existingStoreCoverType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : existingCoverType,
+      existingStoreCoverTypeTrue:  applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
+      || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
+      grantFundedCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? '' : coverSize,
+      grantFundedCoverSizeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
+      existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No'|| grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? '' : existingCoverSize,
+      existingStoreCoverSizeTrue : applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' || grantFundedCover === 'I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' || existingCover === 'No' ? 'false' : 'true',
+      slurrySeparator: separator ? separator : '',
+      slurrySeparatorTrue: separator ? 'true' : 'false',
+      separatorType: separator === 'Yes' ? separatorType : '',
+      separatorTypeTrue: separatorType ? 'true' : 'false',
+      gantry: separator === 'Yes' ? gantry : '',
+      gantryTrue: gantry ? 'true' : 'false',
+      solidFractionStorage: separator === 'No' ? '' : solidFractionStorage,
+      solidFractionStorageTrue: solidFractionStorage ? 'true' : 'false',
+      concreteBunkerSize: solidFractionStorage === 'Concrete bunker' ? concreteBunkerSize  : '',
+      concreteBunkerSizeTrue: concreteBunkerSize ? 'true' : 'false',
+      planningPermission: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : planningPermission,
+      planningPermissionTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes'  ? 'false' : 'true'
     }
   }
 }
