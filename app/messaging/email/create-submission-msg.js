@@ -51,7 +51,7 @@ function generateExcelFilename(scheme, projectName, businessName, referenceNumbe
   return `${scheme}_${projectName}_${businessName}_${referenceNumber}_${dateTime}.xlsx`
 }
 function getBusinessTypeC53(businessType) {
-  return (typeof businessType === 'string') ? `${businessType} farmer` : 'farmer with livestock'
+  return `${businessType} Farmer`
 }
 
 const getPlanningPermissionDoraValue = (planningPermission) => {
@@ -65,8 +65,25 @@ const getPlanningPermissionDoraValue = (planningPermission) => {
   }
 }
 
-function getProjectItemsFormattedArray(itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize) {
+function getProjectItemsFormattedArray(itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize) {
   const projectItems = []
+
+  // list will look like storage -> cover -> existing cover -> separator -> other items
+  if (separatorOptions) {
+    for (index = 0; index < separatorOptions.length; index++){
+
+      if (separatorOptions[index] === 'Concrete bunker') {        
+        projectItems.push(`${separatorOptions[index]}~${concretebunkersize}`)
+        break
+      } else {
+        projectItems.push(`${separatorOptions[index]}~1`)
+      }
+    }
+
+  } else {
+    projectItems.push('')
+  }
+
   if (otherItems[0] !== 'None of the above') {
     let unit
     Object.values(itemSizeQuantities).forEach((itemSizeQuantity, index) => {
@@ -77,20 +94,30 @@ function getProjectItemsFormattedArray(itemSizeQuantities, otherItems, storageTy
     projectItems.push('')
   }
 
-  if (coverType && coverType !== 'Not needed') {
+  if (existingCoverType) {
+    projectItems.unshift(`${existingCoverType}~${existingCoverSize}`)
+  } else {
+    projectItems.unshift('')
+  }
+
+  if (coverType) {
     projectItems.unshift(`${coverType}~${coverSize}`)
   } else {
     projectItems.unshift('')
   }
 
-  projectItems.unshift(`${storageType}~${storageCapacity}`)
+  if (storageType) {
+    projectItems.unshift(`${storageType}~${storageCapacity}`)
+  } else {
+    projectItems.unshift('')
+  }
   return projectItems.join('|')
 }
 
 function getSpreadsheetDetails(submission) {
   const today = new Date()
   const todayStr = today.toLocaleDateString('en-GB')
-  const schemeName = 'Slurry Infrastructure'
+  const schemeName = 'Slurry Infrastructure Round 2'
   const subScheme = `FTF-${schemeName}`
 
   return {
@@ -117,9 +144,9 @@ function getSpreadsheetDetails(submission) {
           generateRow(90, 'Project type', 'Slurry Store and Cover'),
           generateRow(41, 'Owner', 'RD'),
           generateRow(53, 'Business type', getBusinessTypeC53(submission.applicantType)),
-          generateRow(341, 'Grant Launch Date', ''),
+          generateRow(341, 'Grant Launch Date', (new Date("2023-10-31")).toLocaleDateString('en-GB')),
           generateRow(23, 'Status of applicant', submission.legalStatus),
-          generateRow(44, 'Project Items', getProjectItemsFormattedArray(submission.itemSizeQuantities, [submission.otherItems].flat(), submission.storageType, submission.serviceCapacityIncrease, submission.coverType, submission.coverSize)),
+          generateRow(44, 'Project Items', getProjectItemsFormattedArray(submission.itemSizeQuantities, [submission.otherItems].flat(), submission.storageType, submission.serviceCapacityIncrease, submission.coverType, submission.coverSize, submission.existingCoverType, submission.existingCoverSize, submission.separatorOptions, submission.concreteBunkerSize)),
           generateRow(45, 'Location of project (postcode)', submission.farmerDetails.projectPostcode),
           generateRow(376, 'Project Started', submission.projectStart),
           generateRow(342, 'Land owned by Farm', submission.tenancy),
@@ -127,15 +154,15 @@ function getSpreadsheetDetails(submission) {
           generateRow(395, 'System Type', submission.systemType),
           generateRow(396, 'Existing Storage Capacity', submission.existingStorageCapacity),
           generateRow(397, 'Planned Storage Capacity', submission.plannedStorageCapacity),
-          generateRow(398, 'Slurry Storage Improvement Method', submission.projectType),
-          generateRow(399, 'Impermeable cover', submission.grantFundedCover),
+          generateRow(398, 'Slurry Storage Improvement Method', submission.applyingFor === 'An impermeable cover only' && submission.fitForPurpose === 'Yes' ? 'N/A' : submission.projectType),
+          generateRow(399, 'Impermeable Cover', submission.applyingFor === 'An impermeable cover only' && submission.fitForPurpose === 'Yes' ? 'N/A' : getImpermeableCover(submission.grantFundedCover)),
           generateRow(55, 'Total project expenditure', Number(submission.itemsTotalValue * 2)),
           generateRow(57, 'Grant rate', '50'),
           generateRow(56, 'Grant amount requested', submission.calculatedGrant),
           generateRow(345, 'Remaining Cost to Farmer', submission.remainingCost),
-          generateRow(346, 'Planning Permission Status', getPlanningPermissionDoraValue(submission.planningPermission)),
-          generateRow(400, 'Planning Authority', submission.PlanningPermissionEvidence?.planningAuthority.toUpperCase() ?? ''),
-          generateRow(401, 'Planning Reference No', submission.PlanningPermissionEvidence?.planningReferenceNumber.toUpperCase() ?? ''),
+          generateRow(346, 'Planning Permission Status', submission.applyingFor === 'An impermeable Cover Only' ? 'Not Needed' : getPlanningPermissionDoraValue(submission.planningPermission)),
+          generateRow(400, 'Planning Authority', submission.applyingFor === 'An impermeable Cover Only' ? '' : submission.PlanningPermissionEvidence?.planningAuthority.toUpperCase() ?? ''),
+          generateRow(401, 'Planning Reference No', submission.applyingFor === 'An impermeable Cover Only' ? '' : submission.PlanningPermissionEvidence?.planningReferenceNumber.toUpperCase() ?? ''),
           generateRow(402, 'OS Grid Reference', submission.gridReference.toUpperCase()),
           generateRow(366, 'Date of OA decision', ''),
           generateRow(42, 'Project name', submission.businessDetails.projectName),
@@ -164,14 +191,27 @@ function getSpreadsheetDetails(submission) {
           generateRow(93, 'RAG date reviewed ', todayStr),
           generateRow(54, 'Electronic OA received date ', todayStr),
           generateRow(370, 'Status', 'Pending RPA review'),
-          generateRow(85, 'Full Application Submission Date', (new Date(today.setMonth(today.getMonth() + 6))).toLocaleDateString('en-GB')),
+          generateRow(85, 'Full Application Submission Date', (new Date("2025-06-27")).toLocaleDateString('en-GB')),
           generateRow(375, 'OA percent', 0),
           generateRow(365, 'OA score', 0),
+          generateRow(447, 'Environmental permit', submission.applicantType === 'Pig' ? submission.intensiveFarming : 'N/A'),
+          generateRow(448, 'Project Responsibility', submission.tenancy === 'Yes' ? 'N/A' : submission.projectResponsibility),
+          generateRow(449, 'Applying for', submission.applyingFor),
+          generaterow(450, 'Fit for purpose', submission.fitForPurpose),
+          generateRow(451, 'Existing Store Cover', submission.applyingFor === 'An impermeable cover only' ? 'N/A' : submission.existingCover),
           ...addAgentDetails(submission.agentsDetails)
         ]
       }
     ]
   }
+}
+
+function getImpermeableCover(grantFundedCover) {
+  if (grantFundedCover !== 'Yes, I need a cover') {
+    grantFundedCover = 'No grant funded cover selected'  
+  }
+
+  return grantFundedCover
 }
 
 function getCurrencyFormat(amount) {
