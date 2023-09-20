@@ -36,7 +36,7 @@ describe('Other Items test', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Please select an option')
+    expect(postResponse.payload).toContain('Select what other items you need')
   })
 
   test('POST /other-items route returns next page', async () => {
