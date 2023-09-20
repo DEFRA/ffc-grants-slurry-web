@@ -197,7 +197,7 @@ function getSpreadsheetDetails(submission) {
           generateRow(447, 'Environmental permit', submission.applicantType === 'Pig' ? submission.intensiveFarming : 'N/A'),
           generateRow(448, 'Project Responsibility', submission.tenancy === 'Yes' ? 'N/A' : submission.projectResponsibility),
           generateRow(449, 'Applying for', submission.applyingFor),
-          generaterow(450, 'Fit for purpose', submission.fitForPurpose),
+          generateRow(450, 'Fit for purpose', submission.fitForPurpose),
           generateRow(451, 'Existing Store Cover', submission.applyingFor === 'An impermeable cover only' ? 'N/A' : submission.existingCover),
           ...addAgentDetails(submission.agentsDetails)
         ]
