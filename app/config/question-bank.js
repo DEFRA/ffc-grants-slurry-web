@@ -2413,10 +2413,10 @@ const questionBank = {
               error: 'Enter concrete bunker size'
             },
             {
-              type: 'INCLUDES',
-              checkArray: [ '.' ],
-              error: `Size must be a whole number`,
               dependentKey: 'concreteBunkerSize',
+              type: 'REGEX',
+              regex: WHOLE_NUMBER_REGEX,
+              error: 'Size must be a whole number'
             },
             {
               type: 'MIN_MAX',

@@ -160,6 +160,19 @@ describe('Page: /solid-fraction-storage', () => {
 		expect(postResponse.statusCode).toBe(200)
 		expect(postResponse.payload).toContain('Size must be between 1-99999')
 	})
+	it('should returns error message if Concrete bunker was selected with special characters used', async () => {
+		const postOptions = {
+			method: 'POST',
+			url: `${global.__URLPREFIX__}/solid-fraction-storage`,
+			payload: { solidFractionStorage: 'Concrete bunker', concreteBunkerSize: '**', crumb: crumbToken },
+			headers: {
+				cookie: 'crumb=' + crumbToken
+			}
+		}
+		const postResponse = await global.__SERVER__.inject(postOptions)
+		expect(postResponse.statusCode).toBe(200)
+		expect(postResponse.payload).toContain('Size must be a whole number')
+	})
 	it('User selects "Concrete bunker" with a valid whole number for size - advances to /other-items', async () => {
 		const postOptions = {
 			method: 'POST',
