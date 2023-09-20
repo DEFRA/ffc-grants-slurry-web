@@ -152,6 +152,7 @@ const getPage = async (question, request, h) => {
             question.nextUrl = `${urlPrefix}/existing-cover`
         }
       }
+      nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       break
     case 'existing-cover' :
       setYarValue(request, 'serviceCapacityIncrease', null)
@@ -227,6 +228,7 @@ const getPage = async (question, request, h) => {
       if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
         question.maybeEligibleContent.isimpermeablecoveronly = true
         question.nextUrl = `${urlPrefix}/project-type`
+        nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       }else{
           question.maybeEligibleContent.isimpermeablecoveronly = false
       }
