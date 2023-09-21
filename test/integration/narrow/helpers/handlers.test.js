@@ -101,6 +101,6 @@ describe('Get & Post Handlers', () => {
     mockH = { redirect: jest.fn() }
     let mockSet = jest.fn();
     await getPostHandler(question)({ payload: { a: "mock-value" }, yar: { set: mockSet } }, mockH)
-    expect(mockH.redirect).toHaveBeenCalledWith('mock-url')
+    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/existing-cover')
   })
 })
