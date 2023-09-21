@@ -709,7 +709,7 @@ describe('Other Items Sizes Array Function', () => {
         hint: {
           text: 'Grant amount: £55 per metre'
         },
-        classes: 'govuk-input--width-5',
+        classes: 'govuk-input--width-3',
         label: {
           text: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
           classes: 'govuk-label--m'
@@ -732,8 +732,8 @@ describe('Other Items Sizes Array Function', () => {
           {
             type: 'MIN_MAX',
             min: 1,
-            max: 999999,
-            error: 'Quantity must be between 1-999999'
+            max: 9999,
+            error: 'Quantity must be between 1-9999'
           }
         ]
       }
