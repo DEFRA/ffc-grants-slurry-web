@@ -361,8 +361,8 @@ console.log(submission, 'SUBMISSION')
       impermeableCoverTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
       existingStoreFitForPurposeTwo: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? fitForPurpose : '',
       existingStoreFitForPurposeTwoTrue: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? 'true' : 'false',
-      existingStoreCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : existingCover,
-      existingStoreCoverTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
+      existingStoreCover: applyingFor === 'An impermeable cover only' ? '' : existingCover,
+      existingStoreCoverTrue: applyingFor === 'An impermeable cover only' ? 'false' : 'true',
       storageType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : storageType,
       storageTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
       estimatedVolumeToSixMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
@@ -389,8 +389,8 @@ console.log(submission, 'SUBMISSION')
       solidFractionStorageTrue: separator === 'Yes' ? 'true' : 'false',
       concreteBunkerSize: solidFractionStorage === 'Concrete bunker' ? concreteBunkerSize + 'm²' : '',
       concreteBunkerSizeTrue: solidFractionStorage === 'Concrete bunker' ? 'true' : 'false',
-      planningPermission: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : planningPermission,
-      planningPermissionTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes'  ? 'false' : 'true'
+      planningPermission: applyingFor === 'An impermeable cover only' ? '' : planningPermission,
+      planningPermissionTrue: applyingFor === 'An impermeable cover only'   ? 'false' : 'true'
     }
   }
 }
