@@ -49,9 +49,6 @@ function suffixAndLengthGenerator (item, unit) {
     case 'per cubic metre':
       return { unit: 'm³', length: 3 }
     case 'per metre':
-      if (item.startsWith('Safety fencing')) {
-        return { unit: 'metre(s)', length: 5 }
-      }
       return { unit: 'metre(s)', length: 3 }
     default:
       return { unit: 'item(s)', length: 3 }
