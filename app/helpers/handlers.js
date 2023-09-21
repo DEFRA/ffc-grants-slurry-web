@@ -143,16 +143,7 @@ const getPage = async (question, request, h) => {
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
       setYarValue(request, 'coverSize', null)
-      if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No'){
-        question.nextUrl = `${urlPrefix}/estimated-grant`
-      }else{
-        if (getYarValue(request, 'applicantType') === 'Pig') {
-            question.nextUrl = `${urlPrefix}/existing-cover-pig`
-        } else {
-            question.nextUrl = `${urlPrefix}/existing-cover`
-        }
-      }
-      nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
+      // nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       break
     case 'existing-cover' :
       setYarValue(request, 'serviceCapacityIncrease', null)
@@ -555,6 +546,18 @@ const showPostPage = (currentQuestion, request, h) => {
       return h.redirect(`${urlPrefix}/existing-cover-type`)
     } else {
       return h.redirect(`${urlPrefix}/separator`)
+    }
+  }
+
+  if (yarKey === 'grantFundedCover') {
+    if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No') {
+      return h.redirect(`${urlPrefix}/estimated-grant`)
+    } else {
+      if (getYarValue(request, 'applicantType') === 'Pig') {
+        return h.redirect(`${urlPrefix}/existing-cover-pig`)
+      } else {
+        return h.redirect(`${urlPrefix}/existing-cover`)
+      }
     }
   }
 
