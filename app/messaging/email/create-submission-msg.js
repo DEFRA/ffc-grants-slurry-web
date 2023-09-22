@@ -1,7 +1,7 @@
 const emailConfig = require('../config/email.js')
 const spreadsheetConfig = require('../config/spreadsheet.js')
 const { microTurnover, smallTurnover, mediumTurnover, microEmployeesNum, smallEmployeesNum, mediumEmployeesNum } = require('./business-size-constants')
-const {getQuestionAnswer } = require('../../../app/helpers/utils.js')
+const { getQuestionAnswer } = require('../../../app/helpers/utils.js')
 
 
 function generateRow(rowNumber, name, value, bold = false) {
