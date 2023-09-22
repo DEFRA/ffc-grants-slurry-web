@@ -123,14 +123,9 @@ function getSpreadsheetDetails(submission) {
     agentsDetails,applicantType, applyingFor, applying,
     calculatedGrant, confirmationId, concreteBunkerSize, consentOptional, coverSize, coverType,
     existingCover, existingCoverSize, existingCoverType, existingStorageCapacity,
-    fitForPurpose,
-    gridReference,
-    intensiveFarming, itemSizeQuantities, itemsTotalValue,
-    legalStatus,
-    otherItems,
-    plannedStorageCapacity, PlanningPermissionEvidence, planningPermission, projectResponsibility,
-    projectStart, projectType,
-    remainingCost,
+    fitForPurpose, gridReference,intensiveFarming, itemSizeQuantities, itemsTotalValue,
+    legalStatus, otherItems, plannedStorageCapacity, PlanningPermissionEvidence, planningPermission, 
+    projectResponsibility, projectStart, projectType, remainingCost,
     serviceCapacityIncrease, storageType, systemType, separatorOptions,
     tenancy, tenancyLength, grantFundedCover
 } = submission;
@@ -285,12 +280,10 @@ const {
         projectPostcode,
     }, fitForPurpose,
     gantry, grantFundedCover, gridReference,
-    inEngland, intensiveFarming, itemSizeQuantities, itemsTotalValue,
-    legalStatus, otherItems,
+    inEngland, intensiveFarming, itemSizeQuantities, itemsTotalValue,legalStatus, otherItems,
     plannedStorageCapacity, PlanningPermissionEvidence, planningPermission, projectResponsibility,
-    projectStart,projectType, remainingCosts,
-    separator, separatorType, serviceCapacityIncrease, solidFractionStorage,storageType,
-    systemType,tenancy, tenancyLength,
+    projectStart,projectType, remainingCosts,separator, separatorType, serviceCapacityIncrease,
+    solidFractionStorage, storageType, systemType,tenancy, tenancyLength,
 } = submission;
 
   // Get email, firstName, and lastName based on conditions
