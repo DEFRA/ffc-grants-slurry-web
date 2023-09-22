@@ -131,7 +131,7 @@ function getSpreadsheetDetails(submission) {
     plannedStorageCapacity, PlanningPermissionEvidence, planningPermission, projectResponsibility,
     projectStart, projectType,
     remainingCost,
-    serviceCapacityIncrease, storageType, systemType,
+    serviceCapacityIncrease, storageType, systemType, separatorOptions,
     tenancy, tenancyLength
 } = submission;
 
@@ -343,6 +343,8 @@ const {
   const hasGrantFundedCover = grantFundedCover === 'Yes, I already have a cover';
   const hasAcidificationTreatment = grantFundedCover === 'Not needed, the slurry is treated with acidification';
   const isSeparator = separator === 'Yes'
+  const isConcreteBunker = solidFractionStorage === 'Concrete bunker'
+  const isNoTenancy = tenancy === 'No'
 
   // Create the final object with organized properties
   const result = {
@@ -385,8 +387,8 @@ const {
       businessType: applicantBusiness,
       intensiveFarming: isPigApplicant ? intensiveFarming : '',
       intensiveFarmingTrue: isPigApplicant ? 'true' : 'false',
-      projectResponsibility: tenancy === 'No' ? projectResponsibility : '',
-      projectResponsibilityTrue: tenancy === 'No' ? 'true' : 'false',
+      projectResponsibility: isNoTenancy ? projectResponsibility : '',
+      projectResponsibilityTrue: isNoTenancy ? 'true' : 'false',
       applyingFor: applyingFor,
       existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose  ? fitForPurpose : '',
       existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
@@ -404,11 +406,11 @@ const {
       estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
       estimatedVolumeToEightMonths: hasFitForPurposeAndCover || isNotPigApplicant ? '' : serviceCapacityIncrease,
       estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || isNotPigApplicant ? 'false' : 'true',
-      grantFundedStoreCoverType : hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverType,
+      grantFundedStoreCoverType : hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? '' : coverType,
       grantFundedStoreCoverTypeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
-      existingStoreCoverType: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? ' ' : existingCoverType,
+      existingStoreCoverType: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? '' : existingCoverType,
       existingStoreCoverTypeTrue: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? 'false' : 'true',
-      grantFundedCoverSize: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverSize + 'm²',
+      grantFundedCoverSize: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? '' : coverSize + 'm²',
       grantFundedCoverSizeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
       existingStoreCoverSize: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? '' : existingCoverSize + 'm²',
       existingStoreCoverSizeTrue : isCoverOnly && isNotFitForPurpose || isNotExistingCover ? 'false' : 'true',
@@ -420,8 +422,8 @@ const {
       gantryTrue: isSeparator ? 'true' : 'false',
       solidFractionStorage: isSeparator ? solidFractionStorage : '',
       solidFractionStorageTrue: isSeparator ? 'true' : 'false',
-      concreteBunkerSize: solidFractionStorage === 'Concrete bunker' ? concreteBunkerSize + 'm²' : '',
-      concreteBunkerSizeTrue: solidFractionStorage === 'Concrete bunker' ? 'true' : 'false',
+      concreteBunkerSize: isConcreteBunker ? concreteBunkerSize + 'm²' : '',
+      concreteBunkerSizeTrue: isConcreteBunker ? 'true' : 'false',
       planningPermission: isCoverOnly ? '' : planningPermission,
       planningPermissionTrue: isCoverOnly   ? 'false' : 'true'
     }
