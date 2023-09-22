@@ -250,7 +250,7 @@ function displayObject(itemSizeQuantities, otherItems) {
     unit = getItemUnit(otherItems[index].toLowerCase())
     return `${otherItems[index]}: ${itemSizeQuantity} ${unit}`
   })
-  
+
   return projectItems
 }
 
@@ -292,20 +292,17 @@ const {
 
   // Determine various boolean flags
   const isPigApplicant = applicantType === 'Pig';
-  const isNotPigApplicant = applicantType !== 'Pig'
   const isCoverOnly = applyingFor === 'An impermeable cover only';
   const newReplaceExpand = applyingFor === 'Building a new store, replacing or expanding an existing store'
   const isFitForPurpose = fitForPurpose === 'Yes'
-  const isNotFitForPurpose = fitForPurpose === 'No'
   const isExistingCover = existingCover === 'Yes'
-  const isNotExistingCover = existingCover === 'No'
   const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
   const hasGrantFundedCover = grantFundedCover === 'Yes, I already have a cover';
   const hasAcidificationTreatment = grantFundedCover === 'Not needed, the slurry is treated with acidification';
   const isSeparator = separator === 'Yes'
   const isConcreteBunker = solidFractionStorage === 'Concrete bunker'
-  const isNoTenancy = tenancy === 'No'
-  const existingStoreCoverTypeOrSize =  isCoverOnly && isNotFitForPurpose || isNotExistingCover
+  const isTenancy = tenancy === 'Yes'
+  const existingStoreCoverTypeOrSize =  isCoverOnly && !isFitForPurpose || !isExistingCover
   const grantFundedStoreCoverTypeOrSize = hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment
   // Create the final object with organized properties
   const result = {
@@ -348,8 +345,8 @@ const {
       businessType: applicantBusiness,
       intensiveFarming: isPigApplicant ? intensiveFarming : '',
       intensiveFarmingTrue: isPigApplicant ? 'true' : 'false',
-      projectResponsibility: isNoTenancy ? projectResponsibility : '',
-      projectResponsibilityTrue: isNoTenancy ? 'true' : 'false',
+      projectResponsibility: !isTenancy ? projectResponsibility : '',
+      projectResponsibilityTrue: !isTenancy ? 'true' : 'false',
       applyingFor: applyingFor,
       existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose  ? fitForPurpose : '',
       existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
@@ -365,8 +362,8 @@ const {
       storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
       estimatedVolumeToSixMonths: hasFitForPurposeAndCover || isPigApplicant ? '' : serviceCapacityIncrease,
       estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
-      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || isNotPigApplicant ? '' : serviceCapacityIncrease,
-      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || isNotPigApplicant ? 'false' : 'true',
+      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || !isPigApplicant ? '' : serviceCapacityIncrease,
+      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || !isPigApplicant ? 'false' : 'true',
       grantFundedStoreCoverType : grantFundedStoreCoverTypeOrSize ? '' : coverType,
       grantFundedStoreCoverTypeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
       existingStoreCoverType: existingStoreCoverTypeOrSize ? '' : existingCoverType,
