@@ -315,7 +315,8 @@ const {
   const isSeparator = separator === 'Yes'
   const isConcreteBunker = solidFractionStorage === 'Concrete bunker'
   const isNoTenancy = tenancy === 'No'
-
+  const existingStoreCoverTypeOrSize =  isCoverOnly && isNotFitForPurpose || isNotExistingCover
+  const grantFundedStoreCoverTypeOrSize = hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment
   // Create the final object with organized properties
   const result = {
     notifyTemplate: emailConfig.notifyTemplate,
@@ -376,14 +377,14 @@ const {
       estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
       estimatedVolumeToEightMonths: hasFitForPurposeAndCover || isNotPigApplicant ? '' : serviceCapacityIncrease,
       estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || isNotPigApplicant ? 'false' : 'true',
-      grantFundedStoreCoverType : hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? '' : coverType,
-      grantFundedStoreCoverTypeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
-      existingStoreCoverType: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? '' : existingCoverType,
-      existingStoreCoverTypeTrue: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? 'false' : 'true',
-      grantFundedCoverSize: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? '' : coverSize + 'm²',
-      grantFundedCoverSizeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
-      existingStoreCoverSize: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? '' : existingCoverSize + 'm²',
-      existingStoreCoverSizeTrue : isCoverOnly && isNotFitForPurpose || isNotExistingCover ? 'false' : 'true',
+      grantFundedStoreCoverType : grantFundedStoreCoverTypeOrSize ? '' : coverType,
+      grantFundedStoreCoverTypeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
+      existingStoreCoverType: existingStoreCoverTypeOrSize ? '' : existingCoverType,
+      existingStoreCoverTypeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
+      grantFundedCoverSize: grantFundedStoreCoverTypeOrSize ? '' : coverSize + 'm²',
+      grantFundedCoverSizeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
+      existingStoreCoverSize: existingStoreCoverTypeOrSize ? '' : existingCoverSize + 'm²',
+      existingStoreCoverSizeTrue : existingStoreCoverTypeOrSize ? 'false' : 'true',
       slurrySeparator: isSeparator ? separator : '',
       slurrySeparatorTrue: isSeparator ? 'true' : 'false',
       separatorType: isSeparator ? separatorType : '',
