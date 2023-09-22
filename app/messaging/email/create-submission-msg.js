@@ -1,6 +1,8 @@
 const emailConfig = require('../config/email.js')
 const spreadsheetConfig = require('../config/spreadsheet.js')
 const { microTurnover, smallTurnover, mediumTurnover, microEmployeesNum, smallEmployeesNum, mediumEmployeesNum } = require('./business-size-constants')
+const {getQuestionAnswer } = require('../../../app/helpers/utils.js')
+
 
 function generateRow(rowNumber, name, value, bold = false) {
   return {
@@ -132,9 +134,9 @@ function getSpreadsheetDetails(submission) {
   const {firstName, lastName, emailAddress, projectPostcode, address1, 
           address2, town, county, postcode, landlineNumber, mobileNumber } = submission.farmerDetails
   const { projectName, sbi, businessName, businessTurnover, numberEmployees } = submission.businessDetails
-  const isPigApplicant = applicantType === 'Pig';
-  const isCoverOnly = applyingFor === 'An impermeable cover only';
-  const isFitForPurpose = fitForPurpose === 'Yes'
+  const isPigApplicant = applicantType === getQuestionAnswer('applicant-type', 'applicant-type-A1')
+  const isCoverOnly = applyingFor === getQuestionAnswer('applying-for', 'applying-for-A2')
+  const isFitForPurpose = fitForPurpose === getQuestionAnswer('fit-for-purpose', 'fit-for-purpose-A1')
   const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
   return {
     filename: generateExcelFilename(
@@ -289,19 +291,18 @@ const {
     firstName,
     lastName
   } = getPersonsDetails(isAgentEmail, submission)
-
   // Determine various boolean flags
-  const isPigApplicant = applicantType === 'Pig';
-  const isCoverOnly = applyingFor === 'An impermeable cover only';
-  const newReplaceExpand = applyingFor === 'Building a new store, replacing or expanding an existing store'
-  const isFitForPurpose = fitForPurpose === 'Yes'
-  const isExistingCover = existingCover === 'Yes'
+  const isPigApplicant = applicantType === getQuestionAnswer('applicant-type', 'applicant-type-A1')
+  const isCoverOnly = applyingFor === getQuestionAnswer('applying-for', 'applying-for-A2')
+  const newReplaceExpand = applyingFor === getQuestionAnswer('applying-for', 'applying-for-A1')
+  const isFitForPurpose = fitForPurpose === getQuestionAnswer('fit-for-purpose', 'fit-for-purpose-A1')
+  const isExistingCover = existingCover === getQuestionAnswer('existing-cover', 'existing-cover-A1')
   const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
-  const hasGrantFundedCover = grantFundedCover === 'Yes, I already have a cover';
-  const hasAcidificationTreatment = grantFundedCover === 'Not needed, the slurry is treated with acidification';
-  const isSeparator = separator === 'Yes'
+  const hasGrantFundedCover = grantFundedCover === getQuestionAnswer('grant-funded-cover', 'grant-funded-cover-A2');
+  const hasAcidificationTreatment = grantFundedCover === getQuestionAnswer('grant-funded-cover', 'grant-funded-cover-A3');
+  const isSeparator = separator === getQuestionAnswer('separator', 'separator-A1')
   const isConcreteBunker = solidFractionStorage === 'Concrete bunker'
-  const isTenancy = tenancy === 'Yes'
+  const isTenancy = tenancy === getQuestionAnswer('tenancy', 'tenancy-A1')
   const existingStoreCoverTypeOrSize =  isCoverOnly && !isFitForPurpose || !isExistingCover
   const grantFundedStoreCoverTypeOrSize = hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment
   // Create the final object with organized properties
