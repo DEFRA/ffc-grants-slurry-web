@@ -12,6 +12,7 @@ const grant_type = 'Slurry Infrastructure'
 const eventTypes = {
   PAGEVIEW: 'pageview',
   SCORE: 'score',
+  STANDARDISED_COST: 'standardised_cost',
   ELIGIBILITY: 'eligibility_passed',
   CONFIRMATION: 'confirmation',
   ELIMINATION: 'elimination',

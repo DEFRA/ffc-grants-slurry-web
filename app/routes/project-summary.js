@@ -47,15 +47,8 @@ module.exports = [{
     const result = formatSummaryTable(request)
     const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
     setYarValue(request, 'current-score', 'Eligible')
-    // TODO: update Gapi calls to use new format
-    // await gapiService.sendDimensionOrMetrics(request, [{
-    //   dimensionOrMetric: gapiService.dimensions.SCORE,
-    //   value: getYarValue(request, 'current-score')
-    // },
-    // {
-    //   dimensionOrMetric: gapiService.metrics.SCORE,
-    //   value: 'TIME'
-    // }])
+    // setYarValue(request, 'onScorePage', true) // maybe needed?
+    await gapiService.sendGAEvent(request, { name: gapiService.eventTypes.SCORE, params: { score: getYarValue(request, 'current-score') } })
 
     return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
   }
