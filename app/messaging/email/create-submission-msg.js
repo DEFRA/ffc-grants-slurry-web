@@ -139,6 +139,7 @@ function getSpreadsheetDetails(submission) {
   const {firstName, lastName, emailAddress, projectPostcode, address1, 
           address2, town, county, postcode, landlineNumber, mobileNumber } = submission.farmerDetails
   const { projectName, sbi, businessName, businessTurnover, numberEmployees } = submission.businessDetails
+  const isPigApplicant = applicantType === 'Pig';
   const isCoverOnly = applyingFor === 'An impermeable cover only';
   const isFitForPurpose = fitForPurpose === 'Yes'
   const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
@@ -216,7 +217,7 @@ function getSpreadsheetDetails(submission) {
           generateRow(85, 'Full Application Submission Date', (new Date("2025-06-27")).toLocaleDateString('en-GB')),
           generateRow(375, 'OA percent', 0),
           generateRow(365, 'OA score', 0),
-          generateRow(447, 'Environmental permit', applicantType === 'Pig' ? intensiveFarming : 'N/A'),
+          generateRow(447, 'Environmental permit', isPigApplicant ? intensiveFarming : 'N/A'),
           generateRow(448, 'Project Responsibility', tenancy === 'Yes' ? 'N/A' : projectResponsibility),
           generateRow(449, 'Applying for', applyingFor),
           generateRow(450, 'Fit for purpose', fitForPurpose),
@@ -322,22 +323,29 @@ const {
     tenancyLength,
 } = submission;
 
-console.log(submission, 'SUBMISSION')
+  // Get email, firstName, and lastName based on conditions
   const {
     email,
     firstName,
     lastName
   } = getPersonsDetails(isAgentEmail, submission)
 
+  // Determine various boolean flags
   const isPigApplicant = applicantType === 'Pig';
+  const isNotPigApplicant = applicantType !== 'Pig'
   const isCoverOnly = applyingFor === 'An impermeable cover only';
   const newReplaceExpand = applyingFor === 'Building a new store, replacing or expanding an existing store'
   const isFitForPurpose = fitForPurpose === 'Yes'
+  const isNotFitForPurpose = fitForPurpose === 'No'
+  const isExistingCover = existingCover === 'Yes'
+  const isNotExistingCover = existingCover === 'No'
   const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
   const hasGrantFundedCover = grantFundedCover === 'Yes, I already have a cover';
   const hasAcidificationTreatment = grantFundedCover === 'Not needed, the slurry is treated with acidification';
+  const isSeparator = separator === 'Yes'
 
-  return {
+  // Create the final object with organized properties
+  const result = {
     notifyTemplate: emailConfig.notifyTemplate,
     emailAddress: rpaEmail || email,
     details: {
@@ -375,8 +383,6 @@ console.log(submission, 'SUBMISSION')
       contactConsent: consentOptional ? 'Yes' : 'No',
       scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
       businessType: applicantBusiness,
-
-      // Second round journey variables.
       intensiveFarming: isPigApplicant ? intensiveFarming : '',
       intensiveFarmingTrue: isPigApplicant ? 'true' : 'false',
       projectResponsibility: tenancy === 'No' ? projectResponsibility : '',
@@ -388,40 +394,39 @@ console.log(submission, 'SUBMISSION')
       projectTypeTrue: hasFitForPurposeAndCover  ? 'false' : 'true',
       impermeableCover: hasFitForPurposeAndCover ? '' : grantFundedCover,
       impermeableCoverTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      existingStoreFitForPurposeTwo: newReplaceExpand && existingCover === 'Yes' ? fitForPurpose : '',
-      existingStoreFitForPurposeTwoTrue: newReplaceExpand && existingCover === 'Yes' ? 'true' : 'false',
+      existingStoreFitForPurposeTwo: newReplaceExpand && isExistingCover ? fitForPurpose : '',
+      existingStoreFitForPurposeTwoTrue: newReplaceExpand && isExistingCover ? 'true' : 'false',
       existingStoreCover: isCoverOnly ? '' : existingCover,
       existingStoreCoverTrue: isCoverOnly ? 'false' : 'true',
       storageType: hasFitForPurposeAndCover ? '' : storageType,
       storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      estimatedVolumeToSixMonths: hasFitForPurposeAndCover || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
-      estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || applicantType ==='Pig' ? 'false' : 'true',
-      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || applicantType !== 'Pig' ? '' : serviceCapacityIncrease,
-      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || applicantType !== 'Pig' ? 'false' : 'true',
-      grantFundedStoreCoverType : hasFitForPurposeAndCover 
-      || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverType,
-      grantFundedStoreCoverTypeTrue: hasFitForPurposeAndCover 
-      || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
-      existingStoreCoverType: isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? ' ' : existingCoverType,
-      existingStoreCoverTypeTrue: isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? 'false' : 'true',
+      estimatedVolumeToSixMonths: hasFitForPurposeAndCover || isPigApplicant ? '' : serviceCapacityIncrease,
+      estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
+      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || isNotPigApplicant ? '' : serviceCapacityIncrease,
+      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || isNotPigApplicant ? 'false' : 'true',
+      grantFundedStoreCoverType : hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverType,
+      grantFundedStoreCoverTypeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
+      existingStoreCoverType: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? ' ' : existingCoverType,
+      existingStoreCoverTypeTrue: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? 'false' : 'true',
       grantFundedCoverSize: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverSize + 'm²',
       grantFundedCoverSizeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
-      existingStoreCoverSize: isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? '' : existingCoverSize + 'm²',
-      existingStoreCoverSizeTrue : isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? 'false' : 'true',
-      slurrySeparator: separator === 'Yes' ? separator : '',
-      slurrySeparatorTrue: separator == 'Yes' ? 'true' : 'false',
-      separatorType: separator === 'Yes' ? separatorType : '',
-      separatorTypeTrue: separator === 'Yes' ? 'true' : 'false',
-      gantry: separator === 'Yes' ? gantry : '',
-      gantryTrue: separator === 'Yes' ? 'true' : 'false',
-      solidFractionStorage: separator === 'No' ? '' : solidFractionStorage,
-      solidFractionStorageTrue: separator === 'Yes' ? 'true' : 'false',
+      existingStoreCoverSize: isCoverOnly && isNotFitForPurpose || isNotExistingCover ? '' : existingCoverSize + 'm²',
+      existingStoreCoverSizeTrue : isCoverOnly && isNotFitForPurpose || isNotExistingCover ? 'false' : 'true',
+      slurrySeparator: isSeparator ? separator : '',
+      slurrySeparatorTrue: isSeparator ? 'true' : 'false',
+      separatorType: isSeparator ? separatorType : '',
+      separatorTypeTrue: isSeparator ? 'true' : 'false',
+      gantry: isSeparator ? gantry : '',
+      gantryTrue: isSeparator ? 'true' : 'false',
+      solidFractionStorage: isSeparator ? solidFractionStorage : '',
+      solidFractionStorageTrue: isSeparator ? 'true' : 'false',
       concreteBunkerSize: solidFractionStorage === 'Concrete bunker' ? concreteBunkerSize + 'm²' : '',
       concreteBunkerSizeTrue: solidFractionStorage === 'Concrete bunker' ? 'true' : 'false',
       planningPermission: isCoverOnly ? '' : planningPermission,
       planningPermissionTrue: isCoverOnly   ? 'false' : 'true'
     }
   }
+  return result
 }
 
 module.exports = function (submission) {
