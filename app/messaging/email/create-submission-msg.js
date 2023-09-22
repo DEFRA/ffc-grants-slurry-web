@@ -129,8 +129,6 @@ function getSpreadsheetDetails(submission) {
     serviceCapacityIncrease, storageType, systemType, separatorOptions,
     tenancy, tenancyLength, grantFundedCover
 } = submission;
-
-
   const {firstName, lastName, emailAddress, projectPostcode, address1, 
           address2, town, county, postcode, landlineNumber, mobileNumber } = submission.farmerDetails
   const { projectName, sbi, businessName, businessTurnover, numberEmployees } = submission.businessDetails
@@ -252,7 +250,7 @@ function displayObject(itemSizeQuantities, otherItems) {
     unit = getItemUnit(otherItems[index].toLowerCase())
     return `${otherItems[index]}: ${itemSizeQuantity} ${unit}`
   })
-  console.log(projectItems)
+  
   return projectItems
 }
 
