@@ -119,7 +119,29 @@ function getSpreadsheetDetails(submission) {
   const todayStr = today.toLocaleDateString('en-GB')
   const schemeName = 'Slurry Infrastructure Round 2'
   const subScheme = `FTF-${schemeName}`
+  const {
+    agentsDetails,applicantType, applyingFor,
+    calculatedGrant, confirmationId, concreteBunkerSize, consentOptional, coverSize, coverType,
+    existingCover, existingCoverSize, existingCoverType, existingStorageCapacity,
+    fitForPurpose,
+    gridReference,
+    intensiveFarming, itemSizeQuantities, itemsTotalValue,
+    legalStatus,
+    otherItems,
+    plannedStorageCapacity, PlanningPermissionEvidence, planningPermission, projectResponsibility,
+    projectStart, projectType,
+    remainingCost,
+    serviceCapacityIncrease, storageType, systemType,
+    tenancy, tenancyLength
+} = submission;
 
+
+  const {firstName, lastName, emailAddress, projectPostcode, address1, 
+          address2, town, county, postcode, landlineNumber, mobileNumber } = submission.farmerDetails
+  const { projectName, sbi, businessName, businessTurnover, numberEmployees } = submission.businessDetails
+  const isCoverOnly = applyingFor === 'An impermeable cover only';
+  const isFitForPurpose = fitForPurpose === 'Yes'
+  const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
   return {
     filename: generateExcelFilename(
       'FTF-SIG',
@@ -143,49 +165,49 @@ function getSpreadsheetDetails(submission) {
           generateRow(43, 'Theme', 'Slurry Infrastructure Grants'),
           generateRow(90, 'Project type', 'Slurry Store and Cover'),
           generateRow(41, 'Owner', 'RD'),
-          generateRow(53, 'Business type', getBusinessTypeC53(submission.applicantType)),
+          generateRow(53, 'Business type', getBusinessTypeC53(applicantType)),
           generateRow(341, 'Grant Launch Date', (new Date("2023-10-31")).toLocaleDateString('en-GB')),
-          generateRow(23, 'Status of applicant', submission.legalStatus),
-          generateRow(44, 'Project Items', getProjectItemsFormattedArray(submission.itemSizeQuantities, [submission.otherItems].flat(), submission.storageType, submission.serviceCapacityIncrease, submission.coverType, submission.coverSize, submission.existingCoverType, submission.existingCoverSize, submission.separatorOptions, submission.concreteBunkerSize)),
-          generateRow(45, 'Location of project (postcode)', submission.farmerDetails.projectPostcode),
-          generateRow(376, 'Project Started', submission.projectStart),
-          generateRow(342, 'Land owned by Farm', submission.tenancy),
-          generateRow(343, 'Tenancy for next 5 years', submission.tenancyLength ?? ''),
-          generateRow(395, 'System Type', submission.systemType),
-          generateRow(396, 'Existing Storage Capacity', submission.existingStorageCapacity),
-          generateRow(397, 'Planned Storage Capacity', submission.plannedStorageCapacity),
-          generateRow(398, 'Slurry Storage Improvement Method', submission.applyingFor === 'An impermeable cover only' && submission.fitForPurpose === 'Yes' ? 'N/A' : submission.projectType),
-          generateRow(399, 'Impermeable Cover', submission.applyingFor === 'An impermeable cover only' && submission.fitForPurpose === 'Yes' ? 'N/A' : getImpermeableCover(submission.grantFundedCover)),
-          generateRow(55, 'Total project expenditure', Number(submission.itemsTotalValue * 2)),
+          generateRow(23, 'Status of applicant', legalStatus),
+          generateRow(44, 'Project Items', getProjectItemsFormattedArray(itemSizeQuantities, [otherItems].flat(), storageType, serviceCapacityIncrease, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concreteBunkerSize)),
+          generateRow(45, 'Location of project (postcode)', projectPostcode),
+          generateRow(376, 'Project Started', projectStart),
+          generateRow(342, 'Land owned by Farm', tenancy),
+          generateRow(343, 'Tenancy for next 5 years', tenancyLength ?? ''),
+          generateRow(395, 'System Type', systemType),
+          generateRow(396, 'Existing Storage Capacity', existingStorageCapacity),
+          generateRow(397, 'Planned Storage Capacity', plannedStorageCapacity),
+          generateRow(398, 'Slurry Storage Improvement Method', hasFitForPurposeAndCover ? 'N/A' : projectType),
+          generateRow(399, 'Impermeable Cover', hasFitForPurposeAndCover ? 'N/A' : getImpermeableCover(grantFundedCover)),
+          generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2)),
           generateRow(57, 'Grant rate', '50'),
-          generateRow(56, 'Grant amount requested', submission.calculatedGrant),
-          generateRow(345, 'Remaining Cost to Farmer', submission.remainingCost),
-          generateRow(346, 'Planning Permission Status', submission.applyingFor === 'An impermeable cover only' ? 'Not Needed' : getPlanningPermissionDoraValue(submission.planningPermission)),
-          generateRow(400, 'Planning Authority', submission.applyingFor === 'An impermeable cover only' ? '' : submission.PlanningPermissionEvidence?.planningAuthority.toUpperCase() ?? ''),
-          generateRow(401, 'Planning Reference No', submission.applyingFor === 'An impermeable cover only' ? '' : submission.PlanningPermissionEvidence?.planningReferenceNumber.toUpperCase() ?? ''),
-          generateRow(402, 'OS Grid Reference', submission.gridReference.toUpperCase()),
+          generateRow(56, 'Grant amount requested', calculatedGrant),
+          generateRow(345, 'Remaining Cost to Farmer', remainingCost),
+          generateRow(346, 'Planning Permission Status', isCoverOnly ? 'Not Needed' : getPlanningPermissionDoraValue(planningPermission)),
+          generateRow(400, 'Planning Authority', isCoverOnly ? '' : PlanningPermissionEvidence?.planningAuthority.toUpperCase() ?? ''),
+          generateRow(401, 'Planning Reference No', isCoverOnly ? '' : PlanningPermissionEvidence?.planningReferenceNumber.toUpperCase() ?? ''),
+          generateRow(402, 'OS Grid Reference', gridReference.toUpperCase()),
           generateRow(366, 'Date of OA decision', ''),
-          generateRow(42, 'Project name', submission.businessDetails.projectName),
-          generateRow(4, 'Single business identifier (SBI)', submission.businessDetails.sbi || '000000000'), // sbi is '' if not set so use || instead of ??
-          generateRow(7, 'Business name', submission.businessDetails.businessName),
-          generateRow(367, 'Annual Turnover', submission.businessDetails.businessTurnover),
-          generateRow(22, 'Employees', submission.businessDetails.numberEmployees),
-          generateRow(20, 'Business size', calculateBusinessSize(submission.businessDetails.numberEmployees, submission.businessDetails.businessTurnover)),
-          generateRow(91, 'Are you an AGENT applying on behalf of your customer', submission.applying === 'Agent' ? 'Yes' : 'No'),
-          generateRow(5, 'Surname', submission.farmerDetails.lastName),
-          generateRow(6, 'Forename', submission.farmerDetails.firstName),
-          generateRow(8, 'Address line 1', submission.farmerDetails.address1),
-          generateRow(9, 'Address line 2', submission.farmerDetails.address2),
+          generateRow(42, 'Project name', projectName),
+          generateRow(4, 'Single business identifier (SBI)', sbi || '000000000'), // sbi is '' if not set so use || instead of ??
+          generateRow(7, 'Business name', businessName),
+          generateRow(367, 'Annual Turnover', businessTurnover),
+          generateRow(22, 'Employees', numberEmployees),
+          generateRow(20, 'Business size', calculateBusinessSize(numberEmployees, businessTurnover)),
+          generateRow(91, 'Are you an AGENT applying on behalf of your customer', applying === 'Agent' ? 'Yes' : 'No'),
+          generateRow(5, 'Surname', lastName),
+          generateRow(6, 'Forename', firstName),
+          generateRow(8, 'Address line 1', address1),
+          generateRow(9, 'Address line 2', address2),
           generateRow(10, 'Address line 3', ''),
-          generateRow(11, 'Address line 4 (town)', submission.farmerDetails.town),
-          generateRow(12, 'Address line 5 (county)', submission.farmerDetails.county),
-          generateRow(13, 'Postcode (use capitals)', submission.farmerDetails.postcode),
-          generateRow(16, 'Landline number', submission.farmerDetails.landlineNumber ?? ''),
-          generateRow(17, 'Mobile number', submission.farmerDetails.mobileNumber ?? ''),
-          generateRow(18, 'Email', submission.farmerDetails.emailAddress),
-          generateRow(89, 'Customer Marketing Indicator', submission.consentOptional ? 'Yes' : 'No'),
+          generateRow(11, 'Address line 4 (town)', town),
+          generateRow(12, 'Address line 5 (county)', county),
+          generateRow(13, 'Postcode (use capitals)', postcode),
+          generateRow(16, 'Landline number', landlineNumber ?? ''),
+          generateRow(17, 'Mobile number', mobileNumber ?? ''),
+          generateRow(18, 'Email', emailAddress),
+          generateRow(89, 'Customer Marketing Indicator', consentOptional ? 'Yes' : 'No'),
           generateRow(368, 'Date ready for QC or decision', todayStr),
-          generateRow(369, 'Eligibility Reference No.', submission.confirmationId),
+          generateRow(369, 'Eligibility Reference No.', confirmationId),
           generateRow(94, 'Current location of file', 'NA Automated'),
           generateRow(92, 'RAG rating', 'Green'),
           generateRow(93, 'RAG date reviewed ', todayStr),
@@ -194,12 +216,12 @@ function getSpreadsheetDetails(submission) {
           generateRow(85, 'Full Application Submission Date', (new Date("2025-06-27")).toLocaleDateString('en-GB')),
           generateRow(375, 'OA percent', 0),
           generateRow(365, 'OA score', 0),
-          generateRow(447, 'Environmental permit', submission.applicantType === 'Pig' ? submission.intensiveFarming : 'N/A'),
-          generateRow(448, 'Project Responsibility', submission.tenancy === 'Yes' ? 'N/A' : submission.projectResponsibility),
-          generateRow(449, 'Applying for', submission.applyingFor),
-          generateRow(450, 'Fit for purpose', submission.fitForPurpose),
-          generateRow(451, 'Existing Store Cover', submission.applyingFor === 'An impermeable cover only' ? 'N/A' : submission.existingCover),
-          ...addAgentDetails(submission.agentsDetails)
+          generateRow(447, 'Environmental permit', applicantType === 'Pig' ? intensiveFarming : 'N/A'),
+          generateRow(448, 'Project Responsibility', tenancy === 'Yes' ? 'N/A' : projectResponsibility),
+          generateRow(449, 'Applying for', applyingFor),
+          generateRow(450, 'Fit for purpose', fitForPurpose),
+          generateRow(451, 'Existing Store Cover', isCoverOnly ? 'N/A' : existingCover),
+          ...addAgentDetails(agentsDetails)
         ]
       }
     ]
@@ -251,62 +273,69 @@ function getPersonsDetails(isAgentEmail, submission) {
 }
 
 function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
-  const {
-    confirmationId,
+const {
+    agentsDetails,
+    applicantBusiness,
     applicantType,
-    legalStatus,
-    inEngland,
-    systemType,
-    existingStorageCapacity,
-    plannedStorageCapacity,
-    grantFundedCover,
+    applyingFor,
+    businessDetails,
+    calculatedGrant,
+    consentOptional,
+    confirmationId,
+    concreteBunkerSize,
     coverSize,
-    itemSizeQuantities,
-    otherItems,
     coverType,
-    storageType,
+    existingCover,
+    existingCoverSize,
+    existingCoverType,
+    existingStorageCapacity,
+    farmerDetails: {
+        emailAddress: farmerEmail,
+        firstName: farmerName,
+        lastName: farmerSurname,
+        projectPostcode,
+    },
+    fitForPurpose,
+    gantry,
+    grantFundedCover,
+    gridReference,
+    inEngland,
+    intensiveFarming,
+    itemSizeQuantities,
+    itemsTotalValue,
+    legalStatus,
+    otherItems,
+    plannedStorageCapacity,
     PlanningPermissionEvidence,
     planningPermission,
-    projectStart,
-    tenancy,
-    tenancyLength,
-    itemsTotalValue,
-    calculatedGrant,
-    remainingCosts,
-    gridReference,
-    projectType,
-    applicantBusiness,
-    consentOptional,
-    agentsDetails,
-    farmerDetails: {
-      firstName: farmerName,
-      lastName: farmerSurname,
-      emailAddress: farmerEmail,
-      projectPostcode
-    },
-    businessDetails,
-    intensiveFarming,
     projectResponsibility,
-    applyingFor,
-    fitForPurpose,
-    existingCover,
-    serviceCapacityIncrease,
-    existingCoverType,
-    existingCoverSize,
+    projectStart,
+    projectType,
+    remainingCosts,
     separator,
     separatorType,
-    gantry,
+    serviceCapacityIncrease,
     solidFractionStorage,
-    concreteBunkerSize
+    storageType,
+    systemType,
+    tenancy,
+    tenancyLength,
+} = submission;
 
-
-  } = submission
 console.log(submission, 'SUBMISSION')
   const {
     email,
     firstName,
     lastName
   } = getPersonsDetails(isAgentEmail, submission)
+
+  const isPigApplicant = applicantType === 'Pig';
+  const isCoverOnly = applyingFor === 'An impermeable cover only';
+  const newReplaceExpand = applyingFor === 'Building a new store, replacing or expanding an existing store'
+  const isFitForPurpose = fitForPurpose === 'Yes'
+  const hasFitForPurposeAndCover = isCoverOnly && isFitForPurpose;
+  const hasGrantFundedCover = grantFundedCover === 'Yes, I already have a cover';
+  const hasAcidificationTreatment = grantFundedCover === 'Not needed, the slurry is treated with acidification';
 
   return {
     notifyTemplate: emailConfig.notifyTemplate,
@@ -348,37 +377,37 @@ console.log(submission, 'SUBMISSION')
       businessType: applicantBusiness,
 
       // Second round journey variables.
-      intensiveFarming: applicantType === 'Pig' ? intensiveFarming : '',
-      intensiveFarmingTrue: applicantType === 'Pig' ? 'true' : 'false',
+      intensiveFarming: isPigApplicant ? intensiveFarming : '',
+      intensiveFarmingTrue: isPigApplicant ? 'true' : 'false',
       projectResponsibility: tenancy === 'No' ? projectResponsibility : '',
       projectResponsibilityTrue: tenancy === 'No' ? 'true' : 'false',
       applyingFor: applyingFor,
-      existingStoreFitForPurposeOne: applyingFor === 'An impermeable cover only' && fitForPurpose  ? fitForPurpose : '',
-      existingStoreFitForPurposeOneTrue: applyingFor === 'An impermeable cover only' && fitForPurpose ? 'true' : 'false',
-      projectType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : projectType,
-      projectTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes'  ? 'false' : 'true',
-      impermeableCover: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : grantFundedCover,
-      impermeableCoverTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
-      existingStoreFitForPurposeTwo: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? fitForPurpose : '',
-      existingStoreFitForPurposeTwoTrue: applyingFor === 'Building a new store, replacing or expanding an existing store' && existingCover === 'Yes' ? 'true' : 'false',
-      existingStoreCover: applyingFor === 'An impermeable cover only' ? '' : existingCover,
-      existingStoreCoverTrue: applyingFor === 'An impermeable cover only' ? 'false' : 'true',
-      storageType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? '' : storageType,
-      storageTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' ? 'false' : 'true',
-      estimatedVolumeToSixMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
-      estimatedVolumeToSixMonthsTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType ==='Pig' ? 'false' : 'true',
-      estimatedVolumeToEightMonths: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType !== 'Pig' ? '' : serviceCapacityIncrease,
-      estimatedVolumeToEightMonthsTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || applicantType !== 'Pig' ? 'false' : 'true',
-      grantFundedStoreCoverType : applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
-      || grantFundedCover === 'Yes, I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? ' ' : coverType,
-      grantFundedStoreCoverTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' 
-      || grantFundedCover === 'Yes, I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
-      existingStoreCoverType: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' || existingCover === 'No' ? ' ' : existingCoverType,
-      existingStoreCoverTypeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' || existingCover === 'No' ? 'false' : 'true',
-      grantFundedCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || grantFundedCover === 'Yes, I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? ' ' : coverSize + 'm²',
-      grantFundedCoverSizeTrue: applyingFor === 'An impermeable cover only' && fitForPurpose === 'Yes' || grantFundedCover === 'Yes, I already have a cover' || grantFundedCover === 'Not needed, the slurry is treated with acidification' ? 'false' : 'true',
-      existingStoreCoverSize: applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' || existingCover === 'No' ? '' : existingCoverSize + 'm²',
-      existingStoreCoverSizeTrue : applyingFor === 'An impermeable cover only' && fitForPurpose === 'No' || existingCover === 'No' ? 'false' : 'true',
+      existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose  ? fitForPurpose : '',
+      existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
+      projectType: hasFitForPurposeAndCover ? '' : projectType,
+      projectTypeTrue: hasFitForPurposeAndCover  ? 'false' : 'true',
+      impermeableCover: hasFitForPurposeAndCover ? '' : grantFundedCover,
+      impermeableCoverTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+      existingStoreFitForPurposeTwo: newReplaceExpand && existingCover === 'Yes' ? fitForPurpose : '',
+      existingStoreFitForPurposeTwoTrue: newReplaceExpand && existingCover === 'Yes' ? 'true' : 'false',
+      existingStoreCover: isCoverOnly ? '' : existingCover,
+      existingStoreCoverTrue: isCoverOnly ? 'false' : 'true',
+      storageType: hasFitForPurposeAndCover ? '' : storageType,
+      storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+      estimatedVolumeToSixMonths: hasFitForPurposeAndCover || applicantType ==='Pig' ? '' : serviceCapacityIncrease,
+      estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || applicantType ==='Pig' ? 'false' : 'true',
+      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || applicantType !== 'Pig' ? '' : serviceCapacityIncrease,
+      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || applicantType !== 'Pig' ? 'false' : 'true',
+      grantFundedStoreCoverType : hasFitForPurposeAndCover 
+      || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverType,
+      grantFundedStoreCoverTypeTrue: hasFitForPurposeAndCover 
+      || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
+      existingStoreCoverType: isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? ' ' : existingCoverType,
+      existingStoreCoverTypeTrue: isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? 'false' : 'true',
+      grantFundedCoverSize: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? ' ' : coverSize + 'm²',
+      grantFundedCoverSizeTrue: hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment ? 'false' : 'true',
+      existingStoreCoverSize: isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? '' : existingCoverSize + 'm²',
+      existingStoreCoverSizeTrue : isCoverOnly && fitForPurpose === 'No' || existingCover === 'No' ? 'false' : 'true',
       slurrySeparator: separator === 'Yes' ? separator : '',
       slurrySeparatorTrue: separator == 'Yes' ? 'true' : 'false',
       separatorType: separator === 'Yes' ? separatorType : '',
@@ -389,16 +418,17 @@ console.log(submission, 'SUBMISSION')
       solidFractionStorageTrue: separator === 'Yes' ? 'true' : 'false',
       concreteBunkerSize: solidFractionStorage === 'Concrete bunker' ? concreteBunkerSize + 'm²' : '',
       concreteBunkerSizeTrue: solidFractionStorage === 'Concrete bunker' ? 'true' : 'false',
-      planningPermission: applyingFor === 'An impermeable cover only' ? '' : planningPermission,
-      planningPermissionTrue: applyingFor === 'An impermeable cover only'   ? 'false' : 'true'
+      planningPermission: isCoverOnly ? '' : planningPermission,
+      planningPermissionTrue: isCoverOnly   ? 'false' : 'true'
     }
   }
 }
 
 module.exports = function (submission) {
+  const { applying } = submission
   return {
     applicantEmail: getEmailDetails(submission, false),
-    agentEmail: submission.applying === 'Agent' ? getEmailDetails(submission, false, true) : null,
+    agentEmail: applying === 'Agent' ? getEmailDetails(submission, false, true) : null,
     rpaEmail: spreadsheetConfig.sendEmailToRpa ? getEmailDetails(submission, spreadsheetConfig.rpaEmail) : null,
     spreadsheet: getSpreadsheetDetails(submission)
   }
