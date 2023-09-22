@@ -132,7 +132,7 @@ function getSpreadsheetDetails(submission) {
     projectStart, projectType,
     remainingCost,
     serviceCapacityIncrease, storageType, systemType, separatorOptions,
-    tenancy, tenancyLength
+    tenancy, tenancyLength, grantFundedCover
 } = submission;
 
 
@@ -275,52 +275,22 @@ function getPersonsDetails(isAgentEmail, submission) {
 
 function getEmailDetails(submission, rpaEmail, isAgentEmail = false) {
 const {
-    agentsDetails,
-    applicantBusiness,
-    applicantType,
-    applyingFor,
-    businessDetails,
-    calculatedGrant,
-    consentOptional,
-    confirmationId,
-    concreteBunkerSize,
-    coverSize,
-    coverType,
-    existingCover,
-    existingCoverSize,
-    existingCoverType,
-    existingStorageCapacity,
+    agentsDetails, applicantBusiness, applicantType, applyingFor, businessDetails,
+    calculatedGrant, consentOptional, confirmationId, concreteBunkerSize, coverSize, coverType,
+    existingCover, existingCoverSize, existingCoverType, existingStorageCapacity,
     farmerDetails: {
         emailAddress: farmerEmail,
         firstName: farmerName,
         lastName: farmerSurname,
         projectPostcode,
-    },
-    fitForPurpose,
-    gantry,
-    grantFundedCover,
-    gridReference,
-    inEngland,
-    intensiveFarming,
-    itemSizeQuantities,
-    itemsTotalValue,
-    legalStatus,
-    otherItems,
-    plannedStorageCapacity,
-    PlanningPermissionEvidence,
-    planningPermission,
-    projectResponsibility,
-    projectStart,
-    projectType,
-    remainingCosts,
-    separator,
-    separatorType,
-    serviceCapacityIncrease,
-    solidFractionStorage,
-    storageType,
-    systemType,
-    tenancy,
-    tenancyLength,
+    }, fitForPurpose,
+    gantry, grantFundedCover, gridReference,
+    inEngland, intensiveFarming, itemSizeQuantities, itemsTotalValue,
+    legalStatus, otherItems,
+    plannedStorageCapacity, PlanningPermissionEvidence, planningPermission, projectResponsibility,
+    projectStart,projectType, remainingCosts,
+    separator, separatorType, serviceCapacityIncrease, solidFractionStorage,storageType,
+    systemType,tenancy, tenancyLength,
 } = submission;
 
   // Get email, firstName, and lastName based on conditions
