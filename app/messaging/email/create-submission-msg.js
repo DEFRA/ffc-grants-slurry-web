@@ -120,7 +120,7 @@ function getSpreadsheetDetails(submission) {
   const schemeName = 'Slurry Infrastructure Round 2'
   const subScheme = `FTF-${schemeName}`
   const {
-    agentsDetails,applicantType, applyingFor,
+    agentsDetails,applicantType, applyingFor, applying,
     calculatedGrant, confirmationId, concreteBunkerSize, consentOptional, coverSize, coverType,
     existingCover, existingCoverSize, existingCoverType, existingStorageCapacity,
     fitForPurpose,
