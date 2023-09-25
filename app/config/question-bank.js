@@ -2893,7 +2893,7 @@ const questionBank = {
           order: 150,
           title: 'Your planning permission',
           hint: {
-            text: 'Enter the name of your planning authority and your planning reference number'
+            html: 'Enter the name of your planning authority and your planning reference number'
           },
           url: 'planning-permission-evidence',
           baseUrl: 'planning-permission-evidence',
@@ -3296,7 +3296,7 @@ const questionBank = {
           order: 240,
           title: 'Applicant’s details',
           hint: {
-            text: 'Enter the farmer and farm business details'
+            html: 'Enter the farmer and farm business details'
           },
           pageTitle: '',
           url: 'applicant-details',
@@ -3572,7 +3572,7 @@ const questionBank = {
           order: 250,
           title: 'Agent’s details',
           hint: {
-            text: 'Enter the agent and agent business details'
+            html: 'Enter the agent and agent business details'
           },
           pageTitle: '',
           url: 'agent-details',
