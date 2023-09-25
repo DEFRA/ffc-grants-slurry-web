@@ -521,7 +521,7 @@ const showPostPage = async (currentQuestion, request, h) => {
 
   if (thisAnswer?.notEligible) {
     await gapiService.sendGAEvent(request, {
-      name: gapiService.eventTypes.ELIGIBILITY,
+      name: gapiService.eventTypes.ELIMINATION,
       params: {
         page_path: request.route.path,
         page_title: request.route.fingerprint,
