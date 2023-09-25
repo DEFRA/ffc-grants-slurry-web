@@ -19,7 +19,7 @@ describe('Page: /applicant-type', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What do you farm mainly?')
+    expect(response.payload).toContain('Which livestock do you farm mainly?')
     expect(response.payload).toContain('Pig')
     expect(response.payload).toContain('Beef')
     expect(response.payload).toContain('Dairy')

@@ -72,10 +72,7 @@ const questionBank = {
         {
           key: 'applicant-type',
           order: 10,
-          title: 'What do you farm mainly?',
-          hint: {
-            text: 'Your main farm enterprise'
-          },
+          title: 'Which livestock do you farm mainly?',
           pageTitle: '',
           ga: [{ journeyStart: true }],
           url: 'applicant-type',
@@ -95,9 +92,9 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: `This grant is for pig, beef or dairy farmers.
-                    If your main farm enterprise is pig, the grant is to get your slurry storage levels to 8 months.
-                    If beef or dairy is your main farm enterprise, the grant is to get your storage levels to 6 months.`
+                    para: `If your main livestock enterprise is pig, the grant is to get your slurry storage levels to 8 months.
+                    <br>
+                    If beef or dairy is your main livestock enterprise, the grant is to get your storage levels to 6 months.`
                   }
                 ]
               }
@@ -2896,7 +2893,7 @@ const questionBank = {
           order: 150,
           title: 'Your planning permission',
           hint: {
-            text: 'Enter the name of your planning authority and your planning reference number'
+            html: 'Enter the name of your planning authority and your planning reference number'
           },
           url: 'planning-permission-evidence',
           baseUrl: 'planning-permission-evidence',
@@ -3299,7 +3296,7 @@ const questionBank = {
           order: 240,
           title: 'Applicant’s details',
           hint: {
-            text: 'Enter the farmer and farm business details'
+            html: 'Enter the farmer and farm business details'
           },
           pageTitle: '',
           url: 'applicant-details',
@@ -3575,7 +3572,7 @@ const questionBank = {
           order: 250,
           title: 'Agent’s details',
           hint: {
-            text: 'Enter the agent and agent business details'
+            html: 'Enter the agent and agent business details'
           },
           pageTitle: '',
           url: 'agent-details',

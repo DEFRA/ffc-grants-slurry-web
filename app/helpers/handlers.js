@@ -23,7 +23,7 @@ const {
   getEvidenceSummaryModel,
   getDataFromYarValue,
   getConsentOptionalData,
-  handleConditinalHtmlData,
+  handleConditinalHtmlData
 } = require('./pageHelpers')
 
 const setGrantsData = (question, request) => {
@@ -41,7 +41,7 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
   try {
     const emailData = await emailFormatting({
       body: createMsg.getAllDetails(request, confirmationId),
-      correlationId: request.yar.id,
+      correlationId: request.yar.id
     })
     await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
     await gapiService.sendGAEvent(request, {
@@ -67,7 +67,7 @@ const setTitle = async (title, question, request) => {
         SELECT_VARIABLE_TO_REPLACE,
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ),
+      )
     }
   }
 }
@@ -136,11 +136,6 @@ const getPage = async (question, request, h) => {
   setGrantsData(question, request)
 
   switch (url) {
-    case 'applying-for':
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
-      setYarValue(request, 'existingCover', null)
-      break
     case 'grant-funded-cover' :
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
@@ -156,9 +151,6 @@ const getPage = async (question, request, h) => {
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
       setYarValue(request, 'coverSize', null)
-      break
-    case 'applicant-type' :
-      setYarValue(request, 'intensiveFarming', null)
       break
     case 'existing-cover-type' :
       if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
@@ -187,10 +179,10 @@ const getPage = async (question, request, h) => {
       }
       break
     case 'separator':
-      if (getYarValue(request, 'coverType')) { 
-        if(getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') { 
+      if (getYarValue(request, 'coverType')) {
+        if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === 'Yes') {
           question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
-        }else{
+        } else {
           question.backUrl = `${urlPrefix}/cover-size`
         }
       } else if (getYarValue(request, 'existingCoverSize')) {
@@ -212,20 +204,20 @@ const getPage = async (question, request, h) => {
       }
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
-        if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No'){
-          backUrl = `${urlPrefix}/grant-funded-cover`
-        }
+      if (getYarValue(request, 'applyingFor') === 'An impermeable cover only' && getYarValue(request, 'fitForPurpose') === 'No') {
+        backUrl = `${urlPrefix}/grant-funded-cover`
+      }
     case 'fit-for-purpose':
       break
-    case 'fit-for-purpose-conditional': 
-      if(getYarValue(request, 'applyingFor') === 'An impermeable cover only'){
+    case 'fit-for-purpose-conditional':
+      if (getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
         question.maybeEligibleContent.isimpermeablecoveronly = true
         question.nextUrl = `${urlPrefix}/project-type`
         nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
-      }else{
-          question.maybeEligibleContent.isimpermeablecoveronly = false
+      } else {
+        question.maybeEligibleContent.isimpermeablecoveronly = false
       }
-    break
+      break
     // case "storage-type":
     //   setYarValue(request, "serviceCapacityIncrease", null)
     //   setYarValue(request, "separator", null)
@@ -277,8 +269,8 @@ const getPage = async (question, request, h) => {
           html: maybeEligibleContent.reference.html.replace(
             SELECT_VARIABLE_TO_REPLACE,
             (_ignore, _confirmatnId) => confirmationId
-          ),
-        },
+          )
+        }
       }
       request.yar.reset()
     }
@@ -289,7 +281,7 @@ const getPage = async (question, request, h) => {
         SELECT_VARIABLE_TO_REPLACE,
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ),
+      )
     }
 
     consentOptionalData = await addConsentOptionalData(url, request)
@@ -363,65 +355,51 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
 
     if (key === 'gridReference') value = value.replace(/\s/g, '')
 
+    if (yarKey === 'applicantType' && value !== 'Pig') setYarValue(request, 'intensiveFarming', null)
+
     if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
       setYarValue(request, 'coverSize', null)
-
-    }
-    else if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
+    } else if (yarKey === 'applyingFor' && value === 'An impermeable cover only') {
       setYarValue(request, 'existingCover', null)
       setYarValue(request, 'storageType', null)
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'coverType', null)
       setYarValue(request, 'coverSize', null)
-    }
-    else if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
+    } else if (yarKey === 'applyingFor' && value !== 'An impermeable cover only') {
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+    } else if (yarKey === 'existingCover' && value !== 'Yes') {
       setYarValue(request, 'fitForPurpose', null)
       setYarValue(request, 'existingCoverType', null)
       setYarValue(request, 'existingCoverSize', null)
+    } else if (yarKey === 'fitForPurpose' && value === 'Yes' && getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
       setYarValue(request, 'projectType', null)
       setYarValue(request, 'grantFundedCover', null)
-    }
-    else if (yarKey === 'existingCover' && value !== 'Yes') {
-      setYarValue(request, 'existingCoverType', null)
-      setYarValue(request, 'existingCoverSize', null)
-
-    } 
-    else if (yarKey === 'separator' && value === 'No') {
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+    } else if (yarKey === 'separator' && value === 'No') {
       setYarValue(request, 'separatorType', null)
       setYarValue(request, 'separatorOptions', null)
       setYarValue(request, 'gantry', null)
-    } 
-    else if (yarKey === 'separatorType') {
+    } else if (yarKey === 'separatorType') {
       setYarValue(request, 'separatorOptions', value)
-
-    } 
-    else if (yarKey === 'gantry' && value === 'Yes') {
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+    } else if (yarKey === 'gantry' && value === 'Yes') {
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       tempSeparatorVal.push('Gantry')
-
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
-    } 
-    else if (yarKey === 'gantry' && value === 'No') {
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+    } else if (yarKey === 'gantry' && value === 'No') {
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
-
     } else if (yarKey === 'solidFractionStorage' && value === 'Concrete pad') {
-
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       // push user entered value
       tempSeparatorVal.push(value)
-
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
-
     } else if (yarKey === 'solidFractionStorage' && value === 'Concrete bunker') {
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
 
       // push user entered value
       tempSeparatorVal.push('Concrete bunker')
@@ -429,16 +407,12 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
     } else if (yarKey === 'solidFractionStorage' && Number(value)) {
       setYarValue(request, 'concreteBunkerSize', value)
-      
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       if (tempSeparatorVal[tempSeparatorVal.length - 1] === 'Concrete bunker') {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-      
-
-    } 
+    }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
       setYarValue(
@@ -507,7 +481,7 @@ const showPostPage = async (currentQuestion, request, h) => {
     nextUrl,
     nextUrlObject,
     title,
-    type,
+    type
   } = currentQuestion
   const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
   const payload = request.payload
@@ -530,7 +504,6 @@ const showPostPage = async (currentQuestion, request, h) => {
       )
     }
   }
-
 
   const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {
