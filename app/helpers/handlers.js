@@ -368,6 +368,10 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
     } else if (yarKey === 'fitForPurpose' && value === 'Yes' && getYarValue(request, 'applyingFor') === 'An impermeable cover only') {
       setYarValue(request, 'projectType', null)
       setYarValue(request, 'grantFundedCover', null)
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
     } else if (yarKey === 'separator' && value === 'No') {
       setYarValue(request, 'separatorType', null)
       setYarValue(request, 'separatorOptions', null)
