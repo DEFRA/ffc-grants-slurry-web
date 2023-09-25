@@ -110,7 +110,7 @@ const addConditionalLabelData = async (
 }
 const isImperableCover = getQuestionAnswer('applying-for', 'applying-for-A2')
 const isPig = getQuestionAnswer('applicant-type', 'applicant-type-A1')
-const replaceStore =  getQuestionAnswer('project-type', 'project-type-A1')
+const isReplaceStore =  getQuestionAnswer('project-type', 'project-type-A1')
 const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1');
 
 const getPage = async (question, request, h) => {
@@ -163,7 +163,7 @@ const getPage = async (question, request, h) => {
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
         question.sidebar.showSidebar = true
-      } else if (getYarValue(request, 'projectType') === replaceStore) {
+      } else if (getYarValue(request, 'projectType') === isReplaceStore) {
         if (getYarValue(request, 'applicantType') === isPig) {
           question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
           question.sidebar.showSidebar = true
@@ -192,13 +192,13 @@ const getPage = async (question, request, h) => {
         question.backUrl = `${urlPrefix}/existing-cover-size`
       } else {
         if (getYarValue(request, 'applicantType') === isPig) {
-          if (getYarValue(request, 'projectType') === replaceStore) {
+          if (getYarValue(request, 'projectType') === isReplaceStore) {
             question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
           } else {
             question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
           }
         } else {
-          if (getYarValue(request, 'projectType') === replaceStore) {
+          if (getYarValue(request, 'projectType') === isReplaceStore) {
             question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
           } else {
             question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
