@@ -23,7 +23,7 @@ const {
   getEvidenceSummaryModel,
   getDataFromYarValue,
   getConsentOptionalData,
-  handleConditinalHtmlData,
+  handleConditinalHtmlData
 } = require('./pageHelpers')
 
 const setGrantsData = (question, request) => {
@@ -41,7 +41,7 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
   try {
     const emailData = await emailFormatting({
       body: createMsg.getAllDetails(request, confirmationId),
-      correlationId: request.yar.id,
+      correlationId: request.yar.id
     })
     await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
     // TODO: update Gapi calls to use new format
@@ -71,12 +71,12 @@ const setTitle = async (title, question, request) => {
         SELECT_VARIABLE_TO_REPLACE,
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ),
+      )
     }
   }
 }
 const processGA = async (question, request, confirmationId) => {
-  //TODO: update Gapi calls to use new format
+  // TODO: update Gapi calls to use new format
   // if (question.ga) {
   //   await gapiService.processGA(request, question.ga, confirmationId)
   // }
@@ -134,11 +134,6 @@ const getPage = async (question, request, h) => {
   setGrantsData(question, request)
 
   switch (url) {
-    case 'applying-for':
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
-      setYarValue(request, 'existingCover', null)
-      break
     case 'grant-funded-cover' :
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
@@ -154,9 +149,6 @@ const getPage = async (question, request, h) => {
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'existingCoverSize', null)
       setYarValue(request, 'coverSize', null)
-      break
-    case 'applicant-type' :
-      setYarValue(request, 'intensiveFarming', null)
       break
     case 'existing-cover-type' :
       if (getYarValue(request, 'applyingFor') === getQuestionAnswer('applying-for', 'applying-for-A2')) {
@@ -188,7 +180,7 @@ const getPage = async (question, request, h) => {
       if (getYarValue(request, 'coverType')) { 
         if(getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === getQuestionAnswer('existing-cover', 'existing-cover-A1')) { 
           question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
-        }else{
+        } else {
           question.backUrl = `${urlPrefix}/cover-size`
         }
       } else if (getYarValue(request, 'existingCoverSize')) {
@@ -220,8 +212,8 @@ const getPage = async (question, request, h) => {
         question.maybeEligibleContent.isimpermeablecoveronly = true
         question.nextUrl = `${urlPrefix}/project-type`
         nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
-      }else{
-          question.maybeEligibleContent.isimpermeablecoveronly = false
+      } else {
+        question.maybeEligibleContent.isimpermeablecoveronly = false
       }
     break
     default:
@@ -234,7 +226,7 @@ const getPage = async (question, request, h) => {
       .isEligible
   ) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
-    //TODO update Gapi calls to use new format
+    // TODO update Gapi calls to use new format
     // gapiService.sendEligibilityEvent(request, "true")
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
@@ -260,8 +252,8 @@ const getPage = async (question, request, h) => {
           html: maybeEligibleContent.reference.html.replace(
             SELECT_VARIABLE_TO_REPLACE,
             (_ignore, _confirmatnId) => confirmationId
-          ),
-        },
+          )
+        }
       }
       request.yar.reset()
     }
@@ -272,7 +264,7 @@ const getPage = async (question, request, h) => {
         SELECT_VARIABLE_TO_REPLACE,
         (_ignore, additionalYarKeyName) =>
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      ),
+      )
     }
 
     consentOptionalData = await addConsentOptionalData(url, request)
@@ -346,65 +338,51 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
 
     if (key === 'gridReference') value = value.replace(/\s/g, '')
 
-    if (yarKey === 'grantFundedCover' && value !== getQuestionAnswer('grant-funded-cover', 'grant-funded-cover-A1')) {
+    if (yarKey === 'applicantType' && value !== getQuestionAnswer('applicant-type', 'applicant-type-A1')) setYarValue(request, 'intensiveFarming', null)
+
+    if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
       setYarValue(request, 'coverSize', null)
-
-    }
-    else if (yarKey === 'applyingFor' && value === getQuestionAnswer('applying-for', 'applying-for-A2')) {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
+    } else if (yarKey === 'applyingFor' && value === getQuestionAnswer('applying-for', 'applying-for-A2')) {
       setYarValue(request, 'existingCover', null)
       setYarValue(request, 'storageType', null)
       setYarValue(request, 'serviceCapacityIncrease', null)
       setYarValue(request, 'coverType', null)
       setYarValue(request, 'coverSize', null)
-    }
-    else if (yarKey === 'applyingFor' && value !== getQuestionAnswer('applying-for', 'applying-for-A2')) {
+    } else if (yarKey === 'applyingFor' && value !== getQuestionAnswer('applying-for', 'applying-for-A2')) {
+      setYarValue(request, 'existingCoverType', null)
+      setYarValue(request, 'existingCoverSize', null)
+    } else if (yarKey === 'existingCover' && value !== 'Yes') {
       setYarValue(request, 'fitForPurpose', null)
       setYarValue(request, 'existingCoverType', null)
       setYarValue(request, 'existingCoverSize', null)
+    } else if (yarKey === 'fitForPurpose' && value === 'Yes' && getYarValue(request, 'applyingFor') === getQuestionAnswer('applying-for', 'applying-for-A2')) {
       setYarValue(request, 'projectType', null)
       setYarValue(request, 'grantFundedCover', null)
-    }
-    else if (yarKey === 'existingCover' && value !== getQuestionAnswer('existing-cover', 'existing-cover-A1')) {
-      setYarValue(request, 'existingCoverType', null)
-      setYarValue(request, 'existingCoverSize', null)
-
-    } 
-    else if (yarKey === 'separator' && value === 'No') {
+      setYarValue(request, 'storageType', null)
+      setYarValue(request, 'serviceCapacityIncrease', null)
+      setYarValue(request, 'coverType', null)
+      setYarValue(request, 'coverSize', null)
+    } else if (yarKey === 'separator' && value === 'No') {
       setYarValue(request, 'separatorType', null)
       setYarValue(request, 'separatorOptions', null)
       setYarValue(request, 'gantry', null)
-    } 
-    else if (yarKey === 'separatorType') {
+    } else if (yarKey === 'separatorType') {
       setYarValue(request, 'separatorOptions', value)
-
-    } 
-    else if (yarKey === 'gantry' && value === getQuestionAnswer('gantry', 'gantry-A1')) {
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+    } else if (yarKey === 'gantry' && value === 'Yes') {
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       tempSeparatorVal.push('Gantry')
-
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
-    } 
-    else if (yarKey === 'gantry' && value === 'No') {
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+    } else if (yarKey === 'gantry' && value === 'No') {
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
-
     } else if (yarKey === 'solidFractionStorage' && value === 'Concrete pad') {
-
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       // push user entered value
       tempSeparatorVal.push(value)
-
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
-
     } else if (yarKey === 'solidFractionStorage' && value === 'Concrete bunker') {
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
 
       // push user entered value
       tempSeparatorVal.push('Concrete bunker')
@@ -412,16 +390,12 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
     } else if (yarKey === 'solidFractionStorage' && Number(value)) {
       setYarValue(request, 'concreteBunkerSize', value)
-      
-      let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       if (tempSeparatorVal[tempSeparatorVal.length - 1] === 'Concrete bunker') {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-      
-
-    } 
+    }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
       setYarValue(
@@ -490,7 +464,7 @@ const showPostPage = (currentQuestion, request, h) => {
     nextUrl,
     nextUrlObject,
     title,
-    type,
+    type
   } = currentQuestion
   const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
   const payload = request.payload
@@ -514,7 +488,6 @@ const showPostPage = (currentQuestion, request, h) => {
     }
   }
 
-
   const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {
     // TODO: update Gapi calls to use new format
@@ -523,7 +496,7 @@ const showPostPage = (currentQuestion, request, h) => {
   }
 
   if (thisAnswer?.notEligible) {
-    //TODO update Gapi calls to use new format
+    // TODO update Gapi calls to use new format
     // gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible)
     return h.view('not-eligible', NOT_ELIGIBLE)
   } else if (thisAnswer?.redirectUrl) {
