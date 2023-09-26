@@ -12,8 +12,8 @@ const schema = Joi.object({
   serviceEndDate: Joi.string().default(serviceEndDate),
   serviceEndTime: Joi.string().default(serviceEndTime),
   cookiePassword: Joi.string().default('dummycookiepassworddummycookiepassword'),
-  googleTagManagerKey: Joi.string().default('GTM-WJ5C78H'),
-  googleTagManagerServerKey: Joi.string().default('UA-179628664-4'),
+  googleTagManagerKey: Joi.string().default('G-1NQ7QYDS14'),
+  googleTagManagerServerKey: Joi.string().default('NVW29SmFTueM1qVawk2H2Q'),
   protectiveMonitoringUrl: Joi.string().allow(''),
   startPageUrl: Joi.string().default(`${urlPrefix}${startPageUrl}`),
   cookieOptions: Joi.object({
