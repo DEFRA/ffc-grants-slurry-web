@@ -48,6 +48,10 @@
       {% endif %}
       <p class="govuk-body">{{ messageContent | safe}}</p>
 
+        {% if isconcreteBunkerSize %}
+            <p class="govuk-body">The grant contribution for the concrete bunker is capped at £16,180.</p>
+      {% endif %}
+
       {% if warning %} 
         {{ govukWarningText(warning) }}
       {% endif %}
@@ -59,6 +63,7 @@
       {% if messageLink %}
         <p class="govuk-body"><a href="{{messageLink.url}}" class="govuk-link">{{messageLink.title}}</a></p>
       {% endif %}
+
       
       {% if isimpermeablecoveronly %}
             {{ govukButton({

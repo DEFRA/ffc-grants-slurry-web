@@ -2745,6 +2745,7 @@ const questionBank = {
           },
           maybeEligible: true,
           maybeEligibleContent: {
+            isconcreteBunkerSize: false,
             messageHeader: 'Potential grant funding',
             messageContent:
               'Based on the standardised grant amount for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',

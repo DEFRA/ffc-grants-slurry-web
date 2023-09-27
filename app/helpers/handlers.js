@@ -165,6 +165,14 @@ const getPage = async (question, request, h) => {
         }
       }
       break
+      case 'potential-amount':
+      if(Number(getYarValue(request, 'concreteBunkerSize')) >= 100){
+        question.maybeEligibleContent.isconcreteBunkerSize = true
+        console.log('hohoho')
+      }else{
+        question.maybeEligibleContent.isconcreteBunkerSize = false
+      }
+      break
     case 'separator':
       if (getYarValue(request, 'coverType')) { 
         if(getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) { 
