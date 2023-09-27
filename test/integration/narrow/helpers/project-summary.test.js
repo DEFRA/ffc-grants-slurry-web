@@ -286,7 +286,7 @@ describe('Project Summary Array Function', () => {
           } else if (key === 'separatorOptions') {
             return separatorOptions
           } else if (key === 'concreteBunkerSize') {
-            return 6
+            return 100
           } else {
             return itemsList
           }
@@ -345,8 +345,8 @@ describe('Project Summary Array Function', () => {
       {
         item: 'Concrete bunker',
         amount: '£10',
-        quantity: '6m²',
-        total: '£60'
+        quantity: '100m²',
+        total: '£16,180'
       },
       {
         item: 'Reception pit',
