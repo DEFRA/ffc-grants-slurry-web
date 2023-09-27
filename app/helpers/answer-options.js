@@ -167,13 +167,12 @@ const getOptions = (data, question, conditionalHtml, request) => {
         const concreteBunkerStorageOptionIndex = answersList.indexOf(concreteBunkerStorageOption)
         concreteBunkerStorageOption.conditional = true
         answersList[concreteBunkerStorageOptionIndex] = concreteBunkerStorageOption
-
         // add brakcets around hint text
         answersList.forEach(answer => {
           answer.hint.html = '(' + answer.hint.html + ')'
           if(answer.value === 'Concrete bunker'){
             // add concrete bunker unique hint text before grant amount hint
-            answer.hint.html = "Maximum grant contribution: up to 100 m² </br>" + answer.hint.html
+            answer.hint.html =  answer.hint.html + "</br> You can apply for a maximum of 100m² (£16,180) "
           }
         })
       }
