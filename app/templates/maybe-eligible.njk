@@ -65,7 +65,7 @@
       {% endif %}
 
       
-      {% if isimpermeablecoveronly %}
+      {% if isImpermeableCoverOnly %}
             {{ govukButton({
                 text: 'Continue to apply for a store' ,
                 classes: "govuk-!-margin-top-5",
@@ -74,7 +74,7 @@
               })}}
         {% endif %}
 
-      {% if not consentOptionalData and not reference and not isimpermeablecoveronly %}
+      {% if not consentOptionalData and not reference and not isImpermeableCoverOnly %}
         {{ govukButton({
                 text: 'Continue' ,
                 classes: "govuk-!-margin-top-5",

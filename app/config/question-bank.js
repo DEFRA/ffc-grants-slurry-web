@@ -1073,7 +1073,7 @@ const questionBank = {
           maybeEligible: true,
           preValidationKeys: [],
           maybeEligibleContent: {
-            isimpermeablecoveronly: false,
+            isImpermeableCoverOnly: false,
             messageHeader:
               'You may be able to apply for a grant from this scheme',
             messageContent: '',

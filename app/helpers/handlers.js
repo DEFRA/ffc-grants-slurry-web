@@ -168,7 +168,6 @@ const getPage = async (question, request, h) => {
       case 'potential-amount':
       if(Number(getYarValue(request, 'concreteBunkerSize')) >= 100){
         question.maybeEligibleContent.isconcreteBunkerSize = true
-        console.log('hohoho')
       }else{
         question.maybeEligibleContent.isconcreteBunkerSize = false
       }
@@ -197,6 +196,7 @@ const getPage = async (question, request, h) => {
           }
         }
       }
+      
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
         if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No'){
@@ -206,11 +206,11 @@ const getPage = async (question, request, h) => {
       break
     case 'fit-for-purpose-conditional': 
       if(getYarValue(request, 'applyingFor') === isImperableCover){
-        question.maybeEligibleContent.isimpermeablecoveronly = true
+        question.maybeEligibleContent.isImpermeableCoverOnly = true
         question.nextUrl = `${urlPrefix}/project-type`
         nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       } else {
-        question.maybeEligibleContent.isimpermeablecoveronly = false
+        question.maybeEligibleContent.isImpermeableCoverOnly = false
       }
     break
     default:
