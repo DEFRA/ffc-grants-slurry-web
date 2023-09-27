@@ -139,22 +139,6 @@ const getPage = async (question, request, h) => {
 
 
   switch (url) {
-    case 'grant-funded-cover' :
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'existingCoverSize', null)
-      setYarValue(request, 'coverSize', null)
-      // nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
-      break
-    case 'existing-cover' :
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'existingCoverSize', null)
-      setYarValue(request, 'coverSize', null)
-      break
-    case 'existing-cover-pig' :
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'existingCoverSize', null)
-      setYarValue(request, 'coverSize', null)
-      break
     case 'existing-cover-type' :
       if (getYarValue(request, 'applyingFor') === isImperableCover) {
         setYarValue(request, 'planningPermission', null)
@@ -348,20 +332,12 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
     if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
       setYarValue(request, 'coverType', null)
       setYarValue(request, 'coverSize', null)
-    } else if (yarKey === 'applyingFor' && value === isImperableCover) {
-      setYarValue(request, 'existingCover', null)
-      setYarValue(request, 'storageType', null)
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'coverType', null)
-      setYarValue(request, 'coverSize', null)
-    } else if (yarKey === 'applyingFor' && value !== isImperableCover) {
-      setYarValue(request, 'existingCoverType', null)
-      setYarValue(request, 'existingCoverSize', null)
     } else if (yarKey === 'existingCover' && value !== 'Yes') {
       setYarValue(request, 'fitForPurpose', null)
       setYarValue(request, 'existingCoverType', null)
       setYarValue(request, 'existingCoverSize', null)
     } else if (yarKey === 'fitForPurpose' && value === 'Yes' && getYarValue(request, 'applyingFor') === isImperableCover) {
+      setYarValue(request, 'existingCover', null)
       setYarValue(request, 'projectType', null)
       setYarValue(request, 'grantFundedCover', null)
       setYarValue(request, 'storageType', null)
