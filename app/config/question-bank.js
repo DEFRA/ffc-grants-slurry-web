@@ -792,7 +792,7 @@ const questionBank = {
           backUrl: 'existing-storage-capacity',
           nextUrl: 'applying-for',
           url: 'planned-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['existingStorageCapacity'],
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
@@ -856,7 +856,7 @@ const questionBank = {
           backUrl: 'pig-existing-storage-capacity',
           nextUrl: 'applying-for',
           url: 'pig-planned-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['existingStorageCapacity'],
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
@@ -924,7 +924,7 @@ const questionBank = {
               elseUrl: 'planned-storage-capacity'
             }
           },
-          preValidationKeys: [],
+          preValidationKeys: ['plannedStorageCapacity'],
           fundingPriorities: '',
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1013,7 +1013,7 @@ const questionBank = {
             }
           },
           nextUrl: 'estimated-grant',
-          preValidationKeys: [],
+          preValidationKeys: ['applyingFor'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1071,7 +1071,7 @@ const questionBank = {
             },
           },
           maybeEligible: true,
-          preValidationKeys: [],
+          preValidationKeys: ['fitForPurpose'],
           maybeEligibleContent: {
             isimpermeablecoveronly: false,
             messageHeader:
@@ -1250,7 +1250,7 @@ const questionBank = {
           backUrl: 'grant-funded-cover',
           nextUrl: 'fit-for-purpose',
           url: 'existing-cover',
-          preValidationKeys: ['projectType'],
+          preValidationKeys: ['grantFundedCover'],
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1298,7 +1298,7 @@ const questionBank = {
           backUrl: 'grant-funded-cover',
           nextUrl: 'fit-for-purpose',
           url: 'existing-cover-pig',
-          preValidationKeys: ['projectType'],
+          preValidationKeys: ['grantFundedCover'],
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1353,7 +1353,7 @@ const questionBank = {
             }
           },
           nextUrl: 'standardised-grant-amounts',
-          preValidationKeys: [],
+          preValidationKeys: ['applyingFor'],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Estimate how much grant you could get',
@@ -1708,7 +1708,7 @@ const questionBank = {
             }
           },
           url: 'cover-type',
-          preValidationKeys: ['serviceCapacityIncrease'], // may need to update these
+          preValidationKeys: ['standardisedCostObject'],
           hint: {
             text: 'Select one option'
           },
@@ -1769,6 +1769,7 @@ const questionBank = {
             }
           },
           backUrl: 'cover-type',
+          preValidationKeys: ['standardisedCostObject'],
           sidebar: {
             showSidebar: true,
             mainHeading: 'Your project items',
@@ -2001,7 +2002,7 @@ const questionBank = {
           baseUrl: 'existing-grant-funded-cover-size',
           backUrl: 'existing-cover-type',
           nextUrl: 'separator',
-          preValidationKeys: ['coverType'],
+          preValidationKeys: ['existingCoverType'],
           type: 'multi-input',
           hint: {
             html: `
@@ -2138,7 +2139,7 @@ const questionBank = {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: 'separator',
-          // preValidationKeys: ["standardisedGrantAmounts"],
+          preValidationKeys: ['standardisedCostObject'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -2521,7 +2522,7 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: [],
+          preValidationKeys: ['separator'],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
