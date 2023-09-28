@@ -162,7 +162,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
       }
 
       if (question.yarKey === "solidFractionStorage"){
-        const grantAmountValue = formatUKCurrency(question.cappedAmount)
+        const cappedAmount = formatUKCurrency(question.cappedAmount)
         answersList.splice(2, 3)
         const concreteBunkerStorageOption = answersList.filter(answer => answer.value === 'Concrete bunker')[0]
         // set concrete bunker to be a conditional field answer
@@ -174,7 +174,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
           answer.hint.html = '(' + answer.hint.html + ')'
           if(answer.value === 'Concrete bunker'){
             // add concrete bunker unique hint text before grant amount hint
-            answer.hint.html =  answer.hint.html + `</br> You can apply for a maximum of 100m² (£${grantAmountValue})`
+            answer.hint.html =  answer.hint.html + `</br> You can apply for a maximum of 100m² (£${cappedAmount})`
           }
         })
       }
