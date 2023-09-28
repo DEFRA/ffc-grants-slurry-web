@@ -1,7 +1,7 @@
 const appInsights = require('./app-insights')
 const { getYarValue } = require('../helpers/session')
 
-const blockDefaultPageViews = [ 'start', 'applying' ] // -- blocked pages
+const blockDefaultPageViews = [ 'login', 'start', 'applying' ] // -- blocked pages
 const isBlockDefaultPageView = (url) => {
   const currentUrl = url.pathname.split('/').pop().toString().toLowerCase()
   return blockDefaultPageViews.indexOf(currentUrl) >= 0
