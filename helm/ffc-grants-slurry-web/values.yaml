@@ -54,6 +54,7 @@ container:
   pollingInterval: 200
   pollingRetries: 20
   protectiveMonitoringUrl:
+  analyticsPropertyApi: dummy
   googleTagManagerKey: dummy
   googleTagManagerServerKey: dummy
   startPageUrl: dummy

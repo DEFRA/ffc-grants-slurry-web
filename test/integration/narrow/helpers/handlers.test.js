@@ -32,7 +32,7 @@ describe('Get & Post Handlers', () => {
   }))
 
   jest.mock('../../../../app/services/gapi-service', () => ({
-    sendDimensionOrMetrics: jest.fn().mockReturnValue(true)
+    sendGAEvent: jest.fn().mockReturnValue(true)
   }))
 
   // Mock senders
