@@ -61,8 +61,8 @@ async function createServer () {
     options: {
       propertySettings: [
         {
-          id: process.env.ANALYTICS_PROPERTY_API,
-          key: process.env.GOOGLE_TAG_MANAGER_SERVER_KEY,
+          id: config.googleTagManagerServerKey,
+          key: config.analyticsPropertyApi,
           hitTypes: [ 'pageview' ]
         }
       ],
