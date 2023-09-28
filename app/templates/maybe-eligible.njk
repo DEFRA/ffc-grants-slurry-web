@@ -48,8 +48,8 @@
       {% endif %}
       <p class="govuk-body">{{ messageContent | safe}}</p>
 
-        {% if isconcreteBunkerSize %}
-            <p class="govuk-body">The grant contribution for the concrete bunker is capped at £16,180.</p>
+      {% if conditionalText.condition %}
+        <p class="govuk-body">{{ conditionalText.conditionalPara | safe}}</p>
       {% endif %}
 
       {% if warning %} 

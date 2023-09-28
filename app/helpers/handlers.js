@@ -25,6 +25,7 @@ const {
   getConsentOptionalData,
   handleConditinalHtmlData
 } = require('./pageHelpers')
+const { validateAnswerField } = require('./errorHelpers')
 
 const setGrantsData = (question, request) => {
   if (question.grantInfo) {
@@ -165,9 +166,6 @@ const getPage = async (question, request, h) => {
         }
       }
       break
-      case 'potential-amount': 
-        question.maybeEligibleContent.isconcreteBunkerSize = Number(getYarValue(request, 'concreteBunkerSize')) > 100 ? true : false
-      break
     case 'separator':
       if (getYarValue(request, 'coverType')) { 
         if(getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) { 
@@ -228,6 +226,15 @@ const getPage = async (question, request, h) => {
     let { maybeEligibleContent } = question
     maybeEligibleContent.title = question.title
     let consentOptionalData
+
+    if('conditionalText' in maybeEligibleContent ){
+      let value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
+      let validationType =  maybeEligibleContent.conditionalText.validationType
+      let details =  maybeEligibleContent.conditionalText.details
+      let cappedAmount = maybeEligibleContent.conditionalText.cappedAmount
+      maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
+      setYarValue(request, 'cappedAmount', cappedAmount)
+    }
 
     if (maybeEligibleContent.reference) {
       if (!getYarValue(request, 'consentMain')) {
