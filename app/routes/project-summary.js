@@ -47,8 +47,6 @@ module.exports = [{
     const result = formatSummaryTable(request)
     const totalValue = formatUKCurrency(request.yar.get('itemsTotalValue'))
     setYarValue(request, 'current-score', 'Eligible')
-    // setYarValue(request, 'onScorePage', true) // maybe needed?
-    await gapiService.sendGAEvent(request, { name: gapiService.eventTypes.SCORE, params: { score: getYarValue(request, 'current-score') } })
 
     return h.view(viewTemplate, createModel({ catagory: result, totalValue: totalValue }, request))
   }

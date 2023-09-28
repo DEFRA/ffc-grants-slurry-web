@@ -41,7 +41,6 @@ module.exports = [{
       const result = await getStandardisedCosts(request.yar.id)
       console.log(result, '[THIS IS RESULT WE GOT BACK]')
       request.yar.set('standardisedCostObject', result)
-      await sendGAEvent({ name: eventTypes.STANDARDISED_COST, params: { standardised_cost: result }})
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {
       console.log(error)

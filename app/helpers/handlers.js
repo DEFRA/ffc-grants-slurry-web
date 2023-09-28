@@ -48,7 +48,7 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
       name: gapiService.eventTypes.CONFIRMATION,
       params: {
         confirmation_time: gapiService.getTimeofJourneySinceStart(request),
-        final_score: getYarValue(request, 'current-score'),
+        final_score: 'Eligible',
         user_type: getYarValue(request, 'applying'),
         confirmation_id: confirmationId,
       },
@@ -226,6 +226,10 @@ const getPage = async (question, request, h) => {
       }
     })
     return h.view('not-eligible', NOT_ELIGIBLE)
+  }
+
+  if(url === 'result-page') {
+    await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { result } })
   }
 
   if (question.maybeEligible) {
