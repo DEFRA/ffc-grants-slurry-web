@@ -105,7 +105,7 @@ function formatSummaryTable (request) {
             if (item.item === otherItem) {
               const unit = suffixGenerator(item.unit)
 
-              total = item.item === 'Concrete bunker' && Number(correctSize) >= 100 ? 16180 : (correctSize * String(item.amount).replace(/,/g, ''))
+              total = item.item === 'Concrete bunker' && Number(correctSize) > 100 ? 16180 : (correctSize * String(item.amount).replace(/,/g, ''))
 
               returnArray.push({
                 item: otherItem,
