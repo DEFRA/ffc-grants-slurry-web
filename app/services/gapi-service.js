@@ -58,6 +58,7 @@ const getTimeofJourneySinceStart = (request) => {
 
 module.exports = {
   isBlockDefaultPageView,
+  getTimeofJourneySinceStart,
   sendGAEvent,
   eventTypes
 }

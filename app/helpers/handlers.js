@@ -139,7 +139,6 @@ const getPage = async (question, request, h) => {
   let confirmationId = ''
   setGrantsData(question, request)
 
-
   switch (url) {
     case 'existing-cover-type' :
       if (getYarValue(request, 'applyingFor') === isImperableCover) {
@@ -228,8 +227,8 @@ const getPage = async (question, request, h) => {
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
-  if(url === 'result-page') {
-    await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { result } })
+  if (url === 'result-page') {
+    await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { final_score: 'Eligible' }})
   }
 
   if (question.maybeEligible) {
