@@ -2759,7 +2759,7 @@ const questionBank = {
                   min: 1,
                   max: 100
               },
-              cappedAmount: 16180,
+              cappedAmount: 16818,
               conditionalPara: 'The grant contribution for the concrete bunker is capped at £{{_cappedAmount_}}',
             },
           }
