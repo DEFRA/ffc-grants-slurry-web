@@ -44,19 +44,15 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
       correlationId: request.yar.id
     })
     await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
-    // TODO: update Gapi calls to use new format
-    // await gapiService.sendDimensionOrMetrics(request, [ {
-    //   dimensionOrMetric: gapiService.dimensions.CONFIRMATION,
-    //   value: confirmationId
-    // }, {
-    //   dimensionOrMetric: gapiService.dimensions.FINALSCORE,
-    //   value: getYarValue(request, 'current-score')
-    // },
-    // {
-    //   dimensionOrMetric: gapiService.metrics.CONFIRMATION,
-    //   value: 'TIME'
-    // }
-    // ])
+    await gapiService.sendGAEvent(request, {
+      name: gapiService.eventTypes.CONFIRMATION,
+      params: {
+        confirmation_time: gapiService.getTimeofJourneySinceStart(request),
+        final_score: 'Eligible',
+        user_type: getYarValue(request, 'applying'),
+        confirmation_id: confirmationId,
+      },
+    })
     console.log('[CONFIRMATION EVENT SENT]')
   } catch (err) {
     console.log('ERROR: ', err)
@@ -76,10 +72,16 @@ const setTitle = async (title, question, request) => {
   }
 }
 const processGA = async (question, request, confirmationId) => {
-  // TODO: update Gapi calls to use new format
-  // if (question.ga) {
-  //   await gapiService.processGA(request, question.ga, confirmationId)
-  // }
+  if (question.ga) {
+    await gapiService.sendGAEvent(request, {
+      name: gapiService.eventTypes.PAGEVIEW,
+      params: {
+        page_path: request.route.path,
+        page_title: request.route.fingerprint,
+        host_name: request.info.hostname,
+      },
+    })
+  }
 }
 
 const addConsentOptionalData = async (url, request) => {
@@ -136,7 +138,6 @@ const getPage = async (question, request, h) => {
   }
   let confirmationId = ''
   setGrantsData(question, request)
-
 
   switch (url) {
     case 'existing-cover-type' :
@@ -215,9 +216,19 @@ const getPage = async (question, request, h) => {
       .isEligible
   ) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
-    // TODO update Gapi calls to use new format
-    // gapiService.sendEligibilityEvent(request, "true")
+    await gapiService.sendGAEvent(request, {
+      name: gapiService.eventTypes.ELIGIBILITY,
+      params: {
+        page_path: request.route.path,
+        page_title: request.route.fingerprint,
+        host_name: request.info.hostname,
+      }
+    })
     return h.view('not-eligible', NOT_ELIGIBLE)
+  }
+
+  if (url === 'result-page') {
+    await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { final_score: 'Eligible' }})
   }
 
   if (question.maybeEligible) {
@@ -436,7 +447,7 @@ const handleMultiInput = (
   }
 }
 
-const showPostPage = (currentQuestion, request, h) => {
+const showPostPage = async (currentQuestion, request, h) => {
   const {
     yarKey,
     answers,
@@ -471,14 +482,28 @@ const showPostPage = (currentQuestion, request, h) => {
 
   const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {
-    // TODO: update Gapi calls to use new format
-    // gapiService.sendValidationDimension(request)
+    await gapiService.sendGAEvent(request, {
+      name: gapiService.eventTypes.EXCEPTION,
+      params: {
+        page_path: request.route.path,
+        page_title: request.route.fingerprint,
+        host_name: request.info.hostname,
+        exception: errors,
+      }
+    })
     return errors
   }
 
   if (thisAnswer?.notEligible) {
-    // TODO update Gapi calls to use new format
-    // gapiService.sendEligibilityEvent(request, !!thisAnswer?.notEligible)
+    await gapiService.sendGAEvent(request, {
+      name: gapiService.eventTypes.ELIMINATION,
+      params: {
+        page_path: request.route.path,
+        page_title: request.route.fingerprint,
+        host_name: request.info.hostname,
+        eligibility_passed: !!thisAnswer?.notEligible,
+      }
+    })
     return h.view('not-eligible', NOT_ELIGIBLE)
   } else if (thisAnswer?.redirectUrl) {
     return h.redirect(thisAnswer?.redirectUrl)
