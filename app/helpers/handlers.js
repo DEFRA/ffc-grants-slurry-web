@@ -206,14 +206,7 @@ const getPage = async (question, request, h) => {
       .isEligible
   ) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
-    await gapiService.sendGAEvent(request, {
-      name: gapiService.eventTypes.ELIGIBILITY,
-      params: {
-        page_path: request.route.path,
-        page_title: request.route.fingerprint,
-        host_name: request.info.hostname,
-      }
-    })
+    gapiService.sendGAEvent(request, { name: gapiService.eventTypes.ELIMINATION, params: {} })
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 

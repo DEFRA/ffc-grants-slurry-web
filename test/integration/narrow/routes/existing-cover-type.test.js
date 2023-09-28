@@ -3,7 +3,8 @@ const { crumbToken } = require('./test-helper')
 describe('Existing cover Type test', () => {
 const varList = {
     coverType: null,
-    applyingFor: null
+    applyingFor: null,
+    standardisedCostObject: 'hello'
 }
 
     beforeEach(() => {

@@ -3,8 +3,8 @@ const { getYarValue } = require('../helpers/session')
 
 const blockDefaultPageViews = [ 'login', 'start', 'applying', 'session-timeout' ] // -- blocked pages
 const isBlockDefaultPageView = (url) => {
-  const currentUrl = url.pathname.split('/').pop().toString().toLowerCase()
-  return blockDefaultPageViews.indexOf(currentUrl) >= 0 && !url.pathname.includes('assets')
+  const currentUrl = url.split('/').pop().toString().toLowerCase()
+  return blockDefaultPageViews.indexOf(currentUrl) >= 0 && !url.includes('assets')
 }
 
 const grant_type = 'Slurry Infrastructure'
