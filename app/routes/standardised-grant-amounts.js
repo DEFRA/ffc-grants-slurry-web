@@ -2,7 +2,8 @@ const { getStandardisedCosts } = require('../messaging/application')
 const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
 const { getYarValue } = require('../helpers/session')
-const { sendGAEvent, eventTypes } = require('../services/gapi-service')
+
+const gapiService = require('../services/gapi-service')
 
 const urlPrefix = require('../config/server').urlPrefix
 const viewTemplate = 'standardised-grant-amounts'
@@ -44,6 +45,7 @@ module.exports = [{
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {
       console.log(error)
+      await gapiService.sendGAEvent(request, { name: gapiService.eventTypes.EXCEPTION, params: { error: error.message } })
       return h.view('500').takeover()
     }
   }

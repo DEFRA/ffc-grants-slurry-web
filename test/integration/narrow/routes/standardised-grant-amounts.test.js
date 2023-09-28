@@ -4,6 +4,8 @@ jest.mock('../../../../app/messaging/application')
 const { getStandardisedCosts } = require('../../../../app/messaging/application')
 const messaging = require('../../../../app/messaging/application')
 
+const gapiService = require('../../../../app/services/gapi-service')
+
 jest.mock('../../../../app/helpers/page-guard')
 const { guardPage } = require('../../../../app/helpers/page-guard')
 

@@ -1,17 +1,16 @@
 const appInsights = require('./app-insights')
 const { getYarValue } = require('../helpers/session')
 
-const blockDefaultPageViews = [ 'login', 'start', 'applying' ] // -- blocked pages
+const blockDefaultPageViews = [ 'login', 'start', 'applying', 'session-timeout' ] // -- blocked pages
 const isBlockDefaultPageView = (url) => {
   const currentUrl = url.pathname.split('/').pop().toString().toLowerCase()
-  return blockDefaultPageViews.indexOf(currentUrl) >= 0
+  return blockDefaultPageViews.indexOf(currentUrl) >= 0 && !url.pathname.includes('assets')
 }
 
 const grant_type = 'Slurry Infrastructure'
 
 const eventTypes = {
   PAGEVIEW: 'pageview',
-  SCORE: 'score',
   ELIGIBILITIES: 'eligibilities',
   ELIGIBILITY: 'eligibility_passed',
   CONFIRMATION: 'confirmation',
@@ -23,20 +22,21 @@ const sendGAEvent = async (request, metrics) => {
   console.log('[Event Metrics]: ', metrics);
   const timeSinceStart = getTimeofJourneySinceStart(request).toString()
   const page_path = request.route.path
+  const host_name = request.info.hostname
   const { name, params } = metrics
   const isEliminationEvent = name === eventTypes.ELIMINATION
   const isEligibilityEvent = name === eventTypes.ELIGIBILITY
-  const isScoreEvent = name === eventTypes.SCORE
   const isConfirmationEvent = name === eventTypes.CONFIRMATION
+  const isEligibilitiesEvent = name === eventTypes.ELIGIBILITIES
   const dmetrics = {
     ...params,
     ...(isEliminationEvent && { elimination_time: timeSinceStart }),
     ...(isEligibilityEvent && { eligibility_time: timeSinceStart }),
-    ...(isScoreEvent && { score_time: timeSinceStart }),
-    ...(isConfirmationEvent && { final_score: getYarValue(request, 'current-score'), user_type: getYarValue(request, 'applying'), confirmation_time: timeSinceStart }),
-    ...(params?.score_presented && { score_presented: params.score_presented }),
+    ...(isEligibilitiesEvent && { standardised_cost: 'Eligible' }),
+    ...(isConfirmationEvent && { final_score: 'Eligible', user_type: getYarValue(request, 'applying'), confirmation_time: timeSinceStart }),
     grant_type,
-    page_title: page_path
+    page_title: page_path,
+    host_name
   }
   try {
     const event = { name, params: dmetrics }
@@ -58,7 +58,6 @@ const getTimeofJourneySinceStart = (request) => {
 
 module.exports = {
   isBlockDefaultPageView,
-  getTimeofJourneySinceStart,
   sendGAEvent,
   eventTypes
 }

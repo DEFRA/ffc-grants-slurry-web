@@ -22,9 +22,7 @@ exports.plugin = {
           await gapiService.sendGAEvent(request, {
             name: gapiService.eventTypes.PAGEVIEW,
             params: {
-              page_path: request.route.path,
-              page_title: request.route.fingerprint,
-              host_name: request.info.hostname,
+              page_path: request.route.path
             }
           })
         }

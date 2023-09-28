@@ -74,7 +74,7 @@ const questionBank = {
           order: 10,
           title: 'Which livestock do you farm mainly?',
           pageTitle: '',
-          ga: [{ journeyStart: true }],
+          ga: { journeyStart: true },
           url: 'applicant-type',
           baseUrl: 'applicant-type',
           backUrl: 'start',
@@ -1353,6 +1353,7 @@ const questionBank = {
             }
           },
           nextUrl: 'standardised-grant-amounts',
+          ga: { name: 'eligibility_passed', params: {} },
           preValidationKeys: ['applyingFor'],
           maybeEligible: true,
           maybeEligibleContent: {
@@ -3088,6 +3089,7 @@ const questionBank = {
           backUrl: 'planning-permission-summary',
           nextUrl: 'business-details',
           preValidationKeys: ['gridReference'],
+          ga: { name: 'eligibilities', params: {} },
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Your results',
@@ -3120,10 +3122,6 @@ const questionBank = {
           backUrl: 'result-page',
           nextUrl: 'applying',
           preValidationKeys: ['gridReference'],
-          ga: [
-            { dimension: 'cd1', value: { type: 'score', value: 'Eligible' } },
-            { dimension: 'cm2', value: { type: 'journey-time' } }
-          ],
           fundingPriorities: '',
           type: 'multi-input',
           minAnswerCount: '',
@@ -3316,7 +3314,6 @@ const questionBank = {
           type: 'multi-input',
           minAnswerCount: '',
           maxAnswerCount: '',
-          ga: [{ dimension: 'cd3', value: { type: 'yar', key: 'applying' } }],
           allFields: [
             {
               type: 'sub-heading',
@@ -3896,11 +3893,7 @@ const questionBank = {
           url: 'confirmation',
           baseUrl: 'confirmation',
           preValidationKeys: ['farmerDetails'],
-          ga: [
-            { dimension: 'cd2', value: { type: 'score' } },
-            { dimension: 'cd5', value: { type: 'confirmationId' } },
-            { dimension: 'cm1', value: { type: 'journey-time' } }
-          ],
+          ga: { name: 'confirmation', params: {} },
           maybeEligible: true,
           maybeEligibleContent: {
             reference: {
