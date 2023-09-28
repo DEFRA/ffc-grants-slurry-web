@@ -55,14 +55,15 @@ async function createServer () {
       ]
     }
   })
-  // GTM Server side
+  // Google Analytics 4
   await server.register({
     plugin: require('./plugins/gapi'),
     options: {
       propertySettings: [
         {
           id: config.googleTagManagerServerKey,
-          hitTypes: ['pageview']
+          key: config.analyticsPropertyApi,
+          hitTypes: [ 'pageview' ]
         }
       ],
       sessionIdProducer: async request => {
