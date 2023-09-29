@@ -70,33 +70,33 @@ const objectToSend = {
         ]
       },
       {
-        key: "cat-separator",
-        title: "Slurry separator equipment",
+        key: 'cat-separator',
+        title: 'Slurry separator equipment',
         items: [
           {
-            item: "Screen press",
+            item: 'Screen press',
             amount: 21234,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Screw press",
+            item: 'Screw press',
             amount: 22350,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Gantry",
+            item: 'Gantry',
             amount: 5154,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Concrete pad",
+            item: 'Concrete pad',
             amount: 6414,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Concrete bunker",
+            item: 'Concrete bunker',
             amount: 168.18,
-            unit: "per square metre"
+            unit: 'per square metre'
           }
         ]
       },
@@ -238,7 +238,7 @@ describe('Standardised Cost Answers Array Function', () => {
         value: 'Precast circular concrete slurry store',
         sidebarFormattedValue: 'Precast circular concrete slurry store',
         hint: {
-          html: 'Grant amount: £17 per cubic metre',
+          html: 'Grant amount: £17 per cubic metre'
         },
         numericalValue: 17
       },
@@ -305,7 +305,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'text1 <br/> (Grant amount: £8 per square metre)'
         },
-        numericalValue: 8,
+        numericalValue: 8
       },
       {
         key: 'test-answers-A2',
@@ -314,7 +314,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'text2 <br/> (Grant amount: £4 per square metre)'
         },
-        numericalValue: 4,
+        numericalValue: 4
       },
       {
         key: 'test-answers-A3',
@@ -323,7 +323,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'text3 <br/> (Grant amount: £3 per square metre)'
         },
-        numericalValue: 3,
+        numericalValue: 3
       }
     ])
   })
@@ -343,7 +343,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £30 per cubic metre'
         },
-        numericalValue: 30,
+        numericalValue: 30
       },
       {
         key: 'test-answers-A2',
@@ -352,7 +352,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £1,050 per pump'
         },
-        numericalValue: 1050,
+        numericalValue: 1050
       },
       {
         key: 'test-answers-A3',
@@ -361,7 +361,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £2,090 per pump'
         },
-        numericalValue: 2090,
+        numericalValue: 2090
       },
       {
         key: 'test-answers-A4',
@@ -370,7 +370,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £950 per pump'
         },
-        numericalValue: 950,
+        numericalValue: 950
       },
       {
         key: 'test-answers-A5',
@@ -379,7 +379,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £1,700 per pump'
         },
-        numericalValue: 1700,
+        numericalValue: 1700
       },
       {
         key: 'test-answers-A6',
@@ -388,7 +388,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £14 per metre'
         },
-        numericalValue: 14,
+        numericalValue: 14
       },
       {
         key: 'test-answers-A7',
@@ -397,7 +397,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £24 per metre'
         },
-        numericalValue: 24,
+        numericalValue: 24
       },
       {
         key: 'test-answers-A8',
@@ -406,7 +406,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £8 per metre'
         },
-        numericalValue: 8,
+        numericalValue: 8
       },
       {
         key: 'test-answers-A9',
@@ -415,7 +415,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £9 per metre'
         },
-        numericalValue: 9,
+        numericalValue: 9
       },
       {
         key: 'test-answers-A10',
@@ -424,7 +424,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £25 per metre'
         },
-        numericalValue: 25,
+        numericalValue: 25
       },
       {
         key: 'test-answers-A11',
@@ -433,7 +433,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £350 per tank'
         },
-        numericalValue: 350,
+        numericalValue: 350
       },
       {
         key: 'test-answers-A12',
@@ -442,7 +442,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £1,000 per tank'
         },
-        numericalValue: 1000,
+        numericalValue: 1000
       },
       {
         key: 'test-answers-A13',
@@ -451,7 +451,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £800 per item'
         },
-        numericalValue: 800,
+        numericalValue: 800
       },
       {
         key: 'test-answers-A14',
@@ -460,7 +460,7 @@ describe('Standardised Cost Answers Array Function', () => {
         hint: {
           html: 'Grant amount: £55 per metre'
         },
-        numericalValue: 55,
+        numericalValue: 55
       }
     ])
   })

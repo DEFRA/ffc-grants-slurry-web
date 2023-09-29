@@ -60,7 +60,7 @@ describe('Create submission message', () => {
   })
   test('Email part of message should have correct properties', () => {
     farmerSubmission.applicantType = 'Dairy (including calf rearing)'
-    
+
     const msg = createMsg(farmerSubmission, desirabilityScore)
 
     expect(msg.applicantEmail).toHaveProperty('notifyTemplate')
@@ -147,7 +147,7 @@ describe('Create submission message', () => {
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('protectPassword')
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('rows')
     expect(msg.spreadsheet.worksheets[0].rows.length).toBe(75)
-})
+  })
 
   test('Protect password property should not be set if config is false', () => {
     jest.mock('../../../../../../app/messaging/config/spreadsheet', () => ({

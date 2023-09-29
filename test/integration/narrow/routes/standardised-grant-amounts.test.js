@@ -89,7 +89,7 @@ describe('Standardised Cost test', () => {
   })
 
   test('POST /standardised-grant-amounts route returns next page - impermeable journey', async () => {
-    varList.applyingFor = "An impermeable cover only"
+    varList.applyingFor = 'An impermeable cover only'
     varList.fitForPurpose = 'Yes'
     const options = {
       method: 'POST',

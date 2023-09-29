@@ -45,7 +45,7 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
       correlationId: request.yar.id
     })
     await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
-    
+
     console.log('[CONFIRMATION EVENT SENT]')
   } catch (err) {
     console.log('ERROR: ', err)
@@ -103,8 +103,8 @@ const addConditionalLabelData = async (
 }
 const isImperableCover = getQuestionAnswer('applying-for', 'applying-for-A2')
 const isPig = getQuestionAnswer('applicant-type', 'applicant-type-A1')
-const isReplaceStore =  getQuestionAnswer('project-type', 'project-type-A1')
-const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1');
+const isReplaceStore = getQuestionAnswer('project-type', 'project-type-A1')
+const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1')
 
 const getPage = async (question, request, h) => {
   const {
@@ -158,8 +158,8 @@ const getPage = async (question, request, h) => {
       }
       break
     case 'separator':
-      if (getYarValue(request, 'coverType')) { 
-        if(getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) { 
+      if (getYarValue(request, 'coverType')) {
+        if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
           question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
         } else {
           question.backUrl = `${urlPrefix}/cover-size`
@@ -181,23 +181,23 @@ const getPage = async (question, request, h) => {
           }
         }
       }
-      
+
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
-        if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No'){
-          backUrl = `${urlPrefix}/grant-funded-cover`
-        }
+      if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
+        backUrl = `${urlPrefix}/grant-funded-cover`
+      }
     case 'fit-for-purpose':
       break
-    case 'fit-for-purpose-conditional': 
-      if(getYarValue(request, 'applyingFor') === isImperableCover){
+    case 'fit-for-purpose-conditional':
+      if (getYarValue(request, 'applyingFor') === isImperableCover) {
         question.maybeEligibleContent.isImpermeableCoverOnly = true
         question.nextUrl = `${urlPrefix}/project-type`
         nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       } else {
         question.maybeEligibleContent.isImpermeableCoverOnly = false
       }
-    break
+      break
     default:
       break
   }
@@ -223,13 +223,13 @@ const getPage = async (question, request, h) => {
     maybeEligibleContent.title = question.title
     let consentOptionalData
 
-    if('conditionalText' in maybeEligibleContent ){
-      let value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
-      let validationType =  maybeEligibleContent.conditionalText.validationType
-      let details =  maybeEligibleContent.conditionalText.details
-      if(getYarValue(request,'solidFractionStorage') != 'Concrete bunker'){
+    if ('conditionalText' in maybeEligibleContent) {
+      const value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
+      const validationType = maybeEligibleContent.conditionalText.validationType
+      const details = maybeEligibleContent.conditionalText.details
+      if (getYarValue(request, 'solidFractionStorage') != 'Concrete bunker') {
         maybeEligibleContent.conditionalText.condition = false
-      }else{
+      } else {
         maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
       }
       maybeEligibleContent = {
@@ -300,7 +300,6 @@ const getPage = async (question, request, h) => {
     request,
     conditionalHtml
   )
-
 
   switch (url) {
     case 'check-details': {
@@ -398,7 +397,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage'){
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage') {
       setYarValue(request, 'concreteBunkerSize', null)
     }
 

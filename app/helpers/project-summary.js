@@ -60,7 +60,7 @@ function formatSummaryTable (request) {
       total = (coverSize * coverData.amount)
 
       returnArray.push({
-        item: (coverType.substring(0, coverType.lastIndexOf(" ")) + ' grant-funded store cover'),
+        item: (coverType.substring(0, coverType.lastIndexOf(' ')) + ' grant-funded store cover'),
         amount: '£' + coverData.amount,
         quantity: formatUKCurrency(coverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
@@ -77,7 +77,7 @@ function formatSummaryTable (request) {
       total = (existingCoverSize * existingCoverData.amount)
 
       returnArray.push({
-        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(" ")) +  ' existing store cover',
+        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(' ')) + ' existing store cover',
         amount: '£' + existingCoverData.amount,
         quantity: formatUKCurrency(existingCoverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
@@ -87,16 +87,15 @@ function formatSummaryTable (request) {
     }
 
     if (separatorArray.length > 0) {
-      
       separatorArray.forEach((otherItem, _index) => {
-        let correctSize 
-        
+        let correctSize
+
         // if concrete bunker, get size. Else use size from conditional
         if (otherItem === 'Concrete bunker') {
           correctSize = request.yar.get('concreteBunkerSize')
         } else {
           correctSize = 1
-        } 
+        }
 
         listOfCatagories.forEach((catagory, _index2) => {
           const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === catagory)
@@ -151,7 +150,6 @@ function formatSummaryTable (request) {
         })
       })
     }
-
   }
 
   request.yar.set('itemsTotalValue', totalCalculator)

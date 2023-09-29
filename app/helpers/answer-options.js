@@ -149,20 +149,20 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
   })
 }
 
-const getOptions = (data, question, conditionalHtml, request) => {  
+const getOptions = (data, question, conditionalHtml, request) => {
   if (question?.costDataType) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
     if (question.answers.length <= 2) {
-      if(question.yarKey === "coverType" || question.yarKey === "existingCoverType"){
+      if (question.yarKey === 'coverType' || question.yarKey === 'existingCoverType') {
         question.answers = []
       }
 
-      if(question.yarKey === "separatorType"){
+      if (question.yarKey === 'separatorType') {
         question.answers = []
         answersList.splice(0, 3)
       }
 
-      if (question.yarKey === "solidFractionStorage"){
+      if (question.yarKey === 'solidFractionStorage') {
         answersList.splice(2, 3)
         const concreteBunkerStorageOption = answersList.filter(answer => answer.value === 'Concrete bunker')[0]
         // set concrete bunker to be a conditional field answer
@@ -172,16 +172,16 @@ const getOptions = (data, question, conditionalHtml, request) => {
         // add brakcets around hint text
         answersList.forEach(answer => {
           answer.hint.html = '(' + answer.hint.html + ')'
-          if(answer.value === 'Concrete bunker'){
+          if (answer.value === 'Concrete bunker') {
             const cappedAmount = formatUKCurrency(answer.numericalValue * 100)
             setYarValue(request, 'cappedAmount', cappedAmount)
             // add concrete bunker unique hint text before grant amount hint
-            answer.hint.html =  answer.hint.html + `</br> You can apply for a maximum of 100m² (£${cappedAmount})`
+            answer.hint.html = answer.hint.html + `</br> You can apply for a maximum of 100m² (£${cappedAmount})`
           }
         })
       }
 
-      if(question.yarKey === "gantry"){
+      if (question.yarKey === 'gantry') {
         let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
         gantryHint = gantryHint[0]
         // add brackets around hint text
@@ -194,14 +194,14 @@ const getOptions = (data, question, conditionalHtml, request) => {
           question.answers.unshift(answersList[answer])
         }
       }
-    } else if (question.key === 'storage-type')  {
+    } else if (question.key === 'storage-type') {
       // only needed while updating db data during testing
       question.answers = []
 
       for (const answer in answersList) {
         question.answers.unshift(answersList[answer])
       }
-    } else if (question.key === 'other-items')  {
+    } else if (question.key === 'other-items') {
       // only needed while updating db data during testing
       question.answers = [
         {
@@ -219,7 +219,6 @@ const getOptions = (data, question, conditionalHtml, request) => {
       }
     }
   }
-  
 
   switch (question.type) {
     case 'input':

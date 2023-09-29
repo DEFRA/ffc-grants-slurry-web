@@ -27,7 +27,7 @@ describe('Page: /project-started', () => {
     expect(response.payload).toContain('No, we have not done any work on this project yet') // option 3
     expect(response.payload).toContain('<span class="govuk-warning-text__assistive"></span>') // warning symbol
     expect(response.payload).toContain('You must not start the project work or commit to project costs before receiving your funding agreement.') // warning text
-    expect(response.payload).toContain('You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).') //side bar text
+    expect(response.payload).toContain('You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).') // side bar text
   })
 
   it('no option selected -> show error message', async () => {

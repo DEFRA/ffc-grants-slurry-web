@@ -13,7 +13,7 @@ jest.mock('../../../../app/helpers/session', () => {
     ...original,
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
-      if (Object.keys(varList).includes(key)) return varList[ key ]
+      if (Object.keys(varList).includes(key)) return varList[key]
       else return 'Error'
     }
   }
@@ -63,7 +63,7 @@ const requestError = {
   },
   info: {
     host: 'someHost'
-  },
+  }
 }
 
 afterEach(() => {

@@ -1,14 +1,14 @@
 const { crumbToken } = require('./test-helper')
 
 describe('Page: /estimated-grant', () => {
-    const varList = {
-      applicantType: 'Pig',
-      applyingFor: '',
-      projectType: '',
-      existingCover: '',
-      grantFundedCover: '',
-      fitForPurpose: ''
-      };
+  const varList = {
+    applicantType: 'Pig',
+    applyingFor: '',
+    projectType: '',
+    existingCover: '',
+    grantFundedCover: '',
+    fitForPurpose: ''
+  }
   const grantText = 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -86,7 +86,7 @@ describe('Page: /estimated-grant', () => {
     expect(response.payload).toContain('<a href=\"fit-for-purpose\" class=\"govuk-back-link\" id=\"linkBack\">Back</a>')
   })
 
-    it('page loads with correct back link when user select fit for purpose option`s as  `\ No \`', async () => {
+  it('page loads with correct back link when user select fit for purpose option`s as  `\ No \`', async () => {
     varList.applyingFor = 'An impermeable cover only'
     varList.fitForPurpose = 'No'
     varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
@@ -100,5 +100,4 @@ describe('Page: /estimated-grant', () => {
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('<a href=\"/slurry-infrastructure/grant-funded-cover\" class=\"govuk-back-link\" id=\"linkBack\">Back</a>')
   })
-
 })

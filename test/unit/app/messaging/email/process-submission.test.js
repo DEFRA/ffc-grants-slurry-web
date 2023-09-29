@@ -8,7 +8,7 @@ jest.mock('../../../../../app/services/app-insights')
 const mockPassword = 'mock-pwd'
 const processSubmission = require('../../../../../app/messaging/email/process-submission')
 
-const cache = require('../../../../../app/config/cache');
+const cache = require('../../../../../app/config/cache')
 cache.getDesirabilityScore = jest.fn(async (_correlationId) => { })
 const appInsights = require('../../../../../app/services/app-insights')
 appInsights.logException = jest.fn((_err, _sessionId) => { })

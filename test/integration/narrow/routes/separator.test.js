@@ -20,7 +20,7 @@ describe('Separator test', () => {
     getYarValue: (request, key) => {
       if (varList[key]) return varList[key]
       else return null
-    },
+    }
   }))
 
   test('GET /separator route returns 200', async () => {
@@ -41,7 +41,7 @@ describe('Separator test', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/separator`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { separator: '', crumb: crumbToken },
+      payload: { separator: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
@@ -56,7 +56,7 @@ describe('Separator test', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/separator`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { separator: 'Yes', crumb: crumbToken },
+      payload: { separator: 'Yes', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
@@ -68,7 +68,7 @@ describe('Separator test', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/separator`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { separator: 'No', crumb: crumbToken },
+      payload: { separator: 'No', crumb: crumbToken }
     }
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
@@ -81,7 +81,7 @@ describe('Separator test', () => {
     varList.applicantType = 'Pig'
     const optionSeparator = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const responseSeparator = await global.__SERVER__.inject(optionSeparator)
     expect(responseSeparator.statusCode).toBe(200)
@@ -111,7 +111,7 @@ describe('Separator test', () => {
     varList.applicantType = 'Beef'
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -125,7 +125,7 @@ describe('Separator test', () => {
     varList.applicantType = 'Beef'
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -139,7 +139,7 @@ describe('Separator test', () => {
     varList.coverType = 'Fake data'
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -153,7 +153,7 @@ describe('Separator test', () => {
     varList.coverType = 'Fake data'
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -168,7 +168,7 @@ describe('Separator test', () => {
     varList.existingCoverSize = '343'
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -178,10 +178,9 @@ describe('Separator test', () => {
   })
 
   it('page loads with /existing-cover-size/ back link when existingCover is Yes', async () => {
-
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
@@ -200,7 +199,7 @@ describe('Separator test', () => {
 
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/separator`,
+      url: `${global.__URLPREFIX__}/separator`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

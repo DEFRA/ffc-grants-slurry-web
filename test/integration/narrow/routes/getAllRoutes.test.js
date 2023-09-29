@@ -71,33 +71,33 @@ const standardisedCostObject = {
         ]
       },
       {
-        key: "cat-separator",
-        title: "Slurry separator equipment",
+        key: 'cat-separator',
+        title: 'Slurry separator equipment',
         items: [
           {
-            item: "Screen press",
+            item: 'Screen press',
             amount: 21234,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Screw press",
+            item: 'Screw press',
             amount: 22350,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Gantry",
+            item: 'Gantry',
             amount: 5154,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Concrete pad",
+            item: 'Concrete pad',
             amount: 6414,
-            unit: "per unit"
+            unit: 'per unit'
           },
           {
-            item: "Concrete bunker",
+            item: 'Concrete bunker',
             amount: 168.18,
-            unit: "per square metre"
+            unit: 'per square metre'
           }
         ]
       },

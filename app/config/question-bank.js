@@ -1048,7 +1048,7 @@ const questionBank = {
               key: 'fit-for-purpose-A2',
               value: 'No',
               redirectUrl: 'fit-for-purpose-conditional'
-            },
+            }
           ],
           yarKey: 'fitForPurpose'
         },
@@ -1063,7 +1063,7 @@ const questionBank = {
             urlOptions: {
               thenUrl: 'estimated-grant',
               elseUrl: 'project-type'
-            },
+            }
           },
           maybeEligible: true,
           preValidationKeys: ['fitForPurpose'],
@@ -1075,11 +1075,11 @@ const questionBank = {
             warning: {
               text: 'To apply for a cover, your existing store must be signed off as fit for purpose by a structural engineer at full application.'
             },
-            extraMessageContent: `<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>`,
+            extraMessageContent: '<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.',
-            },
+              title: 'See other grants you might be eligible for.'
+            }
           },
           yarKey: 'FitForPurposeCondition'
         },
@@ -1094,7 +1094,7 @@ const questionBank = {
             urlOptions: {
               thenUrl: 'applying-for',
               elseUrl: 'fit-for-purpose-conditional'
-            },
+            }
           },
           nextUrl: 'grant-funded-cover',
           url: 'project-type',
@@ -1461,7 +1461,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
+            html: 'This grant is to get your serviceable storage levels to 6 months. You cannot apply for the grant if you already have 6 months\' storage that is fit for purpose.'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1605,7 +1605,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
+            html: 'This grant is to get your serviceable storage levels to 8 months. You cannot apply for the grant if you already have 8 months\' storage that is fit for purpose'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -2322,9 +2322,9 @@ const questionBank = {
                   {
                     para: '',
                     items: [],
-                    dependentAnswerExceptThese: [],
-                  },
-                ],
+                    dependentAnswerExceptThese: []
+                  }
+                ]
               },
               {
                 heading: 'Existing store cover',
@@ -2374,11 +2374,11 @@ const questionBank = {
           answers: [
             {
               key: 'gantry-A1',
-              value: 'Yes',
+              value: 'Yes'
             },
             {
               key: 'gantry-A2',
-              value: 'No',
+              value: 'No'
             }
           ],
           yarKey: 'gantry'
@@ -2416,8 +2416,8 @@ const questionBank = {
               type: 'MIN_MAX',
               min: 1,
               max: 99999,
-              error: `Size must be between 1-99999`,
-              dependentKey: 'concreteBunkerSize',
+              error: 'Size must be between 1-99999',
+              dependentKey: 'concreteBunkerSize'
             }
 
           ],
@@ -2431,7 +2431,7 @@ const questionBank = {
             },
             {
               key: 'solid-fraction-storage-A3',
-              value: 'I already have a solid fraction storage',
+              value: 'I already have a solid fraction storage'
             }
           ],
           sidebar: {
@@ -2731,7 +2731,7 @@ const questionBank = {
             minGrant: 25000,
             maxGrant: 250000,
             grantPercentage: '',
-            cappedGrant: true,
+            cappedGrant: true
           },
           ineligibleContent: {
             messageContent: 'The minimum grant you can claim is £25,000.',
@@ -2753,11 +2753,11 @@ const questionBank = {
               dependantYarKey: 'concreteBunkerSize',
               validationType: 'MIN_MAX',
               details: {
-                  min: 1,
-                  max: 100
+                min: 1,
+                max: 100
               },
-              conditionalPara: 'The grant contribution for the concrete bunker is capped at £{{_cappedAmount_}}',
-            },
+              conditionalPara: 'The grant contribution for the concrete bunker is capped at £{{_cappedAmount_}}'
+            }
           }
         },
         {
@@ -3858,7 +3858,7 @@ const questionBank = {
           minAnswerCount: 1,
           answers: []
         },
-        //CONFIRM  NOTE //
+        // CONFIRM  NOTE //
         // <li>passed to the Environment Agency so that they are aware of my planned project</li> --> third bulled point was asked to remove by Ruth Wyre, RPA PO //
         {
           key: 'confirm',
@@ -3948,7 +3948,7 @@ const questionBank = {
       ]
     }
   ]
-};
+}
 const ALL_QUESTIONS = []
 questionBank.sections.forEach(({ questions }) => {
   ALL_QUESTIONS.push(...questions)
