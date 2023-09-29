@@ -47,7 +47,7 @@ describe('Page: /pig-existing-storage-capacity', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
-    expect(postResponse.payload).toContain('This grant is to get your serviceable storage levels to 8 months.')
+    expect(postResponse.payload).toContain('This grant is to get your  storage levels to 8 months.')
   })
 
   it('user selects eligible option -> store user response and redirect to /planned-storage-capacity', async () => {
