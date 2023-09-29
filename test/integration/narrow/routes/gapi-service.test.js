@@ -13,7 +13,7 @@ jest.mock('../../../../app/helpers/session', () => {
     ...original,
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
-      if (Object.keys(varList).includes(key)) return varList[ key ]
+      if (Object.keys(varList).includes(key)) return varList[key]
       else return 'Error'
     }
   }
@@ -86,7 +86,7 @@ describe('get gapiService setup', () => {
   })
 
   test('custom event ELIGIBILITIES sent successfully', async () => {
-    const result = await gapiService.sendGAEvent(request, { name: 'eligibilities', pram: { standardised_cost: 'Eligible' } })
+    const result = await gapiService.sendGAEvent(request, { name: 'eligibilities', pram: { reference_cost: 'Eligible' } })
     expect(result).toBe(undefined)
   })
 

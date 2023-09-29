@@ -11,8 +11,8 @@ const answerUnit = answer.item === 'Concrete bunker' ? 'per m²' : answer.unit
   return 'Grant amount: £' + formatUKCurrency(answer.amount) + ' ' + answerUnit
 }
 
-function formatAnswerArray (request, questionKey, catagoryKey, hintArray) {
-  const object = getYarValue(request, 'standardisedCostObject')
+function formatAnswerArray(request, questionKey, catagoryKey, hintArray) {
+  const object = getYarValue(request, 'referenceCostObject')
   const returnArray = []
 
   let listOfCatagories

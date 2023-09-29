@@ -1,7 +1,7 @@
 const appInsights = require('./app-insights')
 const { getYarValue } = require('../helpers/session')
 
-const blockDefaultPageViews = [ 'login', 'start', 'applying', 'session-timeout' ] // -- blocked pages
+const blockDefaultPageViews = ['login', 'start', 'applying', 'session-timeout'] // -- blocked pages
 const isBlockDefaultPageView = (url) => {
   const currentUrl = url.split('/').pop().toString().toLowerCase()
   return blockDefaultPageViews.indexOf(currentUrl) >= 0 && !url.includes('assets')
@@ -32,7 +32,7 @@ const sendGAEvent = async (request, metrics) => {
     ...params,
     ...(isEliminationEvent && { elimination_time: timeSinceStart }),
     ...(isEligibilityEvent && { eligibility_time: timeSinceStart }),
-    ...(isEligibilitiesEvent && { standardised_cost: 'Eligible' }),
+    ...(isEligibilitiesEvent && { reference_cost: 'Eligible' }),
     ...(isConfirmationEvent && { final_score: 'Eligible', user_type: getYarValue(request, 'applying'), confirmation_time: timeSinceStart }),
     grant_type,
     page_title: page_path,
@@ -41,7 +41,7 @@ const sendGAEvent = async (request, metrics) => {
   try {
     const event = { name, params: dmetrics }
     console.log('[Event Payload]: ', event);
-    await request.ga.view(request, [ event ])
+    await request.ga.view(request, [event])
     console.log('Metrics Sending analytics %s for %s', name, request.route.path)
   } catch (err) {
     appInsights.logException(request, { error: err })
