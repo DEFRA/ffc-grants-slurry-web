@@ -21,7 +21,7 @@ describe('Page: /system-type', () => {
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('What is your current manure management system?')
     expect(response.payload).toContain('Slurry-based system')
-    expect(response.payload).toContain('Farm-yard manure system that does not produce slurry')
+    expect(response.payload).toContain('Farmyard manure system that does not produce slurry')
     expect(response.payload).toContain('I do not have a slurry system')
   })
 
