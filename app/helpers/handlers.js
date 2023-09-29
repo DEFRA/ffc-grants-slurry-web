@@ -45,15 +45,7 @@ const sendContactDetailsToSenders = async (request, confirmationId) => {
       correlationId: request.yar.id
     })
     await senders.sendDesirabilitySubmitted(emailData, request.yar.id)
-    await gapiService.sendGAEvent(request, {
-      name: gapiService.eventTypes.CONFIRMATION,
-      params: {
-        confirmation_time: gapiService.getTimeofJourneySinceStart(request),
-        final_score: 'Eligible',
-        user_type: getYarValue(request, 'applying'),
-        confirmation_id: confirmationId,
-      },
-    })
+    
     console.log('[CONFIRMATION EVENT SENT]')
   } catch (err) {
     console.log('ERROR: ', err)
@@ -72,16 +64,14 @@ const setTitle = async (title, question, request) => {
     }
   }
 }
-const processGA = async (question, request, confirmationId) => {
+const processGA = async (question, request) => {
   if (question.ga) {
-    await gapiService.sendGAEvent(request, {
-      name: gapiService.eventTypes.PAGEVIEW,
-      params: {
-        page_path: request.route.path,
-        page_title: request.route.fingerprint,
-        host_name: request.info.hostname,
-      },
-    })
+    if (question.ga.journeyStart) {
+      setYarValue(request, 'journey-start-time', Date.now())
+      console.log('[JOURNEY STARTED] ')
+    } else {
+      await gapiService.sendGAEvent(request, question.ga)
+    }
   }
 }
 
@@ -218,20 +208,15 @@ const getPage = async (question, request, h) => {
       .isEligible
   ) {
     const NOT_ELIGIBLE = { ...question.ineligibleContent, backUrl }
-    await gapiService.sendGAEvent(request, {
-      name: gapiService.eventTypes.ELIGIBILITY,
-      params: {
-        page_path: request.route.path,
-        page_title: request.route.fingerprint,
-        host_name: request.info.hostname,
-      }
-    })
+    gapiService.sendGAEvent(request, { name: gapiService.eventTypes.ELIMINATION, params: {} })
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
-  if (url === 'result-page') {
-    await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { final_score: 'Eligible' }})
-  }
+  // if (url === 'result-page') {
+  //   await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { standardised_cost: 'Eligible' }})
+  // }
+
+  await processGA(question, request)
 
   if (question.maybeEligible) {
     let { maybeEligibleContent } = question
@@ -303,7 +288,6 @@ const getPage = async (question, request, h) => {
     conditionalHtml
   )
 
-  await processGA(question, request, confirmationId)
 
   switch (url) {
     case 'check-details': {
@@ -493,15 +477,6 @@ const showPostPage = async (currentQuestion, request, h) => {
 
   const errors = checkErrors(payload, currentQuestion, h, request)
   if (errors) {
-    await gapiService.sendGAEvent(request, {
-      name: gapiService.eventTypes.EXCEPTION,
-      params: {
-        page_path: request.route.path,
-        page_title: request.route.fingerprint,
-        host_name: request.info.hostname,
-        exception: errors,
-      }
-    })
     return errors
   }
 
@@ -509,10 +484,6 @@ const showPostPage = async (currentQuestion, request, h) => {
     await gapiService.sendGAEvent(request, {
       name: gapiService.eventTypes.ELIMINATION,
       params: {
-        page_path: request.route.path,
-        page_title: request.route.fingerprint,
-        host_name: request.info.hostname,
-        eligibility_passed: !!thisAnswer?.notEligible,
       }
     })
     return h.view('not-eligible', NOT_ELIGIBLE)

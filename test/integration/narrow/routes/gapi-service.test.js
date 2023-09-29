@@ -47,6 +47,9 @@ const request = {
   yar: {
     id: 'Some ID',
     get: jest.fn()
+  },
+  info: {
+    host: 'someHost'
   }
 }
 
@@ -57,7 +60,10 @@ const requestError = {
   yar: {
     id: 'Some ID',
     get: jest.fn()
-  }
+  },
+  info: {
+    host: 'someHost'
+  },
 }
 
 afterEach(() => {
@@ -79,13 +85,8 @@ describe('get gapiService setup', () => {
     expect(result).toBe(undefined)
   })
 
-  test('custom event CONFIRMATION sent successfully', async () => {
-    const result = await gapiService.sendGAEvent(request, { name: 'confirmation', pram: {} })
-    expect(result).toBe(undefined)
-  })
-
-  test('custom event SCORE sent successfully', async () => {
-    const result = await gapiService.sendGAEvent(request, { name: 'score', pram: { score_presented: 'fake score' } })
+  test('custom event ELIGIBILITIES sent successfully', async () => {
+    const result = await gapiService.sendGAEvent(request, { name: 'eligibilities', pram: { standardised_cost: 'Eligible' } })
     expect(result).toBe(undefined)
   })
 
@@ -94,12 +95,12 @@ describe('get gapiService setup', () => {
     expect(result).toBe(undefined)
   })
   test('test isBlockDefaultPageView() -> false', () => {
-    const result = gapiService.isBlockDefaultPageView({ pathname: '/water/country' })
+    const result = gapiService.isBlockDefaultPageView('/water/country')
     expect(result).toBe(false)
   })
 
   test('test isBlockDefaultPageView()-> true', () => {
-    const result = gapiService.isBlockDefaultPageView({ pathname: '/water/applying' })
+    const result = gapiService.isBlockDefaultPageView('/water/applying')
     expect(result).toBe(true)
   })
 })
