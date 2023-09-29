@@ -81,7 +81,7 @@ describe('Page: /solid-fraction-storage', () => {
 		expect(response.payload).toContain('(Grant amount: £6,414 per unit)') // option 1 hint text
 		expect(response.payload).toContain('Concrete bunker') // option 2
 		expect(response.payload).toContain('(Grant amount: £168.18 per m²)') // option 2 hint text line 1
-		expect(response.payload).toContain('You can apply for a maximum of 100m² (£16,180)') // option 2 hint text line 2
+		expect(response.payload).toContain('You can apply for a maximum of 100m² (£16,818)') // option 2 hint text line 2
 		expect(response.payload).toContain('Enter size') // option 2 - conditional input
 		expect(response.payload).toContain('I already have a solid fraction storage') // option 3
 	})

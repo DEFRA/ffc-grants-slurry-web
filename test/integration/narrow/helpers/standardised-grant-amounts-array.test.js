@@ -230,15 +230,17 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Above-ground steel slurry store',
         hint: {
           html: 'Grant amount: £22 per cubic metre'
-        }
+        },
+        numericalValue: 22
       },
       {
         key: 'test-answers-A2',
         value: 'Precast circular concrete slurry store',
         sidebarFormattedValue: 'Precast circular concrete slurry store',
         hint: {
-          html: 'Grant amount: £17 per cubic metre'
-        }
+          html: 'Grant amount: £17 per cubic metre',
+        },
+        numericalValue: 17
       },
       {
         key: 'test-answers-A3',
@@ -246,7 +248,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'In-situ cast-reinforced concrete slurry store',
         hint: {
           html: 'Grant amount: £15 per cubic metre'
-        }
+        },
+        numericalValue: 15
       },
       {
         key: 'test-answers-A4',
@@ -254,7 +257,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Earth-bank lagoon with consolidated clay lining',
         hint: {
           html: 'Grant amount: £8 per cubic metre'
-        }
+        },
+        numericalValue: 8
       },
       {
         key: 'test-answers-A5',
@@ -262,7 +266,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Earth-bank lagoon with internal liner',
         hint: {
           html: 'Grant amount: £12 per cubic metre'
-        }
+        },
+        numericalValue: 12
       },
       {
         key: 'test-answers-A6',
@@ -270,7 +275,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Stores using pre-cast rectangular concrete panels',
         hint: {
           html: 'Grant amount: £14 per cubic metre'
-        }
+        },
+        numericalValue: 14
       },
       {
         key: 'test-answers-A7',
@@ -278,7 +284,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Large-volume supported slurry bag (over 2,500 cubic metres)',
         hint: {
           html: 'Grant amount: £20 per cubic metre'
-        }
+        },
+        numericalValue: 20
       }
     ])
   })
@@ -297,7 +304,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Rigid cover for steel or concrete slurry stores',
         hint: {
           html: 'text1 <br/> (Grant amount: £8 per square metre)'
-        }
+        },
+        numericalValue: 8,
       },
       {
         key: 'test-answers-A2',
@@ -305,7 +313,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Fixed flexible cover',
         hint: {
           html: 'text2 <br/> (Grant amount: £4 per square metre)'
-        }
+        },
+        numericalValue: 4,
       },
       {
         key: 'test-answers-A3',
@@ -313,7 +322,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Floating flexible cover',
         hint: {
           html: 'text3 <br/> (Grant amount: £3 per square metre)'
-        }
+        },
+        numericalValue: 3,
       }
     ])
   })
@@ -332,7 +342,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Reception pit',
         hint: {
           html: 'Grant amount: £30 per cubic metre'
-        }
+        },
+        numericalValue: 30,
       },
       {
         key: 'test-answers-A2',
@@ -340,7 +351,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Electric-powered slurry transfer pump',
         hint: {
           html: 'Grant amount: £1,050 per pump'
-        }
+        },
+        numericalValue: 1050,
       },
       {
         key: 'test-answers-A3',
@@ -348,7 +360,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
         hint: {
           html: 'Grant amount: £2,090 per pump'
-        }
+        },
+        numericalValue: 2090,
       },
       {
         key: 'test-answers-A4',
@@ -356,7 +369,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Centrifugal chopper pump',
         hint: {
           html: 'Grant amount: £950 per pump'
-        }
+        },
+        numericalValue: 950,
       },
       {
         key: 'test-answers-A5',
@@ -364,7 +378,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Powered take off (PTO) or hydraulically driven chopper pump',
         hint: {
           html: 'Grant amount: £1,700 per pump'
-        }
+        },
+        numericalValue: 1700,
       },
       {
         key: 'test-answers-A6',
@@ -372,7 +387,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Galvanised steel pipework 100mm diameter',
         hint: {
           html: 'Grant amount: £14 per metre'
-        }
+        },
+        numericalValue: 14,
       },
       {
         key: 'test-answers-A7',
@@ -380,7 +396,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Galvanised steel pipework 150mm diameter diameter',
         hint: {
           html: 'Grant amount: £24 per metre'
-        }
+        },
+        numericalValue: 24,
       },
       {
         key: 'test-answers-A8',
@@ -388,7 +405,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
         hint: {
           html: 'Grant amount: £8 per metre'
-        }
+        },
+        numericalValue: 8,
       },
       {
         key: 'test-answers-A9',
@@ -396,7 +414,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
         hint: {
           html: 'Grant amount: £9 per metre'
-        }
+        },
+        numericalValue: 9,
       },
       {
         key: 'test-answers-A10',
@@ -404,7 +423,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Under-floor transfer channels',
         hint: {
           html: 'Grant amount: £25 per metre'
-        }
+        },
+        numericalValue: 25,
       },
       {
         key: 'test-answers-A11',
@@ -412,7 +432,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
         hint: {
           html: 'Grant amount: £350 per tank'
-        }
+        },
+        numericalValue: 350,
       },
       {
         key: 'test-answers-A12',
@@ -420,7 +441,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre ',
         hint: {
           html: 'Grant amount: £1,000 per tank'
-        }
+        },
+        numericalValue: 1000,
       },
       {
         key: 'test-answers-A13',
@@ -428,7 +450,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
         hint: {
           html: 'Grant amount: £800 per item'
-        }
+        },
+        numericalValue: 800,
       },
       {
         key: 'test-answers-A14',
@@ -436,7 +459,8 @@ describe('Standardised Cost Answers Array Function', () => {
         sidebarFormattedValue: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
         hint: {
           html: 'Grant amount: £55 per metre'
-        }
+        },
+        numericalValue: 55,
       }
     ])
   })

@@ -346,7 +346,7 @@ describe('Project Summary Array Function', () => {
         item: 'Concrete bunker',
         amount: '£10',
         quantity: '100m²',
-        total: '£16,180'
+        total: '£1,000'
       },
       {
         item: 'Reception pit',
