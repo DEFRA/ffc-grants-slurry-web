@@ -94,7 +94,7 @@ const questionBank = {
                   {
                     para: `If your main livestock enterprise is pig, the grant is to get your slurry storage levels to 8 months.
                     <br>
-                    If beef or dairy is your main livestock enterprise, the grant is to get your storage levels to 6 months.`
+                    If beef or dairy is your main livestock enterprise, the grant is to get your slurry storage levels to 6 months.`
                   }
                 ]
               }
@@ -366,7 +366,8 @@ const questionBank = {
                 content: [
                   {
                     para: `This grant is only for projects in England.
-                Scotland, Wales and Northern Ireland have other grants available.`
+
+                          Scotland, Wales and Northern Ireland have other grants available.`
                   }
                 ]
               }
@@ -513,8 +514,8 @@ const questionBank = {
           order: 60,
           title: 'Will you take full responsibility for your project?',
           hint: {
-            html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the project and Grant Funding Agreement to a new tenant.<br/><br/>
-                  This approach is optional and we will only ask for details of your agreement at full application.`
+            html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the agreed project to the new tenant. 
+                  <br/><br/>This approach is optional and we will only ask for details of your agreement at full application.`
           },
           pageTitle: '',
           url: 'project-responsibility',
@@ -528,16 +529,10 @@ const questionBank = {
           sidebar: {
             values: [
               {
-                heading: 'Grant Funding Agreement',
+                heading: 'Eligibility',
                 content: [
                   {
-                    para: `
-                If you are awarded a grant, you will be issued with a Grant Funding Agreement. This lasts for 5 years after the date you receive your final grant payment.`,
-                    items: []
-                  },
-                  {
-                    para: `
-                If you think you might not be able to fulfil the full agreement, you can ask your landlord to countersign and underwrite the Grant Funding Agreement. For example, you could choose this option if you are on a short tenancy agreement.`,
+                    para: 'You must complete your project and keep the grant-funded items fit for purpose for 5 years after the date you receive your final grant payment.',
                     items: []
                   }
                 ]
@@ -632,11 +627,11 @@ const questionBank = {
             },
             {
               key: 'system-type-A2',
-              value: 'Farm-yard manure and slurry system'
+              value: 'Farmyard manure and slurry system'
             },
             {
               key: 'system-type-A3',
-              value: 'Farm-yard manure system that does not produce slurry',
+              value: 'Farmyard manure system that does not produce slurry',
               notEligible: true
             },
             {
@@ -689,7 +684,7 @@ const questionBank = {
             ],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
+              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
             }
           },
           validate: [
@@ -754,7 +749,7 @@ const questionBank = {
             ],
             details: {
               summaryText: 'When is a store no longer fit for purpose?',
-              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be susceptible to leaks or failure.'
+              text: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
             }
           },
           validate: [
@@ -2130,7 +2125,7 @@ const questionBank = {
         {
           key: 'separator',
           order: 140,
-          title: 'Do you want to add a slurry storage separator to your project?',
+          title: 'Do you want to add a slurry separator to your project?',
           pageTitle: '',
           backUrl: 'pig-existing-storage-capacity',
           nextUrl: 'separator-type',
@@ -3177,7 +3172,7 @@ const questionBank = {
             },
             {
               yarKey: 'numberEmployees',
-              type: 'text',
+              type: 'number',
               classes: 'govuk-input--width-10',
               label: {
                 text: 'Number of employees',
@@ -3929,7 +3924,7 @@ const questionBank = {
             </p>
             <div class="govuk-inset-text">
               <p class="govuk-body">
-              If you want your landlord to underwrite your project, they will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
+              If you want your landlord to underwrite your project, you will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
               </p>
             </div>
             <p class="govuk-body"><a class="govuk-link" href="${process.env.SURVEY_LINK}" target="_blank" rel="noopener noreferrer">What do you think of this service? (opens in a new tab)</a></p>
