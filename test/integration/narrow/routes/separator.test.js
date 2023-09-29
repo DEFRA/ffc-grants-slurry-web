@@ -105,7 +105,7 @@ describe('Separator test', () => {
     )
   })
 
-  it('page loads with /-capacity-increase-replace/ back link when project type /Replace an existing store that is .../ and applicant type is Beef', async () => {
+  it('page loads with /capacity-increase-replace/ back link when project type /Replace an existing store that is .../ and applicant type is Beef', async () => {
     varList.projectType =
       'Replace an existing store that is no longer fit for purpose with a new store'
     varList.applicantType = 'Beef'
@@ -116,11 +116,11 @@ describe('Separator test', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain(
-      '<a href="/slurry-infrastructure/-capacity-increase-replace" class="govuk-back-link">Back</a>'
+      '<a href="/slurry-infrastructure/capacity-increase-replace" class="govuk-back-link">Back</a>'
     )
   })
 
-  it('page loads with /-capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Beef', async () => {
+  it('page loads with /capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Beef', async () => {
     varList.projectType = 'Add a new store to increase existing capacity'
     varList.applicantType = 'Beef'
     const options = {
@@ -130,7 +130,7 @@ describe('Separator test', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain(
-      '<a href="/slurry-infrastructure/-capacity-increase-additional" class="govuk-back-link">Back</a>'
+      '<a href="/slurry-infrastructure/capacity-increase-additional" class="govuk-back-link">Back</a>'
     )
   })
 
