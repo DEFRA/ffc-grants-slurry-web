@@ -2392,7 +2392,6 @@ const questionBank = {
           key: 'solid-fraction-storage',
           order: 143,
           costDataType: 'cat-separator',
-          cappedAmount: 16818,
           title: 'What type of solid fraction storage will you have?',
           hint: {
             text: 'You must stack your solid fraction on an impermeable surface to prevent leaking into the soil.'
@@ -2762,7 +2761,6 @@ const questionBank = {
                   min: 1,
                   max: 100
               },
-              cappedAmount: 16818,
               conditionalPara: 'The grant contribution for the concrete bunker is capped at £{{_cappedAmount_}}',
             },
           }

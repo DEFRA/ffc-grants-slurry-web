@@ -38,7 +38,8 @@ function formatAnswerArray (request, questionKey, catagoryKey, hintArray) {
           sidebarFormattedValue: selectedCatagory.items[answer].item,
           hint: {
             html: getHintText(selectedCatagory.items[answer], hintArray, counter)
-          }
+          },
+          numericalValue: selectedCatagory.items[answer].amount
         }
 
         counter += 1
