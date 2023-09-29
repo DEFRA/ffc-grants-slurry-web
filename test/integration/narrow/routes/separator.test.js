@@ -8,6 +8,7 @@ describe("Separator test", () => {
     applicantType: "Beef",
     projectType: "fake",
     storageType: "hello",
+    standardisedCostObject: 'hello'
   };
 
   beforeEach(() => {

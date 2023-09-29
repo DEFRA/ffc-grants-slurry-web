@@ -4,7 +4,6 @@ const urlPrefix = require('../config/server').urlPrefix
 const { getUrl } = require('../helpers/urls')
 const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
-const gapiService = require('../services/gapi-service')
 const { getYarValue, setYarValue } = require('../helpers/session')
 
 const viewTemplate = 'project-summary'

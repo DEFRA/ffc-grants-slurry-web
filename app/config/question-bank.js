@@ -74,7 +74,7 @@ const questionBank = {
           order: 10,
           title: 'Which livestock do you farm mainly?',
           pageTitle: '',
-          ga: [{ journeyStart: true }],
+          ga: { journeyStart: true },
           url: 'applicant-type',
           baseUrl: 'applicant-type',
           backUrl: 'start',
@@ -792,7 +792,7 @@ const questionBank = {
           backUrl: 'existing-storage-capacity',
           nextUrl: 'applying-for',
           url: 'planned-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['existingStorageCapacity'],
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
@@ -856,7 +856,7 @@ const questionBank = {
           backUrl: 'pig-existing-storage-capacity',
           nextUrl: 'applying-for',
           url: 'pig-planned-storage-capacity',
-          preValidationKeys: [],
+          preValidationKeys: ['existingStorageCapacity'],
           type: 'single-answer',
           minAnswerCount: 1,
           ineligibleContent: {
@@ -924,7 +924,7 @@ const questionBank = {
               elseUrl: 'planned-storage-capacity'
             }
           },
-          preValidationKeys: [],
+          preValidationKeys: ['plannedStorageCapacity'],
           fundingPriorities: '',
           type: 'single-answer',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1013,7 +1013,7 @@ const questionBank = {
             }
           },
           nextUrl: 'estimated-grant',
-          preValidationKeys: [],
+          preValidationKeys: ['applyingFor'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -1071,7 +1071,7 @@ const questionBank = {
             },
           },
           maybeEligible: true,
-          preValidationKeys: [],
+          preValidationKeys: ['fitForPurpose'],
           maybeEligibleContent: {
             isimpermeablecoveronly: false,
             messageHeader:
@@ -1250,7 +1250,7 @@ const questionBank = {
           backUrl: 'grant-funded-cover',
           nextUrl: 'fit-for-purpose',
           url: 'existing-cover',
-          preValidationKeys: ['projectType'],
+          preValidationKeys: ['grantFundedCover'],
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1298,7 +1298,7 @@ const questionBank = {
           backUrl: 'grant-funded-cover',
           nextUrl: 'fit-for-purpose',
           url: 'existing-cover-pig',
-          preValidationKeys: ['projectType'],
+          preValidationKeys: ['grantFundedCover'],
           type: 'single-answer',
           minAnswerCount: 1,
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
@@ -1353,7 +1353,8 @@ const questionBank = {
             }
           },
           nextUrl: 'standardised-grant-amounts',
-          preValidationKeys: [],
+          ga: { name: 'eligibility_passed', params: {} },
+          preValidationKeys: ['applyingFor'],
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Estimate how much grant you could get',
@@ -1708,7 +1709,7 @@ const questionBank = {
             }
           },
           url: 'cover-type',
-          preValidationKeys: ['serviceCapacityIncrease'], // may need to update these
+          preValidationKeys: ['standardisedCostObject'],
           hint: {
             text: 'Select one option'
           },
@@ -1769,6 +1770,7 @@ const questionBank = {
             }
           },
           backUrl: 'cover-type',
+          preValidationKeys: ['standardisedCostObject'],
           sidebar: {
             showSidebar: true,
             mainHeading: 'Your project items',
@@ -2001,7 +2003,7 @@ const questionBank = {
           baseUrl: 'existing-grant-funded-cover-size',
           backUrl: 'existing-cover-type',
           nextUrl: 'separator',
-          preValidationKeys: ['coverType'],
+          preValidationKeys: ['existingCoverType'],
           type: 'multi-input',
           hint: {
             html: `
@@ -2138,7 +2140,7 @@ const questionBank = {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: 'separator',
-          // preValidationKeys: ["standardisedGrantAmounts"],
+          preValidationKeys: ['standardisedCostObject'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -2521,7 +2523,7 @@ const questionBank = {
             text: 'Select all the items your project needs'
           },
           url: 'other-items',
-          preValidationKeys: [],
+          preValidationKeys: ['separator'],
           type: 'multi-answer',
           minAnswerCount: 1,
           sidebar: {
@@ -3087,6 +3089,7 @@ const questionBank = {
           backUrl: 'planning-permission-summary',
           nextUrl: 'business-details',
           preValidationKeys: ['gridReference'],
+          ga: { name: 'eligibilities', params: {} },
           maybeEligible: true,
           maybeEligibleContent: {
             messageHeader: 'Your results',
@@ -3119,10 +3122,6 @@ const questionBank = {
           backUrl: 'result-page',
           nextUrl: 'applying',
           preValidationKeys: ['gridReference'],
-          ga: [
-            { dimension: 'cd1', value: { type: 'score', value: 'Eligible' } },
-            { dimension: 'cm2', value: { type: 'journey-time' } }
-          ],
           fundingPriorities: '',
           type: 'multi-input',
           minAnswerCount: '',
@@ -3315,7 +3314,6 @@ const questionBank = {
           type: 'multi-input',
           minAnswerCount: '',
           maxAnswerCount: '',
-          ga: [{ dimension: 'cd3', value: { type: 'yar', key: 'applying' } }],
           allFields: [
             {
               type: 'sub-heading',
@@ -3895,11 +3893,7 @@ const questionBank = {
           url: 'confirmation',
           baseUrl: 'confirmation',
           preValidationKeys: ['farmerDetails'],
-          ga: [
-            { dimension: 'cd2', value: { type: 'score' } },
-            { dimension: 'cd5', value: { type: 'confirmationId' } },
-            { dimension: 'cm1', value: { type: 'journey-time' } }
-          ],
+          ga: { name: 'confirmation', params: {} },
           maybeEligible: true,
           maybeEligibleContent: {
             reference: {
