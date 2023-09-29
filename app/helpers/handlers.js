@@ -228,8 +228,23 @@ const getPage = async (question, request, h) => {
       let validationType =  maybeEligibleContent.conditionalText.validationType
       let details =  maybeEligibleContent.conditionalText.details
       let cappedAmount = maybeEligibleContent.conditionalText.cappedAmount
-      maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
+      if(getYarValue(request,'solidFractionStorage') != 'Concrete bunker'){
+        maybeEligibleContent.conditionalText.condition = false
+      }else{
+        maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
+      }
       setYarValue(request, 'cappedAmount', cappedAmount)
+      maybeEligibleContent = {
+        ...maybeEligibleContent,
+        conditionalText: {
+          ...maybeEligibleContent.conditionalText,
+          conditionalPara: maybeEligibleContent.conditionalText.conditionalPara.replace(
+            SELECT_VARIABLE_TO_REPLACE,
+            (_ignore, additionalYarKeyName) =>
+              formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+          )
+        }
+      }
     }
 
     if (maybeEligibleContent.reference) {
@@ -354,6 +369,8 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'separatorType', null)
       setYarValue(request, 'separatorOptions', null)
       setYarValue(request, 'gantry', null)
+      setYarValue(request, 'concreteBunkerSize', null)
+      setYarValue(request, 'solidFractionStorage', null)
     } else if (yarKey === 'separatorType') {
       setYarValue(request, 'separatorOptions', value)
     } else if (yarKey === 'gantry' && value === 'Yes') {
@@ -368,6 +385,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       // push user entered value
       tempSeparatorVal.push(value)
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
+      setYarValue(request, 'concreteBunkerSize', null)
     } else if (yarKey === 'solidFractionStorage' && value === 'Concrete bunker') {
       const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
 
@@ -382,6 +400,8 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage'){
+      setYarValue(request, 'concreteBunkerSize', null)
     }
 
     if (type !== 'multi-input' && key !== 'secBtn') {
