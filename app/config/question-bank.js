@@ -659,7 +659,7 @@ const questionBank = {
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
-            This grant is to get your  storage levels to 6 months.`,
+            This grant is to get your storage levels to 6 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -674,8 +674,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your  storage levels to 6 months.
-                For example, if you have 4 months’  storage, we will fund another 2 months. If you have 2 months’  storage and increase to 12 months, we will fund 4 months.
+                This grant is to get your storage levels to 6 months.
+                For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
                 You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -724,7 +724,7 @@ const questionBank = {
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
-            This grant is to get your  storage levels to 8 months.`,
+            This grant is to get your storage levels to 8 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -739,8 +739,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your  storage levels to 8 months.
-                For example, if you have 4 months’  storage, we will fund another 4 months. If you have 2 months’  storage and increase to 12 months, we will fund 6 months.
+                This grant is to get your storage levels to 8 months.
+                For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
                 You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -792,7 +792,7 @@ const questionBank = {
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent:
-              'This grant is to get your  storage levels to 6 months.',
+              'This grant is to get your storage levels to 6 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you might be eligible for.'
@@ -805,8 +805,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your  storage levels to 6 months.
-                For example, if you have 4 months’  storage, we will fund another 2 months. If you have 2 months’  storage and increase to 12 months, we will fund 4 months.
+                This grant is to get your storage levels to 6 months.
+                For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
                 Any capacity above 6 months is not covered by the grant.
                 You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
@@ -856,7 +856,7 @@ const questionBank = {
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent:
-              'This grant is to get your  storage levels to 8 months.',
+              'This grant is to get your storage levels to 8 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you might be eligible for.'
@@ -869,8 +869,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your  storage levels to 8 months.
-                For example, if you have 4 months’  storage, we will fund another 4 months. If you have 2 months’  storage and increase to 12 months, we will fund 6 months.
+                This grant is to get your storage levels to 8 months.
+                For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
                 Any capacity above 8 months is not covered by the grant.
                 You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
@@ -1411,13 +1411,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated volume do you need to have 6 months’  storage?',
+            text: 'What estimated volume do you need to have 6 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current  storage and 6 months’  storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current storage and 6 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1425,7 +1425,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 6 months’  storage'
+                'Enter the volume you need to have 6 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1461,7 +1461,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your  storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
+            html: `This grant is to get your storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1481,13 +1481,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated additional volume do you need to have 6 months’  storage?',
+            text: 'What estimated additional volume do you need to have 6 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current  storage and 6 months’  storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current storage and 6 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1495,7 +1495,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 6 months’  storage'
+                'Enter the volume you need to have 6 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1531,7 +1531,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your  storage levels to 6 months. For example, if you have 4 months’   storage, we will fund another 2 months. </br></br>
+            html: `This grant is to get your storage levels to 6 months. For example, if you have 4 months’  storage, we will fund another 2 months. </br></br>
             You cannot apply for the grant if you already have 6 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
@@ -1555,13 +1555,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated volume do you need to have 8 months’  storage?',
+            text: 'What estimated volume do you need to have 8 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current  storage and 8 months’  storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current storage and 8 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1569,7 +1569,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 8 months’  storage'
+                'Enter the volume you need to have 8 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1605,7 +1605,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your  storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
+            html: `This grant is to get your storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1625,13 +1625,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated additional volume do you need to have 8 months’  storage?',
+            text: 'What estimated additional volume do you need to have 8 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current  storage and 8 months’  storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current storage and 8 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1639,7 +1639,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 8 months’  storage'
+                'Enter the volume you need to have 8 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1675,7 +1675,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your  storage levels to 8 months. For example, if you have 6 months’   storage, we will fund another 2 months.</br></br>
+            html: `This grant is to get your storage levels to 8 months. For example, if you have 6 months’  storage, we will fund another 2 months.</br></br>
             You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'

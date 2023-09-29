@@ -26,7 +26,7 @@ describe('Page: /pig-capacity-increase-replace', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain(
-      'What estimated volume do you need to have 8 months’  storage?'
+      'What estimated volume do you need to have 8 months’ storage?'
     )
   })
 
@@ -41,7 +41,7 @@ describe('Page: /pig-capacity-increase-replace', () => {
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
     expect(postResponse.payload).toContain(
-      'Enter the volume you need to have 8 months’  storage'
+      'Enter the volume you need to have 8 months’ storage'
     )
   })
 

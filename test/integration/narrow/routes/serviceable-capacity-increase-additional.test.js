@@ -21,7 +21,7 @@ describe('Page: /capacity-increase-additional', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What estimated additional volume do you need to have 6 months’  storage?')
+    expect(response.payload).toContain('What estimated additional volume do you need to have 6 months’ storage?')
   })
 
   it('no option selected -> show error message', async () => {
@@ -34,7 +34,7 @@ describe('Page: /capacity-increase-additional', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Enter the volume you need to have 6 months’  storage')
+    expect(postResponse.payload).toContain('Enter the volume you need to have 6 months’ storage')
   })
 
   it('value outside min and max -> show error message', async () => {
