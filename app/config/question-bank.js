@@ -1371,8 +1371,8 @@ const questionBank = {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
             urlOptions: {
-              thenUrl: '-capacity-increase-replace',
-              elseUrl: '-capacity-increase-additional',
+              thenUrl: 'capacity-increase-replace',
+              elseUrl: 'capacity-increase-additional',
               nonDependentUrl: 'existing-cover-type'
             }
           },
@@ -1393,12 +1393,12 @@ const questionBank = {
           yarKey: 'storageType'
         },
         {
-          key: '-capacity-increase-replace',
+          key: 'capacity-increase-replace',
           order: 131,
           title: '',
           pageTitle: '',
-          url: '-capacity-increase-replace',
-          baseUrl: '-capacity-increase-replace',
+          url: 'capacity-increase-replace',
+          baseUrl: 'capacity-increase-replace',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           fundingPriorities: '',
@@ -1466,13 +1466,13 @@ const questionBank = {
           yarKey: 'serviceCapacityIncrease'
         },
         {
-          key: '-capacity-increase-additional',
+          key: 'capacity-increase-additional',
           order: 132,
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-10',
-          url: '-capacity-increase-additional',
-          baseUrl: '-capacity-increase-additional',
+          url: 'capacity-increase-additional',
+          baseUrl: 'capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           preValidationKeys: ['storageType'],
@@ -1537,12 +1537,12 @@ const questionBank = {
           yarKey: 'serviceCapacityIncrease'
         },
         {
-          key: 'pig--capacity-increase-replace',
+          key: 'pig-capacity-increase-replace',
           order: 133,
           title: '',
           pageTitle: '',
-          url: 'pig--capacity-increase-replace',
-          baseUrl: 'pig--capacity-increase-replace',
+          url: 'pig-capacity-increase-replace',
+          baseUrl: 'pig-capacity-increase-replace',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           fundingPriorities: '',
@@ -1610,13 +1610,13 @@ const questionBank = {
           yarKey: 'serviceCapacityIncrease'
         },
         {
-          key: 'pig--capacity-increase-additional',
+          key: 'pig-capacity-increase-additional',
           order: 134,
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-10',
-          url: 'pig--capacity-increase-additional',
-          baseUrl: 'pig--capacity-increase-additional',
+          url: 'pig-capacity-increase-additional',
+          baseUrl: 'pig-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           preValidationKeys: ['storageType'],
@@ -1699,8 +1699,8 @@ const questionBank = {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
             urlOptions: {
-              thenUrl: '-capacity-increase-replace',
-              elseUrl: '-capacity-increase-additional'
+              thenUrl: 'capacity-increase-replace',
+              elseUrl: 'capacity-increase-additional'
             }
           },
           url: 'cover-type',

@@ -124,9 +124,9 @@ describe('Existing cover Type test', () => {
         expect(response.payload).toContain('<a href=\"/slurry-infrastructure/cover-type\" class=\"govuk-back-link\">Back</a>')
     })
 
-    it('page loads with /pig--capacity-increase-replace/ back link when project type /Replace an existing store .../ and applicant type is Pig', async () => {
-        varList.projectType = "Replace an existing store that is no longer fit for purpose with a new store"
-        varList.applicantType = "Pig"
+    it('page loads with /pig-capacity-increase-replace/ back link when project type /Replace an existing store .../ and applicant type is Pig', async () => {
+        varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
+        varList.applicantType = 'Pig'
         varList.coverType = null
         const optionCoverType = {
             method: 'GET',
@@ -134,23 +134,23 @@ describe('Existing cover Type test', () => {
         }
         const responseCoverType = await global.__SERVER__.inject(optionCoverType)
         expect(responseCoverType.statusCode).toBe(200)
-        expect(responseCoverType.payload).toContain('<a href=\"/slurry-infrastructure/pig--capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
+        expect(responseCoverType.payload).toContain('<a href=\"/slurry-infrastructure/pig-capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
     })
 
-    it('page loads with /-capacity-increase-replace/ back link when project type /Replace an existing store that is .../ and applicant type is Beef', async () => {
-        varList.projectType = "Replace an existing store that is no longer fit for purpose with a new store"
-        varList.applicantType = "Beef"
+    it('page loads with /capacity-increase-replace/ back link when project type /Replace an existing store that is .../ and applicant type is Beef', async () => {
+        varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
+        varList.applicantType = 'Beef'
         const options = {
             method: 'GET',
             url: `${global.__URLPREFIX__}/existing-cover-type`
         }
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
-        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/-capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
+        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
     })
-    it('page loads with /pig--capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Pig', async () => {
-        varList.projectType = "Add a new store to increase existing capacity"
-        varList.applicantType = "Pig"
+    it('page loads with /pig-capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Pig', async () => {
+        varList.projectType = 'Add a new store to increase existing capacity'
+        varList.applicantType = 'Pig'
 
         const options = {
             method: 'GET',
@@ -158,17 +158,17 @@ describe('Existing cover Type test', () => {
         }
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
-        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/pig--capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
+        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/pig-capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
     })
-    it('page loads with /-capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Beef', async () => {
-        varList.projectType = "Add a new store to increase existing capacity"
-        varList.applicantType = "Beef"
+    it('page loads with /capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Beef', async () => {
+        varList.projectType = 'Add a new store to increase existing capacity'
+        varList.applicantType = 'Beef'
         const options = {
             method: 'GET',
             url: `${global.__URLPREFIX__}/existing-cover-type`
         }
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
-        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/-capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
+        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
     })
 })

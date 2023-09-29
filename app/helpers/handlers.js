@@ -140,18 +140,18 @@ const getPage = async (question, request, h) => {
         question.sidebar.showSidebar = true
       } else if (getYarValue(request, 'projectType') === isReplaceStore) {
         if (getYarValue(request, 'applicantType') === isPig) {
-          question.backUrl = `${urlPrefix}/pig--capacity-increase-replace`
+          question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
           question.sidebar.showSidebar = true
         } else {
-          question.backUrl = `${urlPrefix}/-capacity-increase-replace`
+          question.backUrl = `${urlPrefix}/capacity-increase-replace`
           question.sidebar.showSidebar = true
         }
       } else {
         if (getYarValue(request, 'applicantType') === isPig) {
-          question.backUrl = `${urlPrefix}/pig--capacity-increase-additional`
+          question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
           question.sidebar.showSidebar = true
         } else {
-          question.backUrl = `${urlPrefix}/-capacity-increase-additional`
+          question.backUrl = `${urlPrefix}/capacity-increase-additional`
           question.sidebar.showSidebar = true
         }
       }
@@ -168,15 +168,15 @@ const getPage = async (question, request, h) => {
       } else {
         if (getYarValue(request, 'applicantType') === isPig) {
           if (getYarValue(request, 'projectType') === isReplaceStore) {
-            question.backUrl = `${urlPrefix}/pig--capacity-increase-replace`
+            question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
           } else {
-            question.backUrl = `${urlPrefix}/pig--capacity-increase-additional`
+            question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
           }
         } else {
           if (getYarValue(request, 'projectType') === isReplaceStore) {
-            question.backUrl = `${urlPrefix}/-capacity-increase-replace`
+            question.backUrl = `${urlPrefix}/capacity-increase-replace`
           } else {
-            question.backUrl = `${urlPrefix}/-capacity-increase-additional`
+            question.backUrl = `${urlPrefix}/capacity-increase-additional`
           }
         }
       }

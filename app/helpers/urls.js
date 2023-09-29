@@ -33,10 +33,10 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   } else if (getYarValue(request, 'applicantType') === 'Pig' && elseUrl === 'existing-cover') {
     elseUrl = 'existing-cover-pig'
   } else if (getYarValue(request, 'applicantType') === 'Pig' &&
-    thenUrl === '-capacity-increase-replace' &&
-    elseUrl === "-capacity-increase-additional") {
-    thenUrl = 'pig--capacity-increase-replace'
-    elseUrl = "pig--capacity-increase-additional"
+    thenUrl === 'capacity-increase-replace' &&
+    elseUrl === 'capacity-increase-additional') {
+    thenUrl = 'pig-capacity-increase-replace'
+    elseUrl = 'pig-capacity-increase-additional'
   }
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
 

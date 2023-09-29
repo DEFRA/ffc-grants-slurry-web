@@ -84,7 +84,7 @@ describe('Cover Type test', () => {
     expect(response.statusCode).toBe(302)
     expect(response.headers.location).toBe('cover-size')
   })
-  it('page loads with /-capacity-increase-replace/ back link when project type is replace', async () => {
+  it('page loads with /capacity-increase-replace/ back link when project type is replace', async () => {
     varList.projectType = "Replace an existing store that is no longer fit for purpose with a new store"
     const options = {
       method: 'GET',
@@ -92,10 +92,10 @@ describe('Cover Type test', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"-capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"capacity-increase-replace\" class=\"govuk-back-link\">Back</a>')
   })
 
-  it('page loads with /-capacity-increase-additional/ back link when project type is additional', async () => {
+  it('page loads with /capacity-increase-additional/ back link when project type is additional', async () => {
     varList.projectType = "Add a new store to increase existing capacity"
     const options = {
       method: 'GET',
@@ -103,6 +103,6 @@ describe('Cover Type test', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"-capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"capacity-increase-additional\" class=\"govuk-back-link\">Back</a>')
   })
 })
