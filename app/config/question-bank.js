@@ -1068,7 +1068,7 @@ const questionBank = {
           maybeEligible: true,
           preValidationKeys: ['fitForPurpose'],
           maybeEligibleContent: {
-            isimpermeablecoveronly: false,
+            isImpermeableCoverOnly: false,
             messageHeader:
               'You may be able to apply for a grant from this scheme',
             messageContent: '',
@@ -2731,7 +2731,7 @@ const questionBank = {
             minGrant: 25000,
             maxGrant: 250000,
             grantPercentage: '',
-            cappedGrant: true
+            cappedGrant: true,
           },
           ineligibleContent: {
             messageContent: 'The minimum grant you can claim is £25,000.',
@@ -2747,7 +2747,17 @@ const questionBank = {
               'Based on the standardised grant amount for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
             warning: {
               text: 'There’s no guarantee the project will receive a grant.'
-            }
+            },
+            conditionalText: {
+              condition: false,
+              dependantYarKey: 'concreteBunkerSize',
+              validationType: 'MIN_MAX',
+              details: {
+                  min: 1,
+                  max: 100
+              },
+              conditionalPara: 'The grant contribution for the concrete bunker is capped at £{{_cappedAmount_}}',
+            },
           }
         },
         {
@@ -3945,7 +3955,7 @@ questionBank.sections.forEach(({ questions }) => {
 })
 const ALL_URLS = []
 ALL_QUESTIONS.forEach(item => ALL_URLS.push(item.url))
-const YAR_KEYS = ['itemsTotalValue', 'remainingCost', 'calculatedGrant', 'separatorOptions', 'concreteBunkerSize']
+const YAR_KEYS = ['itemsTotalValue', 'remainingCost', 'calculatedGrant', 'separatorOptions', 'concreteBunkerSize', 'cappedAmount']
 ALL_QUESTIONS.forEach(item => YAR_KEYS.push(item.yarKey))
 module.exports = {
   questionBank,

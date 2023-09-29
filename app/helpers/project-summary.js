@@ -100,12 +100,11 @@ function formatSummaryTable (request) {
 
         listOfCatagories.forEach((catagory, _index2) => {
           const selectedCatagory = object.data.desirability.catagories.find(({ key }) => key === catagory)
-
           selectedCatagory.items.forEach((item) => {
             if (item.item === otherItem) {
               const unit = suffixGenerator(item.unit)
 
-              total = (correctSize * String(item.amount).replace(/,/g, ''))
+              total = item.item === 'Concrete bunker' && Number(correctSize) > 100 ? Number(String(request.yar.get('cappedAmount')).replace(/,/g, '')) : (correctSize * String(item.amount).replace(/,/g, ''))
 
               returnArray.push({
                 item: otherItem,
@@ -113,7 +112,6 @@ function formatSummaryTable (request) {
                 quantity: formatUKCurrency(correctSize) + unit,
                 total: '£' + formatUKCurrency(total)
               })
-
               totalCalculator += total
             }
           })
