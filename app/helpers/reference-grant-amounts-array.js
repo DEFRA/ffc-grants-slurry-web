@@ -2,10 +2,13 @@ const { formatUKCurrency } = require('./data-formats')
 const { getYarValue } = require('./session')
 
 const getHintText = (answer, hintArray, counter) => {
+
+const answerUnit = answer.item === 'Concrete bunker' ? 'per m²' : answer.unit
+
   if (hintArray && hintArray[counter - 1]) {
-    return `${hintArray[counter - 1]} <br/> (Grant amount: £${answer.amount} ${answer.unit})`
+    return `${hintArray[counter - 1]} <br/> (Grant amount: £${answer.amount} ${answerUnit})`
   }
-  return 'Grant amount: £' + formatUKCurrency(answer.amount) + ' ' + answer.unit
+  return 'Grant amount: £' + formatUKCurrency(answer.amount) + ' ' + answerUnit
 }
 
 function formatAnswerArray(request, questionKey, catagoryKey, hintArray) {
@@ -35,7 +38,8 @@ function formatAnswerArray(request, questionKey, catagoryKey, hintArray) {
           sidebarFormattedValue: selectedCatagory.items[answer].item,
           hint: {
             html: getHintText(selectedCatagory.items[answer], hintArray, counter)
-          }
+          },
+          numericalValue: selectedCatagory.items[answer].amount
         }
 
         counter += 1

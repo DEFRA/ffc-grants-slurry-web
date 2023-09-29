@@ -25,6 +25,7 @@ const {
   getConsentOptionalData,
   handleConditinalHtmlData
 } = require('./pageHelpers')
+const { validateAnswerField } = require('./errorHelpers')
 
 const setGrantsData = (question, request) => {
   if (question.grantInfo) {
@@ -180,6 +181,7 @@ const getPage = async (question, request, h) => {
           }
         }
       }
+      
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
       if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
@@ -187,13 +189,13 @@ const getPage = async (question, request, h) => {
       }
     case 'fit-for-purpose':
       break
-    case 'fit-for-purpose-conditional':
-      if (getYarValue(request, 'applyingFor') === isImperableCover) {
-        question.maybeEligibleContent.isimpermeablecoveronly = true
+    case 'fit-for-purpose-conditional': 
+      if(getYarValue(request, 'applyingFor') === isImperableCover){
+        question.maybeEligibleContent.isImpermeableCoverOnly = true
         question.nextUrl = `${urlPrefix}/project-type`
         nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       } else {
-        question.maybeEligibleContent.isimpermeablecoveronly = false
+        question.maybeEligibleContent.isImpermeableCoverOnly = false
       }
       break
     default:
@@ -220,6 +222,28 @@ const getPage = async (question, request, h) => {
     let { maybeEligibleContent } = question
     maybeEligibleContent.title = question.title
     let consentOptionalData
+
+    if('conditionalText' in maybeEligibleContent ){
+      let value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
+      let validationType =  maybeEligibleContent.conditionalText.validationType
+      let details =  maybeEligibleContent.conditionalText.details
+      if(getYarValue(request,'solidFractionStorage') != 'Concrete bunker'){
+        maybeEligibleContent.conditionalText.condition = false
+      }else{
+        maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
+      }
+      maybeEligibleContent = {
+        ...maybeEligibleContent,
+        conditionalText: {
+          ...maybeEligibleContent.conditionalText,
+          conditionalPara: maybeEligibleContent.conditionalText.conditionalPara.replace(
+            SELECT_VARIABLE_TO_REPLACE,
+            (_ignore, additionalYarKeyName) =>
+              formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+          )
+        }
+      }
+    }
 
     if (maybeEligibleContent.reference) {
       if (!getYarValue(request, 'consentMain')) {
@@ -343,6 +367,8 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       setYarValue(request, 'separatorType', null)
       setYarValue(request, 'separatorOptions', null)
       setYarValue(request, 'gantry', null)
+      setYarValue(request, 'concreteBunkerSize', null)
+      setYarValue(request, 'solidFractionStorage', null)
     } else if (yarKey === 'separatorType') {
       setYarValue(request, 'separatorOptions', value)
     } else if (yarKey === 'gantry' && value === 'Yes') {
@@ -357,6 +383,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
       // push user entered value
       tempSeparatorVal.push(value)
       setYarValue(request, 'separatorOptions', tempSeparatorVal)
+      setYarValue(request, 'concreteBunkerSize', null)
     } else if (yarKey === 'solidFractionStorage' && value === 'Concrete bunker') {
       const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
 
@@ -371,6 +398,8 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage'){
+      setYarValue(request, 'concreteBunkerSize', null)
     }
 
     if (type !== 'multi-input' && key !== 'secBtn') {

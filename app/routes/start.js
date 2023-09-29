@@ -6,7 +6,6 @@ module.exports = {
   method: 'GET',
   path: currentPath,
   handler: (request, h) => {
-    request.yar.reset()
     return h.view('home', { button: { nextLink: nextPath, text: 'Start now' } })
   }
 }
