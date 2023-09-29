@@ -227,7 +227,6 @@ const getPage = async (question, request, h) => {
       let value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
       let validationType =  maybeEligibleContent.conditionalText.validationType
       let details =  maybeEligibleContent.conditionalText.details
-      // let cappedAmount = getYarValue(request, 'cappedAmount')
       if(getYarValue(request,'solidFractionStorage') != 'Concrete bunker'){
         maybeEligibleContent.conditionalText.condition = false
       }else{
