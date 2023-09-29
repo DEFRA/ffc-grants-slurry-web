@@ -20,8 +20,8 @@
         "numberEmployees": "30",
         "businessTurnover": "5000000",
         "sbi": "",
-        "calvingSystem":"Year round",
-        "calvesNumber":30
+        "calvingSystem": "Year round",
+        "calvesNumber": 30
     },
     "confirmationId": "12345678",
     "applicantType": "Beef (including calf rearing)",
@@ -46,36 +46,55 @@
     "grantFundedStore": 22,
     "existingStore": 22,
     "separator": "Yes",
-    "separatorOptions": ["Screen press", "Concrete bunker", "Size: 45m2"],
-    "separatorType": "Screen press",
+    "separatorOptions": [
+        "Roller screen press",
+        "Concrete bunker",
+        "Size: 45m2"
+    ],
+    "separatorType": "Roller screen press",
     "gantry": "No",
-    "solidFractionStorage" : "Concrete bunker",
-    "concreteBunkerSize" : 92,
+    "solidFractionStorage": "Concrete bunker",
+    "concreteBunkerSize": 92,
     "otherItems": "None of the above",
     "applicantBusiness": "",
-    "project":"Building new calf housing",
-    "minimumFloorArea":"Yes",
-    "housedIndividually":"No",
-    "isolateCalves":"Yes",
-    "concreteFlooring":"Yes",
-    "enrichment":"Yes",
-    "structure":"A-frame building",
+    "project": "Building new calf housing",
+    "minimumFloorArea": "Yes",
+    "housedIndividually": "No",
+    "isolateCalves": "Yes",
+    "concreteFlooring": "Yes",
+    "enrichment": "Yes",
+    "structure": "A-frame building",
     "structureEligibility": "Yes",
     "yesStructureEligibility": "we have got proof and everthing for it",
-    "drainageSlope":"Yes",
-    "additionalItems":"Yes",
-    "roofSolarPV":"Yes",
+    "drainageSlope": "Yes",
+    "additionalItems": "Yes",
+    "roofSolarPV": "Yes",
     "projectCost": 100000,
     "potentialFunding": "40000.00",
     "remainingCost": "60000.00",
-    "housing":"Yes",
-    "calfGroupSize":"2 to 3",
-    "moistureControl":["A drain or drainage channel inside the pen", "Positioning drinking areas near drainage and away from bedding"],
-    "permanentSickPen":["A permanent sick pen", "A separate air space"],
-    "environmentalImpact":["Solar PV panels on the roof of the building", "Collect and store rainwater"],
-    "sustainableMaterials":["Low carbon concrete", "Steel replacement products"],
-    "introducingInnovation":["Technology", "Collaboration"],
-    "calvingSystem":"Year round",
+    "housing": "Yes",
+    "calfGroupSize": "2 to 3",
+    "moistureControl": [
+        "A drain or drainage channel inside the pen",
+        "Positioning drinking areas near drainage and away from bedding"
+    ],
+    "permanentSickPen": [
+        "A permanent sick pen",
+        "A separate air space"
+    ],
+    "environmentalImpact": [
+        "Solar PV panels on the roof of the building",
+        "Collect and store rainwater"
+    ],
+    "sustainableMaterials": [
+        "Low carbon concrete",
+        "Steel replacement products"
+    ],
+    "introducingInnovation": [
+        "Technology",
+        "Collaboration"
+    ],
+    "calvingSystem": "Year round",
     "calvesNumber": 22,
     "gridReference": "SE 123 456"
 }
