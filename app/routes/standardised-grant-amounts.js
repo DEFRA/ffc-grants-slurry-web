@@ -1,4 +1,4 @@
-const { getreferenceCosts } = require('../messaging/application')
+const { getReferenceCosts } = require('../messaging/application')
 const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
 const { getYarValue } = require('../helpers/session')
@@ -39,7 +39,7 @@ module.exports = [{
 
     try {
       console.log('Sending session message .....')
-      const result = await getreferenceCosts(request.yar.id)
+      const result = await getReferenceCosts(request.yar.id)
       console.log(result, '[THIS IS RESULT WE GOT BACK]')
       request.yar.set('referenceCostObject', result)
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))

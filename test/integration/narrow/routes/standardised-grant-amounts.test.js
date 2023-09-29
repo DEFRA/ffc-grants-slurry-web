@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
 jest.mock('../../../../app/messaging/application')
-const { getreferenceCosts } = require('../../../../app/messaging/application')
+const { getReferenceCosts } = require('../../../../app/messaging/application')
 const messaging = require('../../../../app/messaging/application')
 
 const gapiService = require('../../../../app/services/gapi-service')
@@ -30,7 +30,7 @@ describe('reference Cost test', () => {
       url: `${global.__URLPREFIX__}/reference-grant-amounts`
     }
 
-    getreferenceCosts.mockResolvedValue({
+    getReferenceCosts.mockResolvedValue({
       costData: 'success'
     })
 
@@ -44,7 +44,7 @@ describe('reference Cost test', () => {
       url: `${global.__URLPREFIX__}/reference-grant-amounts`
     }
 
-    getreferenceCosts.mockResolvedValue({
+    getReferenceCosts.mockResolvedValue({
       costData: 'fail'
     })
 
@@ -58,19 +58,19 @@ describe('reference Cost test', () => {
       url: `${global.__URLPREFIX__}/reference-grant-amounts`
     }
 
-    getreferenceCosts.mockRejectedValue('hello')
+    getReferenceCosts.mockRejectedValue('hello')
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /stanbdardised-costs returns error 500 if getreferenceCosts throws error', async () => {
+  test('GET /stanbdardised-costs returns error 500 if getReferenceCosts throws error', async () => {
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/reference-grant-amounts`
     }
 
-    jest.spyOn(messaging, 'getreferenceCosts').mockImplementation(() => { throw new Error() })
+    jest.spyOn(messaging, 'getReferenceCosts').mockImplementation(() => { throw new Error() })
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

@@ -1,4 +1,4 @@
-const { getreferenceCosts } = require('../../../../../app/messaging/application')
+const { getReferenceCosts } = require('../../../../../app/messaging/application')
 const { costRequestQueue, costResponseQueue, fetchCostRequestMsgType } = require('../../../../../app/config/messaging.js')
 
 jest.mock('../../../../../app/messaging')
@@ -15,7 +15,7 @@ describe('application messaging tests', () => {
     const receiveMessageRes = { id: 1 }
     receiveMessage.mockResolvedValue(receiveMessageRes)
 
-    const message = await getreferenceCosts(sessionId)
+    const message = await getReferenceCosts(sessionId)
 
     expect(message).toEqual(receiveMessageRes)
     expect(receiveMessage).toHaveBeenCalledTimes(1)
