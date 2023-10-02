@@ -6,7 +6,7 @@ const { getYarValue } = require('../helpers/session')
 const gapiService = require('../services/gapi-service')
 
 const urlPrefix = require('../config/server').urlPrefix
-const viewTemplate = 'reference-grant-amounts'
+const viewTemplate = 'reference-cost'
 const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/storage-type`
 const nextPathImpermeable = `${urlPrefix}/existing-cover-type`

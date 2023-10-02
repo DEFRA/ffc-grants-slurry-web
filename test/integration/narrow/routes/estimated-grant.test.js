@@ -41,7 +41,7 @@ describe('Page: /estimated-grant', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('reference-grant-amounts')
+    expect(postResponse.headers.location).toBe('reference-cost')
   })
 
   it('page loads with correct back link when user select fit for purpose option`s as  `\ Yes \` ', async () => {

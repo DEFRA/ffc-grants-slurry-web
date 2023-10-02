@@ -55,7 +55,7 @@ const getDependentSideBar = (sidebar, request) => {
               setYarValue(request, 'separatorOptions', tempSeparatorVal)
               selectedAnswers = tempSeparatorVal
 
-            } else if (request.route.path === '/slurry-infrastructure/solid-fraction-storage') {
+            } else if (request.route.path === '/slurry-infrastructure/short-term-storage') {
               let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
 
               if (tempSeparatorVal.includes('Gantry')) {

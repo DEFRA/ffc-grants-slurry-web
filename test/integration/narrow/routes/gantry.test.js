@@ -125,7 +125,7 @@ describe("Gantry test", () => {
   });
 
   // POST
-  it("POST /gantry route returns next page -> /solid-fraction-storage/, when user selects 'Yes'", async () => {
+  it("POST /gantry route returns next page -> /short-term-storage/, when user selects 'Yes'", async () => {
     const postOptions = {
       method: "POST",
       url: `${global.__URLPREFIX__}/gantry`,
@@ -134,9 +134,9 @@ describe("Gantry test", () => {
     };
     const postResponse = await global.__SERVER__.inject(postOptions);
     expect(postResponse.statusCode).toBe(302);
-    expect(postResponse.headers.location).toBe("solid-fraction-storage");
+    expect(postResponse.headers.location).toBe("short-term-storage");
   });
-  it("POST /gantry route returns next page -> /solid-fraction-storage/, when user selects 'No'", async () => {
+  it("POST /gantry route returns next page -> /short-term-storage/, when user selects 'No'", async () => {
     varList.separatorOptions = ['Gantry']
     const postOptions = {
       method: "POST",
@@ -146,6 +146,6 @@ describe("Gantry test", () => {
     };
     const postResponse = await global.__SERVER__.inject(postOptions);
     expect(postResponse.statusCode).toBe(302);
-    expect(postResponse.headers.location).toBe("solid-fraction-storage");
+    expect(postResponse.headers.location).toBe("short-term-storage");
   });
 });

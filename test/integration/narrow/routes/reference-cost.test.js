@@ -24,10 +24,10 @@ describe('reference Cost test', () => {
     }
   }))
 
-  test('GET /reference-grant-amounts route returns 200 if costData = success', async () => {
+  test('GET /reference-cost route returns 200 if costData = success', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
     getReferenceCosts.mockResolvedValue({
@@ -38,10 +38,10 @@ describe('reference Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /reference-grant-amounts route returns 500 if costData =/= success', async () => {
+  test('GET /reference-cost route returns 500 if costData =/= success', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
     getReferenceCosts.mockResolvedValue({
@@ -52,10 +52,10 @@ describe('reference Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /reference-grant-amounts route causes error page', async () => {
+  test('GET /reference-cost route causes error page', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
     getReferenceCosts.mockRejectedValue('hello')
@@ -67,7 +67,7 @@ describe('reference Cost test', () => {
   test('GET /stanbdardised-costs returns error 500 if getReferenceCosts throws error', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
     jest.spyOn(messaging, 'getReferenceCosts').mockImplementation(() => { throw new Error() })
@@ -76,10 +76,10 @@ describe('reference Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('POST /reference-grant-amounts route returns next page - building journey', async () => {
+  test('POST /reference-cost route returns next page - building journey', async () => {
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`,
+      url: `${global.__URLPREFIX__}/reference-cost`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { applying: '', crumb: crumbToken }
     }
@@ -88,12 +88,12 @@ describe('reference Cost test', () => {
     expect(response.statusCode).toBe(302)
   })
 
-  test('POST /reference-grant-amounts route returns next page - impermeable journey', async () => {
+  test('POST /reference-cost route returns next page - impermeable journey', async () => {
     varList.applyingFor = "An impermeable cover only"
     varList.fitForPurpose = 'Yes'
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`,
+      url: `${global.__URLPREFIX__}/reference-cost`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { applying: '', crumb: crumbToken }
     }
@@ -105,7 +105,7 @@ describe('reference Cost test', () => {
   test('page redirects to start if no cover', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/reference-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
     guardPage.mockResolvedValue(true)

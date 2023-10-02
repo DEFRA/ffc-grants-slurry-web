@@ -134,7 +134,7 @@ const getPage = async (question, request, h) => {
     case 'existing-cover-type':
       if (getYarValue(request, 'applyingFor') === isImperableCover) {
         setYarValue(request, 'planningPermission', null)
-        question.backUrl = `${urlPrefix}/reference-grant-amounts`
+        question.backUrl = `${urlPrefix}/reference-cost`
         question.sidebar.showSidebar = false
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
@@ -398,7 +398,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage'){
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage'){
       setYarValue(request, 'concreteBunkerSize', null)
     }
 

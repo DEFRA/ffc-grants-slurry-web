@@ -5,7 +5,7 @@ describe('Page: /potential-amount', () => {
     itemsTotalValue: 50000,
     calculatedGrant: 50000
   }
-  const eligiblePageText = 'Based on the reference grant amount for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £50,000'
+  const eligiblePageText = 'Based on the reference cost for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £50,000'
   const inEligiblePageText = 'The minimum grant you can claim is £25,000.'
 
   jest.mock('../../../../app/helpers/session', () => ({
