@@ -103,8 +103,8 @@ function formatSummaryTable(request) {
           selectedCatagory.items.forEach((item) => {
             if (item.item === otherItem) {
               const unit = suffixGenerator(item.unit)
-              
-              total = item.item === 'Concrete bunker' && Number(correctSize) > 100 ? Number(request.yar.get('cappedAmount').replace(/,/g, '')) : (Number(correctSize) * Number(String(item.amount).replace(/,/g, '')))
+
+              total = item.item === 'Concrete bunker' && Number(correctSize) > 100 ? Number(String(request.yar.get('cappedAmount')).replace(/,/g, '')) : Number(correctSize) * Number((String(item.amount)).replace(/,/g, ''))
 
               returnArray.push({
                 item: otherItem,

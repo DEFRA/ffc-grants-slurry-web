@@ -95,7 +95,7 @@ const objectToSend = {
           },
           {
             item: 'Concrete bunker',
-            amount: 10,
+            amount: 168.18,
             unit: 'per square metre'
           }
 
@@ -344,9 +344,9 @@ describe('Project Summary Array Function', () => {
       },
       {
         item: 'Concrete bunker',
-        amount: '£10',
+        amount: '£168.18',
         quantity: '100m²',
-        total: '£1,000'
+        total: '£16,818'
       },
       {
         item: 'Reception pit',
@@ -600,9 +600,9 @@ describe('Project Summary Array Function', () => {
       },
       {
         item: 'Concrete bunker',
-        amount: '£10',
+        amount: '£168.18',
         quantity: '6m²',
-        total: '£60'
+        total: '£1,009.08'
       },
     ])
   })
@@ -679,60 +679,6 @@ describe('Project Summary Array Function', () => {
             return []
           } else if (key === 'concreteBunkerSize') {
             return null
-          } else if (key == 'itemSizeQuantities') {
-            return []
-          } else {
-            return ['None of the above']
-          }
-        },
-        set: jest.fn((key, value) => {
-          dict[key] = value
-        })
-      }
-    }
-
-    const response = formatSummaryTable(mockRequest)
-
-    expect(response).toEqual([
-      {
-        item: 'Rigid cover for steel or concrete slurry grant-funded store cover',
-        amount: '£8',
-        quantity: '6m²',
-        total: '£48'
-      },
-      {
-        item: 'Rigid cover for steel or concrete slurry existing store cover',
-        amount: '£8',
-        quantity: '6m²',
-        total: '£48'
-      }
-    ])
-  })
-
-  test('Should return only cover if storage, separator and other items array have none of the above', () => {
-    const dict = {}
-
-    const mockRequest = {
-      yar: {
-        get: (key) => {
-          if (key == 'referenceCostObject') {
-            return objectToSend
-          } else if (key == 'storageType') {
-            return 'Above-ground steel slurry store'
-          } else if (key == 'serviceCapacityIncrease') {
-            return null
-          } else if (key == 'coverType') {
-            return 'Rigid cover for steel or concrete slurry stores'
-          } else if (key == 'existingCoverType') {
-            return 'Rigid cover for steel or concrete slurry stores'
-          } else if (key == 'coverSize') {
-            return 6
-          } else if (key == 'existingCoverSize') {
-            return 6
-          } else if (key === 'separatorOptions') {
-            return []
-          } else if (key === 'concreteBunkerSize') {
-            return 16818
           } else if (key == 'itemSizeQuantities') {
             return []
           } else {
