@@ -809,6 +809,8 @@ const questionBank = {
                 This grant is to get your storage levels to 6 months.
                 For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
                 Any capacity above 6 months is not covered by the grant.
+
+
                 You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                     items: []
@@ -2746,7 +2748,7 @@ const questionBank = {
           maybeEligibleContent: {
             messageHeader: 'Potential grant funding',
             messageContent:
-              'Based on the reference grant amount for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
+              'Based on the reference cost for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
             warning: {
               text: 'There’s no guarantee the project will receive a grant.'
             },
