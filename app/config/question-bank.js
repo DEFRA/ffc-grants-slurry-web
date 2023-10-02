@@ -739,8 +739,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your serviceable storage levels to 8 months.
-                For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
+                This grant is to get your storage levels to 8 months.
+                For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
                 
                 You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                     items: []
@@ -2136,7 +2136,7 @@ const questionBank = {
           url: 'separator',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           hint: {
-            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
+            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and stackable material. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: 'separator',
           preValidationKeys: ['referenceCostObject'],
@@ -2301,7 +2301,7 @@ const questionBank = {
           baseUrl: 'gantry',
           url: 'gantry',
           backUrl: 'separator-type',
-          nextUrl: 'solid-fraction-storage',
+          nextUrl: 'short-term-storage',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           preValidationKeys: ['separatorType'],
           fundingPriorities: '',
@@ -2388,22 +2388,22 @@ const questionBank = {
           yarKey: 'gantry'
         },
         {
-          key: 'solid-fraction-storage',
+          key: 'short-term-storage',
           order: 143,
           costDataType: 'cat-separator',
-          title: 'What type of solid fraction storage will you have?',
+          title: 'What type of short-term storage do you want for the stackable material from the separator?',
           hint: {
-            text: 'You must stack your solid fraction on an impermeable surface to prevent leaking into the soil.'
+            text: 'You must stack your stackable materials on an impermeable surface to prevent leaking into the soil.'
           },
           pageTitle: '',
-          baseUrl: 'solid-fraction-storage',
-          url: 'solid-fraction-storage',
+          baseUrl: 'short-term-storage',
+          url: 'short-term-storage',
           backUrl: 'gantry',
           nextUrl: 'other-items',
           validate: [
             {
               type: 'NOT_EMPTY',
-              error: 'Select what type of solid fraction storage you will have'
+              error: 'Select what type of short-term storage you will have for the stackable material from the separator'
             },
             {
               dependentKey: 'concreteBunkerSize',
@@ -2434,8 +2434,8 @@ const questionBank = {
               value: 'divider'
             },
             {
-              key: 'solid-fraction-storage-A3',
-              value: 'I already have a solid fraction storage',
+              key: 'short-term-storage-A3',
+              value: 'I already have short-term storage',
             }
           ],
           sidebar: {
@@ -2513,7 +2513,7 @@ const questionBank = {
             dependentQuestionYarKey: 'separator',
             dependentAnswerKeysArray: ['separator-A1'],
             urlOptions: {
-              thenUrl: 'solid-fraction-storage',
+              thenUrl: 'short-term-storage',
               elseUrl: 'separator'
             }
           },

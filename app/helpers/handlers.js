@@ -398,7 +398,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage'){
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage'){
       setYarValue(request, 'concreteBunkerSize', null)
     }
 
