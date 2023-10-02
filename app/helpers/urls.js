@@ -28,15 +28,15 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const { dependentQuestionYarKey, dependentAnswerKeysArray, urlOptions } = urlObject
   let { thenUrl, elseUrl, nonDependentUrl } = urlOptions
 
-  if(getYarValue(request, 'applicantType') === 'Pig' && nonDependentUrl === 'existing-cover'){
+  if (getYarValue(request, 'applicantType') === 'Pig' && nonDependentUrl === 'existing-cover') {
     nonDependentUrl = 'existing-cover-pig'
-  }else if(getYarValue(request, 'applicantType') === 'Pig' && elseUrl === 'existing-cover'){
+  } else if (getYarValue(request, 'applicantType') === 'Pig' && elseUrl === 'existing-cover') {
     elseUrl = 'existing-cover-pig'
-  }else if(getYarValue(request, 'applicantType') === 'Pig' && 
-    thenUrl === 'serviceable-capacity-increase-replace' &&
-    elseUrl === "serviceable-capacity-increase-additional"){
-    thenUrl = 'pig-serviceable-capacity-increase-replace'
-    elseUrl = "pig-serviceable-capacity-increase-additional"
+  } else if (getYarValue(request, 'applicantType') === 'Pig' &&
+    thenUrl === 'capacity-increase-replace' &&
+    elseUrl === 'capacity-increase-additional') {
+    thenUrl = 'pig-capacity-increase-replace'
+    elseUrl = 'pig-capacity-increase-additional'
   }
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
 

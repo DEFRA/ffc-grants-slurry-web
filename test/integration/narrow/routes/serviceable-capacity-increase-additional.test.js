@@ -1,9 +1,9 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /serviceable-capacity-increase-additional', () => {
-  const varList = { 
+describe('Page: /capacity-increase-additional', () => {
+  const varList = {
     applicantType: 'Beef',
-    projectType:'Add a new store to increase existing capacity'
+    projectType: 'Add a new store to increase existing capacity'
   }
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
@@ -16,31 +16,31 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What estimated additional volume do you need to have 6 months’ serviceable storage?')
+    expect(response.payload).toContain('What estimated additional volume do you need to have 6 months’ storage?')
   })
 
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Enter the volume you need to have 6 months’ serviceable storage')
+    expect(postResponse.payload).toContain('Enter the volume you need to have 6 months’ storage')
   })
 
   it('value outside min and max -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '10123456789', crumb: crumbToken }
     }
@@ -52,7 +52,7 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
   it('If comma used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12,32', crumb: crumbToken }
     }
@@ -64,7 +64,7 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
   it('If decimals used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12.32', crumb: crumbToken }
     }
@@ -78,68 +78,68 @@ describe('Page: /serviceable-capacity-increase-additional', () => {
     varList.existingCover = 'Yes'
 
     const postOptions = {
-        method: 'POST',
-        url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
-        headers: { cookie: 'crumb=' + crumbToken },
-        payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('/slurry-infrastructure/cover-type')
-})
-it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes I need a cover/`', async () => {
+  })
+  it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes I need a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I need a cover'
     varList.existingCover = 'No'
 
     const postOptions = {
-        method: 'POST',
-        url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
-        headers: { cookie: 'crumb=' + crumbToken },
-        payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('/slurry-infrastructure/cover-type')
-})
+  })
 
-it('enter valid value - redirect user cover type when existing cover `/Yes/` and grant funded `/Yes, I already have a cover/`', async () => {
+  it('enter valid value - redirect user cover type when existing cover `/Yes/` and grant funded `/Yes, I already have a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'Yes'
 
     const postOptions = {
-        method: 'POST',
-        url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
-        headers: { cookie: 'crumb=' + crumbToken },
-        payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('/slurry-infrastructure/existing-cover-type')
-})
+  })
 
-it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes, I already have a cover/`', async () => {
+  it('enter valid value - redirect user cover type when existing cover `/No/` and grant funded `/Yes, I already have a cover/`', async () => {
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'No'
 
     const postOptions = {
-        method: 'POST',
-        url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`,
-        headers: { cookie: 'crumb=' + crumbToken },
-        payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
     expect(postResponse.headers.location).toBe('/slurry-infrastructure/separator')
-})
+  })
 
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-additional`
+      url: `${global.__URLPREFIX__}/capacity-increase-additional`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

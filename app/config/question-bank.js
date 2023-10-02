@@ -659,7 +659,7 @@ const questionBank = {
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
-            This grant is to get your serviceable storage levels to 6 months.`,
+            This grant is to get your storage levels to 6 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -674,8 +674,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your serviceable storage levels to 6 months.
-                For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
+                This grant is to get your storage levels to 6 months.
+                For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
                 You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -724,7 +724,7 @@ const questionBank = {
           preValidationKeys: ['systemType'],
           ineligibleContent: {
             messageContent: `
-            This grant is to get your serviceable storage levels to 8 months.`,
+            This grant is to get your storage levels to 8 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you may be eligible for.'
@@ -793,7 +793,7 @@ const questionBank = {
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent:
-              'This grant is to get your serviceable storage levels to 6 months.',
+              'This grant is to get your storage levels to 6 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you might be eligible for.'
@@ -806,8 +806,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your serviceable storage levels to 6 months.
-                For example, if you have 4 months’ serviceable storage, we will fund another 2 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 4 months.
+                This grant is to get your storage levels to 6 months.
+                For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
                 Any capacity above 6 months is not covered by the grant.
                 You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
@@ -857,7 +857,7 @@ const questionBank = {
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent:
-              'This grant is to get your serviceable storage levels to 8 months.',
+              'This grant is to get your storage levels to 8 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
               title: 'See other grants you might be eligible for.'
@@ -870,8 +870,8 @@ const questionBank = {
                 content: [
                   {
                     para: `
-                This grant is to get your serviceable storage levels to 8 months.
-                For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
+                This grant is to get your storage levels to 8 months.
+                For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
                 Any capacity above 8 months is not covered by the grant.
                 
                 You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
@@ -1360,7 +1360,7 @@ const questionBank = {
           },
           yarKey: 'estimatedGrant'
         },
-        // Calls standardised cost page
+        // Calls reference cost page
         {
           key: 'storage-type',
           order: 130,
@@ -1373,8 +1373,8 @@ const questionBank = {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
             urlOptions: {
-              thenUrl: 'serviceable-capacity-increase-replace',
-              elseUrl: 'serviceable-capacity-increase-additional',
+              thenUrl: 'capacity-increase-replace',
+              elseUrl: 'capacity-increase-additional',
               nonDependentUrl: 'existing-cover-type'
             }
           },
@@ -1382,7 +1382,7 @@ const questionBank = {
           hint: {
             text: 'Select one option'
           },
-          preValidationKeys: ['standardisedCostObject'],
+          preValidationKeys: ['referenceCostObject'],
           type: 'single-answer',
           minAnswerCount: 1,
           validate: [
@@ -1395,12 +1395,12 @@ const questionBank = {
           yarKey: 'storageType'
         },
         {
-          key: 'serviceable-capacity-increase-replace',
+          key: 'capacity-increase-replace',
           order: 131,
           title: '',
           pageTitle: '',
-          url: 'serviceable-capacity-increase-replace',
-          baseUrl: 'serviceable-capacity-increase-replace',
+          url: 'capacity-increase-replace',
+          baseUrl: 'capacity-increase-replace',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           fundingPriorities: '',
@@ -1413,13 +1413,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated volume do you need to have 6 months’ serviceable storage?',
+            text: 'What estimated volume do you need to have 6 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current storage and 6 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1427,7 +1427,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 6 months’ serviceable storage'
+                'Enter the volume you need to have 6 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1463,18 +1463,18 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
+            html: `This grant is to get your storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
           },
           yarKey: 'serviceCapacityIncrease'
         },
         {
-          key: 'serviceable-capacity-increase-additional',
+          key: 'capacity-increase-additional',
           order: 132,
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-10',
-          url: 'serviceable-capacity-increase-additional',
-          baseUrl: 'serviceable-capacity-increase-additional',
+          url: 'capacity-increase-additional',
+          baseUrl: 'capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           preValidationKeys: ['storageType'],
@@ -1483,13 +1483,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated additional volume do you need to have 6 months’ serviceable storage?',
+            text: 'What estimated additional volume do you need to have 6 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 6 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current storage and 6 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1497,7 +1497,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 6 months’ serviceable storage'
+                'Enter the volume you need to have 6 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1533,18 +1533,18 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 6 months. For example, if you have 4 months’  serviceable storage, we will fund another 2 months. </br></br>
+            html: `This grant is to get your storage levels to 6 months. For example, if you have 4 months’  storage, we will fund another 2 months. </br></br>
             You cannot apply for the grant if you already have 6 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
         {
-          key: 'pig-serviceable-capacity-increase-replace',
+          key: 'pig-capacity-increase-replace',
           order: 133,
           title: '',
           pageTitle: '',
-          url: 'pig-serviceable-capacity-increase-replace',
-          baseUrl: 'pig-serviceable-capacity-increase-replace',
+          url: 'pig-capacity-increase-replace',
+          baseUrl: 'pig-capacity-increase-replace',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           fundingPriorities: '',
@@ -1557,13 +1557,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated volume do you need to have 8 months’ serviceable storage?',
+            text: 'What estimated volume do you need to have 8 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current serviceable storage and 8 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in a new tab)</a> to help you calculate the difference between your current storage and 8 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1571,7 +1571,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 8 months’ serviceable storage'
+                'Enter the volume you need to have 8 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1607,18 +1607,18 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
+            html: `This grant is to get your storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
         },
         {
-          key: 'pig-serviceable-capacity-increase-additional',
+          key: 'pig-capacity-increase-additional',
           order: 134,
           title: '',
           pageTitle: '',
           classes: 'govuk-input--width-10',
-          url: 'pig-serviceable-capacity-increase-additional',
-          baseUrl: 'pig-serviceable-capacity-increase-additional',
+          url: 'pig-capacity-increase-additional',
+          baseUrl: 'pig-capacity-increase-additional',
           backUrl: 'storage-type',
           nextUrl: 'cover-type',
           preValidationKeys: ['storageType'],
@@ -1627,13 +1627,13 @@ const questionBank = {
           inputmode: 'numeric',
           pattern: '[0-9]*',
           label: {
-            text: 'What estimated additional volume do you need to have 8 months’ serviceable storage?',
+            text: 'What estimated additional volume do you need to have 8 months’ storage?',
             classes: 'govuk-label--l',
             isPageHeading: true
           },
           hint: {
             html: `
-            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current serviceable storage and 8 months’ serviceable storage, based on current animal numbers </br></br>
+            Use <a class="govuk-link" target="_blank" href="https://ahdb.org.uk/knowledge-library/slurry-wizard" rel="noopener noreferrer">Slurry Wizard (opens in new tab)</a> to help you calculate the difference between your current storage and 8 months’ storage, based on current animal numbers </br></br>
             Enter estimated volume in cubic metres
           `
           },
@@ -1641,7 +1641,7 @@ const questionBank = {
             {
               type: 'NOT_EMPTY',
               error:
-                'Enter the volume you need to have 8 months’ serviceable storage'
+                'Enter the volume you need to have 8 months’ storage'
             },
             {
               type: 'REGEX',
@@ -1677,7 +1677,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your serviceable storage levels to 8 months. For example, if you have 6 months’  serviceable storage, we will fund another 2 months.</br></br>
+            html: `This grant is to get your storage levels to 8 months. For example, if you have 6 months’  storage, we will fund another 2 months.</br></br>
             You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
           },
           yarKey: 'serviceCapacityIncrease'
@@ -1701,12 +1701,12 @@ const questionBank = {
             dependentQuestionYarKey: 'projectType',
             dependentAnswerKeysArray: ['project-type-A1'],
             urlOptions: {
-              thenUrl: 'serviceable-capacity-increase-replace',
-              elseUrl: 'serviceable-capacity-increase-additional'
+              thenUrl: 'capacity-increase-replace',
+              elseUrl: 'capacity-increase-additional'
             }
           },
           url: 'cover-type',
-          preValidationKeys: ['standardisedCostObject'],
+          preValidationKeys: ['referenceCostObject'],
           hint: {
             text: 'Select one option'
           },
@@ -1767,7 +1767,7 @@ const questionBank = {
             }
           },
           backUrl: 'cover-type',
-          preValidationKeys: ['standardisedCostObject'],
+          preValidationKeys: ['referenceCostObject'],
           sidebar: {
             showSidebar: true,
             mainHeading: 'Your project items',
@@ -2137,7 +2137,7 @@ const questionBank = {
             text: 'Slurry separators use a mechanical process to divide slurry into a liquid and solid fraction. These fractions can be kept in separate stores and applied at different times to your land'
           },
           baseUrl: 'separator',
-          preValidationKeys: ['standardisedCostObject'],
+          preValidationKeys: ['referenceCostObject'],
           fundingPriorities: '',
           type: 'single-answer',
           minAnswerCount: 1,
@@ -2728,7 +2728,7 @@ const questionBank = {
           baseUrl: 'potential-amount',
           backUrl: 'project-summary',
           nextUrl: 'remaining-costs',
-          preValidationKeys: ['standardisedCostCalculated'],
+          preValidationKeys: ['referenceCostCalculated'],
           grantInfo: {
             minGrant: 25000,
             maxGrant: 250000,
@@ -2746,7 +2746,7 @@ const questionBank = {
           maybeEligibleContent: {
             messageHeader: 'Potential grant funding',
             messageContent:
-              'Based on the standardised grant amount for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
+              'Based on the reference grant amount for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
             warning: {
               text: 'There’s no guarantee the project will receive a grant.'
             },
@@ -2778,7 +2778,7 @@ const questionBank = {
               elseUrl: 'planning-permission'
             }
           },
-          preValidationKeys: ['standardisedCostCalculated'],
+          preValidationKeys: ['referenceCostCalculated'],
           ineligibleContent: {
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
             <div class="govuk-list govuk-list--bullet">

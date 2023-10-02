@@ -1,5 +1,5 @@
 const { crumbToken } = require('./test-helper')
-const standardisedCostObject = {
+const referenceCostObject = {
 	data: {
 		grantScheme: {
 			key: 'SLURRY01',
@@ -12,7 +12,7 @@ const standardisedCostObject = {
 					title: "Slurry separator equipment",
 					items: [
 						{
-							item: "Screen press",
+							item: "Roller screen press",
 							amount: 21234,
 							unit: "per unit"
 						},
@@ -57,13 +57,13 @@ describe('Page: /solid-fraction-storage', () => {
 		separator: "Yes",
 		separatorType: "fake",
 		separatorOptions: null,
-		standardisedCostObject: standardisedCostObject,
+		referenceCostObject: referenceCostObject,
 		gantry: "Yes",
 	};
 	jest.mock('../../../../app/helpers/session', () => ({
 		setYarValue: (request, key, value) => null,
 		getYarValue: (request, key) => {
-			if (varList[ key ]) return varList[ key ]
+			if (varList[key]) return varList[key]
 			else return undefined
 		}
 	}))
