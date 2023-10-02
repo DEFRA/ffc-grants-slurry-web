@@ -108,7 +108,7 @@ describe('Existing cover Type test', () => {
         }
         const response = await global.__SERVER__.inject(options)
         expect(response.statusCode).toBe(200)
-        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/reference-grant-amounts\" class=\"govuk-back-link\">Back</a>')
+        expect(response.payload).toContain('<a href=\"/slurry-infrastructure/reference-cost\" class=\"govuk-back-link\">Back</a>')
     })
 
     it('page loads with /cover-type/ back link when cover type is entered', async () => {
