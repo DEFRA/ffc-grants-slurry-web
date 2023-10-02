@@ -741,6 +741,7 @@ const questionBank = {
                     para: `
                 This grant is to get your serviceable storage levels to 8 months.
                 For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
+                
                 You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -872,6 +873,7 @@ const questionBank = {
                 This grant is to get your serviceable storage levels to 8 months.
                 For example, if you have 4 months’ serviceable storage, we will fund another 4 months. If you have 2 months’ serviceable storage and increase to 12 months, we will fund 6 months.
                 Any capacity above 8 months is not covered by the grant.
+                
                 You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                     items: []
@@ -1347,7 +1349,7 @@ const questionBank = {
               nonDependentUrl: 'existing-cover'
             }
           },
-          nextUrl: 'standardised-grant-amounts',
+          nextUrl: 'reference-cost',
           ga: { name: 'eligibility_passed', params: {} },
           preValidationKeys: ['applyingFor'],
           maybeEligible: true,
@@ -1365,7 +1367,7 @@ const questionBank = {
           costDataType: 'cat-storage',
           title: 'What type of store do you want?',
           baseUrl: 'storage-type',
-          backUrl: 'standardised-grant-amounts',
+          backUrl: 'reference-cost',
           id: 'storageType',
           nextUrlObject: {
             dependentQuestionYarKey: 'projectType',
