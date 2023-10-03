@@ -252,7 +252,7 @@ const itemSizesArray = [
   }
 ]
 
-const separatorOptions = [
+let separatorOptions = [
   'Roller screen press',
   'Screw press',
   'Gantry',
@@ -286,7 +286,9 @@ describe('Project Summary Array Function', () => {
           } else if (key === 'separatorOptions') {
             return separatorOptions
           } else if (key === 'concreteBunkerSize') {
-            return 100
+            return 101
+          } else if (key === 'cappedAmount') {
+            return 16818
           } else {
             return itemsList
           }
@@ -345,7 +347,7 @@ describe('Project Summary Array Function', () => {
       {
         item: 'Concrete bunker',
         amount: '£168.18',
-        quantity: '100m²',
+        quantity: '101m²',
         total: '£16,818'
       },
       {
