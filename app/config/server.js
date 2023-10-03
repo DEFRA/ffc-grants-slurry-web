@@ -12,7 +12,7 @@ const schema = Joi.object({
   serviceEndDate: Joi.string().default(serviceEndDate),
   serviceEndTime: Joi.string().default(serviceEndTime),
   cookiePassword: Joi.string().default('dummycookiepassworddummycookiepassword'),
-  googleTagManagerKey: Joi.string().default('GTM-WJ5C78H'),
+  googleTagManagerKey: Joi.string().default('GT-MJPRKW7'),
   googleTagManagerServerKey: Joi.string().default('G-1NQ7QYDS14'),
   analyticsPropertyApi: Joi.string().default('dummy'),
   analyticsTagKey: Joi.string().default('GT-MJPRKW7'),
