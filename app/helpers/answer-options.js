@@ -1,7 +1,7 @@
 const { formatAnswerArray } = require('./../helpers/reference-grant-amounts-array')
 const { formatOtherItems } = require('./../helpers/other-items-sizes')
 const { formatUKCurrency } = require('../helpers/data-formats')
-const { setYarValue } = require('./session')
+const { setYarValue, getYarValue } = require('./session')
 
 function isChecked(data, option) {
   return typeof data === 'string' ? !!data && data === option : !!data && data.includes(option)
@@ -152,6 +152,10 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 const getOptions = (data, question, conditionalHtml, request) => {
   if (question?.costDataType) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
+    if (question.yarKey === "solidFractionStorage" && question.answers.length === 4) {
+      question.answers.shift()
+      question.answers.shift()
+    }
     if (question.answers.length <= 2) {
       if (question.yarKey === "coverType" || question.yarKey === "existingCoverType") {
         question.answers = []
