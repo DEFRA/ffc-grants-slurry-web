@@ -1,5 +1,5 @@
-jest.mock('../../../../app/helpers/standardised-grant-amounts-array')
-const { formatAnswerArray } = require('../../../../app/helpers/standardised-grant-amounts-array')
+jest.mock('../../../../app/helpers/reference-grant-amounts-array')
+const { formatAnswerArray } = require('../../../../app/helpers/reference-grant-amounts-array')
 
 const { getOptions, setOptionsLabel } = require('../../../../app/helpers/answer-options')
 

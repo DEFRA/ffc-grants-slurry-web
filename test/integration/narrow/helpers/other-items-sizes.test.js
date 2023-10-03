@@ -207,7 +207,7 @@ describe('Other Items Sizes Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key === 'standardisedCostObject') {
+          if (key === 'referenceCostObject') {
             return objectToSend
           } else {
             return itemsList
@@ -745,7 +745,7 @@ describe('Other Items Sizes Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key === 'standardisedCostObject') {
+          if (key === 'referenceCostObject') {
             return {}
           } else {
             return itemsList

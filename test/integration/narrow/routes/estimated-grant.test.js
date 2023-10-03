@@ -8,7 +8,7 @@ describe('Page: /estimated-grant', () => {
     existingCover: '',
     grantFundedCover: '',
     fitForPurpose: ''
-  }
+  };
   const grantText = 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -41,7 +41,7 @@ describe('Page: /estimated-grant', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(302)
-    expect(postResponse.headers.location).toBe('standardised-grant-amounts')
+    expect(postResponse.headers.location).toBe('reference-cost')
   })
 
   it('page loads with correct back link when user select fit for purpose option`s as  `\ Yes \` ', async () => {

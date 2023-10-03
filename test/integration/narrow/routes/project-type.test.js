@@ -55,7 +55,7 @@ describe('Page: /project-type', () => {
       method: 'POST',
       url: `${global.__URLPREFIX__}/project-type`,
       headers: { cookie: 'crumb=' + crumbToken },
-      payload: { projectType: 'Replace an existing store that is no longer serviceable', crumb: crumbToken }
+      payload: { projectType: 'Replace an existing store that is no longer ', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)

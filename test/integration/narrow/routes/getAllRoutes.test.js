@@ -1,7 +1,7 @@
 const { ALL_QUESTIONS } = require('../../../../app/config/question-bank')
 let varList
 
-const standardisedCostObject = {
+const referenceCostObject = {
   data: {
     grantScheme: {
       key: 'SLURRY01',
@@ -75,7 +75,7 @@ const standardisedCostObject = {
         title: 'Slurry separator equipment',
         items: [
           {
-            item: 'Screen press',
+            item: "Roller screen press",
             amount: 21234,
             unit: 'per unit'
           },
@@ -237,7 +237,7 @@ describe('All default GET routes', () => {
     planningAuthority: 'some planning',
     planningReferenceNumber: '123456-ref'
   }
-  varList.standardisedCostObject = standardisedCostObject
+  varList.referenceCostObject = referenceCostObject
 
   ALL_QUESTIONS.forEach(question => {
     it(`should load ${question.key} page successfully`, async () => {

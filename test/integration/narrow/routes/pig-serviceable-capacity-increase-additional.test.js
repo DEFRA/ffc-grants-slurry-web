@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /pig-serviceable-capacity-increase-additional', () => {
+describe('Page: /pig-capacity-increase-additional', () => {
   const varList = {
     applicantType: 'Pig',
     projectType: 'Add a new store to increase existing capacity'
@@ -17,31 +17,31 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What estimated additional volume do you need to have 8 months’ serviceable storage?')
+    expect(response.payload).toContain('What estimated additional volume do you need to have 8 months’ storage?')
   })
 
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Enter the volume you need to have 8 months’ serviceable storage')
+    expect(postResponse.payload).toContain('Enter the volume you need to have 8 months’ storage')
   })
 
   it('value outside min and max -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '10123456789', crumb: crumbToken }
     }
@@ -53,7 +53,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
   it('If comma used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12,32', crumb: crumbToken }
     }
@@ -65,7 +65,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
   it('If decimals used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12.32', crumb: crumbToken }
     }
@@ -81,7 +81,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -97,7 +97,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -114,7 +114,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -131,7 +131,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`,
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -144,7 +144,7 @@ describe('Page: /pig-serviceable-capacity-increase-additional', () => {
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/pig-serviceable-capacity-increase-additional`
+      url: `${global.__URLPREFIX__}/pig-capacity-increase-additional`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

@@ -10,8 +10,8 @@ const getHintText = (answer, hintArray, counter) => {
   return 'Grant amount: £' + formatUKCurrency(answer.amount) + ' ' + answerUnit
 }
 
-function formatAnswerArray (request, questionKey, catagoryKey, hintArray) {
-  const object = getYarValue(request, 'standardisedCostObject')
+function formatAnswerArray(request, questionKey, catagoryKey, hintArray) {
+  const object = getYarValue(request, 'referenceCostObject')
   const returnArray = []
 
   let listOfCatagories

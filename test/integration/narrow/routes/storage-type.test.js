@@ -49,7 +49,7 @@ describe('Storage Type test', () => {
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(302)
-    expect(response.headers.location).toBe('serviceable-capacity-increase-additional')
+    expect(response.headers.location).toBe('capacity-increase-additional')
   })
 
   it('page loads with correct back link', async () => {
@@ -59,6 +59,6 @@ describe('Storage Type test', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"standardised-grant-amounts\" class=\"govuk-back-link\">Back</a>')
+    expect(response.payload).toContain('<a href=\"reference-cost\" class=\"govuk-back-link\">Back</a>')
   })
 })

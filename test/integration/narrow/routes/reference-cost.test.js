@@ -1,7 +1,7 @@
 const { crumbToken } = require('./test-helper')
 
 jest.mock('../../../../app/messaging/application')
-const { getStandardisedCosts } = require('../../../../app/messaging/application')
+const { getReferenceCosts } = require('../../../../app/messaging/application')
 const messaging = require('../../../../app/messaging/application')
 
 const gapiService = require('../../../../app/services/gapi-service')
@@ -9,8 +9,8 @@ const gapiService = require('../../../../app/services/gapi-service')
 jest.mock('../../../../app/helpers/page-guard')
 const { guardPage } = require('../../../../app/helpers/page-guard')
 
-describe('Standardised Cost test', () => {
-  const varList = { }
+describe('reference Cost test', () => {
+  const varList = {}
 
   beforeEach(() => {
     jest.clearAllMocks()
@@ -24,13 +24,13 @@ describe('Standardised Cost test', () => {
     }
   }))
 
-  test('GET /standardised-grant-amounts route returns 200 if costData = success', async () => {
+  test('GET /reference-cost route returns 200 if costData = success', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
-    getStandardisedCosts.mockResolvedValue({
+    getReferenceCosts.mockResolvedValue({
       costData: 'success'
     })
 
@@ -38,13 +38,13 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /standardised-grant-amounts route returns 500 if costData =/= success', async () => {
+  test('GET /reference-cost route returns 500 if costData =/= success', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
-    getStandardisedCosts.mockResolvedValue({
+    getReferenceCosts.mockResolvedValue({
       costData: 'fail'
     })
 
@@ -52,34 +52,34 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /standardised-grant-amounts route causes error page', async () => {
+  test('GET /reference-cost route causes error page', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
-    getStandardisedCosts.mockRejectedValue('hello')
+    getReferenceCosts.mockRejectedValue('hello')
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
   })
 
-  test('GET /stanbdardised-costs returns error 500 if getstandardisedCosts throws error', async () => {
+  test('GET /stanbdardised-costs returns error 500 if getReferenceCosts throws error', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
-    jest.spyOn(messaging, 'getStandardisedCosts').mockImplementation(() => { throw new Error() })
+    jest.spyOn(messaging, 'getReferenceCosts').mockImplementation(() => { throw new Error() })
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
   })
 
-  test('POST /standardised-grant-amounts route returns next page - building journey', async () => {
+  test('POST /reference-cost route returns next page - building journey', async () => {
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`,
+      url: `${global.__URLPREFIX__}/reference-cost`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { applying: '', crumb: crumbToken }
     }
@@ -88,12 +88,12 @@ describe('Standardised Cost test', () => {
     expect(response.statusCode).toBe(302)
   })
 
-  test('POST /standardised-grant-amounts route returns next page - impermeable journey', async () => {
-    varList.applyingFor = 'An impermeable cover only'
+  test('POST /reference-cost route returns next page - impermeable journey', async () => {
+    varList.applyingFor = "An impermeable cover only"
     varList.fitForPurpose = 'Yes'
     const options = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`,
+      url: `${global.__URLPREFIX__}/reference-cost`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { applying: '', crumb: crumbToken }
     }
@@ -105,7 +105,7 @@ describe('Standardised Cost test', () => {
   test('page redirects to start if no cover', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/standardised-grant-amounts`
+      url: `${global.__URLPREFIX__}/reference-cost`
     }
 
     guardPage.mockResolvedValue(true)

@@ -57,6 +57,23 @@ const getDependentSideBar = (sidebar, request) => {
               tempSeparatorVal.splice(2, tempSeparatorVal.length - 2)
             } else {
               tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
+              
+              setYarValue(request, 'separatorOptions', tempSeparatorVal)
+              selectedAnswers = tempSeparatorVal
+
+            } else if (request.route.path === '/slurry-infrastructure/short-term-storage') {
+              let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+
+              if (tempSeparatorVal.includes('Gantry')) {
+                tempSeparatorVal.splice(2, tempSeparatorVal.length - 2)
+              } else {
+                tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
+
+              }
+
+              setYarValue(request, 'separatorOptions', tempSeparatorVal)
+              selectedAnswers = tempSeparatorVal
+
             }
 
             setYarValue(request, 'separatorOptions', tempSeparatorVal)

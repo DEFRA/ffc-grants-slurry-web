@@ -1,4 +1,4 @@
-const { getStandardisedCosts } = require('../messaging/application')
+const { getReferenceCosts } = require('../messaging/application')
 const { startPageUrl } = require('../config/server')
 const { guardPage } = require('../helpers/page-guard')
 const { getYarValue } = require('../helpers/session')
@@ -6,12 +6,12 @@ const { getYarValue } = require('../helpers/session')
 const gapiService = require('../services/gapi-service')
 
 const urlPrefix = require('../config/server').urlPrefix
-const viewTemplate = 'standardised-grant-amounts'
+const viewTemplate = 'reference-cost'
 const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/storage-type`
 const nextPathImpermeable = `${urlPrefix}/existing-cover-type`
 
-function createModel (data, _request) {
+function createModel(data, _request) {
   const previousPath = `${urlPrefix}/estimated-grant`
 
   return {
@@ -39,9 +39,9 @@ module.exports = [{
 
     try {
       console.log('Sending session message .....')
-      const result = await getStandardisedCosts(request.yar.id)
+      const result = await getReferenceCosts(request.yar.id)
       console.log(result, '[THIS IS RESULT WE GOT BACK]')
-      request.yar.set('standardisedCostObject', result)
+      request.yar.set('referenceCostObject', result)
       return h.view(viewTemplate, createModel({ catagories: result.data.desirability.catagories }, request))
     } catch (error) {
       console.log(error)

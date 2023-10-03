@@ -9,7 +9,7 @@ const getHtml = (label, labelData, fieldValueData, error) => {
             ${labelData}
           </label>
           <div class="govuk-input__wrapper">
-            <input class="govuk-input govuk-input--width-4" autocomplete="off" id="${label}" name="${label}" value="${fieldValue}">
+            <input class="govuk-input govuk-input--width-5" autocomplete="off" id="${label}" name="${label}" value="${fieldValue}">
             <div class="govuk-input__suffix" aria-hidden="true">m²</div>
           </div>
         </div>

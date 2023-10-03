@@ -1,13 +1,13 @@
-const { formatAnswerArray } = require('./../helpers/standardised-grant-amounts-array')
+const { formatAnswerArray } = require('./../helpers/reference-grant-amounts-array')
 const { formatOtherItems } = require('./../helpers/other-items-sizes')
 const { formatUKCurrency } = require('../helpers/data-formats')
 const { setYarValue } = require('./session')
 
-function isChecked (data, option) {
+function isChecked(data, option) {
   return typeof data === 'string' ? !!data && data === option : !!data && data.includes(option)
 }
 
-function setOptionsLabel (data, answers, conditionalHtml) {
+function setOptionsLabel(data, answers, conditionalHtml) {
   return answers.map((answer) => {
     const { value, hint, text, conditional } = answer
 
@@ -37,7 +37,7 @@ function setOptionsLabel (data, answers, conditionalHtml) {
   })
 }
 
-function setSelectLabels (data, selectList) {
+function setSelectLabels(data, selectList) {
   return [
     { text: 'Select an option', value: '' },
     ...selectList.map((selectValue) => {
@@ -153,16 +153,16 @@ const getOptions = (data, question, conditionalHtml, request) => {
   if (question?.costDataType) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
     if (question.answers.length <= 2) {
-      if (question.yarKey === 'coverType' || question.yarKey === 'existingCoverType') {
+      if (question.yarKey === "coverType" || question.yarKey === "existingCoverType") {
         question.answers = []
       }
 
-      if (question.yarKey === 'separatorType') {
+      if (question.yarKey === "separatorType") {
         question.answers = []
         answersList.splice(0, 3)
       }
 
-      if (question.yarKey === 'solidFractionStorage') {
+      if (question.yarKey === "solidFractionStorage") {
         answersList.splice(2, 3)
         const concreteBunkerStorageOption = answersList.filter(answer => answer.value === 'Concrete bunker')[0]
         // set concrete bunker to be a conditional field answer
@@ -181,7 +181,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
         })
       }
 
-      if (question.yarKey === 'gantry') {
+      if (question.yarKey === "gantry") {
         let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
         gantryHint = gantryHint[0]
         // add brackets around hint text

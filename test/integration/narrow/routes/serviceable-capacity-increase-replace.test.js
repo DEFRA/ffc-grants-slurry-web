@@ -1,6 +1,6 @@
 const { crumbToken } = require('./test-helper')
 
-describe('Page: /serviceable-capacity-increase-replace', () => {
+describe('Page: /capacity-increase-replace', () => {
   const varList = {
     applicantType: 'Beef',
     projectType: 'Replace an existing store that is no longer fit for purpose with a new store'
@@ -17,31 +17,31 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
   it('page loads successfully, with all the options', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`
     }
 
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('What estimated volume do you need to have 6 months’ serviceable storage?')
+    expect(response.payload).toContain('What estimated volume do you need to have 6 months’ storage?')
   })
 
   it('no option selected -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Enter the volume you need to have 6 months’ serviceable storage')
+    expect(postResponse.payload).toContain('Enter the volume you need to have 6 months’ storage')
   })
 
   it('value outside min and max -> show error message', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '10123456789', crumb: crumbToken }
     }
@@ -53,7 +53,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
   it('If comma used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12,32', crumb: crumbToken }
     }
@@ -65,7 +65,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
   it('If decimals used', async () => {
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12.32', crumb: crumbToken }
     }
@@ -80,7 +80,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -95,7 +95,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -111,7 +111,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -128,7 +128,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
 
     const postOptions = {
       method: 'POST',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`,
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`,
       headers: { cookie: 'crumb=' + crumbToken },
       payload: { serviceCapacityIncrease: '12345', crumb: crumbToken }
     }
@@ -141,7 +141,7 @@ describe('Page: /serviceable-capacity-increase-replace', () => {
   it('page loads with correct back link', async () => {
     const options = {
       method: 'GET',
-      url: `${global.__URLPREFIX__}/serviceable-capacity-increase-replace`
+      url: `${global.__URLPREFIX__}/capacity-increase-replace`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)

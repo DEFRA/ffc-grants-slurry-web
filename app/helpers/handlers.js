@@ -104,7 +104,7 @@ const addConditionalLabelData = async (
 const isImperableCover = getQuestionAnswer('applying-for', 'applying-for-A2')
 const isPig = getQuestionAnswer('applicant-type', 'applicant-type-A1')
 const isReplaceStore = getQuestionAnswer('project-type', 'project-type-A1')
-const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1')
+const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1');
 
 const getPage = async (question, request, h) => {
   const {
@@ -131,28 +131,28 @@ const getPage = async (question, request, h) => {
   setGrantsData(question, request)
 
   switch (url) {
-    case 'existing-cover-type' :
+    case 'existing-cover-type':
       if (getYarValue(request, 'applyingFor') === isImperableCover) {
         setYarValue(request, 'planningPermission', null)
-        question.backUrl = `${urlPrefix}/standardised-grant-amounts`
+        question.backUrl = `${urlPrefix}/reference-cost`
         question.sidebar.showSidebar = false
       } else if (getYarValue(request, 'coverType')) {
         question.backUrl = `${urlPrefix}/cover-type`
         question.sidebar.showSidebar = true
       } else if (getYarValue(request, 'projectType') === isReplaceStore) {
         if (getYarValue(request, 'applicantType') === isPig) {
-          question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+          question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
           question.sidebar.showSidebar = true
         } else {
-          question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+          question.backUrl = `${urlPrefix}/capacity-increase-replace`
           question.sidebar.showSidebar = true
         }
       } else {
         if (getYarValue(request, 'applicantType') === isPig) {
-          question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+          question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
           question.sidebar.showSidebar = true
         } else {
-          question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+          question.backUrl = `${urlPrefix}/capacity-increase-additional`
           question.sidebar.showSidebar = true
         }
       }
@@ -169,15 +169,15 @@ const getPage = async (question, request, h) => {
       } else {
         if (getYarValue(request, 'applicantType') === isPig) {
           if (getYarValue(request, 'projectType') === isReplaceStore) {
-            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-replace`
+            question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
           } else {
-            question.backUrl = `${urlPrefix}/pig-serviceable-capacity-increase-additional`
+            question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
           }
         } else {
           if (getYarValue(request, 'projectType') === isReplaceStore) {
-            question.backUrl = `${urlPrefix}/serviceable-capacity-increase-replace`
+            question.backUrl = `${urlPrefix}/capacity-increase-replace`
           } else {
-            question.backUrl = `${urlPrefix}/serviceable-capacity-increase-additional`
+            question.backUrl = `${urlPrefix}/capacity-increase-additional`
           }
         }
       }
@@ -213,7 +213,7 @@ const getPage = async (question, request, h) => {
   }
 
   // if (url === 'result-page') {
-  //   await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { standardised_cost: 'Eligible' }})
+  //   await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { reference_cost: 'Eligible' }})
   // }
 
   await processGA(question, request)
@@ -397,7 +397,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have a solid fraction storage') {
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage'){
       setYarValue(request, 'concreteBunkerSize', null)
     }
 
@@ -407,10 +407,10 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         key,
         key === 'projectPostcode'
           ? value
-              .replace(DELETE_POSTCODE_CHARS_REGEX, '')
-              .split(/(?=.{3}$)/)
-              .join(' ')
-              .toUpperCase()
+            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
+            .split(/(?=.{3}$)/)
+            .join(' ')
+            .toUpperCase()
           : value
       )
     }
@@ -439,10 +439,10 @@ const handleMultiInput = (
       }
       const payloadYarVal = payload[field.yarKey]
         ? payload[field.yarKey]
-            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
-            .split(/(?=.{3}$)/)
-            .join(' ')
-            .toUpperCase()
+          .replace(DELETE_POSTCODE_CHARS_REGEX, '')
+          .split(/(?=.{3}$)/)
+          .join(' ')
+          .toUpperCase()
         : ''
       dataObject = {
         ...dataObject,

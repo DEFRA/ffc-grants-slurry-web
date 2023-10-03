@@ -1,6 +1,6 @@
 const { formatUKCurrency } = require('../helpers/data-formats')
 
-function suffixGenerator (unit) {
+function suffixGenerator(unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
     return 'm³'
@@ -13,8 +13,8 @@ function suffixGenerator (unit) {
   }
 }
 
-function formatSummaryTable (request) {
-  const object = request.yar.get('standardisedCostObject')
+function formatSummaryTable(request) {
+  const object = request.yar.get('referenceCostObject')
   const storageType = request.yar.get('storageType')
   const storageSize = request.yar.get('serviceCapacityIncrease')
   const coverType = request.yar.get('coverType')
@@ -77,7 +77,7 @@ function formatSummaryTable (request) {
       total = (existingCoverSize * existingCoverData.amount)
 
       returnArray.push({
-        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(' ')) + ' existing store cover',
+        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(" ")) + ' existing store cover',
         amount: '£' + existingCoverData.amount,
         quantity: formatUKCurrency(existingCoverSize) + 'm²',
         total: '£' + formatUKCurrency(total)

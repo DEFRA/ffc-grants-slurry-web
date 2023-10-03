@@ -8,7 +8,7 @@ describe('Separator test', () => {
     applicantType: 'Beef',
     projectType: 'fake',
     storageType: 'hello',
-    standardisedCostObject: 'hello'
+    referenceCostObject: 'hello'
   }
 
   beforeEach(() => {
@@ -75,7 +75,7 @@ describe('Separator test', () => {
     expect(postResponse.headers.location).toBe('other-items')
   })
 
-  it('page loads with /pig-serviceable-capacity-increase-replace/ back link when project type /Replace an existing store .../ and applicant type is Pig', async () => {
+  it('page loads with /pig-capacity-increase-replace/ back link when project type /Replace an existing store .../ and applicant type is Pig', async () => {
     varList.projectType =
       'Replace an existing store that is no longer fit for purpose with a new store'
     varList.applicantType = 'Pig'
@@ -86,11 +86,11 @@ describe('Separator test', () => {
     const responseSeparator = await global.__SERVER__.inject(optionSeparator)
     expect(responseSeparator.statusCode).toBe(200)
     expect(responseSeparator.payload).toContain(
-      '<a href="/slurry-infrastructure/pig-serviceable-capacity-increase-replace" class="govuk-back-link">Back</a>'
+      '<a href="/slurry-infrastructure/pig-capacity-increase-replace" class="govuk-back-link">Back</a>'
     )
   })
 
-  it('page loads with /pig-serviceable-capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Pig', async () => {
+  it('page loads with /pig-capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Pig', async () => {
     varList.projectType = 'Add a new store to increase existing capacity'
     varList.applicantType = 'Pig'
 
@@ -101,11 +101,11 @@ describe('Separator test', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain(
-      '<a href="/slurry-infrastructure/pig-serviceable-capacity-increase-additional" class="govuk-back-link">Back</a>'
+      '<a href="/slurry-infrastructure/pig-capacity-increase-additional" class="govuk-back-link">Back</a>'
     )
   })
 
-  it('page loads with /serviceable-capacity-increase-replace/ back link when project type /Replace an existing store that is .../ and applicant type is Beef', async () => {
+  it('page loads with /capacity-increase-replace/ back link when project type /Replace an existing store that is .../ and applicant type is Beef', async () => {
     varList.projectType =
       'Replace an existing store that is no longer fit for purpose with a new store'
     varList.applicantType = 'Beef'
@@ -116,11 +116,11 @@ describe('Separator test', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain(
-      '<a href="/slurry-infrastructure/serviceable-capacity-increase-replace" class="govuk-back-link">Back</a>'
+      '<a href="/slurry-infrastructure/capacity-increase-replace" class="govuk-back-link">Back</a>'
     )
   })
 
-  it('page loads with /serviceable-capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Beef', async () => {
+  it('page loads with /capacity-increase-additional/ back link when project type /add a new store .../ and applicant type is Beef', async () => {
     varList.projectType = 'Add a new store to increase existing capacity'
     varList.applicantType = 'Beef'
     const options = {
@@ -130,7 +130,7 @@ describe('Separator test', () => {
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain(
-      '<a href="/slurry-infrastructure/serviceable-capacity-increase-additional" class="govuk-back-link">Back</a>'
+      '<a href="/slurry-infrastructure/capacity-increase-additional" class="govuk-back-link">Back</a>'
     )
   })
 

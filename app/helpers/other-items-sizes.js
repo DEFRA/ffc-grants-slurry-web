@@ -75,7 +75,7 @@ function getErrorUnit (catagory) {
 }
 
 function formatOtherItems (request) {
-  const object = request.yar.get('standardisedCostObject')
+  const object = request.yar.get('referenceCostObject')
   const otherItemsArray = [request.yar.get('otherItems')].flat()
   const listOfCatagories = ['cat-reception-pit-type', 'cat-pump-type', 'cat-pipework', 'cat-transfer-channels', 'cat-agitator', 'cat-safety-equipment']
 

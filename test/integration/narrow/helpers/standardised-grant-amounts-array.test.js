@@ -1,4 +1,4 @@
-const { formatAnswerArray } = require('../../../../app/helpers/standardised-grant-amounts-array')
+const { formatAnswerArray } = require('../../../../app/helpers/reference-grant-amounts-array')
 
 const objectToSend = {
   data: {
@@ -74,7 +74,7 @@ const objectToSend = {
         title: 'Slurry separator equipment',
         items: [
           {
-            item: 'Screen press',
+            item: "Roller screen press",
             amount: 21234,
             unit: 'per unit'
           },
@@ -215,7 +215,7 @@ const objectToSend = {
 
 }
 
-describe('Standardised Cost Answers Array Function', () => {
+describe('reference Cost Answers Array Function', () => {
   test('Should return array correctly when object, question key and key to be found in object sent', () => {
     const mockRequest = {
       yar: { get: (key) => (objectToSend) }

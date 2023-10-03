@@ -74,7 +74,7 @@ const objectToSend = {
         title: 'Slurry separator equipment',
         items: [
           {
-            item: 'Screen press',
+            item: 'Roller screen press',
             amount: 2,
             unit: 'per unit'
           },
@@ -253,7 +253,7 @@ const itemSizesArray = [
 ]
 
 const separatorOptions = [
-  'Screen press',
+  'Roller screen press',
   'Screw press',
   'Gantry',
   'Concrete pad',
@@ -267,7 +267,7 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key === 'standardisedCostObject') {
+          if (key === 'referenceCostObject') {
             return objectToSend
           } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
@@ -319,7 +319,7 @@ describe('Project Summary Array Function', () => {
         total: '£48'
       },
       {
-        item: 'Screen press',
+        item: 'Roller screen press',
         amount: '£2',
         quantity: '1',
         total: '£2'
@@ -441,7 +441,7 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key === 'standardisedCostObject') {
+          if (key === 'referenceCostObject') {
             return []
           } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
@@ -482,7 +482,7 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key === 'standardisedCostObject') {
+          if (key === 'referenceCostObject') {
             return objectToSend
           } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
@@ -523,7 +523,7 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key === 'standardisedCostObject') {
+          if (key === 'referenceCostObject') {
             return objectToSend
           } else if (key === 'storageType') {
             return 'Above-ground steel slurry store'
@@ -575,7 +575,7 @@ describe('Project Summary Array Function', () => {
         total: '£48'
       },
       {
-        item: 'Screen press',
+        item: 'Roller screen press',
         amount: '£2',
         quantity: '1',
         total: '£2'
@@ -613,7 +613,7 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key == 'referenceCostObject') {
             return objectToSend
           } else if (key == 'storageType') {
             return 'Above-ground steel slurry store'
@@ -661,7 +661,7 @@ describe('Project Summary Array Function', () => {
     const mockRequest = {
       yar: {
         get: (key) => {
-          if (key == 'standardisedCostObject') {
+          if (key == 'referenceCostObject') {
             return objectToSend
           } else if (key == 'storageType') {
             return 'Above-ground steel slurry store'
