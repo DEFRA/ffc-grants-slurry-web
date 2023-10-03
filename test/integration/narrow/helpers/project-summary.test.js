@@ -603,7 +603,7 @@ describe('Project Summary Array Function', () => {
         amount: '£10',
         quantity: '6m²',
         total: '£60'
-      },
+      }
     ])
   })
 

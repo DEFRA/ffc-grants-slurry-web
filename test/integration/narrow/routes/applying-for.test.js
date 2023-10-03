@@ -66,22 +66,22 @@ describe('Page: /applying-for', () => {
 
   it('user selects ineligible option: \'None of the above\' -> display ineligible page', async () => {
     const postOptions = {
-        method: 'POST',
-        url: `${global.__URLPREFIX__}/applying-for`,
-        headers: { cookie: 'crumb=' + crumbToken },
-        payload: { applyingFor: 'None of the above', crumb: crumbToken }
+      method: 'POST',
+      url: `${global.__URLPREFIX__}/applying-for`,
+      headers: { cookie: 'crumb=' + crumbToken },
+      payload: { applyingFor: 'None of the above', crumb: crumbToken }
     }
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
-})
+  })
   it('page loads with correct back link', async () => {
     const options = {
-        method: 'GET',
-        url: `${global.__URLPREFIX__}/applying-for`
+      method: 'GET',
+      url: `${global.__URLPREFIX__}/applying-for`
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('<a href=\"planned-storage-capacity\" class=\"govuk-back-link\">Back</a>')
-})
+  })
 })

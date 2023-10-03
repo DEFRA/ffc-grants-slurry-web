@@ -263,7 +263,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -279,7 +279,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -295,7 +295,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -348,7 +348,7 @@ describe('answer-options', () => {
           { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
         ],
         name: 'mock-yarkey',
-        type: 'switch-default',
+        type: 'switch-default'
 
       }
     ])
@@ -478,7 +478,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -494,7 +494,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -510,7 +510,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -563,7 +563,7 @@ describe('answer-options', () => {
           { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
         ],
         name: 'mock-yarkey',
-        type: 'switch-default',
+        type: 'switch-default'
 
       }
     ])

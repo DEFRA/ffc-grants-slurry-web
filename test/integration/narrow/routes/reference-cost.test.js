@@ -89,7 +89,7 @@ describe('reference Cost test', () => {
   })
 
   test('POST /reference-cost route returns next page - impermeable journey', async () => {
-    varList.applyingFor = "An impermeable cover only"
+    varList.applyingFor = 'An impermeable cover only'
     varList.fitForPurpose = 'Yes'
     const options = {
       method: 'POST',

@@ -24,11 +24,11 @@ exports.config = {
     {
       'bstack:options': {
         os: 'Windows',
-        'projectName': 'DEFRA/ffc-grants/slurry-web',
+        projectName: 'DEFRA/ffc-grants/slurry-web',
         osVersion: '10',
         browserVersion: '112.0',
         browserName: 'Chrome',
-        'buildName': 'Chrome 112 compatibility - ' + timeStamp,
+        buildName: 'Chrome 112 compatibility - ' + timeStamp,
         local: true,
         networkLogs: true,
         seleniumVersion: '3.14.0',
