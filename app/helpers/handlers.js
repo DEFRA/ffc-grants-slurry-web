@@ -104,7 +104,7 @@ const addConditionalLabelData = async (
 const isImperableCover = getQuestionAnswer('applying-for', 'applying-for-A2')
 const isPig = getQuestionAnswer('applicant-type', 'applicant-type-A1')
 const isReplaceStore = getQuestionAnswer('project-type', 'project-type-A1')
-const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1');
+const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1')
 
 const getPage = async (question, request, h) => {
   const {
@@ -397,7 +397,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage'){
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage') {
       setYarValue(request, 'concreteBunkerSize', null)
     }
 
@@ -407,10 +407,10 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         key,
         key === 'projectPostcode'
           ? value
-            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
-            .split(/(?=.{3}$)/)
-            .join(' ')
-            .toUpperCase()
+              .replace(DELETE_POSTCODE_CHARS_REGEX, '')
+              .split(/(?=.{3}$)/)
+              .join(' ')
+              .toUpperCase()
           : value
       )
     }
@@ -439,10 +439,10 @@ const handleMultiInput = (
       }
       const payloadYarVal = payload[field.yarKey]
         ? payload[field.yarKey]
-          .replace(DELETE_POSTCODE_CHARS_REGEX, '')
-          .split(/(?=.{3}$)/)
-          .join(' ')
-          .toUpperCase()
+            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
+            .split(/(?=.{3}$)/)
+            .join(' ')
+            .toUpperCase()
         : ''
       dataObject = {
         ...dataObject,

@@ -1465,7 +1465,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
+            html: 'This grant is to get your storage levels to 6 months. You cannot apply for the grant if you already have 6 months\' storage that is fit for purpose.'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1609,7 +1609,7 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
+            html: 'This grant is to get your storage levels to 8 months. You cannot apply for the grant if you already have 8 months\' storage that is fit for purpose'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -2435,7 +2435,7 @@ const questionBank = {
             },
             {
               key: 'short-term-storage-A3',
-              value: 'I already have short-term storage',
+              value: 'I already have short-term storage'
             }
           ],
           sidebar: {

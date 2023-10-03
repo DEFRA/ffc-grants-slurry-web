@@ -75,7 +75,7 @@ const referenceCostObject = {
         title: 'Slurry separator equipment',
         items: [
           {
-            item: "Roller screen press",
+            item: 'Roller screen press',
             amount: 21234,
             unit: 'per unit'
           },

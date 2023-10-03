@@ -85,7 +85,7 @@ describe('Cover Type test', () => {
     expect(response.headers.location).toBe('cover-size')
   })
   it('page loads with /capacity-increase-replace/ back link when project type is replace', async () => {
-    varList.projectType = "Replace an existing store that is no longer fit for purpose with a new store"
+    varList.projectType = 'Replace an existing store that is no longer fit for purpose with a new store'
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/cover-type`
@@ -96,7 +96,7 @@ describe('Cover Type test', () => {
   })
 
   it('page loads with /capacity-increase-additional/ back link when project type is additional', async () => {
-    varList.projectType = "Add a new store to increase existing capacity"
+    varList.projectType = 'Add a new store to increase existing capacity'
     const options = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/cover-type`
