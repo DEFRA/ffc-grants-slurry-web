@@ -13,7 +13,7 @@ services:
       LOGIN_REQUIRED: ${LOGIN_REQUIRED:-false}
       AUTH_USERNAME: ${AUTH_USERNAME:-grants}
       AUTH_PASSWORD_HASH: ${AUTH_PASSWORD_HASH:-grants}
-      GOOGLE_TAG_MANAGER_KEY: 'GTM-WJ5C78H'
+      GOOGLE_TAG_MANAGER_KEY: 'GT-MJPRKW7'
       GOOGLE_TAG_MANAGER_SERVER_KEY: ${GOOGLE_TAG_MANAGER_SERVER_KEY:-notset}
       ANALYTICS_PROPERTY_API: ${ANALYTICS_PROPERTY_API:-notset}
       COOKIE_PASSWORD: thisistestcookiepasswordthisistestcookiepasswordthisistestcookiepassword
