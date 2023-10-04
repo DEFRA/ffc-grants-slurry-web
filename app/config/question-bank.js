@@ -366,7 +366,6 @@ const questionBank = {
                 content: [
                   {
                     para: `This grant is only for projects in England.
-
                           Scotland, Wales and Northern Ireland have other grants available.`
                   }
                 ]
@@ -422,7 +421,12 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: 'You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).'
+                    para: 'You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.',
+                    additionalPara: 'Before you start the project, you can:',
+                    items: [
+                      'get quotes from suppliers',
+                      'apply for planning permissions (this can take a long time)'
+                    ]
                   }
                 ]
               }
@@ -439,14 +443,14 @@ const questionBank = {
               key: 'project-started-A1',
               value: 'Yes, preparatory work',
               hint: {
-                text: 'For example, applying for planning permission'
+                text: 'For example, quotes from suppliers, applying for planning permission'
               }
             },
             {
               key: 'project-started-A2',
               value: 'Yes, we have begun project work',
               hint: {
-                text: 'For example, started construction work, signing contracts'
+                text: 'For example, started construction work, signing contracts, placing orders'
               },
               notEligible: true
             },
@@ -741,7 +745,6 @@ const questionBank = {
                     para: `
                 This grant is to get your storage levels to 8 months.
                 For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
-                
                 You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                     items: []
                   }
@@ -809,8 +812,6 @@ const questionBank = {
                 This grant is to get your storage levels to 6 months.
                 For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
                 Any capacity above 6 months is not covered by the grant.
-
-
                 You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                     items: []
@@ -875,7 +876,6 @@ const questionBank = {
                 This grant is to get your storage levels to 8 months.
                 For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
                 Any capacity above 8 months is not covered by the grant.
-                
                 You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
                 `,
                     items: []
@@ -1846,7 +1846,6 @@ const questionBank = {
             Enter size in metres squared
             <br/><br/>
             <p class="govuk-body"><b>Grant-funded store</b></p>
-
           `
           },
           validate: [
@@ -2423,7 +2422,6 @@ const questionBank = {
               error: `Size must be between 1-99999`,
               dependentKey: 'concreteBunkerSize',
             }
-
           ],
           preValidationKeys: ['gantry'],
           fundingPriorities: '',
