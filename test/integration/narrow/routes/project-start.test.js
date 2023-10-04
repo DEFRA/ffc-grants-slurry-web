@@ -21,13 +21,16 @@ describe('Page: /project-started', () => {
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('Have you already started work on the project?')
     expect(response.payload).toContain('Yes, preparatory work') // option 1
-    expect(response.payload).toContain('For example, applying for planning permission') // hint
+    expect(response.payload).toContain('For example, quotes from suppliers, applying for planning permission') // hint
     expect(response.payload).toContain('Yes, we have begun project work') // option 2
-    expect(response.payload).toContain('For example, started construction work, signing contracts') // hint
+    expect(response.payload).toContain('For example, started construction work, signing contracts, placing orders') // hint
     expect(response.payload).toContain('No, we have not done any work on this project yet') // option 3
     expect(response.payload).toContain('<span class="govuk-warning-text__assistive"></span>') // warning symbol
     expect(response.payload).toContain('You must not start the project work or commit to project costs before receiving your funding agreement.') // warning text
-    expect(response.payload).toContain('You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).') //side bar text
+    expect(response.payload).toContain('You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.') //side bar para
+    expect(response.payload).toContain('Before you start the project, you can:') //side bar additional para
+    expect(response.payload).toContain('<li>get quotes from suppliers</li>') // item 1
+    expect(response.payload).toContain('<li>apply for planning permissions (this can take a long time)</li>') // item 2
   })
 
   it('no option selected -> show error message', async () => {
