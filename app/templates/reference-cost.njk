@@ -32,9 +32,9 @@
             <tbody class="govuk-table__body">
               {% for item in catagory.items %}
                 <tr class="govuk-table__row">
-                  <td class="govuk-table__header">
+                  <th scope="row" class="govuk-table__header">
                     {{ item.item }}
-                  </td>
+                  </th>
                   <td class="govuk-table__cell">
                     £{{ item.amount }}
                     {{ item.unit }}
