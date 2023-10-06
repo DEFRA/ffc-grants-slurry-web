@@ -2990,10 +2990,12 @@ const questionBank = {
           preValidationKeys: ['remainingCosts'],
           type: 'input',
           classes: 'govuk-input--width-10',
+          id: 'gridReference',
           label: {
             text: 'What is the OS grid reference for your slurry store?',
             classes: 'govuk-label--l',
-            isPageHeading: true
+            isPageHeading: true,
+            for: 'gridReference'
           },
           hint: {
             html: `
@@ -3006,7 +3008,7 @@ const questionBank = {
             7. Return to the Slurry Infrastructure Grant checker screen.<br/>
             8. Right-click on the OS grid reference number box. Select 'Paste'.<br/><br/>
             Enter in the format of 2 letters and 10 numbers, for example SP 9620733594<br/><br/>
-            <p class='govuk-body'>OS grid reference number</p>
+            <label class='govuk-label govuk-label--m' for='gridReference'>OS grid reference number</label>
           `
           },
           warning: {
