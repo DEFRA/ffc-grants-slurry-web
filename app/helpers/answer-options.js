@@ -2,6 +2,7 @@ const { formatAnswerArray } = require('./../helpers/reference-grant-amounts-arra
 const { formatOtherItems } = require('./../helpers/other-items-sizes')
 const { formatUKCurrency } = require('../helpers/data-formats')
 const { setYarValue, getYarValue } = require('./session')
+const { getQuestionAnswer } = require('../helpers/utils.js')
 
 function isChecked(data, option) {
   return typeof data === 'string' ? !!data && data === option : !!data && data.includes(option)
@@ -156,7 +157,8 @@ const getOptions = (data, question, conditionalHtml, request) => {
       question.answers.shift()
       question.answers.shift()
     }
-    if (question.answers.length <= 2) {
+
+    if (question.answers.length <= 2 && question.key != 'other-items') {
       if (question.yarKey === "coverType" || question.yarKey === "existingCoverType") {
         question.answers = []
       }
@@ -198,15 +200,10 @@ const getOptions = (data, question, conditionalHtml, request) => {
           question.answers.unshift(answersList[answer])
         }
       }
-    } else if (question.key === 'storage-type') {
-      // only needed while updating db data during testing
-      question.answers = []
 
-      for (const answer in answersList) {
-        question.answers.unshift(answersList[answer])
-      }
     } else if (question.key === 'other-items') {
-      // only needed while updating db data during testing
+      // other items has to be generated each time just in case
+
       question.answers = [
         {
           value: 'divider'
@@ -219,8 +216,17 @@ const getOptions = (data, question, conditionalHtml, request) => {
       ]
 
       for (const answer in answersList) {
-        question.answers.unshift(answersList[answer])
+        // check for Above ground. If there, dont show Safety fencing, otherwise dont show Inspection platform
+
+        if (answersList[answer].value.startsWith('Safety fencing') && getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A1')) {
+          console.log('Not needed Safe')        
+        } else if (answersList[answer].value.startsWith('Inspection platform') && getYarValue(request, 'storageType') != getQuestionAnswer('storage-type', 'storage-type-A1')) {
+          console.log('Not needed Inspect')        
+        } else {
+          question.answers.unshift(answersList[answer])
+        }
       }
+      
     }
   }
 
