@@ -3007,16 +3007,22 @@ const questionBank = {
           },
           hint: {
             html: `
-            1. On the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a> page, enter the postcode of your location into the postcode box.<br/>
-            2. Select 'Go'.<br/>
-            3. Find the location of your slurry store on the map. You can select and drag the map to move the location.<br/>
-            4. Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.<br/>
-            5. Scroll down to view your grid reference in the table below the map.<br/>
-            6. Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.<br/>
-            7. Return to the Slurry Infrastructure Grant checker screen.<br/>
-            8. Right-click on the OS grid reference number box. Select 'Paste'.<br/><br/>
-            Enter in the format of 2 letters and 10 numbers, for example SP 9620733594<br/><br/>
+            <div id="gridReference-hint" class="govuk-hint">
+              <ol>
+                <li>On the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a> page, enter the postcode of your location into the postcode box.</li>
+                <li>Select 'Go'.</li>
+                <li>Find the location of your slurry store on the map. You can select and drag the map to move the location.</li>
+                <li>Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.</li>
+                <li>Scroll down to view your grid reference in the table below the map.</li>
+                <li>Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.</li>
+                <li>Return to the Slurry Infrastructure Grant checker screen.</li>
+                <li>Right-click on the OS grid reference number box. Select 'Paste'.</li>
+              <ol>
+            </div>
+            <div>
+            Enter in the format of 2 letters and 10 numbers, for example SP 9620733594</br></br>
             <label class='govuk-label govuk-label--m' for='gridReference'>OS grid reference number</label>
+            </div>
           `
           },
           warning: {
