@@ -1414,10 +1414,12 @@ const questionBank = {
           type: 'input',
           inputmode: 'numeric',
           pattern: '[0-9]*',
+          id: 'serviceCapacityIncrease',
           label: {
             text: 'What estimated volume do you need to have 6 months’ storage?',
             classes: 'govuk-label--l',
-            isPageHeading: true
+            isPageHeading: true,
+            for: 'serviceCapacityIncrease'
           },
           hint: {
             html: `
@@ -1484,10 +1486,12 @@ const questionBank = {
           type: 'input',
           inputmode: 'numeric',
           pattern: '[0-9]*',
+          id: 'serviceCapacityIncrease',
           label: {
             text: 'What estimated additional volume do you need to have 6 months’ storage?',
             classes: 'govuk-label--l',
-            isPageHeading: true
+            isPageHeading: true,
+            for: 'serviceCapacityIncrease'
           },
           hint: {
             html: `
@@ -1558,10 +1562,12 @@ const questionBank = {
           type: 'input',
           inputmode: 'numeric',
           pattern: '[0-9]*',
+          id: 'serviceCapacityIncrease',
           label: {
             text: 'What estimated volume do you need to have 8 months’ storage?',
             classes: 'govuk-label--l',
-            isPageHeading: true
+            isPageHeading: true,
+            for: 'serviceCapacityIncrease'
           },
           hint: {
             html: `
@@ -1628,10 +1634,12 @@ const questionBank = {
           type: 'input',
           inputmode: 'numeric',
           pattern: '[0-9]*',
+          id: 'serviceCapacityIncrease',
           label: {
             text: 'What estimated additional volume do you need to have 8 months’ storage?',
             classes: 'govuk-label--l',
-            isPageHeading: true
+            isPageHeading: true,
+            for: 'serviceCapacityIncrease'
           },
           hint: {
             html: `
