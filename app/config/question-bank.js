@@ -3021,7 +3021,7 @@ const questionBank = {
             </div>
             <div>
             Enter in the format of 2 letters and 10 numbers, for example SP 9620733594</br></br>
-            <label class='govuk-label govuk-label--m' for='gridReference'>OS grid reference number</label>
+            <label class='govuk-label' for='gridReference'>OS grid reference number</label>
             </div>
           `
           },
