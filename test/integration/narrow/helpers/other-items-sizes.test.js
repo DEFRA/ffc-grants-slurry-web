@@ -230,7 +230,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Reception pit',
+          html: '<span class=\"govuk-visually-hidden\">How many per cubic metre of this item will be required: </span>Reception pit',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -267,7 +267,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Electric-powered slurry transfer pump',
+          html: '<span class=\"govuk-visually-hidden\">How many per pump of this item will be required: </span>Electric-powered slurry transfer pump',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -304,7 +304,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Powered take off (PTO) or hydraulically powered slurry transfer pump',
+          html: '<span class=\"govuk-visually-hidden\">How many per pump of this item will be required: </span>Powered take off (PTO) or hydraulically powered slurry transfer pump',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -341,7 +341,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Centrifugal chopper pump',
+          html: '<span class=\"govuk-visually-hidden\">How many per pump of this item will be required: </span>Centrifugal chopper pump',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -378,7 +378,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Powered take off (PTO) or hydraulically driven chopper pump',
+          html: '<span class=\"govuk-visually-hidden\">How many per pump of this item will be required: </span>Powered take off (PTO) or hydraulically driven chopper pump',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -415,7 +415,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Galvanised steel pipework 100mm diameter',
+          html: '<span class=\"govuk-visually-hidden\">How many per metre of this item will be required: </span>Galvanised steel pipework 100mm diameter',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -452,7 +452,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Galvanised steel pipework 150mm diameter',
+          html: '<span class=\"govuk-visually-hidden\">How many per metre of this item will be required: </span>Galvanised steel pipework 150mm diameter',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -489,7 +489,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Polyethylene (PE) or equivalent pipework 100mm diameter',
+          html: '<span class=\"govuk-visually-hidden\">How many per metre of this item will be required: </span>Polyethylene (PE) or equivalent pipework 100mm diameter',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -526,7 +526,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Polyethylene (PE) or equivalent pipework 150mm diameter',
+          html: '<span class=\"govuk-visually-hidden\">How many per metre of this item will be required: </span>Polyethylene (PE) or equivalent pipework 150mm diameter',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -563,7 +563,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Under-floor transfer channels',
+          html: '<span class=\"govuk-visually-hidden\">How many per metre of this item will be required: </span>Under-floor transfer channels',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -600,7 +600,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Slurry store wall mixers with store capacity up to 1,200 cubic metre',
+          html: '<span class=\"govuk-visually-hidden\">How many per tank of this item will be required: </span>Slurry store wall mixers with store capacity up to 1,200 cubic metre',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -637,7 +637,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Slurry store wall mixers with store capacity up to 8,000 cubic metre',
+          html: '<span class=\"govuk-visually-hidden\">How many per tank of this item will be required: </span>Slurry store wall mixers with store capacity up to 8,000 cubic metre',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -674,7 +674,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Inspection platform with ladder for above-ground concrete and steel slurry store',
+          html: '<span class=\"govuk-visually-hidden\">How many per item of this item will be required: </span>Inspection platform with ladder for above-ground concrete and steel slurry store',
           classes: 'govuk-label--m'
         },
         validate: [
@@ -711,7 +711,7 @@ describe('Other Items Sizes Array Function', () => {
         },
         classes: 'govuk-input--width-3',
         label: {
-          text: 'Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
+          html: '<span class=\"govuk-visually-hidden\">How many per metre of this item will be required: </span>Safety fencing for stores constructed below gorund leve, earth-bank lagoons and slurry bags',
           classes: 'govuk-label--m'
         },
         validate: [

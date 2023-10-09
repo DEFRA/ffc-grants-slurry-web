@@ -17,8 +17,7 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
     classes: `govuk-input--width-${suffixAndLengthValue.length}`,
     label: {
       html: span + item.item,
-      classes: 'govuk-label--m',
-      value: 'sdsds'
+      classes: 'govuk-label--m'
     },
     validate: [
       {
