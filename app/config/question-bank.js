@@ -216,7 +216,8 @@ const questionBank = {
             <ul class="govuk-list govuk-list--bullet"><li>applying to build a new store </li><li>expanding or replacing an existing store</li><li>covering an existing store</li></ul>
             <p class='govuk-body'>You can use the Environment Agency’s (EA) pre-application advice service to find out more or discuss this with your EA site officer.</p>`,
             warning: {
-              text: 'You must get your permit variation before you receive the final grant payment.'
+              text: 'You must get your permit variation before you receive the final grant payment.',
+              iconFallbackText: 'Warning'
             }
           }
         },
@@ -456,7 +457,8 @@ const questionBank = {
             }
           ],
           warning: {
-            html: 'You must not start the project work or commit to project costs before receiving your funding agreement.'
+            html: 'You must not start the project work or commit to project costs before receiving your funding agreement.',
+            iconFallbackText: 'Warning',
           },
           yarKey: 'projectStart'
         },
@@ -1080,7 +1082,8 @@ const questionBank = {
               'You may be able to apply for a grant from this scheme',
             messageContent: '',
             warning: {
-              text: 'To apply for a cover, your existing store must be signed off as fit for purpose by a structural engineer at full application.'
+              text: 'To apply for a cover, your existing store must be signed off as fit for purpose by a structural engineer at full application.',
+              iconFallbackText: 'Warning'
             },
             extraMessageContent: `<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>`,
             messageLink: {
@@ -1470,7 +1473,8 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`
+            html: `This grant is to get your storage levels to 6 months. You cannot apply for the grant if you already have 6 months' storage that is fit for purpose.`,
+            iconFallbackText: 'Warning'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1543,7 +1547,8 @@ const questionBank = {
           },
           warning: {
             html: `This grant is to get your storage levels to 6 months. For example, if you have 4 months’  storage, we will fund another 2 months. </br></br>
-            You cannot apply for the grant if you already have 6 months' storage that is fit for purpose`
+            You cannot apply for the grant if you already have 6 months' storage that is fit for purpose`,
+            iconFallbackText: 'Warning'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1618,7 +1623,8 @@ const questionBank = {
             dependentQuestionKeys: ['storageType']
           },
           warning: {
-            html: `This grant is to get your storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
+            html: `This grant is to get your storage levels to 8 months. You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`,
+            iconFallbackText: 'Warning'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -1691,7 +1697,8 @@ const questionBank = {
           },
           warning: {
             html: `This grant is to get your storage levels to 8 months. For example, if you have 6 months’  storage, we will fund another 2 months.</br></br>
-            You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`
+            You cannot apply for the grant if you already have 8 months' storage that is fit for purpose`,
+            iconFallbackText: 'Warning'
           },
           yarKey: 'serviceCapacityIncrease'
         },
@@ -2761,7 +2768,8 @@ const questionBank = {
             messageContent:
               'Based on the reference cost for each item and the approximate size and quantities you entered, we estimate you could be eligible for a grant of £{{_calculatedGrant_}}',
             warning: {
-              text: 'There’s no guarantee the project will receive a grant.'
+              text: 'There’s no guarantee the project will receive a grant.',
+              iconFallbackText: 'Warning'
             },
             conditionalText: {
               condition: false,
@@ -3029,7 +3037,8 @@ const questionBank = {
           `
           },
           warning: {
-            html: 'You must provide the correct location of your slurry store to avoid delays at full application.'
+            html: 'You must provide the correct location of your slurry store to avoid delays at full application.',
+            iconFallbackText: 'Warning'
           },
           validate: [
             {
@@ -3944,7 +3953,8 @@ const questionBank = {
             <p>3. If your application is successful, you’ll be sent a funding agreement and can begin work on the project.</p>
             `,
             warning: {
-              text: 'You must not start the project'
+              text: 'You must not start the project',
+              iconFallbackText: 'Warning'
             },
             extraMessageContent: `<p>Starting the project or committing to any costs (such as placing orders) before you receive a funding agreement will invalidate your application.</p> 
             <p>Before you start the project, you can:</p>
