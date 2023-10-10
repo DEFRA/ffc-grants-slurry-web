@@ -4,7 +4,7 @@ const { formatUKCurrency } = require('../helpers/data-formats')
 const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) => {
   const maxValue = suffixAndLengthValue.length === 3 ? 9999 : 999999
   item.amount = formatUKCurrency(item.amount)
-
+  const span = `<span class="govuk-visually-hidden">How many ${item.unit} of this item will be required: </span>`
   return {
     yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
     type: 'text',
@@ -16,7 +16,7 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
     },
     classes: `govuk-input--width-${suffixAndLengthValue.length}`,
     label: {
-      text: item.item,
+      html: span + item.item,
       classes: 'govuk-label--m'
     },
     validate: [
