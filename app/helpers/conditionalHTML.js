@@ -7,7 +7,7 @@ const getHtml = (label, labelData, fieldValueData, error) => {
       `<div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="5">
         <div class="govuk-form-group">
           <label class="govuk-label" for="${label}">
-            ${labelData}
+            ${labelData}<span class="govuk-visually-hidden">, in square metres</span>
           </label>
           <div class="govuk-input__wrapper">
             <input class="govuk-input govuk-input--width-5" autocomplete="off" id="${label}" name="${label}" value="${fieldValue}">
