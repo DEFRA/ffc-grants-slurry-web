@@ -813,14 +813,15 @@ const questionBank = {
                 For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
 
                 You must maintain at least 6 months’ capacity for the duration of the 5-year grant funding agreement.
-
-                If you are using a slurry separator, select the capacity your slurry store will hold after the stackable material has been removed.
-                `,
-                    items: []
+                `
                   }
                 ]
               }
-            ]
+            ],
+            details: {
+              summaryText: 'What if i am using a slurry separator?',
+              text: 'If you are using a slurry separator, select the capacity your slurry store will hold after the stackable material has been removed.'
+            }
           },
           validate: [
             {
@@ -880,14 +881,15 @@ const questionBank = {
                 For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
 
                 You must maintain at least 8 months’ capacity for the duration of the 5-year grant funding agreement.
-
-                If you are using a slurry separator, select the capacity your slurry store will hold after the stackable material has been removed.
-                `,
-                    items: []
+                `
                   }
                 ]
               }
-            ]
+            ],
+            details: {
+              summaryText: 'What if i am using a slurry separator?',
+              text: 'If you are using a slurry separator, select the capacity your slurry store will hold after the stackable material has been removed.'
+            }
           },
           validate: [
             {

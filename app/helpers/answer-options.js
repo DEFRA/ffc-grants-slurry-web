@@ -220,7 +220,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
 
         if (answersList[answer].value.startsWith('Safety fencing') && getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A1')) {
           console.log('Not needed Safe')        
-        } else if (answersList[answer].value.startsWith('Inspection platform') && getYarValue(request, 'storageType') != getQuestionAnswer('storage-type', 'storage-type-A1')) {
+        } else if (answersList[answer].value.startsWith('Inspection platform') && getYarValue(request, 'storageType') != getQuestionAnswer('storage-type', 'storage-type-A1') && getYarValue(request, 'storageType') != null ) {
           console.log('Not needed Inspect')        
         } else {
           question.answers.unshift(answersList[answer])

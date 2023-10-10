@@ -4,6 +4,9 @@ const { formatAnswerArray } = require('../../../../app/helpers/reference-grant-a
 const { getQuestionAnswer } = require('../../../../app/helpers/utils.js')
 jest.mock('../../../../app/helpers/utils.js')
 
+const { getYarValue } = require('../../../../app/helpers/session')
+jest.mock('../../../../app/helpers/session')
+
 const { getOptions, setOptionsLabel } = require('../../../../app/helpers/answer-options')
 
 describe('answer-options', () => {
@@ -485,6 +488,8 @@ describe('answer-options', () => {
 
     getQuestionAnswer.mockImplementation((a, b) => (true))
 
+    getYarValue.mockImplementation((a, b) => (false))
+
     let question = {
       costDataType: 'cost-data-type',
       answers: [],
@@ -712,6 +717,9 @@ describe('answer-options', () => {
     formatAnswerArray.mockImplementation((a, b, c, d) => ([{value: 'answer1'}], [{value: 'Safety fencing'}]))
 
     getQuestionAnswer.mockImplementation((a, b) => (null))
+
+    getYarValue.mockImplementation((a, b) => (null))
+
 
     let question = {
       costDataType: 'cost-data-type',
