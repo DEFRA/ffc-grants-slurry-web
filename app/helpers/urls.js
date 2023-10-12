@@ -1,24 +1,47 @@
 const urlPrefix = require('../config/server').urlPrefix
 const { getYarValue } = require('../helpers/session')
 const { ALL_QUESTIONS } = require('../config/question-bank')
+const { getQuestionAnswer } = require("../../app/helpers/utils.js");
+
+const isPigFarmer = getQuestionAnswer("applicant-type", "applicant-type-A1");
+const isBackToScoreBtn = (btn) => btn === 'Back to score'
+const planningSummary = `${urlPrefix}/planning-permission-summary`
+
+const findDependentQuestion = (
+  dependentQuestionYarKey,
+  dependentAnswerKeysArray,
+  dependentAnswer
+) => {
+  return ALL_QUESTIONS.find((thisQuestion) => {
+    const hasMatchingAnswer = thisQuestion.answers?.some((answer) => {
+      return (
+        dependentAnswer &&
+        dependentAnswerKeysArray.includes(answer.key) &&
+        dependentAnswer.includes(answer.value)
+      );
+    });
+
+    return thisQuestion.yarKey === dependentQuestionYarKey && hasMatchingAnswer;
+  });
+};
 
 const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const scorePath = `${urlPrefix}/score`
   const chekDetailsPath = `${urlPrefix}/check-details`
 
   let secBtnPath
-  if (secBtn === 'Back to score') {
-    secBtnPath = scorePath
+  if (isBackToScoreBtn) {
+    secBtnPath = scorePath;
   } else {
     switch (currentUrl) {
-      case 'planning-permission':
-      case 'planning-permission-evidence':
-      case 'grid-reference': {
-        secBtnPath = `${urlPrefix}/planning-permission-summary`
-        break
+      case "planning-permission":
+      case "planning-permission-evidence":
+      case "grid-reference": {
+        secBtnPath = planningSummary;
+        break;
       }
       default:
-        secBtnPath = chekDetailsPath
+        secBtnPath = chekDetailsPath;
     }
   }
 
@@ -28,29 +51,27 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const { dependentQuestionYarKey, dependentAnswerKeysArray, urlOptions } = urlObject
   let { thenUrl, elseUrl, nonDependentUrl } = urlOptions
 
-  if (getYarValue(request, 'applicantType') === 'Pig' && nonDependentUrl === 'existing-cover') {
-    nonDependentUrl = 'existing-cover-pig'
-  } else if (getYarValue(request, 'applicantType') === 'Pig' && elseUrl === 'existing-cover') {
-    elseUrl = 'existing-cover-pig'
-  } else if (getYarValue(request, 'applicantType') === 'Pig' &&
-    thenUrl === 'capacity-increase-replace' &&
-    elseUrl === 'capacity-increase-additional') {
-    thenUrl = 'pig-capacity-increase-replace'
-    elseUrl = 'pig-capacity-increase-additional'
+  if (
+    getYarValue(request, "applicantType") === isPigFarmer &&
+    nonDependentUrl === "existing-cover"
+  ) {
+    nonDependentUrl = "existing-cover-pig";
+  } else if (
+    getYarValue(request, "applicantType") === isPigFarmer &&
+    elseUrl === "existing-cover"
+  ) {
+    elseUrl = "existing-cover-pig";
+  } else if (
+    getYarValue(request, "applicantType") === isPigFarmer &&
+    thenUrl === "capacity-increase-replace" &&
+    elseUrl === "capacity-increase-additional"
+  ) {
+    thenUrl = "pig-capacity-increase-replace";
+    elseUrl = "pig-capacity-increase-additional";
   }
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
-
-  const selectThenUrl = ALL_QUESTIONS.find(thisQuestion => (
-    thisQuestion.yarKey === dependentQuestionYarKey &&
-    thisQuestion.answers &&
-    thisQuestion.answers.some(answer => (
-      !!dependentAnswer &&
-      dependentAnswerKeysArray.includes(answer.key) &&
-      dependentAnswer.includes(answer.value)
-    ))
-  ))
+  const selectThenUrl = findDependentQuestion(dependentQuestionYarKey, dependentAnswerKeysArray, dependentAnswer);
   const selectedElseUrl = dependentAnswer ? elseUrl : nonDependentUrl
-
   return selectThenUrl ? thenUrl : selectedElseUrl
 }
 
