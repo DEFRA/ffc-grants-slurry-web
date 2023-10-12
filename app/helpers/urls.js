@@ -70,6 +70,7 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
     elseUrl = "pig-capacity-increase-additional";
   }
   const dependentAnswer = getYarValue(request, dependentQuestionYarKey)
+
   const selectThenUrl = findDependentQuestion(dependentQuestionYarKey, dependentAnswerKeysArray, dependentAnswer);
   const selectedElseUrl = dependentAnswer ? elseUrl : nonDependentUrl
   return selectThenUrl ? thenUrl : selectedElseUrl
