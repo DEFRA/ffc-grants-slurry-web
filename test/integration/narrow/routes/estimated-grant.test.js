@@ -8,7 +8,7 @@ describe('Page: /estimated-grant', () => {
     existingCover: '',
     grantFundedCover: '',
     fitForPurpose: ''
-  };
+  }
   const grantText = 'Add some information about the project (for example, type of store and capacity, type of cover and size, approximate size and quantity of other items you need) so we can estimate how much grant you could get.'
 
   jest.mock('../../../../app/helpers/session', () => ({
@@ -100,5 +100,4 @@ describe('Page: /estimated-grant', () => {
     expect(response.statusCode).toBe(200)
     expect(response.payload).toContain('<a href=\"/slurry-infrastructure/grant-funded-cover\" class=\"govuk-back-link\" id=\"linkBack\">Back</a>')
   })
-
 })

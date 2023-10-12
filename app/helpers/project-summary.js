@@ -1,6 +1,6 @@
 const { formatUKCurrency } = require('../helpers/data-formats')
 
-function suffixGenerator(unit) {
+function suffixGenerator (unit) {
   // add correct suffix value to input field
   if (unit === 'per cubic metre') {
     return 'm³'
@@ -13,7 +13,7 @@ function suffixGenerator(unit) {
   }
 }
 
-function formatSummaryTable(request) {
+function formatSummaryTable (request) {
   const object = request.yar.get('referenceCostObject')
   const storageType = request.yar.get('storageType')
   const storageSize = request.yar.get('serviceCapacityIncrease')
@@ -60,7 +60,7 @@ function formatSummaryTable(request) {
       total = (coverSize * coverData.amount)
 
       returnArray.push({
-        item: (coverType.substring(0, coverType.lastIndexOf(" ")) + ' grant-funded store cover'),
+        item: (coverType.substring(0, coverType.lastIndexOf(' ')) + ' grant-funded store cover'),
         amount: '£' + coverData.amount,
         quantity: formatUKCurrency(coverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
@@ -77,7 +77,7 @@ function formatSummaryTable(request) {
       total = (existingCoverSize * existingCoverData.amount)
 
       returnArray.push({
-        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(" ")) + ' existing store cover',
+        item: existingCoverType.substring(0, existingCoverType.lastIndexOf(' ')) + ' existing store cover',
         amount: '£' + existingCoverData.amount,
         quantity: formatUKCurrency(existingCoverSize) + 'm²',
         total: '£' + formatUKCurrency(total)
@@ -87,7 +87,6 @@ function formatSummaryTable(request) {
     }
 
     if (separatorArray.length > 0) {
-
       separatorArray.forEach((otherItem, _index) => {
         let correctSize
 
@@ -151,7 +150,6 @@ function formatSummaryTable(request) {
         })
       })
     }
-
   }
 
   request.yar.set('itemsTotalValue', totalCalculator)

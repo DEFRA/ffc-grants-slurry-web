@@ -4,11 +4,11 @@ const { formatUKCurrency } = require('../helpers/data-formats')
 const { setYarValue, getYarValue } = require('./session')
 const { getQuestionAnswer } = require('../helpers/utils.js')
 
-function isChecked(data, option) {
+function isChecked (data, option) {
   return typeof data === 'string' ? !!data && data === option : !!data && data.includes(option)
 }
 
-function setOptionsLabel(data, answers, conditionalHtml) {
+function setOptionsLabel (data, answers, conditionalHtml) {
   return answers.map((answer) => {
     const { value, hint, text, conditional } = answer
 
@@ -38,7 +38,7 @@ function setOptionsLabel(data, answers, conditionalHtml) {
   })
 }
 
-function setSelectLabels(data, selectList) {
+function setSelectLabels (data, selectList) {
   return [
     { text: 'Select an option', value: '' },
     ...selectList.map((selectValue) => {
@@ -153,22 +153,22 @@ const getAllInputs = (data, question, conditionalHtml, request) => {
 const getOptions = (data, question, conditionalHtml, request) => {
   if (question?.costDataType) {
     const answersList = formatAnswerArray(request, question.key, question.costDataType, question.hintArray).reverse()
-    if (question.yarKey === "solidFractionStorage" && question.answers.length === 4) {
+    if (question.yarKey === 'solidFractionStorage' && question.answers.length === 4) {
       question.answers.shift()
       question.answers.shift()
     }
 
     if (question.answers.length <= 2 && question.key != 'other-items') {
-      if (question.yarKey === "coverType" || question.yarKey === "existingCoverType") {
+      if (question.yarKey === 'coverType' || question.yarKey === 'existingCoverType') {
         question.answers = []
       }
 
-      if (question.yarKey === "separatorType") {
+      if (question.yarKey === 'separatorType') {
         question.answers = []
         answersList.splice(0, 3)
       }
 
-      if (question.yarKey === "solidFractionStorage") {
+      if (question.yarKey === 'solidFractionStorage') {
         answersList.splice(2, 3)
         const concreteBunkerStorageOption = answersList.filter(answer => answer.value === 'Concrete bunker')[0]
         // set concrete bunker to be a conditional field answer
@@ -178,16 +178,16 @@ const getOptions = (data, question, conditionalHtml, request) => {
         // add brakcets around hint text
         answersList.forEach(answer => {
           answer.hint.html = '(' + answer.hint.html + ')'
-          if(answer.value === 'Concrete bunker'){
+          if (answer.value === 'Concrete bunker') {
             const cappedAmount = formatUKCurrency(answer.numericalValue * 100)
             setYarValue(request, 'cappedAmount', cappedAmount)
             // add concrete bunker unique hint text before grant amount hint
-            answer.hint.html =  answer.hint.html + `</br> You can apply for a maximum of 100m² (£${cappedAmount})`
+            answer.hint.html = answer.hint.html + `</br> You can apply for a maximum of 100m² (£${cappedAmount})`
           }
         })
       }
 
-      if (question.yarKey === "gantry") {
+      if (question.yarKey === 'gantry') {
         let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
         gantryHint = gantryHint[0]
         // add brackets around hint text
@@ -200,7 +200,6 @@ const getOptions = (data, question, conditionalHtml, request) => {
           question.answers.unshift(answersList[answer])
         }
       }
-
     } else if (question.key === 'other-items') {
       // other items has to be generated each time just in case
 
@@ -219,17 +218,15 @@ const getOptions = (data, question, conditionalHtml, request) => {
         // check for Above ground. If there, dont show Safety fencing, otherwise dont show Inspection platform
 
         if (answersList[answer].value.startsWith('Safety fencing') && getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A1')) {
-          console.log('Not needed Safe')        
-        } else if (answersList[answer].value.startsWith('Inspection platform') && getYarValue(request, 'storageType') != getQuestionAnswer('storage-type', 'storage-type-A1') && getYarValue(request, 'storageType') != null ) {
-          console.log('Not needed Inspect')        
+          console.log('Not needed Safe')
+        } else if (answersList[answer].value.startsWith('Inspection platform') && getYarValue(request, 'storageType') != getQuestionAnswer('storage-type', 'storage-type-A1') && getYarValue(request, 'storageType') != null) {
+          console.log('Not needed Inspect')
         } else {
           question.answers.unshift(answersList[answer])
         }
       }
-      
     }
   }
-
 
   switch (question.type) {
     case 'input':

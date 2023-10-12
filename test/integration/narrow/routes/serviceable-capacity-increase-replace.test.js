@@ -109,7 +109,6 @@ describe('Page: /capacity-increase-replace', () => {
     varList.grantFundedCover = 'Yes, I already have a cover'
     varList.existingCover = 'Yes'
 
-
     const postOptions = {
       method: 'POST',
       url: `${global.__URLPREFIX__}/capacity-increase-replace`,

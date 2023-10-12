@@ -275,7 +275,7 @@ describe('Models', () => {
               }
 
             ],
-            heading: "Cover"
+            heading: 'Cover'
           }
         ]
       },
