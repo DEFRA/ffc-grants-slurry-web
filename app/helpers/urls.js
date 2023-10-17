@@ -4,7 +4,7 @@ const { ALL_QUESTIONS } = require('../config/question-bank')
 const { getQuestionAnswer } = require("../../app/helpers/utils.js");
 
 const isPigFarmer = getQuestionAnswer("applicant-type", "applicant-type-A1");
-const isBackToScoreBtn = (btn) => btn === 'Back to score'
+// const isBackToScoreBtn = (btn) => btn === 'Back to score'
 const planningSummary = `${urlPrefix}/planning-permission-summary`
 const findDependentQuestion = (
   dependentQuestionYarKey,
@@ -26,8 +26,7 @@ const findDependentQuestion = (
 const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const scorePath = `${urlPrefix}/score`
   const chekDetailsPath = `${urlPrefix}/check-details`
-  let secBtnPath
-  secBtnPath = getBtnPath(secBtnPath, scorePath, currentUrl, chekDetailsPath);
+  let secBtnPath = getBtnPath(secBtn, scorePath, currentUrl, chekDetailsPath);
   if (!urlObject) {
     return secBtn ? secBtnPath : url
   }
@@ -60,21 +59,20 @@ module.exports = {
   getUrl
 }
 
-function getBtnPath(secBtnPath, scorePath, currentUrl, chekDetailsPath) {
-  if (isBackToScoreBtn) {
-    secBtnPath = scorePath;
+function getBtnPath(secBtn, scorePath, currentUrl, chekDetailsPath) {
+  if (secBtn === 'Back to score') {
+    return scorePath;
   } else {
     switch (currentUrl) {
       case "planning-permission":
       case "planning-permission-evidence":
       case "grid-reference": {
-        secBtnPath = planningSummary;
+        return planningSummary;
         break;
       }
       default:
-        secBtnPath = chekDetailsPath;
+        return chekDetailsPath;
     }
   }
-  return secBtnPath;
 }
 
