@@ -2,6 +2,7 @@ const urlPrefix = require('../config/server').urlPrefix
 const { getYarValue } = require('../helpers/session')
 const { ALL_QUESTIONS } = require('../config/question-bank')
 const { getQuestionAnswer } = require("../../app/helpers/utils.js");
+
 const isPigFarmer = getQuestionAnswer("applicant-type", "applicant-type-A1");
 const isBackToScoreBtn = (btn) => btn === 'Back to score'
 const planningSummary = `${urlPrefix}/planning-permission-summary`
@@ -21,6 +22,7 @@ const findDependentQuestion = (
     return thisQuestion.yarKey === dependentQuestionYarKey && hasMatchingAnswer;
   });
 };
+
 const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const scorePath = `${urlPrefix}/score`
   const chekDetailsPath = `${urlPrefix}/check-details`
@@ -57,6 +59,7 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
 module.exports = {
   getUrl
 }
+
 function getBtnPath(secBtnPath, scorePath, currentUrl, chekDetailsPath) {
   if (isBackToScoreBtn) {
     secBtnPath = scorePath;
