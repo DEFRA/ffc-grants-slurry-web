@@ -47,21 +47,21 @@ describe('getUrl()', () => {
     expect(getUrl(urlObject, 'mock-url', {}, secBtn, '')).toEqual('elseUrl')
   })
   it('should return secBtnPath if secBtn is "Back to score"', () => {
-    urlObject = null;
+    urlObject = null
     dict = {
       dependentQuestionYarKey: 'dependentAnswerKeysArray'
     }
     expect(getUrl(urlObject, 'mock-url', {}, 'Back to score', '')).toEqual('/slurry-infrastructure/score')
   })
   it('should navigate to /planning-permission-summary if secBtn is not "Back to score" and current url is /grid-reference', () => {
-    urlObject = null;
+    urlObject = null
     dict = {
       dependentQuestionYarKey: 'dependentAnswerKeysArray'
     }
     expect(getUrl(urlObject, 'mock-url', {}, 'i_hate_js', 'grid-reference')).toEqual('/slurry-infrastructure/planning-permission-summary')
   })
   it('should default to /check-details if secBtn is not "Back to score" and current url is not a building or planning page', () => {
-    urlObject = null;
+    urlObject = null
     dict = {
       dependentQuestionYarKey: 'dependentAnswerKeysArray'
     }
