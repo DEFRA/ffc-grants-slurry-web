@@ -1,4 +1,4 @@
-describe('urls.js', () => {
+describe('getUrl()', () => {
   jest.mock('../../../../app/helpers/session')
   const { getYarValue } = require('../../../../app/helpers/session')
 
@@ -12,14 +12,14 @@ describe('urls.js', () => {
   afterEach(() => {
     jest.resetAllMocks()
   })
-  test('getUrl() - should return url if urlObject is empty', () => {
+  it('should return url if urlObject is empty', () => {
     expect(getUrl(urlObject, 'mock-url', {}, secBtn, '')).toEqual('/slurry-infrastructure/score')
 
     secBtn = ''
     expect(getUrl(urlObject, 'mock-url', {}, secBtn, '')).toEqual('mock-url')
   })
 
-  test('getUrl() - should return nonDependentUrl if urlObject is present, but yar values are empty', () => {
+  it('should return nonDependentUrl if urlObject is present, but yar values are empty', () => {
     urlObject = {
       dependentQuestionYarKey: 'dependentQuestionYarKey',
       dependentAnswerKeysArray: 'dependentAnswerKeysArray',
@@ -31,8 +31,7 @@ describe('urls.js', () => {
     }
     expect(getUrl(urlObject, 'mock-url', {}, secBtn, '')).toEqual('nonDependentUrl')
   })
-  // elseUrl test
-  test('getUrl() - should return elseUrl if urlObject and dependent Yar values are present', () => {
+  it('should return elseUrl if urlObject and dependent Yar values are present', () => {
     urlObject = {
       dependentQuestionYarKey: 'dependentQuestionYarKey',
       dependentAnswerKeysArray: 'dependentAnswerKeysArray',
@@ -46,5 +45,26 @@ describe('urls.js', () => {
       dependentQuestionYarKey: 'dependentAnswerKeysArray'
     }
     expect(getUrl(urlObject, 'mock-url', {}, secBtn, '')).toEqual('elseUrl')
+  })
+  it('should return secBtnPath if secBtn is "Back to score"', () => {
+    urlObject = null;
+    dict = {
+      dependentQuestionYarKey: 'dependentAnswerKeysArray'
+    }
+    expect(getUrl(urlObject, 'mock-url', {}, 'Back to score', '')).toEqual('/slurry-infrastructure/score')
+  })
+  it('should navigate to /planning-permission-summary if secBtn is not "Back to score" and current url is /grid-reference', () => {
+    urlObject = null;
+    dict = {
+      dependentQuestionYarKey: 'dependentAnswerKeysArray'
+    }
+    expect(getUrl(urlObject, 'mock-url', {}, 'i_hate_js', 'grid-reference')).toEqual('/slurry-infrastructure/planning-permission-summary')
+  })
+  it('should default to /check-details if secBtn is not "Back to score" and current url is not a building or planning page', () => {
+    urlObject = null;
+    dict = {
+      dependentQuestionYarKey: 'dependentAnswerKeysArray'
+    }
+    expect(getUrl(urlObject, 'mock-url', {}, 'i-wish-i-was-writing-python', 'or-even-java')).toEqual('/slurry-infrastructure/check-details')
   })
 })
