@@ -16,7 +16,7 @@ beforeEach(async () => {
       return Promise.resolve()
     },
     isBlockDefaultPageView: (url) => false,
-    eventTypes:{
+    eventTypes: {
       PAGEVIEW: 'pageview',
       ELIGIBILITIES: 'eligibilities',
       ELIGIBILITY: 'eligibility_passed',

@@ -19,7 +19,7 @@ const eventTypes = {
 }
 
 const sendGAEvent = async (request, metrics) => {
-  console.log('[Event Metrics]: ', metrics);
+  console.log('[Event Metrics]: ', metrics)
   const timeSinceStart = getTimeofJourneySinceStart(request).toString()
   const page_path = request.route.path
   const host_name = request.info.hostname
@@ -40,7 +40,7 @@ const sendGAEvent = async (request, metrics) => {
   }
   try {
     const event = { name, params: dmetrics }
-    console.log('[Event Payload]: ', event);
+    console.log('[Event Payload]: ', event)
     await request.ga.view(request, [event])
     console.log('Metrics Sending analytics %s for %s', name, request.route.path)
   } catch (err) {

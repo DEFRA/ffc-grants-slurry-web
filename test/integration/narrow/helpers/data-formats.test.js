@@ -12,5 +12,4 @@ describe('Data formats', () => {
   test('check formatUKCurrency() - 5 digit number', () => {
     expect(formatUKCurrency(40000.00)).toEqual('40,000')
   })
-
 })

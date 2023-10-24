@@ -269,7 +269,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -285,7 +285,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -301,7 +301,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -354,7 +354,7 @@ describe('answer-options', () => {
           { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
         ],
         name: 'mock-yarkey',
-        type: 'switch-default',
+        type: 'switch-default'
 
       }
     ])
@@ -484,7 +484,7 @@ describe('answer-options', () => {
   })
 
   test('check other-items getOptions() - No Inspection', () => {
-    formatAnswerArray.mockImplementation((a, b, c, d) => ([{value: 'answer1'}], [{value: 'Safety fencing'}], [{value: 'Inspection platform'}]))
+    formatAnswerArray.mockImplementation((a, b, c, d) => ([{ value: 'answer1' }], [{ value: 'Safety fencing' }], [{ value: 'Inspection platform' }]))
 
     getQuestionAnswer.mockImplementation((a, b) => (true))
 
@@ -512,7 +512,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -528,7 +528,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -544,7 +544,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -597,7 +597,7 @@ describe('answer-options', () => {
           { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
         ],
         name: 'mock-yarkey',
-        type: 'switch-default',
+        type: 'switch-default'
 
       }
     ])
@@ -714,12 +714,11 @@ describe('answer-options', () => {
   })
 
   test('check other-items getOptions() - No Safety', () => {
-    formatAnswerArray.mockImplementation((a, b, c, d) => ([{value: 'answer1'}], [{value: 'Safety fencing'}]))
+    formatAnswerArray.mockImplementation((a, b, c, d) => ([{ value: 'answer1' }], [{ value: 'Safety fencing' }]))
 
     getQuestionAnswer.mockImplementation((a, b) => (null))
 
     getYarValue.mockImplementation((a, b) => (null))
-
 
     let question = {
       costDataType: 'cost-data-type',
@@ -743,7 +742,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -759,7 +758,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -775,7 +774,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -828,7 +827,7 @@ describe('answer-options', () => {
           { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
         ],
         name: 'mock-yarkey',
-        type: 'switch-default',
+        type: 'switch-default'
 
       }
     ])
@@ -944,12 +943,10 @@ describe('answer-options', () => {
     )
   })
 
-
   test('check other-items getOptions() - Normal', () => {
-    formatAnswerArray.mockImplementation((a, b, c, d) => ([{value: 'answer1'}], [{value: 'Safety fencing'}]))
+    formatAnswerArray.mockImplementation((a, b, c, d) => ([{ value: 'answer1' }], [{ value: 'Safety fencing' }]))
 
     getQuestionAnswer.mockImplementation((a, b) => (true))
-
 
     let question = {
       costDataType: 'cost-data-type',
@@ -973,7 +970,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -989,7 +986,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -1005,7 +1002,7 @@ describe('answer-options', () => {
       label: 'mock-label',
       prefix: 'mock-prefix',
       suffix: 'mock-suffix',
-      value: '',
+      value: ''
 
     })
 
@@ -1058,7 +1055,7 @@ describe('answer-options', () => {
           { checked: false, conditional: 'conditional', hint: 'hint', selected: false, text: 'text', value: 'value' }
         ],
         name: 'mock-yarkey',
-        type: 'switch-default',
+        type: 'switch-default'
 
       }
     ])

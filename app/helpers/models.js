@@ -23,78 +23,67 @@ const getDependentSideBar = (sidebar, request) => {
     let selectedAnswers = getYarValue(request, dependentQuestionKey)
 
     if (selectedAnswers === null) {
-      
       // dependentQuestionKeys.slice(dependentQuestionKeys[dependentQuestionKey])
       values[index].heading = null
       values[index].content.slice()
-
     } else {
+      switch (dependentQuestionKey) {
+        case 'storageType':
+          values[index].heading = 'Grant-funded store'
+          break
+        case 'coverType':
+          values[index].heading = 'Grant-funded store cover'
+          break
+        case 'existingCoverType':
+          values[index].heading = 'Existing store cover'
+          break
+        case 'separatorOptions':
+          values[index].heading = 'Separator'
 
-        switch (dependentQuestionKey) {
-          case 'storageType':
-            values[index].heading = 'Grant-funded store'
-            break
-          case 'coverType':
-            values[index].heading = 'Grant-funded store cover'
-            break
-          case 'existingCoverType':
-            values[index].heading = 'Existing store cover'
-            break            
-          case 'separatorOptions':
-            values[index].heading = 'Separator'
+          if (request.route.path === '/slurry-infrastructure/separator-type') {
+            setYarValue(request, 'separatorOptions', [])
+            selectedAnswers = []
+          } else if (request.route.path === '/slurry-infrastructure/gantry') {
+            const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
 
-            if (request.route.path === '/slurry-infrastructure/separator-type') {
-              setYarValue(request, 'separatorOptions', [])
-              selectedAnswers = []
+            tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
 
-            } else if (request.route.path === '/slurry-infrastructure/gantry') {
-              let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-              
+            setYarValue(request, 'separatorOptions', tempSeparatorVal)
+            selectedAnswers = tempSeparatorVal
+          } else if (request.route.path === '/slurry-infrastructure/short-term-storage') {
+            const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+
+            if (tempSeparatorVal.includes('Gantry')) {
+              tempSeparatorVal.splice(2, tempSeparatorVal.length - 2)
+            } else {
               tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
-              
-              setYarValue(request, 'separatorOptions', tempSeparatorVal)
-              selectedAnswers = tempSeparatorVal
-
-            } else if (request.route.path === '/slurry-infrastructure/short-term-storage') {
-              let tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
-              if (tempSeparatorVal.includes('Gantry')) {
-                tempSeparatorVal.splice(2, tempSeparatorVal.length - 2)
-              } else {
-                tempSeparatorVal.splice(1, tempSeparatorVal.length - 1)
-
-              }
-
-              setYarValue(request, 'separatorOptions', tempSeparatorVal)
-              selectedAnswers = tempSeparatorVal
-
             }
 
-            break
-          case 'otherItems':
-            values[index].heading = 'Other items'
-            break
-          default:
-            break
-        }
-
-        values[index].content[0].items = [selectedAnswers].flat()
-  
-        if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
-          // const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-          let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey[index])
-    
-          if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
-            selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
-
+            setYarValue(request, 'separatorOptions', tempSeparatorVal)
+            selectedAnswers = tempSeparatorVal
           }
 
-          values[index].content[0].items.push(selectedValueOfLinkedQuestion)
-        
+          break
+        case 'otherItems':
+          values[index].heading = 'Other items'
+          break
+        default:
+          break
+      }
+
+      values[index].content[0].items = [selectedAnswers].flat()
+
+      if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
+        // const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
+        let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey[index])
+
+        if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
+          selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
         }
+
+        values[index].content[0].items.push(selectedValueOfLinkedQuestion)
+      }
     }
-
-
   })
   return {
     ...sidebar

@@ -63,7 +63,7 @@ const requestError = {
   },
   info: {
     host: 'someHost'
-  },
+  }
 }
 
 afterEach(() => {

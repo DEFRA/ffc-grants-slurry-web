@@ -252,7 +252,7 @@ const itemSizesArray = [
   }
 ]
 
-let separatorOptions = [
+const separatorOptions = [
   'Roller screen press',
   'Screw press',
   'Gantry',
@@ -605,7 +605,7 @@ describe('Project Summary Array Function', () => {
         amount: '£168.18',
         quantity: '6m²',
         total: '£1,009.08'
-      },
+      }
     ])
   })
 

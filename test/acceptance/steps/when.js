@@ -23,10 +23,6 @@ import Tenancy from '../pageobjects/ffc-grant-tenancy'
 import TenancyLength from '../pageobjects/ffc-grant-tenancy-length'
 import SystemType from '../pageobjects/ffc-grant-system-type'
 
-
-
-
-
 const { When } = require('cucumber')
 
 When(

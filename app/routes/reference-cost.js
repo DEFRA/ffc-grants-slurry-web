@@ -11,7 +11,7 @@ const currentPath = `${urlPrefix}/${viewTemplate}`
 const nextPath = `${urlPrefix}/storage-type`
 const nextPathImpermeable = `${urlPrefix}/existing-cover-type`
 
-function createModel(data, _request) {
+function createModel (data, _request) {
   const previousPath = `${urlPrefix}/estimated-grant`
 
   return {

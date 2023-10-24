@@ -17,15 +17,15 @@ describe('Get & Post Handlers', () => {
   jest.mock('../../../../app/helpers/session', () => ({
     setYarValue: (request, key, value) => null,
     getYarValue: (request, key) => {
-      if (varList[ key ]) return varList[ key ]
+      if (varList[key]) return varList[key]
       else return null
     }
   }))
 
   const mockgetGrantValues = jest.fn().mockReturnValue({
     calculatedGrant: 'test',
-    remainingCost: 'test',
-  });
+    remainingCost: 'test'
+  })
 
   jest.mock('../../../../app/helpers/grants-info', () => ({
     getGrantValues: mockgetGrantValues
@@ -53,8 +53,8 @@ describe('Get & Post Handlers', () => {
     mockH = { redirect: jest.fn() }
 
     await getHandler(question)({}, mockH)
-    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start');
-    expect(mockgetGrantValues).not.toHaveBeenCalled();
+    expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
+    expect(mockgetGrantValues).not.toHaveBeenCalled()
   })
 
   test('is eligible if calculated grant = min grant - whether grant is capped or not', async () => {
@@ -83,8 +83,8 @@ describe('Get & Post Handlers', () => {
     mockH = { redirect: jest.fn() }
 
     await getHandler(question)({}, mockH)
-    expect(mockgetGrantValues).toHaveBeenCalledTimes(1);
-    expect(mockgetGrantValues).toHaveBeenCalledWith(null, { "grantCap": 10000, "maxGrant": 10000, "minGrant": 1000 });
+    expect(mockgetGrantValues).toHaveBeenCalledTimes(1)
+    expect(mockgetGrantValues).toHaveBeenCalledWith(null, { grantCap: 10000, maxGrant: 10000, minGrant: 1000 })
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/start')
   })
 
@@ -94,13 +94,13 @@ describe('Get & Post Handlers', () => {
       yarKey: 'grantFundedCover',
       title: 'mock-title',
       ineligibleContent: true,
-      answers: [ { value: 'mock-value', key: 'grantFundedCover-A3' } ],
+      answers: [{ value: 'mock-value', key: 'grantFundedCover-A3' }],
       nextUrl: 'mock-next-url',
-      type: 'mock-type',
+      type: 'mock-type'
     }
     mockH = { redirect: jest.fn() }
-    let mockSet = jest.fn();
-    await getPostHandler(question)({ payload: { a: "mock-value" }, yar: { set: mockSet } }, mockH)
+    const mockSet = jest.fn()
+    await getPostHandler(question)({ payload: { a: 'mock-value' }, yar: { set: mockSet } }, mockH)
     expect(mockH.redirect).toHaveBeenCalledWith('/slurry-infrastructure/existing-cover')
   })
 })

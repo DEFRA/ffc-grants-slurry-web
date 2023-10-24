@@ -3,8 +3,7 @@ const getHtml = (label, labelData, fieldValueData, error) => {
 
   if (label === 'concreteBunkerSize') {
     return !error
-      ?
-      `<div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="5">
+      ? `<div class="govuk-character-count" data-module="govuk-character-count" data-maxlength="5">
         <div class="govuk-form-group">
           <label class="govuk-label" for="${label}">
             ${labelData}<span class="govuk-visually-hidden">, in square metres</span>

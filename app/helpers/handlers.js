@@ -104,7 +104,7 @@ const addConditionalLabelData = async (
 const isImperableCover = getQuestionAnswer('applying-for', 'applying-for-A2')
 const isPig = getQuestionAnswer('applicant-type', 'applicant-type-A1')
 const isReplaceStore = getQuestionAnswer('project-type', 'project-type-A1')
-const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1');
+const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1')
 
 const getPage = async (question, request, h) => {
   const {
@@ -181,7 +181,7 @@ const getPage = async (question, request, h) => {
           }
         }
       }
-      
+
     case 'estimated-grant':
       setYarValue(request, 'estimatedGrant', 'reached')
       if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
@@ -189,8 +189,8 @@ const getPage = async (question, request, h) => {
       }
     case 'fit-for-purpose':
       break
-    case 'fit-for-purpose-conditional': 
-      if(getYarValue(request, 'applyingFor') === isImperableCover){
+    case 'fit-for-purpose-conditional':
+      if (getYarValue(request, 'applyingFor') === isImperableCover) {
         question.maybeEligibleContent.isImpermeableCoverOnly = true
         question.nextUrl = `${urlPrefix}/project-type`
         nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
@@ -223,13 +223,13 @@ const getPage = async (question, request, h) => {
     maybeEligibleContent.title = question.title
     let consentOptionalData
 
-    if('conditionalText' in maybeEligibleContent ){
-      let value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
-      let validationType =  maybeEligibleContent.conditionalText.validationType
-      let details =  maybeEligibleContent.conditionalText.details
-      if(getYarValue(request,'solidFractionStorage') != 'Concrete bunker'){
+    if ('conditionalText' in maybeEligibleContent) {
+      const value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
+      const validationType = maybeEligibleContent.conditionalText.validationType
+      const details = maybeEligibleContent.conditionalText.details
+      if (getYarValue(request, 'solidFractionStorage') != 'Concrete bunker') {
         maybeEligibleContent.conditionalText.condition = false
-      }else{
+      } else {
         maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
       }
       maybeEligibleContent = {
@@ -300,7 +300,6 @@ const getPage = async (question, request, h) => {
     request,
     conditionalHtml
   )
-
 
   switch (url) {
     case 'check-details': {
@@ -398,7 +397,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         tempSeparatorVal.push('Size: ' + value + 'm²')
         setYarValue(request, 'separatorOptions', tempSeparatorVal)
       }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage'){
+    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage') {
       setYarValue(request, 'concreteBunkerSize', null)
     }
 
@@ -408,10 +407,10 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
         key,
         key === 'projectPostcode'
           ? value
-            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
-            .split(/(?=.{3}$)/)
-            .join(' ')
-            .toUpperCase()
+              .replace(DELETE_POSTCODE_CHARS_REGEX, '')
+              .split(/(?=.{3}$)/)
+              .join(' ')
+              .toUpperCase()
           : value
       )
     }
@@ -440,10 +439,10 @@ const handleMultiInput = (
       }
       const payloadYarVal = payload[field.yarKey]
         ? payload[field.yarKey]
-          .replace(DELETE_POSTCODE_CHARS_REGEX, '')
-          .split(/(?=.{3}$)/)
-          .join(' ')
-          .toUpperCase()
+            .replace(DELETE_POSTCODE_CHARS_REGEX, '')
+            .split(/(?=.{3}$)/)
+            .join(' ')
+            .toUpperCase()
         : ''
       dataObject = {
         ...dataObject,
