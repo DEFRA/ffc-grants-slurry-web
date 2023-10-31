@@ -55,9 +55,6 @@ const getUrl = (urlObject, url, request, secBtn, currentUrl) => {
   const selectedElseUrl = dependentAnswer ? elseUrl : nonDependentUrl
   return selectThenUrl ? thenUrl : selectedElseUrl
 }
-module.exports = {
-  getUrl
-}
 
 function getBtnPath (secBtn, scorePath, currentUrl, chekDetailsPath) {
   if (secBtn === 'Back to score') {
@@ -68,10 +65,13 @@ function getBtnPath (secBtn, scorePath, currentUrl, chekDetailsPath) {
       case 'planning-permission-evidence':
       case 'grid-reference': {
         return planningSummary
-        break
       }
       default:
         return chekDetailsPath
     }
   }
+}
+
+module.exports = {
+  getUrl
 }
