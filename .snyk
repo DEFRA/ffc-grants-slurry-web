@@ -1,11 +1,11 @@
 # Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
-version: v1.22.0
+version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
   SNYK-JS-NODEFETCH-2964180:
-    - bcrypt > @mapbox/node-pre-gyp > node-fetch:
-      reason: no update available
-      expires: '2022-12-02T10:22:20.985Z'
+    - bcrypt > @mapbox/node-pre-gyp > node-fetch: null
+    - reason: no update available
+    - expires: '2022-12-02T10:22:20.985Z'
   SNYK-CC-K8S-6:
     - ffc-grants-slurry-web > helm/templates/deployment.yaml:
         reason: no direct upgrade or patch available
@@ -17,4 +17,8 @@ ignore:
     - ffc-messaging > @azure/identity > @azure/msal-node > axios:
         reason: no update available
         expires: '2021-10-02T10:22:20.986Z'
+    - '*':
+        reason: None Given
+        expires: 2023-11-30T14:31:58.331Z
+        created: 2023-10-31T14:31:58.335Z
 patch: {}
