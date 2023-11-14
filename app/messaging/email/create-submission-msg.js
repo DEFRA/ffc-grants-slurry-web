@@ -211,11 +211,11 @@ function getSpreadsheetDetails (submission) {
           generateRow(85, 'Full Application Submission Date', (new Date('2025-06-27')).toLocaleDateString('en-GB')),
           generateRow(375, 'OA percent', 0),
           generateRow(365, 'OA score', 0),
-          generateRow(447, 'Environmental permit', isPigApplicant ? intensiveFarming : 'N/A'),
-          generateRow(448, 'Project Responsibility', tenancy === 'Yes' ? 'N/A' : projectResponsibility),
-          generateRow(449, 'Applying for', applyingFor),
-          generateRow(450, 'Fit for purpose', fitForPurpose),
-          generateRow(451, 'Existing Store Cover', isCoverOnly ? 'N/A' : existingCover),
+          generateRow(463, 'Environmental permit', isPigApplicant ? intensiveFarming : 'N/A'),
+          generateRow(464, 'Project Responsibility', tenancy === 'Yes' ? 'N/A' : projectResponsibility),
+          generateRow(465, 'Applying for', applyingFor),
+          generateRow(466, 'Fit for purpose', fitForPurpose),
+          generateRow(467, 'Existing Store Cover', isCoverOnly ? 'N/A' : existingCover),
           ...addAgentDetails(agentsDetails)
         ]
       }
