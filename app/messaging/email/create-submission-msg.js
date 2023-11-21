@@ -161,7 +161,7 @@ function getSpreadsheetDetails (submission) {
           generateRow(90, 'Project type', 'Slurry Store and Cover'),
           generateRow(41, 'Owner', 'RD'),
           generateRow(53, 'Business type', getBusinessTypeC53(applicantType)),
-          generateRow(341, 'Grant Launch Date', (new Date('2023-11-07')).toLocaleDateString('en-GB')),
+          generateRow(341, 'Grant Launch Date', (new Date('2023-11-21')).toLocaleDateString('en-GB')),
           generateRow(23, 'Status of applicant', legalStatus),
           generateRow(44, 'Project Items', getProjectItemsFormattedArray(itemSizeQuantities, [otherItems].flat(), storageType, serviceCapacityIncrease, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concreteBunkerSize)),
           generateRow(45, 'Location of project (postcode)', projectPostcode),
