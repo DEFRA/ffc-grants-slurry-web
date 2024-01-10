@@ -1,6 +1,6 @@
 {
   "name": "ffc-grants-slurry-web",
-  "version": "2.24.0",
+  "version": "2.25.0",
   "description": "Web frontend for FTF Slurry Infrastructure scheme",
   "homepage": "https://github.com/DEFRA/ffc-grants-slurry-web",
   "main": "app/index.js",
@@ -77,7 +77,7 @@
     },
     "semver": "7.5.3",
     "import-in-the-middle": "1.4.2",
-    "axios": "1.6.0"
+    "axios": "1.6.4"
   },
   "standard": {
     "globals": [

@@ -484,7 +484,7 @@ describe('answer-options', () => {
   })
 
   test('check other-items getOptions() - No Inspection', () => {
-    formatAnswerArray.mockImplementation((a, b, c, d) => ([{ value: 'answer1' }], [{ value: 'Safety fencing' }], [{ value: 'Inspection platform' }]))
+    formatAnswerArray.mockImplementation((a, b, c, d) => ([{ value: 'answer1' }], [{ value: 'Safety fencing' }]))
 
     getQuestionAnswer.mockImplementation((a, b) => (true))
 
@@ -620,6 +620,15 @@ describe('answer-options', () => {
         {
           selected: false,
           text: {
+            value: 'Safety fencing'
+          },
+          value: {
+            value: 'Safety fencing'
+          }
+        },
+        {
+          selected: false,
+          text: {
             value: 'divider'
           },
           value: {
@@ -654,6 +663,15 @@ describe('answer-options', () => {
         {
           text: 'Select an option',
           value: ''
+        },
+        {
+          selected: false,
+          text: {
+            value: 'Safety fencing'
+          },
+          value: {
+            value: 'Safety fencing'
+          }
         },
         {
           selected: false,
@@ -697,6 +715,13 @@ describe('answer-options', () => {
         hint: 'mock-hint',
         id: 'mock-yarKey',
         items: [
+          {
+            checked: false,
+            hint: undefined,
+            selected: false,
+            text: 'Safety fencing',
+            value: 'Safety fencing'
+          },
           {
             divider: 'or'
           },
