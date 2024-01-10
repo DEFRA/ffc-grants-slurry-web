@@ -21,4 +21,14 @@ ignore:
         reason: None Given
         expires: 2023-11-30T14:34:21.146Z
         created: 2023-10-31T14:34:21.151Z
+  SNYK-JS-AXIOS-6124857:
+    - '*':
+        reason: None Given
+        expires: 2024-02-09T15:50:14.529Z
+        created: 2024-01-10T15:50:14.537Z
+  SNYK-JS-INFLIGHT-6095116:
+    - '*':
+        reason: None Given
+        expires: 2024-02-09T15:52:49.260Z
+        created: 2024-01-10T15:52:49.266Z
 patch: {}

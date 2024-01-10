@@ -77,7 +77,7 @@
     },
     "semver": "7.5.3",
     "import-in-the-middle": "1.4.2",
-    "axios": "1.6.0"
+    "axios": "1.6.4"
   },
   "standard": {
     "globals": [
