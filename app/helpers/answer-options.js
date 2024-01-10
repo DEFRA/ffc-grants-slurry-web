@@ -219,9 +219,10 @@ const getOptions = (data, question, conditionalHtml, request) => {
         // eart banks and large bvolume are safety only (4, 5 and 7)
         // rest are both (3 and 6)
 
-        if (answersList[answer].value.startsWith('Safety fencing') && (getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A1') || getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A2'))) {
+
+        if (answersList[answer].value.startsWith('Safety fencing') && ((getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A1')) || (getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A2')))) {
           console.log('Not needed Safe')
-        } else if (answersList[answer].value.startsWith('Inspection platform') && (getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A4') || getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A5') || getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A7') )) {
+        } else if (answersList[answer].value.startsWith('Inspection platform') && ((getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A4')) || (getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A5')) || (getYarValue(request, 'storageType') === getQuestionAnswer('storage-type', 'storage-type-A7')))) {
           console.log('Not needed Inspect')
         } else {
           question.answers.unshift(answersList[answer])
