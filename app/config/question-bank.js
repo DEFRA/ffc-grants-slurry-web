@@ -2753,7 +2753,7 @@ const questionBank = {
           preValidationKeys: ['referenceCostCalculated'],
           grantInfo: {
             minGrant: 25000,
-            maxGrant: 250000,
+            maxGrant: 300000,
             grantPercentage: '',
             cappedGrant: true
           },
