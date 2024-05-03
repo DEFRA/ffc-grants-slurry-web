@@ -3941,7 +3941,7 @@ const questionBank = {
               surveyLink: process.env.SURVEY_LINK
             },
             messageContent: `We have sent you a confirmation email with a record of your answers.<br/><br/>
-            If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Transformation Fund scheme:<br/>
+            If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Investment Fund scheme:<br/>
             <h2 class="govuk-heading-m">RPA helpline</h2>
             <h3 class="govuk-heading-s">Telephone</h3>
             Telephone: 03000 200 301<br/>
@@ -3950,9 +3950,11 @@ const questionBank = {
             <h3 class="govuk-heading-s">Email</h3>
             <a class="govuk-link" title="Send email to RPA" target="_blank" rel="noopener noreferrer" href="mailto:ftf@rpa.gov.uk">FTF@rpa.gov.uk</a><br/><br/>
             <h2 class="govuk-heading-m">What happens next</h2>
-            <p>1. RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</p>
-            <p>2. If you submit an application, RPA will assess whether it is eligible and meets the rules of the grant.</p>
-            <p>3. If your application is successful, you’ll be sent a funding agreement and can begin work on the project.</p>
+            <ol>
+              <li>RPA will be in touch when the full application period opens to tell you if your project is invited to submit a full application form.</li>
+              <li>If you submit an application, RPA will assess whether it is eligible and meets the rules of the grant.</li>
+              <li>If your application is successful, you’ll be sent a funding agreement and can begin work on the project.</li>
+            </ol>
             `,
             warning: {
               text: 'You must not start the project',
@@ -3969,7 +3971,7 @@ const questionBank = {
             </p>
             <div class="govuk-inset-text">
               <p class="govuk-body">
-              If you want your landlord to underwrite your project, you will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
+                If you want your landlord to underwrite your project, you will need them to sign a letter of assurance. This letter will say your landlord agrees to take over your project, including conditions in the Grant Funding Agreement, if your tenancy ends. You should discuss and agree this with your landlord before you begin your full application.
               </p>
             </div>
             <p class="govuk-body"><a class="govuk-link" href="${process.env.SURVEY_LINK}" target="_blank" rel="noopener noreferrer">What do you think of this service? (opens in a new tab)</a></p>
