@@ -2805,11 +2805,11 @@ const questionBank = {
           ineligibleContent: {
             messageContent: `<p class="govuk-body">You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.</p>
             <div class="govuk-list govuk-list--bullet">
-                  You can use:
+                  For example, you can use:
                   <ul>
                     <li>loans</li>
                     <li>overdrafts</li>
-                    <li>the Basic Payment Scheme</li>
+                    <li>delinked payments.</li>
                   </ul>
             </div>`,
             messageLink: {
@@ -2828,8 +2828,8 @@ const questionBank = {
                 content: [
                   {
                     para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
-                  You can use:`,
-                    items: ['loans', 'overdrafts', 'the Basic Payment Scheme']
+                    For example, you can use:`,
+                    items: ['loans', 'overdrafts', 'delinked payments.']
                   }
                 ]
               }
