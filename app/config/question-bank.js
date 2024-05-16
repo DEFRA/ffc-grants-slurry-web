@@ -2814,7 +2814,7 @@ const questionBank = {
             </div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           fundingPriorities: '',
@@ -2828,6 +2828,7 @@ const questionBank = {
                 content: [
                   {
                     para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
+
                     For example, you can use:`,
                     items: ['loans', 'overdrafts', 'delinked payments.']
                   }
