@@ -2828,6 +2828,7 @@ const questionBank = {
                 content: [
                   {
                     para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
+
                     For example, you can use:`,
                     items: ['loans', 'overdrafts', 'delinked payments.']
                   }

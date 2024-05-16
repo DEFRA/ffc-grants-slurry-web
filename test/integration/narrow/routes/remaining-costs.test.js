@@ -47,6 +47,12 @@ describe('Page: /remaining-costs', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.payload).toContain('You cannot apply for a grant from this scheme')
+    expect(postResponse.payload).toContain('You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.')
+    expect(postResponse.payload).toContain('For example, you can use:')
+    expect(postResponse.payload).toContain('loans')
+    expect(postResponse.payload).toContain('overdrafts')
+    expect(postResponse.payload).toContain('delinked payments.')
+    expect(postResponse.payload).toContain('See other grants you may be eligible for.')
   })
 
   it('user selects eligible option: \'Yes\' -> store user response and redirect to /planning-permission', async () => {
