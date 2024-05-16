@@ -83,7 +83,7 @@ const questionBank = {
             messageContent: 'This grant is for pig, beef or dairy farmers.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           sidebar: {
@@ -248,7 +248,7 @@ const questionBank = {
             },
             messageLink: {
               url: 'https://www.gov.uk/topic/farming-food-grants-payments/rural-grants-payments',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             },
             warning: {
               text: 'Other types of business may be supported in future schemes',
@@ -411,7 +411,7 @@ const questionBank = {
             },
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           fundingPriorities: '',
@@ -591,7 +591,7 @@ const questionBank = {
               'This grant is for farmers currently using a system that produces slurry.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           fundingPriorities: '',
@@ -664,7 +664,7 @@ const questionBank = {
             This grant is to get your storage levels to 6 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           type: 'single-answer',
@@ -729,7 +729,7 @@ const questionBank = {
             This grant is to get your storage levels to 8 months.`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           type: 'single-answer',
@@ -798,7 +798,7 @@ const questionBank = {
               'This grant is to get your storage levels to 6 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              title: 'See other grants you might be eligible for'
             }
           },
           sidebar: {
@@ -866,7 +866,7 @@ const questionBank = {
               'This grant is to get your storage levels to 8 months.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              title: 'See other grants you might be eligible for'
             }
           },
           sidebar: {
@@ -947,7 +947,7 @@ const questionBank = {
             `,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           sidebar: {
@@ -1090,7 +1090,7 @@ const questionBank = {
             extraMessageContent: '<p>You can continue to check your eligibility for grant funding to build a new store, or expand or replace an existing store.</p>',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              title: 'See other grants you might be eligible for'
             }
           },
           yarKey: 'FitForPurposeCondition'
@@ -1123,7 +1123,7 @@ const questionBank = {
             `,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           type: 'single-answer',
@@ -1195,7 +1195,7 @@ const questionBank = {
               'Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you might be eligible for.'
+              title: 'See other grants you might be eligible for'
             }
           },
           type: 'single-answer',
@@ -2761,7 +2761,7 @@ const questionBank = {
             messageContent: 'The minimum grant you can claim is £25,000.',
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           maybeEligible: true,
@@ -2814,7 +2814,7 @@ const questionBank = {
             </div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for.'
+              title: 'See other grants you may be eligible for'
             }
           },
           fundingPriorities: '',

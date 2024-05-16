@@ -52,7 +52,7 @@ describe('Page: /remaining-costs', () => {
     expect(postResponse.payload).toContain('loans')
     expect(postResponse.payload).toContain('overdrafts')
     expect(postResponse.payload).toContain('delinked payments.')
-    expect(postResponse.payload).toContain('See other grants you may be eligible for.')
+    expect(postResponse.payload).toContain('See other grants you may be eligible for')
   })
 
   it('user selects eligible option: \'Yes\' -> store user response and redirect to /planning-permission', async () => {
