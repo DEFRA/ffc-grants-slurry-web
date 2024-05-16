@@ -2814,7 +2814,7 @@ const questionBank = {
             </div>`,
             messageLink: {
               url: 'https://www.gov.uk/government/collections/rural-payments-and-grants',
-              title: 'See other grants you may be eligible for'
+              title: 'See other grants you may be eligible for.'
             }
           },
           fundingPriorities: '',
