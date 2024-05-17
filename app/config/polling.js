@@ -10,8 +10,7 @@ const schema = Joi.object({
 // Build config
 const config = {
   interval: process.env.POLLING_INTERVAL,
-  retries: process.env.POLLING_RETRIES,
-  host: process.env.BACKEND_POLLING_HOST
+  retries: process.env.POLLING_RETRIES
 }
 
 // Validate config

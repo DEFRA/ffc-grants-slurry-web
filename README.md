@@ -49,7 +49,6 @@ SERVICE_BUS_HOST | The Azure Host Address that contains the necessary Service Bu
 SERVICE_BUS_PASSWORD | The password in order to access the Azure Service Buses | N/A
 SERVICE_BUS_USER | The user in order to access the Azure Service Buses | N/A
 COOKIE_PASSWORD | The password needed for authorizing the cookies | N/A
-BACKEND_POLLING_HOST | The localhost address for Backend Polling (This should be the full localhost address and should ***not*** have the same port as specified in **PORT** ) | http://localhost:3021/
 NODE_ENV | The environemnt to be used locally (this is only needed for things like the cookie authentication etc) | dev
 SITE_URL | The url of the local application (This should have the same port number used in **PORT**) | localhost:3600
 APPINSIGHT_INSTRUMENTATION_KEY | The key needed to connect to App Insights | N/A
