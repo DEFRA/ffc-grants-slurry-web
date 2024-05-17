@@ -148,12 +148,11 @@ function getSpreadsheetDetails (submission) {
   const subScheme = `FTF-${schemeName}`
   const {
     agentsDetails, applicantType, applyingFor, applying,
-    calculatedGrant, confirmationId, concreteBunkerSize, consentOptional, coverSize, coverType,
-    existingCover, existingCoverSize, existingCoverType, existingStorageCapacity,
-    fitForPurpose, gridReference, intensiveFarming, itemSizeQuantities, itemsTotalValue,
-    legalStatus, otherItems, plannedStorageCapacity, PlanningPermissionEvidence, planningPermission,
-    projectResponsibility, projectStart, projectType, remainingCost,
-    serviceCapacityIncrease, storageType, systemType, separatorOptions,
+    calculatedGrant, confirmationId, consentOptional,
+    existingCover, existingStorageCapacity,
+    fitForPurpose, gridReference, intensiveFarming, itemsTotalValue,
+    legalStatus, plannedStorageCapacity, PlanningPermissionEvidence, planningPermission,
+    projectResponsibility, projectStart, projectType, remainingCost, systemType,
     tenancy, tenancyLength, grantFundedCover
   } = submission
   const {
