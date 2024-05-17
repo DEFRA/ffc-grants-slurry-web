@@ -378,6 +378,82 @@ const clearYarValue = (yarKey, payload, request) => {
     setYarValue(request, yarKey, '')
   }
 }
+
+const handleSolidFractionStorage = (request, value) => {
+  const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+  if (value === 'Concrete pad') {
+    tempSeparatorVal.push(value)
+    setYarValue(request, 'separatorOptions', tempSeparatorVal)
+    setYarValue(request, 'concreteBunkerSize', null)
+  } else if (value === 'Concrete bunker') {
+    tempSeparatorVal.push('Concrete bunker')
+    setYarValue(request, 'separatorOptions', tempSeparatorVal)
+  } else if (Number(value)) {
+    setYarValue(request, 'concreteBunkerSize', value)
+    if (tempSeparatorVal[tempSeparatorVal.length - 1] === 'Concrete bunker') {
+      tempSeparatorVal.push('Size: ' + value + 'm²')
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+    }
+  } else if (value === 'I already have short-term storage') {
+    setYarValue(request, 'concreteBunkerSize', null)
+  }
+}
+
+const slurryYarValueSettingBlock = (request, yarKey, value) => {
+  switch (yarKey) {
+    case 'grantFundedCover':
+      if (value !== 'Yes, I need a cover') {
+        setYarValue(request, 'coverType', null)
+        setYarValue(request, 'coverSize', null)
+      }
+      break;
+    case 'existingCover':
+      if (value !== 'Yes') {
+        setYarValue(request, 'fitForPurpose', null)
+        setYarValue(request, 'existingCoverType', null)
+        setYarValue(request, 'existingCoverSize', null)
+      }
+      break;
+    case 'fitForPurpose':
+      if (value === 'Yes' && getYarValue(request, 'applyingFor') === isImperableCover) {
+        setYarValue(request, 'existingCover', null)
+        setYarValue(request, 'projectType', null)
+        setYarValue(request, 'grantFundedCover', null)
+        setYarValue(request, 'storageType', null)
+        setYarValue(request, 'serviceCapacityIncrease', null)
+        setYarValue(request, 'coverType', null)
+        setYarValue(request, 'coverSize', null)
+      }
+      break;
+    case 'separator':
+      if (value === 'No') {
+        setYarValue(request, 'separatorType', null)
+        setYarValue(request, 'separatorOptions', null)
+        setYarValue(request, 'gantry', null)
+        setYarValue(request, 'concreteBunkerSize', null)
+        setYarValue(request, 'solidFractionStorage', null)
+      }
+      break;
+    case 'separatorType':
+      setYarValue(request, 'separatorOptions', value)
+      break;
+    case 'gantry':
+      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      if (value === 'Yes') {
+        tempSeparatorVal.push('Gantry')
+      }
+      setYarValue(request, 'separatorOptions', tempSeparatorVal)
+      break;
+    case 'solidFractionStorage':
+      handleSolidFractionStorage(request, value);
+      break;
+    default:
+      break;
+  }
+
+  return
+}
+
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
   for (let [key, value] of Object.entries(payload)) {
@@ -387,59 +463,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
 
     if (yarKey === 'applicantType' && value !== isPig) setYarValue(request, 'intensiveFarming', null)
 
-    if (yarKey === 'grantFundedCover' && value !== 'Yes, I need a cover') {
-      setYarValue(request, 'coverType', null)
-      setYarValue(request, 'coverSize', null)
-    } else if (yarKey === 'existingCover' && value !== 'Yes') {
-      setYarValue(request, 'fitForPurpose', null)
-      setYarValue(request, 'existingCoverType', null)
-      setYarValue(request, 'existingCoverSize', null)
-    } else if (yarKey === 'fitForPurpose' && value === 'Yes' && getYarValue(request, 'applyingFor') === isImperableCover) {
-      setYarValue(request, 'existingCover', null)
-      setYarValue(request, 'projectType', null)
-      setYarValue(request, 'grantFundedCover', null)
-      setYarValue(request, 'storageType', null)
-      setYarValue(request, 'serviceCapacityIncrease', null)
-      setYarValue(request, 'coverType', null)
-      setYarValue(request, 'coverSize', null)
-    } else if (yarKey === 'separator' && value === 'No') {
-      setYarValue(request, 'separatorType', null)
-      setYarValue(request, 'separatorOptions', null)
-      setYarValue(request, 'gantry', null)
-      setYarValue(request, 'concreteBunkerSize', null)
-      setYarValue(request, 'solidFractionStorage', null)
-    } else if (yarKey === 'separatorType') {
-      setYarValue(request, 'separatorOptions', value)
-    } else if (yarKey === 'gantry' && value === 'Yes') {
-      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      tempSeparatorVal.push('Gantry')
-      setYarValue(request, 'separatorOptions', tempSeparatorVal)
-    } else if (yarKey === 'gantry' && value === 'No') {
-      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      setYarValue(request, 'separatorOptions', tempSeparatorVal)
-    } else if (yarKey === 'solidFractionStorage' && value === 'Concrete pad') {
-      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      // push user entered value
-      tempSeparatorVal.push(value)
-      setYarValue(request, 'separatorOptions', tempSeparatorVal)
-      setYarValue(request, 'concreteBunkerSize', null)
-    } else if (yarKey === 'solidFractionStorage' && value === 'Concrete bunker') {
-      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-
-      // push user entered value
-      tempSeparatorVal.push('Concrete bunker')
-
-      setYarValue(request, 'separatorOptions', tempSeparatorVal)
-    } else if (yarKey === 'solidFractionStorage' && Number(value)) {
-      setYarValue(request, 'concreteBunkerSize', value)
-      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
-      if (tempSeparatorVal[tempSeparatorVal.length - 1] === 'Concrete bunker') {
-        tempSeparatorVal.push('Size: ' + value + 'm²')
-        setYarValue(request, 'separatorOptions', tempSeparatorVal)
-      }
-    } else if (yarKey === 'solidFractionStorage' && value === 'I already have short-term storage') {
-      setYarValue(request, 'concreteBunkerSize', null)
-    }
+    slurryYarValueSettingBlock(request, yarKey, value)
 
     if (type !== 'multi-input' && key !== 'secBtn') {
       setYarValue(
