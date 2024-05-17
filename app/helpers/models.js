@@ -14,6 +14,20 @@ const getPrefixSufixString = (prefixSufix, selectedValueOfLinkedQuestion) => {
   return selectedValueOfLinkedQuestion
 }
 
+const sidebarLinkedQuestionValues = (values, sidebar, index, request) => {
+  if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
+    let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey[index])
+
+    if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
+      selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
+    }
+
+    values[index].content[0].items.push(selectedValueOfLinkedQuestion)
+  }
+
+  return values[index]
+}
+
 const getDependentSideBar = (sidebar, request) => {
   const { values, dependentQuestionKeys } = sidebar
   dependentQuestionKeys.forEach((dependentQuestionKey, index) => {
@@ -73,16 +87,7 @@ const getDependentSideBar = (sidebar, request) => {
 
       values[index].content[0].items = [selectedAnswers].flat()
 
-      if (sidebar.linkedQuestionyarkey && index < sidebar.linkedQuestionyarkey.length) {
-        // const yarValueOfLinkedQuestion = getQuestionByKey(sidebar.linkedQuestionkey[index]).yarKey
-        let selectedValueOfLinkedQuestion = getYarValue(request, sidebar.linkedQuestionyarkey[index])
-
-        if (selectedValueOfLinkedQuestion && sidebar.prefixSufix) {
-          selectedValueOfLinkedQuestion = getPrefixSufixString(sidebar.prefixSufix[index], formatUKCurrency(selectedValueOfLinkedQuestion))
-        }
-
-        values[index].content[0].items.push(selectedValueOfLinkedQuestion)
-      }
+      values[index] = sidebarLinkedQuestionValues(values, sidebar, index, request)
     }
   })
   return {
