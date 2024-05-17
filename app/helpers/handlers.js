@@ -523,6 +523,34 @@ const handleMultiInput = (
   }
 }
 
+const redirectReturns = (request, yarKey, nextUrlObject, nextUrl, payload, currentQuestion, h) => {
+  if (yarKey === 'serviceCapacityIncrease') {
+    if (getYarValue(request, 'grantFundedCover') === getQuestionAnswer('grant-funded-cover', 'grant-funded-cover-A1')) {
+      return h.redirect(`${urlPrefix}/cover-type`)
+    } else if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
+      return h.redirect(`${urlPrefix}/existing-cover-type`)
+    } else {
+      return h.redirect(`${urlPrefix}/separator`)
+    }
+  }
+
+  if (yarKey === 'grantFundedCover') {
+    if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
+      return h.redirect(`${urlPrefix}/estimated-grant`)
+    } else {
+      if (getYarValue(request, 'applicantType') === isPig) {
+        return h.redirect(`${urlPrefix}/existing-cover-pig`)
+      } else {
+        return h.redirect(`${urlPrefix}/existing-cover`)
+      }
+    }
+  }
+
+  return h.redirect(
+    getUrl(nextUrlObject, nextUrl, request, payload.secBtn, currentQuestion.url)
+  )
+}
+
 const showPostPage = async (currentQuestion, request, h) => {
   const {
     yarKey,
@@ -572,31 +600,7 @@ const showPostPage = async (currentQuestion, request, h) => {
     return h.redirect(thisAnswer?.redirectUrl)
   }
 
-  if (yarKey === 'serviceCapacityIncrease') {
-    if (getYarValue(request, 'grantFundedCover') === getQuestionAnswer('grant-funded-cover', 'grant-funded-cover-A1')) {
-      return h.redirect(`${urlPrefix}/cover-type`)
-    } else if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
-      return h.redirect(`${urlPrefix}/existing-cover-type`)
-    } else {
-      return h.redirect(`${urlPrefix}/separator`)
-    }
-  }
-
-  if (yarKey === 'grantFundedCover') {
-    if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
-      return h.redirect(`${urlPrefix}/estimated-grant`)
-    } else {
-      if (getYarValue(request, 'applicantType') === isPig) {
-        return h.redirect(`${urlPrefix}/existing-cover-pig`)
-      } else {
-        return h.redirect(`${urlPrefix}/existing-cover`)
-      }
-    }
-  }
-
-  return h.redirect(
-    getUrl(nextUrlObject, nextUrl, request, payload.secBtn, currentQuestion.url)
-  )
+  return redirectReturns(request, yarKey, nextUrlObject, nextUrl, payload, currentQuestion, h)
 }
 
 const getHandler = (question) => {
