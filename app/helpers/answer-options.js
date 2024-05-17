@@ -271,30 +271,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
           break
 
       }
-      // if (question.yarKey === 'coverType' || question.yarKey === 'existingCoverType') {
-      //   question.answers = []
-      // }
-
-      // if (question.yarKey === 'separatorType') {
-      //   question.answers = []
-      //   answersList.splice(0, 3)
-      // }
-
-      // if (question.yarKey === 'solidFractionStorage') {
-      //   answersList = getSolidFractionList(answersList, request)
-      // }
-
-      // if (question.yarKey === 'gantry') {
-      //   let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
-      //   gantryHint = gantryHint[0]
-      //   // add brackets around hint text
-      //   gantryHint.hint.html = '(' + gantryHint.hint.html + ')'
-      //   question.hint = gantryHint.hint
-
-      //   // answer list not needed here, as gantry page uses yes/no
-      // } else {
-      //   question.answers = shiftAnswersListDefault(question, answersList)
-      // }
+  
     } else if (question.key === 'other-items') {
       // other items has to be generated each time just in case
 
