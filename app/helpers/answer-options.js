@@ -171,7 +171,7 @@ const getSolidFractionList = (answersList, request) => {
   return answersList
 }
 
-shiftAnswersListDefault = (question, answersList) => {
+const shiftAnswersListDefault = (question, answersList) => {
   for (const answer in answersList) {
     question.answers.unshift(answersList[answer])
   } 
@@ -235,6 +235,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
     }
 
     if (question.answers.length <= 2 && question.key != 'other-items') {
+      let gantryHint
       switch (question.yarKey) {
         case 'coverType':
         case 'exixtsingCoverType':
@@ -257,7 +258,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
           break
 
         case 'gantry':
-          let gantryHint = answersList.filter(answer => answer.value === 'Gantry')
+          gantryHint = answersList.filter(answer => answer.value === 'Gantry')
           gantryHint = gantryHint[0]
           // add brackets around hint text
           gantryHint.hint.html = '(' + gantryHint.hint.html + ')'
