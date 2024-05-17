@@ -106,6 +106,155 @@ const isPig = getQuestionAnswer('applicant-type', 'applicant-type-A1')
 const isReplaceStore = getQuestionAnswer('project-type', 'project-type-A1')
 const isExistingCover = getQuestionAnswer('existing-cover', 'existing-cover-A1')
 
+
+const existingCoverUrlSwitch = (request, question) => {
+  if (getYarValue(request, 'applyingFor') === isImperableCover) {
+    setYarValue(request, 'planningPermission', null)
+    question.backUrl = `${urlPrefix}/reference-cost`
+    question.sidebar.showSidebar = false
+  } else if (getYarValue(request, 'coverType')) {
+    question.backUrl = `${urlPrefix}/cover-type`
+    question.sidebar.showSidebar = true
+  } else if (getYarValue(request, 'projectType') === isReplaceStore) {
+    if (getYarValue(request, 'applicantType') === isPig) {
+      question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
+      question.sidebar.showSidebar = true
+    } else {
+      question.backUrl = `${urlPrefix}/capacity-increase-replace`
+      question.sidebar.showSidebar = true
+    }
+  } else {
+    if (getYarValue(request, 'applicantType') === isPig) {
+      question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
+      question.sidebar.showSidebar = true
+    } else {
+      question.backUrl = `${urlPrefix}/capacity-increase-additional`
+      question.sidebar.showSidebar = true
+    }
+  }
+
+  return question
+}
+
+const separatorUrlSwitch = (request, question) => {
+  if (getYarValue(request, 'coverType')) {
+    if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
+      question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
+    } else {
+      question.backUrl = `${urlPrefix}/cover-size`
+    }
+  } else if (getYarValue(request, 'existingCoverSize')) {
+    question.backUrl = `${urlPrefix}/existing-cover-size`
+  } else {
+    if (getYarValue(request, 'applicantType') === isPig) {
+      if (getYarValue(request, 'projectType') === isReplaceStore) {
+        question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
+      } else {
+        question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
+      }
+    } else {
+      if (getYarValue(request, 'projectType') === isReplaceStore) {
+        question.backUrl = `${urlPrefix}/capacity-increase-replace`
+      } else {
+        question.backUrl = `${urlPrefix}/capacity-increase-additional`
+      }
+    }
+  }
+
+  return question
+}
+
+const estimatedGrantUrlSwitch = (request, backUrl) => {
+  setYarValue(request, 'estimatedGrant', 'reached')
+  if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
+    backUrl = `${urlPrefix}/grant-funded-cover`
+  }
+
+  return backUrl
+}
+
+const fitForPurposeConditonalUrlCase = (request, question) => {
+  if (getYarValue(request, 'applyingFor') === isImperableCover) {
+    question.maybeEligibleContent.isImpermeableCoverOnly = true
+    question.nextUrl = `${urlPrefix}/project-type`
+  } else {
+    question.maybeEligibleContent.isImpermeableCoverOnly = false
+  }
+
+  return question
+}
+
+const maybeEligibleGet = async (request, confirmationId, question, url, nextUrl, backUrl, h) => {
+  let { maybeEligibleContent } = question
+  maybeEligibleContent.title = question.title
+  let consentOptionalData
+
+  if ('conditionalText' in maybeEligibleContent) {
+    const value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
+    const validationType = maybeEligibleContent.conditionalText.validationType
+    const details = maybeEligibleContent.conditionalText.details
+    if (getYarValue(request, 'solidFractionStorage') != 'Concrete bunker') {
+      maybeEligibleContent.conditionalText.condition = false
+    } else {
+      let payload = ''
+      maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload)
+    }
+    maybeEligibleContent = {
+      ...maybeEligibleContent,
+      conditionalText: {
+        ...maybeEligibleContent.conditionalText,
+        conditionalPara: maybeEligibleContent.conditionalText.conditionalPara.replace(
+          SELECT_VARIABLE_TO_REPLACE,
+          (_ignore, additionalYarKeyName) =>
+            formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+        )
+      }
+    }
+  }
+
+  if (maybeEligibleContent.reference) {
+    if (!getYarValue(request, 'consentMain')) {
+      return h.redirect(startPageUrl)
+    }
+    confirmationId = getConfirmationId(request.yar.id)
+
+    // Send Contact details to GAPI
+    await sendContactDetailsToSenders(request, confirmationId)
+
+    maybeEligibleContent = {
+      ...maybeEligibleContent,
+      reference: {
+        ...maybeEligibleContent.reference,
+        html: maybeEligibleContent.reference.html.replace(
+          SELECT_VARIABLE_TO_REPLACE,
+          (_ignore, _confirmatnId) => confirmationId
+        )
+      }
+    }
+    request.yar.reset()
+  }
+
+  maybeEligibleContent = {
+    ...maybeEligibleContent,
+    messageContent: maybeEligibleContent.messageContent.replace(
+      SELECT_VARIABLE_TO_REPLACE,
+      (_ignore, additionalYarKeyName) =>
+        formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
+    )
+  }
+
+  consentOptionalData = await addConsentOptionalData(url, request)
+
+  const MAYBE_ELIGIBLE = {
+    ...maybeEligibleContent,
+    consentOptionalData,
+    url,
+    nextUrl,
+    backUrl
+  }
+  return h.view('maybe-eligible', MAYBE_ELIGIBLE)
+}
+
 const getPage = async (question, request, h) => {
   const {
     url,
@@ -132,71 +281,20 @@ const getPage = async (question, request, h) => {
 
   switch (url) {
     case 'existing-cover-type':
-      if (getYarValue(request, 'applyingFor') === isImperableCover) {
-        setYarValue(request, 'planningPermission', null)
-        question.backUrl = `${urlPrefix}/reference-cost`
-        question.sidebar.showSidebar = false
-      } else if (getYarValue(request, 'coverType')) {
-        question.backUrl = `${urlPrefix}/cover-type`
-        question.sidebar.showSidebar = true
-      } else if (getYarValue(request, 'projectType') === isReplaceStore) {
-        if (getYarValue(request, 'applicantType') === isPig) {
-          question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
-          question.sidebar.showSidebar = true
-        } else {
-          question.backUrl = `${urlPrefix}/capacity-increase-replace`
-          question.sidebar.showSidebar = true
-        }
-      } else {
-        if (getYarValue(request, 'applicantType') === isPig) {
-          question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
-          question.sidebar.showSidebar = true
-        } else {
-          question.backUrl = `${urlPrefix}/capacity-increase-additional`
-          question.sidebar.showSidebar = true
-        }
-      }
+      question = existingCoverUrlSwitch(request, question)
       break
     case 'separator':
-      if (getYarValue(request, 'coverType')) {
-        if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
-          question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
-        } else {
-          question.backUrl = `${urlPrefix}/cover-size`
-        }
-      } else if (getYarValue(request, 'existingCoverSize')) {
-        question.backUrl = `${urlPrefix}/existing-cover-size`
-      } else {
-        if (getYarValue(request, 'applicantType') === isPig) {
-          if (getYarValue(request, 'projectType') === isReplaceStore) {
-            question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
-          } else {
-            question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
-          }
-        } else {
-          if (getYarValue(request, 'projectType') === isReplaceStore) {
-            question.backUrl = `${urlPrefix}/capacity-increase-replace`
-          } else {
-            question.backUrl = `${urlPrefix}/capacity-increase-additional`
-          }
-        }
-      }
+      question = separatorUrlSwitch(request, question)
+      break
 
     case 'estimated-grant':
-      setYarValue(request, 'estimatedGrant', 'reached')
-      if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
-        backUrl = `${urlPrefix}/grant-funded-cover`
-      }
+      backUrl = estimatedGrantUrlSwitch(request, backUrl)
+      break
     case 'fit-for-purpose':
       break
     case 'fit-for-purpose-conditional':
-      if (getYarValue(request, 'applyingFor') === isImperableCover) {
-        question.maybeEligibleContent.isImpermeableCoverOnly = true
-        question.nextUrl = `${urlPrefix}/project-type`
-        nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
-      } else {
-        question.maybeEligibleContent.isImpermeableCoverOnly = false
-      }
+      question = fitForPurposeConditonalUrlCase(request, question)
+      nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
       break
     default:
       break
@@ -212,80 +310,10 @@ const getPage = async (question, request, h) => {
     return h.view('not-eligible', NOT_ELIGIBLE)
   }
 
-  // if (url === 'result-page') {
-  //   await gapiService.sendGAEvent({ name: gapiService.eventTypes.ELIGIBILITIES, params: { reference_cost: 'Eligible' }})
-  // }
-
   await processGA(question, request)
 
   if (question.maybeEligible) {
-    let { maybeEligibleContent } = question
-    maybeEligibleContent.title = question.title
-    let consentOptionalData
-
-    if ('conditionalText' in maybeEligibleContent) {
-      const value = getYarValue(request, maybeEligibleContent.conditionalText.dependantYarKey)
-      const validationType = maybeEligibleContent.conditionalText.validationType
-      const details = maybeEligibleContent.conditionalText.details
-      if (getYarValue(request, 'solidFractionStorage') != 'Concrete bunker') {
-        maybeEligibleContent.conditionalText.condition = false
-      } else {
-        maybeEligibleContent.conditionalText.condition = !validateAnswerField(value, validationType, details, payload = '')
-      }
-      maybeEligibleContent = {
-        ...maybeEligibleContent,
-        conditionalText: {
-          ...maybeEligibleContent.conditionalText,
-          conditionalPara: maybeEligibleContent.conditionalText.conditionalPara.replace(
-            SELECT_VARIABLE_TO_REPLACE,
-            (_ignore, additionalYarKeyName) =>
-              formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-          )
-        }
-      }
-    }
-
-    if (maybeEligibleContent.reference) {
-      if (!getYarValue(request, 'consentMain')) {
-        return h.redirect(startPageUrl)
-      }
-      confirmationId = getConfirmationId(request.yar.id)
-
-      // Send Contact details to GAPI
-      await sendContactDetailsToSenders(request, confirmationId)
-
-      maybeEligibleContent = {
-        ...maybeEligibleContent,
-        reference: {
-          ...maybeEligibleContent.reference,
-          html: maybeEligibleContent.reference.html.replace(
-            SELECT_VARIABLE_TO_REPLACE,
-            (_ignore, _confirmatnId) => confirmationId
-          )
-        }
-      }
-      request.yar.reset()
-    }
-
-    maybeEligibleContent = {
-      ...maybeEligibleContent,
-      messageContent: maybeEligibleContent.messageContent.replace(
-        SELECT_VARIABLE_TO_REPLACE,
-        (_ignore, additionalYarKeyName) =>
-          formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
-      )
-    }
-
-    consentOptionalData = await addConsentOptionalData(url, request)
-
-    const MAYBE_ELIGIBLE = {
-      ...maybeEligibleContent,
-      consentOptionalData,
-      url,
-      nextUrl,
-      backUrl
-    }
-    return h.view('maybe-eligible', MAYBE_ELIGIBLE)
+    return await maybeEligibleGet(request, confirmationId, question, url, nextUrl, backUrl, h)
   }
 
   await setTitle(title, question, request)
