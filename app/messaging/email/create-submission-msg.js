@@ -119,6 +119,22 @@ function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageT
   return projectItems.join('|')
 }
 
+const slurryJourneyDetails = (existingStorageCapacity, plannedStorageCapacity, hasFitForPurposeAndCover, projectType, grantFundedCover, itemsTotalValue) => {
+  return [
+    generateRow(396, 'Existing Storage Capacity', existingStorageCapacity),
+    generateRow(397, 'Planned Storage Capacity', plannedStorageCapacity),
+    generateRow(398, 'Slurry Storage Improvement Method', hasFitForPurposeAndCover ? 'N/A' : projectType),
+    generateRow(399, 'Impermeable Cover', hasFitForPurposeAndCover ? 'N/A' : getImpermeableCover(grantFundedCover)),
+    generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2)),
+  ]
+}
+const applicantNumbers = (landlineNumber, mobileNumber) => {
+  return [
+    generateRow(16, 'Landline number', landlineNumber ?? ''),
+    generateRow(17, 'Mobile number', mobileNumber ?? ''),
+  ]
+}
+
 function getSpreadsheetDetails (submission) {
   const today = new Date()
   const todayStr = today.toLocaleDateString('en-GB')
@@ -175,11 +191,9 @@ function getSpreadsheetDetails (submission) {
           generateRow(342, 'Land owned by Farm', tenancy),
           generateRow(343, 'Tenancy for next 5 years', tenancyLength ?? ''),
           generateRow(395, 'System Type', systemType),
-          generateRow(396, 'Existing Storage Capacity', existingStorageCapacity),
-          generateRow(397, 'Planned Storage Capacity', plannedStorageCapacity),
-          generateRow(398, 'Slurry Storage Improvement Method', hasFitForPurposeAndCover ? 'N/A' : projectType),
-          generateRow(399, 'Impermeable Cover', hasFitForPurposeAndCover ? 'N/A' : getImpermeableCover(grantFundedCover)),
-          generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2)),
+
+          ...slurryJourneyDetails(existingStorageCapacity, plannedStorageCapacity, hasFitForPurposeAndCover, projectType, grantFundedCover, itemsTotalValue),
+
           generateRow(57, 'Grant rate', '50'),
           generateRow(56, 'Grant amount requested', calculatedGrant),
           generateRow(345, 'Remaining Cost to Farmer', remainingCost),
@@ -203,8 +217,9 @@ function getSpreadsheetDetails (submission) {
           generateRow(11, 'Address line 4 (town)', town),
           generateRow(12, 'Address line 5 (county)', county),
           generateRow(13, 'Postcode (use capitals)', postcode),
-          generateRow(16, 'Landline number', landlineNumber ?? ''),
-          generateRow(17, 'Mobile number', mobileNumber ?? ''),
+
+          ...applicantNumbers(landlineNumber, mobileNumber),
+
           generateRow(18, 'Email', emailAddress),
           generateRow(89, 'Customer Marketing Indicator', consentOptional ? 'Yes' : 'No'),
           generateRow(368, 'Date ready for QC or decision', todayStr),
