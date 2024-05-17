@@ -136,28 +136,40 @@ const existingCoverUrlSwitch = (request, question) => {
   return question
 }
 
+const getCoverTypeUrl = (request) => {
+  if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
+    return `${urlPrefix}/existing-grant-funded-cover-size`
+  } else {
+    return `${urlPrefix}/cover-size`
+  }
+}
+
+const getPigCapBackUrl = (request) => {
+  if (getYarValue(request, 'projectType') === isReplaceStore) {
+    return `${urlPrefix}/pig-capacity-increase-replace`
+  } else {
+    return `${urlPrefix}/pig-capacity-increase-additional`
+  }
+}
+
+const getNormalCapBackUrl = (request) => {
+  if (getYarValue(request, 'projectType') === isReplaceStore) {
+    return `${urlPrefix}/capacity-increase-replace`
+  } else {
+    return `${urlPrefix}/capacity-increase-additional`
+  }
+}
+
 const separatorUrlSwitch = (request, question) => {
   if (getYarValue(request, 'coverType')) {
-    if (getYarValue(request, 'existingCover') && getYarValue(request, 'existingCover') === isExistingCover) {
-      question.backUrl = `${urlPrefix}/existing-grant-funded-cover-size`
-    } else {
-      question.backUrl = `${urlPrefix}/cover-size`
-    }
+    question.backUrl = getCoverTypeUrl(request)
   } else if (getYarValue(request, 'existingCoverSize')) {
     question.backUrl = `${urlPrefix}/existing-cover-size`
   } else {
     if (getYarValue(request, 'applicantType') === isPig) {
-      if (getYarValue(request, 'projectType') === isReplaceStore) {
-        question.backUrl = `${urlPrefix}/pig-capacity-increase-replace`
-      } else {
-        question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
-      }
+      question.backUrl = getPigCapBackUrl(request)
     } else {
-      if (getYarValue(request, 'projectType') === isReplaceStore) {
-        question.backUrl = `${urlPrefix}/capacity-increase-replace`
-      } else {
-        question.backUrl = `${urlPrefix}/capacity-increase-additional`
-      }
+      question.backUrl = getNormalCapBackUrl(request)
     }
   }
 
