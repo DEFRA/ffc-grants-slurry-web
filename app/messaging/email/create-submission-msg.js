@@ -85,7 +85,12 @@ const separatorOptionsProjectItems = (separatorOptions, projectItems, concretebu
   return projectItems
 }
 
-function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize) {
+function getProjectItemsFormattedArray (submission) {
+
+  let { itemSizeQuantities, otherItems, storageType, serviceCapacityIncrease, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize } = submission
+
+  otherItems = [otherItems].flat()
+
   let projectItems = []
 
   projectItems = separatorOptionsProjectItems(separatorOptions, projectItems, concretebunkersize)
@@ -113,7 +118,7 @@ function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageT
   }
 
   if (storageType) {
-    projectItems.unshift(`${storageType}~${storageCapacity}`)
+    projectItems.unshift(`${storageType}~${serviceCapacityIncrease}`)
   } else {
     projectItems.unshift('')
   }
@@ -186,7 +191,7 @@ function getSpreadsheetDetails (submission) {
           generateRow(53, 'Business type', getBusinessTypeC53(applicantType)),
           generateRow(341, 'Grant Launch Date', (new Date('2023-11-21')).toLocaleDateString('en-GB')),
           generateRow(23, 'Status of applicant', legalStatus),
-          generateRow(44, 'Project Items', getProjectItemsFormattedArray(itemSizeQuantities, [otherItems].flat(), storageType, serviceCapacityIncrease, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concreteBunkerSize)),
+          generateRow(44, 'Project Items', getProjectItemsFormattedArray(submission)),
           generateRow(45, 'Location of project (postcode)', projectPostcode),
           generateRow(376, 'Project Started', projectStart),
           generateRow(342, 'Land owned by Farm', tenancy),

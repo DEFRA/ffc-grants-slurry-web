@@ -123,14 +123,12 @@ const existingCoverUrlSwitch = (request, question) => {
       question.backUrl = `${urlPrefix}/capacity-increase-replace`
       question.sidebar.showSidebar = true
     }
+  } else if (getYarValue(request, 'applicantType') === isPig) {
+    question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
+    question.sidebar.showSidebar = true
   } else {
-    if (getYarValue(request, 'applicantType') === isPig) {
-      question.backUrl = `${urlPrefix}/pig-capacity-increase-additional`
-      question.sidebar.showSidebar = true
-    } else {
-      question.backUrl = `${urlPrefix}/capacity-increase-additional`
-      question.sidebar.showSidebar = true
-    }
+    question.backUrl = `${urlPrefix}/capacity-increase-additional`
+    question.sidebar.showSidebar = true
   }
 
   return question
@@ -165,13 +163,12 @@ const separatorUrlSwitch = (request, question) => {
     question.backUrl = getCoverTypeUrl(request)
   } else if (getYarValue(request, 'existingCoverSize')) {
     question.backUrl = `${urlPrefix}/existing-cover-size`
+  } else if (getYarValue(request, 'applicantType') === isPig) {
+    question.backUrl = getPigCapBackUrl(request)
   } else {
-    if (getYarValue(request, 'applicantType') === isPig) {
-      question.backUrl = getPigCapBackUrl(request)
-    } else {
-      question.backUrl = getNormalCapBackUrl(request)
-    }
+    question.backUrl = getNormalCapBackUrl(request)
   }
+  
 
   return question
 }
@@ -401,7 +398,7 @@ const handleSolidFractionStorage = (request, value) => {
 
 const slurryYarValueSettingBlock = (request, yarKey, value) => {
   let tempSeparatorVal
-  
+
   switch (yarKey) {
     case 'grantFundedCover':
       if (value !== 'Yes, I need a cover') {
@@ -537,13 +534,12 @@ const redirectReturns = (request, yarKey, nextUrlObject, nextUrl, payload, curre
   if (yarKey === 'grantFundedCover') {
     if (getYarValue(request, 'applyingFor') === isImperableCover && getYarValue(request, 'fitForPurpose') === 'No') {
       return h.redirect(`${urlPrefix}/estimated-grant`)
+    } else if (getYarValue(request, 'applicantType') === isPig) {
+      return h.redirect(`${urlPrefix}/existing-cover-pig`)
     } else {
-      if (getYarValue(request, 'applicantType') === isPig) {
-        return h.redirect(`${urlPrefix}/existing-cover-pig`)
-      } else {
-        return h.redirect(`${urlPrefix}/existing-cover`)
-      }
+      return h.redirect(`${urlPrefix}/existing-cover`)
     }
+    
   }
 
   return h.redirect(
