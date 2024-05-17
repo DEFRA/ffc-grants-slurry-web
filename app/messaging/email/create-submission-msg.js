@@ -288,6 +288,91 @@ function getPersonsDetails (isAgentEmail, submission) {
   }
 }
 
+const agentDetailsForEmail = (agentsDetails) => {
+  return {
+    isAgent: agentsDetails ? 'Yes' : 'No',
+    agentName: agentsDetails?.firstName ?? ' ',
+    agentSurname: agentsDetails?.lastName ?? ' ',
+    agentEmail: agentsDetails?.emailAddress ?? ' ',
+  }
+}
+
+const slurryPreReferenceCostDetails = (applyingFor, isCoverOnly, fitForPurpose, projectType, hasFitForPurposeAndCover, grantFundedCover) => {
+  return {
+    applyingFor: applyingFor,
+    existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose ? fitForPurpose : '',
+    existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
+    projectType: hasFitForPurposeAndCover ? '' : projectType,
+    projectTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+    impermeableCover: hasFitForPurposeAndCover ? '' : grantFundedCover,
+    impermeableCoverTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+  }
+}
+
+const slurryExistingCostDetails = (newReplaceExpand, isExistingCover, fitForPurpose, isCoverOnly, existingCover) => {
+  return {
+    existingStoreFitForPurposeTwo: newReplaceExpand && isExistingCover ? fitForPurpose : '',
+    existingStoreFitForPurposeTwoTrue: newReplaceExpand && isExistingCover ? 'true' : 'false',
+    existingStoreCover: isCoverOnly ? '' : existingCover,
+    existingStoreCoverTrue: isCoverOnly ? 'false' : 'true',
+  }
+}
+
+const slurryStorageDetails = (existingStorageCapacity, plannedStorageCapacity, grantFundedCover, hasFitForPurposeAndCover, storageType, isPigApplicant, serviceCapacityIncrease) => {
+  return {
+    existingStorageCapacity: existingStorageCapacity,
+    plannedStorageCapacity: plannedStorageCapacity,
+    grantFundedCover: grantFundedCover ?? ' ',
+    storageType: hasFitForPurposeAndCover ? '' : storageType,
+    storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+    estimatedVolumeToSixMonths: hasFitForPurposeAndCover || isPigApplicant ? '' : serviceCapacityIncrease,
+    estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
+    estimatedVolumeToEightMonths: hasFitForPurposeAndCover || !isPigApplicant ? '' : serviceCapacityIncrease,
+    estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || !isPigApplicant ? 'false' : 'true',
+  }
+}
+
+const coverTypeDetails = (grantFundedStoreCoverTypeOrSize, coverType, existingStoreCoverTypeOrSize, existingCoverType, coverSize, existingCoverSize) => {
+  return {
+    grantFundedStoreCoverType: grantFundedStoreCoverTypeOrSize ? '' : coverType,
+    grantFundedStoreCoverTypeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
+    existingStoreCoverType: existingStoreCoverTypeOrSize ? '' : existingCoverType,
+    existingStoreCoverTypeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
+    grantFundedCoverSize: grantFundedStoreCoverTypeOrSize ? '' : coverSize + 'm²',
+    grantFundedCoverSizeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
+    existingStoreCoverSize: existingStoreCoverTypeOrSize ? '' : existingCoverSize + 'm²',
+    existingStoreCoverSizeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
+  }
+}
+
+const slurrySeparatorDetails = (isSeparator, separator, separatorType, gantry, solidFractionStorage, isConcreteBunker, concreteBunkerSize) => {
+  return {
+    slurrySeparator: isSeparator ? separator : '',
+    slurrySeparatorTrue: isSeparator ? 'true' : 'false',
+    separatorType: isSeparator ? separatorType : '',
+    separatorTypeTrue: isSeparator ? 'true' : 'false',
+    gantry: isSeparator ? gantry : '',
+    gantryTrue: isSeparator ? 'true' : 'false',
+    solidFractionStorage: isSeparator ? solidFractionStorage : '',
+    solidFractionStorageTrue: isSeparator ? 'true' : 'false',
+    concreteBunkerSize: isConcreteBunker ? concreteBunkerSize + 'm²' : '',
+    concreteBunkerSizeTrue: isConcreteBunker ? 'true' : 'false',
+  }
+}
+
+const itemSizeQuantitiesDetails = (itemSizeQuantities, otherItems) => {
+  return {
+    itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
+  }
+}
+
+const planningPermissionDetails = (isCoverOnly, planningPermission) => {
+  return {
+    planningPermission: isCoverOnly ? '' : planningPermission,
+    planningPermissionTrue: isCoverOnly ? 'false' : 'true'
+  }
+}
+
 function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
   const {
     agentsDetails, applicantBusiness, applicantType, applyingFor, businessDetails,
@@ -337,10 +422,6 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       applicantType: applicantType ? [applicantType].flat().join(', ') : ' ',
       location: inEngland,
       systemType,
-      existingStorageCapacity: existingStorageCapacity,
-      plannedStorageCapacity: plannedStorageCapacity,
-      grantFundedCover: grantFundedCover ?? ' ',
-      itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
       planningAuthority: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningAuthority.toUpperCase() : 'N/A',
       planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/A',
       projectPostcode,
@@ -357,10 +438,10 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       farmerName,
       farmerSurname,
       farmerEmail,
-      isAgent: agentsDetails ? 'Yes' : 'No',
-      agentName: agentsDetails?.firstName ?? ' ',
-      agentSurname: agentsDetails?.lastName ?? ' ',
-      agentEmail: agentsDetails?.emailAddress ?? ' ',
+
+      // agent details
+      ...agentDetailsForEmail(agentsDetails),
+
       contactConsent: consentOptional ? 'Yes' : 'No',
       scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
       businessType: applicantBusiness,
@@ -368,43 +449,23 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       intensiveFarmingTrue: isPigApplicant ? 'true' : 'false',
       projectResponsibility: !isTenancy ? projectResponsibility : '',
       projectResponsibilityTrue: !isTenancy ? 'true' : 'false',
-      applyingFor: applyingFor,
-      existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose ? fitForPurpose : '',
-      existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
-      projectType: hasFitForPurposeAndCover ? '' : projectType,
-      projectTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      impermeableCover: hasFitForPurposeAndCover ? '' : grantFundedCover,
-      impermeableCoverTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      existingStoreFitForPurposeTwo: newReplaceExpand && isExistingCover ? fitForPurpose : '',
-      existingStoreFitForPurposeTwoTrue: newReplaceExpand && isExistingCover ? 'true' : 'false',
-      existingStoreCover: isCoverOnly ? '' : existingCover,
-      existingStoreCoverTrue: isCoverOnly ? 'false' : 'true',
-      storageType: hasFitForPurposeAndCover ? '' : storageType,
-      storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      estimatedVolumeToSixMonths: hasFitForPurposeAndCover || isPigApplicant ? '' : serviceCapacityIncrease,
-      estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
-      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || !isPigApplicant ? '' : serviceCapacityIncrease,
-      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || !isPigApplicant ? 'false' : 'true',
-      grantFundedStoreCoverType: grantFundedStoreCoverTypeOrSize ? '' : coverType,
-      grantFundedStoreCoverTypeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
-      existingStoreCoverType: existingStoreCoverTypeOrSize ? '' : existingCoverType,
-      existingStoreCoverTypeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
-      grantFundedCoverSize: grantFundedStoreCoverTypeOrSize ? '' : coverSize + 'm²',
-      grantFundedCoverSizeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
-      existingStoreCoverSize: existingStoreCoverTypeOrSize ? '' : existingCoverSize + 'm²',
-      existingStoreCoverSizeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
-      slurrySeparator: isSeparator ? separator : '',
-      slurrySeparatorTrue: isSeparator ? 'true' : 'false',
-      separatorType: isSeparator ? separatorType : '',
-      separatorTypeTrue: isSeparator ? 'true' : 'false',
-      gantry: isSeparator ? gantry : '',
-      gantryTrue: isSeparator ? 'true' : 'false',
-      solidFractionStorage: isSeparator ? solidFractionStorage : '',
-      solidFractionStorageTrue: isSeparator ? 'true' : 'false',
-      concreteBunkerSize: isConcreteBunker ? concreteBunkerSize + 'm²' : '',
-      concreteBunkerSizeTrue: isConcreteBunker ? 'true' : 'false',
-      planningPermission: isCoverOnly ? '' : planningPermission,
-      planningPermissionTrue: isCoverOnly ? 'false' : 'true'
+
+      // pre-cost details
+      ...slurryPreReferenceCostDetails(applyingFor, isCoverOnly, fitForPurpose, projectType, hasFitForPurposeAndCover, grantFundedCover),
+      ...slurryExistingCostDetails(newReplaceExpand, isExistingCover, fitForPurpose, isCoverOnly, existingCover),
+
+      // storage details
+      ...slurryStorageDetails(existingStorageCapacity, plannedStorageCapacity, grantFundedCover, hasFitForPurposeAndCover, storageType, isPigApplicant, serviceCapacityIncrease),
+
+      // cover type details
+      ...coverTypeDetails(grantFundedStoreCoverTypeOrSize, coverType, existingStoreCoverTypeOrSize, existingCoverType, coverSize, existingCoverSize),
+
+      // separator details/other items
+      ...slurrySeparatorDetails(isSeparator, separator, separatorType, gantry, solidFractionStorage, isConcreteBunker, concreteBunkerSize),
+      ...itemSizeQuantitiesDetails(itemSizeQuantities, otherItems),
+
+      // planning permission
+      ...planningPermissionDetails(isCoverOnly, planningPermission)
     }
   }
   return result
