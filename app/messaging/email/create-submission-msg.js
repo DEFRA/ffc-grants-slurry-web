@@ -66,12 +66,10 @@ const getPlanningPermissionDoraValue = (planningPermission) => {
   }
 }
 
-function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize) {
-  const projectItems = []
-
+const separatorOptionsProjectItems = (separatorOptions, projectItems, concretebunkersize) => {
   // list will look like storage -> cover -> existing cover -> separator -> other items
   if (separatorOptions) {
-    for (index = 0; index < separatorOptions.length; index++) {
+    for (let index = 0; index < separatorOptions.length; index++) {
       if (separatorOptions[index] === 'Concrete bunker') {
         projectItems.push(`${separatorOptions[index]}~${concretebunkersize}`)
         break
@@ -82,6 +80,14 @@ function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageT
   } else {
     projectItems.push('')
   }
+
+  return projectItems
+}
+
+function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize) {
+  let projectItems = []
+
+  projectItems = separatorOptionsProjectItems(separatorOptions, projectItems, concretebunkersize)
 
   if (otherItems[0] !== 'None of the above') {
     let unit
