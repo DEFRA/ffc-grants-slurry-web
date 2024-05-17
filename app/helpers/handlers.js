@@ -400,6 +400,8 @@ const handleSolidFractionStorage = (request, value) => {
 }
 
 const slurryYarValueSettingBlock = (request, yarKey, value) => {
+  let tempSeparatorVal
+  
   switch (yarKey) {
     case 'grantFundedCover':
       if (value !== 'Yes, I need a cover') {
@@ -438,7 +440,7 @@ const slurryYarValueSettingBlock = (request, yarKey, value) => {
       setYarValue(request, 'separatorOptions', value)
       break;
     case 'gantry':
-      const tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
+      tempSeparatorVal = [getYarValue(request, 'separatorOptions')].flat()
       if (value === 'Yes') {
         tempSeparatorVal.push('Gantry')
       }
@@ -450,8 +452,6 @@ const slurryYarValueSettingBlock = (request, yarKey, value) => {
     default:
       break;
   }
-
-  return
 }
 
 const createAnswerObj = (payload, yarKey, type, request, answers) => {
