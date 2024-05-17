@@ -69,14 +69,15 @@ const getPlanningPermissionDoraValue = (planningPermission) => {
 const separatorOptionsProjectItems = (separatorOptions, projectItems, concretebunkersize) => {
   // list will look like storage -> cover -> existing cover -> separator -> other items
   if (separatorOptions) {
-    for (let index = 0; index < separatorOptions.length; index++) {
-      if (separatorOptions[index] === 'Concrete bunker') {
-        projectItems.push(`${separatorOptions[index]}~${concretebunkersize}`)
-        break
+    separatorOptions.forEach((option) => {
+      if (option === 'Concrete bunker') {
+        projectItems.push(`${option}~${concretebunkersize}`)
+      
       } else {
-        projectItems.push(`${separatorOptions[index]}~1`)
+        projectItems.push(`${option}~1`)
       }
-    }
+    })
+
   } else {
     projectItems.push('')
   }
