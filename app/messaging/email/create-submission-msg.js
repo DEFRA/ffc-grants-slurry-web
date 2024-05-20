@@ -66,22 +66,34 @@ const getPlanningPermissionDoraValue = (planningPermission) => {
   }
 }
 
-function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageType, storageCapacity, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize) {
-  const projectItems = []
-
+const separatorOptionsProjectItems = (separatorOptions, projectItems, concretebunkersize) => {
   // list will look like storage -> cover -> existing cover -> separator -> other items
   if (separatorOptions) {
-    for (index = 0; index < separatorOptions.length; index++) {
-      if (separatorOptions[index] === 'Concrete bunker') {
-        projectItems.push(`${separatorOptions[index]}~${concretebunkersize}`)
-        break
+    separatorOptions.forEach((option) => {
+      if (option === 'Concrete bunker') {
+        projectItems.push(`${option}~${concretebunkersize}`)
+      
       } else {
-        projectItems.push(`${separatorOptions[index]}~1`)
+        projectItems.push(`${option}~1`)
       }
-    }
+    })
+
   } else {
     projectItems.push('')
   }
+
+  return projectItems
+}
+
+function getProjectItemsFormattedArray (submission) {
+
+  let { itemSizeQuantities, otherItems, storageType, serviceCapacityIncrease, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concretebunkersize } = submission
+
+  otherItems = [otherItems].flat()
+
+  let projectItems = []
+
+  projectItems = separatorOptionsProjectItems(separatorOptions, projectItems, concretebunkersize)
 
   if (otherItems[0] !== 'None of the above') {
     let unit
@@ -106,11 +118,27 @@ function getProjectItemsFormattedArray (itemSizeQuantities, otherItems, storageT
   }
 
   if (storageType) {
-    projectItems.unshift(`${storageType}~${storageCapacity}`)
+    projectItems.unshift(`${storageType}~${serviceCapacityIncrease}`)
   } else {
     projectItems.unshift('')
   }
   return projectItems.join('|')
+}
+
+const slurryJourneyDetails = (existingStorageCapacity, plannedStorageCapacity, hasFitForPurposeAndCover, projectType, grantFundedCover, itemsTotalValue) => {
+  return [
+    generateRow(396, 'Existing Storage Capacity', existingStorageCapacity),
+    generateRow(397, 'Planned Storage Capacity', plannedStorageCapacity),
+    generateRow(398, 'Slurry Storage Improvement Method', hasFitForPurposeAndCover ? 'N/A' : projectType),
+    generateRow(399, 'Impermeable Cover', hasFitForPurposeAndCover ? 'N/A' : getImpermeableCover(grantFundedCover)),
+    generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2)),
+  ]
+}
+const applicantNumbers = (landlineNumber, mobileNumber) => {
+  return [
+    generateRow(16, 'Landline number', landlineNumber ?? ''),
+    generateRow(17, 'Mobile number', mobileNumber ?? ''),
+  ]
 }
 
 function getSpreadsheetDetails (submission) {
@@ -120,12 +148,11 @@ function getSpreadsheetDetails (submission) {
   const subScheme = `FTF-${schemeName}`
   const {
     agentsDetails, applicantType, applyingFor, applying,
-    calculatedGrant, confirmationId, concreteBunkerSize, consentOptional, coverSize, coverType,
-    existingCover, existingCoverSize, existingCoverType, existingStorageCapacity,
-    fitForPurpose, gridReference, intensiveFarming, itemSizeQuantities, itemsTotalValue,
-    legalStatus, otherItems, plannedStorageCapacity, PlanningPermissionEvidence, planningPermission,
-    projectResponsibility, projectStart, projectType, remainingCost,
-    serviceCapacityIncrease, storageType, systemType, separatorOptions,
+    calculatedGrant, confirmationId, consentOptional,
+    existingCover, existingStorageCapacity,
+    fitForPurpose, gridReference, intensiveFarming, itemsTotalValue,
+    legalStatus, plannedStorageCapacity, PlanningPermissionEvidence, planningPermission,
+    projectResponsibility, projectStart, projectType, remainingCost, systemType,
     tenancy, tenancyLength, grantFundedCover
   } = submission
   const {
@@ -163,17 +190,15 @@ function getSpreadsheetDetails (submission) {
           generateRow(53, 'Business type', getBusinessTypeC53(applicantType)),
           generateRow(341, 'Grant Launch Date', (new Date('2023-11-21')).toLocaleDateString('en-GB')),
           generateRow(23, 'Status of applicant', legalStatus),
-          generateRow(44, 'Project Items', getProjectItemsFormattedArray(itemSizeQuantities, [otherItems].flat(), storageType, serviceCapacityIncrease, coverType, coverSize, existingCoverType, existingCoverSize, separatorOptions, concreteBunkerSize)),
+          generateRow(44, 'Project Items', getProjectItemsFormattedArray(submission)),
           generateRow(45, 'Location of project (postcode)', projectPostcode),
           generateRow(376, 'Project Started', projectStart),
           generateRow(342, 'Land owned by Farm', tenancy),
           generateRow(343, 'Tenancy for next 5 years', tenancyLength ?? ''),
           generateRow(395, 'System Type', systemType),
-          generateRow(396, 'Existing Storage Capacity', existingStorageCapacity),
-          generateRow(397, 'Planned Storage Capacity', plannedStorageCapacity),
-          generateRow(398, 'Slurry Storage Improvement Method', hasFitForPurposeAndCover ? 'N/A' : projectType),
-          generateRow(399, 'Impermeable Cover', hasFitForPurposeAndCover ? 'N/A' : getImpermeableCover(grantFundedCover)),
-          generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2)),
+
+          ...slurryJourneyDetails(existingStorageCapacity, plannedStorageCapacity, hasFitForPurposeAndCover, projectType, grantFundedCover, itemsTotalValue),
+
           generateRow(57, 'Grant rate', '50'),
           generateRow(56, 'Grant amount requested', calculatedGrant),
           generateRow(345, 'Remaining Cost to Farmer', remainingCost),
@@ -197,8 +222,9 @@ function getSpreadsheetDetails (submission) {
           generateRow(11, 'Address line 4 (town)', town),
           generateRow(12, 'Address line 5 (county)', county),
           generateRow(13, 'Postcode (use capitals)', postcode),
-          generateRow(16, 'Landline number', landlineNumber ?? ''),
-          generateRow(17, 'Mobile number', mobileNumber ?? ''),
+
+          ...applicantNumbers(landlineNumber, mobileNumber),
+
           generateRow(18, 'Email', emailAddress),
           generateRow(89, 'Customer Marketing Indicator', consentOptional ? 'Yes' : 'No'),
           generateRow(368, 'Date ready for QC or decision', todayStr),
@@ -267,6 +293,91 @@ function getPersonsDetails (isAgentEmail, submission) {
   }
 }
 
+const agentDetailsForEmail = (agentsDetails) => {
+  return {
+    isAgent: agentsDetails ? 'Yes' : 'No',
+    agentName: agentsDetails?.firstName ?? ' ',
+    agentSurname: agentsDetails?.lastName ?? ' ',
+    agentEmail: agentsDetails?.emailAddress ?? ' ',
+  }
+}
+
+const slurryPreReferenceCostDetails = (applyingFor, isCoverOnly, fitForPurpose, projectType, hasFitForPurposeAndCover, grantFundedCover) => {
+  return {
+    applyingFor: applyingFor,
+    existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose ? fitForPurpose : '',
+    existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
+    projectType: hasFitForPurposeAndCover ? '' : projectType,
+    projectTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+    impermeableCover: hasFitForPurposeAndCover ? '' : grantFundedCover,
+    impermeableCoverTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+  }
+}
+
+const slurryExistingCostDetails = (newReplaceExpand, isExistingCover, fitForPurpose, isCoverOnly, existingCover) => {
+  return {
+    existingStoreFitForPurposeTwo: newReplaceExpand && isExistingCover ? fitForPurpose : '',
+    existingStoreFitForPurposeTwoTrue: newReplaceExpand && isExistingCover ? 'true' : 'false',
+    existingStoreCover: isCoverOnly ? '' : existingCover,
+    existingStoreCoverTrue: isCoverOnly ? 'false' : 'true',
+  }
+}
+
+const slurryStorageDetails = (existingStorageCapacity, plannedStorageCapacity, grantFundedCover, hasFitForPurposeAndCover, storageType, isPigApplicant, serviceCapacityIncrease) => {
+  return {
+    existingStorageCapacity: existingStorageCapacity,
+    plannedStorageCapacity: plannedStorageCapacity,
+    grantFundedCover: grantFundedCover ?? ' ',
+    storageType: hasFitForPurposeAndCover ? '' : storageType,
+    storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
+    estimatedVolumeToSixMonths: hasFitForPurposeAndCover || isPigApplicant ? '' : serviceCapacityIncrease,
+    estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
+    estimatedVolumeToEightMonths: hasFitForPurposeAndCover || !isPigApplicant ? '' : serviceCapacityIncrease,
+    estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || !isPigApplicant ? 'false' : 'true',
+  }
+}
+
+const coverTypeDetails = (grantFundedStoreCoverTypeOrSize, coverType, existingStoreCoverTypeOrSize, existingCoverType, coverSize, existingCoverSize) => {
+  return {
+    grantFundedStoreCoverType: grantFundedStoreCoverTypeOrSize ? '' : coverType,
+    grantFundedStoreCoverTypeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
+    existingStoreCoverType: existingStoreCoverTypeOrSize ? '' : existingCoverType,
+    existingStoreCoverTypeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
+    grantFundedCoverSize: grantFundedStoreCoverTypeOrSize ? '' : coverSize + 'm²',
+    grantFundedCoverSizeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
+    existingStoreCoverSize: existingStoreCoverTypeOrSize ? '' : existingCoverSize + 'm²',
+    existingStoreCoverSizeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
+  }
+}
+
+const slurrySeparatorDetails = (isSeparator, separator, separatorType, gantry, solidFractionStorage, isConcreteBunker, concreteBunkerSize) => {
+  return {
+    slurrySeparator: isSeparator ? separator : '',
+    slurrySeparatorTrue: isSeparator ? 'true' : 'false',
+    separatorType: isSeparator ? separatorType : '',
+    separatorTypeTrue: isSeparator ? 'true' : 'false',
+    gantry: isSeparator ? gantry : '',
+    gantryTrue: isSeparator ? 'true' : 'false',
+    solidFractionStorage: isSeparator ? solidFractionStorage : '',
+    solidFractionStorageTrue: isSeparator ? 'true' : 'false',
+    concreteBunkerSize: isConcreteBunker ? concreteBunkerSize + 'm²' : '',
+    concreteBunkerSizeTrue: isConcreteBunker ? 'true' : 'false',
+  }
+}
+
+const itemSizeQuantitiesDetails = (itemSizeQuantities, otherItems) => {
+  return {
+    itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
+  }
+}
+
+const planningPermissionDetails = (isCoverOnly, planningPermission) => {
+  return {
+    planningPermission: isCoverOnly ? '' : planningPermission,
+    planningPermissionTrue: isCoverOnly ? 'false' : 'true'
+  }
+}
+
 function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
   const {
     agentsDetails, applicantBusiness, applicantType, applyingFor, businessDetails,
@@ -316,10 +427,6 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       applicantType: applicantType ? [applicantType].flat().join(', ') : ' ',
       location: inEngland,
       systemType,
-      existingStorageCapacity: existingStorageCapacity,
-      plannedStorageCapacity: plannedStorageCapacity,
-      grantFundedCover: grantFundedCover ?? ' ',
-      itemSizeQuantities: itemSizeQuantities ? displayObject(itemSizeQuantities, [otherItems].flat()).join('\n') : 'None selected',
       planningAuthority: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningAuthority.toUpperCase() : 'N/A',
       planningReferenceNumber: PlanningPermissionEvidence ? PlanningPermissionEvidence.planningReferenceNumber : 'N/A',
       projectPostcode,
@@ -336,10 +443,10 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       farmerName,
       farmerSurname,
       farmerEmail,
-      isAgent: agentsDetails ? 'Yes' : 'No',
-      agentName: agentsDetails?.firstName ?? ' ',
-      agentSurname: agentsDetails?.lastName ?? ' ',
-      agentEmail: agentsDetails?.emailAddress ?? ' ',
+
+      // agent details
+      ...agentDetailsForEmail(agentsDetails),
+
       contactConsent: consentOptional ? 'Yes' : 'No',
       scoreDate: new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }),
       businessType: applicantBusiness,
@@ -347,43 +454,23 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
       intensiveFarmingTrue: isPigApplicant ? 'true' : 'false',
       projectResponsibility: !isTenancy ? projectResponsibility : '',
       projectResponsibilityTrue: !isTenancy ? 'true' : 'false',
-      applyingFor: applyingFor,
-      existingStoreFitForPurposeOne: isCoverOnly && fitForPurpose ? fitForPurpose : '',
-      existingStoreFitForPurposeOneTrue: isCoverOnly && fitForPurpose ? 'true' : 'false',
-      projectType: hasFitForPurposeAndCover ? '' : projectType,
-      projectTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      impermeableCover: hasFitForPurposeAndCover ? '' : grantFundedCover,
-      impermeableCoverTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      existingStoreFitForPurposeTwo: newReplaceExpand && isExistingCover ? fitForPurpose : '',
-      existingStoreFitForPurposeTwoTrue: newReplaceExpand && isExistingCover ? 'true' : 'false',
-      existingStoreCover: isCoverOnly ? '' : existingCover,
-      existingStoreCoverTrue: isCoverOnly ? 'false' : 'true',
-      storageType: hasFitForPurposeAndCover ? '' : storageType,
-      storageTypeTrue: hasFitForPurposeAndCover ? 'false' : 'true',
-      estimatedVolumeToSixMonths: hasFitForPurposeAndCover || isPigApplicant ? '' : serviceCapacityIncrease,
-      estimatedVolumeToSixMonthsTrue: hasFitForPurposeAndCover || isPigApplicant ? 'false' : 'true',
-      estimatedVolumeToEightMonths: hasFitForPurposeAndCover || !isPigApplicant ? '' : serviceCapacityIncrease,
-      estimatedVolumeToEightMonthsTrue: hasFitForPurposeAndCover || !isPigApplicant ? 'false' : 'true',
-      grantFundedStoreCoverType: grantFundedStoreCoverTypeOrSize ? '' : coverType,
-      grantFundedStoreCoverTypeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
-      existingStoreCoverType: existingStoreCoverTypeOrSize ? '' : existingCoverType,
-      existingStoreCoverTypeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
-      grantFundedCoverSize: grantFundedStoreCoverTypeOrSize ? '' : coverSize + 'm²',
-      grantFundedCoverSizeTrue: grantFundedStoreCoverTypeOrSize ? 'false' : 'true',
-      existingStoreCoverSize: existingStoreCoverTypeOrSize ? '' : existingCoverSize + 'm²',
-      existingStoreCoverSizeTrue: existingStoreCoverTypeOrSize ? 'false' : 'true',
-      slurrySeparator: isSeparator ? separator : '',
-      slurrySeparatorTrue: isSeparator ? 'true' : 'false',
-      separatorType: isSeparator ? separatorType : '',
-      separatorTypeTrue: isSeparator ? 'true' : 'false',
-      gantry: isSeparator ? gantry : '',
-      gantryTrue: isSeparator ? 'true' : 'false',
-      solidFractionStorage: isSeparator ? solidFractionStorage : '',
-      solidFractionStorageTrue: isSeparator ? 'true' : 'false',
-      concreteBunkerSize: isConcreteBunker ? concreteBunkerSize + 'm²' : '',
-      concreteBunkerSizeTrue: isConcreteBunker ? 'true' : 'false',
-      planningPermission: isCoverOnly ? '' : planningPermission,
-      planningPermissionTrue: isCoverOnly ? 'false' : 'true'
+
+      // pre-cost details
+      ...slurryPreReferenceCostDetails(applyingFor, isCoverOnly, fitForPurpose, projectType, hasFitForPurposeAndCover, grantFundedCover),
+      ...slurryExistingCostDetails(newReplaceExpand, isExistingCover, fitForPurpose, isCoverOnly, existingCover),
+
+      // storage details
+      ...slurryStorageDetails(existingStorageCapacity, plannedStorageCapacity, grantFundedCover, hasFitForPurposeAndCover, storageType, isPigApplicant, serviceCapacityIncrease),
+
+      // cover type details
+      ...coverTypeDetails(grantFundedStoreCoverTypeOrSize, coverType, existingStoreCoverTypeOrSize, existingCoverType, coverSize, existingCoverSize),
+
+      // separator details/other items
+      ...slurrySeparatorDetails(isSeparator, separator, separatorType, gantry, solidFractionStorage, isConcreteBunker, concreteBunkerSize),
+      ...itemSizeQuantitiesDetails(itemSizeQuantities, otherItems),
+
+      // planning permission
+      ...planningPermissionDetails(isCoverOnly, planningPermission)
     }
   }
   return result

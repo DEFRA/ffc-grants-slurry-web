@@ -50,7 +50,6 @@ container:
   loginRequired: false
   authUsername: grants
   authPasswordHash: dummy
-  backendPollingHost: http://ffc-grants-slurry-eligibility
   pollingInterval: 200
   pollingRetries: 20
   protectiveMonitoringUrl:

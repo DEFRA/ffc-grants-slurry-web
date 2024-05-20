@@ -4,7 +4,7 @@ const { getYarValue } = require('./session')
 const getHintText = (answer, hintArray, counter) => {
   const answerUnit = answer.item === 'Concrete bunker' ? 'per m²' : answer.unit
 
-  if (hintArray && hintArray[counter - 1]) {
+  if (hintArray?.[counter - 1]) {
     return `${hintArray[counter - 1]} <br/> (Grant amount: £${answer.amount} ${answerUnit})`
   }
   return 'Grant amount: £' + formatUKCurrency(answer.amount) + ' ' + answerUnit
