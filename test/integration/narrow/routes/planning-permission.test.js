@@ -65,6 +65,7 @@ describe('Page: /planning-permission', () => {
   })
 
   it('should load the condition page with correct heading', async () => {
+    
     const getOptions = {
       method: 'GET',
       url: `${global.__URLPREFIX__}/planning-permission-condition`
