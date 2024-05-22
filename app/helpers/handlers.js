@@ -555,8 +555,7 @@ const showPostPage = async (currentQuestion, request, h) => {
     nextUrl,
     nextUrlObject,
     title,
-    type, 
-    allFields
+    type
   } = currentQuestion
   const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
   const payload = request.payload
@@ -581,11 +580,10 @@ const showPostPage = async (currentQuestion, request, h) => {
   }
 
   if (yarKey === 'gridReference') {
-    console.log('all fields', allFields)
-    console.log("exist grid is", getYarValue(request, 'existingGridReference'))
-    // console.log("yar value", getYarValue(request, 'gridReference'))
-    console.log('yar key is', yarKey)
-    // let existingGridReference = getYarValue(request, 'existingGridReference')
+    setYarValue(request, 'gridReference', {
+      existingGridReference: getYarValue(request, 'gridReference').existingGridReference.replace(/\s/g, ''),
+      newGridReference: getYarValue(request, 'gridReference').newGridReference.replace(/\s/g, '')
+    })
   }
 
   const errors = checkErrors(payload, currentQuestion, h, request)
