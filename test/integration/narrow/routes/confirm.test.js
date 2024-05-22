@@ -45,6 +45,6 @@ describe('confirm page', () => {
     }
     const response = await global.__SERVER__.inject(options)
     expect(response.statusCode).toBe(200)
-    expect(response.payload).toContain('<a href=\"check-details\" class=\"govuk-back-link\" ')
+    expect(response.payload).toContain('<a href=\"check-details\" class=\"govuk-back-link\"')
   })
 })
