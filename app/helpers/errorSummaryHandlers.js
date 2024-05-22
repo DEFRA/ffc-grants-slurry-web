@@ -50,14 +50,16 @@ const checkErrors = (payload, currentQuestion, h, request) => {
   const errorHrefList = []
   let isconditionalAnswer
   let placeholderInputError
-  if (yarKey === 'gridReference') payload[yarKey] = payload[yarKey].replace(/\s/g, '')
+
   if (currentQuestion.type === 'multi-input') {
     const allFields = (currentQuestion.costDataKey) ? formatOtherItems(request) : currentQuestion.allFields
 
     allFields.forEach(
       ({ yarKey: inputYarKey, validate: inputValidate, answers: inputAnswers }) => {
         isconditionalAnswer = inputAnswers?.find(answer => answer.conditional)?.value === payload[inputYarKey]
-
+        
+        if (inputYarKey === 'existingGridReference' || inputYarKey === 'newGridReference') payload[inputYarKey] = payload[inputYarKey].replace(/\s/g, '')
+        
         if (inputValidate) {
           placeholderInputError = checkInputError(inputValidate, isconditionalAnswer, payload, inputYarKey)
 

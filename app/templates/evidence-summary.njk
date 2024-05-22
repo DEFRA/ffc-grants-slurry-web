@@ -28,12 +28,12 @@
         <hr/>
         </div>
 
-        {% set osGridReference = {
+        {% set existingGridReference = {
                 key: {
-                text: "OS grid reference"
+                text: "Existing grid reference"
                 },
                 value: {
-                text: gridReference
+                text: existingGridReference
                 },
                 actions: {
                     items: [
@@ -41,7 +41,30 @@
                         href: gridReferenceLink,
                         text: "Change",
                         attributes: {
-                            title: "Change grid reference"
+                            title: "Change existing grid reference"
+                        },
+                        visuallyHiddenText: " grid reference"
+                    }
+                    ]
+                }
+            }
+        %}
+
+
+        {% set newGridReference = {
+                key: {
+                text: "New grid reference"
+                },
+                value: {
+                text: newGridReference
+                },
+                actions: {
+                    items: [
+                    {
+                        href: gridReferenceLink,
+                        text: "Change",
+                        attributes: {
+                            title: "Change new grid reference"
                         },
                         visuallyHiddenText: " grid reference"
                     }
@@ -114,7 +137,7 @@
             }
         }%}
 
-        {% set tableResult = [osGridReference] %}
+        {% set tableResult = [existingGridReference, newGridReference] %}
 
         {% if evidence%}
             {% set tableResult = [planningPermissionObject, planningAuthority, planningReferenceNumber, osGridReference] %}

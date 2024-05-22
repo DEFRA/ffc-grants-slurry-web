@@ -8,7 +8,7 @@ const {
   DELETE_POSTCODE_CHARS_REGEX
 } = require('../helpers/regex')
 const { getUrl } = require('../helpers/urls')
-const { guardPage } = require('../helpers/page-guard')
+// const { guardPage } = require('../helpers/page-guard')
 const senders = require('../messaging/senders')
 const createMsg = require('../messaging/create-msg')
 const gapiService = require('../services/gapi-service')
@@ -277,14 +277,14 @@ const getPage = async (question, request, h) => {
   } = question
   let nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
   let backUrl = getUrl(backUrlObject, question.backUrl, request)
-  const isRedirect = guardPage(
-    request,
-    preValidationKeys,
-    preValidationKeysRule
-  )
-  if (isRedirect) {
-    return h.redirect(startPageUrl)
-  }
+  // const isRedirect = guardPage(
+  //   request,
+  //   preValidationKeys,
+  //   preValidationKeysRule
+  // )
+  // if (isRedirect) {
+  //   return h.redirect(startPageUrl)
+  // }
   let confirmationId = ''
   setGrantsData(question, request)
 
@@ -455,8 +455,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
   for (let [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value)
-
-    if (key === 'gridReference') value = value.replace(/\s/g, '')
+    if (key === 'existingGridReference' || key === 'newGridReference') value = value.replace(/\s/g, '')
 
     if (yarKey === 'applicantType' && value !== isPig) setYarValue(request, 'intensiveFarming', null)
 
@@ -556,7 +555,8 @@ const showPostPage = async (currentQuestion, request, h) => {
     nextUrl,
     nextUrlObject,
     title,
-    type
+    type, 
+    allFields
   } = currentQuestion
   const NOT_ELIGIBLE = { ...ineligibleContent, backUrl: baseUrl }
   const payload = request.payload
@@ -578,6 +578,14 @@ const showPostPage = async (currentQuestion, request, h) => {
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
       )
     }
+  }
+
+  if (yarKey === 'gridReference') {
+    console.log('all fields', allFields)
+    console.log("exist grid is", getYarValue(request, 'existingGridReference'))
+    // console.log("yar value", getYarValue(request, 'gridReference'))
+    console.log('yar key is', yarKey)
+    // let existingGridReference = getYarValue(request, 'existingGridReference')
   }
 
   const errors = checkErrors(payload, currentQuestion, h, request)
