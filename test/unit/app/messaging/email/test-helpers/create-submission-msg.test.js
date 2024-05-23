@@ -33,7 +33,7 @@ describe('Create submission message', () => {
     expect(msg).toHaveProperty('rpaEmail')
     expect(msg).toHaveProperty('spreadsheet')
     expect(msg.applicantEmail.emailAddress).toBe(farmerSubmission.farmerDetails.emailAddress)
-    expect(msg.applicantEmail.details.gridReference).toBe(farmerSubmission.gridReference.replace(/\s/g, '').toUpperCase())
+    expect(msg.applicantEmail.details.gridReference.existingGridReference).toBe(farmerSubmission.gridReference.existingGridReference.replace(/\s/g, '').toUpperCase())
     expect(msg.rpaEmail.emailAddress).toBe('FTF@rpa.gov.uk')
     expect(msg.agentEmail).toBe(null)
   })
