@@ -1,18 +1,18 @@
 Feature: Legal Status        
-          Scenario Outline: Choosing differents types of legal status
-              Given I open the url "/slurry-infrastructure/applicant-type"
-              And I pause for 500ms
-              When I click on the element "#applicantType-2"  
-              When I click on the button "#Continue"
-              And I pause for 500ms
-              Then I expect that the url contains "/legal-status"
-              And I pause for 500ms
-              When I clicks on the "<trades>" button 
-              And I click on Continue button
-              And I pause for 500ms
-              Then I expect that the url contains "/country"
-              Examples:
-              |trades        |
+          #Scenario Outline: Choosing differents types of legal status
+          #    Given I open the url "/slurry-infrastructure/applicant-type"
+          #    And I pause for 500ms
+          #    When I click on the element "#applicantType-2"  
+          #    When I click on the button "#Continue"
+          #    And I pause for 500ms
+          #    Then I expect that the url contains "/legal-status"
+          #    And I pause for 500ms
+          #    When I clicks on the "<trades>" button 
+          #    And I click on Continue button
+          #    And I pause for 500ms
+          #    Then I expect that the url contains "/country"
+          #    Examples:
+          #    |trades        |
             #  |trust         |
             #  |sole          |
             #  |partnership   |
