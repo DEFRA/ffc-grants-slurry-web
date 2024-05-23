@@ -205,7 +205,7 @@ function getSpreadsheetDetails (submission) {
           generateRow(346, 'Planning Permission Status', isCoverOnly ? 'Not Needed' : getPlanningPermissionDoraValue(planningPermission)),
           generateRow(400, 'Planning Authority', isCoverOnly ? '' : PlanningPermissionEvidence?.planningAuthority.toUpperCase() ?? ''),
           generateRow(401, 'Planning Reference No', isCoverOnly ? '' : PlanningPermissionEvidence?.planningReferenceNumber.toUpperCase() ?? ''),
-          generateRow(402, 'OS Grid Reference', gridReference.toUpperCase()),
+          // generateRow(402, 'OS Grid Reference', gridReference.toUpperCase()),
           generateRow(366, 'Date of OA decision', ''),
           generateRow(42, 'Project name', projectName),
           generateRow(4, 'Single business identifier (SBI)', sbi || '000000000'), // sbi is '' if not set so use || instead of ??
@@ -416,6 +416,8 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
   const existingStoreCoverTypeOrSize = isCoverOnly && !isFitForPurpose || !isExistingCover
   const grantFundedStoreCoverTypeOrSize = hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment
   // Create the final object with organized properties
+  console.log("GRIDREF", gridReference)
+
   const result = {
     notifyTemplate: emailConfig.notifyTemplate,
     emailAddress: rpaEmail || email,

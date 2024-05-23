@@ -140,9 +140,9 @@
         {% set tableResult = [existingGridReference, newGridReference] %}
 
         {% if evidence%}
-            {% set tableResult = [planningPermissionObject, planningAuthority, planningReferenceNumber, osGridReference] %}
+            {% set tableResult = [planningPermissionObject, planningAuthority, planningReferenceNumber, newGridReference, existingGridReference] %}
         {% elif planningPermission %}
-            {% set tableResult = [planningPermissionObject, osGridReference] %}
+            {% set tableResult = [planningPermissionObject, osGridReference, newGridReference, existingGridReference] %}
         {% endif %}
 
         {{ govukSummaryList({
