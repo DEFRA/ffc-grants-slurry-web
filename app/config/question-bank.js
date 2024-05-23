@@ -3011,7 +3011,6 @@ const questionBank = {
           },
           preValidationKeys: ['remainingCosts'],
           type: 'multi-input',
-          // classes: 'govuk-input--width-10',
           id: 'gridReference',
           label: {
             text: 'What is the OS grid reference for your slurry store?',
@@ -3056,8 +3055,7 @@ const questionBank = {
                 {
                   type: 'REGEX',
                   regex: LETTERS_AND_NUMBERS_REGEX,
-                  error:
-                    'Existing store OS Grid Reference must be 2 letters followed by 10 numbers'
+                  error: 'Existing store OS Grid Reference must be 2 letters followed by 10 numbers'
                 },
                 {
                   type: 'REGEX',
@@ -3122,13 +3120,12 @@ const questionBank = {
                 {
                   type: 'REGEX',
                   regex: LETTERS_AND_NUMBERS_REGEX,
-                  error:
-                    'First 2 characters should be letter following 10 characters must be numbers'
+                  error: 'New store OS Grid Reference must be 2 letters followed by 10 numbers'
                 },
                 {
                   type: 'REGEX',
                   regex: TWO_LETTERS_TEN_DIGITS,
-                  error: 'OS Grid Reference must be 2 letters followed by 10 digits'
+                  error: 'New store OS Grid Reference must be 2 letters followed by 10 numbers'
                 },
                 {
                   type: 'EXCLUDES',

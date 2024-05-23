@@ -79,12 +79,7 @@ const getEvidenceSummaryModel = (request, question, backUrl, nextUrl) => {
 
   const planningPermission = getYarValue(request, 'planningPermission')
   let {existingGridReference, newGridReference} = getYarValue(request, 'gridReference')
-  existingGridReference = existingGridReference.toUpperCase().replace(/\s/g, '')
-  newGridReference = newGridReference.toUpperCase().replace(/\s/g, '')
-
-  // console.log("existing grid ref", existingGridReference)
-  // console.log("new grid ref", newGridReference)
-  
+   
   const hasEvidence = planningPermission && !planningPermission.startsWith('Not yet applied')
   const PlanningPermissionEvidence = getYarValue(request, 'PlanningPermissionEvidence')
 
