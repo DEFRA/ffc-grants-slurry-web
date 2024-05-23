@@ -8,7 +8,7 @@ const {
   DELETE_POSTCODE_CHARS_REGEX
 } = require('../helpers/regex')
 const { getUrl } = require('../helpers/urls')
-// const { guardPage } = require('../helpers/page-guard')
+const { guardPage } = require('../helpers/page-guard')
 const senders = require('../messaging/senders')
 const createMsg = require('../messaging/create-msg')
 const gapiService = require('../services/gapi-service')
@@ -277,14 +277,14 @@ const getPage = async (question, request, h) => {
   } = question
   let nextUrl = getUrl(nextUrlObject, question.nextUrl, request)
   let backUrl = getUrl(backUrlObject, question.backUrl, request)
-  // const isRedirect = guardPage(
-  //   request,
-  //   preValidationKeys,
-  //   preValidationKeysRule
-  // )
-  // if (isRedirect) {
-  //   return h.redirect(startPageUrl)
-  // }
+  const isRedirect = guardPage(
+    request,
+    preValidationKeys,
+    preValidationKeysRule
+  )
+  if (isRedirect) {
+    return h.redirect(startPageUrl)
+  }
   let confirmationId = ''
   setGrantsData(question, request)
 
@@ -455,6 +455,7 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
   for (let [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value)
+   
     if (key === 'existingGridReference' || key === 'newGridReference') value = value.replace(/\s/g, '')
 
     if (yarKey === 'applicantType' && value !== isPig) setYarValue(request, 'intensiveFarming', null)
@@ -581,8 +582,8 @@ const showPostPage = async (currentQuestion, request, h) => {
 
   if (yarKey === 'gridReference') {
     setYarValue(request, 'gridReference', {
-      existingGridReference: getYarValue(request, 'gridReference').existingGridReference.replace(/\s/g, ''),
-      newGridReference: getYarValue(request, 'gridReference').newGridReference.replace(/\s/g, '')
+      existingGridReference: getYarValue(request, 'gridReference').existingGridReference.toUpperCase().replace(/\s/g, ''),
+      newGridReference: getYarValue(request, 'gridReference').newGridReference.toUpperCase().replace(/\s/g, '')
     })
   }
 
