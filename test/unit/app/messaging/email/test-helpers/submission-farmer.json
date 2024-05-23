@@ -96,5 +96,8 @@
     ],
     "calvingSystem": "Year round",
     "calvesNumber": 22,
-    "gridReference": "SE 123 456"
+    "gridReference": {
+        "existingGridReference": "SE 123 456",
+        "newGridReference": "SE 123 456"
+    }
 }
