@@ -416,7 +416,6 @@ function getEmailDetails (submission, rpaEmail, isAgentEmail = false) {
   const existingStoreCoverTypeOrSize = isCoverOnly && !isFitForPurpose || !isExistingCover
   const grantFundedStoreCoverTypeOrSize = hasFitForPurposeAndCover || hasGrantFundedCover || hasAcidificationTreatment
   // Create the final object with organized properties
-  console.log("GRIDREF", gridReference)
 
   const result = {
     notifyTemplate: emailConfig.notifyTemplate,
