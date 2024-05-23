@@ -582,8 +582,8 @@ const showPostPage = async (currentQuestion, request, h) => {
 
   if (yarKey === 'gridReference') {
     setYarValue(request, 'gridReference', {
-      existingGridReference: getYarValue(request, 'gridReference').existingGridReference.toUpperCase().replace(/\s/g, ''),
-      newGridReference: getYarValue(request, 'gridReference').newGridReference.toUpperCase().replace(/\s/g, '')
+      existingGridReference: getYarValue(request, 'gridReference').existingGridReference?.toUpperCase().replace(/\s/g, ''),
+      newGridReference: getYarValue(request, 'gridReference').newGridReference?.toUpperCase().replace(/\s/g, '')
     })
   }
 

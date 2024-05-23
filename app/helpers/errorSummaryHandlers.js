@@ -58,7 +58,7 @@ const checkErrors = (payload, currentQuestion, h, request) => {
       ({ yarKey: inputYarKey, validate: inputValidate, answers: inputAnswers }) => {
         isconditionalAnswer = inputAnswers?.find(answer => answer.conditional)?.value === payload[inputYarKey]
         
-        if (inputYarKey === 'existingGridReference' || inputYarKey === 'newGridReference') payload[inputYarKey] = payload[inputYarKey].replace(/\s/g, '')
+        if (inputYarKey === 'existingGridReference' || inputYarKey === 'newGridReference') payload[inputYarKey] = payload[inputYarKey]?.replace(/\s/g, '')
         
         if (inputValidate) {
           placeholderInputError = checkInputError(inputValidate, isconditionalAnswer, payload, inputYarKey)

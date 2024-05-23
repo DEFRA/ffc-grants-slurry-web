@@ -3045,7 +3045,7 @@ const questionBank = {
                 classes: 'govuk-label'
               },
               hint: {
-                text: ''
+                text: 'If there is more than one existing store, use the grid reference of the main or largest store'
               },
               validate: [
                 {
@@ -3096,8 +3096,7 @@ const questionBank = {
                     'TR',
                     'TV'
                   ],
-                  error:
-                    'The OS grid reference number must be a letter combination for England'
+                  error: 'The existing store OS grid reference number must be a letter combination for England'
                 }
               ],
             },
@@ -3161,8 +3160,7 @@ const questionBank = {
                     'TR',
                     'TV'
                   ],
-                  error:
-                    'The OS grid reference number must be a letter combination for England'
+                  error: 'The new store store OS grid reference number must be a letter combination for England'
                 }
               ],
             },
