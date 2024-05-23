@@ -71,6 +71,9 @@
     "environmentalImpact":"Collect and store rainwater",
     "sustainableMaterials":["Low carbon concrete", "Steel replacement products"],
     "introducingInnovation":["Technology", "Collaboration"],
-    "gridReference":"SE 123 456",
+    "gridReference": {
+        "existingGridReference": "SE 123 456",
+        "newGridReference": "SE 123 456"
+    },
     "concreteBunkerSize" : 88
 }
