@@ -22,7 +22,7 @@ exports.config = {
   capabilities: [
     {
       'bstack:options': {
-        os: 'Windows',
+        os: 'IOS',
         projectName: 'DEFRA/ffc-grants/slurry-web',
         osVersion: '10',
         browserVersion: '112.0',
