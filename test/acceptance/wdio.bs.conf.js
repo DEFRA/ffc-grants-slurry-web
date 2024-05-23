@@ -1,7 +1,6 @@
 const browserstack = require('browserstack-local')
 const { ReportAggregator, HtmlReporter } = require('@rpii/wdio-html-reporter')
 const log4js = require('@log4js-node/log4js-api')
-const cucumberJson = require('wdio-cucumberjs-json-reporter')
 const logger = log4js.getLogger('default')
 const _ = require('lodash')
 const timeStamp = new Date().toLocaleString()
