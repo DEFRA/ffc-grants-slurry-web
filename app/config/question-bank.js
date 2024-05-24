@@ -3011,8 +3011,7 @@ const questionBank = {
             }
           },
           preValidationKeys: ['remainingCosts'],
-          type: 'input',
-          classes: 'govuk-input--width-10',
+          type: 'multi-input',
           id: 'gridReference',
           label: {
             text: 'What is the OS grid reference for your slurry store?',
@@ -3023,80 +3022,149 @@ const questionBank = {
           hint: {
             html: `
             <div id="gridReference-hint" class="govuk-hint">
+              <p>You can find your slurry store's OS grid reference using the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK grid reference finder (opens in new tab)</a></p>
               <ol>
-                <li>On the <a class="govuk-link" target="_blank" href="https://gridreferencefinder.com/" rel="noopener noreferrer">UK Grid reference finder (opens in a new tab)</a> page, enter the postcode of your location into the postcode box.</li>
-                <li>Select 'Go'.</li>
-                <li>Find the location of your slurry store on the map. You can select and drag the map to move the location.</li>
-                <li>Right-click on the location of your slurry store. This will add your grid reference and location details to a table below the map.</li>
-                <li>Scroll down to view your grid reference in the table below the map.</li>
-                <li>Select the grid reference (2 letters and 10 numbers) to highlight it, right-click on the grid reference and select 'Copy'.</li>
-                <li>Return to the Slurry Infrastructure Grant checker screen.</li>
-                <li>Right-click on the OS grid reference number box. Select 'Paste'.</li>
-              <ol>
-            </div>
-            <div>
-            Enter in the format of 2 letters and 10 numbers, for example SP 9620733594</br></br>
-            <label class='govuk-label' for='gridReference'>OS grid reference number</label>
-            </div>
+                <li>On the OS grid reference finder page, enter the postcode of your location into the postcode box.</li>
+                <li>Find the location of your slurry store on the map. Right-click on the location of your slurry store. Scroll down to view your grid reference in the table below the map.</li>
+                <li>Copy the grid reference.</li>
+              </ol>   
+              <p>Return to this screen and paste it in the format of 2 letters and 10 numbers without spaces, for example SP9620733594.</p>
+            </div>         
           `
           },
           warning: {
             html: 'You must provide the correct location of your slurry store to avoid delays at full application.',
             iconFallbackText: 'Warning'
           },
-          validate: [
+          allFields : [
             {
-              type: 'NOT_EMPTY',
-              error: 'Enter OS Grid reference'
-            },
-            {
-              type: 'REGEX',
-              regex: LETTERS_AND_NUMBERS_REGEX,
-              error:
-                'First 2 characters should be letter following 10 characters must be numbers'
-            },
-            {
-              type: 'REGEX',
-              regex: TWO_LETTERS_TEN_DIGITS,
-              error: 'OS Grid Reference must be 2 letters followed by 10 digits'
-            },
-            {
-              type: 'EXCLUDES',
-              checkArray: [
-                'NT',
-                'NU',
-                'NX',
-                'NY',
-                'NZ',
-                'OV',
-                'SC',
-                'SD',
-                'SE',
-                'SJ',
-                'SK',
-                'SO',
-                'SP',
-                'SR',
-                'SS',
-                'ST',
-                'SU',
-                'SV',
-                'SW',
-                'SX',
-                'SY',
-                'SZ',
-                'TA',
-                'TF',
-                'TG',
-                'TL',
-                'TM',
-                'TQ',
-                'TR',
-                'TV'
+              yarKey: 'existingGridReference',
+              type: 'text',
+              classes: 'govuk-input--width-10',
+              label: {
+                text: 'Existing store OS grid reference',
+                classes: 'govuk-label'
+              },
+              hint: {
+                text: 'If there is more than one existing store, use the grid reference of the main or largest store'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter your existing store OS Grid Reference'
+                },
+                {
+                  type: 'REGEX',
+                  regex: LETTERS_AND_NUMBERS_REGEX,
+                  error: 'Existing store OS Grid Reference must be 2 letters followed by 10 numbers'
+                },
+                {
+                  type: 'REGEX',
+                  regex: TWO_LETTERS_TEN_DIGITS,
+                  error: 'Existing store OS Grid Reference must be 2 letters followed by 10 numbers'
+                },
+                {
+                  type: 'EXCLUDES',
+                  checkArray: [
+                    'NT',
+                    'NU',
+                    'NX',
+                    'NY',
+                    'NZ',
+                    'OV',
+                    'SC',
+                    'SD',
+                    'SE',
+                    'SJ',
+                    'SK',
+                    'SO',
+                    'SP',
+                    'SR',
+                    'SS',
+                    'ST',
+                    'SU',
+                    'SV',
+                    'SW',
+                    'SX',
+                    'SY',
+                    'SZ',
+                    'TA',
+                    'TF',
+                    'TG',
+                    'TL',
+                    'TM',
+                    'TQ',
+                    'TR',
+                    'TV'
+                  ],
+                  error: 'The existing store OS grid reference number must be a letter combination for England'
+                }
               ],
-              error:
-                'The OS grid reference number must be a letter combination for England'
-            }
+            },
+            {
+              yarKey: 'newGridReference',
+              type: 'text',
+              classes: 'govuk-input--width-10',
+              label: {
+                text: 'New store OS grid reference',
+                classes: 'govuk-label'
+              },
+              hint: {
+                text: 'If the store is not moving, enter the same grid reference as the existing store'
+              },
+              validate: [
+                {
+                  type: 'NOT_EMPTY',
+                  error: 'Enter your new store OS Grid Reference'
+                },
+                {
+                  type: 'REGEX',
+                  regex: LETTERS_AND_NUMBERS_REGEX,
+                  error: 'New store OS Grid Reference must be 2 letters followed by 10 numbers'
+                },
+                {
+                  type: 'REGEX',
+                  regex: TWO_LETTERS_TEN_DIGITS,
+                  error: 'New store OS Grid Reference must be 2 letters followed by 10 numbers'
+                },
+                {
+                  type: 'EXCLUDES',
+                  checkArray: [
+                    'NT',
+                    'NU',
+                    'NX',
+                    'NY',
+                    'NZ',
+                    'OV',
+                    'SC',
+                    'SD',
+                    'SE',
+                    'SJ',
+                    'SK',
+                    'SO',
+                    'SP',
+                    'SR',
+                    'SS',
+                    'ST',
+                    'SU',
+                    'SV',
+                    'SW',
+                    'SX',
+                    'SY',
+                    'SZ',
+                    'TA',
+                    'TF',
+                    'TG',
+                    'TL',
+                    'TM',
+                    'TQ',
+                    'TR',
+                    'TV'
+                  ],
+                  error: 'The new store store OS grid reference number must be a letter combination for England'
+                }
+              ],
+            },
           ],
           yarKey: 'gridReference'
         },

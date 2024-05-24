@@ -1,7 +1,10 @@
 describe('Page Helpers', () => {
   const varList = {
     planningPermission: 'some fake value',
-    gridReference: 'grid-ref-num',
+    gridReference: {
+      existingGridReference: "SE 123 456",
+      newGridReference: "SE 123 456"
+  },
     businessDetails: 'fake business',
     applying: true
   }
@@ -34,7 +37,8 @@ describe('Page Helpers', () => {
       backUrl: 'back-url',
       nextUrl: 'next-url',
       planningPermission: 'some fake value',
-      gridReference: 'GRID-REF-NUM',
+      existingGridReference: "SE 123 456",
+      newGridReference: "SE 123 456",
       evidence: {
         planningAuthority: 'planning-auth',
         planningReferenceNumber: 'PLANNING-REF-NUM'
@@ -49,7 +53,8 @@ describe('Page Helpers', () => {
       backUrl: 'back-url',
       nextUrl: 'next-url',
       planningPermission: 'Not yet applied',
-      gridReference: 'GRID-REF-NUM'
+      existingGridReference: "SE 123 456",
+      newGridReference: "SE 123 456"
     })
   })
 
