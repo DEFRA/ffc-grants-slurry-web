@@ -2875,7 +2875,8 @@ const questionBank = {
                 content: [
                   {
                     para: `You must have secured planning permission before you submit a full application.
-                    The application deadline is 27 June 2025.`
+
+                    The application deadline is 31 March 2026.`
                   }
                 ]
               }
@@ -2917,7 +2918,7 @@ const questionBank = {
             messageHeader:
               'You may be able to apply for a grant from this scheme',
             messageContent:
-              'You must have secured planning permission before you submit a full application. The application deadline is 27 June 2025.'
+              'You must have secured planning permission before you submit a full application. The application deadline is 31 March 2026.'
           },
           yarKey: 'PlanningPermissionCondition'
         },
