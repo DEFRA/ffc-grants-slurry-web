@@ -33,7 +33,7 @@ describe('confirm page', () => {
     expect(response.payload).toContain('If you do not get an email within 72 hours, please call the RPA helpline and follow the options for the Farming Investment Fund scheme:')
     expect(response.payload).toContain('RPA helpline')
     expect(response.payload).toContain('Telephone')
-    expect(response.payload).toContain('Telephone: 0300 200 301')
+    expect(response.payload).toContain('Telephone: 0300 0200 301')
     expect(response.payload).toContain('Monday to Friday, 9am to 5pm (except public holidays)')
     expect(response.payload).toContain('Find out about call charges')
     expect(response.payload).toContain('Email')
