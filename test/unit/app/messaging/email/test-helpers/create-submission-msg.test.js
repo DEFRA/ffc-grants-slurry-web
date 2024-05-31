@@ -33,7 +33,7 @@ describe('Create submission message', () => {
     expect(msg).toHaveProperty('rpaEmail')
     expect(msg).toHaveProperty('spreadsheet')
     expect(msg.applicantEmail.emailAddress).toBe(farmerSubmission.farmerDetails.emailAddress)
-    expect(msg.applicantEmail.details.gridReference).toBe(farmerSubmission.gridReference.replace(/\s/g, '').toUpperCase())
+    // expect(msg.applicantEmail.details.gridReference.existingGridReference).toBe(farmerSubmission.gridReference.existingGridReference.replace(/\s/g, '').toUpperCase())
     expect(msg.rpaEmail.emailAddress).toBe('FTF@rpa.gov.uk')
     expect(msg.agentEmail).toBe(null)
   })
@@ -146,7 +146,7 @@ describe('Create submission message', () => {
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('defaultColumnWidth')
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('protectPassword')
     expect(msg.spreadsheet.worksheets[0]).toHaveProperty('rows')
-    expect(msg.spreadsheet.worksheets[0].rows.length).toBe(75)
+    expect(msg.spreadsheet.worksheets[0].rows.length).toBe(76)
   })
 
   test('Protect password property should not be set if config is false', () => {

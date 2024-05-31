@@ -455,8 +455,8 @@ const createAnswerObj = (payload, yarKey, type, request, answers) => {
   let thisAnswer
   for (let [key, value] of Object.entries(payload)) {
     thisAnswer = answers?.find((answer) => answer.value === value)
-
-    if (key === 'gridReference') value = value.replace(/\s/g, '')
+   
+    if (key === 'existingGridReference' || key === 'newGridReference') value = value.replace(/\s/g, '')
 
     if (yarKey === 'applicantType' && value !== isPig) setYarValue(request, 'intensiveFarming', null)
 
@@ -578,6 +578,13 @@ const showPostPage = async (currentQuestion, request, h) => {
           formatUKCurrency(getYarValue(request, additionalYarKeyName) || 0)
       )
     }
+  }
+
+  if (yarKey === 'gridReference') {
+    setYarValue(request, 'gridReference', {
+      existingGridReference: getYarValue(request, 'gridReference').existingGridReference?.toUpperCase().replace(/\s/g, ''),
+      newGridReference: getYarValue(request, 'gridReference').newGridReference?.toUpperCase().replace(/\s/g, '')
+    })
   }
 
   const errors = checkErrors(payload, currentQuestion, h, request)
