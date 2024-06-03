@@ -238,7 +238,7 @@ const getOptions = (data, question, conditionalHtml, request) => {
       let gantryHint
       switch (question.yarKey) {
         case 'coverType':
-        case 'exixtsingCoverType':
+        case 'existingCoverType':
           question.answers = []
           question.answers = shiftAnswersListDefault(question, answersList)
 
