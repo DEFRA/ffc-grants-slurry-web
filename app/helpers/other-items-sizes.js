@@ -1,10 +1,14 @@
 const { INTERGERS_AND_DECIMALS } = require('./regex')
 const { formatUKCurrency } = require('../helpers/data-formats')
+const { getYarValue } = require('./session')
+const { getQuestionAnswer } = require('./utils.js')
 
-const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) => {
+const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData, request) => {
   const maxValue = suffixAndLengthValue.length === 3 ? 9999 : 999999
   item.amount = formatUKCurrency(item.amount)
   const span = `<span class="govuk-visually-hidden">How many ${item.unit} of this item will be required: </span>`
+
+  let receptionPitExtra = getYarValue(request, 'applicantType') === getQuestionAnswer('applicant-type', 'applicant-type-A1') ? '1:17' : '1:13'
   return {
     yarKey: item.item.replace(/[- ,)(]/g, ''), // Could add key to db list, to be used for populating yar?
     type: 'text',
@@ -12,7 +16,7 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData) =>
     pattern: '[0-9]*',
     suffix: { text: suffixAndLengthValue.unit },
     hint: {
-      text: `Grant amount: £${item.amount} ${item.unit}`
+      html: item.item === 'Reception pit' ? `Grant amount: £${item.amount} ${item.unit} <br/><br/>At full application this will be capped at ${receptionPitExtra} of the overall storage capacity` : `Grant amount: £${item.amount} ${item.unit}`
     },
     classes: `govuk-input--width-${suffixAndLengthValue.length}`,
     label: {
@@ -92,7 +96,7 @@ function formatOtherItems (request) {
             const keyTitle = keyGenerator(selectedCatagory.title, selectedCatagory.key)
             const catagoryData = getErrorUnit(listOfCatagories[catagory])
 
-            const tempObject = formatTempObject(item, keyTitle, suffixAndLengthValue, catagoryData)
+            const tempObject = formatTempObject(item, keyTitle, suffixAndLengthValue, catagoryData, request)
 
             returnArray.push(tempObject)
           }

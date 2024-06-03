@@ -226,7 +226,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'm³' },
         hint: {
-          text: 'Grant amount: £30 per cubic metre'
+          html: `Grant amount: £30 per cubic metre <br/><br/>At full application this will be capped at 1:13 of the overall storage capacity`
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -263,7 +263,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £1,050 per pump'
+          html: 'Grant amount: £1,050 per pump'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -300,7 +300,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £2,090 per pump'
+          html: 'Grant amount: £2,090 per pump'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -337,7 +337,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £950 per pump'
+          html: 'Grant amount: £950 per pump'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -374,7 +374,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £1,700 per pump'
+          html: 'Grant amount: £1,700 per pump'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -411,7 +411,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
-          text: 'Grant amount: £14 per metre'
+          html: 'Grant amount: £14 per metre'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -448,7 +448,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
-          text: 'Grant amount: £24 per metre'
+          html: 'Grant amount: £24 per metre'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -485,7 +485,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
-          text: 'Grant amount: £8 per metre'
+          html: 'Grant amount: £8 per metre'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -522,7 +522,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
-          text: 'Grant amount: £9 per metre'
+          html: 'Grant amount: £9 per metre'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -559,7 +559,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
-          text: 'Grant amount: £25 per metre'
+          html: 'Grant amount: £25 per metre'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -596,7 +596,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £350 per tank'
+          html: 'Grant amount: £350 per tank'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -633,7 +633,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £1,000 per tank'
+          html: 'Grant amount: £1,000 per tank'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -670,7 +670,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'item(s)' },
         hint: {
-          text: 'Grant amount: £800 per item'
+          html: 'Grant amount: £800 per item'
         },
         classes: 'govuk-input--width-3',
         label: {
@@ -707,7 +707,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'metre(s)' },
         hint: {
-          text: 'Grant amount: £55 per metre'
+          html: 'Grant amount: £55 per metre'
         },
         classes: 'govuk-input--width-3',
         label: {
