@@ -423,7 +423,9 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: 'You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).'
+                    para: `You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.
+                    
+                    Before you start the project, you can apply for planning permission (this can take a long time).`
                   }
                 ]
               }
@@ -456,10 +458,6 @@ const questionBank = {
               value: 'No, we have not done any work on this project yet'
             }
           ],
-          warning: {
-            html: 'You must not start the project work or commit to project costs before receiving your funding agreement.',
-            iconFallbackText: 'Warning'
-          },
           yarKey: 'projectStart'
         },
         {
@@ -516,7 +514,7 @@ const questionBank = {
           order: 60,
           title: 'Will you take full responsibility for your project?',
           hint: {
-            html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. For example, your landlord could pass the agreed project to the new tenant. 
+            html: `If you are on a short tenancy, you can ask your landlord to underwrite your agreement. This means they will take over your agreement if your tenancy ends. 
                   <br/><br/>This approach is optional and we will only ask for details of your agreement at full application.`
           },
           pageTitle: '',
@@ -675,10 +673,11 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: `
-                This grant is to get your storage levels to 6 months.
-                For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
-                You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
+                    para: `This grant is to get your storage levels to 6 months.
+                    
+                    For example, if you have 4 months’ storage, we will fund another 2 months. If you have 2 months’ storage and increase to 12 months, we will fund 4 months.
+                
+                    You cannot apply for the grant if you already have 6 months’ storage that is fit for purpose.`,
                     items: []
                   }
                 ]
@@ -740,11 +739,11 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: `
-                This grant is to get your storage levels to 8 months.
-                For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
+                    para: `This grant is to get your storage levels to 8 months.
+                    
+                    For example, if you have 4 months’ storage, we will fund another 4 months. If you have 2 months’ storage and increase to 12 months, we will fund 6 months.
                 
-                You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
+                    You cannot apply for the grant if you already have 8 months’ storage that is fit for purpose.`,
                     items: []
                   }
                 ]
@@ -819,7 +818,7 @@ const questionBank = {
               }
             ],
             details: {
-              summaryText: 'What if i am using a slurry separator?',
+              summaryText: 'What if I am using a slurry separator?',
               text: 'If you are using a slurry separator, select the capacity your slurry store will hold after the stackable material has been removed.'
             }
           },
@@ -887,7 +886,7 @@ const questionBank = {
               }
             ],
             details: {
-              summaryText: 'What if i am using a slurry separator?',
+              summaryText: 'What if I am using a slurry separator?',
               text: 'If you are using a slurry separator, select the capacity your slurry store will hold after the stackable material has been removed.'
             }
           },
@@ -1004,7 +1003,7 @@ const questionBank = {
           order: 120,
           title: 'Is the existing store you want to cover fit for purpose?',
           hint: {
-            text: 'Your existing store must be signed off by a structural engineer at full application.'
+            text: 'Your existing store must be signed off by a structural engineer at full application'
           },
           pageTitle: '',
           url: 'fit-for-purpose',
@@ -1205,9 +1204,9 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: `
-                Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
-                Slurry acidification systems are not eligible for funding through this grant.`,
+                    para: `Grant-funded stores must have an impermeable cover unless the slurry is treated with acidification.
+                    
+                    Slurry acidification systems are not eligible for funding through this grant.`,
                     items: []
                   }
                 ]
@@ -1272,10 +1271,6 @@ const questionBank = {
                 ]
               }
             ],
-            details: {
-              summaryText: 'When is a store no longer fit for purpose?',
-              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
-            }
           },
           validate: [
             {
@@ -1314,17 +1309,12 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: `
-                You can use the grant to cover an existing store to help increase your total storage capacity to 8 months.`,
+                    para: `You can use the grant to cover an existing store to help increase your total storage capacity to 8 months.`,
                     items: []
                   }
                 ]
               }
             ],
-            details: {
-              summaryText: 'When is a store no longer fit for purpose?',
-              html: 'A store is no longer fit for purpose if it has reached the end of its design life and may be at risk of leaks or failure.'
-            }
           },
           validate: [
             {
@@ -2156,7 +2146,7 @@ const questionBank = {
           url: 'separator',
           classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           hint: {
-            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and stackable material. These fractions can be kept in separate stores and applied at different times to your land'
+            text: 'Slurry separators use a mechanical process to divide slurry into a liquid and stackable material. These fractions can be kept in separate stores and applied at different times to your land.'
           },
           baseUrl: 'separator',
           preValidationKeys: ['referenceCostObject'],
@@ -2241,7 +2231,7 @@ const questionBank = {
           pageTitle: '',
           title: 'What type of slurry separator will you have?',
           hint: {
-            text: 'Capable to processing at least 3m³ of slurry per hour and producing at least 25% dry matter. '
+            text: 'Capable to processing at least 3m³ of slurry per hour and producing at least 25% dry matter'
           },
           url: 'separator-type',
           baseUrl: 'separator-type',
@@ -2810,7 +2800,7 @@ const questionBank = {
                   <ul>
                     <li>loans</li>
                     <li>overdrafts</li>
-                    <li>delinked payments.</li>
+                    <li>delinked payments</li>
                   </ul>
             </div>`,
             messageLink: {
@@ -2831,7 +2821,7 @@ const questionBank = {
                     para: `You cannot use public money (for example, grant funding from government or local authorities) towards the project costs.
 
                     For example, you can use:`,
-                    items: ['loans', 'overdrafts', 'delinked payments.']
+                    items: ['loans', 'overdrafts', 'delinked payments']
                   }
                 ]
               }
@@ -3323,13 +3313,13 @@ const questionBank = {
                 text: '£'
               },
               label: {
-                text: 'Business turnover',
+                text: 'Annual business turnover',
                 classes: 'govuk-label'
               },
               validate: [
                 {
                   type: 'NOT_EMPTY',
-                  error: 'Enter the business turnover'
+                  error: 'Enter your annual business turnover, in pounds'
                 },
                 {
                   type: 'REGEX',
@@ -3339,9 +3329,9 @@ const questionBank = {
                 },
                 {
                   type: 'MIN_MAX',
-                  min: 1,
+                  min: 0,
                   max: 999999999,
-                  error: 'Number must be between 1-999999999'
+                  error: 'Number must be between 0-999999999'
                 }
               ]
             },
@@ -3351,7 +3341,7 @@ const questionBank = {
               title: 'Single Business Identifier (SBI)',
               classes: 'govuk-input govuk-input--width-10',
               label: {
-                text: 'Single Business Identifier (SBI) - Optional',
+                text: 'Single Business Identifier (SBI) (optional)',
                 classes: 'govuk-label'
               },
               hint: {

@@ -25,9 +25,8 @@ describe('Page: /project-started', () => {
     expect(response.payload).toContain('Yes, we have begun project work') // option 2
     expect(response.payload).toContain('For example, started construction work, signing contracts') // hint
     expect(response.payload).toContain('No, we have not done any work on this project yet') // option 3
-    expect(response.payload).toContain('<span class="govuk-visually-hidden">Warning</span>') // warning symbol
-    expect(response.payload).toContain('You must not start the project work or commit to project costs before receiving your funding agreement.') // warning text
-    expect(response.payload).toContain('You can start preparatory work such as applying for planning permissions before you start the project (this can take a long time).') // side bar text
+    expect(response.payload).toContain('You will invalidate your application if you start the project or commit to any costs (such as placing orders) before you receive a funding agreement.') // side bar text
+    expect(response.payload).toContain('Before you start the project, you can apply for planning permission (this can take a long time).') // side bar text
   })
 
   it('no option selected -> show error message', async () => {

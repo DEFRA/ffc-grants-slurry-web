@@ -23,7 +23,7 @@ describe('Page: /business-details', () => {
     expect(response.payload).toContain('Project name')
     expect(response.payload).toContain('Business name')
     expect(response.payload).toContain('Number of employees')
-    expect(response.payload).toContain('Business turnover')
+    expect(response.payload).toContain('Annual business turnover')
     expect(response.payload).toContain('Single Business Identifier')
   })
 
@@ -40,7 +40,7 @@ describe('Page: /business-details', () => {
     expect(postResponse.payload).toContain('Enter a project name')
     expect(postResponse.payload).toContain('Enter a business name')
     expect(postResponse.payload).toContain('Enter the number of employees')
-    expect(postResponse.payload).toContain('Enter the business turnover')
+    expect(postResponse.payload).toContain('Enter your annual business turnover, in pounds')
   })
 
   it('user came from \'CHECK DETAILS\' page -> display <Back to details> button', async () => {
@@ -179,23 +179,7 @@ describe('Page: /business-details', () => {
 
     const postResponse = await global.__SERVER__.inject(postOptions)
     expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Number must be between 1-999999999')
-  })
-
-  it('should validate business turnover - minimum value is 1', async () => {
-    const postOptions = {
-      method: 'POST',
-      url: `${global.__URLPREFIX__}/business-details`,
-      headers: { cookie: 'crumb=' + crumbToken },
-      payload: {
-        businessTurnover: '0',
-        crumb: crumbToken
-      }
-    }
-
-    const postResponse = await global.__SERVER__.inject(postOptions)
-    expect(postResponse.statusCode).toBe(200)
-    expect(postResponse.payload).toContain('Number must be between 1-999999999')
+    expect(postResponse.payload).toContain('Number must be between 0-999999999')
   })
 
   it('should validate SBI, if entered - only digits', async () => {
