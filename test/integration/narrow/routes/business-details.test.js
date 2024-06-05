@@ -182,22 +182,6 @@ describe('Page: /business-details', () => {
     expect(postResponse.payload).toContain('Number must be between 0-999999999')
   })
 
-  // it('should validate business turnover - minimum value is 1', async () => {
-  //   const postOptions = {
-  //     method: 'POST',
-  //     url: `${global.__URLPREFIX__}/business-details`,
-  //     headers: { cookie: 'crumb=' + crumbToken },
-  //     payload: {
-  //       businessTurnover: '0',
-  //       crumb: crumbToken
-  //     }
-  //   }
-
-  //   const postResponse = await global.__SERVER__.inject(postOptions)
-  //   expect(postResponse.statusCode).toBe(200)
-  //   expect(postResponse.payload).toContain('Number must be between 1-999999999')
-  // })
-
   it('should validate SBI, if entered - only digits', async () => {
     const postOptions = {
       method: 'POST',
