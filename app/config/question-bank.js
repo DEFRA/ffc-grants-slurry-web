@@ -933,7 +933,6 @@ const questionBank = {
           preValidationKeys: ['plannedStorageCapacity'],
           fundingPriorities: '',
           type: 'single-answer',
-          classes: 'govuk-radios--inline govuk-fieldset__legend--l',
           minAnswerCount: 1,
           ineligibleContent: {
             messageContent: `
@@ -2029,6 +2028,7 @@ const questionBank = {
             Enter the estimated cover surface area of the grant-funded store and the existing store
             <br/><br/>
             Enter size in metres squared
+            <br/><br/>
           `
           },
           allFields: [
@@ -2646,7 +2646,8 @@ const questionBank = {
           costDataKey: 'other',
           title: 'Item sizes and quantities',
           hint: {
-            html: 'Enter the approximate size and quantities your project needs'
+            html: `Enter the approximate size and quantities your project needs
+              <br/><br/>`
           },
           baseUrl: 'item-sizes-quantities',
           backUrl: 'other-items',
@@ -2927,7 +2928,8 @@ const questionBank = {
           order: 150,
           title: 'Your planning permission',
           hint: {
-            html: 'Enter the name of your planning authority and your planning reference number'
+            html: `Enter the name of your planning authority and your planning reference number
+              <br/><br/>`
           },
           url: 'planning-permission-evidence',
           baseUrl: 'planning-permission-evidence',
@@ -3404,7 +3406,8 @@ const questionBank = {
           order: 240,
           title: 'Applicant’s details',
           hint: {
-            html: 'Enter the farmer and farm business details'
+            html: `Enter the farmer and farm business details
+              <br/><br/>`
           },
           pageTitle: '',
           url: 'applicant-details',
@@ -3679,7 +3682,8 @@ const questionBank = {
           order: 250,
           title: 'Agent’s details',
           hint: {
-            html: 'Enter the agent and agent business details'
+            html: `Enter the agent and agent business details
+              <br/><br/>`
           },
           pageTitle: '',
           url: 'agent-details',
