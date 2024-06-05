@@ -51,7 +51,7 @@ describe('Page: /remaining-costs', () => {
     expect(postResponse.payload).toContain('For example, you can use:')
     expect(postResponse.payload).toContain('loans')
     expect(postResponse.payload).toContain('overdrafts')
-    expect(postResponse.payload).toContain('delinked payments.')
+    expect(postResponse.payload).toContain('delinked payments')
     expect(postResponse.payload).toContain('See other grants you may be eligible for')
   })
 
