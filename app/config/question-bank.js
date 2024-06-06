@@ -3222,7 +3222,7 @@ const questionBank = {
           baseUrl: 'business-details',
           backUrl: 'result-page',
           nextUrl: 'applying',
-          // preValidationKeys: ['gridReference'],
+          preValidationKeys: ['gridReference'],
           fundingPriorities: '',
           type: 'multi-input',
           minAnswerCount: '',
