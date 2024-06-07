@@ -16,7 +16,8 @@ const formatTempObject = (item, keyTitle, suffixAndLengthValue, catagoryData, re
     pattern: '[0-9]*',
     suffix: { text: suffixAndLengthValue.unit },
     hint: {
-      html: item.item === 'Reception pit' ? `Grant amount: £${item.amount} ${item.unit} <br/><br/>At full application this will be capped at ${receptionPitExtra} of the overall storage capacity` : `Grant amount: £${item.amount} ${item.unit}`
+      html: item.item === 'Reception pit' ? `Grant amount: £${item.amount} ${item.unit} <br/><br/>This grant amount will be capped to fund ${receptionPitExtra} of the overall storage capacity at full application` 
+      : `Grant amount: £${item.amount} ${item.unit}`
     },
     classes: `govuk-input--width-${suffixAndLengthValue.length}`,
     label: {
