@@ -226,7 +226,7 @@ describe('Other Items Sizes Array Function', () => {
         inputmode: 'numeric',
         suffix: { text: 'm³' },
         hint: {
-          html: `Grant amount: £30 per cubic metre <br/><br/>At full application this will be capped at 1:13 of the overall storage capacity`
+          html: `Grant amount: £30 per cubic metre <br/><br/>This grant amount will be capped to fund 1:13 of the overall storage capacity at full application`
         },
         classes: 'govuk-input--width-3',
         label: {
