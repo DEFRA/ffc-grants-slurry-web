@@ -131,7 +131,7 @@ const slurryJourneyDetails = (existingStorageCapacity, plannedStorageCapacity, h
     generateRow(397, 'Planned Storage Capacity', plannedStorageCapacity),
     generateRow(398, 'Slurry Storage Improvement Method', hasFitForPurposeAndCover ? 'N/A' : projectType),
     generateRow(399, 'Impermeable Cover', hasFitForPurposeAndCover ? 'N/A' : getImpermeableCover(grantFundedCover)),
-    generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2)),
+    generateRow(55, 'Total project expenditure', Number(itemsTotalValue * 2).toFixed(2)),
   ]
 }
 const applicantNumbers = (landlineNumber, mobileNumber) => {
@@ -259,7 +259,7 @@ function getImpermeableCover (grantFundedCover) {
 }
 
 function getCurrencyFormat (amount) {
-  return Number(amount).toLocaleString('en-US', { minimumFractionDigits: 0, style: 'currency', currency: 'GBP' })
+  return Number(amount).toLocaleString('en-US', { minimumFractionDigits: 2, style: 'currency', currency: 'GBP' })
 }
 
 const getItemUnit = (otherItem) => {
