@@ -172,7 +172,7 @@ function getSpreadsheetDetails (submission) {
       submission.confirmationId.trim(),
       today
     ),
-    uploadLocation: `Farming Investment Fund/Farming Investment Fund/${spreadsheetConfig.uploadEnvironment}/Slurry Infrastructure/`,
+    uploadLocation: `Farming Investment Fund/Farming Transformation Fund/${spreadsheetConfig.uploadEnvironment}/Slurry Infrastructure/`,
     worksheets: [
       {
         title: 'DORA DATA',
