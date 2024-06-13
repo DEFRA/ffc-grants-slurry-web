@@ -92,7 +92,7 @@ const questionBank = {
                 heading: 'Eligibility',
                 content: [
                   {
-                    para: `If your main livestock enterprise is pig, the grant is to get your slurry storage levels to 8 months.
+                    para: `If pigs are your main livestock enterprise, the grant is to get your slurry storage levels to 8 months.
                     <br>
                     If beef or dairy is your main livestock enterprise, the grant is to get your slurry storage levels to 6 months.`
                   }
