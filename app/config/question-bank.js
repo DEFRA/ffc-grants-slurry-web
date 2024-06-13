@@ -2231,7 +2231,7 @@ const questionBank = {
           pageTitle: '',
           title: 'What type of slurry separator will you have?',
           hint: {
-            text: 'Capable to processing at least 3m³ of slurry per hour and producing at least 25% dry matter'
+            text: 'Capable of processing at least 3m³ of slurry per hour and producing at least 25% dry matter'
           },
           url: 'separator-type',
           baseUrl: 'separator-type',

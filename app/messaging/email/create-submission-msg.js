@@ -172,7 +172,7 @@ function getSpreadsheetDetails (submission) {
       submission.confirmationId.trim(),
       today
     ),
-    uploadLocation: `Farming Investment Fund/Farming Transformation Fund/${spreadsheetConfig.uploadEnvironment}/Slurry Infrastructure/`,
+    uploadLocation: `Farming Investment Fund/Farming Investment Fund/${spreadsheetConfig.uploadEnvironment}/Slurry Infrastructure/`,
     worksheets: [
       {
         title: 'DORA DATA',
@@ -182,7 +182,7 @@ function getSpreadsheetDetails (submission) {
         rows: [
           generateRow(1, 'Field Name', 'Field Value', true),
           generateRow(2, 'FA or OA', 'Outline Application'),
-          generateRow(40, 'Scheme', 'Farming Transformation Fund'),
+          generateRow(40, 'Scheme', 'Farming Investment Fund'),
           generateRow(39, 'Sub scheme', subScheme),
           generateRow(43, 'Theme', 'Slurry Infrastructure Grants'),
           generateRow(90, 'Project type', 'Slurry Store and Cover'),
