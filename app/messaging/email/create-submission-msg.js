@@ -144,7 +144,7 @@ const applicantNumbers = (landlineNumber, mobileNumber) => {
 function getSpreadsheetDetails (submission) {
   const today = new Date()
   const todayStr = today.toLocaleDateString('en-GB')
-  const schemeName = 'Slurry Infrastructure Round 2'
+  const schemeName = 'Slurry Infrastructure Round 3'
   const subScheme = `FTF-${schemeName}`
   const {
     agentsDetails, applicantType, applyingFor, applying,
