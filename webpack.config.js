@@ -53,7 +53,7 @@ module.exports = {
         type: 'asset/resource',
         generator: {
           filename: 'images/[contenthash][ext]'
-          }
+        }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/,

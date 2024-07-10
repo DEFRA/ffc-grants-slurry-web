@@ -174,13 +174,11 @@ const getSolidFractionList = (answersList, request) => {
 const shiftAnswersListDefault = (question, answersList) => {
   for (const answer in answersList) {
     question.answers.unshift(answersList[answer])
-  } 
-  
+  }
   return question.answers
 }
 
 const shiftSafetyValue = (answersList, request, question) => {
-  
   question.answers = [
     {
       value: 'divider'
