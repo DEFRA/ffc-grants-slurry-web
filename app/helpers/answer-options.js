@@ -168,26 +168,17 @@ const getSolidFractionList = (answersList, request) => {
     }
   })
 
-<<<<<<< Updated upstream
   return answersList
 }
-=======
-    if (question.answers.length <= 2 && question.key !== 'other-items') {
-      if (question.yarKey === 'coverType' || question.yarKey === 'existingCoverType') {
-        question.answers = []
-      }
->>>>>>> Stashed changes
 
 const shiftAnswersListDefault = (question, answersList) => {
   for (const answer in answersList) {
     question.answers.unshift(answersList[answer])
-  } 
-  
+  }
   return question.answers
 }
 
 const shiftSafetyValue = (answersList, request, question) => {
-  
   question.answers = [
     {
       value: 'divider'
