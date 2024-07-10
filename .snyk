@@ -2,33 +2,24 @@
 version: v1.25.0
 # ignores vulnerabilities until expiry date; change duration by modifying expiry date
 ignore:
-  SNYK-JS-NODEFETCH-2964180:
-    - bcrypt > @mapbox/node-pre-gyp > node-fetch: null
-    - reason: no update available
-    - expires: '2022-12-02T10:22:20.985Z'
-  SNYK-CC-K8S-6:
-    - ffc-grants-slurry-web > helm/templates/deployment.yaml:
-        reason: no direct upgrade or patch available
-        expires: '2022-03-21T11:23:27.474Z'
-  SNYK-JS-AXIOS-1579269:
-    - ffc-messaging > @azure/identity > axios:
-        reason: no update available
-        expires: '2021-10-02T10:22:20.985Z'
-    - ffc-messaging > @azure/identity > @azure/msal-node > axios:
-        reason: no update available
-        expires: '2021-10-02T10:22:20.986Z'
+  SNYK-JS-SEMVER-3247795:
     - '*':
         reason: None Given
-        expires: 2023-11-30T14:34:21.146Z
-        created: 2023-10-31T14:34:21.151Z
-  SNYK-JS-AXIOS-6124857:
-    - '*':
-        reason: None Given
-        expires: 2024-02-09T15:50:14.529Z
-        created: 2024-01-10T15:50:14.537Z
+        expires: 2023-07-22T15:59:12.255Z
+        created: 2023-06-22T15:59:12.262Z
   SNYK-JS-INFLIGHT-6095116:
     - '*':
         reason: None Given
-        expires: 2024-07-03T11:11:39.869Z
-        created: 2024-08-03T11:11:39.874Z
+        expires: 2024-08-06T13:15:58.255Z
+        created: 2024-05-07T13:15:58.261Z
+  SNYK-JS-AXIOS-6124857:
+    - '*':
+        reason: None Given
+        expires: 2024-01-13T13:29:32.127Z
+        created: 2023-12-14T13:29:32.130Z
+  SNYK-JS-FOLLOWREDIRECTS-6141137:
+    - '*':
+        reason: None Given
+        expires: 2024-02-01T17:01:03.077Z
+        created: 2024-01-02T17:01:03.081Z
 patch: {}
