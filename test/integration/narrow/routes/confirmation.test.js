@@ -1,7 +1,5 @@
 const { crumbToken } = require('./test-helper')
 
-const senders = require('../../../../app/messaging/senders')
-
 describe('confirm page', () => {
   const varList = { farmerDetails: 'someValue', contractorsDetails: 'someValue' }
 
@@ -23,6 +21,7 @@ describe('confirm page', () => {
         referer: 'localhost/check-details'
       }
     }
+    const senders = require('../../../../app/messaging/senders')
 
     jest.spyOn(senders, 'sendDesirabilitySubmitted').mockImplementationOnce(() => Promise.resolve(true))
 
