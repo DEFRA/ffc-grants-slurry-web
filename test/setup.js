@@ -1,4 +1,5 @@
 beforeEach(async () => {
+  process.env.SERVICE_END_DATE = '9999/07/12'
   // ...
   // Set reference to server in order to close the server during teardown.
   const createServer = require('../app/server')
