@@ -1,4 +1,5 @@
 const path = require('path')
+const packageJson = require('./package.json')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -7,6 +8,7 @@ const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV ===
 console.log(`Running webpack in ${isDev ? 'development' : 'production'} mode`)
 
 const urlPrefix = '/slurry-infrastructure'
+const version = packageJson.version
 
 module.exports = {
   entry: './app/assets/src/index.js',
@@ -75,7 +77,7 @@ module.exports = {
       inject: false,
       filename: '.layout.njk',
       template: 'app/assets/src/layout.njk',
-      metadata: { urlPrefix }
+      metadata: { urlPrefix, version }
     }),
     new MiniCssExtractPlugin({
       filename: 'css/application.[fullhash].css'
