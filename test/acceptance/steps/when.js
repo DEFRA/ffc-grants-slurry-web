@@ -1,6 +1,5 @@
 const { When } = require("@wdio/cucumber-framework");
 const { browser } = require("@wdio/globals");
-const scoreResultsPage = require("../pages/scoreResultsPage");
 
 When(/^(?:the user clicks|clicks) on "([^"]*)?"$/, async (text) => {
     await $(`//*[contains(text(),'${text}')]`).click();
@@ -8,10 +7,6 @@ When(/^(?:the user clicks|clicks) on "([^"]*)?"$/, async (text) => {
 
 When(/^(?:the user continues|continues)$/, async () => {
     await $("//*[@id='Continue' or @id='btnContinue']").click();
-});
-
-When(/^(?:the user continues|continues) to their score$/, async () => {
-    await $("//button[@id='Get-your-score']").click();
 });
 
 When(/^(?:the user continues|continues) to their results$/, async () => {
@@ -69,8 +64,4 @@ When(/^the user enters the following$/, async (dataTable) => {
             await element.setValue(row["VALUE"]);
         }
     };
-});
-
-When(/^(?:the user chooses|chooses) to change their "([^"]*)?" answers$/, async (section) => {
-    await new scoreResultsPage().changeAnswersFor(section);
 });

@@ -1,9 +1,7 @@
 const { Then } = require("@wdio/cucumber-framework");
 const { browser } = require("@wdio/globals");
 const _ = require("lodash");
-const { scoreAnswer } = require("../dto/scoreAnswer");
 const { worksheetField } = require("../dto/worksheet");
-const scoreResultsPage = require("../pages/scoreResultsPage");
 const guard = require("../services/guard");
 const poller = require("../services/poller");
 const sharePoint = require("../services/sharePoint");
@@ -53,43 +51,14 @@ Then(/^(?:the user should|should) see bullet point "([^"]*)?"$/, async (text) =>
     await expect($(`//ul[@class='govuk-list--bullet']//li[contains(text(),'${text}')]`)).toBeDisplayed();
 });
 
-Then(/^(?:the user should|should) see "([^"]*)?" for their project score$/, async (expectedScore) => {
-    const actualScore = await new scoreResultsPage().getScore();
-    await expect(actualScore).toEqual(expectedScore);
+Then(/^(?:the user should|should) see "([^"]*)?" for their eligibility result$/, async (text) => {
+    await expect($(`//h1[text()='Your results']/following-sibling::div/span[text()='${text}']`)).toBeDisplayed();
 });
 
 Then(/^(?:the user should|should) see a reference number for their application$/, async () => {
     const selector = $("//h1/following-sibling::div[1]/strong");
     await expect(selector).toHaveText(expect.stringContaining("-"));
     referenceNumber = await selector.getText();
-});
-
-Then(/^(?:the user should|should) see the following scoring answers$/, async (dataTable) => {
-    const expectedAnswers = [];
-    let expectedAnswer = {};
-    
-    for (const row of dataTable.hashes()) {
-        let topic = row["TOPIC"];
-        let answer = row["ANSWERS"];
-        let score = row["SCORE"];
-
-        if (topic) {
-            expectedAnswer = new scoreAnswer(
-                topic,
-                [],
-                score
-            );
-            expectedAnswers.push(expectedAnswer);
-        }
-
-        if (answer) {
-            expectedAnswer.answers.push(answer);
-        }
-    }
-
-    const actualAnswers = await new scoreResultsPage().getAnswers();
-
-    await expect(actualAnswers).toEqual(expectedAnswers);
 });
 
 Then(/^a spreadsheet should be generated with the following values$/, async (expectedDataTable) => {

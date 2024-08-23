@@ -80,7 +80,7 @@ class sharePoint {
     );
     
     const fields = response.payload.values
-      .map((row, index) => new worksheetField(index + 1, row[1].trim(), row[2]))
+      .map((row, index) => new worksheetField(index + 1, row[1].trim(), typeof(row[2]) === "number" ? row[2] : row[2].trim()))
       .filter(field => field.hasName());
 
     return new worksheet(worksheetName, fields);
