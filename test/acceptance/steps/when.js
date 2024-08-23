@@ -1,196 +1,67 @@
-import clearInputField from '../support/action/clearInputField'
-import clickElement from '../support/action/clickElement'
-import closeLastOpenedWindow from '../support/action/closeLastOpenedWindow'
-import deleteCookies from '../support/action/deleteCookies'
-import dragElement from '../support/action/dragElement'
-import focusLastOpenedWindow from '../support/action/focusLastOpenedWindow'
-import handleModal from '../support/action/handleModal'
-import moveTo from '../support/action/moveTo'
-import pause from '../support/action/pause'
-import pressButton from '../support/action/pressButton'
-import scroll from '../support/action/scroll'
-import selectOption from '../support/action/selectOption'
-import selectOptionByIndex from '../support/action/selectOptionByIndex'
-import setCookie from '../support/action/setCookie'
-import setInputField from '../support/action/setInputField'
-import setPromptText from '../support/action/setPromptText'
+const { When } = require("@wdio/cucumber-framework");
+const { browser } = require("@wdio/globals");
 
-import ApplicantType from '../pageobjects/ffc-grant-applicanttype'
-import LegalStatus from '../pageobjects/ffc-grant-legal-status'
-import Country from '../pageobjects/ffc-grant-country'
-import ProjectStarted from '../pageobjects/ffc-grant-project-started'
-import Tenancy from '../pageobjects/ffc-grant-tenancy'
-import TenancyLength from '../pageobjects/ffc-grant-tenancy-length'
-import SystemType from '../pageobjects/ffc-grant-system-type'
+When(/^(?:the user clicks|clicks) on "([^"]*)?"$/, async (text) => {
+    await $(`//*[contains(text(),'${text}')]`).click();
+});
 
-const { When } = require('cucumber')
+When(/^(?:the user continues|continues)$/, async () => {
+    await $("//*[@id='Continue' or @id='btnContinue']").click();
+});
 
-When(
-  /^I (click|doubleclick) on the (link|button|element) "([^"]*)?"$/,
-  clickElement
-)
+When(/^(?:the user continues|continues) to their results$/, async () => {
+    await $("//button[@id='btnResults']").click();
+});
 
-When(
-  /^I (add|set) "([^"]*)?" to the inputfield "([^"]*)?"$/,
-  setInputField
-)
+When(/^(?:the user goes|goes) back$/, async () => {
+    await $("//a[@class='govuk-back-link']").click();
+});
 
-When(
-  /^I clear the inputfield "([^"]*)?"$/,
-  clearInputField
-)
+When(/^PAUSE "([^"]*)?" SECONDS$/, async (seconds) => {
+    await browser.pause(parseInt(seconds) * 1000);
+});
 
-When(
-  /^I drag element "([^"]*)?" to element "([^"]*)?"$/,
-  dragElement
-)
+When(/^(?:the user confirms|confirms) and sends$/, async () => {
+    await $("//button[@id='btnConfirmSend']").click();
+});
 
-When(
-  /^I pause for (\d+)ms$/,
-  pause
-)
+When(/^the user selects "([^"]*)?"$/, async (text) => {
+    const element = await $(`//input[contains(@value,'${text}')]`);
+    if (!await element.isSelected()) {
+        await element.click();
+     }
+});
 
-When(
-  /^I set a cookie "([^"]*)?" with the content "([^"]*)?"$/,
-  setCookie
-)
+When(/^the user unselects any previous selection$/, async () => {
+    const elements = await $$(`//input[@type='checkbox']`);
+    for (const element of elements) {
+        if (await element.isSelected()) {
+            await element.click();
+        }
+    }
+}); 
 
-When(
-  /^I delete the cookie "([^"]*)?"$/,
-  deleteCookies
-)
+When(/^(?:the user selects|selects) the following$/, async (dataTable) => {
+    for (const row of dataTable.raw()) {
+        const element = await $(`//input[@type='checkbox' and contains(@value,'${row[0]}')]`);
+        if (!await element.isSelected()) {
+            await element.click();
+        }
+    };
+});
 
-When(
-  /^I press "([^"]*)?"$/,
-  pressButton
-)
+When(/^(?:the user enters|enters) "([^"]*)?" in "([^"]*)?"$/, async (text, id) => {
+    await $(`//input[@id='${id}']`).setValue(text);
+});
 
-When(
-  /^I (accept|dismiss) the (alertbox|confirmbox|prompt)$/,
-  handleModal
-)
-
-When(
-  /^I enter "([^"]*)?" into the prompt$/,
-  setPromptText
-)
-
-When(
-  /^I scroll to element "([^"]*)?"$/,
-  scroll
-)
-
-When(
-  /^I close the last opened (window|tab)$/,
-  closeLastOpenedWindow
-)
-
-When(
-  /^I focus the last opened (window|tab)$/,
-  focusLastOpenedWindow
-)
-
-When(
-  /^I select the (\d+)(st|nd|rd|th) option for element "([^"]*)?"$/,
-  selectOptionByIndex
-)
-
-When(
-  /^I select the option with the (name|value|text) "([^"]*)?" for element "([^"]*)?"$/,
-  selectOption
-)
-
-When(
-  /^I move to element "([^"]*)?"(?: with an offset of (\d+),(\d+))*$/,
-  moveTo
-)
-
-When(/^I clicks on the button$/, function () {
-  ApplicantType.clickOnPigApplicantType()
-})
-
-When(/^I clicks on the "([^"]*)?"button$/, function (applicant) {
-  if (applicant === 'Pig') {
-    ApplicantType.clickOnPigApplicantType()
-  } else if (applicant === 'Beef') {
-    ApplicantType.clickOnBeef()
-  } else if (applicant === 'Dairy') {
-    ApplicantType.clickOnDairy()
-  } else if (applicant === 'NoneOfTheAbove') {
-    ApplicantType.clickOnNoneOfTheAbove()
-  }
-})
-
-When(/^I click on Continue button$/, async () => {
-  ApplicantType.clickOnSaveandContinueButton2()
-})
-
-When(/^I clicks on the sole trade button$/, function () {
-  LegalStatus.clickOnSoleTrade()
-})
-
-When(/^I clicks on the "([^"]*)?" button$/, function (trades) {
-  if (trades === 'sole') {
-    LegalStatus.clickOnSoleTrade()
-    console.log(trades)
-  } else if (trades === 'partnership') {
-    LegalStatus.clickOnPartnership()
-  } else if (trades === 'limitedCompany') {
-    LegalStatus.clickOnLimitedCompany()
-  } else if (trades === 'charity') {
-    LegalStatus.clickOnCharity()
-  } else if (trades === 'trust') {
-    LegalStatus.clickOnTrust()
-  } else if (trades === 'liaPartnership') {
-    LegalStatus.clickOnLimitedLiabilityPartnership()
-  } else if (trades === 'communityInt') {
-    LegalStatus.clickOnCommunityInterestCompany()
-  } else if (trades === 'ltdPartnership') {
-    LegalStatus.clickOnLimitedLiabilityPartnership()
-  } else if (trades === 'industrialSty') {
-    LegalStatus.clickOnIndustrialAndProvidentSociety()
-  } else if (trades === 'coopSociety') {
-    LegalStatus.clickOnCooperativeSociety()
-  } else if (trades === 'BenCom') {
-    LegalStatus.clickOnCommunityBenefitSociety()
-  } else if (trades === 'NoneOfTheAbove') {
-    LegalStatus.clickOnNoneOfTheAbove()
-  }
-})
-
-When(/^I click on the limited company button$/, function () {
-  LegalStatus.clickOnLimitedCompany()
-})
-
-When(/^I click on CountryYes button$/, function () {
-  Country.clickOnCtyYesButton()
-})
-
-When(/^I click on CountryNo button$/, function () {
-  Country.clickOnCtyNoButton()
-})
-
-When(/^I click on Yes preparatory work button$/, function () {
-  ProjectStarted.clickOnYesPrepWork()
-})
-
-When(/^I click "([^"]*)?" button$/, function (preparatoryWork) {
-  if (preparatoryWork === 'yesPrepWork') {
-    ProjectStarted.clickOnYesPrepWork()
-    console.log(preparatoryWork)
-  } else if (preparatoryWork === 'noWorkDoneYet') {
-    ProjectStarted.clickOnNoProjectYet()
-  }
-})
-
-When(/^I click on yes land ownership button$/, function () {
-  Tenancy.clickOnYesLandOwnership()
-})
-
-When(/^I click on yes land ownership button$/, function () {
-  TenancyLength.clickOnYesTenancyLength()
-})
-
-When(/^I click on slurry based system button$/, function () {
-  SystemType.clickOnSlurrySystem()
-})
+When(/^the user enters the following$/, async (dataTable) => {
+    for (const row of dataTable.hashes()) {
+        const element = await $(`//*[@id='${row["ID"]}']`);
+        const tag = await element.getTagName();
+        if (tag == "select") {
+            await element.selectByVisibleText(row["VALUE"]);
+        } else {
+            await element.setValue(row["VALUE"]);
+        }
+    };
+});
