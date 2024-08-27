@@ -15,7 +15,7 @@ Then(/^(?:the user should|should) be at URL "([^"]*)?"$/, async (urlPath) => {
 
 Then(/^(?:the user should|should) see heading "([^"]*)?"$/, async (text) => {
     if (text.indexOf("'") > -1) {
-        text = text.substring(0, text.indexOf("'"))
+        text = text.substring(0, text.indexOf("'"));
     }
     await expect($(`//h1[contains(text(),"${text}")]`)).toBeDisplayed();
 });
@@ -29,6 +29,9 @@ Then(/^(?:the user should|should) see hint "([^"]*)?"$/, async (text) => {
 });
 
 Then(/^(?:the user should|should) see error "([^"]*)?"$/, async (text) => {
+    if (text.indexOf("'") > -1) {
+        text = text.substring(0, text.indexOf("'"));
+    }
     await expect($(`//div[@class="govuk-error-summary"]//a[contains(text(),'${text}')]`)).toBeDisplayed();
 });
 
