@@ -165,18 +165,18 @@ Feature: Impermeable Cover Only Journey
         Then the user should be at URL "applicant-details"
         And should see heading "Applicant's details"
         When the user enters the following
-            | FIELD               | VALUE                                                                | ID              |
-            | First name          | James                                                                | firstName       |
-            | Last name           | Farmer                                                               | lastName        |
-            | Email address       | cl-defra-tactical-grants-test-email-service-account@equalexperts.com | emailAddress    |
-            | Mobile phone number | 07777 123456                                                         | mobileNumber    |
-            | Landline number     | 01604 123456                                                         | landlineNumber  |
-            | Address line 1      | Home Farm                                                            | address1        |
-            | Address line 2      | Cogenhoe                                                             | address2        |
-            | Town                | Northampton                                                          | town            |
-            | County              | Northamptonshire                                                     | county          |
-            | Postcode            | NN7 1NN                                                              | postcode        |
-            | Project postcode    | NN7 2NN                                                              | projectPostcode |
+            | FIELD               | VALUE                                                          | ID              |
+            | First name          | James                                                          | firstName       |
+            | Last name           | Farmer                                                         | lastName        |
+            | Email address       | cl-defra-tactical-grants-test-applicant-email@equalexperts.com | emailAddress    |
+            | Mobile phone number | 07777 123456                                                   | mobileNumber    |
+            | Landline number     | 01604 123456                                                   | landlineNumber  |
+            | Address line 1      | Home Farm                                                      | address1        |
+            | Address line 2      | Cogenhoe                                                       | address2        |
+            | Town                | Northampton                                                    | town            |
+            | County              | Northamptonshire                                               | county          |
+            | Postcode            | NN7 1NN                                                        | postcode        |
+            | Project postcode    | NN7 2NN                                                        | projectPostcode |
         And continues
 
         # check-details
@@ -194,79 +194,79 @@ Feature: Impermeable Cover Only Journey
         And should see heading "Details submitted"
         And should see a reference number for their application
         Then a spreadsheet should be generated with the following values
-            | ROW NO | FIELD NAME                                           | FIELD VALUE                                                          | DATA TYPE        |
-            | 2      | FA or OA                                             | Outline Application                                                  |                  |
-            | 4      | Single business identifier (SBI)                     | 123456789                                                            |                  |
-            | 5      | Surname                                              | Farmer                                                               |                  |
-            | 6      | Forename                                             | James                                                                |                  |
-            | 7      | Business name                                        | Home Farm Ltd                                                        |                  |
-            | 8      | Address line 1                                       | Home Farm                                                            |                  |
-            | 9      | Address line 2                                       | Cogenhoe                                                             |                  |
-            | 10     | Address line 3                                       |                                                                      |                  |
-            | 11     | Address line 4 (town)                                | Northampton                                                          |                  |
-            | 12     | Address line 5 (county)                              | Northamptonshire                                                     |                  |
-            | 13     | Postcode (use capitals)                              | NN7 1NN                                                              |                  |
-            | 16     | Landline number                                      | 01604 123456                                                         |                  |
-            | 17     | Mobile number                                        | 07777 123456                                                         |                  |
-            | 18     | Email                                                | cl-defra-tactical-grants-test-email-service-account@equalexperts.com |                  |
-            | 20     | Business size                                        | Micro                                                                |                  |
-            | 22     | Employees                                            | 5                                                                    |                  |
-            | 23     | Status of applicant                                  | Trust                                                                |                  |
-            | 26     | Agent Surname                                        |                                                                      |                  |
-            | 27     | Agent Forename                                       |                                                                      |                  |
-            | 28     | Agent Business Name                                  |                                                                      |                  |
-            | 29     | Agent Address line 1                                 |                                                                      |                  |
-            | 30     | Agent Address line 2                                 |                                                                      |                  |
-            | 31     | Agent Address line 3                                 |                                                                      |                  |
-            | 32     | Agent Address line 4 (town)                          |                                                                      |                  |
-            | 33     | Agent Address line 5 (County)                        |                                                                      |                  |
-            | 34     | Agent Postcode (use capitals)                        |                                                                      |                  |
-            | 35     | Agent Landline number                                |                                                                      |                  |
-            | 36     | Agent Mobile number                                  |                                                                      |                  |
-            | 37     | Agent Email                                          |                                                                      |                  |
-            | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                                    |                  |
-            | 40     | Scheme                                               | Farming Investment Fund                                              |                  |
-            | 41     | Owner                                                | RD                                                                   |                  |
-            | 42     | Project name                                         | Slurry Project                                                       |                  |
-            | 43     | Theme                                                | Slurry Infrastructure Grants                                         |                  |
-            | 44     | Project Items                                        | \|\|Floating flexible cover~3500\|\|                                 |                  |
-            | 45     | Location of project (postcode)                       | NN7 2NN                                                              |                  |
-            | 53     | Business type                                        | Dairy Farmer                                                         |                  |
-            | 54     | Electronic OA received date                          | ?                                                                    | CURRENT-DATE     |
-            | 55     | Total project expenditure                            | 55930.00                                                             |                  |
-            | 56     | Grant amount requested                               | 27965                                                                | INTEGER          |
-            | 57     | Grant rate                                           | 50                                                                   |                  |
-            | 85     | Full Application Submission Date                     | 31/03/2026                                                           |                  |
-            | 89     | Customer Marketing Indicator                         | No                                                                   |                  |
-            | 90     | Project type                                         | Slurry Store and Cover                                               |                  |
-            | 91     | Are you an AGENT applying on behalf of your customer | No                                                                   |                  |
-            | 92     | RAG rating                                           | Green                                                                |                  |
-            | 93     | RAG date reviewed                                    | ?                                                                    | CURRENT-DATE     |
-            | 94     | Current location of file                             | NA Automated                                                         |                  |
-            | 341    | Grant Launch Date                                    | 11/07/2024                                                           |                  |
-            | 342    | Land owned by Farm                                   | Yes                                                                  |                  |
-            | 343    | Tenancy for next 5 years                             |                                                                      |                  |
-            | 345    | Remaining Cost to Farmer                             | 0.00                                                                 |                  |
-            | 346    | Planning Permission Status                           | Not Needed                                                           |                  |
-            | 365    | OA score                                             | 0                                                                    | INTEGER          |
-            | 366    | Date of OA decision                                  |                                                                      |                  |
-            | 367    | Annual Turnover                                      | 750000                                                               |                  |
-            | 368    | Date ready for QC or decision                        | ?                                                                    | CURRENT-DATE     |
-            | 369    | Eligibility Reference No.                            | ?                                                                    | REFERENCE-NUMBER |
-            | 370    | Status                                               | Pending RPA review                                                   |                  |
-            | 375    | OA percent                                           | 0                                                                    | INTEGER          |
-            | 376    | Project Started                                      | No, we have not done any work on this project yet                    |                  |
-            | 395    | System Type                                          | Farmyard manure and slurry system                                    |                  |
-            | 396    | Existing Storage Capacity                            | 6 months or more, but it is no longer fit for purpose                |                  |
-            | 397    | Planned Storage Capacity                             | More than 6 months                                                   |                  |
-            | 398    | Slurry Storage Improvement Method                    | N/A                                                                  |                  |
-            | 399    | Impermeable Cover                                    | N/A                                                                  |                  |
-            | 400    | Planning Authority                                   |                                                                      |                  |
-            | 401    | Planning Reference No                                |                                                                      |                  |
-            | 402    | Existing store OS grid reference                     | SP8349861506                                                         |                  |
-            | 463    | Environmental permit                                 | N/A                                                                  |                  |
-            | 464    | Project Responsibility                               | N/A                                                                  |                  |
-            | 465    | Applying for                                         | An impermeable cover only                                            |                  |
-            | 466    | Fit for purpose                                      | Yes                                                                  |                  |
-            | 467    | Existing Store Cover                                 | N/A                                                                  |                  |
-            | 521    | New store OS grid reference                          | SP8349861507                                                         |                  |
+            | ROW NO | FIELD NAME                                           | FIELD VALUE                                                    | DATA TYPE        |
+            | 2      | FA or OA                                             | Outline Application                                            |                  |
+            | 4      | Single business identifier (SBI)                     | 123456789                                                      |                  |
+            | 5      | Surname                                              | Farmer                                                         |                  |
+            | 6      | Forename                                             | James                                                          |                  |
+            | 7      | Business name                                        | Home Farm Ltd                                                  |                  |
+            | 8      | Address line 1                                       | Home Farm                                                      |                  |
+            | 9      | Address line 2                                       | Cogenhoe                                                       |                  |
+            | 10     | Address line 3                                       |                                                                |                  |
+            | 11     | Address line 4 (town)                                | Northampton                                                    |                  |
+            | 12     | Address line 5 (county)                              | Northamptonshire                                               |                  |
+            | 13     | Postcode (use capitals)                              | NN7 1NN                                                        |                  |
+            | 16     | Landline number                                      | 01604 123456                                                   |                  |
+            | 17     | Mobile number                                        | 07777 123456                                                   |                  |
+            | 18     | Email                                                | cl-defra-tactical-grants-test-applicant-email@equalexperts.com |                  |
+            | 20     | Business size                                        | Micro                                                          |                  |
+            | 22     | Employees                                            | 5                                                              |                  |
+            | 23     | Status of applicant                                  | Trust                                                          |                  |
+            | 26     | Agent Surname                                        |                                                                |                  |
+            | 27     | Agent Forename                                       |                                                                |                  |
+            | 28     | Agent Business Name                                  |                                                                |                  |
+            | 29     | Agent Address line 1                                 |                                                                |                  |
+            | 30     | Agent Address line 2                                 |                                                                |                  |
+            | 31     | Agent Address line 3                                 |                                                                |                  |
+            | 32     | Agent Address line 4 (town)                          |                                                                |                  |
+            | 33     | Agent Address line 5 (County)                        |                                                                |                  |
+            | 34     | Agent Postcode (use capitals)                        |                                                                |                  |
+            | 35     | Agent Landline number                                |                                                                |                  |
+            | 36     | Agent Mobile number                                  |                                                                |                  |
+            | 37     | Agent Email                                          |                                                                |                  |
+            | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                              |                  |
+            | 40     | Scheme                                               | Farming Investment Fund                                        |                  |
+            | 41     | Owner                                                | RD                                                             |                  |
+            | 42     | Project name                                         | Slurry Project                                                 |                  |
+            | 43     | Theme                                                | Slurry Infrastructure Grants                                   |                  |
+            | 44     | Project Items                                        | \|\|Floating flexible cover~3500\|\|                           |                  |
+            | 45     | Location of project (postcode)                       | NN7 2NN                                                        |                  |
+            | 53     | Business type                                        | Dairy Farmer                                                   |                  |
+            | 54     | Electronic OA received date                          | ?                                                              | CURRENT-DATE     |
+            | 55     | Total project expenditure                            | 55930.00                                                       |                  |
+            | 56     | Grant amount requested                               | 27965                                                          | INTEGER          |
+            | 57     | Grant rate                                           | 50                                                             |                  |
+            | 85     | Full Application Submission Date                     | 31/03/2026                                                     |                  |
+            | 89     | Customer Marketing Indicator                         | No                                                             |                  |
+            | 90     | Project type                                         | Slurry Store and Cover                                         |                  |
+            | 91     | Are you an AGENT applying on behalf of your customer | No                                                             |                  |
+            | 92     | RAG rating                                           | Green                                                          |                  |
+            | 93     | RAG date reviewed                                    | ?                                                              | CURRENT-DATE     |
+            | 94     | Current location of file                             | NA Automated                                                   |                  |
+            | 341    | Grant Launch Date                                    | 11/07/2024                                                     |                  |
+            | 342    | Land owned by Farm                                   | Yes                                                            |                  |
+            | 343    | Tenancy for next 5 years                             |                                                                |                  |
+            | 345    | Remaining Cost to Farmer                             | 0.00                                                           |                  |
+            | 346    | Planning Permission Status                           | Not Needed                                                     |                  |
+            | 365    | OA score                                             | 0                                                              | INTEGER          |
+            | 366    | Date of OA decision                                  |                                                                |                  |
+            | 367    | Annual Turnover                                      | 750000                                                         |                  |
+            | 368    | Date ready for QC or decision                        | ?                                                              | CURRENT-DATE     |
+            | 369    | Eligibility Reference No.                            | ?                                                              | REFERENCE-NUMBER |
+            | 370    | Status                                               | Pending RPA review                                             |                  |
+            | 375    | OA percent                                           | 0                                                              | INTEGER          |
+            | 376    | Project Started                                      | No, we have not done any work on this project yet              |                  |
+            | 395    | System Type                                          | Farmyard manure and slurry system                              |                  |
+            | 396    | Existing Storage Capacity                            | 6 months or more, but it is no longer fit for purpose          |                  |
+            | 397    | Planned Storage Capacity                             | More than 6 months                                             |                  |
+            | 398    | Slurry Storage Improvement Method                    | N/A                                                            |                  |
+            | 399    | Impermeable Cover                                    | N/A                                                            |                  |
+            | 400    | Planning Authority                                   |                                                                |                  |
+            | 401    | Planning Reference No                                |                                                                |                  |
+            | 402    | Existing store OS grid reference                     | SP8349861506                                                   |                  |
+            | 463    | Environmental permit                                 | N/A                                                            |                  |
+            | 464    | Project Responsibility                               | N/A                                                            |                  |
+            | 465    | Applying for                                         | An impermeable cover only                                      |                  |
+            | 466    | Fit for purpose                                      | Yes                                                            |                  |
+            | 467    | Existing Store Cover                                 | N/A                                                            |                  |
+            | 521    | New store OS grid reference                          | SP8349861507                                                   |                  |

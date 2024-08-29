@@ -266,36 +266,36 @@ Feature: Slurry Store Journey
         Then the user should be at URL "agent-details"
         And should see heading "Agent's details"
         When the user enters the following
-            | FIELD               | VALUE                 | ID             |
-            | First name          | John                  | firstName      |
-            | Last name           | Agent                 | lastName       |
-            | Business name       | Farm Agency Ltd       | businessName   |
-            | Email address       | test@equalexperts.com | emailAddress   |
-            | Mobile phone number | 07777 654321          | mobileNumber   |
-            | Landline number     | 01604 654321          | landlineNumber |
-            | Address line 1      | High Street           | address1       |
-            | Address line 2      | Denton                | address2       |
-            | Town                | Northampton           | town           |
-            | County              | Northamptonshire      | county         |
-            | Postcode            | NN7 3NN               | postcode       |
+            | FIELD               | VALUE                                                      | ID             |
+            | First name          | John                                                       | firstName      |
+            | Last name           | Agent                                                      | lastName       |
+            | Business name       | Farm Agency Ltd                                            | businessName   |
+            | Email address       | cl-defra-tactical-grants-test-agent-email@equalexperts.com | emailAddress   |
+            | Mobile phone number | 07777 654321                                               | mobileNumber   |
+            | Landline number     | 01604 654321                                               | landlineNumber |
+            | Address line 1      | High Street                                                | address1       |
+            | Address line 2      | Denton                                                     | address2       |
+            | Town                | Northampton                                                | town           |
+            | County              | Northamptonshire                                           | county         |
+            | Postcode            | NN7 3NN                                                    | postcode       |
         And continues
 
         # applicant-details
         Then the user should be at URL "applicant-details"
         And should see heading "Applicant's details"
         When the user enters the following
-            | FIELD               | VALUE                                                                | ID              |
-            | First name          | James                                                                | firstName       |
-            | Last name           | Farmer                                                               | lastName        |
-            | Email address       | cl-defra-tactical-grants-test-email-service-account@equalexperts.com | emailAddress    |
-            | Mobile phone number | 07777 123456                                                         | mobileNumber    |
-            | Landline number     | 01604 123456                                                         | landlineNumber  |
-            | Address line 1      | Home Farm                                                            | address1        |
-            | Address line 2      | Cogenhoe                                                             | address2        |
-            | Town                | Northampton                                                          | town            |
-            | County              | Northamptonshire                                                     | county          |
-            | Postcode            | NN7 1NN                                                              | postcode        |
-            | Project postcode    | NN7 2NN                                                              | projectPostcode |
+            | FIELD               | VALUE                                                          | ID              |
+            | First name          | James                                                          | firstName       |
+            | Last name           | Farmer                                                         | lastName        |
+            | Email address       | cl-defra-tactical-grants-test-applicant-email@equalexperts.com | emailAddress    |
+            | Mobile phone number | 07777 123456                                                   | mobileNumber    |
+            | Landline number     | 01604 123456                                                   | landlineNumber  |
+            | Address line 1      | Home Farm                                                      | address1        |
+            | Address line 2      | Cogenhoe                                                       | address2        |
+            | Town                | Northampton                                                    | town            |
+            | County              | Northamptonshire                                               | county          |
+            | Postcode            | NN7 1NN                                                        | postcode        |
+            | Project postcode    | NN7 2NN                                                        | projectPostcode |
         And continues
 
         # check-details
@@ -327,7 +327,7 @@ Feature: Slurry Store Journey
             | 13     | Postcode (use capitals)                              | NN7 1NN                                                                                                                                                                                              |                  |
             | 16     | Landline number                                      | 01604 123456                                                                                                                                                                                         |                  |
             | 17     | Mobile number                                        | 07777 123456                                                                                                                                                                                         |                  |
-            | 18     | Email                                                | cl-defra-tactical-grants-test-email-service-account@equalexperts.com                                                                                                                                 |                  |
+            | 18     | Email                                                | cl-defra-tactical-grants-test-applicant-email@equalexperts.com                                                                                                                                       |                  |
             | 20     | Business size                                        | Micro                                                                                                                                                                                                |                  |
             | 22     | Employees                                            | 5                                                                                                                                                                                                    |                  |
             | 23     | Status of applicant                                  | Sole trader                                                                                                                                                                                          |                  |
@@ -342,7 +342,7 @@ Feature: Slurry Store Journey
             | 34     | Agent Postcode (use capitals)                        | NN7 3NN                                                                                                                                                                                              |                  |
             | 35     | Agent Landline number                                | 01604 654321                                                                                                                                                                                         |                  |
             | 36     | Agent Mobile number                                  | 07777 654321                                                                                                                                                                                         |                  |
-            | 37     | Agent Email                                          | test@equalexperts.com                                                                                                                                                                                |                  |
+            | 37     | Agent Email                                          | cl-defra-tactical-grants-test-agent-email@equalexperts.com                                                                                                                                           |                  |
             | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                                                                                                                                                                    |                  |
             | 40     | Scheme                                               | Farming Investment Fund                                                                                                                                                                              |                  |
             | 41     | Owner                                                | RD                                                                                                                                                                                                   |                  |
