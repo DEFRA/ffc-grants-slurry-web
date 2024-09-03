@@ -1,7 +1,9 @@
 const { Then } = require("@wdio/cucumber-framework");
 const { browser } = require("@wdio/globals");
 const _ = require("lodash");
+const { projectFundingItem } = require("../dto/projectFundingBreakdown");
 const { worksheetField } = require("../dto/worksheet");
+const projectSummaryPage = require("../pages/projectSummaryPage");
 const guard = require("../services/guard");
 const poller = require("../services/poller");
 const sharePoint = require("../services/sharePoint");
@@ -15,7 +17,7 @@ Then(/^(?:the user should|should) be at URL "([^"]*)?"$/, async (urlPath) => {
 
 Then(/^(?:the user should|should) see heading "([^"]*)?"$/, async (text) => {
     if (text.indexOf("'") > -1) {
-        text = text.substring(0, text.indexOf("'"))
+        text = text.substring(0, text.indexOf("'"));
     }
     await expect($(`//h1[contains(text(),"${text}")]`)).toBeDisplayed();
 });
@@ -29,6 +31,9 @@ Then(/^(?:the user should|should) see hint "([^"]*)?"$/, async (text) => {
 });
 
 Then(/^(?:the user should|should) see error "([^"]*)?"$/, async (text) => {
+    if (text.indexOf("'") > -1) {
+        text = text.substring(0, text.indexOf("'"));
+    }
     await expect($(`//div[@class="govuk-error-summary"]//a[contains(text(),'${text}')]`)).toBeDisplayed();
 });
 
@@ -102,3 +107,40 @@ Then(/^a spreadsheet should be generated with the following values$/, async (exp
         await expect(matchingActualField).toEqual(expectedField);
     }
 });
+
+Then(/^(?:the user should|should) see the following items in the breakdown of funding$/, async (expectedDataTable) => {
+    const expectedFundingItems = expectedDataTable.hashes()
+        .map(row => new projectFundingItem(
+            row["ITEM"],
+            row["UNIT COST"],
+            row["QUANTITY"],
+            row["TOTAL"]
+        ));
+
+    const actualFundingItems = (await new projectSummaryPage().getFundingBreakdown()).fundingItems;
+
+    for (const expectedFundingItem of expectedFundingItems) {
+        const matchingActualFundingItem = actualFundingItems.find(actualFundingItem => _.isEqual(actualFundingItem, expectedFundingItem));
+        await expect(matchingActualFundingItem).toEqual(expectedFundingItem);
+    }
+});
+
+Then(/^(?:the user should|should) see total requested grant amount is less than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+    const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
+
+    const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
+    const actualFundingTotalAsDecimal = Number.parseFloat(actualFundingTotalAsCurrencyString.substring(1));
+
+    await expect(actualFundingTotalAsDecimal).toBeLessThan(expectedTotalFundingAsDecimal);
+});
+
+
+Then(/^(?:the user should|should) see total requested grant amount is greater than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+    const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
+
+    const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
+    const actualFundingTotalAsDecimal = Number.parseFloat(actualFundingTotalAsCurrencyString.substring(1));
+
+    await expect(actualFundingTotalAsDecimal).toBeGreaterThan(expectedTotalFundingAsDecimal);
+});
+
