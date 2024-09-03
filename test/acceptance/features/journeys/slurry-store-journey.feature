@@ -250,7 +250,7 @@ Feature: Slurry Store Journey
         When the user enters the following
             | FIELD                            | VALUE          | ID               |
             | Project name                     | Slurry Project | projectName      |
-            | Business name                    | Home Farm Ltd  | businessName     |
+            | Business name                    | Test Farm Ltd  | businessName     |
             | Number of employees              | 5              | numberEmployees  |
             | Annual business turnover (£)     | 750000         | businessTurnover |
             | Single Business Identifier (SBI) | 123456789      | sbi              |
@@ -268,8 +268,8 @@ Feature: Slurry Store Journey
         When the user enters the following
             | FIELD               | VALUE                                                      | ID             |
             | First name          | John                                                       | firstName      |
-            | Last name           | Agent                                                      | lastName       |
-            | Business name       | Farm Agency Ltd                                            | businessName   |
+            | Last name           | Test-Agent                                                 | lastName       |
+            | Business name       | Test Agency Ltd                                            | businessName   |
             | Email address       | cl-defra-tactical-grants-test-agent-email@equalexperts.com | emailAddress   |
             | Mobile phone number | 07777 654321                                               | mobileNumber   |
             | Landline number     | 01604 654321                                               | landlineNumber |
@@ -286,11 +286,11 @@ Feature: Slurry Store Journey
         When the user enters the following
             | FIELD               | VALUE                                                          | ID              |
             | First name          | James                                                          | firstName       |
-            | Last name           | Farmer                                                         | lastName        |
+            | Last name           | Test-Farmer                                                    | lastName        |
             | Email address       | cl-defra-tactical-grants-test-applicant-email@equalexperts.com | emailAddress    |
             | Mobile phone number | 07777 123456                                                   | mobileNumber    |
             | Landline number     | 01604 123456                                                   | landlineNumber  |
-            | Address line 1      | Home Farm                                                      | address1        |
+            | Address line 1      | Test Farm                                                      | address1        |
             | Address line 2      | Cogenhoe                                                       | address2        |
             | Town                | Northampton                                                    | town            |
             | County              | Northamptonshire                                               | county          |
@@ -316,10 +316,10 @@ Feature: Slurry Store Journey
             | ROW NO | FIELD NAME                                           | FIELD VALUE                                                                                                                                                                                          | DATA TYPE        |
             | 2      | FA or OA                                             | Outline Application                                                                                                                                                                                  |                  |
             | 4      | Single business identifier (SBI)                     | 123456789                                                                                                                                                                                            |                  |
-            | 5      | Surname                                              | Farmer                                                                                                                                                                                               |                  |
+            | 5      | Surname                                              | Test-Farmer                                                                                                                                                                                          |                  |
             | 6      | Forename                                             | James                                                                                                                                                                                                |                  |
-            | 7      | Business name                                        | Home Farm Ltd                                                                                                                                                                                        |                  |
-            | 8      | Address line 1                                       | Home Farm                                                                                                                                                                                            |                  |
+            | 7      | Business name                                        | Test Farm Ltd                                                                                                                                                                                        |                  |
+            | 8      | Address line 1                                       | Test Farm                                                                                                                                                                                            |                  |
             | 9      | Address line 2                                       | Cogenhoe                                                                                                                                                                                             |                  |
             | 10     | Address line 3                                       |                                                                                                                                                                                                      |                  |
             | 11     | Address line 4 (town)                                | Northampton                                                                                                                                                                                          |                  |
@@ -331,9 +331,9 @@ Feature: Slurry Store Journey
             | 20     | Business size                                        | Micro                                                                                                                                                                                                |                  |
             | 22     | Employees                                            | 5                                                                                                                                                                                                    |                  |
             | 23     | Status of applicant                                  | Sole trader                                                                                                                                                                                          |                  |
-            | 26     | Agent Surname                                        | Agent                                                                                                                                                                                                |                  |
+            | 26     | Agent Surname                                        | Test-Agent                                                                                                                                                                                           |                  |
             | 27     | Agent Forename                                       | John                                                                                                                                                                                                 |                  |
-            | 28     | Agent Business Name                                  | Farm Agency Ltd                                                                                                                                                                                      |                  |
+            | 28     | Agent Business Name                                  | Test Agency Ltd                                                                                                                                                                                      |                  |
             | 29     | Agent Address line 1                                 | High Street                                                                                                                                                                                          |                  |
             | 30     | Agent Address line 2                                 | Denton                                                                                                                                                                                               |                  |
             | 31     | Agent Address line 3                                 |                                                                                                                                                                                                      |                  |

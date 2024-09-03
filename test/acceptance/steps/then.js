@@ -1,7 +1,9 @@
 const { Then } = require("@wdio/cucumber-framework");
 const { browser } = require("@wdio/globals");
 const _ = require("lodash");
+const { projectFundingItem } = require("../dto/projectFundingItem");
 const { worksheetField } = require("../dto/worksheet");
+const projectSummaryPage = require("../pages/projectSummaryPage");
 const guard = require("../services/guard");
 const poller = require("../services/poller");
 const sharePoint = require("../services/sharePoint");
@@ -103,5 +105,25 @@ Then(/^a spreadsheet should be generated with the following values$/, async (exp
     for (const expectedField of expectedFields) {
         const matchingActualField = actualFields.find(actualField => _.isEqual(actualField, expectedField));
         await expect(matchingActualField).toEqual(expectedField);
+    }
+});
+
+Then(/^the following items in the breakdown of funding$/, async (expectedDataTable) => {
+    const expectedFundingItems = expectedDataTable.hashes()
+        .map(row => new projectFundingItem(
+            row["ITEM"],
+            row["UNIT COST"],
+            row["QUANTITY"],
+            row["TOTAL"]
+        ));
+
+    const actualFundingItems = (await new projectSummaryPage().getFundingItems());
+
+    console.warn("expectedFundingItems: " + JSON.stringify(expectedFundingItems));
+    console.warn("actualFundingItems: " + JSON.stringify(actualFundingItems));
+
+    for (const expectedFundingItem of expectedFundingItems) {
+        const matchingActualFundingItem = actualFundingItems.find(actualFundingItem => _.isEqual(actualFundingItem, expectedFundingItem));
+        await expect(matchingActualFundingItem).toEqual(expectedFundingItem);
     }
 });

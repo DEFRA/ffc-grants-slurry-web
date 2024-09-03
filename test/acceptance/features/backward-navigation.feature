@@ -406,7 +406,7 @@ Feature: Backward Navigation
         When the user enters the following
             | FIELD                            | VALUE          | ID               |
             | Project name                     | Slurry Project | projectName      |
-            | Business name                    | Home Farm Ltd  | businessName     |
+            | Business name                    | Test Farm Ltd  | businessName     |
             | Number of employees              | 5              | numberEmployees  |
             | Annual business turnover (£)     | 750000         | businessTurnover |
             | Single Business Identifier (SBI) | 123456789      | sbi              |
@@ -430,18 +430,18 @@ Feature: Backward Navigation
         Then the user should be at URL "agent-details"
         And should see heading "Agent's details"
         When the user enters the following
-            | FIELD               | VALUE                 | ID             |
-            | First name          | John                  | firstName      |
-            | Last name           | Agent                 | lastName       |
-            | Business name       | Farm Agency Ltd       | businessName   |
-            | Email address       | test@equalexperts.com | emailAddress   |
-            | Mobile phone number | 07777 654321          | mobileNumber   |
-            | Landline number     | 01604 654321          | landlineNumber |
-            | Address line 1      | High Street           | address1       |
-            | Address line 2      | Denton                | address2       |
-            | Town                | Northampton           | town           |
-            | County              | Northamptonshire      | county         |
-            | Postcode            | NN7 3NN               | postcode       |
+            | FIELD               | VALUE                                                      | ID             |
+            | First name          | John                                                       | firstName      |
+            | Last name           | Test-Agent                                                 | lastName       |
+            | Business name       | Test Agency Ltd                                            | businessName   |
+            | Email address       | cl-defra-tactical-grants-test-agent-email@equalexperts.com | emailAddress   |
+            | Mobile phone number | 07777 654321                                               | mobileNumber   |
+            | Landline number     | 01604 654321                                               | landlineNumber |
+            | Address line 1      | High Street                                                | address1       |
+            | Address line 2      | Denton                                                     | address2       |
+            | Town                | Northampton                                                | town           |
+            | County              | Northamptonshire                                           | county         |
+            | Postcode            | NN7 3NN                                                    | postcode       |
         And continues
 
         # applicant-details
@@ -452,18 +452,18 @@ Feature: Backward Navigation
         Then the user should be at URL "applicant-details"
         And should see heading "Applicant's details"
         When the user enters the following
-            | FIELD               | VALUE                                                                | ID              |
-            | First name          | James                                                                | firstName       |
-            | Last name           | Farmer                                                               | lastName        |
-            | Email address       | cl-defra-tactical-grants-test-email-service-account@equalexperts.com | emailAddress    |
-            | Mobile phone number | 07777 123456                                                         | mobileNumber    |
-            | Landline number     | 01604 123456                                                         | landlineNumber  |
-            | Address line 1      | Home Farm                                                            | address1        |
-            | Address line 2      | Cogenhoe                                                             | address2        |
-            | Town                | Northampton                                                          | town            |
-            | County              | Northamptonshire                                                     | county          |
-            | Postcode            | NN7 1NN                                                              | postcode        |
-            | Project postcode    | NN7 2NN                                                              | projectPostcode |
+            | FIELD               | VALUE                                                          | ID              |
+            | First name          | James                                                          | firstName       |
+            | Last name           | Test-Farmer                                                    | lastName        |
+            | Email address       | cl-defra-tactical-grants-test-applicant-email@equalexperts.com | emailAddress    |
+            | Mobile phone number | 07777 123456                                                   | mobileNumber    |
+            | Landline number     | 01604 123456                                                   | landlineNumber  |
+            | Address line 1      | Test Farm                                                      | address1        |
+            | Address line 2      | Cogenhoe                                                       | address2        |
+            | Town                | Northampton                                                    | town            |
+            | County              | Northamptonshire                                               | county          |
+            | Postcode            | NN7 1NN                                                        | postcode        |
+            | Project postcode    | NN7 2NN                                                        | projectPostcode |
         And continues
 
         # check-details
