@@ -28,5 +28,6 @@ data:
   WORKSHEET_HIDE_EMPTY_ROWS: {{ .Values.container.worksheetHideEmptyRows | quote }}
   WORKSHEET_PROTECT_ENABLED: {{ .Values.container.worksheetProtectEnabled | quote }}
   SEND_EMAIL_TO_RPA: {{ .Values.container.sendEmailToRpa | quote }}
+  RPA_EMAIL_ADDRESS: {{ .Values.container.rpaEmail | quote }}
   EXCEL_UPLOAD_ENVIRONMENT: {{ .Values.container.excelUploadEnvironment | quote }}
 {{- end -}}
