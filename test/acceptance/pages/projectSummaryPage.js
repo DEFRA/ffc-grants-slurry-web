@@ -1,42 +1,50 @@
-const { $$ } = require('@wdio/globals')
-const { projectFundingItem } = require("../dto/projectFundingItem");
+const { $, $$ } = require('@wdio/globals')
+const { projectFundingBreakdown, projectFundingItem } = require("../dto/projectFundingBreakdown");
 
 class projectSummaryPage {
-    async getFundingItems () {
-        const scoringRowElements = await this.#getScoringRowElements();
-        return await Promise.all(
-            await scoringRowElements
-                .map(async e => new projectFundingItem(
-                    await this.#getProjectItem(e),
-                    await this.#getUnitCost(e),
-                    await this.#getQuantity(e),
-                    await this.#getTotal(e)
+    async getFundingBreakdown () {
+        const projectItemRowElements = await this.#getProjectItemRowElements();
+        return new projectFundingBreakdown(
+            await Promise.all(
+                await projectItemRowElements
+                    .map(async e => new projectFundingItem(
+                        await this.#getItemName(e),
+                        await this.#getItemUnitCost(e),
+                        await this.#getItemQuantity(e),
+                        await this.#getItemTotal(e)
+                    )
                 )
-            )
+            ),
+            await this.#getProjectFundingTotal()
         );
     }
 
-    async #getScoringRowElements () {
+    async #getProjectItemRowElements () {
         return $$("//h2[text()='Breakdown of funding']/following-sibling::table/tbody/tr[td[@class='govuk-table__header']]");
     }
 
-    async #getProjectItem(parentRowElement) {
+    async #getItemName(parentRowElement) {
         const text = await parentRowElement.$$("td")[0].getText();
         return text.trim();
     }
 
-    async #getUnitCost(parentRowElement) {
+    async #getItemUnitCost(parentRowElement) {
         const text = await parentRowElement.$$("td")[1].getText();
         return text.trim();
     }
 
-    async #getQuantity(parentRowElement) {
+    async #getItemQuantity(parentRowElement) {
         const text = await parentRowElement.$$("td")[2].getText();
         return text.trim();
     }
 
-    async #getTotal(parentRowElement) {
+    async #getItemTotal(parentRowElement) {
         const text = await parentRowElement.$$("td")[3].getText();
+        return text.trim();
+    }
+
+    async #getProjectFundingTotal() {
+        const text = await $("//h2[text()='Breakdown of funding']/following-sibling::table/tbody/tr[td[@class='govuk-!-padding-left-8']]/td[2]").getText();
         return text.trim();
     }
 }

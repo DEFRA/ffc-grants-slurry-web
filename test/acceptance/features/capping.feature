@@ -118,6 +118,7 @@ Feature: Capping
         # project-summary
         Then the user should be at URL "project-summary"
         And should see heading "Your project items"
+        And should see total requested grant amount is greater than "£250,000"
         And continues
 
         # potential-amount
@@ -243,7 +244,8 @@ Feature: Capping
         # project-summary
         Then the user should be at URL "project-summary"
         And should see heading "Your project items"
-        And continues
+        And should see total requested grant amount is less than "£25,000"
+        When the user continues
 
         # potential-amount
         Then the user should be at URL "potential-amount"
@@ -387,6 +389,12 @@ Feature: Capping
         # project-summary
         Then the user should be at URL "project-summary"
         And should see heading "Your project items"
-        And the following items in the breakdown of funding
+        And should see the following items in the breakdown of funding
             | ITEM            | UNIT COST | QUANTITY | TOTAL   |
             | Concrete bunker | £168.18   | 200m²    | £16,818 |
+        When the user continues    
+
+        # potential-amount
+        Then the user should be at URL "potential-amount"
+        And should see heading "Potential grant funding"
+        And should see body "The grant contribution for the concrete bunker is capped at £16,818"

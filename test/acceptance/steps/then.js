@@ -1,7 +1,7 @@
 const { Then } = require("@wdio/cucumber-framework");
 const { browser } = require("@wdio/globals");
 const _ = require("lodash");
-const { projectFundingItem } = require("../dto/projectFundingItem");
+const { projectFundingItem } = require("../dto/projectFundingBreakdown");
 const { worksheetField } = require("../dto/worksheet");
 const projectSummaryPage = require("../pages/projectSummaryPage");
 const guard = require("../services/guard");
@@ -108,7 +108,7 @@ Then(/^a spreadsheet should be generated with the following values$/, async (exp
     }
 });
 
-Then(/^the following items in the breakdown of funding$/, async (expectedDataTable) => {
+Then(/^(?:the user should|should) see the following items in the breakdown of funding$/, async (expectedDataTable) => {
     const expectedFundingItems = expectedDataTable.hashes()
         .map(row => new projectFundingItem(
             row["ITEM"],
@@ -117,13 +117,30 @@ Then(/^the following items in the breakdown of funding$/, async (expectedDataTab
             row["TOTAL"]
         ));
 
-    const actualFundingItems = (await new projectSummaryPage().getFundingItems());
-
-    console.warn("expectedFundingItems: " + JSON.stringify(expectedFundingItems));
-    console.warn("actualFundingItems: " + JSON.stringify(actualFundingItems));
+    const actualFundingItems = (await new projectSummaryPage().getFundingBreakdown()).fundingItems;
 
     for (const expectedFundingItem of expectedFundingItems) {
         const matchingActualFundingItem = actualFundingItems.find(actualFundingItem => _.isEqual(actualFundingItem, expectedFundingItem));
         await expect(matchingActualFundingItem).toEqual(expectedFundingItem);
     }
 });
+
+Then(/^(?:the user should|should) see total requested grant amount is less than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+    const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
+
+    const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
+    const actualFundingTotalAsDecimal = Number.parseFloat(actualFundingTotalAsCurrencyString.substring(1));
+
+    await expect(actualFundingTotalAsDecimal).toBeLessThan(expectedTotalFundingAsDecimal);
+});
+
+
+Then(/^(?:the user should|should) see total requested grant amount is greater than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+    const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
+
+    const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
+    const actualFundingTotalAsDecimal = Number.parseFloat(actualFundingTotalAsCurrencyString.substring(1));
+
+    await expect(actualFundingTotalAsDecimal).toBeGreaterThan(expectedTotalFundingAsDecimal);
+});
+
