@@ -225,7 +225,7 @@ Feature: Impermeable Cover Only Journey
             | 36     | Agent Mobile number                                  |                                                                |                  |
             | 37     | Agent Email                                          |                                                                |                  |
             | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                              |                  |
-            | 40     | Scheme                                               | Farming Investment Fund                                        |                  |
+            | 40     | Scheme                                               | Farming Transformation Fund                                    |                  |
             | 41     | Owner                                                | RD                                                             |                  |
             | 42     | Project name                                         | Slurry Project                                                 |                  |
             | 43     | Theme                                                | Slurry Infrastructure Grants                                   |                  |
