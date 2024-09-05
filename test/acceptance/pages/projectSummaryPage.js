@@ -1,4 +1,4 @@
-const { $, $$ } = require('@wdio/globals')
+const { $, $$ } = require('@wdio/globals');
 const { projectFundingBreakdown, projectFundingItem } = require("../dto/projectFundingBreakdown");
 
 class projectSummaryPage {

@@ -1,6 +1,6 @@
 {
   "name": "ffc-grants-slurry-web",
-  "version": "3.13.9",
+  "version": "3.13.10",
   "description": "Web frontend for FTF Slurry Infrastructure scheme",
   "homepage": "https://github.com/DEFRA/ffc-grants-slurry-web",
   "main": "app/index.js",

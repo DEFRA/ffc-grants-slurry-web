@@ -136,55 +136,144 @@ Feature: Slurry Store Journey
         # pig-capacity-increase-replace (pig farmer)
         Then the user should be at URL "pig-capacity-increase-replace"
         And should see heading label "What estimated volume do you need to have 8 months’ storage?"
-        When the user enters "1000" in "serviceCapacityIncrease"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+        When the user enters "30" in "serviceCapacityIncrease"
         And continues
 
         # cover-type
         Then the user should be at URL "cover-type"
         And should see heading "What type of cover will you have on your grant-funded store?"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
         When the user selects "Fixed flexible cover"
         And continues
 
         # existing-cover-type
         Then the user should be at URL "existing-cover-type"
         And should see heading "What type of cover will you have on your existing store?"
-        When the user selects "Fixed flexible cover"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+        When the user selects "Floating flexible cover"
         And continues
 
         # existing-grant-funded-cover-size
         Then the user should be at URL "existing-grant-funded-cover-size"
         And should see heading "How big will the covers be?"
-        When the user enters "100" in "coverSize"
-        And enters "50" in "existingCoverSize"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+        When the user enters "10" in "coverSize"
+        And enters "5" in "existingCoverSize"
         And continues
 
         # separator
         Then the user should be at URL "separator"
         And should see heading "Do you want to add a slurry separator to your project?"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            |                          | Size: 10m²                      |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+            |                          | Size: 5m²                       |
         When the user selects "Yes"
         And continues
 
         # separator-type
         Then the user should be at URL "separator-type"
         And should see heading "What type of slurry separator will you have?"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            |                          | Size: 10m²                      |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+            |                          | Size: 5m²                       |
         When the user selects "Roller screen press"
         And continues
 
         # gantry
         Then the user should be at URL "gantry"
         And should see heading "Do you want to add a gantry?"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            |                          | Size: 10m²                      |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+            |                          | Size: 5m²                       |
+            | Separator                |                                 |
+            |                          | Roller screen press             |
         When the user selects "Yes"
         And continues
 
         # short-term-storage
         Then the user should be at URL "short-term-storage"
         And should see heading "What type of short-term storage do you want for the stackable material from the separator?"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            |                          | Size: 10m²                      |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+            |                          | Size: 5m²                       |
+            | Separator                |                                 |
+            |                          | Roller screen press             |
+            |                          | Gantry                          |
         When the user selects "Concrete pad"
         And continues
 
         # other-items
         Then the user should be at URL "other-items"
         And should see heading "What other items do you need?"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            |                          | Size: 10m²                      |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+            |                          | Size: 5m²                       |
+            | Separator                |                                 |
+            |                          | Roller screen press             |
+            |                          | Gantry                          |
+            |                          | Concrete pad                    |
         When the user selects the following
             | Reception pit            |
             | Centrifugal chopper pump |
@@ -193,13 +282,42 @@ Feature: Slurry Store Journey
         # item-sizes-quantities
         Then the user should be at URL "item-sizes-quantities"
         And should see heading "Item sizes and quantities"
-        When the user enters "100" in "Receptionpit"
-        And enters "200" in "Centrifugalchopperpump"
+        And should see the following sidebar project items
+            | HEADING                  | BULLET POINT                    |
+            | Grant-funded store       |                                 |
+            |                          | Above-ground steel slurry store |
+            |                          | Increase: 30m³                  |
+            | Grant-funded store cover |                                 |
+            |                          | Fixed flexible cover            |
+            |                          | Size: 10m²                      |
+            | Existing store cover     |                                 |
+            |                          | Floating flexible cover         |
+            |                          | Size: 5m²                       |
+            | Separator                |                                 |
+            |                          | Roller screen press             |
+            |                          | Gantry                          |
+            |                          | Concrete pad                    |
+            | Other items              |                                 |
+            |                          | Reception pit                   |
+            |                          | Centrifugal chopper pump        |
+        When the user enters "25" in "Receptionpit"
+        And enters "2" in "Centrifugalchopperpump"
         And continues
 
         # project-summary
         Then the user should be at URL "project-summary"
         And should see heading "Your project items"
+        And should see the following items in the breakdown of funding
+            | ITEM                                    | UNIT COST | QUANTITY | TOTAL     |
+            | Above-ground steel slurry store         | £31.50    | 30m³     | £945      |
+            | Fixed flexible grant-funded store cover | £32.17    | 10m²     | £321.70   |
+            | Floating flexible existing store cover  | £7.99     | 5m²      | £39.95    |
+            | Roller screen press                     | £23,996   | 1        | £23,996   |
+            | Gantry                                  | £5,154    | 1        | £5,154    |
+            | Concrete pad                            | £6,414    | 1        | £6,414    |
+            | Reception pit                           | £154.81   | 25m³     | £3,870.25 |
+            | Centrifugal chopper pump                | £5,635    | 2        | £11,270   |
+        And should see the total requested grant amount is "£52,010.90"
         When the user continues
 
         # potential-amount
@@ -248,12 +366,12 @@ Feature: Slurry Store Journey
         Then the user should be at URL "business-details"
         And should see heading "Business details"
         When the user enters the following
-            | FIELD                            | VALUE          | ID               |
-            | Project name                     | Slurry Project | projectName      |
-            | Business name                    | Test Farm Ltd  | businessName     |
-            | Number of employees              | 5              | numberEmployees  |
-            | Annual business turnover (£)     | 750000         | businessTurnover |
-            | Single Business Identifier (SBI) | 123456789      | sbi              |
+            | FIELD                            | VALUE                | ID               |
+            | Project name                     | Slurry Store Project | projectName      |
+            | Business name                    | Test Farm Ltd        | businessName     |
+            | Number of employees              | 5                    | numberEmployees  |
+            | Annual business turnover (£)     | 750000               | businessTurnover |
+            | Single Business Identifier (SBI) | 123456789            | sbi              |
         And continues
 
         # applying
@@ -313,79 +431,79 @@ Feature: Slurry Store Journey
         And should see heading "Details submitted"
         And should see a reference number for their application
         Then a spreadsheet should be generated with the following values
-            | ROW NO | FIELD NAME                                           | FIELD VALUE                                                                                                                                                                                          | DATA TYPE        |
-            | 2      | FA or OA                                             | Outline Application                                                                                                                                                                                  |                  |
-            | 4      | Single business identifier (SBI)                     | 123456789                                                                                                                                                                                            |                  |
-            | 5      | Surname                                              | Test-Farmer                                                                                                                                                                                          |                  |
-            | 6      | Forename                                             | James                                                                                                                                                                                                |                  |
-            | 7      | Business name                                        | Test Farm Ltd                                                                                                                                                                                        |                  |
-            | 8      | Address line 1                                       | Test Farm                                                                                                                                                                                            |                  |
-            | 9      | Address line 2                                       | Cogenhoe                                                                                                                                                                                             |                  |
-            | 10     | Address line 3                                       |                                                                                                                                                                                                      |                  |
-            | 11     | Address line 4 (town)                                | Northampton                                                                                                                                                                                          |                  |
-            | 12     | Address line 5 (county)                              | Northamptonshire                                                                                                                                                                                     |                  |
-            | 13     | Postcode (use capitals)                              | NN7 1NN                                                                                                                                                                                              |                  |
-            | 16     | Landline number                                      | 01604 123456                                                                                                                                                                                         |                  |
-            | 17     | Mobile number                                        | 07777 123456                                                                                                                                                                                         |                  |
-            | 18     | Email                                                | cl-defra-tactical-grants-test-applicant-email@equalexperts.com                                                                                                                                       |                  |
-            | 20     | Business size                                        | Micro                                                                                                                                                                                                |                  |
-            | 22     | Employees                                            | 5                                                                                                                                                                                                    |                  |
-            | 23     | Status of applicant                                  | Sole trader                                                                                                                                                                                          |                  |
-            | 26     | Agent Surname                                        | Test-Agent                                                                                                                                                                                           |                  |
-            | 27     | Agent Forename                                       | John                                                                                                                                                                                                 |                  |
-            | 28     | Agent Business Name                                  | Test Agency Ltd                                                                                                                                                                                      |                  |
-            | 29     | Agent Address line 1                                 | High Street                                                                                                                                                                                          |                  |
-            | 30     | Agent Address line 2                                 | Denton                                                                                                                                                                                               |                  |
-            | 31     | Agent Address line 3                                 |                                                                                                                                                                                                      |                  |
-            | 32     | Agent Address line 4 (town)                          | Northampton                                                                                                                                                                                          |                  |
-            | 33     | Agent Address line 5 (County)                        | Northamptonshire                                                                                                                                                                                     |                  |
-            | 34     | Agent Postcode (use capitals)                        | NN7 3NN                                                                                                                                                                                              |                  |
-            | 35     | Agent Landline number                                | 01604 654321                                                                                                                                                                                         |                  |
-            | 36     | Agent Mobile number                                  | 07777 654321                                                                                                                                                                                         |                  |
-            | 37     | Agent Email                                          | cl-defra-tactical-grants-test-agent-email@equalexperts.com                                                                                                                                           |                  |
-            | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                                                                                                                                                                    |                  |
-            | 40     | Scheme                                               | Farming Transformation Fund                                                                                                                                                                          |                  |
-            | 41     | Owner                                                | RD                                                                                                                                                                                                   |                  |
-            | 42     | Project name                                         | Slurry Project                                                                                                                                                                                       |                  |
-            | 43     | Theme                                                | Slurry Infrastructure Grants                                                                                                                                                                         |                  |
-            | 44     | Project Items                                        | Above-ground steel slurry store~1000\|Fixed flexible cover~100\|Fixed flexible cover~50\|Roller screen press~1\|Gantry~1\|Concrete pad~1\|Reception pit~100~m³\|Centrifugal chopper pump~200~item(s) |                  |
-            | 45     | Location of project (postcode)                       | NN7 2NN                                                                                                                                                                                              |                  |
-            | 53     | Business type                                        | Pig Farmer                                                                                                                                                                                           |                  |
-            | 54     | Electronic OA received date                          | ?                                                                                                                                                                                                    | CURRENT-DATE     |
-            | 55     | Total project expenditure                            | 2428741.00                                                                                                                                                                                           |                  |
-            | 56     | Grant amount requested                               | 250000                                                                                                                                                                                               | DECIMAL          |
-            | 57     | Grant rate                                           | 50                                                                                                                                                                                                   |                  |
-            | 85     | Full Application Submission Date                     | 31/03/2026                                                                                                                                                                                           |                  |
-            | 89     | Customer Marketing Indicator                         | No                                                                                                                                                                                                   |                  |
-            | 90     | Project type                                         | Slurry Store and Cover                                                                                                                                                                               |                  |
-            | 91     | Are you an AGENT applying on behalf of your customer | Yes                                                                                                                                                                                                  |                  |
-            | 92     | RAG rating                                           | Green                                                                                                                                                                                                |                  |
-            | 93     | RAG date reviewed                                    | ?                                                                                                                                                                                                    | CURRENT-DATE     |
-            | 94     | Current location of file                             | NA Automated                                                                                                                                                                                         |                  |
-            | 341    | Grant Launch Date                                    | 11/07/2024                                                                                                                                                                                           |                  |
-            | 342    | Land owned by Farm                                   | No                                                                                                                                                                                                   |                  |
-            | 343    | Tenancy for next 5 years                             |                                                                                                                                                                                                      |                  |
-            | 345    | Remaining Cost to Farmer                             | 964370.50                                                                                                                                                                                            |                  |
-            | 346    | Planning Permission Status                           | Approved                                                                                                                                                                                             |                  |
-            | 365    | OA score                                             | 0                                                                                                                                                                                                    | INTEGER          |
-            | 366    | Date of OA decision                                  |                                                                                                                                                                                                      |                  |
-            | 367    | Annual Turnover                                      | 750000                                                                                                                                                                                               |                  |
-            | 368    | Date ready for QC or decision                        | ?                                                                                                                                                                                                    | CURRENT-DATE     |
-            | 369    | Eligibility Reference No.                            | ?                                                                                                                                                                                                    | REFERENCE-NUMBER |
-            | 370    | Status                                               | Pending RPA review                                                                                                                                                                                   |                  |
-            | 375    | OA percent                                           | 0                                                                                                                                                                                                    | INTEGER          |
-            | 376    | Project Started                                      | Yes, preparatory work                                                                                                                                                                                |                  |
-            | 395    | System Type                                          | Slurry-based system                                                                                                                                                                                  |                  |
-            | 396    | Existing Storage Capacity                            | Less than 8 months                                                                                                                                                                                   |                  |
-            | 397    | Planned Storage Capacity                             | 8 months                                                                                                                                                                                             |                  |
-            | 398    | Slurry Storage Improvement Method                    | Replace an existing store that is no longer fit for purpose with a new store                                                                                                                         |                  |
-            | 399    | Impermeable Cover                                    | Yes, I need a cover                                                                                                                                                                                  |                  |
-            | 400    | Planning Authority                                   | NORTHANTS                                                                                                                                                                                            |                  |
-            | 401    | Planning Reference No                                | NN12345                                                                                                                                                                                              |                  |
-            | 402    | Existing store OS grid reference                     | SP8349861506                                                                                                                                                                                         |                  |
-            | 463    | Environmental permit                                 | Yes                                                                                                                                                                                                  |                  |
-            | 464    | Project Responsibility                               | Yes, I plan to take full responsibility for my project                                                                                                                                               |                  |
-            | 465    | Applying for                                         | Building a new store, replacing or expanding an existing store                                                                                                                                       |                  |
-            | 466    | Fit for purpose                                      | No                                                                                                                                                                                                   |                  |
-            | 467    | Existing Store Cover                                 | Yes                                                                                                                                                                                                  |                  |
-            | 521    | New store OS grid reference                          | SP8349861507                                                                                                                                                                                         |                  |
+            | ROW NO | FIELD NAME                                           | FIELD VALUE                                                                                                                                                                                      | DATA TYPE        |
+            | 2      | FA or OA                                             | Outline Application                                                                                                                                                                              |                  |
+            | 4      | Single business identifier (SBI)                     | 123456789                                                                                                                                                                                        |                  |
+            | 5      | Surname                                              | Test-Farmer                                                                                                                                                                                      |                  |
+            | 6      | Forename                                             | James                                                                                                                                                                                            |                  |
+            | 7      | Business name                                        | Test Farm Ltd                                                                                                                                                                                    |                  |
+            | 8      | Address line 1                                       | Test Farm                                                                                                                                                                                        |                  |
+            | 9      | Address line 2                                       | Cogenhoe                                                                                                                                                                                         |                  |
+            | 10     | Address line 3                                       |                                                                                                                                                                                                  |                  |
+            | 11     | Address line 4 (town)                                | Northampton                                                                                                                                                                                      |                  |
+            | 12     | Address line 5 (county)                              | Northamptonshire                                                                                                                                                                                 |                  |
+            | 13     | Postcode (use capitals)                              | NN7 1NN                                                                                                                                                                                          |                  |
+            | 16     | Landline number                                      | 01604 123456                                                                                                                                                                                     |                  |
+            | 17     | Mobile number                                        | 07777 123456                                                                                                                                                                                     |                  |
+            | 18     | Email                                                | cl-defra-tactical-grants-test-applicant-email@equalexperts.com                                                                                                                                   |                  |
+            | 20     | Business size                                        | Micro                                                                                                                                                                                            |                  |
+            | 22     | Employees                                            | 5                                                                                                                                                                                                |                  |
+            | 23     | Status of applicant                                  | Sole trader                                                                                                                                                                                      |                  |
+            | 26     | Agent Surname                                        | Test-Agent                                                                                                                                                                                       |                  |
+            | 27     | Agent Forename                                       | John                                                                                                                                                                                             |                  |
+            | 28     | Agent Business Name                                  | Test Agency Ltd                                                                                                                                                                                  |                  |
+            | 29     | Agent Address line 1                                 | High Street                                                                                                                                                                                      |                  |
+            | 30     | Agent Address line 2                                 | Denton                                                                                                                                                                                           |                  |
+            | 31     | Agent Address line 3                                 |                                                                                                                                                                                                  |                  |
+            | 32     | Agent Address line 4 (town)                          | Northampton                                                                                                                                                                                      |                  |
+            | 33     | Agent Address line 5 (County)                        | Northamptonshire                                                                                                                                                                                 |                  |
+            | 34     | Agent Postcode (use capitals)                        | NN7 3NN                                                                                                                                                                                          |                  |
+            | 35     | Agent Landline number                                | 01604 654321                                                                                                                                                                                     |                  |
+            | 36     | Agent Mobile number                                  | 07777 654321                                                                                                                                                                                     |                  |
+            | 37     | Agent Email                                          | cl-defra-tactical-grants-test-agent-email@equalexperts.com                                                                                                                                       |                  |
+            | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                                                                                                                                                                |                  |
+            | 40     | Scheme                                               | Farming Transformation Fund                                                                                                                                                                      |                  |
+            | 41     | Owner                                                | RD                                                                                                                                                                                               |                  |
+            | 42     | Project name                                         | Slurry Store Project                                                                                                                                                                             |                  |
+            | 43     | Theme                                                | Slurry Infrastructure Grants                                                                                                                                                                     |                  |
+            | 44     | Project Items                                        | Above-ground steel slurry store~30\|Fixed flexible cover~10\|Floating flexible cover~5\|Roller screen press~1\|Gantry~1\|Concrete pad~1\|Reception pit~25~m³\|Centrifugal chopper pump~2~item(s) |                  |
+            | 45     | Location of project (postcode)                       | NN7 2NN                                                                                                                                                                                          |                  |
+            | 53     | Business type                                        | Pig Farmer                                                                                                                                                                                       |                  |
+            | 54     | Electronic OA received date                          | ?                                                                                                                                                                                                | CURRENT-DATE     |
+            | 55     | Total project expenditure                            | 104021.80                                                                                                                                                                                        |                  |
+            | 56     | Grant amount requested                               | 52010.9                                                                                                                                                                                          | DECIMAL          |
+            | 57     | Grant rate                                           | 50                                                                                                                                                                                               |                  |
+            | 85     | Full Application Submission Date                     | 31/03/2026                                                                                                                                                                                       |                  |
+            | 89     | Customer Marketing Indicator                         | No                                                                                                                                                                                               |                  |
+            | 90     | Project type                                         | Slurry Store and Cover                                                                                                                                                                           |                  |
+            | 91     | Are you an AGENT applying on behalf of your customer | Yes                                                                                                                                                                                              |                  |
+            | 92     | RAG rating                                           | Green                                                                                                                                                                                            |                  |
+            | 93     | RAG date reviewed                                    | ?                                                                                                                                                                                                | CURRENT-DATE     |
+            | 94     | Current location of file                             | NA Automated                                                                                                                                                                                     |                  |
+            | 341    | Grant Launch Date                                    | 11/07/2024                                                                                                                                                                                       |                  |
+            | 342    | Land owned by Farm                                   | No                                                                                                                                                                                               |                  |
+            | 343    | Tenancy for next 5 years                             |                                                                                                                                                                                                  |                  |
+            | 345    | Remaining Cost to Farmer                             | 0.00                                                                                                                                                                                             |                  |
+            | 346    | Planning Permission Status                           | Approved                                                                                                                                                                                         |                  |
+            | 365    | OA score                                             | 0                                                                                                                                                                                                | INTEGER          |
+            | 366    | Date of OA decision                                  |                                                                                                                                                                                                  |                  |
+            | 367    | Annual Turnover                                      | 750000                                                                                                                                                                                           |                  |
+            | 368    | Date ready for QC or decision                        | ?                                                                                                                                                                                                | CURRENT-DATE     |
+            | 369    | Eligibility Reference No.                            | ?                                                                                                                                                                                                | REFERENCE-NUMBER |
+            | 370    | Status                                               | Pending RPA review                                                                                                                                                                               |                  |
+            | 375    | OA percent                                           | 0                                                                                                                                                                                                | INTEGER          |
+            | 376    | Project Started                                      | Yes, preparatory work                                                                                                                                                                            |                  |
+            | 395    | System Type                                          | Slurry-based system                                                                                                                                                                              |                  |
+            | 396    | Existing Storage Capacity                            | Less than 8 months                                                                                                                                                                               |                  |
+            | 397    | Planned Storage Capacity                             | 8 months                                                                                                                                                                                         |                  |
+            | 398    | Slurry Storage Improvement Method                    | Replace an existing store that is no longer fit for purpose with a new store                                                                                                                     |                  |
+            | 399    | Impermeable Cover                                    | Yes, I need a cover                                                                                                                                                                              |                  |
+            | 400    | Planning Authority                                   | NORTHANTS                                                                                                                                                                                        |                  |
+            | 401    | Planning Reference No                                | NN12345                                                                                                                                                                                          |                  |
+            | 402    | Existing store OS grid reference                     | SP8349861506                                                                                                                                                                                     |                  |
+            | 463    | Environmental permit                                 | Yes                                                                                                                                                                                              |                  |
+            | 464    | Project Responsibility                               | Yes, I plan to take full responsibility for my project                                                                                                                                           |                  |
+            | 465    | Applying for                                         | Building a new store, replacing or expanding an existing store                                                                                                                                   |                  |
+            | 466    | Fit for purpose                                      | No                                                                                                                                                                                               |                  |
+            | 467    | Existing Store Cover                                 | Yes                                                                                                                                                                                              |                  |
+            | 521    | New store OS grid reference                          | SP8349861507                                                                                                                                                                                     |                  |

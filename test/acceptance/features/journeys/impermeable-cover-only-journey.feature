@@ -147,12 +147,12 @@ Feature: Impermeable Cover Only Journey
         Then the user should be at URL "business-details"
         And should see heading "Business details"
         When the user enters the following
-            | FIELD                            | VALUE          | ID               |
-            | Project name                     | Slurry Project | projectName      |
-            | Business name                    | Test Farm Ltd  | businessName     |
-            | Number of employees              | 5              | numberEmployees  |
-            | Annual business turnover (£)     | 750000         | businessTurnover |
-            | Single Business Identifier (SBI) | 123456789      | sbi              |
+            | FIELD                            | VALUE                | ID               |
+            | Project name                     | Slurry Cover Project | projectName      |
+            | Business name                    | Test Farm Ltd        | businessName     |
+            | Number of employees              | 5                    | numberEmployees  |
+            | Annual business turnover (£)     | 750000               | businessTurnover |
+            | Single Business Identifier (SBI) | 123456789            | sbi              |
         And continues
 
         # applying
@@ -227,7 +227,7 @@ Feature: Impermeable Cover Only Journey
             | 39     | Sub scheme                                           | FTF-Slurry Infrastructure Round 3                              |                  |
             | 40     | Scheme                                               | Farming Transformation Fund                                    |                  |
             | 41     | Owner                                                | RD                                                             |                  |
-            | 42     | Project name                                         | Slurry Project                                                 |                  |
+            | 42     | Project name                                         | Slurry Cover Project                                           |                  |
             | 43     | Theme                                                | Slurry Infrastructure Grants                                   |                  |
             | 44     | Project Items                                        | \|\|Floating flexible cover~3500\|\|                           |                  |
             | 45     | Location of project (postcode)                       | NN7 2NN                                                        |                  |

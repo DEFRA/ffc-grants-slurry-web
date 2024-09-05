@@ -118,7 +118,7 @@ Feature: Capping
         # project-summary
         Then the user should be at URL "project-summary"
         And should see heading "Your project items"
-        And should see total requested grant amount is greater than "£250,000"
+        And should see the total requested grant amount is greater than "£250,000"
         And continues
 
         # potential-amount
@@ -244,7 +244,7 @@ Feature: Capping
         # project-summary
         Then the user should be at URL "project-summary"
         And should see heading "Your project items"
-        And should see total requested grant amount is less than "£25,000"
+        And should see the total requested grant amount is less than "£25,000"
         When the user continues
 
         # potential-amount

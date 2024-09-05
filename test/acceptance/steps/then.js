@@ -2,7 +2,9 @@ const { Then } = require("@wdio/cucumber-framework");
 const { browser } = require("@wdio/globals");
 const _ = require("lodash");
 const { projectFundingItem } = require("../dto/projectFundingBreakdown");
+const { projectItemsSidebarSection } = require("../dto/projectItemsSidebarSection");
 const { worksheetField } = require("../dto/worksheet");
+const projectItemsSidebar = require("../pages/projectItemsSidebar");
 const projectSummaryPage = require("../pages/projectSummaryPage");
 const guard = require("../services/guard");
 const poller = require("../services/poller");
@@ -125,7 +127,16 @@ Then(/^(?:the user should|should) see the following items in the breakdown of fu
     }
 });
 
-Then(/^(?:the user should|should) see total requested grant amount is less than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+Then(/^(?:the user should|should) see the total requested grant amount is "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+    const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
+
+    const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
+    const actualFundingTotalAsDecimal = Number.parseFloat(actualFundingTotalAsCurrencyString.substring(1));
+
+    await expect(actualFundingTotalAsDecimal).toEqual(expectedTotalFundingAsDecimal);
+});
+
+Then(/^(?:the user should|should) see the total requested grant amount is less than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
     const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
 
     const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
@@ -135,7 +146,7 @@ Then(/^(?:the user should|should) see total requested grant amount is less than 
 });
 
 
-Then(/^(?:the user should|should) see total requested grant amount is greater than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
+Then(/^(?:the user should|should) see the total requested grant amount is greater than "([^"]*)?"$/, async (expectedTotalFundingAsCurrencyString) => {
     const actualFundingTotalAsCurrencyString = (await new projectSummaryPage().getFundingBreakdown()).total;
 
     const expectedTotalFundingAsDecimal = Number.parseFloat(expectedTotalFundingAsCurrencyString.substring(1));
@@ -144,3 +155,25 @@ Then(/^(?:the user should|should) see total requested grant amount is greater th
     await expect(actualFundingTotalAsDecimal).toBeGreaterThan(expectedTotalFundingAsDecimal);
 });
 
+Then(/^(?:the user should|should) see the following sidebar project items$/, async (dataTable) => {
+    const expectedSidebarSections = [];
+    let expectedSidebarSection = {};
+    
+    for (const row of dataTable.hashes()) {
+        let heading = row["HEADING"];
+        let bulletPoint = row["BULLET POINT"];
+
+        if (heading) {
+            expectedSidebarSection = new projectItemsSidebarSection(heading, []);
+            expectedSidebarSections.push(expectedSidebarSection);
+        }
+
+        if (bulletPoint) {
+            expectedSidebarSection.bulletPoints.push(bulletPoint);
+        }
+    }
+
+    const actualSidebarSections = await new projectItemsSidebar().getSections();
+
+    await expect(actualSidebarSections).toEqual(expectedSidebarSections);
+});

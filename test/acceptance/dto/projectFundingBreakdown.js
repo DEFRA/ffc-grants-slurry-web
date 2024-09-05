@@ -4,6 +4,7 @@ class projectFundingBreakdown {
         this.total = total;
     }
 }
+
 class projectFundingItem {
     constructor(name, unitCost, quantity, total) {
         this.name = name;
