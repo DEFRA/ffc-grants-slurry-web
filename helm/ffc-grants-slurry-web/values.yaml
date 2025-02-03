@@ -3,23 +3,14 @@ name: ffc-grants-slurry-web
 namespace: ffc-grants
 workstream: ffc-grants
 image: ffc-grants-slurry-web
-
 labels: {}
-
 appInsights:
   key: not-a-real-key
-
-azureIdentity:
-  clientID: not-a-real-clientID
-  resourceID: not-a-real-resourceID
-  
 containerConfigMap:
   name: ffc-grants-slurry-web-config-map
-
 containerSecret:
   name: ffc-grants-slurry-web-container-secret
   type: Opaque
-
 deployment:
   restartPolicy: Always
   priorityClassName: high
@@ -30,7 +21,6 @@ deployment:
   maxReplicas: 4
   cpuThreshold: 80
   memoryThreshold: 80
-
 container:
   imagePullPolicy: IfNotPresent
   requestMemory: 120Mi
@@ -71,7 +61,6 @@ container:
   rpaEmail: FTF@rpa.gov.uk
   worksheetHideEmptyRows: false
   excelUploadEnvironment: dummy
-
 livenessProbe:
   path: /healthz
   port: 3000
@@ -79,7 +68,6 @@ livenessProbe:
   periodSeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
-
 readinessProbe:
   path: /healthy
   port: 3000
@@ -87,10 +75,8 @@ readinessProbe:
   periodSeconds: 30
   timeoutSeconds: 5
   failureThreshold: 5
-
 service:
   port: 80
-
 ingress:
   class: nginx
   endpoint: ffc-grants-frontend
